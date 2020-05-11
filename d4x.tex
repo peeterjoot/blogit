@@ -1,0 +1,55 @@
+%
+% Copyright © 2020 Peeter Joot.  All Rights Reserved.
+% Licenced as described in the file LICENSE under the root directory of this GIT repository.
+%
+%{
+\input{../latex/blogpost.tex}
+\renewcommand{\basename}{d4x}
+%\renewcommand{\dirname}{notes/phy1520/}
+\renewcommand{\dirname}{notes/ece1228-electromagnetic-theory/}
+%\newcommand{\dateintitle}{}
+%\newcommand{\keywords}{}
+
+\input{../latex/peeter_prologue_print2.tex}
+
+\usepackage{peeters_layout_exercise}
+\usepackage{peeters_braket}
+\usepackage{peeters_figures}
+\usepackage{siunitx}
+\usepackage{verbatim}
+%\usepackage{mhchem} % \ce{}
+%\usepackage{macros_bm} % \bcM
+%\usepackage{macros_qed} % \qedmarker
+%\usepackage{txfonts} % \ointclockwise
+
+\beginArtNoToc
+
+\generatetitle{XXX}
+%\chapter{XXX}
+%\label{chap:d4x}
+% \citep{sakurai2014modern} pr X.Y
+% \citep{pozar2009microwave}
+% \citep{qftLectureNotes}
+% \citep{doran2003gap}
+% \citep{jackson1975cew}
+% \citep{griffiths1999introduction}
+
+I think that your construction is over-specified.  You want 4 parameters to parameterize the space time volume.  For example, suppose that you have a vector function of time and space coordinates that spans the integration volume of interest
+\begin{dmath}\label{eqn:d4x:20}
+\Bu = t \Be_0 + x \Be_1 + y \Be_2 + z \Be_3,
+\end{dmath}
+then the natural way to express the differential volume element is just
+\begin{dmath}\label{eqn:d4x:40}
+   \sqrt{g} d^4 x =
+   \lr{ \PD{t}{\Bu} dt } \wedge
+   \lr{ \PD{x}{\Bu} dx } \wedge
+   \lr{ \PD{y}{\Bu} dy } \wedge
+   \lr{ \PD{z}{\Bu} dz }
+   =
+   \Be_0 \Be_1 \Be_2 \Be_3 dt dx dy dz.
+\end{dmath}
+I've included your \( \sqrt{g} \) term on the left hand side since the wedge product of the differentials implicitly builds in the Jacobian structure that I assume this represents.
+
+%}
+\EndArticle
+%\EndNoBibArticle

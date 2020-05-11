@@ -1,0 +1,8 @@
+#../latex/bin/lgrep iinverse.tex | tee o ; . ./o
+#perl -p -i ../latex/bin/latexRegex.pl iinverse.tex
+
+#../latex/bin/lgrep d4x.tex | tee o ; . ./o
+#perl -p -i ../latex/bin/latexRegex.pl d4x.tex
+
+../latex/bin/lgrep xtox.tex | tee o ; . ./o
+perl -p -i ../latex/bin/latexRegex.pl xtox.tex

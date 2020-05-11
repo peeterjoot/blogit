@@ -1,0 +1,56 @@
+%
+% Copyright © 2020 Peeter Joot.  All Rights Reserved.
+% Licenced as described in the file LICENSE under the root directory of this GIT repository.
+%
+%{
+\input{../latex/blogpost.tex}
+\renewcommand{\basename}{xtox}
+%\renewcommand{\dirname}{notes/phy1520/}
+\renewcommand{\dirname}{notes/ece1228-electromagnetic-theory/}
+%\newcommand{\dateintitle}{}
+%\newcommand{\keywords}{}
+
+\input{../latex/peeter_prologue_print2.tex}
+
+\usepackage{peeters_layout_exercise}
+\usepackage{peeters_braket}
+\usepackage{peeters_figures}
+\usepackage{siunitx}
+\usepackage{verbatim}
+%\usepackage{mhchem} % \ce{}
+%\usepackage{macros_bm} % \bcM
+%\usepackage{macros_qed} % \qedmarker
+%\usepackage{txfonts} % \ointclockwise
+
+\beginArtNoToc
+
+\generatetitle{Exploring \(x^x\).}
+%\chapter{XXX}
+%\label{chap:xtox}
+
+%My Youtube home page knows that I'm geeky enough to watch math videos and suggested a video today about \(0^0\).
+
+Let \( z = r e^{i \theta} \), then
+\begin{dmath}\label{eqn:xtox:20}
+\ln z^z
+= z \ln \lr{ r e^{i\theta} }
+= z \ln r + i \theta z
+= e^{i\theta} \ln r^r + i \theta z,
+= \lr{ \cos\theta + i \sin\theta } \ln r^r + i r \theta \lr{ \cos\theta + i \sin\theta }
+= \cos\theta \ln r^r - r \theta \sin\theta
++ i r \lr{ \sin\theta \ln r + \theta \cos\theta },
+\end{dmath}
+so
+\begin{dmath}\label{eqn:xtox:40}
+z^z =
+e^{ r \lr{ \cos\theta \ln r - \theta \sin\theta}} \times
+e^{i r \lr{ \sin\theta \ln r + \theta \cos\theta }}.
+\end{dmath}
+In particular, picking \( \theta = \pi \), for any \( x > 0 \), we have 
+\begin{dmath}\label{eqn:xtox:60}
+   (-x)^{-x} = e^{-x \ln x - i x \pi } = \frac{e^{ - i x \pi }}{x^x}.
+\end{dmath}
+
+%}
+\EndArticle
+%\EndNoBibArticle

@@ -11,7 +11,8 @@ SOURCE_DIRS += $(FIGURES)
 all :: $(COPIED_FILES)
 all :: myrefs.bib $(GENERATED_PDFS)
 #all :: d4x.pdf
-all :: xtox.pdf
+#all :: xtox.pdf
+all :: cramersga.pdf
 
 #$(THISBOOK).pdf :: $(wildcard *.tex)
 #$(GENERATED_PDFS) :: $(JUSTBOOKDEPENDENCIES) $(LOCAL_FILES) $(GENERATED_SOURCES) $(COPIED_FILES) $(LOCAL_COPIED_FILES) Bibliography.bib

@@ -8,3 +8,5 @@
 perl -p -i ../latex/bin/latexRegex.pl xtox.tex
 ../latex/bin/lgrep crashem.tex | tee o ; . ./o
 perl -p -i ../latex/bin/latexRegex.pl crashem.tex
+../latex/bin/lgrep cramersga.tex | tee o ; . ./o
+perl -p -i ../latex/bin/latexRegex.pl cramersga.tex

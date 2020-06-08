@@ -1,0 +1,100 @@
+%
+% Copyright © 2020 Peeter Joot.  All Rights Reserved.
+% Licenced as described in the file LICENSE under the root directory of this GIT repository.
+%
+%{
+\input{../latex/blogpost.tex}
+\renewcommand{\basename}{cramersga}
+%\renewcommand{\dirname}{notes/phy1520/}
+\renewcommand{\dirname}{notes/ece1228-electromagnetic-theory/}
+%\newcommand{\dateintitle}{}
+%\newcommand{\keywords}{}
+
+\input{../latex/peeter_prologue_print2.tex}
+
+\usepackage{peeters_layout_exercise}
+\usepackage{peeters_braket}
+\usepackage{peeters_figures}
+\usepackage{siunitx}
+\usepackage{verbatim}
+%\usepackage{mhchem} % \ce{}
+%\usepackage{macros_bm} % \bcM
+%\usepackage{macros_qed} % \qedmarker
+%\usepackage{txfonts} % \ointclockwise
+
+\beginArtNoToc
+
+\generatetitle{Cramer's rule in geometric algebra}
+%\chapter{Cramer's rule in geometric algebra}
+%\label{chap:cramersga}
+
+I've been asked to review a paper that uses linear algebra methods to evaluate repeated wedge products.  Part of the context presented is the use of wedge products to solve linear systems.
+We learned Cramer's rule in high school without derivation, but the derivation is quite simple, and it just follows from the use of repeated wedge products.
+
+In case you've forgotten, the Cramer's rule for the linear system
+\begin{dmath}\label{eqn:cramersga:120}
+\Ba_1 x_1 + \Ba_2 x_2 \cdots + \Ba_n x_n = \Bb,
+\end{dmath}
+is to form the ratio of determinants
+\begin{dmath}\label{eqn:cramersga:140}
+\frac{
+\begin{vmatrix}
+   \Ba_1 & \Ba_2 & \cdots & \Ba_k & \cdots & \Ba_n \\
+\end{vmatrix}
+}
+{
+\begin{vmatrix}
+   \Ba_1 & \Ba_2 & \cdots & \Ba_k & \cdots & \Ba_n \\
+\end{vmatrix}
+},
+\end{dmath}
+and if you want to solve for \( x_k \), then replace \( \Ba_k \) with \( \Bb \) in the numerator
+\begin{dmath}\label{eqn:cramersga:160}
+   x_k =
+\frac{
+\begin{vmatrix}
+   \Ba_1 & \Ba_2 & \cdots & \Bb & \cdots & \Ba_n \\
+\end{vmatrix}
+}
+{
+\begin{vmatrix}
+   \Ba_1 & \Ba_2 & \cdots & \Ba_k & \cdots & \Ba_n \\
+\end{vmatrix}
+}.
+\end{dmath}
+The way that I knew of connecting the wedge product to linear system solution was as follows.  Given a linear system such as
+\begin{equation}\label{eqn:cramersga:20}
+\begin{aligned}
+   a_1 x + b_1 y &= c_1 \\
+   a_2 x + b_2 y &= c_2,
+\end{aligned}
+\end{equation}
+we can restate the problem as
+\begin{dmath}\label{eqn:cramersga:40}
+\Ba x + \Bb y = \Bc.
+\end{dmath}
+Should we wish to solve for \( x \), we just wedge with \( \By \), and to solve for \( y \) we just wedge with \( \Bx \)
+\begin{equation}\label{eqn:cramersga:60}
+\begin{aligned}
+\Ba \wedge \Bb x + \cancel{\Bb\wedge \Bb}  y &= \Bc \wedge \Bb \\
+\cancel{\Ba \wedge \Ba} x + \Ba\wedge \Bb  y &= \Ba \wedge \Bc.
+\end{aligned}
+\end{equation}
+If a solution exists, then \( \Ba \wedge \Bb \) is non zero, so we can write
+\begin{equation}\label{eqn:cramersga:80}
+\begin{aligned}
+   x &= \frac{ \Bc \wedge \Bb }{ \Ba \wedge \Bb } \\
+   y &= \frac{ \Ba \wedge \Bc }{ \Ba \wedge \Bb },
+\end{aligned}
+\end{equation}
+but this ratio of wedge products is just the determinant of the matrix of these vectors (times \( \Be_{12} \)), so we discover the 2D case of Cramer's rule
+\begin{equation}\label{eqn:cramersga:100}
+\begin{aligned}
+x &= \frac{ \begin{vmatrix} \Bc & \Bb \end{vmatrix} }{ \begin{vmatrix}\Ba & \Bb \end{vmatrix} } \\
+y &= \frac{ \begin{vmatrix} \Ba & \Bc \end{vmatrix} }{ \begin{vmatrix}\Ba & \Bb \end{vmatrix} }.
+\end{aligned}
+\end{equation}
+
+%}
+%\EndArticle
+\EndNoBibArticle

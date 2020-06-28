@@ -10,3 +10,7 @@ perl -p -i ../latex/bin/latexRegex.pl xtox.tex
 perl -p -i ../latex/bin/latexRegex.pl crashem.tex
 ../latex/bin/lgrep cramersga.tex | tee o ; . ./o
 perl -p -i ../latex/bin/latexRegex.pl cramersga.tex
+../latex/bin/lgrep multivector.tex | tee o ; . ./o
+perl -p -i ../latex/bin/latexRegex.pl multivector.tex
+../latex/bin/lgrep hyperwedge.tex | tee o ; . ./o
+perl -p -i ../latex/bin/latexRegex.pl hyperwedge.tex

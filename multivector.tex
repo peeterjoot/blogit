@@ -12,63 +12,136 @@
 
 \input{../latex/peeter_prologue_print2.tex}
 
-\usepackage{peeters_layout_exercise}
 \usepackage{peeters_braket}
 \usepackage{peeters_figures}
 \usepackage{siunitx}
 \usepackage{verbatim}
+\usepackage{peeters_tablebox}
+\usepackage{peeters_layout_exercise}
+\usepackage{macros_qed}
 %\usepackage{mhchem} % \ce{}
 %\usepackage{macros_bm} % \bcM
 %\usepackage{macros_qed} % \qedmarker
 %\usepackage{txfonts} % \ointclockwise
 
+\newcommand{\nbcite}[2]{%
+#2%
+%\itemCite{GAelectrodynamics}{#1}{#2}%
+}
+
+% \mathImageFigure{path}{caption}{label}{width}{nbpath}
+% nbpath like: ps2b:countItersAndPlot.m
+\newcommand{\mathImageFigure}[5]{%
+\imageFigure{#1}{\nbcite{#5}{#2}}{#3}{#4}
+}
+
 \beginArtNoToc
 
-\generatetitle{Multivector}
+\generatetitle{An new axiomatic introduction of multivectors, vector products, and geometric algebra.}
 %\chapter{Multivector}
 %\label{chap:multivector}
 
 \paragraph{Motivation.}
 Many introductions to geometric algebra start by first introducing the dot product, then bivectors and the wedge product, and eventually define the product of two vectors as the synthetic sum of the dot and wedge
-\begin{equation}\label{eqn:multivector:n}
+\begin{equation}\label{eqn:multivector:20}
 \Bx \By = \Bx \cdot \By + \Bx \wedge \By.
 \end{equation}
-It takes a fair amount of work to do this well.  In the seminal work \citep{hestenes1999nfc} a few pages are taken for each of the dot and wedge products, showing the similarities and building up ideas, before introducing the geometric product in this fashion.  In \citep{dorst2007gac} the authors take a phenomenal five chapters to build up the context required to introduce the geometric product.  
+It takes a fair amount of work to do this well.  In the seminal work \citep{hestenes1999nfc} a few pages are taken for each of the dot and wedge products, showing the similarities and building up ideas, before introducing the geometric product in this fashion.  In \citep{dorst2007gac} the authors take a phenomenal five chapters to build up the context required to introduce the geometric product.
 I am not disparaging the authors for taking that long to build up the ideas, as their introduction of the subject is exceedingly clear and thorough, and they do a lot more than the minumum required to define the geometric product.
 
 The strategy to introduce the geometric product as a sum of dot and wedge can result in considerable confusion, especially since the wedge product is often defined in terms of the geometric product
-\begin{equation}\label{eqn:multivector:n}
-\Bx \wedge \By = 
+\begin{equation}\label{eqn:multivector:40}
+\Bx \wedge \By =
 \inv{2} \lr{
-\Bx \By - \By \Bx 
+\Bx \By - \By \Bx
 }.
 \end{equation}
-The whole subject can appear like a chicken and egg problem.  I personally found the subject very confusing initially, and had considerable difficulty understanding which of the many 
+The whole subject can appear like a chicken and egg problem.  I personally found the subject very confusing initially, and had considerable difficulty understanding which of the many
 identities of geometric algebra were the most fundamental.  For this reason, I found the axiomatic approach of \citep{doran2003gap} very refreshing.  The cavaet with that work is that is is exceptionally terse, as they jammed a reformulation of most of physics using geometric algebra into that single book, and it would have been thousands of pages had they tried to make it readable by mere mortals.
 
-When I wrote my own book on the subject, I had the intuition that the way to introduce the subject ought to be like the vector space in abstract linear algebra.  The construct of a vector space is a curious and indirect way to define a vector.  Vectors are not defined as entities, but simply as members of a vector space, a space that is required to have a set of properties.  I thought that the same approach would probably work with multivectors, which could be defined as members of a multivector space, a mathematical construction with a set of properties.  
+When I wrote my own book on the subject, I had the intuition that the way to introduce the subject ought to be like the vector space in abstract linear algebra.  The construct of a vector space is a curious and indirect way to define a vector.  Vectors are not defined as entities, but simply as members of a vector space, a space that is required to have a set of properties.  I thought that the same approach would probably work with multivectors, which could be defined as members of a multivector space, a mathematical construction with a set of properties.
 
-I did try this approach, but was not fully satisfied with what I wrote.  I think that dissatisfaction was that I tried to define the multivector first, and introduced a whole set of 
-prerequisite ideas (bivector, trivector, blade, k-vector, vector product, ...) to do so.
-Looking back at this, I think that it shows some mathematical cowardness.  Had I taken the approach of the vector space fully to heart, the multivector could have been defined as a member of a multivector space, and all the other ideas follow from that.  In this article, I'm going to play with this approach anew, and see how it works out.
+I did try this approach, but was not fully satisfied with what I wrote.  I think that dissatisfaction was because I tried to define the multivector first.  To define the multivector, I first introduced a whole set of
+prerequisite ideas (bivector, trivector, blade, k-vector, vector product, ...), but that was also problematic, since the vector multiplication idea required for those concepts wasn't fully defined until the multivector space itself was defined.
+
+My approach shows some mathematical cowardness.  Had I taken the approach of the vector space fully to heart, the multivector could have been defined as a member of a multivector space, and all the other ideas follow from that.  In this article, I'm going to play with this approach anew, and see how it works out.
 \paragraph{Vector space.}
-Our starting point is the vector space, which is defined as
-
+Since the inspiration of everything that follows is the definition of a vector space, we should remind ourselves how that was defined.
+\makedefinition{Vector space.}{def:prerequisites:vectorspace}{
 A vector space is a set \( V = \setlr{\Bx, \By, \Bz, \cdots} \), the elements of which are called vectors, which has an addition operation designated \( + \) and a scalar multiplication operation designated by juxtaposition, where the following axioms are satisfied
 for all vectors \( \Bx, \By, \Bz \in V \) and scalars \( a, b \in \bbR \).
+\begin{tablebox}[tabularx={X|Y}]%{Vector space axioms.}
+    V is closed under addition & \( \Bx + \By \in V \) \\ \hline
+    V is closed under scalar multiplication & \( a \Bx \in V \) \\ \hline
+    Addition is associative & \( (\Bx + \By) + \Bz = \Bx + (\By + \Bz) \) \\ \hline
+    Addition is commutative & \( \By + \Bx = \Bx + \By \) \\ \hline
+    There exists a zero element \( \Bzero \in V \)  & \( \Bx + \Bzero = \Bx \) \\ \hline
+    For any \( \Bx \in V \) there exists a negative additive inverse \( -\Bx \in V \) & \( \Bx + (-\Bx) = \Bzero \) \\ \hline
+    Scalar multiplication is distributive  & \( a( \Bx + \By ) = a \Bx + a \By \), \( (a + b)\Bx = a \Bx + b\Bx \) \\ \hline
+    Scalar multiplication is associative & \( (a b) \Bx = a ( b \Bx ) \) \\ \hline
+    There exists a multiplicative identity & \( 1 \Bx = \Bx \) \\ \hline
+\end{tablebox}
+} % makedefinition{Vector space.}
+%A vector space is a set \( V = \setlr{\Bx, \By, \Bz, \cdots} \), the elements of which are called vectors, which has an addition operation designated \( + \) and a scalar multiplication operation designated by juxtaposition, where the following axioms are satisfied
+%for all vectors \( \Bx, \By, \Bz \in V \) and scalars \( a, b \in \bbR \).
+%
+%\begin{tabular}{|l|l|}
+%\hline
+%V is closed under addition & \( \Bx + \By \in V \)  \\ \hline
+%V is closed under scalar multiplication & \( a \Bx \in V \)  \\ \hline
+%Addition is associative & \( (\Bx + \By) + \Bz = \Bx + (\By + \Bz) \)  \\ \hline
+%Addition is commutative & \( \By + \Bx = \Bx + \By \)  \\ \hline
+%There exists a zero element \( \Bzero \in V \)  & \( \Bx + \Bzero = \Bx \)  \\ \hline
+%For any \( \Bx \in V \) there exists a negative additive inverse \( -\Bx \in V \) & \( \Bx + (-\Bx) = \Bzero \)  \\ \hline
+%Scalar multiplication is distributive  & \( a( \Bx + \By ) = a \Bx + a \By \), \( (a + b)\Bx = a \Bx + b\Bx \)  \\ \hline
+%Scalar multiplication is associative & \( (a b) \Bx = a ( b \Bx ) \)  \\ \hline
+%There exists a multiplicative identity & \( 1 \Bx = \Bx \) \\ \hline
+%\end{tabular}
+While this concept of vector space is an abstract beast, it is consistent with the ``directed arrow'' concept of vectors that we first learn.  For example, if we add two vectors, as illustrated in
+\cref{fig:vectorAddition:vectorAdditionFig1}, we end up with another vector (provided the vector space contains all vectors in the plane of the two summands.)
+If we scale a vector, as illustrated in \cref{fig:VectorsWithOppositeOrientation:VectorsWithOppositeOrientationFig1}, we also end up with another vector (provided the vector space contains all vectors that lie in the direction of the original.)  The reader should convince themselves that the graphical concept of vectors (a directed arrow) satisfies all the properties of a vector in a vector space.
+\mathImageFigure{../figures/GAelectrodynamics/vectorAdditionFig1}{Addition of vectors.}{fig:vectorAddition:vectorAdditionFig1}{0.3}{vectorOrientationAndAdditionFigures.nb}
+\mathImageFigure{../figures/GAelectrodynamics/VectorsWithOppositeOrientationFig1}{Scalar multiples of vectors.}{fig:VectorsWithOppositeOrientation:VectorsWithOppositeOrientationFig1}{0.15}{vectorOrientationAndAdditionFigures.nb}
 
-\begin{tabular}{|l|l|}
-\hline
-V is closed under addition & \( \Bx + \By \in V \)  \\ \hline
-V is closed under scalar multiplication & \( a \Bx \in V \)  \\ \hline
-Addition is associative & \( (\Bx + \By) + \Bz = \Bx + (\By + \Bz) \)  \\ \hline
-Addition is commutative & \( \By + \Bx = \Bx + \By \)  \\ \hline
-There exists a zero element \( \Bzero \in V \)  & \( \Bx + \Bzero = \Bx \)  \\ \hline
-For any \( \Bx \in V \) there exists a negative additive inverse \( -\Bx \in V \) & \( \Bx + (-\Bx) = \Bzero \)  \\ \hline
-Scalar multiplication is distributive  & \( a( \Bx + \By ) = a \Bx + a \By \), \( (a + b)\Bx = a \Bx + b\Bx \)  \\ \hline
-Scalar multiplication is associative & \( (a b) \Bx = a ( b \Bx ) \)  \\ \hline
-There exists a multiplicative identity & \( 1 \Bx = \Bx \) \\ \hline
-\end{tabular}
+The reader also surely familiar with other vector space instantiations.  We can, for example, represent vectors in two, three, or \(N \) dimensions as the coordinates of the arrow heads.
+\makedefinition{\R{N}}{definition:prerequisites:RN}{
+Define \R{N} as the set of tuples \( \setlr{ (x_1, x_2, \cdots) \mid x_i \in \bbR } \).
+}
+By itself, a set of tuples, need not have any addition, nor multiplication operation.  As soon as we define such operations (in the obvious fashion), it is straightforward (even to the point of tedium) that the construction satisfies
+the requirements of a vector space.  Let's show this.
+\makeproblem{\R{N}}{problem:prerequisites:RN}{
+Show that \R{N} is a vector space when the
+addition operation is defined as
+\( \Bx + \By \equiv (x_1 + y_1, x_2 + y_2, \cdots) \)
+, and
+scalar multiplication
+is defined as
+\( a \Bx \equiv (a x_1 , a x_2 , \cdots ) \) for any
+\( \Bx = (x_1, x_2, \cdots) \in \bbR^N \),
+\( \By = (y_1, y_2, \cdots) \in \bbR^N \), and
+\( a \in \bbR \).
+} % problem
+\makeanswer{problem:prerequisites:RN}{
+\begin{itemize}
+\item Closed with respect to addition:
+Given \( \Bx, \By \) defined above, we have
+\( \Bx + \By = (x_1 + y_1, x_2 + y_2, \cdots) \in \bbR^N \).
+\item Closed with respect to multiplication:
+\( a \Bx = (a x_1, a x_2, \cdots) \in \bbR^N \).
+\item Addition is associative, commutative: left to the reader to verify.
+\item Zero element:
+Given \( \Bzero = (0, 0, \cdots)\), clearly \( \Bx + \Bzero = \Bx \) for any \( \Bx \in \bbR^N \).
+\item Negative inverse.
+Given \( -\Bx = (-x_1, -x_2, \cdots)\), then \( \Bx + (-\Bx) = (x_1 - x_1, x_2 - x_2, \cdots) = \Bzero\).  Clearly we can construct a negative additive inverse for any \( \Bx \).
+\item Distributed and associative nature of scalar multiplication : left to the reader to verify.
+\item Multiplicative identity:
+\( 1 \Bx = 1 (x_1, x_2, \cdots) = (1 x_1, 1 x_2, \cdots) = \Bx. \qedmarker\)
+\end{itemize}
+} % answer
+For geometric algebra, we do not actually need any abstract vector spaces, but two additional examples are provided here as problems for the interested reader.
+\input{../GAelectrodynamics/functionvectorspace.tex}
+\input{../GAelectrodynamics/paulivectorspace.tex}
+\paragraph{REWRITE FROM HERE.}
 
 %In geometric algebra, we require what can loosely be called a dot product.
 %A dot product usually has the following characteristics

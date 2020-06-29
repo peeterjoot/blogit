@@ -647,7 +647,7 @@ src=#1% same path as in addresource!
 \newcommand{\Bwedge}[0]{\boldsymbol{\wedge}}
 
 %---------------------------------------------------------
-% some package is redefining hbar in a way that makes it typeset too close to 
+% some package is redefining hbar in a way that makes it typeset too close to
 % stuff on it's left.
 %
 \newcommand{\Hbar}[0]{\,\hbar}
@@ -804,7 +804,7 @@ i & 0 \\
 \newcommand{\halfPhi}[0]{\frac{\phi}{2}}
 
 %
-% shorthand for unit vectors or (qm) vector operators.  
+% shorthand for unit vectors or (qm) vector operators.
 %
 \newcommand{\acap}[0]{\hat{\Ba}}
 \newcommand{\bcap}[0]{\hat{\Bb}}
@@ -841,7 +841,7 @@ i & 0 \\
 %
 % http://tex.stackexchange.com/questions/121937/hat-and-widehat-look-terrible-fixing-width-and-better-positioning
 % http://tex.stackexchange.com/questions/20473/how-can-i-manually-choose-the-size-of-a-wide-accent-math-mode
-% 
+%
 % see latex/hat.tex for some experimentation for this.  There widehat looked better at a glance, but may be font or package dependent since attempting
 % to use it everywhere looks bad in phy1520.pdf
 %
@@ -1221,8 +1221,8 @@ u_1 & 0 & 0 & 0 \\
    \renewcommand{\eqnumcolor}{\color{DarkOliveGreen}}
 
 %-----------------------------------------------------------------------------------
-% 
-% Misc. new commands.  could potentially move to xxxxxxx_macros 
+%
+% Misc. new commands.  could potentially move to xxxxxxx_macros
 %
 
 % this doesn't work in an Exercise environment, and the paragraph text ends up displayed later (for example in the summary
@@ -1299,7 +1299,7 @@ ref={#1}
 \Question{#1\label{#2}}
 }
 
-% paragraph initially didn't appear to work but think that was because I'd messed up the params to 
+% paragraph initially didn't appear to work but think that was because I'd messed up the params to
 % \makeanswer.  Regardless, this is nicer coloring than just plain paragraph (which is auto-colored now).
 %\paragraph{Solution Part \ref{#2}. #1}
 \newcommand{\makesubanswer}[2]{%
@@ -1329,9 +1329,9 @@ ref={#1}
    \titleformat{\subsection}
       {\relax}{\color{DarkOliveGreen}{\textsc{\MakeTextLowercase{\thesubsection}}}}{1em}{\color{Maroon}\normalsize\itshape}
    \titleformat{\subsubsection}
-      {\relax}{\color{DarkOliveGreen}{\textsc{\MakeTextLowercase{\thesubsubsection}}}}{1em}{\color{Maroon}\normalsize\itshape}        
+      {\relax}{\color{DarkOliveGreen}{\textsc{\MakeTextLowercase{\thesubsubsection}}}}{1em}{\color{Maroon}\normalsize\itshape}
    \titleformat{\paragraph}[runin]
-      {\relax}{\color{DarkOliveGreen}{\textsc{\MakeTextLowercase{\theparagraph}}}}{1em}{\color{Maroon}\normalsize\itshape}        
+      {\relax}{\color{DarkOliveGreen}{\textsc{\MakeTextLowercase{\theparagraph}}}}{1em}{\color{Maroon}\normalsize\itshape}
 % not required: only used in Colophon.tex
 %     \renewcommand{\finalVersionString}{\emph{Final Version} as of \today\ (\myVersion).}
 }
@@ -1346,15 +1346,15 @@ ref={#1}
    \titleformat{\subsubsection}
       {\relax}{\color{DarkOliveGreen}{\textsc{\thesubsubsection}}}{1em}{\color{Maroon}\normalsize\itshape}
    \titleformat{\paragraph}[runin]
-      {\relax}{\color{DarkOliveGreen}{\textsc{\MakeTextLowercase{\theparagraph}}}}{1em}{\color{Maroon}\normalsize\itshape}        
+      {\relax}{\color{DarkOliveGreen}{\textsc{\MakeTextLowercase{\theparagraph}}}}{1em}{\color{Maroon}\normalsize\itshape}
    \titlespacing*{\chapter}{0pt}{1\baselineskip}{1.2\baselineskip}
-   \titlespacing*{\section}{0pt}{1.25\baselineskip}{1\baselineskip} 
+   \titlespacing*{\section}{0pt}{1.25\baselineskip}{1\baselineskip}
    \titlespacing*{\subsection}{0pt}{1.25\baselineskip}{1\baselineskip}
    \titlespacing*{\paragraph}{0pt}{1\baselineskip}{1\baselineskip}
 }
 %--------------------------------------------------------------------------------------------
 
-% http://tex.stackexchange.com/questions/81949/can-individual-items-in-a-list-be-labelled-and-hyperref-linked#comment175241_81949 
+% http://tex.stackexchange.com/questions/81949/can-individual-items-in-a-list-be-labelled-and-hyperref-linked#comment175241_81949
 %
 % link to \phantomsection in mathematica.tex or matlab.tex \item lists.
 \newcommand{\itemCite}[3]{%
@@ -1368,7 +1368,7 @@ ref={#1}
 % this replaces use of \underbrace{math}_{label}, but requires for each use in an equation environment
 % an extra numeric parameter for the l1, l2, l3, m1, m2, m3 ... node and label markers
 % [which I'm sure could be automated].
-% 
+%
 \RequirePackage{tikz}
 
 \newcounter{mathLableNode}
@@ -1524,7 +1524,7 @@ problem \ref{#1}%
 % Example based on:
 %
 % http://ctan.cms.math.ca/tex-archive/macros/latex/contrib/mdframed/mdframed.pdf
-% 
+%
 \RequirePackage{tikz}
 \PassOptionsToPackage{framemethod=tikz}{mdframed}
 \RequirePackage{mdframed}
@@ -1585,7 +1585,7 @@ problem \ref{#1}%
 }
 
 %%----------------------------------------------------------------------------------------
-%% 
+%%
 %% http://tex.stackexchange.com/questions/40028/highlight-elements-in-the-matrix/40059#40059
 %%
 %% The following two macros allow marking left/upper, right/lower node positions for box drawing, and then drawing the box.
@@ -1628,7 +1628,7 @@ problem \ref{#1}%
 %
 %% example invokation in: notes/latex/matrixHighlight2.tex
 %------------------------------------------------------------------------------------------------------
-% 
+%
 % http://tex.stackexchange.com/a/213022/15
 %
 

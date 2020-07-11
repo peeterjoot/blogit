@@ -1,4 +1,4 @@
-%
+%}}
 % Copyright © 2020 Peeter Joot.  All Rights Reserved.
 % Licenced as described in the file LICENSE under the root directory of this GIT repository.
 %
@@ -65,6 +65,90 @@ I did try this approach, but was not fully satisfied with what I wrote.  I think
 prerequisite ideas (bivector, trivector, blade, k-vector, vector product, ...), but that was also problematic, since the vector multiplication idea required for those concepts wasn't fully defined until the multivector space itself was defined.
 
 My approach shows some mathematical cowardness.  Had I taken the approach of the vector space fully to heart, the multivector could have been defined as a member of a multivector space, and all the other ideas follow from that.  In this article, I'm going to play with this approach anew, and see how it works out.
+\paragraph{Vectors.}
+In engineering vectors are often represented as column matrixes.  A vector with coordinates \((x,y,z)\) would have the representation
+\begin{dmath}\label{eqn:multivector:60}
+\begin{bmatrix}
+x \\
+y \\
+z
+\end{bmatrix},
+\end{dmath}
+where the unit vectors in those respective directions are
+\begin{equation}\label{eqn:prerequisites:20}
+\Be_1 =
+\begin{bmatrix}
+1 \\
+0 \\
+0 \\
+\end{bmatrix},\quad
+\Be_2 =
+\begin{bmatrix}
+0 \\
+1 \\
+0 \\
+\end{bmatrix},\quad
+\Be_3 =
+\begin{bmatrix}
+0 \\
+0 \\
+1 \\
+\end{bmatrix}.
+\end{equation}
+I'll use the symbol \( \Be_i \) to designate the unit vector in the ith direction%
+\footnote{
+The notation for the unit vectors themselves varies by author.
+For example, it's not uncommon in engineering texts to use \( \hat{a}_x, \hat{a}_y, \hat{a}_z \) instead of \( \Be_1, \Be_2, \Be_3 \).  I would guess that the \(\hat{a}\) notation evolved to avoid the overloading of the symbol \(e = 2.718\cdots\).}.%
+This symbolic designation allows any vector to be encoded in a
+representation agnostic fashion.  For example a vector \( \Bx \) with coordinates \( x, y, z \) is
+\begin{dmath}\label{eqn:prerequisites:40}
+\Bx = x \Be_1 + y \Be_2 + z \Be_3,
+\end{dmath}
+independent of whether the underlying representation of the unit vectors themselves are tuple, row, column, or anything else.
+
+With a coordinate representation, we can add and subtract vectors by simply adding and subtracting their coordinates.  This corresponds to the graphical operation of chaining vectors connected head to tail and drawing the resulting vector that connects the initial tail to the final head, as illustrated in
+\cref{fig:vectorAddition:vectorAdditionFig1}.
+\mathImageFigure{../figures/GAelectrodynamics/vectorAdditionFig1}{Addition of vectors.}{fig:vectorAddition:vectorAdditionFig1}{0.3}{vectorOrientationAndAdditionFigures.nb}
+
+We must supplement a coordinate vector representation with an operation that provides the length of the vector.  In engineering this is a matrix operation
+\begin{dmath}\label{eqn:multivector:80}
+\Norm{\Bx} = \sqrt{ \Bx^\T \Bx },
+\end{dmath}
+which is a compact encoding of Euclidean length \( \sqrt{x^2 + y^2 + z^2} \).  With addition, subtraction, and length operations defined for a set of coordinates, we now have a justification for calling those coordinates a representation of a vector, ``a quantity with magnitude and direction''.
+
+It is useful to be able to generalize the length operation above by defining a dot product
+\begin{dmath}\label{eqn:multivector:100}
+\Bx \cdot \By = \Bx^\T G \By,
+\end{dmath}
+where \( G \) is an \( N \times N \) symmetric matrix, and \( \Bx, \By \) are \( N \times 1 \) column vectors.  The matrix \( G \), also called the metric, is often the identity matrix, in which case the dot product of a vector with itself is the squared (Euclidean) length of that vector.  A common metric in physics is that of special relativistic spacetime
+\begin{dmath}\label{eqn:multivector:120}
+G =
+\pm
+\begin{bmatrix}
+1 & 0 & 0 & 0 \\
+0 & -1 & 0 & 0 \\
+0 & 0 & -1 & 0 \\
+0 & 0 & 0 & -1 \\
+\end{bmatrix},
+\end{dmath}
+where the squared-length of ``timelike'' or ``spacelike'' vectors have a different sign.  Observe that this special relativistic dot product does not have the usual \( \Bx \cdot \Bx \ge 0 \) property that is often included in an axiomatic definition of a dot product.
+
+%We can, for example, represent vectors in two, three, or \(N \) dimensions as the coordinates of the arrow heads.
+%\makedefinition{\R{N}}{definition:prerequisites:RN}{
+%Define \R{N} as the set of tuples \( \setlr{ (x_1, x_2, \cdots) \mid x_i \in \bbR } \).
+%}
+%By itself, a set of tuples, need not have any addition, nor multiplication operation.  As soon as we define such operations (in the obvious fashion), it is straightforward (even to the point of tedium) that the construction satisfies
+%the requirements of a vector space.
+%Representing a vector as a set of coordinates cannot represent the idea that a vector is a quantity with direction and magnitude unless it is also supplemented with a length operation.  In engineering that length operation is is also a matrix
+% is a useful abstraction.  When coupled with an operation that  and encodes the more simplistic notion that a vector is a quantity with
+%, but not terribly geometric.
+%\  , it is consistent with the ``directed arrow'' concept of vectors that we first learn.  For example, if we add two vectors, as illustrated in
+%, we end up with another vector (provided the vector space contains all vectors in the plane of the two summands.)
+%If we scale a vector, as illustrated in \cref{fig:VectorsWithOppositeOrientation:VectorsWithOppositeOrientationFig1}, we also end up with another vector (provided the vector space contains all vectors that lie in the direction of the original.)  The reader should convince themselves that the graphical concept of vectors (a directed arrow) satisfies all the properties of a vector in a vector space.
+%\mathImageFigure{../figures/GAelectrodynamics/VectorsWithOppositeOrientationFig1}{Scalar multiples of vectors.}{fig:VectorsWithOppositeOrientation:VectorsWithOppositeOrientationFig1}{0.15}{vectorOrientationAndAdditionFigures.nb}
+%
+%In engineering, we usually represent vectors by column matrices, whereas in geometric algebra, the representation (tuple, row-vector, column-vector, ...) is typically irrelevant.  We can bridge the two paradigms by introducing standard basis elements.
+%For example, in three dimensional space with a column vector representation, the respective unit vectors along each of the \(x\), \(y\), and \(z\) directions are
 \paragraph{Vector space.}
 Since the inspiration of everything that follows is the definition of a vector space, we should remind ourselves how that was defined.
 \makedefinition{Vector space.}{def:prerequisites:vectorspace}{
@@ -97,18 +181,10 @@ for all vectors \( \Bx, \By, \Bz \in V \) and scalars \( a, b \in \bbR \).
 %Scalar multiplication is associative & \( (a b) \Bx = a ( b \Bx ) \)  \\ \hline
 %There exists a multiplicative identity & \( 1 \Bx = \Bx \) \\ \hline
 %\end{tabular}
-While this concept of vector space is an abstract beast, it is consistent with the ``directed arrow'' concept of vectors that we first learn.  For example, if we add two vectors, as illustrated in
-\cref{fig:vectorAddition:vectorAdditionFig1}, we end up with another vector (provided the vector space contains all vectors in the plane of the two summands.)
-If we scale a vector, as illustrated in \cref{fig:VectorsWithOppositeOrientation:VectorsWithOppositeOrientationFig1}, we also end up with another vector (provided the vector space contains all vectors that lie in the direction of the original.)  The reader should convince themselves that the graphical concept of vectors (a directed arrow) satisfies all the properties of a vector in a vector space.
-\mathImageFigure{../figures/GAelectrodynamics/vectorAdditionFig1}{Addition of vectors.}{fig:vectorAddition:vectorAdditionFig1}{0.3}{vectorOrientationAndAdditionFigures.nb}
-\mathImageFigure{../figures/GAelectrodynamics/VectorsWithOppositeOrientationFig1}{Scalar multiples of vectors.}{fig:VectorsWithOppositeOrientation:VectorsWithOppositeOrientationFig1}{0.15}{vectorOrientationAndAdditionFigures.nb}
-
-The reader also surely familiar with other vector space instantiations.  We can, for example, represent vectors in two, three, or \(N \) dimensions as the coordinates of the arrow heads.
-\makedefinition{\R{N}}{definition:prerequisites:RN}{
-Define \R{N} as the set of tuples \( \setlr{ (x_1, x_2, \cdots) \mid x_i \in \bbR } \).
-}
-By itself, a set of tuples, need not have any addition, nor multiplication operation.  As soon as we define such operations (in the obvious fashion), it is straightforward (even to the point of tedium) that the construction satisfies
-the requirements of a vector space.  Let's show this.
+While this concept of vector space is an abstract beast
+FIXME: SNIP.
+\paragraph{SNIP.}
+Let's show this.
 \makeproblem{\R{N}}{problem:prerequisites:RN}{
 Show that \R{N} is a vector space when the
 addition operation is defined as
@@ -130,7 +206,7 @@ Given \( \Bx, \By \) defined above, we have
 \( a \Bx = (a x_1, a x_2, \cdots) \in \bbR^N \).
 \item Addition is associative, commutative: left to the reader to verify.
 \item Zero element:
-Given \( \Bzero = (0, 0, \cdots)\), clearly \( \Bx + \Bzero = \Bx \) for any \( \Bx \in \bbR^N \).
+Given \( \Bzero = (0, 0, \cdots)\), clearly \( \Bx + \Bzero = (x_1 + 0, x_2 + 0, \cdots) = \Bx \) for any \( \Bx \in \bbR^N \).
 \item Negative inverse.
 Given \( -\Bx = (-x_1, -x_2, \cdots)\), then \( \Bx + (-\Bx) = (x_1 - x_1, x_2 - x_2, \cdots) = \Bzero\).  Clearly we can construct a negative additive inverse for any \( \Bx \).
 \item Distributed and associative nature of scalar multiplication : left to the reader to verify.

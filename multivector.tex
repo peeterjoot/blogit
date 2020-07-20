@@ -41,7 +41,7 @@
 %\chapter{Multivector}
 %\label{chap:multivector}
 
-\paragraph{Motivation.}
+\section{Motivation.}
 Many introductions to geometric algebra start by first introducing the dot product, then bivectors and the wedge product, and eventually define the product of two vectors as the synthetic sum of the dot and wedge
 \begin{equation}\label{eqn:multivector:20}
 \Bx \By = \Bx \cdot \By + \Bx \wedge \By.
@@ -65,19 +65,21 @@ I did try this approach, but was not fully satisfied with what I wrote.  I think
 prerequisite ideas (bivector, trivector, blade, k-vector, vector product, ...), but that was also problematic, since the vector multiplication idea required for those concepts wasn't fully defined until the multivector space itself was defined.
 
 My approach shows some mathematical cowardness.  Had I taken the approach of the vector space fully to heart, the multivector could have been defined as a member of a multivector space, and all the other ideas follow from that.  In this article, I'm going to play with this approach anew, and see how it works out.
-\paragraph{Vectors.}
+\section{Review and background.}
+\subsection{Vectors.}
 One of the simplest descriptions of a vector, as made famous by the supervillian \emph{Vector}, is ``a quantity represented by an arrow with both direction and magnitude'' \citep{youtubeVectorVillian}.
-We can add vectors by connecting the arrows head to tail, and drawing the arrow that connects the initial tail to the final head, as illustrated in%
+We can add vectors by connecting the arrows head to tail, and drawing the arrow that connects the initial tail to the final head, as illustrated in
 \cref{fig:vectorAddition:vectorAdditionFig1}.
 \mathImageFigure{../figures/GAelectrodynamics/vectorAdditionFig1}{Addition of vectors.}{fig:vectorAddition:vectorAdditionFig1}{0.3}{vectorOrientationAndAdditionFigures.nb}
 We can perform scalar multiplication of vectors by simply changing their their length appropriately, as illustrated in \cref{fig:VectorsWithOppositeOrientation:VectorsWithOppositeOrientationFig1}.
-We can subtract vectors by flipping their directions (scaling by \(-1\)) and adding them, as illustrated in%
+We can subtract vectors by flipping their directions (scaling by \(-1\)) and adding them, as illustrated in
 \cref{fig:vectorSubtractionFig1}.
 %In geometric algebra, we can also multiply vectors, but that is skipping ahead a bit -- for now, just note that we are going to contract your old high school teacher who said "No, you cannot multiply vectors."
 \mathImageFigure{../figures/GAelectrodynamics/VectorsWithOppositeOrientationFig1}{Scalar multiples of vectors.}{fig:VectorsWithOppositeOrientation:VectorsWithOppositeOrientationFig1}{0.15}{vectorOrientationAndAdditionFigures.nb}
 \mathImageFigure{../figures/GAelectrodynamics/vectorSubtractionFig1}{Vector subtraction.}{fig:vectorSubtractionFig1}{0.25}{vectorOrientationAndAdditionFigures.nb}
 
-In engineering vectors are usually represented as \( N \times 1 \) column matrixes\footnote{Matrices are like meth or crack to engineers, who will attempt to cast everything as a matrix problem.}.  A vector \( \Bx \) with coordinates \((x,y,z)\) would have the representation
+\subsection{Coordinate vectors.}
+In engineering, vectors are usually represented as \( N \times 1 \) column matrixes\footnote{Matrices are like meth or crack to engineers, who will attempt to cast everything as a matrix problem.}.  A vector \( \Bx \) with coordinates \((x,y,z)\) would have the representation
 \begin{dmath}\label{eqn:multivector:60}
 \Bx =
 \begin{bmatrix}
@@ -125,17 +127,97 @@ a x_2 + b y_2 \\
 a x_3 + b y_3
 \end{bmatrix}.
 \end{equation}
+
+We may decompose a vector into components in each of the ``unit directions'' as follows
+\begin{dmath}\label{eqn:multivector:160}
+\Bx =
+\begin{bmatrix}
+x \\
+y \\
+z
+\end{bmatrix}
++
+x
+\begin{bmatrix}
+1 \\
+0 \\
+0 \\
+\end{bmatrix}
++
+y
+\begin{bmatrix}
+0 \\
+1 \\
+0 \\
+\end{bmatrix}
++
+z
+\begin{bmatrix}
+0 \\
+0 \\
+1 \\
+\end{bmatrix}.
+\end{dmath}
+The vectors with a single one value in each of the directions may be interpretted as unit vectors, vectors with length one in each of the respective directions.  If we write
+\begin{equation}\label{eqn:prerequisites:20}
+\Be_1 =
+\begin{bmatrix}
+1 \\
+0 \\
+0 \\
+\end{bmatrix},\quad
+\Be_2 =
+\begin{bmatrix}
+0 \\
+1 \\
+0 \\
+\end{bmatrix},\quad
+\Be_3 =
+\begin{bmatrix}
+0 \\
+0 \\
+1 \\
+\end{bmatrix}.
+\end{equation}
+then the matrix representation of the vector takes the form
+\begin{dmath}\label{eqn:prerequisites:40}
+\Bx = x \Be_1 + y \Be_2 + z \Be_3.
+\end{dmath}
+Here we have assumed that the set of vectors
+\( \setlr{ \Be_1, \Be_2, \Be_3 } \) were all mutually perpendicular.  With that assumption, we call such an ordered set the standard basis.  This is a loose definition, since a proper definition of basis depends on the concept of linear independence\footnote{It is assumed that basis, linear dependence and linear independence are all familiar concepts, but I won't take the time to define them systematically yet.}.
+%independent of whether the underlying representation of the unit vectors themselves are tuple, row, column, or anything else.
+%
+%The simplest interpretation of each of these
+%There is a built in ambguity in a coordinate vector representation.
+%, what can be described as the problem of implied basis.
+%For example a vector \( \Bx \) with coordinates \( x, y, z \) is
+%
+%\subsection{Unit vectors: include?}
+%In particular, the unit vectors in the x, y, z directions are
+%I'll use the symbol \( \Be_i \) to designate the unit vector in the ith direction%
+%\footnote{
+%The notation for the unit vectors themselves varies by author.
+%For example, it's not uncommon in engineering texts to use \( \hat{a}_x, \hat{a}_y, \hat{a}_z \) instead of \( \Be_1, \Be_2, \Be_3 \).  I would guess that the \(\hat{a}\) notation evolved to avoid the overloading of the symbol \(e = 2.718\cdots\).}.
+%This symbolic designation allows any vector to be encoded in a
+%representation agnostic fashion.
+%
+
+\subsection{Metric and dot product.}
+Our niave description of a vector is a quantity with direction and magnitude.
+The
+coordinate representation of a vector encodes the direction, at least assuming that a vector is anchored at the zero vector (the origin), and the arrow head sits at the location specified by the coordinates.
 However, we must also supplement the coordinate representation with an operation that provides the length of the vector.
 That operation is the dot product, which has the following general form
 \begin{dmath}\label{eqn:multivector:101}
 \Bx \cdot \By = \Bx^\T G \By,
 \end{dmath}
-where \( G \) is a symmetric matrix.  When \( G = I \), the identity matrix, then the dot product provides a compact encoding of the Euclidean length
+where \( G \) is a symmetric matrix, called the metric.  When \( G = I \), the identity matrix, then the dot product provides a compact encoding of the Euclidean length
 \begin{equation}\label{eqn:multivector:80}
-\Norm{\Bx} = \sqrt{ \Bx \cdot \Bx } = x^2 + y^2 + z^2.
+\Norm{\Bx} = \sqrt{ \Bx \cdot \Bx } = \sqrt{x^2 + y^2 + z^2}.
 \end{equation}
-The dot product has an absolute maximum value when the two vectors are colinear, and is zero when the two vectors are perpendicular.  In all the geometric algebra applications that I'm aware of, the metric is always a
-diagonal matrix with diagonal values \( 0, \pm 1 \).  The non-identity metric of interest for electromagnetism is the metric for four-vectors of special relativity
+The Euclidean dot product (i.e. \( G = I \)) has an absolute maximum value when the two vectors are colinear, and is zero when the two vectors are perpendicular.
+
+The idea of a metric may appear to be useless abstraction, but it has applications in both physics and computer graphics.  In particular, the metric for the four-vectors of special relativity is
 \begin{dmath}\label{eqn:multivector:120}
 G =
 \pm
@@ -146,12 +228,23 @@ G =
 0 & 0 & 0 & 1
 \end{bmatrix}.
 \end{dmath}
-With this metric the squared-length of ``timelike'' or ``spacelike'' vectors have opposite signs.  Observe that this special relativistic dot product does not have the usual \( \Bx \cdot \Bx \ge 0 \) property that is often included in an axiomatic definition of a dot product.
-There are four and five dimensional conformal and projective geometric algebras that also use a non-identity metric, but we won't discuss them here, and the interested reader is referred to the literature.
+Vectors can be characterized as either
+``timelike'' or ``spacelike'', depending on the sign of their
+``squared-length''.
+This special relativistic dot product does not have the usual \( \Bx \cdot \Bx \ge 0 \) property that is usually included in an axiomatic definition of a dot product.
 
+An engineering student may ask, ``Why would I care about special relativity?''.
+Unlike some fields of physics (like classical and quantum mechanics), electromagnetism is relativistically correct to start with, requiring no corrections to generalize it.  This means that the relativisitic toolbox can be used to solve some problems with less effort.  This is one of the reasons why we care to setup our algebraic toolbox in a way that will work for both relativistic problems and the everyday 3D Euclidean geometry problems that surround us.
+
+Non-identity metrics are also of interest in some computer graphics applications.  The interested reader is referred to the
+conformal and projective geometric algebra literature for details, as the are beyond the scope of this work\footnote{The basic idea is that extra dimensions are introduced to represent the origin and to represent a point-at-infinity.}.
+If all this seems too complicated, one of the saving graces is that the metric that is used in all the
+geometric algebra applications that I'm aware of is always a
+diagonal matrix with diagonal values that have values \( 0, \pm 1 \).
+
+\subsection{Vector space.}
 We have briefly reviewed the graphical ``arrow'' representation of a vector, the coordinate representation of a vector, and the dot product in its traditional and generalized forms.  The next step in the journey is to systematize and generalize these ideas.  We do so by introducing the concepts of vector and dot product spaces.
-\paragraph{Vector space.}
-We wish to extend vector spaces by introducing a vector multiplication operation, so an explicit reminder is in order.
+%We wish to extend vector spaces by introducing a vector multiplication operation, so an explicit reminder is in order.
 \makedefinition{Vector space.}{def:prerequisites:vectorspace}{
 A vector space is a set \( V = \setlr{\Bx, \By, \Bz, \cdots} \), the elements of which are called vectors, which has an addition operation designated \( + \) and a scalar multiplication operation designated by juxtaposition, where the following axioms are satisfied
 for all vectors \( \Bx, \By, \Bz \in V \) and scalars \( a, b \in \bbR \).
@@ -169,7 +262,7 @@ for all vectors \( \Bx, \By, \Bz \in V \) and scalars \( a, b \in \bbR \).
 } % makedefinition{Vector space.}
 This vector space concept is an abstract beast, but it encapsulates the rules that underpin addition, subtraction, and rescaling of arrows, as well as their coordinate representation.
 
-For our geometric algebra applications, we care only about finite dimensional vector spaces.
+%For our geometric algebra applications, we care only about finite dimensional vector spaces.
 It is fairly simple to show that coordinate vectors with the usual addition and scaling operations satisfy the axioms of a vector space, as the following problem and solution demonstrates.
 \makeproblem{N dimensional finite vector space.}{problem:prerequisites:RN}{
 Let \( V = \setlr{ {\begin{bmatrix} x_1 & x_2 & \cdots & x_N \end{bmatrix}}^\T }, x_i \in R \), be the set of \( N \times 1 \) real valued column vectors.  Let
@@ -239,15 +332,37 @@ x_1& x_2& \cdots& x_N
 \end{equation*}
 \end{itemize}
 } % answer
-The vector space is, in fact, a much more general construct, and can be used to represent a number of different mathematical constructs.  However, our intended
-geometric algebra applications will actually be restricted to simple vector spaces with two or three spatial dimensions, and up to four dimensions for spacetime (special relativity).  For computer graphics applications, up to five dimensions may be required (as Euclidean space is extended with additional dimensions for the origin and point at infinity.)
+Our intended
+geometric algebra applications will actually be restricted to simple vector spaces with two or three spatial dimensions, usually with real valued vectors.  Up to four dimensions are required for spacetime applications (special relativity).  For computer graphics applications, where Euclidean space is extended with additional dimensions for the origin and point at infinity, up to five dimensions may be required.
 
-For completeness sake,
+The vector space is, in fact, a much more general construct, and can be used to represent a number of different mathematical constructs.  For completeness sake,
 a couple examples of more general vector spaces (with function and matrix elements) are
 are given as problems below, but it would be too big of a digression to explore those in detail.  See any good book on linear algebra to explore the some of the powerful applications of vector spaces.
 \input{../GAelectrodynamics/functionvectorspace.tex}
 \input{../GAelectrodynamics/paulivectorspace.tex}
-\paragraph{REWRITE FROM HERE.}
+
+\subsection{Dot product spaces.}
+We've abstracted the rules for adding, subtracting, and scaling arrows, which are encapsulated in the axioms of the vector space.  The next job is to do the same thing for vector magnitude, which we abstract by defining the dot product in terms of it's properties.
+
+\index{dot product}
+\makedefinition{Dot product.}{dfn:prerequisites:dotproduct}{
+Let \( \Bx, \By \) be real valued vectors from a vector space \( V \).
+A dot product \( \Bx \cdot \By \) is a mapping \( V \cross V \rightarrow \bbR \)
+with the following properties.
+\begin{tablebox}[tabularx={X|Y}]%{Dot product properties.}
+    Symmetric & \( \Bx \cdot \By = \By \cdot \Bx \) \\ \hline
+    Bilinear & \( (a \Bx + b \By) \cdot \Bz = a \Bx \cdot \Bz + b \By \cdot \Bz,\,
+\Bx \cdot (a \By + b \Bz) = a \Bx \cdot \By + b \Bx \cdot \Bz \)
+\\ \hline
+    (Optional) Positive length & \( \Bx \cdot \Bx > 0, \Bx \ne 0 \) \\ \hline
+\end{tablebox}
+} % definition
+
+\makedefinition{Dot product space.}{dfn:prerequisites:dotproductspace}{
+A vector space with an associated dot product is called a dot product space.
+}
+
+\section{JUNK: REWRITE FROM HERE.}
 
 %In geometric algebra, we require what can loosely be called a dot product.
 %A dot product usually has the following characteristics
@@ -296,39 +411,6 @@ There exists a multiplicative identity \( 1 \in M \) : \( 1 x = x \)
 Clearly $\mathbb{R}$, using scalar multiplication as the dot product, is a multivector space.
 
 It's possible to show that $\mathbb{R}^2$, $\mathbb{R}^3$, and other vector spaces (with the normal Euclidean dot product) also generate multivector spaces.  Both of these first require that we show that \( \Bx \By = - \By \Bx \), if \( \Bx \cdot \By = 0 \), that is, the products of perpendicular vectors, assumed to be members of  anticommute.
-
-\paragraph{Unit vectors: include?}
-In particular, the unit vectors in the x, y, z directions are
-\begin{equation}\label{eqn:prerequisites:20}
-\Be_1 =
-\begin{bmatrix}
-1 \\
-0 \\
-0 \\
-\end{bmatrix},\quad
-\Be_2 =
-\begin{bmatrix}
-0 \\
-1 \\
-0 \\
-\end{bmatrix},\quad
-\Be_3 =
-\begin{bmatrix}
-0 \\
-0 \\
-1 \\
-\end{bmatrix}.
-\end{equation}
-I'll use the symbol \( \Be_i \) to designate the unit vector in the ith direction%
-\footnote{
-The notation for the unit vectors themselves varies by author.
-For example, it's not uncommon in engineering texts to use \( \hat{a}_x, \hat{a}_y, \hat{a}_z \) instead of \( \Be_1, \Be_2, \Be_3 \).  I would guess that the \(\hat{a}\) notation evolved to avoid the overloading of the symbol \(e = 2.718\cdots\).}.
-This symbolic designation allows any vector to be encoded in a
-representation agnostic fashion.  For example a vector \( \Bx \) with coordinates \( x, y, z \) is
-\begin{dmath}\label{eqn:prerequisites:40}
-\Bx = x \Be_1 + y \Be_2 + z \Be_3,
-\end{dmath}
-independent of whether the underlying representation of the unit vectors themselves are tuple, row, column, or anything else.
 
 
 %}

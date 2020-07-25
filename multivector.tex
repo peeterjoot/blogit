@@ -103,21 +103,21 @@ We will formalize the concept of space (as a vector space), but for now, the spa
 %}.
 \imageFigure{../figures/GAelectrodynamics/threeVectorsFig1}{Three vectors.}{fig:threeVectors:threeVectorsFig1}{0.15}
 
-We add vectors by joining them head to tail (in any order), and connecting the initial tail to the final head, as illustrated in \cref{fig:vectorAddition:vectorAdditionFig1}, where we have formed \( \DarkerRed{\Bs} = 
-\DarkerGreen{\Ba} + \DarkerBlue{\Bb} + \DarkerPurple{\Bc} \).
-\mathImageFigure{../figures/GAelectrodynamics/vectorAdditionFig1}{Addition of vectors.}{fig:vectorAddition:vectorAdditionFig1}{0.3}{vectorOrientationAndAdditionFigures.nb}
-
 We can multiply vectors by scalars
 by changing their lengths appropriately.  
 %\footnote{
-In this context a scalar is a real number.  We are being purposefully vague though, as we will later allow scalars to be complex valued, when it is useful to do so.
-%, but don't want to bother with the abstraction of introducing the idea of a field, or care specifically about the properties of a scalar, other than the fact that it is number like.
+In this context a scalar is a real number (this is purposefully vague, as it will be useful to allow scalars to be complex valued later.)
 %} 
 Using the example vectors, some rescaled vectors include
 \( 2 \DarkerGreen{\Ba}, (-1) \DarkerBlue{\Bb}, \pi \DarkerPurple{\Bc} \), as illustrated in
 \cref{fig:threeVectorsScaled:threeVectorsScaledFig1}.
 \imageFigure{../figures/GAelectrodynamics/threeVectorsScaledFig1}{Scaled vectors.}{fig:threeVectorsScaled:threeVectorsScaledFig1}{0.1}
 %%%%\mathImageFigure{../figures/GAelectrodynamics/VectorsWithOppositeOrientationFig1}{Scalar multiples of vectors.}{fig:VectorsWithOppositeOrientation:VectorsWithOppositeOrientationFig1}{0.15}{vectorOrientationAndAdditionFigures.nb}
+Reflecting on \( 2 \DarkerGreen{\Ba} = \DarkerGreen{\Ba} + \DarkerGreen{\Ba} \) in the illustration, we see that 
+rescaling a vector provides the algorithm for adding two vectors that lie in the same direction.  We just line them up head to tail, and the total displacement from the original tail to the final head must be the sum of those two vectors.  We can use the same idea to add general vectors with any direction, and degree that the process for addition of vectors is to 
+join them head to tail (in any order), and connect the initial tail to the final head, as illustrated in \cref{fig:vectorAddition:vectorAdditionFig1}, where we have formed \( \DarkerRed{\Bs} = 
+\DarkerGreen{\Ba} + \DarkerBlue{\Bb} + \DarkerPurple{\Bc} \).
+\mathImageFigure{../figures/GAelectrodynamics/vectorAdditionFig1}{Addition of vectors.}{fig:vectorAddition:vectorAdditionFig1}{0.3}{vectorOrientationAndAdditionFigures.nb}
 
 Given that we can scale a vector by \( -1 \), it makes sense to define subtraction as \( \DarkerGreen{\Ba} - \DarkerBlue{\Bb} = \DarkerGreen{\Ba} + \DarkerPurple{(-1)\Bb} \).  Graphically, that 
 means that we subtract vectors by flipping their directions (scaling by \(-1\)) and then adding them by connecting head to tail as before, as illustrated in

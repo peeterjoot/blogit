@@ -118,7 +118,7 @@ I've always found well crafted pedagogical sequences rewarding, and will hopeful
 \subsection{Vectors.}
 Cast yourself back in time, all the way to high school, where the first definition of vector that you would have encountered was
 probably very similar to the one made famous by the not very villainous \emph{Vector} in ``Despicable Me'' \citep{youtubeVectorVillian}.
-His definition was not complete, but it was a good starting point:
+His definition was not complete, but it is a good starting point:
 \makedefinition{Vector}{dfn:multivector:180}{
 A vector is a quantity represented by an arrow with both direction and magnitude.
 } % definition
@@ -130,24 +130,27 @@ All the operations that make vectors useful are missing from this definition, su
 \item an operator that provides the length of a vector,
 \item multiplication or multiplication like operations.
 \end{itemize}
-
-If we add definitions of these operations to the mix, then we get something useful.
+%
+%If we add definitions of these operations to the mix, then we get something useful.
 %We will introduce one multiplication like operator (the dot product), but this will be just to brige the gap
-
-\parapgraph{Vector comparison.}
-\parapgraph{Vector (scalar) multiplication.}
-\parapgraph{Vector addition.}
-\parapgraph{Vector subtraction.}
-\parapgraph{Vector length operation.}
-\parapgraph{Vector dot product.}
-
-We may illustrate the idea of an arrow with magnitude and direction by drawing a couple, as in \cref{fig:threeVectors:threeVectorsFig1}.
-This shows three vectors, labelled \( \DarkerGreen{\Ba}, \DarkerBlue{\Bb}, \DarkerPurple{\Bc} \), all with different directions and magnitudes.
-This notion of vector has no origin, and a vector is considered equal to its translation anywhere in the space.
+\paragraph{Vector comparison.}
+In \cref{fig:threeVectorsTx:threeVectorsTxFig1} (a), we have 
+three vectors, labelled \( \DarkerGreen{\Ba}, \DarkerBlue{\Bb}, \DarkerPurple{\Bc} \), all with different directions and magnitudes, and
+in \cref{fig:threeVectorsTx:threeVectorsTxFig1} (b), those
+vectors have each been translated (moved without rotation or change of length) slightly.
+Two vectors are considered equal if they have the same direction and magnitude.  
+That is, two vectors are equal if one is the image of the other after translation.  
+In these figures \( \DarkerGreen{\Ba} \ne \DarkerBlue{\Bb}, \DarkerBlue{\Bb} \ne \DarkerPurple{\Bc}, \DarkerPurple{\Bc} \ne \DarkerGreen{\Ba} \), whereas any same colored vectors are equal.
+%This notion of vector has no origin, and a vector is considered equal to its translation anywhere in the space.
 %\footnote{
-We will formalize the concept of space (as a vector space), but for now, the space can be considered the plane or the volume in which the vectors lie.
+%We will formalize the concept of space (as a vector space), but for now, the space can be considered the plane or the volume in which the vectors lie.
 %}.
-\imageFigure{../figures/GAelectrodynamics/threeVectorsFig1}{Three vectors.}{fig:threeVectors:threeVectorsFig1}{0.15}
+%\cref{fig:threeVectorsTx:threeVectorsTxFig1}.
+%\imageFigure{../figures/GAelectrodynamics/threeVectorsFig1}{Three vectors.}{fig:threeVectors:threeVectorsFig1}{0.15}
+%\imageFigure{../figures/GAelectrodynamics/threeVectorsTxFig1}{Translation examples.}{fig:threeVectorsTx:threeVectorsTxFig1}{0.15}
+\imageTwoFigures{../figures/GAelectrodynamics/threeVectorsFig1}
+{../figures/GAelectrodynamics/threeVectorsTxFig1}{Three vectors and example translations.}{fig:threeVectorsTx:threeVectorsTxFig1}{scale=0.4}
+\paragraph{Vector (scalar) multiplication.}
 
 We can multiply vectors by scalars by changing their lengths appropriately.
 %\footnote{
@@ -161,20 +164,23 @@ Using the example vectors, some rescaled vectors include
 Reflecting on \( 2 \DarkerGreen{\Ba} = \DarkerGreen{\Ba} + \DarkerGreen{\Ba} \) in the illustration, we see that
 rescaling a vector provides the algorithm for adding two vectors that lie in the same direction.
 We just line them up head to tail, and the total displacement from the original tail to the final head must be the sum of those two vectors.
+\paragraph{Vector addition.}
 We can use the same idea to add general vectors with any direction, and degree that the process for addition of vectors is to
 join them head to tail (in any order), and connect the initial tail to the final head, as illustrated in \cref{fig:vectorAddition:vectorAdditionFig1}, where we have formed \( \DarkerRed{\Bs} =
 \DarkerGreen{\Ba} + \DarkerBlue{\Bb} + \DarkerPurple{\Bc} \).
 \mathImageFigure{../figures/GAelectrodynamics/vectorAdditionFig1}{Addition of vectors.}{fig:vectorAddition:vectorAdditionFig1}{0.3}{vectorOrientationAndAdditionFigures.nb}
 
+\paragraph{Vector subtraction.}
 Given that we can scale a vector by \( -1 \), it makes sense to define subtraction as \( \DarkerGreen{\Ba} - \DarkerBlue{\Bb} = \DarkerGreen{\Ba} + \DarkerPurple{(-1)\Bb} \).
 Graphically, that
 means that we subtract vectors by flipping their directions (scaling by \(-1\)) and then adding them by connecting head to tail as before, as illustrated in
 \cref{fig:vectorSubtractionFig1}.
 \mathImageFigure{../figures/GAelectrodynamics/vectorSubtractionFig1}{Vector subtraction.}{fig:vectorSubtractionFig1}{0.25}{vectorOrientationAndAdditionFigures.nb}
 %%%%In geometric algebra, we can also multiply vectors, but that is skipping ahead a bit -- for now, just note that we are going to contract your old high school teacher who said "No, you cannot multiply vectors."
+\paragraph{Vector length operation.}
+\paragraph{Vector dot product.}
+
 \subsection{Coordinates.}
-
-
 \subsection{Basis.}
 \cref{fig:ebasisSum:ebasisSumFig1}.
 \imageFigure{../figures/GAelectrodynamics/ebasisSumFig1}{An orthonormal basis.}{fig:ebasisSum:ebasisSumFig1}{0.3}

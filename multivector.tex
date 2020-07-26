@@ -49,13 +49,28 @@
 %\chapter{Multivector}
 %\label{chap:multivector}
 
+\section{What's in the pipe.}
+
+It's been a while since I did any math or physics writing.
+This is the first post in a series where I plan to work my way systematically from an introduction of vectors, to the axioms of geometric algebra.
+I plan to start with an introduction of vectors as directed ``arrows'', building on that to discuss coordinates, tuples, and column matrix representations, and representation independent ideas.
+With those basics established, I'll remind the reader about how generalized vector and dot product spaces are defined and give some examples.
+Finally, with the foundation of vectors and vector spaces in place, I'll introduce the concept of a multivector space, and the geometric product, and start unpacking the implications of the axioms that follow naturally from this train of thought.
+
+The applications that I plan to include in this series will be restricted to Euclidean spaces (i.e. where length is given by the Pythagorean law), primarily those of 2 and 3 dimensions.
+However, it will be good to also lay the foundations for the non-Euclidean spaces that we encounter in relativistic electromagnetism (there is actually no other kind), and in computer graphics applications of geometric algebra, especially since we can do so nearly for free.
+I plan to try to introduce the requisite ideas (i.e. the metric, which allows for a generalized dot product) by discussing Euclidean non-orthonormal bases.
+Such bases have applications in condensed matter physics where there are useful for modelling crystal and lattice structure, and provide a hands conceptual bridge to a set of ideas that might otherwise seem abstract and without "real world" application.
+
 \section{Motivation.}
 Many introductions to geometric algebra start by first introducing the dot product, then bivectors and the wedge product, and eventually define the product of two vectors as the synthetic sum of the dot and wedge
 \begin{equation}\label{eqn:multivector:20}
 \Bx \By = \Bx \cdot \By + \Bx \wedge \By.
 \end{equation}
-It takes a fair amount of work to do this well.  In the seminal work \citep{hestenes1999nfc} a few pages are taken for each of the dot and wedge products, showing the similarities and building up ideas, before introducing the geometric product in this fashion.  In \citep{dorst2007gac} the authors take a phenomenal five chapters to build up the context required to introduce the geometric product.
-I am not disparaging the authors for taking that long to build up the ideas, as their introduction of the subject is exceedingly clear and thorough, and they do a lot more than the minumum required to define the geometric product.
+It takes a fair amount of work to do this well.
+In the seminal work \citep{hestenes1999nfc} a few pages are taken for each of the dot and wedge products, showing the similarities and building up ideas, before introducing the geometric product in this fashion.
+In \citep{dorst2007gac} the authors take a phenomenal five chapters to build up the context required to introduce the geometric product.
+I am not disparaging the authors for taking that long to build up the ideas, as their introduction of the subject is exceedingly clear and thorough, and they do a lot more than the minimum required to define the geometric product.
 
 The strategy to introduce the geometric product as a sum of dot and wedge can result in considerable confusion, especially since the wedge product is often defined in terms of the geometric product
 \begin{equation}\label{eqn:multivector:40}
@@ -64,15 +79,24 @@ The strategy to introduce the geometric product as a sum of dot and wedge can re
 \Bx \By - \By \Bx
 }.
 \end{equation}
-The whole subject can appear like a chicken and egg problem.  I personally found the subject very confusing initially, and had considerable difficulty understanding which of the many
-identities of geometric algebra were the most fundamental.  For this reason, I found the axiomatic approach of \citep{doran2003gap} very refreshing.  The cavaet with that work is that is is exceptionally terse, as they jammed a reformulation of most of physics using geometric algebra into that single book, and it would have been thousands of pages had they tried to make it readable by mere mortals.
+The whole subject can appear like a chicken and egg problem.
+I personally found the subject very confusing initially, and had considerable difficulty understanding which of the many identities of geometric algebra were the most fundamental.
+For this reason, I found the axiomatic approach of \citep{doran2003gap} very refreshing.
+The caveat with that work is that is is exceptionally terse, as they jammed a reformulation of most of physics using geometric algebra into that single book, and it would have been thousands of pages had they tried to make it readable by mere mortals.
 
-When I wrote my own book on the subject, I had the intuition that the way to introduce the subject ought to be like the vector space in abstract linear algebra.  The construct of a vector space is a curious and indirect way to define a vector.  Vectors are not defined as entities, but simply as members of a vector space, a space that is required to have a set of properties.  I thought that the same approach would probably work with multivectors, which could be defined as members of a multivector space, a mathematical construction with a set of properties.
+When I wrote my own book on the subject, I had the intuition that the way to introduce the subject ought to be like the vector space in abstract linear algebra.
+The construct of a vector space is a curious and indirect way to define a vector.
+Vectors are not defined as entities, but simply as members of a vector space, a space that is required to have a set of properties.
+I thought that the same approach would probably work with multivectors, which could be defined as members of a multivector space, a mathematical construction with a set of properties.
 
-I did try this approach, but was not fully satisfied with what I wrote.  I think that dissatisfaction was because I tried to define the multivector first.  To define the multivector, I first introduced a whole set of
+I did try this approach, but was not fully satisfied with what I wrote.
+I think that dissatisfaction was because I tried to define the multivector first.
+To define the multivector, I first introduced a whole set of
 prerequisite ideas (bivector, trivector, blade, k-vector, vector product, ...), but that was also problematic, since the vector multiplication idea required for those concepts wasn't fully defined until the multivector space itself was defined.
 
-My approach shows some mathematical cowardness.  Had I taken the approach of the vector space fully to heart, the multivector could have been defined as a member of a multivector space, and all the other ideas follow from that.  In this multi-part series, I'm going to play with this approach anew, and see how it works out.
+My approach shows some mathematical cowardliness.
+Had I taken the approach of the vector space fully to heart, the multivector could have been defined as a member of a multivector space, and all the other ideas follow from that.
+In this multi-part series, I'm going to play with this approach anew, and see how it works out.
 \section{Review and background.}
 For this discussion, I'm going to assume that the reader is familiar with a wide variety of concepts, including but not limited to
 \begin{itemize}
@@ -87,24 +111,27 @@ For this discussion, I'm going to assume that the reader is familiar with a wide
 \item vector spaces, and
 \item linear transformations.
 \end{itemize}
-Despite those assumptions, I'm going to build up the basics of vector representation and vector spaces in a systematic fashion.
-My reasons for doing so are mainly to explore the logical sequencing of the ideas required, and I hope that it does not seem condesending to pick such an elementary starting point.
+Despite those assumptions, as mentioned above, I'm going to attempt to build up the basics of vector representation and vector spaces in a systematic fashion, starting from a very elementary level.
+
+My reasons for doing so are mainly to explore the logical sequencing of the ideas required.
+I've always found well crafted pedagogical sequences rewarding, and will hopefully construct one here that is appreciated by anybody who chooses to follow along.
 \subsection{Vectors.}
 Cast yourself back in time, all the way to high school, where the first definition of vector that you would have encountered was
-probably very similar to the one made famous by the not very villainous \emph{Vector} in ``Despicable Me'' \citep{youtubeVectorVillian}.  His definition was a good one
+probably very similar to the one made famous by the not very villainous \emph{Vector} in ``Despicable Me'' \citep{youtubeVectorVillian}.
+His definition was a good one
 \makedefinition{Vector}{dfn:multivector:180}{
 A vector is a quantity represented by an arrow with both direction and magnitude.
 } % definition
 This idea is illustrated in \cref{fig:threeVectors:threeVectorsFig1}, which shows three vectors, labelled \( 
 \DarkerGreen{\Ba}, \DarkerBlue{\Bb}, \DarkerPurple{\Bc} 
-\), all with different directions and magnitudes.  This notion of vector has no origin, and a vector is considered equal to its translation anywhere in the space.
+\), all with different directions and magnitudes.
+This notion of vector has no origin, and a vector is considered equal to its translation anywhere in the space.
 %\footnote{
 We will formalize the concept of space (as a vector space), but for now, the space can be considered the plane or the volume in which the vectors lie.
 %}.
 \imageFigure{../figures/GAelectrodynamics/threeVectorsFig1}{Three vectors.}{fig:threeVectors:threeVectorsFig1}{0.15}
 
-We can multiply vectors by scalars
-by changing their lengths appropriately.  
+We can multiply vectors by scalars by changing their lengths appropriately.
 %\footnote{
 In this context a scalar is a real number (this is purposefully vague, as it will be useful to allow scalars to be complex valued later.)
 %} 
@@ -114,18 +141,30 @@ Using the example vectors, some rescaled vectors include
 \imageFigure{../figures/GAelectrodynamics/threeVectorsScaledFig1}{Scaled vectors.}{fig:threeVectorsScaled:threeVectorsScaledFig1}{0.1}
 %%%%\mathImageFigure{../figures/GAelectrodynamics/VectorsWithOppositeOrientationFig1}{Scalar multiples of vectors.}{fig:VectorsWithOppositeOrientation:VectorsWithOppositeOrientationFig1}{0.15}{vectorOrientationAndAdditionFigures.nb}
 Reflecting on \( 2 \DarkerGreen{\Ba} = \DarkerGreen{\Ba} + \DarkerGreen{\Ba} \) in the illustration, we see that 
-rescaling a vector provides the algorithm for adding two vectors that lie in the same direction.  We just line them up head to tail, and the total displacement from the original tail to the final head must be the sum of those two vectors.  We can use the same idea to add general vectors with any direction, and degree that the process for addition of vectors is to 
+rescaling a vector provides the algorithm for adding two vectors that lie in the same direction.
+We just line them up head to tail, and the total displacement from the original tail to the final head must be the sum of those two vectors.
+We can use the same idea to add general vectors with any direction, and degree that the process for addition of vectors is to 
 join them head to tail (in any order), and connect the initial tail to the final head, as illustrated in \cref{fig:vectorAddition:vectorAdditionFig1}, where we have formed \( \DarkerRed{\Bs} = 
 \DarkerGreen{\Ba} + \DarkerBlue{\Bb} + \DarkerPurple{\Bc} \).
 \mathImageFigure{../figures/GAelectrodynamics/vectorAdditionFig1}{Addition of vectors.}{fig:vectorAddition:vectorAdditionFig1}{0.3}{vectorOrientationAndAdditionFigures.nb}
 
-Given that we can scale a vector by \( -1 \), it makes sense to define subtraction as \( \DarkerGreen{\Ba} - \DarkerBlue{\Bb} = \DarkerGreen{\Ba} + \DarkerPurple{(-1)\Bb} \).  Graphically, that 
+Given that we can scale a vector by \( -1 \), it makes sense to define subtraction as \( \DarkerGreen{\Ba} - \DarkerBlue{\Bb} = \DarkerGreen{\Ba} + \DarkerPurple{(-1)\Bb} \).
+Graphically, that 
 means that we subtract vectors by flipping their directions (scaling by \(-1\)) and then adding them by connecting head to tail as before, as illustrated in
 \cref{fig:vectorSubtractionFig1}.
 \mathImageFigure{../figures/GAelectrodynamics/vectorSubtractionFig1}{Vector subtraction.}{fig:vectorSubtractionFig1}{0.25}{vectorOrientationAndAdditionFigures.nb}
 %%%%In geometric algebra, we can also multiply vectors, but that is skipping ahead a bit -- for now, just note that we are going to contract your old high school teacher who said "No, you cannot multiply vectors."
 \subsection{Coordinates.}
-%%%%In engineering, vectors are usually represented as \( N \times 1 \) column matrixes\footnote{Matrices are like meth or crack to engineers, who will attempt to cast everything as a matrix problem.}.  A vector \( \Bx \) with coordinates \((x,y,z)\) would have the representation
+
+
+\subsection{Basis.}
+\cref{fig:ebasisSum:ebasisSumFig1}.
+\imageFigure{../figures/GAelectrodynamics/ebasisSumFig1}{An orthonormal basis.}{fig:ebasisSum:ebasisSumFig1}{0.3}
+\cref{fig:fbasisSum:fbasisSumFig1}.
+\imageFigure{../figures/GAelectrodynamics/fbasisSumFig1}{An oblique basis.}{fig:fbasisSum:fbasisSumFig1}{0.3}
+
+%%%%In engineering, vectors are usually represented as \( N \times 1 \) column matrixes\footnote{Matrices are like meth or crack to engineers, who will attempt to cast everything as a matrix problem.}.
+%%%%A vector \( \Bx \) with coordinates \((x,y,z)\) would have the representation
 %%%%\begin{dmath}\label{eqn:multivector:60}
 %%%%\Bx =
 %%%%\begin{bmatrix}
@@ -134,7 +173,8 @@ means that we subtract vectors by flipping their directions (scaling by \(-1\)) 
 %%%%z
 %%%%\end{bmatrix}.
 %%%%\end{dmath}
-%%%%With a coordinate representation, we can add and subtract vectors by simply adding and subtracting their coordinates.  For example, with
+%%%%With a coordinate representation, we can add and subtract vectors by simply adding and subtracting their coordinates.
+%%%%For example, with
 %%%%\(
 %%%%\Bx =
 %%%%{
@@ -204,7 +244,8 @@ means that we subtract vectors by flipping their directions (scaling by \(-1\)) 
 %%%%1 \\
 %%%%\end{bmatrix}.
 %%%%\end{dmath}
-%%%%The vectors with a single one value in each of the directions may be interpretted as unit vectors, vectors with length one in each of the respective directions.  If we write
+%%%%The vectors with a single one value in each of the directions may be interpretted as unit vectors, vectors with length one in each of the respective directions.
+%%%%If we write
 %%%%\begin{equation}\label{eqn:prerequisites:20}
 %%%%\Be_1 =
 %%%%\begin{bmatrix}
@@ -230,7 +271,8 @@ means that we subtract vectors by flipping their directions (scaling by \(-1\)) 
 %%%%\Bx = x \Be_1 + y \Be_2 + z \Be_3.
 %%%%\end{dmath}
 %%%%Here we have assumed that the set of vectors
-%%%%\( \setlr{ \Be_1, \Be_2, \Be_3 } \) were all mutually perpendicular.  With that assumption, we call such an ordered set the standard basis.  This is a loose definition, since a proper definition of basis depends on the concept of linear independence\footnote{It is assumed that basis, linear dependence and linear independence are all familiar concepts, but I won't take the time to define them systematically yet.}.
+%%%%\( \setlr{ \Be_1, \Be_2, \Be_3 } \) were all mutually perpendicular.
+%%%%With that assumption, we call such an ordered set the standard basis.  This is a loose definition, since a proper definition of basis depends on the concept of linear independence\footnote{It is assumed that basis, linear dependence and linear independence are all familiar concepts, but I won't take the time to define them systematically yet.}.
 %%%%%independent of whether the underlying representation of the unit vectors themselves are tuple, row, column, or anything else.
 %%%%%
 %%%%%The simplest interpretation of each of these

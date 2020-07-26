@@ -21,3 +21,7 @@ all :: $(GENERATED_PDFS)
 #$(GENERATED_PDFS) :: $(JUSTBOOKDEPENDENCIES) $(LOCAL_FILES) $(GENERATED_SOURCES) $(COPIED_FILES) $(LOCAL_COPIED_FILES) Bibliography.bib
 
 include ../latex/make.rules
+
+%.sp : %.tex
+	spellcheck $^
+	touch $@

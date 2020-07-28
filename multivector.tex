@@ -134,12 +134,12 @@ All the operations that make vectors useful are missing from this definition, su
 %If we add definitions of these operations to the mix, then we get something useful.
 %We will introduce one multiplication like operator (the dot product), but this will be just to brige the gap
 \paragraph{Vector comparison.}
-In \cref{fig:threeVectorsTx:threeVectorsTxFig1} (a), we have 
+In \cref{fig:threeVectorsTx:threeVectorsTxFig1} (a), we have
 three vectors, labelled \( \DarkerGreen{\Ba}, \DarkerBlue{\Bb}, \DarkerPurple{\Bc} \), all with different directions and magnitudes, and
 in \cref{fig:threeVectorsTx:threeVectorsTxFig1} (b), those
 vectors have each been translated (moved without rotation or change of length) slightly.
-Two vectors are considered equal if they have the same direction and magnitude.  
-That is, two vectors are equal if one is the image of the other after translation.  
+Two vectors are considered equal if they have the same direction and magnitude.
+That is, two vectors are equal if one is the image of the other after translation.
 In these figures \( \DarkerGreen{\Ba} \ne \DarkerBlue{\Bb}, \DarkerBlue{\Bb} \ne \DarkerPurple{\Bc}, \DarkerPurple{\Bc} \ne \DarkerGreen{\Ba} \), whereas any same colored vectors are equal.
 %This notion of vector has no origin, and a vector is considered equal to its translation anywhere in the space.
 %\footnote{
@@ -151,7 +151,6 @@ In these figures \( \DarkerGreen{\Ba} \ne \DarkerBlue{\Bb}, \DarkerBlue{\Bb} \ne
 \imageTwoFigures{../figures/GAelectrodynamics/threeVectorsFig1}
 {../figures/GAelectrodynamics/threeVectorsTxFig1}{Three vectors and example translations.}{fig:threeVectorsTx:threeVectorsTxFig1}{scale=0.4}
 \paragraph{Vector (scalar) multiplication.}
-
 We can multiply vectors by scalars by changing their lengths appropriately.
 %\footnote{
 In this context a scalar is a real number (this is purposefully vague, as it will be useful to allow scalars to be complex valued later.)
@@ -161,13 +160,17 @@ Using the example vectors, some rescaled vectors include
 \cref{fig:threeVectorsScaled:threeVectorsScaledFig1}.
 \imageFigure{../figures/GAelectrodynamics/threeVectorsScaledFig1}{Scaled vectors.}{fig:threeVectorsScaled:threeVectorsScaledFig1}{0.1}
 %%%%\mathImageFigure{../figures/GAelectrodynamics/VectorsWithOppositeOrientationFig1}{Scalar multiples of vectors.}{fig:VectorsWithOppositeOrientation:VectorsWithOppositeOrientationFig1}{0.15}{vectorOrientationAndAdditionFigures.nb}
-Reflecting on \( 2 \DarkerGreen{\Ba} = \DarkerGreen{\Ba} + \DarkerGreen{\Ba} \) in the illustration, we see that
-rescaling a vector provides the algorithm for adding two vectors that lie in the same direction.
-We just line them up head to tail, and the total displacement from the original tail to the final head must be the sum of those two vectors.
 \paragraph{Vector addition.}
-We can use the same idea to add general vectors with any direction, and degree that the process for addition of vectors is to
-join them head to tail (in any order), and connect the initial tail to the final head, as illustrated in \cref{fig:vectorAddition:vectorAdditionFig1}, where we have formed \( \DarkerRed{\Bs} =
-\DarkerGreen{\Ba} + \DarkerBlue{\Bb} + \DarkerPurple{\Bc} \).
+Scalar multiplication implicitly provides an algorthim for addition of vectors that have the same direction, as \( s \Bx + t \Bx = (s+t) \Bx \) for any scalars \( s, t \).  This is illustrated in \cref{fig:twiceVector:twiceVectorFig1} where \( 2 \DarkerGreen{\Ba} = \DarkerGreen{\Ba} + \DarkerGreen{\Ba} \) is formed in two equivalent forms.
+We see that the addition of two vectors that have the same direction requires lining up those vectors
+head to tail.  The sum of two such vectors is the vector that can be formed from the first tail to the final head.
+\imageFigure{../figures/GAelectrodynamics/twiceVectorFig1}{Twice a vector.}{fig:twiceVector:twiceVectorFig1}{0.1}
+It turns out that this arrow daisy chaining procedure is an appropriate way of defining addition for any vectors.
+\makedefinition{Vector addition.}{dfn:multivector:200}{
+The sum of two vectors can be found by connecting those two vectors head to tail in either order.  The sum of the two vectors is the vector that can be formed by drawing an arrow from the initial tail to the final head.  This can be generalized by chaining any number of vectors and joining the initial tail to the final head.
+} % definition
+This addition procedure is illustrated in
+\cref{fig:vectorAddition:vectorAdditionFig1}, where \( \DarkerRed{\Bs} = \DarkerGreen{\Ba} + \DarkerBlue{\Bb} + \DarkerPurple{\Bc} \) has been formed.
 \mathImageFigure{../figures/GAelectrodynamics/vectorAdditionFig1}{Addition of vectors.}{fig:vectorAddition:vectorAdditionFig1}{0.3}{vectorOrientationAndAdditionFigures.nb}
 
 \paragraph{Vector subtraction.}

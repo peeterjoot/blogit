@@ -57,41 +57,87 @@
 \subsection{Motivation.}
 Having covered the basic operations of vectors in their arrow representation, we are ready to go algebraic on the subject.
 In particular, while
-it is easy to compute the length of a vector that has an arrow representation, where 
+it is easy to compute the length of a vector that has an arrow representation, where
 one simply lines a ruler of appropriate units along the vector and measures, this graphical procedure is cumbersome when we need to calculate.
 
-Unfortunately, we need to pick up a bit of mathematical baggage along the way, namely
+Some mathematical baggage from linear algebra is required to do this for general N-dimensional spaces, including
 \begin{itemize}
 \item coordinates,
-\item bases (plural of basis),
+\item basis (plural bases),
 \item linear dependence and independence,
+\item span,
 \item dot product, and
 \item metric.
 \end{itemize}
+None of these are hard concepts, but they interfere with the flow of the story, so let's cheat.  We can temporarily avoid the ideas of linear dependence, independence and span, by restricting the story to 2D and 3D spaces that we can describe geometrically.
 %When we eventually finish constructing our geometric algebra toolbox, we will have a number of coordinate free methods available to us.
 %but we need to understand coordinates to get to that point.
 %We also need to understand coordinates, both to read the literature, and in practice.
 %Coordinates and non-orthonormal bases are also a good way to introduce non-Euclidean metrics.
 \subsection{Basis.}
-We will illustrate the concepts of coordinates and basis using two specific examples.
-The basic idea is that we divide our space up into a lattice.
-In two(three) dimensions we pick a pair(triplet) of vectors along each of the lattice directions to characterize the space.
-An ordered set of such vectors is called a basis.
-Any vector within the space can be formed by a linear combination of the basis vectors.
-An example lattice for a two dimensional space is illustrated in
-\cref{fig:fbasisSum:fbasisSumFig1}.
-\imageFigure{../figures/GAelectrodynamics/fbasisSumFig1}{An oblique basis.}{fig:fbasisSum:fbasisSumFig1}{0.3}
-This illustration also shows an example basis set \( \setlr{\Bf_1, \Bf_2} \), and uses this basis to form another vector \( \Bx = 5 \Bf_1 + 3 \Bf_2 \).
-Given this basis, it is now possible to describe vectors algebraically.
-For the example vector \( \Bx \), we say that it has coordinates \((5,3)\), which are counts of how many of each basis vector are required to get to the desired end point.
+\makedefinition{Basis (cheat).}{dfn:multivector:180}{
+Given a periodic partitioning of a 2D(3D) space into repeated parallelograms(parallelopipeds), an ordered pair(triplet) of vectors that lie between the vertices of one of the cells is called a basis.
+} % definition
+\index{basis}
+The plural of basis is bases.
+\index{bases}
+A basis for a space subdivided into a parallopiped grid is illustrated with points at all the lattice vertices in
+\cref{fig:fbasis:fbasisFig1}.
+\imageFigure{../figures/GAelectrodynamics/fbasisFig1}{A basis for a 2D space with a parallopiped lattice.}{fig:fbasis:fbasisFig1}{0.3}
+The basis in this example is the ordered set \( \setlr{\Bf_1, \Bf_2} \).
+There is no unique choice of basis for a given lattice, as different orderings and directions are possible (
+\( \setlr{\pm \Bf_2, \pm \Bf_1} \) or \( \setlr{\pm \Bf_1, \pm \Bf_2} \)).
+Alternate bases for this lattice include \( \setlr{\Bf_2, \Bf_1} \), and \( \setlr{-\Bf_1, -\Bf_2} \).
+A basis has one and only one vector that lies between the vertices of the smallest cell of the lattice.
+%\imageTwoFigures
+%{../figures/GAelectrodynamics/fbasisFig1}
+%{../figures/GAelectrodynamics/ebasisFig1}
+%{Oblique and rectangular two dimensional bases.}{fig:ebasis:ebasisFig1}{scale=0.4}
 
-Of course, the simplest possible lattice is that of a uniform square grid as illustrated in \cref{fig:ebasisSum:ebasisSumFig1}.
-\imageFigure{../figures/GAelectrodynamics/ebasisSumFig1}{An orthonormal basis.}{fig:ebasisSum:ebasisSumFig1}{0.3}
+Of course, the simplest possible lattice is that of a uniform square grid as illustrated in
+\cref{fig:ebasis:ebasisFig1}.
+\imageFigure{../figures/GAelectrodynamics/ebasisFig1}{A basis for a 2D space with a square lattice.}{fig:ebasis:ebasisFig1}{0.3}
 In this example, the pair of vectors \( \setlr{\Be_1, \Be_2}\) is our basis, as they lie along the respective lattice directions.
-Given that basis selection, the coordinates of the vector \( \By = 3 \Be_1 + 2 \Be_2 \) are \((3,2)\).
-That is, \( \By\) is formed by taking \( 3 \) times \( \Be_1 \) plus \( 2 \) times \( \Be_2 \).
-Even with a square grid, there are many possible basis options available.
-For example, if we chose \( \setlr{\Be_2, -\Be_1} \) as our basis, the coordinates of the vector \( \By\) would be \( (2,-3)\).
+Alternate bases for this square grid include \( \setlr{\Be_2, \Be_1} \), \( \setlr{-\Be_1, -\Be_2} \), and \( \setlr{\Be_2, -\Be_1} \).
+\subsection{Coordinates.}
+\makedefinition{Coordinates.}{dfn:multivector:200}{
+Given a basis with \( N \) basis vectors \( \setlr{ \Bf_1, \cdots \Bf_N } \), and a vector \( \Bx = \sum_{i = 1}^N a_i \Bf_i \), the coordinates of the vector \( \Bx \) are \((a_1, a_2, \cdots a_N)\), or in matrix (column vector) notation
+\begin{equation*}
+\begin{bmatrix}
+a_1 \\
+a_2 \\
+\vdots \\
+a_N
+\end{bmatrix}.
+\end{equation*}
+} % definition
+We are restricting attention for now to \( N \le 3 \), since it's not terribly fun to try to visualize a repeating hyper-parallopipeds lattice (perhaps some people would describe that visualization game as fun, but even so, it is probably headache inducing.)
+
+We may use the two previous lattice examples to illustrate the idea of coordinates.  For example, consider
+\( \Bx = 5 \Bf_1 + 3 \Bf_2 \) as illustrated in
+\cref{fig:fbasisSum:fbasisSumFig1}.
+\imageFigure{../figures/GAelectrodynamics/fbasisSumFig1}{Decomposition of a particular vector in terms of an oblique set of basis vectors.}{fig:fbasisSum:fbasisSumFig1}{0.3}
+The coordinates of this vector with respect the basis \(\setlr{\Bf_1, \Bf_2}\) are \((5,3)\).  Any set of coordinates must be implicitly associated with an underlying basis, and are meaningless without such an association.  For example, the
+coordinates of \(\Bx\) with respect the basis \(\setlr{-\Bf_2, \Bf_1}\) would be \((-3,5)\).
+As another example, consider the vector \( \By = 3 \Be_1 + 2 \Be_2 \) as illustrated in
+\cref{fig:ebasisSum:ebasisSumFig1} for a square lattice.
+\imageFigure{../figures/GAelectrodynamics/ebasisSumFig1}{Decomposition of a particular vector on a square lattice.}{fig:ebasisSum:ebasisSumFig1}{0.3}
+The coordinates of \( \By \) with respect to the basis \( \setlr{\Be_1, \Be_2}\) are \((3,2)\).
+The coordinates of \( \By \) with respect to the an alternate basis \( \setlr{\Be_2, -\Be_1}\) would be \((2,-3)\), that is
+\(\By = 2 \Be_2 + (-3)(-\Be_1)\).
+
+The special case of a cubic lattice is so important that we give it a name
+\index{standard basis}
+\makedefinition{Standard basis.}{dfn:multivector:220}{
+When the lattice for a basis is unit square(volume), we call such a basis ``the standard basis'' and designate it with a basis \( \setlr{\Be_1, \Be_2, \cdots, \Be_N}\).
+} % definition
+You may ask why we could possibly care to use anything but a square(cubic) lattice.  Here are a few reasons
+\begin{itemize}
+\item When we get to vector calculus, we require bases that vary from point to point, depending on the parametization of the space that we are using in our integrals.  Those parameterizations (spherical, cylindrical, ...) need not be cubic.
+\item There are important applications for such bases in solid state physics, as the crystal structures that occur due to molecular bonds are not friendly enough to restrict themselves to cubic configurations.
+\item Developing the toolbox for more general bases and coordinates will leave us ready to tackle the non-Euclidean space (spacetime, or ``four-vectors'') that we encounter in special relativity and electromagnetism.  All electromagnetic theory is relativistic, so having the tools to express these ideas is not just academic.
+\end{itemize}
+
 \section{OLD.}
 \subsection{Coordinates.}
 \subsection{Vector length operation.}

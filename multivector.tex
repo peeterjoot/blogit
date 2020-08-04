@@ -162,6 +162,12 @@ Scalar multiplication implicitly provides an algorithm for addition of vectors t
 We see that the addition of two vectors that have the same direction requires lining up those vectors
 head to tail.  The sum of two such vectors is the vector that can be formed from the first tail to the final head.
 \imageFigure{../figures/GAelectrodynamics/twiceVectorFig1}{Twice a vector.}{fig:twiceVector:twiceVectorFig1}{0.1}
+This procecdure is consistent with our experience of directed quantities like forces.  Should your buddies pull on your arms with equal forces, your shoulders might object, but you'll still be in one place, as illustrated in \cref{fig:equalForces:equalForcesFig1}.
+\imageFigure{../figures/GAelectrodynamics/equalForcesFig1}{Pulled by opposing and equal forces.}{fig:equalForces:equalForcesFig1}{0.2}
+However, if one of your friends is stronger, then assuming you haven't planted your feet too firmly to the ground, you'll be moving in the direction of your stronger friend, as illustrated in
+\cref{fig:unequalForces:unequalForcesFig2}.
+\imageFigure{../figures/GAelectrodynamics/unequalForcesFig2}{Pulled by unequal opposing forces.}{fig:unequalForces:unequalForcesFig2}{0.2}
+
 It turns out that this arrow daisy chaining procedure is an appropriate way of defining addition for any vectors.
 \makedefinition{Vector addition.}{dfn:multivector:200}{
 The sum of two vectors can be found by connecting those two vectors head to tail in either order.  The sum of the two vectors is the vector that can be formed by drawing an arrow from the initial tail to the final head.  This can be generalized by chaining any number of vectors and joining the initial tail to the final head.
@@ -169,7 +175,19 @@ The sum of two vectors can be found by connecting those two vectors head to tail
 This addition procedure is illustrated in
 \cref{fig:vectorAddition:vectorAdditionFig1}, where \( \DarkerRed{\Bs} = \DarkerGreen{\Ba} + \DarkerBlue{\Bb} + \DarkerPurple{\Bc} \) has been formed.
 \mathImageFigure{../figures/GAelectrodynamics/vectorAdditionFig1}{Addition of vectors.}{fig:vectorAddition:vectorAdditionFig1}{0.3}{vectorOrientationAndAdditionFigures.nb}
-This definition of vector addition was inferred from the observation of the rules that must apply to addition of vectors that lay in the same direction (colinear vectors).  Is it a cheat to just declare that this rule for addition of colinear vectors also applies to arbitrary vectors?  Yes, it probably is, but it's a cheat that works nicely, and one that models physical quantities that we experience daily (velocities, acceleration, force, ...).  If you collect two friends you can demonstrate the workability of this inferred rule easily, by putting your arms out, and having your friends pull on them.  If you put your arms opposing to the sides, and have your friends pull with equal forces, you'll see that the force that can be represented by the pulling of your friends add to zero.  If one of your friends is stronger, you'll move more in that direction.  If you put your arms out at 45 degree angles, you'll see that you move along the direction of the sum of the forces.  These scenarios are crudely sketched below in FIXME: figure.
+This definition of vector addition was inferred from the observation of the rules that must apply to addition of vectors that lay in the same direction (colinear vectors).
+Is it a cheat to just declare that this rule for addition of colinear vectors also applies to arbitrary vectors?
+Yes, it probably is, but it's a cheat that works nicely, and one that models physical quantities that we experience daily (velocities, acceleration, force, ...).
+%If you collect two friends you can demonstrate the workability of this inferred rule easily, by putting your arms out, and having your friends pull on them.
+%If you put your arms opposing to the sides, and have your friends pull with equal forces, you'll see that the force that can be represented by the pulling of your friends add to zero.
+%If one of your friends is stronger, you'll move more in that direction.
+Illustrating again with a force thought experiment, 
+if you put your arms out at 45 degree angles, and have your friends pull on them with equal forces, you'll move straight ahead.  That direction of motion is along the direction of the sum of the forces, if you model those forces as vectors (arrows, with magnitiude proportional to the strength of your friends.)
+This is crudely illustrated in \cref{fig:sumOfNonColinearForces:sumOfNonColinearForcesFig3}.
+\imageFigure{../figures/GAelectrodynamics/sumOfNonColinearForcesFig3}{Sum of pulls separated by 90 degrees.}{fig:sumOfNonColinearForces:sumOfNonColinearForcesFig3}{0.2}
+Hopefully, you had a high school physics teacher that had you do quantitative experiments of this nature, using springs and force gauges to
+illustrate the vector nature of force.  
+Such experiments provide a nice first hand tangible justification for the vector addition rule above.
 
 \subsection{Vector subtraction.}
 Since we can scale a vector by \( -1 \) and we can add vectors, it is clear how to define vector subtraction

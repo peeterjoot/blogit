@@ -25,3 +25,7 @@ include ../latex/make.rules
 %.sp : %.tex
 	spellcheck $^
 	touch $@
+
+multivector.pdf :: vectorasarrow.tex
+multivector.pdf :: inthepipe.tex
+multivector.pdf :: vectorspace.tex

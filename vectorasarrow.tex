@@ -1,0 +1,89 @@
+Cast yourself back in time, all the way to high school, where the first definition of vector that you would have encountered was
+probably very similar to the one made famous by the not very villainous \emph{Vector} in ``Despicable Me'' \citep{youtubeVectorVillian}.
+His definition was not complete, but it is a good starting point:
+\makedefinition{Vector}{dfn:vectorasarrow:180}{
+A vector is a quantity represented by an arrow with both direction and magnitude.
+} % definition
+All the operations that make vectors useful are missing from this definition, such as
+\begin{itemize}
+\item a comparison operator,
+\item a rescaling operation (i.e. a scalar multiplication operation that changes the length),
+\item addition and subtraction operators,
+\item an operator that provides the length of a vector,
+\item multiplication or multiplication like operations.
+\end{itemize}
+
+The concept of vector, once supplemented with the operations above, will be useful since it models many directed physical quantities that we experience daily.  These include velocity, acceleration, forces, and electric and magnetic fields.
+%We will introduce one multiplication like operator (the dot product), but this will be just to brige the gap
+\subsection{Vector comparison.}
+In \cref{fig:threeVectorsTx:threeVectorsTxFig1} (a), we have three vectors, labelled \( \DarkerGreen{\Ba}, \DarkerBlue{\Bb}, \DarkerPurple{\Bc} \), all with different directions and magnitudes, and in \cref{fig:threeVectorsTx:threeVectorsTxFig1} (b), those vectors have each been translated (moved without rotation or change of length) slightly.
+Two vectors are considered equal if they have the same direction and magnitude.
+That is, two vectors are equal if one is the image of the other after translation.
+In these figures \( \DarkerGreen{\Ba} \ne \DarkerBlue{\Bb}, \DarkerBlue{\Bb} \ne \DarkerPurple{\Bc}, \DarkerPurple{\Bc} \ne \DarkerGreen{\Ba} \), whereas any same colored vectors are equal.
+%This notion of vector has no origin, and a vector is considered equal to its translation anywhere in the space.
+%\footnote{
+%We will formalize the concept of space (as a vector space), but for now, the space can be considered the plane or the volume in which the vectors lie.
+%}.
+%\cref{fig:threeVectorsTx:threeVectorsTxFig1}.
+%\imageFigure{../figures/GAelectrodynamics/threeVectorsFig1}{Three vectors.}{fig:threeVectors:threeVectorsFig1}{0.15}
+%\imageFigure{../figures/GAelectrodynamics/threeVectorsTxFig1}{Translation examples.}{fig:threeVectorsTx:threeVectorsTxFig1}{0.15}
+\imageTwoFigures{../figures/GAelectrodynamics/threeVectorsFig1}
+{../figures/GAelectrodynamics/threeVectorsTxFig1}{Three vectors and example translations.}{fig:threeVectorsTx:threeVectorsTxFig1}{scale=0.4}
+\subsection{Vector (scalar) multiplication.}
+We can multiply vectors by scalars by changing their lengths appropriately.
+%\footnote{
+In this context a scalar is a real number (this is purposefully vague, as it will be useful to allow scalars to be complex valued later.)
+%}
+Using the example vectors, some rescaled vectors include
+\( 2 \DarkerGreen{\Ba}, (-1) \DarkerBlue{\Bb}, \pi \DarkerPurple{\Bc} \), as illustrated in
+\cref{fig:threeVectorsScaled:threeVectorsScaledFig1}.
+\imageFigure{../figures/GAelectrodynamics/threeVectorsScaledFig1}{Scaled vectors.}{fig:threeVectorsScaled:threeVectorsScaledFig1}{0.1}
+%%%%\mathImageFigure{../figures/GAelectrodynamics/VectorsWithOppositeOrientationFig1}{Scalar multiples of vectors.}{fig:VectorsWithOppositeOrientation:VectorsWithOppositeOrientationFig1}{0.15}{vectorOrientationAndAdditionFigures.nb}
+\subsection{Vector addition.}
+Scalar multiplication implicitly provides an algorithm for addition of vectors that have the same direction, as \( s \Bx + t \Bx = (s+t) \Bx \) for any scalars \( s, t \).  This is illustrated in \cref{fig:twiceVector:twiceVectorFig1} where \( 2 \DarkerGreen{\Ba} = \DarkerGreen{\Ba} + \DarkerGreen{\Ba} \) is formed in two equivalent forms.
+We see that the addition of two vectors that have the same direction requires lining up those vectors
+head to tail.  The sum of two such vectors is the vector that can be formed from the first tail to the final head.
+\imageFigure{../figures/GAelectrodynamics/twiceVectorFig1}{Twice a vector.}{fig:twiceVector:twiceVectorFig1}{0.1}
+This procedure is consistent with our experience of directed quantities like forces.  Should your buddies pull on your arms with equal forces, your shoulders might object, but you'll still be in one place, as illustrated in \cref{fig:equalForces:equalForcesFig1}.
+\imageFigure{../figures/GAelectrodynamics/equalForcesFig1}{Pulled by opposing and equal forces.}{fig:equalForces:equalForcesFig1}{0.2}
+However, if one of your friends is stronger, then assuming you haven't planted your feet too firmly to the ground, you'll be moving in the direction of your stronger friend, as illustrated in
+\cref{fig:unequalForces:unequalForcesFig2}.
+\imageFigure{../figures/GAelectrodynamics/unequalForcesFig2}{Pulled by unequal opposing forces.}{fig:unequalForces:unequalForcesFig2}{0.2}
+
+It turns out that this arrow daisy chaining procedure is an appropriate way of defining addition for any vectors.
+\makedefinition{Vector addition.}{dfn:vectorasarrow:200}{
+The sum of two vectors can be found by connecting those two vectors head to tail in either order.  The sum of the two vectors is the vector that can be formed by drawing an arrow from the initial tail to the final head.  This can be generalized by chaining any number of vectors and joining the initial tail to the final head.
+} % definition
+This addition procedure is illustrated in
+\cref{fig:vectorAddition:vectorAdditionFig1}, where \( \DarkerRed{\Bs} = \DarkerGreen{\Ba} + \DarkerBlue{\Bb} + \DarkerPurple{\Bc} \) has been formed.
+\mathImageFigure{../figures/GAelectrodynamics/vectorAdditionFig1}{Addition of vectors.}{fig:vectorAddition:vectorAdditionFig1}{0.3}{vectorOrientationAndAdditionFigures.nb}
+This definition of vector addition was inferred from the observation of the rules that must apply to addition of vectors that lay in the same direction (colinear vectors).
+Is it a cheat to just declare that this rule for addition of colinear vectors also applies to arbitrary vectors?
+Yes, it probably is, but it's a cheat that works nicely, and one that models physical quantities that we experience daily (velocities, acceleration, force, ...).
+%If you collect two friends you can demonstrate the workability of this inferred rule easily, by putting your arms out, and having your friends pull on them.
+%If you put your arms opposing to the sides, and have your friends pull with equal forces, you'll see that the force that can be represented by the pulling of your friends add to zero.
+%If one of your friends is stronger, you'll move more in that direction.
+Illustrating again with a force thought experiment, 
+if you put your arms out at 45 degree angles, and have your friends pull on them with equal forces, you'll move straight ahead.  That direction of motion is along the direction of the sum of the forces, if you model those forces as vectors (arrows, with magnitude proportional to the strength of your friends.)
+This is crudely illustrated in \cref{fig:sumOfNonColinearForces:sumOfNonColinearForcesFig3}.
+\imageFigure{../figures/GAelectrodynamics/sumOfNonColinearForcesFig3}{Sum of pulls separated by 90 degrees.}{fig:sumOfNonColinearForces:sumOfNonColinearForcesFig3}{0.2}
+Hopefully, you had a high school physics teacher that had you do quantitative experiments of this nature, using springs and force gauges to
+illustrate the vector nature of force.  
+Such experiments provide a nice first hand tangible justification for the vector addition rule above.
+
+\subsection{Vector subtraction.}
+Since we can scale a vector by \( -1 \) and we can add vectors, it is clear how to define vector subtraction
+\makedefinition{Vector subtraction.}{dfn:vectorasarrow:220}{
+The difference of vectors \( \DarkerGreen{\Ba}, \DarkerBlue{\Bb} \) is
+\begin{equation*}
+\DarkerGreen{\Ba} - \DarkerBlue{\Bb} \equiv \DarkerGreen{\Ba} + \DarkerPurple{(-1)\Bb}.
+\end{equation*}
+} % definition
+Graphically,
+subtracting a vector from another requires flipping the direction
+of the vector to be subtracted (scaling by \(-1\)),
+, and then adding both head to tail.  This is illustrated in
+\cref{fig:vectorSubtractionFig1}.
+\mathImageFigure{../figures/GAelectrodynamics/vectorSubtractionFig1}{Vector subtraction.}{fig:vectorSubtractionFig1}{0.25}{vectorOrientationAndAdditionFigures.nb}
+%%%%In geometric algebra, we can also multiply vectors, but that is skipping ahead a bit -- for now, just note that we are going to contract your old high school teacher who said "No, you cannot multiply vectors."
+XX

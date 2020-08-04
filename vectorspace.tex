@@ -1,0 +1,169 @@
+We have briefly reviewed the graphical ``arrow'' representation of a vector, the coordinate representation of a vector, and the dot product in its traditional and generalized forms.  The next step in the journey is to systematize and generalize these ideas.  We do so by introducing the concepts of vector and dot product spaces.
+%We wish to extend vector spaces by introducing a vector multiplication operation, so an explicit reminder is in order.
+\makedefinition{Vector space.}{def:prerequisites:vectorspace}{
+A vector space is a set \( V = \setlr{\Bx, \By, \Bz, \cdots} \), the elements of which are called vectors, which has an addition operation designated \( + \) and a scalar multiplication operation designated by juxtaposition, where the following axioms are satisfied
+for all vectors \( \Bx, \By, \Bz \in V \) and scalars \( a, b \in \bbR \).
+\begin{tablebox}[tabularx={X|Y}]%{Vector space axioms.}
+    V is closed under addition & \( \Bx + \By \in V \) \\ \hline
+    V is closed under scalar multiplication & \( a \Bx \in V \) \\ \hline
+    Addition is associative & \( (\Bx + \By) + \Bz = \Bx + (\By + \Bz) \) \\ \hline
+    Addition is commutative & \( \By + \Bx = \Bx + \By \) \\ \hline
+    There exists a zero element \( \Bzero \in V \)  & \( \Bx + \Bzero = \Bx \) \\ \hline
+    For any \( \Bx \in V \) there exists a negative additive inverse \( -\Bx \in V \) & \( \Bx + (-\Bx) = \Bzero \) \\ \hline
+    Scalar multiplication is distributive  & \( a( \Bx + \By ) = a \Bx + a \By \), \( (a + b)\Bx = a \Bx + b\Bx \) \\ \hline
+    Scalar multiplication is associative & \( (a b) \Bx = a ( b \Bx ) \) \\ \hline
+    There exists a multiplicative identity & \( 1 \Bx = \Bx \) \\ \hline
+\end{tablebox}
+} % makedefinition{Vector space.}
+This vector space concept is an abstract beast, but it encapsulates the rules that underpin addition, subtraction, and rescaling of arrows, as well as their coordinate representation.
+
+%For our geometric algebra applications, we care only about finite dimensional vector spaces.
+It is fairly simple to show that coordinate vectors with the usual addition and scaling operations satisfy the axioms of a vector space, as the following problem and solution demonstrates.
+\makeproblem{N dimensional finite vector space.}{problem:prerequisites:RN}{
+Let \( V = \setlr{ {\begin{bmatrix} x_1 & x_2 & \cdots & x_N \end{bmatrix}}^\T }, x_i \in R \), be the set of \( N \times 1 \) real valued column vectors.  Let
+\(
+\Bx =
+{\begin{bmatrix}
+x_1 & x_2 & \cdots & x_N
+\end{bmatrix}}^\T \in V \), \(
+\By =
+{\begin{bmatrix}
+y_1 & y_2 & \cdots & y_N
+\end{bmatrix}}^\T \in V \), where
+an addition operation
+\begin{equation*}
+\Bx + \By =
+{\begin{bmatrix}
+x_1 + y_1 & x_2 + y_2 & \cdots & x_N + y_N
+\end{bmatrix}}^\T,
+\end{equation*}
+and a scaling operation
+\begin{equation*}
+a \Bx =
+{\begin{bmatrix}
+a x_1 & a x_2 & \cdots & a x_N
+\end{bmatrix}}^\T,
+\end{equation*}
+is defined for all \( \Bx, \By \in V \).
+Show that \( V \) is a vector space.
+} % problem
+\makeanswer{problem:prerequisites:RN}{
+\begin{itemize}
+\item Closed with respect to addition:
+Given \( \Bx, \By \) defined above, we have
+\begin{equation*}
+\Bx + \By = {\begin{bmatrix} x_1 + y_1& x_2 + y_2& \cdots &x_N + y_N \end{bmatrix}}^\T \in V.
+\end{equation*}
+\item Closed with respect to multiplication:
+\begin{equation*}
+a \Bx = {\begin{bmatrix} a x_1& a x_2& \cdots & a x_N \end{bmatrix}}^\T \in V.
+\end{equation*}
+\item Addition is associative, commutative: left to the reader to verify.
+\item Zero element:
+Given \( \Bzero = {\begin{bmatrix} 0& 0& \cdots & 0 \end{bmatrix}}^\T \),
+clearly
+\begin{equation*}
+\Bx + \Bzero = {\begin{bmatrix} x_1 + 0& x_2 + 0& \cdots &x_N + 0 \end{bmatrix}}^\T = \Bx,
+\end{equation*}
+for any \( \Bx \in V. \)
+\item Negative inverse.
+Given \( -\Bx = {\begin{bmatrix} -x_1& -x_2& \cdots& - x_N \end{bmatrix}}^\T \), then
+\begin{equation*}
+\Bx + (-\Bx) = {\begin{bmatrix} x_1 - x_1& x_2 - x_2& \cdots& x_N - x_N \end{bmatrix}}^\T = \Bzero.
+\end{equation*}
+Clearly we can construct a negative additive inverse for any \( \Bx \).
+\item Distributed and associative nature of scalar multiplication : left to the reader to verify.
+\item Multiplicative identity:
+\begin{equation*}
+1 \Bx = 1
+{\begin{bmatrix}
+x_1& x_2& \cdots& x_N
+\end{bmatrix}}^\T
+ =
+{\begin{bmatrix}
+1 x_1, 1 x_2, \cdots, 1 x_N
+\end{bmatrix}}^\T
+ = \Bx \in V. \qedmarker
+\end{equation*}
+\end{itemize}
+} % answer
+Our intended
+geometric algebra applications will actually be restricted to simple vector spaces with two or three spatial dimensions, usually with real valued vectors.  Up to four dimensions are required for spacetime applications (special relativity).  For computer graphics applications, where Euclidean space is extended with additional dimensions for the origin and point at infinity, up to five dimensions may be required.
+
+The vector space is, in fact, a much more general construct, and can be used to represent a number of different mathematical constructs.  For completeness sake,
+a couple examples of more general vector spaces (with function and matrix elements) are
+are given as problems below, but it would be too big of a digression to explore those in detail.  See any good book on linear algebra to explore the some of the powerful applications of vector spaces.
+\input{../GAelectrodynamics/functionvectorspace.tex}
+\input{../GAelectrodynamics/paulivectorspace.tex}
+
+\subsection{Dot product spaces.}
+We've abstracted the rules for adding, subtracting, and scaling arrows, which are encapsulated in the axioms of the vector space.  The next job is to do the same thing for vector magnitude, which we abstract by defining the dot product in terms of it's properties.
+
+\index{dot product}
+\makedefinition{Dot product.}{dfn:prerequisites:dotproduct}{
+Let \( \Bx, \By \) be real valued vectors from a vector space \( V \).
+A dot product \( \Bx \cdot \By \) is a mapping \( V \cross V \rightarrow \bbR \)
+with the following properties.
+\begin{tablebox}[tabularx={X|Y}]%{Dot product properties.}
+    Symmetric & \( \Bx \cdot \By = \By \cdot \Bx \) \\ \hline
+    Bilinear & \( (a \Bx + b \By) \cdot \Bz = a \Bx \cdot \Bz + b \By \cdot \Bz,\,
+\Bx \cdot (a \By + b \Bz) = a \Bx \cdot \By + b \Bx \cdot \Bz \)
+\\ \hline
+    (Optional) Positive length & \( \Bx \cdot \Bx > 0, \Bx \ne 0 \) \\ \hline
+\end{tablebox}
+} % definition
+
+\makedefinition{Dot product space.}{dfn:prerequisites:dotproductspace}{
+A vector space with an associated dot product is called a dot product space.
+}
+
+\section{JUNK: REWRITE FROM HERE.}
+
+%In geometric algebra, we require what can loosely be called a dot product.
+%A dot product usually has the following characteristics
+%
+%- Symmetric : $ \Bx \cdot \By = \By \cdot \Bx $
+%- Bilinear : $ (a \Bx + b \By) \cdot \Bz = a \Bx \cdot \Bz + b \By \cdot \Bz,\quad \Bx \cdot (a \By + b \Bz) = a \Bx \cdot \By + b \Bx \cdot \Bz $
+%- Positive length : $ \Bx \cdot \Bx > 0, \Bx \ne 0 $
+%
+%, but the positive definite nature of that dot product is not required.
+%
+If a vector space \( V \) contains elements \( \Bx, \By \), we designate that dot product as \( \Bx \cdot \By \), and require
+
+Symmetric : \( \Bx \cdot \By = \By \cdot \Bx \)
+
+Bilinear : \( (a \Bx + b \By) \cdot \Bz = a \Bx \cdot \Bz + b \By \cdot \Bz,\quad \Bx \cdot (a \By + b \Bz) = a \Bx \cdot \By + b \Bx \cdot \Bz \)
+
+Positive length : \( \Bx \cdot \Bx > 0, \Bx \ne 0 \)
+
+
+Recall that a vector space with an associated dot product is called a dot product space.
+
+Given a finite dimensional (dot-product) vector space \( V = \setlr{ \Bx, \By, \Bz, \cdots } \), with a dot product where the dot product of elements
+, with a dot product \( \Bx \cdot \By \)
+a multivector space generated by \( V \) is a set \( M = \setlr{ x, y, z, \cdots } \) of multivectors (sums of scalars, vectors, or products of vectors), where the following axioms are satisfied
+
+Contraction : \( \Bx^2 = \Bx \cdot \Bx, \,\forall \Bx \in V \)
+
+\( M \) is closed under addition : \( x + y \in M \)
+
+\( M \) is closed under multiplication : \( x y \in M \)
+
+Addition is associative : \( (x + y) + z = x + (y + z) \)
+
+Addition is commutative : \( y + x = x + y \)
+
+There exists a zero element \( 0 \in M \)  : \( x + 0 = x \)
+
+For all \( x \in M \) there exists a negative additive inverse \( -x \in M \) : \( x + (-x) = 0 \)
+
+Multiplication is distributive  : \( x( y + z ) = x y + x z \), \( (x + y)z = x z + y z \)
+
+Multiplication is associative : \( (x y) z = x ( y z ) \)
+
+There exists a multiplicative identity \( 1 \in M \) : \( 1 x = x \)
+
+Clearly $\mathbb{R}$, using scalar multiplication as the dot product, is a multivector space.
+
+It's possible to show that $\mathbb{R}^2$, $\mathbb{R}^3$, and other vector spaces (with the normal Euclidean dot product) also generate multivector spaces.  Both of these first require that we show that \( \Bx \By = - \By \Bx \), if \( \Bx \cdot \By = 0 \), that is, the products of perpendicular vectors, assumed to be members of  anticommute.
+

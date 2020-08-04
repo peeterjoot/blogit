@@ -4,13 +4,23 @@
 #../latex/bin/lgrep d4x.tex | tee o ; . ./o
 #perl -p -i ../latex/bin/latexRegex.pl d4x.tex
 
-../latex/bin/lgrep xtox.tex | tee o ; . ./o
-perl -p -i ../latex/bin/latexRegex.pl xtox.tex
-../latex/bin/lgrep crashem.tex | tee o ; . ./o
-perl -p -i ../latex/bin/latexRegex.pl crashem.tex
-../latex/bin/lgrep cramersga.tex | tee o ; . ./o
-perl -p -i ../latex/bin/latexRegex.pl cramersga.tex
+#../latex/bin/lgrep xtox.tex | tee o ; . ./o
+#perl -p -i ../latex/bin/latexRegex.pl xtox.tex
+
+#../latex/bin/lgrep crashem.tex | tee o ; . ./o
+#perl -p -i ../latex/bin/latexRegex.pl crashem.tex
+
+#../latex/bin/lgrep cramersga.tex | tee o ; . ./o
+#perl -p -i ../latex/bin/latexRegex.pl cramersga.tex
+
+#../latex/bin/lgrep hyperwedge.tex | tee o ; . ./o
+#perl -p -i ../latex/bin/latexRegex.pl hyperwedge.tex
+
 ../latex/bin/lgrep multivector.tex | tee o ; . ./o
 perl -p -i ../latex/bin/latexRegex.pl multivector.tex
-../latex/bin/lgrep hyperwedge.tex | tee o ; . ./o
-perl -p -i ../latex/bin/latexRegex.pl hyperwedge.tex
+
+../latex/bin/lgrep vectorasarrow.tex | tee o ; . ./o
+perl -p -i ../latex/bin/latexRegex.pl vectorasarrow.tex
+
+../latex/bin/lgrep inthepipe.tex | tee o ; . ./o
+perl -p -i ../latex/bin/latexRegex.pl inthepipe.tex

@@ -19,8 +19,8 @@
 ../latex/bin/lgrep multivector.tex | tee o ; . ./o
 perl -p -i ../latex/bin/latexRegex.pl multivector.tex
 
-../latex/bin/lgrep vectorasarrow.tex | tee o ; . ./o
-perl -p -i ../latex/bin/latexRegex.pl vectorasarrow.tex
-
-../latex/bin/lgrep inthepipe.tex | tee o ; . ./o
-perl -p -i ../latex/bin/latexRegex.pl inthepipe.tex
+#../latex/bin/lgrep vectorasarrow.tex | tee o ; . ./o
+#perl -p -i ../latex/bin/latexRegex.pl vectorasarrow.tex
+#
+#../latex/bin/lgrep inthepipe.tex | tee o ; . ./o
+#perl -p -i ../latex/bin/latexRegex.pl inthepipe.tex

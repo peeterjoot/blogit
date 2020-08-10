@@ -49,10 +49,10 @@
 %\chapter{Multivector}
 %\label{chap:multivector}
 
-%\section{What's in the pipe.}
-%\input{inthepipe.tex}
-%\section{Vectors as arrows.}
-%\input{vectorasarrow.tex}
+%%%\section{What's in the pipe.}
+%%%\input{inthepipe.tex}
+%%%\section{Vectors as arrows.}
+%%%\input{vectorasarrow.tex}
 \section{Coordinate vectors.}
 \subsection{Motivation.}
 Having covered the basic operations of vectors in their arrow representation, we are ready to go algebraic on the subject.
@@ -77,7 +77,7 @@ We can temporarily avoid the ideas of linear dependence, independence and span, 
 %Coordinates and non-orthonormal bases are also a good way to introduce non-Euclidean metrics.
 \subsection{Basis.}
 \makedefinition{Basis (cheat).}{dfn:multivector:180}{
-Given a periodic partitioning of a 2D(3D) space into repeated parallelograms(parallelopipeds), an ordered pair(triplet) of vectors that lie between the vertices of one of the cells is called a basis.
+Given a periodic partitioning of a space into repeated parallelopipeds, an ordered set of vectors that lie between the vertices between the edges of one of the cells is called a basis.
 } % definition
 \index{basis}
 The plural of basis is bases.
@@ -102,18 +102,21 @@ In this example, the pair of vectors \( \setlr{\Be_1, \Be_2}\) is our basis, as 
 Alternate bases for this square grid include \( \setlr{\Be_2, \Be_1} \), \( \setlr{-\Be_1, -\Be_2} \), and \( \setlr{\Be_2, -\Be_1} \).
 \subsection{Coordinates.}
 \makedefinition{Coordinates.}{dfn:multivector:200}{
-Given a basis with \( N \) basis vectors \( \setlr{ \Bf_1, \cdots \Bf_N } \), and a vector \( \Bx = \sum_{i = 1}^N a_i \Bf_i \), the coordinates of the vector \( \Bx \) are \((a_1, a_2, \cdots a_N)\), or in matrix (column vector) notation
+Given a basis with \( N \) basis vectors \( \setlr{ \Bf_1, \cdots \Bf_N } \), and a vector \( \Ba = \sum_{i = 1}^N a^i \Bf_i \), the coordinates of the vector \( \Ba \) are \((a^1, a^2, \cdots a^N)\), or in matrix (column vector) notation
 \begin{equation*}
 \begin{bmatrix}
-a_1 \\
-a_2 \\
+a^1 \\
+a^2 \\
 \vdots \\
-a_N
+a^N
 \end{bmatrix}.
 \end{equation*}
 } % definition
-We are restricting attention for now to \( N \le 3 \), since it's not terribly fun to try to visualize a repeating hyper-parallopipeds lattice.
-Well, perhaps some people would describe that visualization game as fun, but even so, it is probably headache inducing.
+Superscript is used for the coordinate indexes when the lattice is not composed of square (or cubic) units.
+This superscript notation has the disadvantage of introducing an ambiguity, requiring context to determine whether an index or a exponentiation is intended, but will be seen to be worthwhile.
+
+When the lattice is composed of regular cubic cells, where the basis vectors are all of unit length and mutually perpendicular, we can use the more conventional subscript index convention for our coordinates.  In this case, one can also make the engineering identification of a matrix of coordinates as \emph{the vector}.
+We choose not to identify the coordinates of a vector as the vector, and consider coordinates to be a specific representation.
 
 We may use the two previous lattice examples to illustrate the idea of coordinates.
 For example, consider
@@ -131,14 +134,14 @@ The coordinates of \( \By \) with respect to the basis \( \setlr{\Be_1, \Be_2}\)
 The coordinates of \( \By \) with respect to the an alternate basis \( \setlr{\Be_2, -\Be_1}\) would be \((2,-3)\), that is
 \(\By = 2 \Be_2 + (-3)(-\Be_1)\).
 
-The special case of a cubic lattice is so important that we give it a name
-\index{standard basis}
-\makedefinition{Standard basis.}{dfn:multivector:220}{
-Given a unit square(volume) lattice with basis vectors \( \Be_i \) of length 1 (unit vectors), a basis
-\( \setlr{\Be_1, \Be_2, \cdots, \Be_N}\) is called a \emph{standard basis}.
-} % definition
-There are often additional conventions imposed on a standard basis (such as the 3D right hand rule), but we don't care about those for now.
-You may ask why we could possibly care to use anything but a square(cubic) lattice.
+%%%The special case of a cubic lattice is so important that we give it a name
+%%%\index{standard basis}
+%%%\makedefinition{Standard basis.}{dfn:multivector:220}{
+%%%Given a unit square(volume) lattice with basis vectors \( \Be_i \) of length 1 (unit vectors), a basis
+%%%\( \setlr{\Be_1, \Be_2, \cdots, \Be_N}\) is called a \emph{standard basis}.
+%%%} % definition
+%%%There are often additional conventions imposed on a standard basis (such as the 3D right hand rule), but we don't care about those for now.
+You may ask why we could possibly care to use anything but a cubic lattice with uniform spacing.
 Here are a few reasons
 \begin{itemize}
 \item When we get to vector calculus, we require bases that vary from point to point, depending on the parametization of the space that we are using in our integrals.
@@ -148,181 +151,68 @@ Those parameterizations (spherical, cylindrical, toriodal, ...) need not be cubi
 All electromagnetic theory is relativistic, so having the tools to express these ideas is not just academic.
 \end{itemize}
 \subsection{Scaling.}
+Scaling a vector algebraically is so simple that it is almost trivial.  Let
+\( \Ba = \sum_{i = 1}^N a^i \Bf_i \), and let \( \alpha \) be any scalar value, then
+\begin{equation}\label{eqn:multivector:240}
+\alpha \Ba
+=
+\alpha \sum_{i = 1}^N a^i \Bf_i
+=
+\sum_{i = 1}^N (\alpha a^i) \Bf_i.
+\end{equation}
+In the matrix representation of a vector, this is just a scalar matrix product
+\begin{dmath}\label{eqn:multivector:260}
+\alpha
+\begin{bmatrix}
+a^1 \\
+a^2 \\
+\vdots \\
+a^N
+\end{bmatrix}
+=
+\begin{bmatrix}
+\alpha a^1 \\
+\alpha a^2 \\
+\vdots \\
+\alpha a^N
+\end{bmatrix}.
+\end{dmath}
 \subsection{Addition and subtraction.}
-\subsection{Length.}
-
-\section{OLD.}
-\subsection{Coordinates.}
-\subsection{Vector length operation.}
-\subsection{Vector dot product.}
-In engineering, vectors are usually represented as \( N \times 1 \) column matrixes\footnote{Matrices are like meth or crack to engineers, who will attempt to cast everything as a matrix problem.}.
-A vector \( \Bx \) with coordinates \((x,y,z)\) would have the representation
-\begin{dmath}\label{eqn:multivector:60}
-\Bx =
-\begin{bmatrix}
-x \\
-y \\
-z
-\end{bmatrix}.
-\end{dmath}
-With a coordinate representation, we can add and subtract vectors by simply adding and subtracting their coordinates.
-For example, with
-\(
-\Bx =
-{
-\begin{bmatrix}
-x_1 &
-x_2 &
-x_3
-\end{bmatrix}
-}^\T,
-\By =
-{\begin{bmatrix}
-y_1 &
-y_2 &
-y_3
-\end{bmatrix}}^\T \), addition and scaling operations are trivial
-\begin{equation}\label{eqn:multivector:140}
-a \Bx + b \By
+Like scaling, addition and subtraction are trivial algebraically.  Let
+\( \Ba = \sum_{i = 1}^N a^i \Bf_i \) and
+\( \Bb = \sum_{i = 1}^N b^i \Bf_i \).  Sums or differences of the two are
+\begin{dmath}\label{eqn:multivector:280}
+\Ba \pm \Bb =
+\sum_{i = 1}^N a^i \Bf_i
+\pm
+\sum_{i = 1}^N b^i \Bf_i
 =
-a
-\begin{bmatrix}
-x_1 \\
-x_2 \\
-x_3
-\end{bmatrix}
-+
-b
-\begin{bmatrix}
-y_1 \\
-y_2 \\
-y_3
-\end{bmatrix}
-=
-\begin{bmatrix}
-a x_1 + b y_1 \\
-a x_2 + b y_2 \\
-a x_3 + b y_3
-\end{bmatrix}.
-\end{equation}
-
-We may decompose a vector into components in each of the ``unit directions'' as follows
-\begin{dmath}\label{eqn:multivector:160}
-\Bx =
-\begin{bmatrix}
-x \\
-y \\
-z
-\end{bmatrix}
-+
-x
-\begin{bmatrix}
-1 \\
-0 \\
-0 \\
-\end{bmatrix}
-+
-y
-\begin{bmatrix}
-0 \\
-1 \\
-0 \\
-\end{bmatrix}
-+
-z
-\begin{bmatrix}
-0 \\
-0 \\
-1 \\
-\end{bmatrix}.
+\sum_{i = 1}^N (a^i \pm b^i) \Bf_i.
 \end{dmath}
-The vectors with a single one value in each of the directions may be interpretted as unit vectors, vectors with length one in each of the respective directions.
-If we write
-\begin{equation}\label{eqn:prerequisites:20}
-\Be_1 =
+The matrix equivalent of this sum or difference is
+\begin{dmath}\label{eqn:multivector:300}
 \begin{bmatrix}
-1 \\
-0 \\
-0 \\
-\end{bmatrix},\quad
-\Be_2 =
-\begin{bmatrix}
-0 \\
-1 \\
-0 \\
-\end{bmatrix},\quad
-\Be_3 =
-\begin{bmatrix}
-0 \\
-0 \\
-1 \\
-\end{bmatrix}.
-\end{equation}
-then the matrix representation of the vector takes the form
-\begin{dmath}\label{eqn:prerequisites:40}
-\Bx = x \Be_1 + y \Be_2 + z \Be_3.
-\end{dmath}
-Here we have assumed that the set of vectors
-\( \setlr{ \Be_1, \Be_2, \Be_3 } \) were all mutually perpendicular.
-With that assumption, we call such an ordered set the standard basis.
-This is a loose definition, since a proper definition of basis depends on the concept of linear independence\footnote{It is assumed that basis, linear dependence and linear independence are all familiar concepts, but I won't take the time to define them systematically yet.}.
-%independent of whether the underlying representation of the unit vectors themselves are tuple, row, column, or anything else.
-%
-%The simplest interpretation of each of these
-%There is a built in ambguity in a coordinate vector representation.
-%, what can be described as the problem of implied basis.
-%For example a vector \( \Bx \) with coordinates \( x, y, z \) is
-%
-%\subsection{Unit vectors: include?}
-%In particular, the unit vectors in the x, y, z directions are
-%I'll use the symbol \( \Be_i \) to designate the unit vector in the ith direction%
-%\footnote{
-%The notation for the unit vectors themselves varies by author.
-%For example, it's not uncommon in engineering texts to use \( \hat{a}_x, \hat{a}_y, \hat{a}_z \) instead of \( \Be_1, \Be_2, \Be_3 \).  I would guess that the \(\hat{a}\) notation evolved to avoid the overloading of the symbol \(e = 2.718\cdots\).}.
-%This symbolic designation allows any vector to be encoded in a
-%representation agnostic fashion.
-%
-
-\subsection{Metric and dot product.}
-Our niave description of a vector is a quantity with direction and magnitude.
-The
-coordinate representation of a vector encodes the direction, at least assuming that a vector is anchored at the zero vector (the origin), and the arrow head sits at the location specified by the coordinates.
-However, we must also supplement the coordinate representation with an operation that provides the length of the vector.
-That operation is the dot product, which has the following general form
-\begin{dmath}\label{eqn:multivector:101}
-\Bx \cdot \By = \Bx^\T G \By,
-\end{dmath}
-where \( G \) is a symmetric matrix, called the metric.
-When \( G = I \), the identity matrix, then the dot product provides a compact encoding of the Euclidean length
-\begin{equation}\label{eqn:multivector:80}
-\Norm{\Bx} = \sqrt{ \Bx \cdot \Bx } = \sqrt{x^2 + y^2 + z^2}.
-\end{equation}
-The Euclidean dot product (i.e. \( G = I \)) has an absolute maximum value when the two vectors are colinear, and is zero when the two vectors are perpendicular.
-
-The idea of a metric may appear to be useless abstraction, but it has applications in both physics and computer graphics.  In particular, the metric for the four-vectors of special relativity is
-\begin{dmath}\label{eqn:multivector:120}
-G =
+a^1 \\
+a^2 \\
+\vdots \\
+a^N
+\end{bmatrix}
 \pm
 \begin{bmatrix}
--1 & 0 & 0 & 0 \\
-0 & 1 & 0 & 0 \\
-0 & 0 & 1 & 0 \\
-0 & 0 & 0 & 1
+b^1 \\
+b^2 \\
+\vdots \\
+b^N
+\end{bmatrix}
+=
+\begin{bmatrix}
+a^1 \pm b^1 \\
+a^2 \pm b^2 \\
+\vdots \\
+a^N \pm b^N
 \end{bmatrix}.
 \end{dmath}
-Vectors can be characterized as either
-``timelike'' or ``spacelike'', depending on the sign of their
-``squared-length''.
-This special relativistic dot product does not have the usual \( \Bx \cdot \Bx \ge 0 \) property that is usually included in an axiomatic definition of a dot product.
-
-An engineering student may ask, ``Why would I care about special relativity?''.
-Unlike some fields of physics (like classical and quantum mechanics), electromagnetism is relativistically correct to start with, requiring no corrections to generalize it.  This means that the relativisitic toolbox can be used to solve some problems with less effort.  This is one of the reasons why we care to setup our algebraic toolbox in a way that will work for both relativistic problems and the everyday 3D Euclidean geometry problems that surround us.
-
-Non-identity metrics are also of interest in some computer graphics applications.  The interested reader is referred to the
-conformal and projective geometric algebra literature for details, as the are beyond the scope of this work\footnote{The basic idea is that extra dimensions are introduced to represent the origin and to represent a point-at-infinity.}.
-If all this seems too complicated, one of the saving graces is that the metric that is used in all the
-geometric algebra applications that I'm aware of is always a
-diagonal matrix with diagonal values that have values \( 0, \pm 1 \).
+\subsection{Length.}
 
 %\section{Vector space.}
 %\input{vectorspace.tex}

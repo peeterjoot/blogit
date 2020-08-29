@@ -1,0 +1,131 @@
+%
+% Copyright © 2020 Peeter Joot.  All Rights Reserved.
+% Licenced as described in the file LICENSE under the root directory of this GIT repository.
+%
+%{
+\input{../latex/blogpost.tex}
+\renewcommand{\basename}{examples}
+%\renewcommand{\dirname}{notes/phy1520/}
+\renewcommand{\dirname}{notes/ece1228-electromagnetic-theory/}
+%\newcommand{\dateintitle}{}
+%\newcommand{\keywords}{}
+
+\input{../latex/peeter_prologue_print2.tex}
+
+\usepackage{peeters_layout_exercise}
+\usepackage{peeters_braket}
+\usepackage{peeters_figures}
+\usepackage{siunitx}
+\usepackage{verbatim}
+%\usepackage{mhchem} % \ce{}
+%\usepackage{macros_bm} % \bcM
+%\usepackage{macros_qed} % \qedmarker
+%\usepackage{txfonts} % \ointclockwise
+
+\beginArtNoToc
+
+\generatetitle{XXX}
+%\chapter{XXX}
+%\label{chap:examples}
+% \citep{sakurai2014modern} pr X.Y
+% \citep{pozar2009microwave}
+% \citep{qftLectureNotes}
+% \citep{doran2003gap}
+% \citep{jackson1975cew}
+% \citep{griffiths1999introduction}
+
+
+\begin{itemize}
+   \item Maxwell's equation: \( \lr{ \spacegrad + \inv{c} \partial_t} F = J \), where \( F = \BE + I c \BB \) is the electromagnetic field (vector plus bivector), and \( J = \eta \lr{ c \rho - \BJ } + I \lr{ c \rho_\txtm - \BM } \) is the current density multivector.  In the latter magnetic sources \( \rho_\txtm, \BM \) are included for antenna theory applications, but can be dropped for conventional electromagnetism.   Without the magnetic sources the multivector current density has scalar and vector components.  The magnetic sources add bivector and pseudoscalar terms.
+   \item The Green's function for the spacetime gradient \( \spacegrad + (1/c) \partial_t \) (i.e. Green's function for Maxwell's equation for infinite boundary value conditions) satisfies
+\begin{equation*}
+\lr{ \spacegrad + (1/c) \partial_t } G(\Bx - \Bx', t - t') = \delta(\Bx - \Bx') \delta(t - t'),
+\end{equation*}
+and has the value
+\begin{equation*}
+G(\Bx - \Bx', t - t')
+=
+\inv{4\pi} \lr{
+- \frac{\rcap}{r^2} \PD{r}{}
++ \frac{\rcap}{r}
++ \inv{c r} \partial_t
+}
+\delta( -r/c + t - t' ),
+\end{equation*}
+where \( \Br = \Bx - \Bx', r = \Norm{\Br} \) and \( \rcap = \Br/r \).  This Green's function is a multivector with scalar and vector components.
+\item Plane wave solutions to Maxwell's equation have multivector factors like \( 1 + \kcap \) that include scalar and vector components.  Example:
+\begin{equation*}
+F(\Bx, t)
+=
+\Real \lr{
+\lr{ 1 + \kcap }
+\BE\,
+e^{-j \Bk \cdot \Bx + j \omega t}
+}
+,
+\end{equation*}
+where \( \Norm{\Bk} = \omega/c \), \( \kcap = \Bk/\Norm{\Bk} \) is the unit vector pointing along the propagation direction, and \( \BE \) is any complex-valued vector variable, such that \( \BE \cdot \Bk = 0 \).
+
+It is common to find scalar+vector factors of this form in field solutions.  For example the field for an infinite line charge has the form
+\begin{equation*}
+F \propto \rhocap \lr{ 1 - \Bv/c}.
+\end{equation*}
+Many of the solutions that can be found analyitically have a multivector \( 1 - \Bv/c \) factor like this (circular line charge, ...).
+
+Another example of such multivector factors can be found in a representation of plane, circular, and eliptically polarized field solutions of the form:
+\begin{equation*}
+F = \lr{ 1 + \Be_3 } \Be_1 e^{i\psi} f(\phi).
+\end{equation*}
+Here the pseudoscalar of the transverse plane \( i = \Be_1 \Be_2 \), has been used as the imaginary, and \( f(\phi) \) is a complex valued function with respect to such an imaginary representation.
+
+\item The statics solution to Maxwell's equation selects grades 1 and 2 from a multivector product:
+\begin{equation*}
+F(\Bx)
+= \inv{4\pi} \int_V dV' \frac{\gpgrade{(\Bx - \Bx') J(\Bx')}{1,2}}{\Norm{\Bx - \Bx'}^3} + F_0,
+\end{equation*}
+where \( F_0 \) is any function for which \( \spacegrad F_0 = 0 \).
+This solution incorpates both Coloumb's law and the Biot-Savart law, and follows from the Green's function given above.
+\item The energy momentum tensor (conventionally written as \(T^{\mu\nu}\)) is a multivector with scalar and vector components
+\begin{equation*}
+T(a) = \inv{2} \epsilon F a F^\dagger,
+\end{equation*}
+where \( a \) a multivector parameter with scalar and vector components.
+\item
+The electromagnetic field can be written in terms of a multivector potential \( A \) as follows
+\begin{equation*}
+   F = \gpgrade{\lr{ \spacegrad -(1/c) \partial_t } A}{1,2},
+\end{equation*}
+where
+\begin{equation*}
+   A =
+      - \phi
+      + c \BA
+      + \eta I \lr{ -\phi_m + c \BF }.
+\end{equation*}
+Here, as before, the magnetic sources \( \phi_m \), and \( \BF \) are for antenna theory applications, and can be dropped for conventional electromagnetism.  This is a very compact representation of the fields, but can be unpacked to yield the usual:
+\begin{equation*}
+\begin{aligned}
+\BE &=
+   - \spacegrad \phi
+   - \PD{t}{\BA}
+   - \inv{\epsilon} \spacegrad \cross \BF \\
+\BH &=
+      - \spacegrad \phi_\txtm
+      - \PD{t}{\BF}
+      + \inv{\mu} \spacegrad \cross \BA
+.
+\end{aligned}
+\end{equation*}
+\item Using the potential representation above, you can find various interesting (and compact) multivector field representations.  For example, given a spherical potential
+\begin{equation*}
+   \BA = \frac{e^{-j k r}}{r} \vec{A}( \theta, \phi ),
+\end{equation*}
+you can show that the far field (\(r \gg 1 \)) electromagnetic field is
+\begin{equation*}
+F = -j \omega \lr{ 1 + \rcap } \lr{ \rcap \wedge \BA}.
+\end{equation*}
+\end{itemize}
+
+%}
+\EndArticle
+%\EndNoBibArticle

@@ -1,0 +1,64 @@
+%
+% Copyright © 2020 Peeter Joot.  All Rights Reserved.
+% Licenced as described in the file LICENSE under the root directory of this GIT repository.
+%
+%{
+\input{../latex/blogpost.tex}
+\renewcommand{\basename}{determinant}
+%\renewcommand{\dirname}{notes/phy1520/}
+\renewcommand{\dirname}{notes/ece1228-electromagnetic-theory/}
+%\newcommand{\dateintitle}{}
+%\newcommand{\keywords}{}
+
+\input{../latex/peeter_prologue_print2.tex}
+
+\usepackage{peeters_layout_exercise}
+\usepackage{peeters_braket}
+\usepackage{peeters_figures}
+\usepackage{siunitx}
+\usepackage{verbatim}
+%\usepackage{mhchem} % \ce{}
+%\usepackage{macros_bm} % \bcM
+%\usepackage{macros_qed} % \qedmarker
+%\usepackage{txfonts} % \ointclockwise
+
+\beginArtNoToc
+
+\generatetitle{XXX}
+%\chapter{XXX}
+%\label{chap:determinant}
+
+Just because there is a matrix representation of a vector, does not mean that this representation is unique.  So, why would the determinant of any given matrix representation of a vector (or multivector) be meaningful?
+
+A better question to ask might be what is the logical equivalent of a determinant geometrically?  Then we can look for a Clifford representation of that operation or entity.
+
+One way that the determinant can be motivated (\citep{damiano1988cla}) is by computing the area of a parallelogram, or more generally a hyper-parallopiped.  For example, if the vectors \( \Ba = (a_1, a_2) \) and \( \Bb = (b_1, b_2) \) for the edges of a parallogram in \R{2}, then the oriented area of that parallelogram is given by
+\begin{equation*}
+\begin{vmatrix}
+   a_1 & a_2 \\
+   b_1 & b_2 \\
+\end{vmatrix}.
+\end{equation*}
+
+Observe that this is the numerical coefficient of the wedge product of those two vectors.  Assuming an orthonormal basis \(\setlr{\Be_1, \Be_2} \), such a wedge is
+\begin{equation*}
+\begin{aligned}
+   \Ba \wedge \Bb 
+   &=
+   \lr{ a_1 \Be_1 + a_2 \Be_2 }
+   \wedge
+   \lr{ b_1 \Be_1 + b_2 \Be_2 } 
+   \\
+   &=
+   a_1 b_2 \Be_1 \wedge \Be_2 + a_2 b_1 \Be_2 \wedge \Be_1 \\
+   &=
+   (a_1 b_2 - a_2 b_1) \Be_1 \wedge \Be_2.
+\end{aligned}
+\end{equation*}
+It's not too hard to show that the wedge of N vectors in an N dimensional space equals the determinant of the Euclidean coefffients of those vectors, scaled by the unit volume element for that space.  That determinant is an oriented magnitude for that hypervolume.
+
+If you are looking for how the determinant is observed in a Clifford algebraic context, you'll find it in such wedge products.  That is representation independent, and has no connection with any possible matrix representation of the underlying vectors.
+
+%}
+\EndArticle
+%\EndNoBibArticle

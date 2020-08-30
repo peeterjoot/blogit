@@ -27,5 +27,12 @@ perl -p -i ../latex/bin/latexRegex.pl multivector.tex
 
 #../latex/bin/lgrep examples.tex | tee o ; . ./o
 #perl -p -i ../latex/bin/latexRegex.pl examples.tex
-../latex/bin/lgrep pseudoPlusVector.tex | tee o ; . ./o
-perl -p -i ../latex/bin/latexRegex.pl pseudoPlusVector.tex
+
+#../latex/bin/lgrep pseudoPlusVector.tex | tee o ; . ./o
+#perl -p -i ../latex/bin/latexRegex.pl pseudoPlusVector.tex
+
+#../latex/bin/lgrep wedge.tex | tee o ; . ./o
+#perl -p -i ../latex/bin/latexRegex.pl wedge.tex
+
+#../latex/bin/lgrep determinant.tex | tee o ; . ./o
+#perl -p -i ../latex/bin/latexRegex.pl determinant.tex

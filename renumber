@@ -27,3 +27,5 @@ perl -p -i ../latex/bin/latexRegex.pl multivector.tex
 
 #../latex/bin/lgrep examples.tex | tee o ; . ./o
 #perl -p -i ../latex/bin/latexRegex.pl examples.tex
+../latex/bin/lgrep pseudoPlusVector.tex | tee o ; . ./o
+perl -p -i ../latex/bin/latexRegex.pl pseudoPlusVector.tex

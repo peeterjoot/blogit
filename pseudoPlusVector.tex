@@ -1,0 +1,123 @@
+%
+% Copyright © 2020 Peeter Joot.  All Rights Reserved.
+% Licenced as described in the file LICENSE under the root directory of this GIT repository.
+%
+%{
+\input{../latex/blogpost.tex}
+\renewcommand{\basename}{pseudoPlusVector}
+%\renewcommand{\dirname}{notes/phy1520/}
+\renewcommand{\dirname}{notes/ece1228-electromagnetic-theory/}
+%\newcommand{\dateintitle}{}
+%\newcommand{\keywords}{}
+
+\input{../latex/peeter_prologue_print2.tex}
+
+\usepackage{peeters_layout_exercise}
+\usepackage{peeters_braket}
+\usepackage{peeters_figures}
+\usepackage{siunitx}
+\usepackage{verbatim}
+%\usepackage{mhchem} % \ce{}
+%\usepackage{macros_bm} % \bcM
+%\usepackage{macros_qed} % \qedmarker
+%\usepackage{txfonts} % \ointclockwise
+
+\beginArtNoToc
+
+\generatetitle{XXX}
+%\chapter{XXX}
+%\label{chap:pseudoPlusVector}
+
+What you've written out as an explicit 4x4 matrix, can be written in the more compact "sigma" notation as
+\begin{equation*}
+x_0 \sigma_0 + \Bsigma \cdot \Bx.
+\end{equation*}
+It isn't appropriate to describe this multivector as a quaternion, nor as a rotation.  Quaternions may be represented in the Pauli algebra as multivectors with scalar+bivector components, such as
+\begin{equation*}
+x_0 \sigma_0 + i \Bsigma \cdot \Bx.
+\end{equation*}
+(recall that \( i \sigma_0 = \sigma_1 \sigma_2 \sigma_3 \) is the pseudoscalar in the Pauli representation, and that a pseudoscalar and vector product is a bivector.)  In particular, by setting \( \Bi = \sigma_2 \sigma_3, \Bj = \sigma_1 \sigma_3, \Bk = \sigma_1 \sigma_2 \), it is easy to see that the usual quaternion multiplication table can be recovered.
+
+As for rotations in the Pauli algebra, rotating a vector about a normal \( \Bn \) can be accomplished by sandwiching the vector between two conjugate rotors, exponentials with bivector arguments
+\begin{equation*}
+\sigma \cdot \Bx \rightarrow e^{-i \Bsigma \cdot \Bn/2} \sigma \cdot \Bx e^{ i \Bsigma \cdot \Bn/2 }
+\end{equation*}
+This works as a rotation since \( e^{-i \Bsigma \cdot \Bn/2} \) commutes with any component of \( \sigma \cdot \Bx \) that lies in the normal direction, and conjugate commutes with any component that lies in the plane of the rotation (i.e. the plane represented by the bivector \(i \Bn\).)
+For example, if \( \sigma \cdot \Bx = \sigma \cdot \Bx_\parallel + \sigma \cdot \Bx_\perp \), where \( \Bx_\perp \cdot \Bn = 0 \), then we have
+\begin{equation*}
+\begin{aligned}
+\sigma \cdot \Bx 
+&\rightarrow 
+e^{-i \Bsigma \cdot \Bn/2} 
+\lr{ 
+\sigma \cdot \Bx_\parallel + \sigma \cdot \Bx_\perp
+} e^{ i \Bsigma \cdot \Bn/2 } \\
+&=
+\lr{ 
+\sigma \cdot \Bx_\parallel 
+} e^{ i \Bsigma \cdot \Bn }
++ \sigma \cdot \Bx_\perp.
+\end{aligned}
+\end{equation*}
+The component that is perpendicular to the plane of rotation is left untouched, while we have a complex-exponential style rotation of any component of the vector that lies in the plane.
+For example, with \( i \Bn = i \theta \sigma_3 = i \sigma_1 \sigma_2 \), we have a rotation in the x-y plane.  Each of the rotors is a multivector with scalar+bivector components
+\begin{equation*}
+e^{ \theta \sigma_1 \sigma_2 /2 }
+=
+\sigma_0 \cos \theta/2 + \sigma_1 \sigma_2 \sin\theta/2.
+\end{equation*}
+
+So, if a scalar+vector is not a rotation, nor a quaternion, what is it?  I don't have a good answer for that in general, but there are some interesting special cases of multivectors of this type.  One is the projector, an example of which is
+\begin{equation*}
+P = \inv{2} \lr{ \sigma_0 + \sigma_3 }.
+\end{equation*}
+This squares to itself, and eats any factor of \( \sigma_3 \)
+\begin{equation*}
+\begin{aligned}
+   P^2 &=
+\inv{4} 
+\lr{ \sigma_0 + \sigma_3 } 
+\lr{ \sigma_0 + \sigma_3 }  \\
+&=
+\inv{4} 
+\lr{ \sigma_0 + 2 \sigma_3 + \sigma_3^2 } \\
+&=
+\inv{4} 
+\lr{ 2 \sigma_0 + 2 \sigma_3 } \\
+&= P,
+\end{aligned}
+\end{equation*}
+and
+\begin{equation*}
+   P \sigma_3 = 
+\inv{2} 
+\lr{ \sigma_0 + \sigma_3 } \sigma_3
+=
+\inv{2} 
+\lr{ \sigma_3 + \sigma_3^2 }
+= P.
+\end{equation*}
+Projectors of this form show up as factors in (multivector electromagnetic wave) solutions of Maxwell's equation in charge and current free regions.
+
+As for the remaining part of your question, what is a pseudoscalar + vector?  In the sigma notation, such a sum has the form
+\begin{equation*}
+   i \sigma_0 \alpha + \Bsigma \cdot \Bx.
+\end{equation*}
+Instead of answering that "what is" question, I'll cheat and give an example where we see such a sum.  In particular, in the rotation above, we had products like \( \Bsigma \cdot \Bx e^{ i \Bsigma \cdot \Bn/2 } \).  Let \( \Bn = \theta \ncap \), so this product expands to
+\begin{equation*}
+\Bsigma \cdot \Bx
+\lr{
+   \cos \theta/2 + i \Bsigma \cdot \ncap \sin\theta/2
+}.
+\end{equation*}
+The multivector coefficient of the sine is \( i (\Bsigma \cdot \Bx)( \Bsigma \cdot \ncap ) \).  If \( \Bx \) and \( \ncap \) are perpendicular, such a product is a vector, and if they are parallel, such a product is a pseudoscalar.  However, in general, such a product is a sum of a vector and a pseudoscalar.  As it happens, all the pseudoscalar products that occur in the expansion of the rotation, cancel out in the end, leaving just a vector.  
+
+There are surely other physical scenerios where vector+pseudoscalar sums occurs in isolation.  One such example would be a multivector potential field that includes both a vector potential and a magnetic scalar potential.
+\begin{equation*}
+   A = c \Bsigma \cdot \BA - \eta i \phi_m \sigma_0.
+\end{equation*}
+This is a somewhat contrived example, utilizing a generalization of Maxwell's equation found in Engineering antenna theory that includes fictitional magnetic sources.
+
+%}
+\EndArticle
+%\EndNoBibArticle

@@ -1,0 +1,97 @@
+%
+% Copyright © 2020 Peeter Joot.  All Rights Reserved.
+% Licenced as described in the file LICENSE under the root directory of this GIT repository.
+%
+%{
+\input{../latex/blogpost.tex}
+\renewcommand{\basename}{fibonacci}
+%\renewcommand{\dirname}{notes/phy1520/}
+\renewcommand{\dirname}{notes/ece1228-electromagnetic-theory/}
+%\newcommand{\dateintitle}{}
+%\newcommand{\keywords}{}
+
+\input{../latex/peeter_prologue_print2.tex}
+
+\usepackage{amsthm}
+\usepackage{peeters_layout_exercise}
+\usepackage{peeters_braket}
+\usepackage{peeters_figures}
+\usepackage{siunitx}
+\usepackage{verbatim}
+%\usepackage{mhchem} % \ce{}
+%\usepackage{macros_bm} % \bcM
+%\usepackage{macros_qed} % \qedmarker
+%\usepackage{txfonts} % \ointclockwise
+
+\beginArtNoToc
+
+\generatetitle{The nth term of a Fibonacci series.}
+%\chapter{The nth term of a Fibonacci series.}
+%\label{chap:fibonacci}
+
+I've just started reading \citep{strogatz2009calculus}, but already got distracted from the plot by a fun math fact.  Namely, a cute formula for the nth term of a Fibonacci series.  Recall
+\makedefinition{Fibonacci series.}{dfn:fibonacci:20}{
+With \( F_0 = 0 \), and \( F_1 = 1 \), the nth term \( F_n \) in the Fibonacci series is the sum of the previous two terms
+\begin{equation*}
+F_n = F_{n-2} + F_{n-1}.
+\end{equation*}
+} % definition
+We can quickly find that the series has values \( 0, 1, 1, 2, 3, 5, 8, 13, \cdots \).  What's really cool, is that there's a closed form expression for the nth term in the series that doesn't require calculation of all the previous terms.
+\maketheorem{Nth term of the Fibonacci series.}{thm:fibonacci:40}{
+\begin{equation*}
+F_n = \frac{ \lr{ 1 + \sqrt{5} }^n - \lr{ 1 - \sqrt{5} }^n }{ 2^n \sqrt{5} }.
+\end{equation*}
+} % theorem
+This is a rather miraculous and interesting looking equation.  Other than the \(\sqrt{5}\) scale factor, this is exactly the difference of the nth powers of the golden ratio \( \phi = (1+\sqrt{5})/2 \), and \( 1 - \phi = (1-\sqrt{5})/2 \).  That is:
+\begin{equation}\label{eqn:fibonacci:60}
+F_n = \frac{\phi^n - (1 -\phi)^n}{\sqrt{5}}.
+\end{equation}
+
+% https://books.google.com/books?id=QGgLbf2oFUYC&pg=PA29
+How on Earth would somebody figure this out?  According to Tattersal \citep{tattersall2005elementary}, this relationship was discovered by Kepler.
+
+Understanding this from the ground up looks like it's a pretty deep rabbit hole to dive into.  Let's save that game for another day, but try the more pedestrian task of proving that this formula works.
+\begin{proof}
+\begin{equation}\label{eqn:fibonacci:80}
+\begin{aligned}
+\sqrt{5} F_n 
+&=
+\sqrt{5} \lr{ F_{n-2} + F_{n-1} } \\
+&=
+\phi^{n-2} - \lr{ 1 - \phi}^{n-2}
++ \phi^{n-1} - \lr{ 1 - \phi}^{n-1} \\
+&=
+\phi^{n-2} \lr{ 1 + \phi }
+-\lr{1 - \phi}^{n-2} \lr{ 1 + 1 - \phi } \\
+&=
+\phi^{n-2}
+\frac{ 3 + \sqrt{5} }{2}
+-\lr{1 - \phi}^{n-2}
+\frac{ 3 - \sqrt{5} }{2}.
+\end{aligned}
+\end{equation}
+However,
+\begin{equation}\label{eqn:fibonacci:100}
+\begin{aligned}
+\phi^2
+&= \lr{ \frac{ 1 + \sqrt{5} }{2} }^2 \\
+&= \frac{ 1 + 2 \sqrt{5} + 5 }{4} \\
+&= \frac{ 3 + \sqrt{5} }{2},
+\end{aligned}
+\end{equation}
+and
+\begin{equation}\label{eqn:fibonacci:120}
+\begin{aligned}
+(1-\phi)^2
+&= \lr{ \frac{ 1 - \sqrt{5} }{2} }^2 \\
+&= \frac{ 1 - 2 \sqrt{5} + 5 }{4} \\
+&= \frac{ 3 - \sqrt{5} }{2},
+\end{aligned}
+\end{equation}
+so
+\begin{equation}\label{eqn:fibonacci:140}
+\sqrt{5} F_n = \phi^n - (1-\phi)^n.
+\end{equation}
+\end{proof}
+%}
+\EndArticle

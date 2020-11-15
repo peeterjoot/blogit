@@ -26,6 +26,10 @@ include ../latex/make.rules
 	spellcheck $^
 	touch $@
 
+# mv rule doesn't work.  do it manually.
+mathstyle.sty :
+	wget --output-document=$@ http://tug.org/svn/texlive/trunk/Master/texmf-dist/tex/latex/breqn/mathstyle.sty?revision=54801&view=co
+
 multivector.pdf :: vectorasarrow.tex
 multivector.pdf :: inthepipe.tex
 multivector.pdf :: vectorspace.tex

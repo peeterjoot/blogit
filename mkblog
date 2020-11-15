@@ -1,0 +1,8 @@
+make fibonacci.pdf
+make fibonacciblog.pdf
+tex2mathjax -f fibonacciblog.tex | \
+grep -ve '<h3.*Solutions' -e PassOptionsToPackage | \
+sed 's/fibonacciblog.pdf/fibonacci.pdf/;' | \
+sed 's,\\emph{{\(.*\)}},\1,' | \
+perl -00 -pe '' > x.txt
+pbcopy < x.txt

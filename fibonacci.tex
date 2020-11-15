@@ -12,6 +12,10 @@
 
 \input{../latex/peeter_prologue_print2.tex}
 
+\usepackage{mathtools}
+\DeclarePairedDelimiter\ceil{\lceil}{\rceil}
+\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
+
 \usepackage{amsthm}
 \usepackage{peeters_layout_exercise}
 \usepackage{peeters_braket}
@@ -22,6 +26,9 @@
 %\usepackage{macros_bm} % \bcM
 %\usepackage{macros_qed} % \qedmarker
 %\usepackage{txfonts} % \ointclockwise
+%\usepackage{amsmath} % \binom
+
+\newcommand{\mybinom}[2]{{{#1}\choose{#2}}}
 
 \beginArtNoToc
 
@@ -87,5 +94,48 @@ so
 \sqrt{5} F_n = \phi^n - (1-\phi)^n.
 \end{dmath}
 \end{proof}
+\section{How the square root fives cancel out.}
+One of the interesting things in this Fibonacci formula, is the \( \sqrt{5} \)'s that are all over the place, while the formula represents only integer values.  Expanding the formula in binomial series shows us exactly why those terms all vanish.  Consider the first few values of \( n \) explicitly.
+\begin{dmath}\label{eqn:fibonacci:160}
+F_1 
+= \frac{ 1 + \sqrt{5} - \lr{ 1 - \sqrt{5} } }{ 2^1 \sqrt{5} }
+= \frac{ 2 \sqrt{5} }{ 2^1 \sqrt{5} }
+= 1,
+\end{dmath}
+\begin{dmath}\label{eqn:fibonacci:180}
+F_2 
+= \frac{ 1 + 2 \sqrt{5} + 5 - \lr{ 1 - 2 \sqrt{5} + 5 } }{ 2^2 \sqrt{5} }
+= \frac{ 4 \sqrt{5} }{ 2^2 \sqrt{5} }
+= 1,
+\end{dmath}
+\begin{dmath}\label{eqn:fibonacci:200}
+F_3 
+	= \frac{ 1 + 3 \sqrt{5} + 3 (5) + \sqrt{5} 5 - \lr{ 1 - 3 \sqrt{5} + 3(5) - \sqrt{5} 5 } }{ 2^3 \sqrt{5} }
+= \frac{ 2 \lr{ 3 \sqrt{5} + \sqrt{5} 5 } }{ 2^3 \sqrt{5} }
+= \frac{ 3 + 5 }{ 2^4 }
+= 2.
+\end{dmath}
+In the general case, we have
+\begin{dmath}\label{eqn:fibonacci:220}
+2^n \sqrt{5} F_n 
+= 
+\sum_{k = 0}^n 
+\mybinom{n}{k} 
+{\sqrt{5}}^k
+-
+\sum_{k = 0}^n \mybinom{n}{k} (-\sqrt{5})^k
+=
+2 \sum_{1 \le k \le n, \mbox{$k$ is odd}} \mybinom{n}{k} (\sqrt{5})^k
+=
+2 \sqrt{5} \sum_{m = 0}^{\floor*{(n-1)/2}} \mybinom{n}{2 m + 1} 5^m,
+\end{dmath}
+% k = 2 m + 1, m = 0, 2 m + 1 <= n ; m <= (n-1)/2
+so (for any \( n > 0 \),
+\begin{dmath}\label{eqn:fibonacci:240}
+F_n = 
+\inv{2^{n-1}} \sum_{m = 0}^{\floor*{(n-1)/2}} \mybinom{n}{2 m + 1} 5^m.
+\end{dmath}
+Since only the odd powers of \( \sqrt{5} \) in the binomial expansions survive, the root in the basement is obliterated every time, leaving only integers upstairs, and a power of two factor downstairs.  
+It is still somewhat remarkable seeming that there is always a perfect cancelation of all the factors of two in the basement, but we can see easily why the end result, for any \( n \) has no \( \sqrt{5} \) terms in it.
 %}
 \EndArticle

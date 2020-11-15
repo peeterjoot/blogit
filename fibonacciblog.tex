@@ -146,7 +146,101 @@ so (for any \( n > 0 \),
 F_n =
 \inv{2^{n-1}} \sum_{m = 0}^{\floor*{(n-1)/2}} \binom{n}{2 m + 1} 5^m.
 \end{equation}
-Since only the odd powers of \( \sqrt{5} \) in the binomial expansions survive, the root in the basement is obliterated every time, leaving only integers upstairs, and a power of two factor downstairs.  It is still somewhat remarkable seeming that there is always a perfect cancelation of all the factors of two in the basement.
+Since only the odd powers of \( \sqrt{5} \) in the binomial expansions survive, the root in the basement is obliterated every time, leaving only integers upstairs, and a power of two factor downstairs.  It is still somewhat remarkable seeming that there is always a perfect cancellation of all the factors of two in the basement.
 %, but we can see easily why the end result, for any \( n \) has no \( \sqrt{5} \) terms in it.
+\section{How the square root fives show up.}
+We can rearrange the formula for the nth Fibonacci number as a difference equation
+\begin{equation}\label{eqn:fibonacci:260}
+F_n - F_{n-1} = F_{n-2}.
+\end{equation}
+This is a second order difference equation, so my naive expectation is that there are two particular solutions involved.  We know the answer, so it's not too hard to guess that the particular form of the solution has the following form
+\begin{equation}\label{eqn:fibonacci:280}
+F_n = \alpha a^n + \beta b^n.
+\end{equation}
+Given this guess, can we take some of the magic out of the formula, by just solving for \( \alpha, \beta, a, b \)?  Let's try that
+\begin{equation}\label{eqn:fibonacci:300}
+F_0 = \alpha + \beta = 0,
+\end{equation}
+\begin{equation}\label{eqn:fibonacci:320}
+\begin{aligned}
+F_1 &= \alpha a + \beta b \\
+    &= \alpha \lr{ a - b } \\
+    &= 1,
+\end{aligned}
+\end{equation}
+and
+\begin{equation}\label{eqn:fibonacci:340}
+\begin{aligned}
+F_n 
+&= F_{n-1} + F_{n-2} \\
+&= 
+\alpha \lr{ a^{n-1} + a^{n-2} } 
+-\alpha \lr{ b^{n-1} + b^{n-2} }  \\
+&=
+\alpha a^{n-2} \lr{ 1 + a }
+-\alpha b^{n-2} \lr{ 1 + b },
+\end{aligned}
+\end{equation}
+so
+\begin{equation}\label{eqn:fibonacci:360}
+\begin{aligned}
+a^2 &= a + 1 \\
+b^2 &= b + 1.
+\end{aligned}
+\end{equation}
+If we complete the square we find
+\begin{equation}\label{eqn:fibonacci:380}
+\lr{ a - \inv{2} }^2 = 1 + \inv{4} = \frac{5}{4},
+\end{equation}
+or
+\begin{equation}\label{eqn:fibonacci:400}
+a, b = \inv{2} \pm \frac{\sqrt{5}}{2}.
+\end{equation}
+Out pop the golden ratio and it's complement.  Clearly we need to pick alternate roots for \( a \) and \( b \) or else we'd have zero for every value of \( n > 0 \).  Suppose we pick the positive root for \( a \), then to find the scaling constant \( \alpha \), we just compute
+\begin{equation}\label{eqn:fibonacci:420}
+\begin{aligned}
+1 
+&= 
+\alpha \lr{ \frac{ 1 + \sqrt{5}}{2} - \frac{ 1 - \sqrt{5} }{2} } \\
+&= \alpha \sqrt{5},
+\end{aligned}
+\end{equation}
+so our system \cref{eqn:fibonacci:280} has the solution:
+\begin{equation}\label{eqn:fibonacci:520}
+\begin{aligned}
+a &= \frac{1 + \sqrt{5}}{2} \\
+b &= \frac{1 - \sqrt{5}}{2} \\
+\alpha &= \inv{\sqrt{5}} \\
+\beta &= -\inv{\sqrt{5}}.
+\end{aligned}
+\end{equation}
+It would be interesting to study difference equations enough to understand why the guess \cref{eqn:fibonacci:280} works.  However, we see a path that will systematically lead us from the Fibonacci difference equation to the final result, and have only to fill in a few missing steps to understand that path.
+
+\paragraph{Another approach.}
+I showed this to Sofia, and she came up with a neat very direct way to motivate the \( \sqrt{5} \).  It follows naturally (again knowing the answer), by assuming the Fibonacci formula has the following form:
+\begin{equation}\label{eqn:fibonacci:440}
+F_n = \inv{x} \lr{ 
+   \lr{ \frac{1 + x}{2}}^n
+   -
+   \lr{ \frac{1 - x}{2}}^n
+}.
+\end{equation}
+We have only to plug in \( n = 3 \) to find
+\begin{equation}\label{eqn:fibonacci:460}
+\begin{aligned}
+2 x 
+&= \inv{4} \lr{ 1 + 3 x + 3 x^2 + x^3 - \lr{ 1 - 3 x + 3 x^2 - x^3 } } \\
+&= \inv{2} \lr{ 3 x + x^3 },
+\end{aligned}
+\end{equation}
+or
+\begin{equation}\label{eqn:fibonacci:480}
+8 = 3 + x^2,
+\end{equation}
+so
+\begin{equation}\label{eqn:fibonacci:500}
+x = \pm \sqrt{5}.
+\end{equation}
+Again the \( \sqrt{5} \)'s pop out naturally, taking away some of the mystery of the cool formula.
 %}
 \EndArticle

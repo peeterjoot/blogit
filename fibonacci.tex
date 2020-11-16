@@ -223,14 +223,48 @@ x = \pm \sqrt{5}.
 Again the \( \sqrt{5} \)'s pop out naturally, taking away some of the mystery of the cool formula.
 \section{Deriving the nth Fibonacci formula.}
 There was a particularly unsatisfactory aspect of the \cref{eqn:fibonacci:280} guess.  In particular, we didn't have any reason to guess the form of that solution, except for the fact that we already knew the answer.  Now we will attempt to attack this in a more systematic fashion, so that each step along the way seems logical.  First, we need to put a couple goodies in our toolbox.
-\makedefinition{Difference operators.}{dfn:fibonacci:540}{
-Define a backwards difference operator \( \Delta \), operating on \( F_n \) as
+\makedefinition{Discrete sum.}{dfn:fibonacci:980}{
+Given a set of discrete values \( \setlr{G_a, G_{a+1}, \cdots, G_n } \) we define a discrete sum of \( n - a + 1 \) of these terms as \( F_n \)
 \begin{equation*}
-\Delta F_n = F_n - F_{n-1}.
+F_n = \sum_{k = a}^n G_k + C,
+\end{equation*}
+where \( C \) is an arbitrary boundary value constant.
+} % definition
+\makedefinition{Difference operators.}{dfn:fibonacci:540}{
+Define a backwards difference operator \( \Delta \), operating on \( X_n \) as
+\begin{equation*}
+\Delta X_n = X_n - X_{n-1}.
 \end{equation*}
 } % definition
-The difference operator is a discrete analogue of a differential operator.  This isn't the only possible choice of difference operator that we could make.  For example, an alternative definition would be to define a forward difference operator \( \Delta F_n = F_{n+1} - F_{n} \).  We should be able to arrive at all the same results with forward differences, but backwards is slightly more convienient in this case.
+The difference operator is a discrete analogue of a differential operator.  It is also possible to define a (forward) difference operator as \( \Delta X_n = X_{n+1} - X_{n} \), but the choice is arbitary, and we can find the same results either way.
 
+\makelemma{Antidifference of discrete sum.}{thm:fibonacci:940}{
+Given a sum \( F_n \) of the form \cref{dfn:fibonacci:980}, the difference operation is just the highest \( n \) term of the sum
+\begin{equation*}
+\Delta F_n = G_n.
+\end{equation*}
+} % theorem
+\begin{proof}
+\begin{dmath}\label{eqn:fibonacci:960}
+\Delta F_n =
+\sum_{k = a}^n G_k + C
+- \lr{ \sum_{k = a}^{n-1} G_k + C }
+= G_n.
+\end{dmath}
+\end{proof}
+
+Computing differences is pretty easy.  What we want to do is the inverse operation (analogous to integration), where we find a closed form representation of \( F_n \) given a difference equation \( \Delta F_n = G_n \).
+Just as we can compute antiderivatives for \( x^n \), we may do the same for \( n^k \) antidifferences, but the results are messier.  The first few such antidifferences are
+\maketheorem{Antidifferences for powers of \(n\).}{thm:fibonacci:980}{
+\begin{equation*}
+\begin{aligned}
+1   &= \Delta n \\
+n   &= \Delta \lr{ \frac{n^2 + n}{2} } \\
+n^2 &= \Delta \lr{ \frac{2 n^3 + 3 n^2 + n}{6} }.
+\end{aligned}
+\end{equation*}
+} % theorem
+\begin{proof}
 Let's look at some example difference equations.  One of the simplest is probably a constant difference, such as
 \begin{dmath}\label{eqn:fibonacci:560}
 \Delta F_n = 1.
@@ -243,7 +277,7 @@ F_1 &= F_0 + 1 = 1 \\
 F_2 &= F_1 + 1 = 2,
 \end{aligned}
 \end{equation}
-and so forth.  We find that our system has the solution
+and so forth.  By inspection that our system has the solution
 \begin{dmath}\label{eqn:fibonacci:600}
 F_n = n.
 \end{dmath}
@@ -286,6 +320,7 @@ We can regroup
 \begin{dmath}\label{eqn:fibonacci:760}
 \Delta \frac{2 n^3 + 3 n^2 + n}{6} = n^2.
 \end{dmath}
+\end{proof}
 
 This is now enough to find some sums that we have to use clever tricks to find otherwise.  For example
 \begin{dmath}\label{eqn:fibonacci:780}

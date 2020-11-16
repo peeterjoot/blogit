@@ -39,5 +39,6 @@
 
 ../latex/bin/lgrep fibonacci.tex | tee o ; . ./o
 #perl -p -i ../latex/bin/latexRegex.pl fibonacci.tex
-../latex/bin/lgrep xx.tex | tee o ; . ./o
-perl -p -i ../latex/bin/latexRegex.pl xx.tex
+
+#../latex/bin/lgrep xx.tex | tee o ; . ./o
+#perl -p -i ../latex/bin/latexRegex.pl xx.tex

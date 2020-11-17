@@ -259,103 +259,131 @@ Just as we can compute antiderivatives for \( x^n \), we may do the same for \( 
 \begin{equation*}
 \begin{aligned}
 1   &= \Delta n \\
-n   &= \Delta \lr{ \frac{n^2 + n}{2} } \\
-n^2 &= \Delta \lr{ \frac{2 n^3 + 3 n^2 + n}{6} }.
+n   &= \Delta \lr{ \frac{n}{2}\lr{ n + 1} } \\
+n^2 &= \Delta \lr{ \frac{n}{6}\lr{2 n + 1}\lr{n + 1} } \\
+n^3 &= \Delta \lr{ \frac{n^2}{4}\lr{n + 1}^2 }.
 \end{aligned}
 \end{equation*}
 } % theorem
 \begin{proof}
-Let's look at some example difference equations.  One of the simplest is probably a constant difference, such as
-\begin{dmath}\label{eqn:fibonacci:560}
-\Delta F_n = 1.
+The \( \Delta n \) identity is easily verified
+\begin{dmath}\label{eqn:fibonacci:1000}
+\Delta n = n - (n-1) = 1.
 \end{dmath}
-Like a differential equation, this has many possible solutions, so we need to fix initial conditions to find a specific solution.  For example, if we pick an initial value of \( F_0 = 0 \), the resulting sequence is
-\begin{equation}\label{eqn:fibonacci:580}
-\begin{aligned}
-F_0 &= 0 \\
-F_1 &= F_0 + 1 = 1 \\
-F_2 &= F_1 + 1 = 2,
-\end{aligned}
-\end{equation}
-and so forth.  By inspection that our system has the solution
-\begin{dmath}\label{eqn:fibonacci:600}
-F_n = n.
-\end{dmath}
-This can be generalized for arbitrary initial conditions, by simply adding an ``integration'' constant, so the general solution of \cref{eqn:fibonacci:560} is
-\begin{dmath}\label{eqn:fibonacci:620}
-F_n = n + C.
-\end{dmath}
-We can check the result by applying the difference operator
-\begin{dmath}\label{eqn:fibonacci:640}
-\Delta F_n = (n + C) - (n-1 + C) = 1,
-\end{dmath}
-as desired.
-
-Let's try the difference operator on increasing powers of \( n \).  Starting with \( F_n = n^2 \) we have
+For higher orders it is a bit tedious to verify directly, but we can iteratively build up those results by evaluating the difference operator on each of the powers of \( n \).
 \begin{dmath}\label{eqn:fibonacci:660}
-\Delta n^2 = n^2 - (n-1)^2 = n^2 - (n^2 - 2 n + 1) = 2 n - 1,
+\Delta n^2
+= n^2 - (n-1)^2
+= n^2 - (n^2 - 2 n + 1)
+= 2 n - 1,
+= 2 n - \Delta n.
 \end{dmath}
-and for \( F_n = n^3 \), we have
+Because the difference operator is linear, we can rearrange to find
+\begin{dmath}\label{eqn:fibonacci:1020}
+\Delta \lr{ n^2 + n } = 2 n.
+\end{dmath}
+Dividing through by \( 2 \) and factoring out an \( n \), recovers the desired result.
+
+For the next power, we have
 \begin{dmath}\label{eqn:fibonacci:680}
 \Delta n^3
 = n^3 - (n-1)^3
 = n^3 - (n^3 - 3 n^2 + 3 n - 1)
 = 3 n^2 - 3 n + 1.
-\end{dmath}
-We can work backwards from these to find a couple antidifference formulas
-\begin{dmath}\label{eqn:fibonacci:700}
-\Delta n^2 = 2 n - 1 = 2 n - \Delta n,
+= 3 n^2 - 3 \Delta \frac{n}{2}\lr{ n + 1 } + \Delta n,
 \end{dmath}
 or
-\begin{dmath}\label{eqn:fibonacci:720}
-\Delta \frac{n^2 + n}{2} = n,
+\begin{dmath}\label{eqn:fibonacci:1040}
+3 n^2
+=
+\Delta \lr{n} \lr{ n^2 + \frac{3}{2}\lr{ n + 1} - 1 }
+=
+\Delta \frac{n}{2} \lr{ 2 n^2 + 3\lr{ n + 1} - 2}
+=
+\Delta \frac{n}{2} \lr{ 2 n^2 + 3 n + 1 }
+=
+\Delta \frac{n}{2} \lr{ 2 n + 1}\lr{ n + 1 }
 \end{dmath}
-and
-\begin{dmath}\label{eqn:fibonacci:740}
-\Delta n^3
-= 3 n^2 - 3 \Delta \frac{n^2 + n}{2}
-+ \Delta n.
-\end{dmath}
-We can regroup
-\begin{dmath}\label{eqn:fibonacci:760}
-\Delta \frac{2 n^3 + 3 n^2 + n}{6} = n^2.
-\end{dmath}
+Dividing through by \( 3 \) recovers the desired result.
+
+The final result is left to the reader.  It can be derived or verified easily with a couple lines of Mathematica code.
 \end{proof}
-
-This is now enough to find some sums that we have to use clever tricks to find otherwise.  For example
-\begin{dmath}\label{eqn:fibonacci:780}
-\Delta F_n = n,
+\makeproblem{Sum some series.}{problem:fibonacci:1060}{
+Find the sums \( \sum_{k = 1}^n k^m \), for \( m = 1, 2, 3 \).
+} % problem
+\makeanswer{problem:fibonacci:1060}{
+\begin{itemize}
+\item \( m = 1 \).  This is the (probably apocryphal) sum of Gauss's grade school classroom:
+\begin{dmath}\label{eqn:fibonacci:1060}
+F_n = \sum_{k = 1}^n k = 1 + 2 + \cdots n,
 \end{dmath}
-written out explicitly is
-\begin{dmath}\label{eqn:fibonacci:800}
-F_n = F_{n-1} + n.
+satisfying
+\begin{dmath}\label{eqn:fibonacci:1080}
+\Delta F_n
+= F_n - F_{n-1}
+=
+(n + (n-1) + \cdots + 1)
+-
+((n-1) + \cdots + 1)
+= n = \Delta \frac{n}{2}(n + 1).
 \end{dmath}
-It's clear that nth term is just the sum of all the preceding values of \( n \), or
-\begin{dmath}\label{eqn:fibonacci:820}
-F_n = n + (n-1) + (n-2) + \cdots 1 + F_0.
+We must have
+\begin{dmath}\label{eqn:fibonacci:n}
+F_n = \frac{n}{2}\lr{ n + 1} + C.
 \end{dmath}
-Picking \( F_0 = 0 \) as the boundary conditions, we have
-\begin{dmath}\label{eqn:fibonacci:840}
-F_n = \sum_{k = 0}^n k,
+To fix \( C \) consider \( F_1 \)
+F_1 = \inv{2}(1 + 1) + C = 1,
+\end{itemize}
+so \( C = 0 \).
+\item \( m = 2 \).  Now let's do the sum of squares
+\begin{dmath}\label{eqn:fibonacci:n}
+F_n = \sum_{k = 1}^n k^2,
 \end{dmath}
-so we can sum this using \cref{eqn:fibonacci:720}, to find
-\begin{dmath}\label{eqn:fibonacci:860}
-F_n = \frac{n^2 + n}{2} + C.
+for which we have
+\begin{dmath}\label{eqn:fibonacci:n}
+\Delta F_n = n^2 = \Delta \frac{n}{6}( 2 n + 1 )(n+1),
 \end{dmath}
-For \( F_0 = 0 \) we have \( C = 0 \), so
-\begin{dmath}\label{eqn:fibonacci:880}
-\sum_{k = 0}^n k = \frac{n}{2}(n+1).
+so
+\begin{dmath}\label{eqn:fibonacci:n}
+F_n = \frac{n}{6}( 2 n + 1 )(n+1) + C.
 \end{dmath}
-This is the result that we know from the (probably apocryphal) story of Gauss's schoolboy summation of all the numbers from one to 99.  Know we know how to evaluate other sums.  For example:
-\begin{dmath}\label{eqn:fibonacci:900}
-F_n = \sum_{k = 0}^n k^2,
-\end{dmath}
-with \( F_0 = 0 \), using \cref{eqn:fibonacci:760}, we should have
-\begin{dmath}\label{eqn:fibonacci:920}
-\sum_{k = 1}^n k^2 = \frac{n}{6} \lr{ 2 n^2 + 3 n + 1 }.
-\end{dmath}
-Observe that no integration constant was required to find this sum of squares formula, because the chosen \( F_0 = 0 \) boundary condition was automatically satisfied.
-
-Clearly we could do this for sums of any fixed power (sums of cubes, ...), but let's get back to the Fibonacci problem, now that we have some basic comfort with the ideas of difference equations.
+Clearly \( C = 0 \) satisfies the boundary condition.
+} % answer
+%%\sum_{k = 0}^n k = \frac{n}{2}(n+1).
+%%This is now enough to find some sums that we have to use clever tricks to find otherwise.  For example
+%%\begin{dmath}\label{eqn:fibonacci:780}
+%%\Delta F_n = n,
+%%\end{dmath}
+%%written out explicitly is
+%%\begin{dmath}\label{eqn:fibonacci:800}
+%%F_n = F_{n-1} + n.
+%%\end{dmath}
+%%It's clear that nth term is just the sum of all the preceding values of \( n \), or
+%%\begin{dmath}\label{eqn:fibonacci:820}
+%%F_n = n + (n-1) + (n-2) + \cdots 1 + F_0.
+%%\end{dmath}
+%%Picking \( F_0 = 0 \) as the boundary conditions, we have
+%%\begin{dmath}\label{eqn:fibonacci:840}
+%%F_n = \sum_{k = 0}^n k,
+%%\end{dmath}
+%%so we can sum this using \cref{eqn:fibonacci:720}, to find
+%%\begin{dmath}\label{eqn:fibonacci:860}
+%%F_n = \frac{n^2 + n}{2} + C.
+%%\end{dmath}
+%%For \( F_0 = 0 \) we have \( C = 0 \), so
+%%\begin{dmath}\label{eqn:fibonacci:880}
+%%\sum_{k = 0}^n k = \frac{n}{2}(n+1).
+%%\end{dmath}
+%%This is the result that we know from the (probably apocryphal) story of Gauss's schoolboy summation of all the numbers from one to 99.  Know we know how to evaluate other sums.  For example:
+%%\begin{dmath}\label{eqn:fibonacci:900}
+%%F_n = \sum_{k = 0}^n k^2,
+%%\end{dmath}
+%%with \( F_0 = 0 \), using \cref{eqn:fibonacci:760}, we should have
+%%\begin{dmath}\label{eqn:fibonacci:920}
+%%\sum_{k = 1}^n k^2 = \frac{n}{6} \lr{ 2 n^2 + 3 n + 1 }.
+%%\end{dmath}
+%%Observe that no integration constant was required to find this sum of squares formula, because the chosen \( F_0 = 0 \) boundary condition was automatically satisfied.
+%%
+%%Clearly we could do this for sums of any fixed power (sums of cubes, ...), but let's get back to the Fibonacci problem, now that we have some basic comfort with the ideas of difference equations.
 %}
 \EndArticle

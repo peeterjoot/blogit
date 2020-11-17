@@ -1,5 +1,5 @@
 make fibonacci.pdf
-exit
+#exit
 make fibonacciblog.pdf
 tex2mathjax -f fibonacciblog.tex | \
 grep -ve '<h3.*Solutions' -e PassOptionsToPackage | \

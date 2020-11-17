@@ -328,62 +328,133 @@ satisfying
 = n = \Delta \frac{n}{2}(n + 1).
 \end{dmath}
 We must have
-\begin{dmath}\label{eqn:fibonacci:n}
+\begin{dmath}\label{eqn:fibonacci:1100}
 F_n = \frac{n}{2}\lr{ n + 1} + C.
 \end{dmath}
 To fix \( C \) consider \( F_1 \)
+\begin{equation}\label{eqn:fibonacci:1180}
 F_1 = \inv{2}(1 + 1) + C = 1,
-\end{itemize}
-so \( C = 0 \).
+\end{equation}
+so \( C = 0 \), so we find Gauss's summation formula
+\begin{dmath}\label{eqn:fibonacci:1200}
+\sum_{k = 1}^n k = \frac{n}{2}\lr{ n + 1},
+\end{dmath}
+as expected.
 \item \( m = 2 \).  Now let's do the sum of squares
-\begin{dmath}\label{eqn:fibonacci:n}
+\begin{dmath}\label{eqn:fibonacci:1120}
 F_n = \sum_{k = 1}^n k^2,
 \end{dmath}
 for which we have
-\begin{dmath}\label{eqn:fibonacci:n}
+\begin{dmath}\label{eqn:fibonacci:1140}
 \Delta F_n = n^2 = \Delta \frac{n}{6}( 2 n + 1 )(n+1),
 \end{dmath}
 so
-\begin{dmath}\label{eqn:fibonacci:n}
+\begin{dmath}\label{eqn:fibonacci:1160}
 F_n = \frac{n}{6}( 2 n + 1 )(n+1) + C.
 \end{dmath}
-Clearly \( C = 0 \) satisfies the boundary condition.
+Clearly \( C = 0 \) satisfies the boundary condition, leaving
+\begin{dmath}\label{eqn:fibonacci:1220}
+\sum_{k = 1}^n k^2 =
+\frac{n}{6}( 2 n + 1 )(n+1).
+\end{dmath}
+\item \( m = 3 \).  We see the pattern, so for the sum of cubes, we can just write down the answer
+\begin{dmath}\label{eqn:fibonacci:1240}
+\sum_{k = 1}^n k^3 =
+\lr{ \frac{n^2}{4}\lr{n + 1}^2 }.
+\end{dmath}
+\end{itemize}
 } % answer
-%%\sum_{k = 0}^n k = \frac{n}{2}(n+1).
-%%This is now enough to find some sums that we have to use clever tricks to find otherwise.  For example
-%%\begin{dmath}\label{eqn:fibonacci:780}
-%%\Delta F_n = n,
-%%\end{dmath}
-%%written out explicitly is
-%%\begin{dmath}\label{eqn:fibonacci:800}
-%%F_n = F_{n-1} + n.
-%%\end{dmath}
-%%It's clear that nth term is just the sum of all the preceding values of \( n \), or
-%%\begin{dmath}\label{eqn:fibonacci:820}
-%%F_n = n + (n-1) + (n-2) + \cdots 1 + F_0.
-%%\end{dmath}
-%%Picking \( F_0 = 0 \) as the boundary conditions, we have
-%%\begin{dmath}\label{eqn:fibonacci:840}
-%%F_n = \sum_{k = 0}^n k,
-%%\end{dmath}
-%%so we can sum this using \cref{eqn:fibonacci:720}, to find
-%%\begin{dmath}\label{eqn:fibonacci:860}
-%%F_n = \frac{n^2 + n}{2} + C.
-%%\end{dmath}
-%%For \( F_0 = 0 \) we have \( C = 0 \), so
-%%\begin{dmath}\label{eqn:fibonacci:880}
-%%\sum_{k = 0}^n k = \frac{n}{2}(n+1).
-%%\end{dmath}
-%%This is the result that we know from the (probably apocryphal) story of Gauss's schoolboy summation of all the numbers from one to 99.  Know we know how to evaluate other sums.  For example:
-%%\begin{dmath}\label{eqn:fibonacci:900}
-%%F_n = \sum_{k = 0}^n k^2,
-%%\end{dmath}
-%%with \( F_0 = 0 \), using \cref{eqn:fibonacci:760}, we should have
-%%\begin{dmath}\label{eqn:fibonacci:920}
-%%\sum_{k = 1}^n k^2 = \frac{n}{6} \lr{ 2 n^2 + 3 n + 1 }.
-%%\end{dmath}
-%%Observe that no integration constant was required to find this sum of squares formula, because the chosen \( F_0 = 0 \) boundary condition was automatically satisfied.
-%%
-%%Clearly we could do this for sums of any fixed power (sums of cubes, ...), but let's get back to the Fibonacci problem, now that we have some basic comfort with the ideas of difference equations.
+
+Now that we have some basic comfort with the ideas of difference equations, and their solutions,
+let's get back to the Fibonacci problem.  In that case, we have
+\begin{dmath}\label{eqn:fibonacci:1260}
+F_n = F_{n-1} + F_{n-2}.
+\end{dmath}
+Stated as a difference equation, this is
+\begin{dmath}\label{eqn:fibonacci:1280}
+\Delta F_n = F_{n-2}.
+\end{dmath}
+Before tackling the Fibonacci problem, let's try one that slightly simpler.
+\makeproblem{A simpler problem.}{problem:fibonacci:1300}{
+Solve \( \Delta F_n = F_{n-1} \), where \( F_0 = 0, F_1 = 1 \).
+} % problem
+\makeanswer{problem:fibonacci:1300}{
+The problem to solve is just
+\begin{dmath}\label{eqn:fibonacci:1300}
+F_n = 2 F_{n-1}.
+\end{dmath}
+This sequence is \( \setlr{ 1, 2, 4, 8, \cdots } \), so we can solve it by inspection, and the answer is just \( F_n = 2^{n-1} \).  We want inspiration for the Fibonacci problem, so let's pretend that we can't see the answer, but that we can guess something close, and see if it works.  Namely, let's guess:
+\begin{dmath}\label{eqn:fibonacci:1320}
+F_n = \alpha a^n + C.
+\end{dmath}
+If we plug this trial solution into our difference equation, we get
+\begin{dmath}\label{eqn:fibonacci:1340}
+\Delta F_n
+= \alpha \lr{ a^n - a^{n-1} }
+= \alpha a^{n-1} \lr{ a - 1 }
+\end{dmath}
+But
+\begin{dmath}\label{eqn:fibonacci:1360}
+\Delta F_n
+= \alpha a^{n-1}.
+\end{dmath}
+so we must have
+\begin{dmath}\label{eqn:fibonacci:1380}
+a - 1 = 1,
+\end{dmath}
+or \( a = 2 \), as we already knew.  To fix the constant \( \alpha \) we utilize our boundary constraints, namely
+\begin{equation}\label{eqn:fibonacci:1400}
+\begin{aligned}
+F_1 &= 1 = \alpha 2 + C \\
+F_2 &= 2 = \alpha 2^2 + C.
+\end{aligned}
+\end{equation}
+so \(\alpha = 1/2 \), and \( C = 0 \)
+} % answer
+Compared to just seeing the answer, the procedure above was a lot of work.
+However, a side effect of this work is discovery of a guessing strategy that is somewhat like using \( f(t) = e^{s t} \) to generate a characteristic equation when solving a differential equation.  For a difference equation of this form, it appears we can substitute \( F_n = \alpha a^n + C \) and use the differences to determine the values of \( \alpha, a, C \).  Now let's try this with the Fibonacci difference equation.
+\makeproblem{Find a solution to the Fibonacci difference equation.}{problem:fibonacci:1420}{
+Without worrying about boundary constraints, find the solutions to \( \Delta F_n = F_{n-2} \), using a trial solution of \( F_n = \alpha a^n \).
+} % problem
+\makeanswer{problem:fibonacci:1420}{
+Inserting our trial solution, we have
+\begin{dmath}\label{eqn:fibonacci:1420}
+\alpha a^n
+=
+F_n
+= F_{n-1} + F_{n-2}
+= \alpha \lr{ a^{n-1} + a^{n-2} }
+= \alpha a^{n-2} \lr{ a + 1 },
+\end{dmath}
+so our ``characteristic equation'' is
+\begin{dmath}\label{eqn:fibonacci:1440}
+a + 1 = a^2.
+\end{dmath}
+Completing the square yields
+\begin{dmath}\label{eqn:fibonacci:1460}
+\lr{ a - \inv{2} }^2 = 1 + \inv{4},
+\end{dmath}
+or
+\begin{dmath}\label{eqn:fibonacci:1480}
+a = \inv{2} \pm \frac{\sqrt{5}}{2}.
+\end{dmath}
+Bamn.  There's our golden ratio, and it's buddy!
+We find that
+\begin{dmath}\label{eqn:fibonacci:1500}
+F_n = \alpha \lr{\frac{1 \pm \sqrt{5}}{2} }^n,
+\end{dmath}
+are solutions to the difference equation \cref{eqn:fibonacci:1280}.
+} % answer
+
+Since we have a second order difference equation, we need a superposition of both solutions to try to satisfy the boundary conditions.  In particular, we want to find the constants
+\begin{dmath}\label{eqn:fibonacci:1520}
+F_n =
+\alpha_{+} \lr{\frac{1 + \sqrt{5}}{2} }^n
++
+\alpha_{-} \lr{\frac{1 - \sqrt{5}}{2} }^n + C.
+\end{dmath}
+However, we already did this when we guessed used \( F_n = \alpha a^n + \beta b^n \) as a trial solution.  When we did that, it was just to see if we could find the end result, knowing only the structure of the solution, but none of the specific constants.  Now we have justified why that was a reasonable trial solution, since exactly this structure follows naturally from the difference equation itself.
+
+This train of thought, makes me want to dig out my little Dover book on difference equations \citep{levy1992finite} that I've had since I was a kid.  I think I only worked through the first chapter of that book.  I have a lot of little sad neglected Dover books on mathematics and physics that I bought super cheap at the World's Biggest Bookstore when I was back in school.  It will be interesting to see how to tackle problems such as this, in a still more systematic fashion.
 %}
 \EndArticle

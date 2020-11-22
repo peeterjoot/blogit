@@ -43,3 +43,5 @@
 
 #../latex/bin/lgrep xx.tex | tee o ; . ./o
 #perl -p -i ../latex/bin/latexRegex.pl xx.tex
+../latex/bin/lgrep boolean.tex | tee o ; . ./o
+perl -p -i ../latex/bin/latexRegex.pl boolean.tex

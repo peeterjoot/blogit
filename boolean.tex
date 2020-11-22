@@ -1,92 +1,30 @@
-%
-% Copyright © 2020 Peeter Joot.  All Rights Reserved.
-% Licenced as described in the file LICENSE under the root directory of this GIT repository.
-%
-%{
-\input{../latex/blogpost.tex}
-\renewcommand{\basename}{boolean}
-%\renewcommand{\dirname}{notes/phy1520/}
-\renewcommand{\dirname}{notes/ece1228-electromagnetic-theory/}
-%\newcommand{\dateintitle}{}
-%\newcommand{\keywords}{}
+% for https://tex.stackexchange.com/questions/571960/ifthenelse-adds-undesired-space 
+\documentclass[letterpaper]{article}
 
-\input{../latex/peeter_prologue_print2.tex}
+\usepackage{ifthen}
+\usepackage{etoolbox}
+\usepackage{graphicx}
 
-\usepackage{peeters_layout}
-\usepackage{peeters_layout_exercise}
-\usepackage{peeters_braket}
-\usepackage{peeters_figures}
-\usepackage{siunitx}
-\usepackage{verbatim}
-%\usepackage{mhchem} % \ce{}
-%\usepackage{macros_bm} % \bcM
-%\usepackage{macros_qed} % \qedmarker
-%\usepackage{txfonts} % \ointclockwise
-
-\newboolean{color-version}
-\setboolean{color-version}{false}
+%\newboolean{color-version}
+%\setboolean{color-version}{false}
 %\setboolean{color-version}{true}
 
-\newcommand{\figsubdir}[0]{\ifthenelse{\boolean{color-version}}{color}{bw}}
+\newtoggle{color-version}
+%\toggletrue{color-version}% uncomment if you want the color version
 
-% with an alternate label for the link.
-% {nb}{text}
-% nb of the form: ps2b:countItersAndPlot.m
-%\newcommand{\nbcite}[2]{%
-%\itemCite{GAelectrodynamics}{#1}{#2}%
-%}
+%\newcommand{\figsubdir}[0]{bw}
 
-%\usepackage{peeters_figures}
-
-% \mathImageFigure{path}{caption}{label}{width}{nbpath}
-% nbpath like: ps2b:countItersAndPlot.m
-%\newcommand{\mathImageFigure}[5]{%
-%\imageFigure{#1}{\nbcite{#5}{#2}}{#3}{#4}
-%}
-
-% \myImageFigure{path}{caption}{label}{width}
-\newcommand{\myImageFigureNonFloat}[4]{%
-    \begin{center}%
-       \captionsetup{type=figure}%
-       \includegraphics[#4]{#1}%
-       \caption{#2}%
-       \label{#3}%
-    \end{center}%
+\newcommand{\figsubdir}[0]{%
+\iftoggle{color-version}{color}{bw}%
 }
 
-\newcommand{\myImageFigureFloat}[4]{%
-    \begin{figure}[htp]%
-       \centering%
-       \includegraphics[#4]{#1}%
-       \caption{#2}%
-       \label{#3}%
-    \end{figure}%
-}
+\begin{document}
 
-% \myImageFigure{path}{caption}{label}{width}
-\newcommand{\myImageFigure}[4]{%
-  \ifinner%
-    \myImageFigureNonFloat{#1}{#2}{#3}{totalheight=#4\textheight}%
-  \else%
-    \ifx\@currenvir\md@envname%
-       \myImageFigureNonFloat{#1}{#2}{#3}{totalheight=#4\textheight}%
-    \else%
-       \myImageFigureFloat{#1}{#2}{#3}{totalheight=#4\textheight}%
-    \fi%
-  \fi%
-}
+%../figures/GAelectrodynamics/\figsubdir/twoParameterDifferentialFig1
 
-\beginArtNoToc
+%../figures/GAelectrodynamics/bw/twoParameterDifferentialFig1
 
-\generatetitle{XXX}
-%\chapter{XXX}
-%\label{chap:boolean}
+\includegraphics[totalheight=0.4\textheight]{../figures/GAelectrodynamics/\figsubdir/twoParameterDifferentialFig1}
+%\includegraphics[totalheight=0.4\textheight]{../figures/GAelectrodynamics/bw/twoParameterDifferentialFig1}
 
-\figsubdir{}
-
-%\myImageFigureNonFloat{#1}{#2}{#3}{totalheight=#4\textheight}%
-\myImageFigureNonFloat{../figures/GAelectrodynamics/\figsubdir{}/twoParameterDifferentialFig1}{Two parameter manifold differentials.}{fig:twoParameterDifferential:twoParameterDifferentialFig1}{totalheight=0.4\textheight}
-
-%}
-\EndArticle
-%\EndNoBibArticle
+\end{document}

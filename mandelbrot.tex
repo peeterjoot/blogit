@@ -1,0 +1,65 @@
+%
+% Copyright © 2021 Peeter Joot.  All Rights Reserved.
+% Licenced as described in the file LICENSE under the root directory of this GIT repository.
+%
+%{
+\input{../latex/blogpost.tex}
+\renewcommand{\basename}{mandelbrot}
+%\renewcommand{\dirname}{notes/phy1520/}
+\renewcommand{\dirname}{notes/ece1228-electromagnetic-theory/}
+%\newcommand{\dateintitle}{}
+%\newcommand{\keywords}{}
+
+\input{../latex/peeter_prologue_print2.tex}
+
+\usepackage{peeters_layout_exercise}
+\usepackage{peeters_braket}
+\usepackage{peeters_figures}
+\usepackage{siunitx}
+\usepackage{verbatim}
+%\usepackage{mhchem} % \ce{}
+%\usepackage{macros_bm} % \bcM
+%\usepackage{macros_qed} % \qedmarker
+%\usepackage{txfonts} % \ointclockwise
+
+\beginArtNoToc
+
+\generatetitle{XXX}
+%\chapter{XXX}
+%\label{chap:mandelbrot}
+% \citep{sakurai2014modern} pr X.Y
+% \citep{pozar2009microwave}
+% \citep{qftLectureNotes}
+% \citep{doran2003gap}
+% \citep{jackson1975cew}
+% \citep{griffiths1999introduction}
+
+In ``Geometric Algebra for Computer Science'' is a fractal problem based on a vectorization of the Mandelbrot equation, which allows for generalization to \( N \) dimensions.
+
+I finally got around to trying the 3D variation of this problem.  As setup, recall that the Mandlebrot set is a visualization of iteration of the following complex number equation:
+\begin{equation}\label{eqn:mandelbrot:n}
+z \rightarrow z^2 + c,
+\end{equation}
+where the idea is that \( z \) starts as the constant \( c \), and if this sequence converges to zero, then the point \( c \) is in the set.
+
+The idea in the problem is that this equation can be cast as a vector equation, instead of a complex number equation.  All we have to do is set \( z = \Be_1 \Bx \), where \( \Be_1 \) is the x-axis unit vector, and \( \Bx \) is an \R{2} vector.  Expanding in coordinates, with \( \Bx = \Be_1 x + \Be_2 y \), we have
+\begin{equation}\label{eqn:mandelbrot:n}
+z 
+= \Be_1 \lr{ \Be_1 x + \Be_2 y }
+= x + \Be_1 \Be_2 y,
+\end{equation}
+but since the bivector \( \Be_1 \Be_2 \) squares to \( -1 \), we can represent complex numbers as even grade multivectors.  Making the same substitution in the Mandlebrot equation, we have
+\begin{equation}\label{eqn:mandelbrot:n}
+\Be_1 \Bx \rightarrow \Be_1 \Bx \Be_1 \Bx + \Be_1 \Bc,
+\end{equation}
+or
+\begin{equation}\label{eqn:mandelbrot:n}
+\Bx \rightarrow \Bx \Be_1 \Bx + \Bc.
+\end{equation}
+Viola!  This is a vector version of the Mandlebrot equation, and we can use it in 2 or 3 or N dimensions, as desired.
+
+The problem is really one of visualization.  How can we visualize a 3D Mandelbrot set?  One idea is to use a ray tracing algorithm, so that only the points on the surface need be evaluated.  I don't think I've ever written a ray tracer, but I thought that there has got to be a quick and dirty way to do this.  This weekend, I wrote some code to do this with a brute force evaluation of all the points in the upper half plane in around the origin.  Here's the result
+
+%}
+\EndArticle
+%\EndNoBibArticle

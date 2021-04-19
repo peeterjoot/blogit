@@ -1,0 +1,50 @@
+%
+% Copyright © 2021 Peeter Joot.  All Rights Reserved.
+% Licenced as described in the file LICENSE under the root directory of this GIT repository.
+%
+%{
+\input{../latex/blogpost.tex}
+\renewcommand{\basename}{i4}
+%\renewcommand{\dirname}{notes/phy1520/}
+\renewcommand{\dirname}{notes/ece1228-electromagnetic-theory/}
+%\newcommand{\dateintitle}{}
+%\newcommand{\keywords}{}
+
+\input{../latex/peeter_prologue_print2.tex}
+
+\usepackage{peeters_layout_exercise}
+\usepackage{peeters_braket}
+\usepackage{peeters_figures}
+\usepackage{siunitx}
+\usepackage{verbatim}
+%\usepackage{mhchem} % \ce{}
+%\usepackage{macros_bm} % \bcM
+%\usepackage{macros_qed} % \qedmarker
+%\usepackage{txfonts} % \ointclockwise
+
+\beginArtNoToc
+
+\generatetitle{XXX}
+This was probably stated with the implicit assumption that 4D referred to an underlying space-time metric.  In general, we have
+\begin{equation*}
+\begin{aligned}
+\lr{ e_1 e_2 e_3 e_4 }^2 
+   &= e_1 e_2 e_3 e_4 e_1 e_2 e_3 e_4   \\
+   &= -e_1^2 e_2 e_3 e_4 e_2 e_3 e_4   \\
+   &= -e_1^2 e_2^2 e_3 e_4 e_3 e_4   \\
+   &= +e_1^2 e_2^2 e_3^2 e_4^2.
+\end{aligned}
+\end{equation*}
+However, for special relativistic physics, we have two choices of metric, one is:
+\begin{equation*}
+   e_1^2 = e_2^2 = e_3^2 = -1 = -e_4^2,
+\end{equation*}
+or
+\begin{equation*}
+   e_1^2 = e_2^2 = e_3^2 = 1 = -e_4^2,
+\end{equation*}
+In either case, we have \( e_1^2 e_2^2 e_3^2 e_4^2 = -1.\)
+
+%}
+%\EndArticle
+\EndNoBibArticle

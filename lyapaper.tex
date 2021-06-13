@@ -1,0 +1,53 @@
+%
+% Copyright © 2021 Peeter Joot.  All Rights Reserved.
+% Licenced as described in the file LICENSE under the root directory of this GIT repository.
+%
+%{
+\input{../latex/blogpost.tex}
+\renewcommand{\basename}{lyapaper}
+%\renewcommand{\dirname}{notes/phy1520/}
+\renewcommand{\dirname}{notes/ece1228-electromagnetic-theory/}
+%\newcommand{\dateintitle}{}
+%\newcommand{\keywords}{}
+
+\input{../latex/peeter_prologue_print2.tex}
+
+\usepackage{peeters_layout_exercise}
+\usepackage{peeters_braket}
+\usepackage{peeters_figures}
+\usepackage{siunitx}
+\usepackage{verbatim}
+%\usepackage{mhchem} % \ce{}
+%\usepackage{macros_bm} % \bcM
+%\usepackage{macros_qed} % \qedmarker
+%\usepackage{txfonts} % \ointclockwise
+
+\beginArtNoToc
+
+\generatetitle{XXX}
+%\chapter{XXX}
+%\label{chap:lyapaper}
+% \citep{sakurai2014modern} pr X.Y
+% \citep{pozar2009microwave}
+% \citep{qftLectureNotes}
+% \citep{doran2003gap}
+% \citep{jackson1975cew}
+% \citep{griffiths1999introduction}
+
+\begin{equation}\label{eqn:lyapaper:n}
+\begin{aligned}
+\dot{\Bx}
+&= x_1 \lr{ -\Bx^2 + a^2 }\lr{ -\Bx^2 + b^2 } \Be_1 \\
+&- x_2 \lr{ -\Bx^2 + b^2 } \Be_1/\Abs{\Bx} \\
+&+ x_2 \lr{ -\Bx^2 + a^2 }\lr{ -\Bx^2 + b^2 } \Be_2 \\
+&+ x_1 \lr{ -\Bx^2 + b^2 } \Be_2/\Abs{\Bx} 
+\end{aligned}
+\end{equation}
+
+\begin{equation}\label{eqn:lyapaper:n}
+\dot{\Bx} = \lr{ b^2 -\Bx^2 } \lr{ \Bx \lr{ a^2 - \Bx^2 } + \frac{x_1 \Be_2 - x_2 \Be_1}{\Abs{\Bx}} }
+\end{equation}
+
+%}
+\EndArticle
+%\EndNoBibArticle

@@ -1,0 +1,78 @@
+%
+% Copyright © 2021 Peeter Joot.  All Rights Reserved.
+% Licenced as described in the file LICENSE under the root directory of this GIT repository.
+%
+%{
+\input{../latex/blogpost.tex}
+\renewcommand{\basename}{mandel3}
+%\renewcommand{\dirname}{notes/phy1520/}
+\renewcommand{\dirname}{notes/ece1228-electromagnetic-theory/}
+%\newcommand{\dateintitle}{}
+%\newcommand{\keywords}{}
+
+\input{../latex/peeter_prologue_print2.tex}
+
+\usepackage{peeters_layout_exercise}
+\usepackage{peeters_braket}
+\usepackage{peeters_figures}
+\usepackage{siunitx}
+\usepackage{verbatim}
+%\usepackage{mhchem} % \ce{}
+%\usepackage{macros_bm} % \bcM
+%\usepackage{macros_qed} % \qedmarker
+%\usepackage{txfonts} % \ointclockwise
+
+\beginArtNoToc
+
+\generatetitle{A better 3D generalization of the Mandelbrot set.}
+%\chapter{A better 3D generalization of the Mandelbrot set.}
+%\label{chap:mandel3}
+
+I've been exploring 3D generalizations of the Mandelbrot set.  The iterative equation for the Mandelbrot set can be written in vector form (\citep{dorst2007gac}) as:
+\begin{equation}
+\begin{aligned}
+\Bz 
+&\rightarrow 
+\Bz \Be_1 \Bz + \Bc  \\
+&=
+\Bz \lr{ \Be_1 \cdot \Bz }
++
+\Bz \cdot \lr{ \Be_1 \wedge \Bz }
++ \Bc  \\
+&=
+2 \Bz \lr{ \Be_1 \cdot \Bz }
+-
+\Bz^2\, \Be_1
++ \Bc 
+\end{aligned}
+\end{equation}
+Plotting this in 3D was an interesting challenge, but showed that the Mandelbrot set expressed above has rotational symmetry about the x-axis, which is kind of boring.
+
+If all we require for a 3D fractal is to iterate a vector equation that is (presumably) at least quadratic, then we have lots of options.  Here's the first one that comes to mind:
+\begin{equation}
+\begin{aligned}
+\Bz 
+&\rightarrow 
+\gpgradeone{ \Ba \Bz \Bb \Bz \Bc } + \Bd \\
+&=
+\lr{ \Ba \cdot \Bz } \lr{ \Bz \cross \lr{ \Bc \cross \Bz } }
++
+\lr{ \Ba \cross \Bz } \lr{ \Bz \cdot \lr{ \Bc \cross \Bz } } 
++ \Bd
+.
+\end{aligned}
+\end{equation}
+where we iterate starting, as usual with \( \Bz = 0 \) where \( \Bd \) is the point of interest to test for inclusion in the set.  I tried this with
+\begin{equation}\label{eqn:mandel3:n}
+\begin{aligned}
+\Ba &= (1,1,1) \\
+\Bb &= (1,0,0) \\
+\Bc &= (1,-1,0).
+\end{aligned}
+\end{equation}
+Here are some slice plots
+
+and an animation of the slices with respect to the z-axis:
+
+%}
+\EndArticle

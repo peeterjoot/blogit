@@ -44,14 +44,20 @@
 #../latex/bin/lgrep xx.tex | tee o ; . ./o
 #perl -p -i ../latex/bin/latexRegex.pl xx.tex
 
-../latex/bin/lgrep boolean.tex | tee o ; . ./o
-perl -p -i ../latex/bin/latexRegex.pl boolean.tex
+#../latex/bin/lgrep boolean.tex | tee o ; . ./o
+#perl -p -i ../latex/bin/latexRegex.pl boolean.tex
 
-../latex/bin/lgrep mandelbrot.tex | tee o ; . ./o
-perl -p -i ../latex/bin/latexRegex.pl mandelbrot.tex
+#../latex/bin/lgrep mandelbrot.tex | tee o ; . ./o
+#perl -p -i ../latex/bin/latexRegex.pl mandelbrot.tex
 
-../latex/bin/lgrep i4.tex | tee o ; . ./o
-perl -p -i ../latex/bin/latexRegex.pl i4.tex
+#../latex/bin/lgrep i4.tex | tee o ; . ./o
+#perl -p -i ../latex/bin/latexRegex.pl i4.tex
 
-../latex/bin/lgrep m2.tex | tee o ; . ./o
-perl -p -i ../latex/bin/latexRegex.pl m2.tex
+#../latex/bin/lgrep m2.tex | tee o ; . ./o
+#perl -p -i ../latex/bin/latexRegex.pl m2.tex
+
+#../latex/bin/lgrep mandel3.tex | tee o ; . ./o
+#perl -p -i ../latex/bin/latexRegex.pl mandel3.tex
+
+#../latex/bin/lgrep lyapaper.tex | tee o ; . ./o
+#perl -p -i ../latex/bin/latexRegex.pl lyapaper.tex

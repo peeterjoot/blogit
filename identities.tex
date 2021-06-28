@@ -1,0 +1,109 @@
+%
+% Copyright © 2021 Peeter Joot.  All Rights Reserved.
+% Licenced as described in the file LICENSE under the root directory of this GIT repository.
+%
+%{
+\input{../latex/blogpost.tex}
+\renewcommand{\basename}{identities}
+%\renewcommand{\dirname}{notes/phy1520/}
+\renewcommand{\dirname}{notes/ece1228-electromagnetic-theory/}
+%\newcommand{\dateintitle}{}
+%\newcommand{\keywords}{}
+
+\input{../latex/peeter_prologue_print2.tex}
+
+\usepackage{peeters_layout_exercise}
+\usepackage{peeters_braket}
+\usepackage{peeters_figures}
+\usepackage{siunitx}
+\usepackage{verbatim}
+%\usepackage{mhchem} % \ce{}
+%\usepackage{macros_bm} % \bcM
+%\usepackage{macros_qed} % \qedmarker
+%\usepackage{txfonts} % \ointclockwise
+
+\beginArtNoToc
+
+\generatetitle{XXX}
+%\chapter{XXX}
+%\label{chap:identities}
+
+A more fundamental approach is to use the grade selection operators and the contraction axiom \( \Bx^2 = \Bx \cdot \Bx \) to define wedge products, to demonstrate the anticommutitivity property, and to prove the symmetric product identity for the dot product.
+
+The anticommutive property follows from the contraction and distribution axioms.  If \( \Ba \cdot \Bb = 0 \), then we have
+\begin{equation}\label{eqn:identities:20}
+\begin{aligned}
+   0 
+   &= 
+   \lr{ \Ba + \Bb }^2 - 
+   \lr{ \Ba + \Bb } \cdot \lr{ \Ba + \Bb } \\
+   &= 
+   \Ba^2 + \Bb^2 + \Ba \Bb + \Bb \Ba
+   - \Ba \cdot \Ba
+   - \Bb \cdot \Bb
+   - \Ba \cdot \Bb
+   - \Bb \cdot \Ba \\
+   &= 
+   \Ba \Bb + \Bb \Ba,
+\end{aligned}
+\end{equation}
+so for any orthogonal vectors \( \Ba, \Bb \), we have
+\begin{equation}\label{eqn:identities:40}
+\Ba \Bb = -\Bb \Ba
+\end{equation}
+
+Now supposed that we have an Euclidean orthonormal basis \( \setlr{\Be_1, \Be_2, \cdots} \).
+Let \( \Bu = \sum_k \Be_k u_k \) and \( \Bv = \sum_k \Be_k v_k \), then
+\begin{equation}\label{eqn:identities:60}
+\begin{aligned}
+   \Bu \Bv
+   &= \sum_{j,k} \Be_j \Be_k u_j v_k \\
+   &= 
+   \sum_{j = k} \Be_j \Be_k u_j v_k
+   +
+   \sum_{j \ne k} \Be_j \Be_k u_j v_k \\
+   &= 
+   \sum_{j} (\Be_j \cdot \Be_j) u_j v_j
+   +
+   \sum_{j < k} \Be_j \Be_k \lr{ u_j v_k - u_k v_j }.
+\end{aligned}
+\end{equation}
+The scalar part of this sum is completely symmetric, whereas the bivector portion of this sum is completely antisymmetric (this is a general statement, and can also be shown easily for non-Eucidean bases).  We must then have
+\begin{equation}\label{eqn:identities:80}
+   \gpgradezero{\Bu \Bv} = \inv{2} \lr{ \Bu \Bv + \Bv \Bu },
+\end{equation}
+and
+\begin{equation}\label{eqn:identities:100}
+   \gpgradetwo{\Bu \Bv} = \inv{2} \lr{ \Bu \Bv - \Bv \Bu },
+\end{equation}
+It is also clear that the scalar portion of this coordinate expansion is the dot product of the two vectors, which means
+\begin{equation}\label{eqn:identities:120}
+   \Bu \cdot \Bv = \inv{2} \lr{ \Bu \Bv + \Bv \Bu },
+\end{equation}
+Now, we define the wedge or two vectors as
+\begin{equation}\label{eqn:identities:140}
+   \Bu \wedge \Bv = \gpgradetwo{ \Bu \Bv },
+\end{equation}
+from which we see
+\begin{equation}\label{eqn:identities:160}
+   \Bu \wedge \Bv = 
+   \inv{2} \lr{ \Bu \Bv - \Bv \Bu }.
+\end{equation}
+
+We define the wedge of three vectors as
+\begin{equation}\label{eqn:identities:180}
+   \Bu \wedge \Bv \wedge \Bw = \gpgradethree{ \Bu \Bv \Bw }.
+\end{equation}
+More generally, we define the dot and wedge of a vector \( \Bu \) and a k-blade \( V_k \) (the wedge of k vectors) as
+\begin{equation}\label{eqn:identities:200}
+\Bu \cdot V_k = \gpgrade{ \Bu V_k }{k-1},
+\end{equation}
+and
+\begin{equation}\label{eqn:identities:220}
+\Bu \wedge V_k = \gpgrade{ \Bu V_k }{k+1}.
+\end{equation}
+
+
+%}
+%\EndArticle
+\EndNoBibArticle

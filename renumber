@@ -1,69 +1,72 @@
-#../latex/bin/lgrep iinverse.tex | tee o ; . ./o
-#perl -p -i ../latex/bin/latexRegex.pl iinverse.tex
+##../latex/bin/lgrep iinverse.tex | tee o ; . ./o
+##perl -p -i ../latex/bin/latexRegex.pl iinverse.tex
 
-#../latex/bin/lgrep d4x.tex | tee o ; . ./o
-#perl -p -i ../latex/bin/latexRegex.pl d4x.tex
+##../latex/bin/lgrep d4x.tex | tee o ; . ./o
+##perl -p -i ../latex/bin/latexRegex.pl d4x.tex
 
-#../latex/bin/lgrep xtox.tex | tee o ; . ./o
-#perl -p -i ../latex/bin/latexRegex.pl xtox.tex
+##../latex/bin/lgrep xtox.tex | tee o ; . ./o
+##perl -p -i ../latex/bin/latexRegex.pl xtox.tex
 
-#../latex/bin/lgrep crashem.tex | tee o ; . ./o
-#perl -p -i ../latex/bin/latexRegex.pl crashem.tex
+##../latex/bin/lgrep crashem.tex | tee o ; . ./o
+##perl -p -i ../latex/bin/latexRegex.pl crashem.tex
 
-#../latex/bin/lgrep cramersga.tex | tee o ; . ./o
-#perl -p -i ../latex/bin/latexRegex.pl cramersga.tex
+##../latex/bin/lgrep cramersga.tex | tee o ; . ./o
+##perl -p -i ../latex/bin/latexRegex.pl cramersga.tex
 
-#../latex/bin/lgrep hyperwedge.tex | tee o ; . ./o
-#perl -p -i ../latex/bin/latexRegex.pl hyperwedge.tex
+##../latex/bin/lgrep hyperwedge.tex | tee o ; . ./o
+##perl -p -i ../latex/bin/latexRegex.pl hyperwedge.tex
 
-#../latex/bin/lgrep multivector.tex | tee o ; . ./o
-#perl -p -i ../latex/bin/latexRegex.pl multivector.tex
+##../latex/bin/lgrep multivector.tex | tee o ; . ./o
+##perl -p -i ../latex/bin/latexRegex.pl multivector.tex
 
-#../latex/bin/lgrep vectorasarrow.tex | tee o ; . ./o
-#perl -p -i ../latex/bin/latexRegex.pl vectorasarrow.tex
+##../latex/bin/lgrep vectorasarrow.tex | tee o ; . ./o
+##perl -p -i ../latex/bin/latexRegex.pl vectorasarrow.tex
 
-#../latex/bin/lgrep inthepipe.tex | tee o ; . ./o
-#perl -p -i ../latex/bin/latexRegex.pl inthepipe.tex
+##../latex/bin/lgrep inthepipe.tex | tee o ; . ./o
+##perl -p -i ../latex/bin/latexRegex.pl inthepipe.tex
 
-#../latex/bin/lgrep examples.tex | tee o ; . ./o
-#perl -p -i ../latex/bin/latexRegex.pl examples.tex
+##../latex/bin/lgrep examples.tex | tee o ; . ./o
+##perl -p -i ../latex/bin/latexRegex.pl examples.tex
 
-#../latex/bin/lgrep pseudoPlusVector.tex | tee o ; . ./o
-#perl -p -i ../latex/bin/latexRegex.pl pseudoPlusVector.tex
+##../latex/bin/lgrep pseudoPlusVector.tex | tee o ; . ./o
+##perl -p -i ../latex/bin/latexRegex.pl pseudoPlusVector.tex
 
-#../latex/bin/lgrep wedge.tex | tee o ; . ./o
-#perl -p -i ../latex/bin/latexRegex.pl wedge.tex
+##../latex/bin/lgrep wedge.tex | tee o ; . ./o
+##perl -p -i ../latex/bin/latexRegex.pl wedge.tex
 
-#../latex/bin/lgrep determinant.tex | tee o ; . ./o
-#perl -p -i ../latex/bin/latexRegex.pl determinant.tex
+##../latex/bin/lgrep determinant.tex | tee o ; . ./o
+##perl -p -i ../latex/bin/latexRegex.pl determinant.tex
 
-#../latex/bin/lgrep fibonacci.tex | tee o ; . ./o
-../latex/bin/lgrep fibonacciblog.tex | tee o ; . ./o
-#perl -p -i ../latex/bin/latexRegex.pl fibonacci.tex
+##../latex/bin/lgrep fibonacci.tex | tee o ; . ./o
+#../latex/bin/lgrep fibonacciblog.tex | tee o ; . ./o
+##perl -p -i ../latex/bin/latexRegex.pl fibonacci.tex
 
-#../latex/bin/lgrep xx.tex | tee o ; . ./o
-#perl -p -i ../latex/bin/latexRegex.pl xx.tex
+##../latex/bin/lgrep xx.tex | tee o ; . ./o
+##perl -p -i ../latex/bin/latexRegex.pl xx.tex
 
-#../latex/bin/lgrep boolean.tex | tee o ; . ./o
-#perl -p -i ../latex/bin/latexRegex.pl boolean.tex
+##../latex/bin/lgrep boolean.tex | tee o ; . ./o
+##perl -p -i ../latex/bin/latexRegex.pl boolean.tex
 
-#../latex/bin/lgrep mandelbrot.tex | tee o ; . ./o
-#perl -p -i ../latex/bin/latexRegex.pl mandelbrot.tex
+##../latex/bin/lgrep mandelbrot.tex | tee o ; . ./o
+##perl -p -i ../latex/bin/latexRegex.pl mandelbrot.tex
+
+##../latex/bin/lgrep i4.tex | tee o ; . ./o
+##perl -p -i ../latex/bin/latexRegex.pl i4.tex
+
+##../latex/bin/lgrep m2.tex | tee o ; . ./o
+##perl -p -i ../latex/bin/latexRegex.pl m2.tex
+
+##../latex/bin/lgrep mandel3.tex | tee o ; . ./o
+##perl -p -i ../latex/bin/latexRegex.pl mandel3.tex
+
+##../latex/bin/lgrep lyapaper.tex | tee o ; . ./o
+##perl -p -i ../latex/bin/latexRegex.pl lyapaper.tex
 
 #../latex/bin/lgrep i4.tex | tee o ; . ./o
 #perl -p -i ../latex/bin/latexRegex.pl i4.tex
 
-#../latex/bin/lgrep m2.tex | tee o ; . ./o
-#perl -p -i ../latex/bin/latexRegex.pl m2.tex
-
-#../latex/bin/lgrep mandel3.tex | tee o ; . ./o
-#perl -p -i ../latex/bin/latexRegex.pl mandel3.tex
-
-#../latex/bin/lgrep lyapaper.tex | tee o ; . ./o
-#perl -p -i ../latex/bin/latexRegex.pl lyapaper.tex
-
-../latex/bin/lgrep i4.tex | tee o ; . ./o
-perl -p -i ../latex/bin/latexRegex.pl i4.tex
-
-../latex/bin/lgrep whyaddition.tex | tee o ; . ./o
-perl -p -i ../latex/bin/latexRegex.pl whyaddition.tex
+#../latex/bin/lgrep whyaddition.tex | tee o ; . ./o
+#perl -p -i ../latex/bin/latexRegex.pl whyaddition.tex
+#
+../latex/bin/lgrep identities.tex | tee o ; . ./o
+#perl -p -i ../latex/bin/latexRegex.pl identities.tex

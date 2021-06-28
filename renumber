@@ -61,3 +61,9 @@
 
 #../latex/bin/lgrep lyapaper.tex | tee o ; . ./o
 #perl -p -i ../latex/bin/latexRegex.pl lyapaper.tex
+
+../latex/bin/lgrep i4.tex | tee o ; . ./o
+perl -p -i ../latex/bin/latexRegex.pl i4.tex
+
+../latex/bin/lgrep whyaddition.tex | tee o ; . ./o
+perl -p -i ../latex/bin/latexRegex.pl whyaddition.tex

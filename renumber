@@ -70,3 +70,5 @@
 #
 ../latex/bin/lgrep identities.tex | tee o ; . ./o
 #perl -p -i ../latex/bin/latexRegex.pl identities.tex
+../latex/bin/lgrep reflection.tex | tee o ; . ./o
+perl -p -i ../latex/bin/latexRegex.pl reflection.tex

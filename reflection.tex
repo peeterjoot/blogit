@@ -1,0 +1,89 @@
+%
+% Copyright © 2021 Peeter Joot.  All Rights Reserved.
+% Licenced as described in the file LICENSE under the root directory of this GIT repository.
+%
+%{
+\input{../latex/blogpost.tex}
+\renewcommand{\basename}{reflection}
+%\renewcommand{\dirname}{notes/phy1520/}
+\renewcommand{\dirname}{notes/ece1228-electromagnetic-theory/}
+%\newcommand{\dateintitle}{}
+%\newcommand{\keywords}{}
+
+\input{../latex/peeter_prologue_print2.tex}
+
+\usepackage{peeters_layout_exercise}
+\usepackage{peeters_braket}
+\usepackage{peeters_figures}
+\usepackage{siunitx}
+\usepackage{verbatim}
+%\usepackage{mhchem} % \ce{}
+%\usepackage{macros_bm} % \bcM
+%\usepackage{macros_qed} % \qedmarker
+%\usepackage{txfonts} % \ointclockwise
+
+\beginArtNoToc
+
+\generatetitle{Reflection.}
+The geometric algebra reflection expression is based on the following illustration
+
+Observe that the projection of \( \Bv \) along the direction \( \ucap \) (assumed to be a unit vector for simplicity) is
+\begin{equation}\label{eqn:reflection:20}
+(\ucap \cdot \Bv) \ucap,
+\end{equation}
+and the component of \( \Bv \) perpendicular to \( \ucap \) (the rejection) is:
+\begin{equation}\label{eqn:reflection:40}
+\Bv - (\ucap \cdot \Bv) \ucap.
+\end{equation}
+
+From the diagram, it is clear that the reflection is just
+\begin{equation}\label{eqn:reflection:60}
+\begin{aligned}
+\Bv' 
+&= \Bv - 2 \lr{ \Bv - (\ucap \cdot \Bv) \ucap }  \\
+&= 2 (\ucap \cdot \Bv) \ucap - \Bv.
+\end{aligned}
+\end{equation}
+
+There is no use of geometric algebra in this.  A geometric algebra is a vector space where the elements of the space are products of vectors, subject to an additional ``contraction identity'' \(\Bx^2 = \Bx \cdot \Bx\).
+One can form various special product combinations that have useful applications.  In particular, it can be shown that a symmetric sum is related to the dot product
+\begin{equation}\label{eqn:reflection:80}
+\Bx \cdot \By = \inv{2} \lr{ \Bx \By + \By \Bx }.
+\end{equation}
+We can also form an antisymmetric sum
+\begin{equation}\label{eqn:reflection:100}
+\Bx \wedge \By = \inv{2} \lr{ \Bx \By - \By \Bx },
+\end{equation}
+where we call \( \wedge \) the wedge operator, an operator that happens to be related to the cross product in 3D.
+The concepts above can be used to decompose a vector into projective and rejective components as follows
+\begin{equation}\label{eqn:reflection:120}
+\begin{aligned}
+\Bv
+&= \Bv \ucap \ucap \\
+&= \lr{ \Bv \ucap } \ucap \\
+&= \lr{ \Bv \cdot \ucap + \Bv \wedge \ucap } \ucap \\
+&= \lr{ \Bv \cdot \ucap } \ucap + \lr{ \Bv \wedge \ucap } \ucap.
+\end{aligned}
+\end{equation}
+The first term we recognize as the projection, allowing us to identify the remainder as the rejection.  It's also straightforward to show that
+\begin{equation}\label{eqn:reflection:140}
+\lr{ \lr{ \Bv \cdot \ucap } \ucap } \cdot \lr{ \lr{ \Bv \wedge \ucap } \ucap } = 0,
+\end{equation}
+satisfying our expections for the projection and rejection.
+
+We can utilize this to compute the reflection, which is
+\begin{equation}\label{eqn:reflection:160}
+\begin{aligned}
+\Bv'
+&= \Bv - 2 \lr{ \Bv \wedge \ucap } \ucap \\
+&= \Bv \ucap \ucap - 2 \lr{ \Bv \wedge \ucap } \ucap \\
+&= \lr{ \Bv \ucap - 2 \lr{ \Bv \wedge \ucap } } \ucap \\
+&= \lr{ \Bv \ucap - \lr{ \Bv \ucap - \ucap \Bv } } \ucap \\
+&= \ucap \Bv \ucap.
+\end{aligned}
+\end{equation}
+This sandwich of \( \Bv \) between \( \ucap \) is the usual way that reflection is expressed in geometric algebra.
+
+%}
+\EndArticle
+%\EndNoBibArticle

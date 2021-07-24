@@ -1,0 +1,49 @@
+%
+% Copyright © 2021 Peeter Joot.  All Rights Reserved.
+% Licenced as described in the file LICENSE under the root directory of this GIT repository.
+%
+%{
+\input{../latex/blogpost.tex}
+\renewcommand{\basename}{McMahonRelativity}
+%\renewcommand{\dirname}{notes/phy1520/}
+\renewcommand{\dirname}{notes/ece1228-electromagnetic-theory/}
+%\newcommand{\dateintitle}{}
+%\newcommand{\keywords}{}
+
+\input{../latex/peeter_prologue_print2.tex}
+
+\usepackage{peeters_layout_exercise}
+\usepackage{peeters_braket}
+\usepackage{peeters_figures}
+\usepackage{siunitx}
+\usepackage{verbatim}
+%\usepackage{mhchem} % \ce{}
+%\usepackage{macros_bm} % \bcM
+%\usepackage{macros_qed} % \qedmarker
+%\usepackage{txfonts} % \ointclockwise
+
+\beginArtNoToc
+
+\generatetitle{Informal errata for relativity DeMYSTIiFieD.}
+%\chapter{Informal errata for relativity DeMYSTIiFieD.}
+%\label{chap:McMahonRelativity}
+
+\section{Rationale.}
+
+I found \citep{mcmahon2006relativity} at my local library.  This author had a couple of books in this series.  His QM one was particularly sloppy, packed with errors, but I'd found that useful at the time, as it forced me to verify all the calculations myself.  Will this general relativity book be the same way?
+
+In this document, I'll collect my notes on what seem like errors, or things that are worthy of correction.
+
+\section{Chapter 1.}
+
+\begin{enumerate}
+   \item page 2.  equation reference before (1.5) should be (1.1) not (1.4)
+   \item page 11.  Equations following (1.18).  Both of the \( \sin\phi \) terms are negative and should be mixed.
+   \item page 11.  (1.20).  hyperbolic trig terms are typeset badly, for example as \( \cos\, h \phi \), instead of \( \cosh \phi \).
+   \item page 12.  Middle of the page.  \( l c t' \) should be \( c t' \).
+   \item page 12.  Sloppy typesetting.  Example: \( \cosh\, \phi c t \) reads as \( \cosh\lr{ \phi c t } \).  It would be much clearer to write \( c t \cosh \phi \).
+   \item page 12-13.  Time dilation and length contraction.  Very unclear presentation.  The formulas do not connect to the words.
+\end{enumerate}
+
+%}
+\EndArticle

@@ -74,3 +74,7 @@
 perl -p -i ../latex/bin/latexRegex.pl reflection.tex
 ../latex/bin/lgrep McMahonRelativity.tex | tee o ; . ./o
 perl -p -i ../latex/bin/latexRegex.pl McMahonRelativity.tex
+../latex/bin/lgrep reversion.tex | tee o ; . ./o
+perl -p -i ../latex/bin/latexRegex.pl reversion.tex
+../latex/bin/lgrep exponentialmultivector.tex | tee o ; . ./o
+perl -p -i ../latex/bin/latexRegex.pl exponentialmultivector.tex

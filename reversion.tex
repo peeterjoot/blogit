@@ -1,0 +1,109 @@
+%
+% Copyright © 2021 Peeter Joot.  All Rights Reserved.
+% Licenced as described in the file LICENSE under the root directory of this GIT repository.
+%
+%{
+\input{../latex/blogpost.tex}
+\renewcommand{\basename}{reversion}
+%\renewcommand{\dirname}{notes/phy1520/}
+\renewcommand{\dirname}{notes/ece1228-electromagnetic-theory/}
+%\newcommand{\dateintitle}{}
+%\newcommand{\keywords}{}
+
+\input{../latex/peeter_prologue_print2.tex}
+
+\usepackage{peeters_layout_exercise}
+\usepackage{peeters_braket}
+\usepackage{peeters_figures}
+\usepackage{siunitx}
+\usepackage{verbatim}
+%\usepackage{mhchem} % \ce{}
+%\usepackage{macros_bm} % \bcM
+%\usepackage{macros_qed} % \qedmarker
+%\usepackage{txfonts} % \ointclockwise
+
+\beginArtNoToc
+
+\generatetitle{XXX}
+%\chapter{XXX}
+
+1. "Is it necessary to decompose a multivector into a multiplication of two other multivectors?"
+
+No, and as you suggest, decomposition of a multivector in terms of basis vectors, is a straightforward way to compute the reverse.
+
+Take for example
+\begin{equation*}
+   A = a + b \Be_1 + c \Be_2 \Be_3 \Be_4,
+\end{equation*}
+where \( a, b, c\) are scalars.  Reversion can be performed term by term, resulting in a sign flip for the trivector term.
+
+\begin{equation*}
+   \tilde{A} = a + b \Be_1 - c \Be_2 \Be_3 \Be_4.
+\end{equation*}
+
+2. For your bivector example \( A = \Bn \Bm \), 
+first note that such a factorization may not 
+generally be possible.  For example, 
+an \R{4} bivector such as \( A = \Be_{12} + \Be_{34} \) cannot be decomposed into a product of two vectors (this is an example of a bivector that
+is not a 2-blade.)
+
+If the bivector has such a factorization, that decomposition amounts to a choice of basis.  
+For example:
+\begin{equation*}
+A = \Be_{12} + \Be_{23} + \Be_{31},
+\end{equation*}
+may be factored as
+\begin{equation*}
+A = \lr{ \Be_1 + \Be_2 - 2 \Be_3 } \frac{ \Be_2 - \Be_1 }{2},
+\end{equation*}
+or
+\begin{equation*}
+A = \frac{ \Be_3 - \Be_2 }{2} \lr{ 2 \Be_1 - \Be_2 - \Be_3 }.
+\end{equation*}
+We may compute the reverse from the original representation
+\begin{equation*}
+   \tilde{A} = \Be_{21} + \Be_{32} + \Be_{13},
+\end{equation*}
+or using the first factorization
+\begin{equation*}
+\begin{aligned}
+\tilde{A} 
+&= 
+\frac{ \Be_2 - \Be_1 }{2}
+\lr{ \Be_1 + \Be_2 - 2 \Be_3 }  \\
+&=
+\inv{2} \lr{ \Be_{21} - \Be_{11} + \Be_{22} - \Be_{12} - 2 \Be_{23} + 2 \Be_{13} } \\
+&= 
+\Be_{21} + \Be_{32} + \Be_{13},
+\end{aligned}
+\end{equation*}
+or using the second factorization
+\begin{equation*}
+\begin{aligned}
+   \tilde{A} 
+   &= 
+\lr{ 2 \Be_1 - \Be_2 - \Be_3 }
+\frac{ \Be_3 - \Be_2 }{2}  \\
+   &= 
+\inv{2} \lr{
+   2 \Be_{13} - 2 \Be_{12}
+   - \Be_{23} + \Be_{22} 
+   - \Be_{33} + \Be_{32}
+} \\
+&= 
+\Be_{21} + \Be_{32} + \Be_{13}.
+\end{aligned}
+\end{equation*}
+One should get the same answer regardless.
+
+Also observe that such a 2-blade factorization depends on the orthogonality of the factors.  If that were not the case, then there would be a scalar term in the product, and the result would not be a 2-blade.  To see that, consider the following product of vectors
+\begin{equation*}
+A = \lr{ \Be_1 e^{i \theta} } \Be_1 = \cos\theta - i \sin\theta
+\end{equation*}
+where \( i = \Be_{1} \Be_{2} \) is the pseudoscalar for the plane that \( A \) lies in (i.e. \( A \wedge i = 0 \)).  For this to be a bivector, we require \( \theta \in \pi/2 + n \pi \).  That is, the two factors must be orthogonal.
+
+If one wanted to prove that the reverse of any bivector \( A = n m \) is independent of the factorization (if such a factorization is possible), the task is essentially to show that the reverse is independent of any change of basis.
+
+%}
+\EndArticle
+%\EndNoBibArticle

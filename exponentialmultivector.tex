@@ -1,0 +1,62 @@
+%
+% Copyright © 2021 Peeter Joot.  All Rights Reserved.
+% Licenced as described in the file LICENSE under the root directory of this GIT repository.
+%
+%{
+\input{../latex/blogpost.tex}
+\renewcommand{\basename}{exponentialmultivector}
+%\renewcommand{\dirname}{notes/phy1520/}
+\renewcommand{\dirname}{notes/ece1228-electromagnetic-theory/}
+%\newcommand{\dateintitle}{}
+%\newcommand{\keywords}{}
+
+\input{../latex/peeter_prologue_print2.tex}
+
+\usepackage{peeters_layout_exercise}
+\usepackage{peeters_braket}
+\usepackage{peeters_figures}
+\usepackage{siunitx}
+\usepackage{verbatim}
+%\usepackage{mhchem} % \ce{}
+%\usepackage{macros_bm} % \bcM
+%\usepackage{macros_qed} % \qedmarker
+%\usepackage{txfonts} % \ointclockwise
+
+\beginArtNoToc
+
+\generatetitle{XXX}
+%\chapter{XXX}
+%\label{chap:exponentialmultivector}
+
+I don't think that you can generally find such an exponential factorization.  However, by the Baker-Campbell-Hausdorff theorem, we have
+\begin{equation*}
+   e^{A + B + \inv{2} \antisymmetric{A}{B} + \cdots} = e^A e^B,
+\end{equation*}
+where \( \antisymmetric{A}{B} \), is the commutator, the antisymmetric sum of the objects \( A, B \).
+Consider that commutator for your case
+\begin{equation*}
+\begin{aligned}
+\antisymmetric{v}{iw}
+&=
+v i w - i w v \\
+&=
+i \lr{ v w - w v} \\
+&= 
+2 i \lr{ v \wedge w }.
+\end{aligned}
+\end{equation*}
+Note that this commutator expansion is specific to \R{3} since the pseudoscalar \( i \) happens to commute with all grades in that case.
+
+This expansion shows that if \( v, w \) are colinear, one must have
+\begin{equation*}
+e^{v + iw} = e^v e^{iw}.
+\end{equation*}
+If \( v, w \) were not colinear, but the higher order commutators happended to be zero, one could say
+\begin{equation*}
+   e^{v + iw + i (v \wedge w)} = e^v e^{iw},
+\end{equation*}
+but that is not the type of decomposition that you are seeking.
+
+%}
+\EndArticle
+%\EndNoBibArticle

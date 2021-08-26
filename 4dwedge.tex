@@ -1,0 +1,83 @@
+%
+% Copyright © 2021 Peeter Joot.  All Rights Reserved.
+% Licenced as described in the file LICENSE under the root directory of this GIT repository.
+%
+%{
+\input{../latex/blogpost.tex}
+\renewcommand{\basename}{4dwedge}
+%\renewcommand{\dirname}{notes/phy1520/}
+\renewcommand{\dirname}{notes/ece1228-electromagnetic-theory/}
+%\newcommand{\dateintitle}{}
+%\newcommand{\keywords}{}
+
+\input{../latex/peeter_prologue_print2.tex}
+
+\usepackage{peeters_layout_exercise}
+\usepackage{peeters_braket}
+\usepackage{peeters_figures}
+\usepackage{siunitx}
+\usepackage{verbatim}
+%\usepackage{mhchem} % \ce{}
+%\usepackage{macros_bm} % \bcM
+%\usepackage{macros_qed} % \qedmarker
+%\usepackage{txfonts} % \ointclockwise
+
+\beginArtNoToc
+
+\generatetitle{4d wedge q}
+%\chapter{4d wedge q}
+%\label{chap:4dwedge}
+
+%in another example, roughly based on what i read, in trying to compute the wedge product between (2,3,4,5) and (6,7,8,9) they assume a standard basis and then calculated [2(1,0,0,0) + 3(0,1,0,0) + 4(0,0,1,0) + 5(0,0,0,1)]^[6(1,0,0,0) + 7(0,1,0,0) + 8(0,0,1,0) + 9(0,0,0,1)] . in their example, they did this with 3d so the output would be like 18(1,0,0)^(0,1,0) would effectively give 18k if the coordinates were roughly represented as (i,j,k). the problem is that when i try this technique for 2 4d vectors, i get stuff like (1,0,0,0)^(0,0,0,1) where reducing this to i,j,k,l doesn't make sense to me.
+%
+%in the last example, the wedge product is supposed to be an orientated area of something like a bivector, so the result is supposed to be calculated as ||u||*||v||*sin(theta).
+
+With $\Ba = \lr{2 \Bi + 3 \Bj + 4 \Bk + 5 \Bl}$ and $\Bb = 6 \Bi + 7 \Bj + 8 \Bk + 9 \Bl$, we have
+\begin{equation*}
+\begin{aligned}
+B 
+&= \Ba \wedge \Bb \\
+&= \lr{2 \Bi + 3 \Bj + 4 \Bk + 5 \Bl} \wedge \lr{ 6 \Bi + 7 \Bj + 8 \Bk + 9 \Bl } \\
+&=
+14 \Bi \wedge \Bj + 16 \Bi \wedge \Bk + 18 \Bi \wedge \Bl \\
+&\quad+
+18 \Bj \wedge \Bi + 24 \Bj \wedge \Bk + 27 \Bj \wedge \Bl \\
+&\quad+
+24 \Bk \wedge \Bi + 28 \Bk \wedge \Bj + 36 \Bk \wedge \Bl  \\
+&\quad+
+30 \Bl \wedge \Bi + 35 \Bl \wedge \Bj + 40 \Bl \wedge \Bk  \\
+&=
+(14 -18) \Bi \wedge \Bj
++ (16-24) \Bi \wedge \Bk
++ (18-30) \Bi \wedge \Bl
++ (24-28) \Bj \wedge \Bk
++ (27-35) \Bj \wedge \Bl
++ (36-40) \Bk \wedge \Bl \\
+&=
+4 \Bj \wedge \Bi + 8 \Bk \wedge \Bi + 12 \Bl \wedge \Bi + 4 \Bk \wedge \Bj + 8 \Bl \wedge \Bj + 4 \Bl \wedge \Bk.
+\end{aligned}
+\end{equation*}
+
+In order to interpret this as an oriented area, a metric must be imposed on the underlying vector space.  For example, we can show that
+\begin{equation*}
+\begin{aligned}
+B = 
+\lr{ 8 \sqrt{5} }
+\frac{
+\Bj \wedge \Bi + 2 \Bk \wedge \Bi + 3 \Bl \wedge \Bi + \Bk \wedge \Bj + 2 \Bl \wedge \Bj + \Bl \wedge \Bk
+}
+{
+2 \sqrt{5} 
+},
+\end{aligned}
+\end{equation*}
+so, assuming a Euclidean metric, the right bivector factor is a unit bivector (squares to $\pm 1$), and we can conclude that the area has magnitude \( 8 \sqrt{5} \).
+You can confirm that by computing the square of the numerator:
+\begin{equation*}
+\lr{ \Bj \wedge \Bi + 2 \Bk \wedge \Bi + 3 \Bl \wedge \Bi + \Bk \wedge \Bj + 2 \Bl \wedge \Bj + \Bl \wedge \Bk }^2
+= -1 -4 -9 -1 -4 -1 = -20 = -\lr{ 2 \sqrt{5} }^2.
+\end{equation*}
+
+%}
+\EndArticle
+%\EndNoBibArticle

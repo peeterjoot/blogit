@@ -71,12 +71,38 @@ B =
 },
 \end{aligned}
 \end{equation*}
-so, assuming a Euclidean metric, the right bivector factor is a unit bivector (squares to $\pm 1$), and we can conclude that the area has magnitude \( 8 \sqrt{5} \).
+so, assuming a Euclidean metric, the right bivector factor is a unit bivector (squares to $\pm 1$), and we can conclude that the area has magnitude \( \sqrt{320} = 8 \sqrt{5} \).
 You can confirm that by computing the square of the numerator:
 \begin{equation*}
 \lr{ \Bj \wedge \Bi + 2 \Bk \wedge \Bi + 3 \Bl \wedge \Bi + \Bk \wedge \Bj + 2 \Bl \wedge \Bj + \Bl \wedge \Bk }^2
 = -1 -4 -9 -1 -4 -1 = -20 = -\lr{ 2 \sqrt{5} }^2.
 \end{equation*}
+
+We can ask whether the \( \sqrt{320} \) value that we have computed makes sense.  The portion of the \( \Bb \) that is perpendicular to \( \Ba \) is
+\begin{equation*}
+\Bb_\perp = \Bb - \lr{ \Ba \cdot \Bb } \frac{\Ba}{\Ba \cdot \Ba} 
+= 
+52/27 \Bi + 8/9 \Bj -4/27 \Bk -32/27 \Bl.
+\end{equation*}
+Using this, we can compute the (squared) area, to find
+\begin{equation*}
+\Ba^2 \Bb_\perp^2 = 320,
+\end{equation*}
+as expected.
+
+You also saw that the wedge product magnitude should have the form
+\begin{equation*}
+\Norm{\Ba}\Norm{\Bb} \sin\theta.
+\end{equation*}
+That is easy to show, first calculating
+\begin{equation*}
+\cos\theta = \frac{ \Ba . \Bb }{ \Norm{\Ba} \Norm{\Bb} },
+\end{equation*}
+after which we find
+\begin{equation*}
+\Norm{\Ba} \Norm{\Bb} \sin\theta = 8 \sqrt{5},
+\end{equation*}
+as seen above.
 
 %}
 \EndArticle

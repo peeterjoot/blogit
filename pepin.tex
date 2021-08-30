@@ -1,0 +1,88 @@
+\documentclass{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage{mathtools}
+\usepackage{graphicx}
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{color}
+\usepackage{hyperref}
+\usepackage{tikz}
+\usepackage{dsfont}
+\usepackage{gensymb}
+\usepackage{comment}
+\usepackage{physics}
+
+\title{Miroslav's challenge}
+\author{Pepijn Cobben}
+\date{November 2020}
+
+\begin{document}
+
+\maketitle
+
+\section{Introduction}
+%\begin{figure}[h!]
+%    \centering
+%    \includegraphics[width=1\linewidth]{Screenshot 2020-11-13 173529.jpg}
+%\end{figure}
+
+\section{Solution}
+First we note that - as Miroslav notes - the problem of drawing a circle can be reduced to choosing two vectors a and b on this circle and drawing the two arcs between them. \\
+Thus, what we want to do is a kind of spherical interpolation\footnote{Something like this: https://en.wikipedia.org/wiki/Slerp}: We want to generate a lot of little points on this arc and individually display these - together it will give us a full arc. \\
+Considering quaternions are known for spherical interpolation, and rotors supersede quaternions, it is likely GA will be able to help us here. This we will show next: (also, my two vectors a,b are unit vectors for simplicity for the proof, though the tools developed also work for non-unit vectors)\\ \medskip
+
+Rotating a  vector a onto b can be done with a rotor: \begin{equation}
+    R = \cos\frac{\theta}{2} - B\sin\frac{\theta}{2} = e^{-B\frac{\theta}{2}}
+\end{equation}
+where $\theta$ is the angle between a and b, while the normalized bivector B represents the plane $a\wedge b$. \\
+The equation to rotate a is thus:
+\begin{equation}
+    RaR^{-1} = b
+\end{equation}
+Now, if we know the rotor R (which we do not currently) - we can create as many points between a and b as we want! As an example, let's create n new vectors $v_1, v_2, ..., v_n$ that are on the arc between a and b with equal distance between each $v_i$.
+This we do as follows:
+\begin{equation}
+    R^{\frac{1}{n}}aR^{\frac{-1}{n}} = v_1
+\end{equation}
+Then
+\begin{equation}
+    R^{\frac{1}{n}}v_1R^{\frac{-1}{n}} = v_2
+\end{equation}
+etc. (we note that $v_n$ would be the last point on the arc - and thus is b). Since when do fractional powers of rotors exist? Recall
+\begin{equation}
+    R = e^{-B\frac{\theta}{2}}
+\end{equation}
+and we know we can do that for $e$. 
+We aren't done yet though - we don't have an explicit equation for the rotor yet. That we will do next. \\
+\bigskip
+
+First we note that any rotation is a composition of two reflections across two vectors. Recall as well that in Geometric Algebra, the reflection of a vector $v$ across a unit vector $u$ is simply \begin{equation}
+%    -uvu = v_{reflected}
+    -uvu = v_{\text{reflected}}
+\end{equation}
+Thus, if we find two unit vectors $v_1$ and $v_2$, where a reflection of a across $v_1$ and then $v_2$ gives b - then:
+\begin{align*}
+    a_{ref} &= v_1av_1 \\
+    b &= v_2v_1av_1v_2
+\end{align*}
+Which implies that $R = v_2v_1$. Now, let's find two such vectors! First, we find the unit vector between $a$ and $b$:
+\begin{equation}
+    c = \frac{a+b}{|a+b|}
+\end{equation}
+By the definition of c, thus a reflection of a across c must give  b:
+\begin{equation}
+    -cac = b
+\end{equation}
+A reflection of b across b is, well, just b:
+\begin{equation}
+    bcacb = b^3 = b
+\end{equation}
+Thus
+\begin{equation}
+    R = bc = b\frac{a + b}{|a + b|} = \frac{ba + b^2}{|a + b|} = \frac{ba + 1}{|a + b|}
+\end{equation}
+\section{Conclusion}
+We see we get a very simple equation for the rotors in the end - and this can easily be used to create as many points on the arc as we would like using $R^{1/n}$
+\end{document}

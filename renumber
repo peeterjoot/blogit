@@ -80,3 +80,5 @@ perl -p -i ../latex/bin/latexRegex.pl reversion.tex
 perl -p -i ../latex/bin/latexRegex.pl exponentialmultivector.tex
 ../latex/bin/lgrep 4dwedge.tex | tee o ; . ./o
 perl -p -i ../latex/bin/latexRegex.pl 4dwedge.tex
+../latex/bin/lgrep signature.tex | tee o ; . ./o
+perl -p -i ../latex/bin/latexRegex.pl signature.tex

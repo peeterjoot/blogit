@@ -1,0 +1,159 @@
+%
+% Copyright © 2021 Peeter Joot.  All Rights Reserved.
+% Licenced as described in the file LICENSE under the root directory of this GIT repository.
+%
+%{
+\input{../latex/blogpost.tex}
+\renewcommand{\basename}{signature}
+%\renewcommand{\dirname}{notes/phy1520/}
+\renewcommand{\dirname}{notes/ece1228-electromagnetic-theory/}
+%\newcommand{\dateintitle}{}
+%\newcommand{\keywords}{}
+
+\input{../latex/peeter_prologue_print2.tex}
+
+\usepackage{peeters_layout_exercise}
+\usepackage{peeters_braket}
+\usepackage{peeters_figures}
+\usepackage{siunitx}
+\usepackage{verbatim}
+%\usepackage{mhchem} % \ce{}
+%\usepackage{macros_bm} % \bcM
+%\usepackage{macros_qed} % \qedmarker
+%\usepackage{txfonts} % \ointclockwise
+
+\beginArtNoToc
+
+\generatetitle{XXX}
+%\chapter{XXX}
+%\label{chap:signature}
+
+Let's start with the question of what does it mean to square a vector.
+
+The workhorse axiom of geometric algebra is the contraction axiom, which specifies that the square of a vector \( \Bx \) satisfies the rule
+\begin{equation*}
+   \Bx^2 = \Bx \cdot \Bx.
+\end{equation*}
+With this axiom you can start to give meaning to other multivector (sums of scalars, vectors, or products of vectors) quantities.  For example, given any unit vector \( \ucap \), we have
+\begin{equation*}
+   \ucap^2 = \ucap \cdot \ucap = 1.
+\end{equation*}
+Given two orthonormal vectors \( \ucap, \vcap \), we can form vector products such as
+\begin{equation*}
+   \ucap \lr{ \ucap \vcap } = \lr{ \ucap \ucap } \vcap = \vcap,
+\end{equation*}
+\begin{equation*}
+   \vcap \lr{ \vcap \ucap } = \lr{ \vcap \vcap } \ucap = \ucap,
+\end{equation*}
+Operationally, this gives meaning to a (bivector) quantity like \( \ucap \vcap \) acts through multiplication on \( \ucap \) and \( \vcap \) (from the right in this case) serves to rotate \( \ucap \) towards \( \vcap \), and we see that the \( \vcap \) when multiplied by the bivector \( \vcap \ucap \) is rotated 90 degrees towards \( \ucap \).
+The contraction axiom can readily be applied to extract other important relationships.  For example, again, given two orthonormal vectors \( \ucap, \vcap \), we have
+\begin{equation*}
+\begin{aligned}
+\lr{\ucap + \vcap}^2 
+&= \lr{\ucap + \vcap} \cdot \lr{ \ucap + \vcap } \\
+&= \ucap \cdot \ucap + \vcap \cdot \vcap \\
+&= 2,
+\end{aligned}
+\end{equation*}
+however, we also have
+\begin{equation*}
+\begin{aligned}
+\lr{\ucap + \vcap}^2 
+&=
+\lr{\ucap + \vcap} 
+\lr{\ucap + \vcap} \\
+&=
+\ucap \ucap + \ucap \vcap + \vcap \ucap + \vcap \vcap \\
+&= 2 + \ucap \vcap + \vcap \ucap.
+\end{aligned}
+\end{equation*}
+We must have
+\begin{equation*}
+\ucap \vcap = - \vcap \ucap.
+\end{equation*}
+Having posited this rule for squaring a vector, we find that a product of two orthonormal vectors anticommutes.  We can build on this bit of knowledge and look at other vector products, such as
+\begin{equation*}
+\begin{aligned}
+   \lr{ \ucap \vcap }^2
+   =
+   \lr{ \ucap \vcap }
+   \lr{ \ucap \vcap }
+   =
+   \lr{ -\vcap \ucap }
+   \lr{ \ucap \vcap }
+   =
+-\vcap \lr{ \ucap \ucap }\vcap 
+   =
+-\vcap \vcap 
+   =
+-1.
+\end{aligned}
+\end{equation*}
+We see that the product of two orthonormal vectors squares to \( -1 \), like the square of a complex imaginary.  All this from the contraction axiom that specifies a rule for the square of a vector (plus assumptions of multiplicitive distribution, but not commututivity).  Like the complex imaginary where \( z i \) rotates \( z \), you can show that such a bivector product rotates vectors that fall within the plane spanned by those two vectors.  Unlike complex numbers, we get a different rotational sense depending on whether we multiply the vector on the right or on the left.
+
+You asked what the square of a vector was, and strictly speaking, I could have stopped with the definition.  However, I hope that the discussion after that helps show why we care about the square of a vector.  That little axiom allows us to extract a significant amount of information about vector products, and start down the path of extracting geometric interpretation from the algebra.
+
+As for the question of a negative or 0 vector square, you are right that one of the ways that can occur is in a relativistic context.  In special relativity, we form vectors like
+\begin{equation*}
+x = c t \Be_0 + \Bx,
+\end{equation*}
+where \( \Be_0 \) is a "time-like" basis vector and \( \Bx \) is a space like vector.  There are a variety of notations for such a space-time vector, such as
+\begin{equation*}
+   x = (ct, \Bx),
+\end{equation*}
+or, for example, using a Dirac basis,
+\begin{equation*}
+   x = x^\mu \gamma_\mu = x^0 \gamma_0 + x^1 \gamma_1 + x^2 \gamma_2 + x^3 \gamma_3.
+\end{equation*}
+Regardless of the notion, there will be a dot product defined on the four vector space of the form:
+\begin{equation*}
+x \cdot x = \pm \lr{ (ct)^2 - \Bx \cdot \Bx },
+\end{equation*}
+where the sign varies according to the convention used by the author.  Given such a dot product (i.e. a metric associated with the basis), we can define a geometric algebra over the four-vector space that is also based on the contraction axiom, giving meaning to the square of a four-vector.
+For example, using the Dirac basis, we have
+\begin{equation*}
+\begin{aligned}
+   x^2 &= 
+   \lr{ 
+   x^\mu \gamma_\mu  }
+   \cdot {
+   x^\nu \gamma_\nu  } \\
+   &=
+   x^\mu x^\nu \lr{ \gamma_\mu \cdot \gamma_\nu } \\
+   &=
+   x^\mu x^\nu g_\mu\nu \\
+   &=
+   x^\mu x_\nu.
+\end{aligned}
+\end{equation*}
+The square of a vector, in the conventional tensor formalism, is just the contraction of that vector with itself.  If we choose \( \gamma_0 \cdot \gamma_0 = -\gamma_k \cdot \gamma_k = 1 \) as our metric, then a timelike vector such as \( c t \gamma_0 \), has a positive square
+\begin{equation*}
+   \lr{ c t \gamma_0 }^2 = (c t)^2 \ge 0,
+\end{equation*}
+and a space like vector  \( x^k \gamma_k \), has a negative square
+\begin{equation*}
+   \lr{ x^k \gamma_k }^2
+   =
+-\sum_{k=1,3} \lr{x^k}^2 \le 0.
+\end{equation*}
+On the other hand, we can form "light-like" vectors that have a zero square such as \( x = \gamma_0 + \gamma_1 \):
+\begin{equation*}
+\begin{aligned}
+   x^2 
+   &= \lr{ \gamma_0 + \gamma_1 }^2 \\
+   &=
+  \lr{ \gamma_0 + \gamma_1 } \cdot
+  \lr{ \gamma_0 + \gamma_1 } \\
+  &= \gamma_0^2 + \gamma_1^2 \\
+  &= +1 - 1 \\
+  &= 0.
+\end{aligned}
+\end{equation*}
+
+In special relativity, we see that we have the possibility of vectors that square to +1, -1, or 0, but our basis vectors only ever have \( \pm 1 \) values.  The signature of the metric is the values down the diagonal of \( g_{\mu\nu} \), usually one of \( +1,-1,-1,-1\) or \( -1,+1,+1,+1\).  However, there are geometric algebra domains (conformal and projective geometric algebras) where there is value to having basis vectors that may be null, along with any additional basis vectors with non-zero squares.
+
+I'd recommend the book "Geometric Algebra for Physicists" (Doran and Lasenby) for a thorough treatment of geometric algebra in a relativisitic context.
+
+%}
+\EndArticle
+%\EndNoBibArticle

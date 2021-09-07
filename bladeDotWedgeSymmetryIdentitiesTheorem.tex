@@ -1,0 +1,86 @@
+%
+% Copyright © 2021 Peeter Joot.  All Rights Reserved.
+% Licenced as described in the file LICENSE under the root directory of this GIT repository.
+%
+%{
+\input{../latex/blogpost.tex}
+\renewcommand{\basename}{bladeDotWedgeSymmetryIdentitiesTheorem}
+%\renewcommand{\dirname}{notes/phy1520/}
+\renewcommand{\dirname}{notes/ece1228-electromagnetic-theory/}
+%\newcommand{\dateintitle}{}
+%\newcommand{\keywords}{}
+
+\input{../latex/peeter_prologue_print2.tex}
+
+\usepackage{peeters_layout_exercise}
+\usepackage{peeters_braket}
+\usepackage{peeters_figures}
+\usepackage{siunitx}
+\usepackage{verbatim}
+%\usepackage{mhchem} % \ce{}
+%\usepackage{macros_bm} % \bcM
+%\usepackage{macros_qed} % \qedmarker
+%\usepackage{txfonts} % \ointclockwise
+
+\beginArtNoToc
+
+\generatetitle{XXX}
+%\chapter{XXX}
+
+To prove these relations, split the blade \( A_k \) into components that intersect with and are disjoint from \( a \) as follows
+\begin{equation*}
+A_k
+=
+\inv{a} n_1 n_2 \cdots n_{k-1} + m_1 m_2 \cdots m_k,
+\end{equation*}
+where \( n_i \) orthogonal to \( a \) and each other, and where \( m_i \) are all orthogonal.  The products of \( A_k \) with \( a \) are
+\begin{equation*}
+\begin{aligned}
+a A_k
+&=
+a \inv{a} n_1 n_2 \cdots n_{k-1} + a m_1 m_2 \cdots m_k \\
+&=
+n_1 n_2 \cdots n_{k-1} + a m_1 m_2 \cdots m_k,
+\end{aligned}
+\end{equation*}
+and
+\begin{equation*}
+\begin{aligned}
+A_k a
+&=
+\inv{a} n_1 n_2 \cdots n_{k-1} a + m_1 m_2 \cdots m_k a \\
+&=
+(-1)^{k-1} n_1 n_2 \cdots n_{k-1} + (-1)^k a m_1 m_2 \cdots m_k \\
+&=
+(-1)^k \lr{ - n_1 n_2 \cdots n_{k-1} + a m_1 m_2 \cdots m_k },
+\end{aligned}
+\end{equation*}
+or
+\begin{equation*}
+(-1)^k A_k a
+=
+- n_1 n_2 \cdots n_{k-1} + a m_1 m_2 \cdots m_k.
+\end{equation*}
+
+Respective addition and subtraction gives
+\begin{equation*}
+\begin{aligned}
+a A_k + (-1)^k A_k a
+&= 2 a m_1 m_2 \cdots m_k \\
+&= 2 \gpgrade{a A_k}{k+1},
+\end{aligned}
+\end{equation*}
+and
+\begin{equation*}
+\begin{aligned}
+a A_k - (-1)^k A_k a
+&=
+2
+n_1 n_2 \cdots n_{k-1} \\
+&= 2 \gpgrade{a A_k}{k-1},
+\end{aligned}
+\end{equation*}
+completing the proof.
+
+%}
+\EndNoBibArticle

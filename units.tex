@@ -1,0 +1,75 @@
+%
+% Copyright © 2021 Peeter Joot.  All Rights Reserved.
+% Licenced as described in the file LICENSE under the root directory of this GIT repository.
+%
+%{
+\input{../latex/blogpost.tex}
+\renewcommand{\basename}{units}
+%\renewcommand{\dirname}{notes/phy1520/}
+\renewcommand{\dirname}{notes/ece1228-electromagnetic-theory/}
+%\newcommand{\dateintitle}{}
+%\newcommand{\keywords}{}
+
+\input{../latex/peeter_prologue_print2.tex}
+
+\usepackage{peeters_layout_exercise}
+\usepackage{peeters_braket}
+\usepackage{peeters_figures}
+\usepackage{siunitx}
+\usepackage{verbatim}
+%\usepackage{mhchem} % \ce{}
+%\usepackage{macros_bm} % \bcM
+%\usepackage{macros_qed} % \qedmarker
+%\usepackage{txfonts} % \ointclockwise
+
+\beginArtNoToc
+
+\generatetitle{XXX}
+%\chapter{XXX}
+%\label{chap:units}
+% \citep{sakurai2014modern} pr X.Y
+% \citep{pozar2009microwave}
+% \citep{qftLectureNotes}
+% \citep{doran2003gap}
+% \citep{jackson1975cew}
+% \citep{griffiths1999introduction}
+
+\begin{comment}
+\end{comment}
+
+I think that in geometric algebra, as well as vector algebra, you need the units to ride along with the coordinates and not the basis vectors.  Consider a one dimensional vector space example with unit vector \( \Be_1 \)
+\begin{equation*}
+   \Bx = a \Be_1.
+\end{equation*}
+The vector square is
+\begin{equation*}
+   \Bx \cdot \Bx  = a^2 \Be_1 \cdot \Be_1 = a^2,
+\end{equation*}
+and the vector length is
+\begin{equation*}
+   \Norm{\Bx} = \sqrt{\Bx \cdot \Bx} = \Abs{a}.
+\end{equation*}
+In particular
+\begin{equation*}
+   \Be_1 = \frac{\Bx}{\Norm{\Bx}}.
+\end{equation*}
+
+If, say, \( a = 10\, \textrm{m} \), then
+\begin{equation*}
+   \Bx \cdot \Bx  = 10\, {\textrm{m}}^2
+\end{equation*}
+and
+\begin{equation*}
+   \Norm{\Bx} = 10\, \textrm{m}.
+\end{equation*}
+then you find that \( \Be_1 = \ifrac{\Bx}{\Norm{\Bx}} \) is dimensionless.
+
+A simpler way to put this might be that we define a unit vector \( \ucap \) such that it's self dot product is a dimensionless scalar one value:
+\begin{equation*}
+   \ucap \cdot \ucap = 1,
+\end{equation*}
+and not \( \ucap \cdot \ucap = 1 \times \textrm{some-units}^2 \).
+
+%}
+%\EndArticle
+\EndNoBibArticle

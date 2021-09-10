@@ -90,3 +90,5 @@ perl -p -i ../latex/bin/latexRegex.pl dotwedgedef.tex
 perl -p -i ../latex/bin/latexRegex.pl innerouter.tex
 ../latex/bin/lgrep bladeDotWedgeSymmetryIdentitiesTheorem.tex | tee o ; . ./o
 perl -p -i ../latex/bin/latexRegex.pl bladeDotWedgeSymmetryIdentitiesTheorem.tex
+../latex/bin/lgrep units.tex | tee o ; . ./o
+perl -p -i ../latex/bin/latexRegex.pl units.tex

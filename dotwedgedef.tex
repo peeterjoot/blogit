@@ -39,11 +39,11 @@ are all vectors with grade 1,
    \Be_1 \Be_2, \Be_2 \Be_3, 3 \Be_3 \Be_7 + \pi \Be_7 \Be_1, \cdots
 \end{equation*}
 are all bivectors and have grade 2.
-We write 
+We write
 \begin{equation*}
    \gpgrade{A}{k}
 \end{equation*}
-as the selection of all grade \( k \) elements from the multivector \( A \).  For example, if 
+as the selection of all grade \( k \) elements from the multivector \( A \).  For example, if
 \begin{equation*}
    A = -3 + \pi+ 7+ 9 + \Be_1+ \Be_2+ 3 \Be_3 + \pi \Be_7 + \Be_1 \Be_2+ \Be_2 \Be_3+ 3 \Be_3 \Be_7 + \pi \Be_7 \Be_1,
 \end{equation*}
@@ -55,7 +55,7 @@ then
    \gpgrade{A}{1} = \Be_1+ \Be_2+ 3 \Be_3 + \pi \Be_7 ,
 \end{equation*}
 \begin{equation*}
-   \gpgrade{A}{2} = 
+   \gpgrade{A}{2} =
    \Be_1 \Be_2+ \Be_2 \Be_3+ 3 \Be_3 \Be_7 + \pi \Be_7 \Be_1,
 \end{equation*}
 and \( \gpgrade{A}{k} \) for all \( k > 2 \) is zero (in this case.)
@@ -63,7 +63,7 @@ and \( \gpgrade{A}{k} \) for all \( k > 2 \) is zero (in this case.)
 Now, we can consider the geometric product of two vectors \( a = \sum_i x_i \Be_i \) and \( b = \sum_i y_i \Be_i \)
 \begin{equation*}
 \begin{aligned}
-   a b 
+   a b
    &= \sum_{i,j} x_i \Be_i y_j \Be_j \\
    &= \sum_{i = j} x_i y_i \Be_i^2 + \sum_{i \ne j} x_i y_j \Be_i \Be_j \\
    &= \sum_{i} x_i y_i + \sum_{i \ne j} x_i y_j \Be_i \Be_j \\
@@ -82,7 +82,7 @@ Clearly we wish to identify the scalar component as the dot product, and we defi
    a \wedge b = \gpgrade{ a b }{2}.
 \end{equation*}
 
-You should be able to convince yourself that a product of a vector and r-blade \( A_r \) (an entity with only grade r components) must have only grades \( r-1 \) and \( r + 1 \), so 
+You should be able to convince yourself that a product of a vector and r-blade \( A_r \) (an entity with only grade r components) must have only grades \( r-1 \) and \( r + 1 \), so
 \begin{equation*}
    a A_r = \gpgrade{a A_r}{r-1} + \gpgrade{a A_r}{r+1},
 \end{equation*}
@@ -98,7 +98,7 @@ so that
    a A_r = a \cdot A_r + a \wedge A_r.
 \end{equation*}
 
-Still more generally, answering your final question, one can define the dot and wedge products of two blades \( A_r \), \( B_s \) with grades \( r, s \) respectively, as 
+Still more generally, answering your final question, one can define the dot and wedge products of two blades \( A_r \), \( B_s \) with grades \( r, s \) respectively, as
 \begin{equation*}
    A_r \cdot B_s = \gpgrade{ A_r B_s }{\abs{r-s}},
 \end{equation*}

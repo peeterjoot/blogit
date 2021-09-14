@@ -1,0 +1,139 @@
+%
+% Copyright © 2021 Peeter Joot.  All Rights Reserved.
+% Licenced as described in the file LICENSE under the root directory of this GIT repository.
+%
+%{
+\input{../latex/blogpost.tex}
+\renewcommand{\basename}{parallelogram}
+%\renewcommand{\dirname}{notes/phy1520/}
+\renewcommand{\dirname}{notes/ece1228-electromagnetic-theory/}
+%\newcommand{\dateintitle}{}
+%\newcommand{\keywords}{}
+
+\input{../latex/peeter_prologue_print2.tex}
+
+\usepackage{peeters_layout_exercise}
+\usepackage{peeters_braket}
+\usepackage{peeters_figures}
+\usepackage{siunitx}
+\usepackage{verbatim}
+%\usepackage{mhchem} % \ce{}
+%\usepackage{macros_bm} % \bcM
+%\usepackage{macros_qed} % \qedmarker
+%\usepackage{txfonts} % \ointclockwise
+
+\beginArtNoToc
+
+\generatetitle{Area of a parallelogram}
+%\chapter{Area of a parallelogram}
+%\label{chap:parallelogram}
+
+\begin{dmath}\label{eqn:parallelogram:20}
+\textrm{Area}^2
+= \Norm{\Bx}^2 \Norm{\By - \lr{\By \cdot \xcap} \xcap }^2
+= \Norm{\Bx}^2
+\lr{\By - \lr{\By \cdot \xcap} \xcap }\cdot \lr{\By - \lr{\By \cdot \xcap} \xcap }
+= \Norm{\Bx}^2
+\lr{
+\By \cdot \By + \lr{ \By \cdot \xcap }^2 \xcap \cdot \xcap - 2 \lr{ \xcap \cdot \By }^2
+}
+= \Norm{\Bx}^2
+\lr{
+\By \cdot \By - \lr{ \By \cdot \xcap }^2
+}
+=
+\Norm{\Bx}^2 \Norm{\By}^2 - \lr{ \By \cdot \xcap }^2 \Norm{\Bx}^2
+=
+\Norm{\Bx}^2 \Norm{\By}^2 - \lr{ \Bx \cdot \By }^2.
+\end{dmath}
+
+In components
+\begin{dmath}\label{eqn:parallelogram:40}
+\textrm{Area}^2
+=
+\Norm{\Bx}^2 \Norm{\By}^2 - \lr{ \Bx \cdot \By }^2
+=
+\sum_{i = 1}^N x_i x_i
+\sum_{j = 1}^N x_j x_j
+-
+\sum_{i = 1}^N x_i y_i
+\sum_{j = 1}^N x_j y_j
+=
+\sum_{i,j= 1}^N x_i x_i y_j y_j - x_i y_i x_j y_j
+=
+\sum_{i,j= 1}^N x_i y_j \lr{ x_i y_j - y_i x_j }
+=
+\sum_{i,j= 1}^N
+x_i y_j
+\begin{vmatrix}
+   x_i & y_i \\
+   x_j & y_j \\
+\end{vmatrix}
+=
+\lr{
+\sum_{i<j}
++
+\cancel{\sum_{i=j}}
++
+\sum_{i>j}
+}
+x_i y_j
+\begin{vmatrix}
+   x_i & y_i \\
+   x_j & y_j \\
+\end{vmatrix}.
+\end{dmath}
+
+But
+\begin{dmath}\label{eqn:parallelogram:60}
+\sum_{i > j}
+x_i y_j
+\begin{vmatrix}
+   x_i & y_i \\
+   x_j & y_j \\
+\end{vmatrix}
+=
+\sum_{a > b}
+x_a y_b
+\begin{vmatrix}
+   x_a & y_a \\
+   x_b & y_b \\
+\end{vmatrix}
+=
+% b -> i
+% a -> j
+\sum_{j > i}
+x_j y_i
+\begin{vmatrix}
+   x_j & y_j \\
+   x_i & y_i \\
+\end{vmatrix}
+=
+-\sum_{i < j}
+x_j y_i
+\begin{vmatrix}
+   x_i & y_i \\
+   x_j & y_j \\
+\end{vmatrix},
+\end{dmath}
+so
+\begin{dmath}\label{eqn:parallelogram:80}
+\textrm{Area}^2
+=
+\sum_{i < j}
+\lr{ x_i y_j - x_j y_i  }
+\begin{vmatrix}
+   x_i & y_i \\
+   x_j & y_j \\
+\end{vmatrix}
+=
+\sum_{i < j}
+{\begin{vmatrix}
+   x_i & y_i \\
+   x_j & y_j \\
+\end{vmatrix}}^2.
+\end{dmath}
+
+%}
+%\EndArticle
+\EndNoBibArticle

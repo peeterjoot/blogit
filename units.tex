@@ -27,48 +27,30 @@
 \generatetitle{XXX}
 %\chapter{XXX}
 %\label{chap:units}
-% \citep{sakurai2014modern} pr X.Y
-% \citep{pozar2009microwave}
-% \citep{qftLectureNotes}
-% \citep{doran2003gap}
-% \citep{jackson1975cew}
-% \citep{griffiths1999introduction}
 
-\begin{comment}
-\end{comment}
+Consider the following projective-rejective split of a vector \( \Bv \) along the direction of a different vector \( \Bu \)
+\begin{equation*}
+   \Bv = \lr{ \frac{\Bu}{\Norm{\Bu}} \cdot \Bv } \frac{\Bu}{\Norm{\Bu}} + \lr{ \frac{\Bu}{\Norm{\Bu}} \cross \Bv } \cross \frac{\Bu}{\Norm{\Bu}}.
+\end{equation*}
+It should be clear that we want the unit vector \( \ucap = \Bu/\Norm{\Bu} \) to be dimensionless, because if you didn't then
+\begin{equation*}
+\Bv = \lr{ \ucap \cdot \Bv } \ucap + \lr{ \ucap \cross \Bv } \cross \ucap,
+\end{equation*}
+would have dimensions of \( \textrm{some-units} \), but on the right you'd have \( {\textrm{some-units}}^3 \).
 
-I think that in geometric algebra, as well as vector algebra, you need the units to ride along with the coordinates and not the basis vectors.  Consider a one dimensional vector space example with unit vector \( \Be_1 \)
+Instead, if let the units ride along coefficients instead of the unit vectors, and this sort of trouble is resolved.  You could have, for example
 \begin{equation*}
-   \Bx = a \Be_1.
+   \Bx = \lr{ 10\, \textrm{m} } \Be_1,
 \end{equation*}
-The vector square is
 \begin{equation*}
-   \Bx \cdot \Bx  = a^2 \Be_1 \cdot \Be_1 = a^2,
+   \Norm{\Bx} = \sqrt{\Bx \cdot \Bx} = \sqrt{ \lr{10\, \textrm{m}}^2 \Be_1 \cdot \Be_1 } = 10\, \textrm{m},
 \end{equation*}
-and the vector length is
+and the unit vector will still be dimensionless
 \begin{equation*}
-   \Norm{\Bx} = \sqrt{\Bx \cdot \Bx} = \Abs{a}.
-\end{equation*}
-In particular
-\begin{equation*}
-   \Be_1 = \frac{\Bx}{\Norm{\Bx}}.
+   \Be_1 = \frac{\Bx}{\Norm{\Bx}} = \frac{\lr{10\, \textrm{m}} \Be_1}{10\, \textrm{m}} = \Be_1.
 \end{equation*}
 
-If, say, \( a = 10\, \textrm{m} \), then
-\begin{equation*}
-   \Bx \cdot \Bx  = 10\, {\textrm{m}}^2
-\end{equation*}
-and
-\begin{equation*}
-   \Norm{\Bx} = 10\, \textrm{m}.
-\end{equation*}
-then you find that \( \Be_1 = \ifrac{\Bx}{\Norm{\Bx}} \) is dimensionless.
-
-A simpler way to put this might be that we define a unit vector \( \ucap \) such that it's self dot product is a dimensionless scalar one value:
-\begin{equation*}
-   \ucap \cdot \ucap = 1,
-\end{equation*}
-and not \( \ucap \cdot \ucap = 1 \times \textrm{some-units}^2 \).
+As well as resolving all sorts of troubles for plain old dot-product spaces, dimensionless unit vectors resolve the dimension products for pseudoscalar dual products in geometric algebras that we generate from such dot product spaces.
 
 %}
 %\EndArticle

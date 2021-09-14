@@ -41,13 +41,13 @@ where \( a, b, c\) are scalars.  Reversion can be performed term by term, result
    \tilde{A} = a + b \Be_1 - c \Be_2 \Be_3 \Be_4.
 \end{equation*}
 
-2. For your bivector example \( A = \Bn \Bm \), 
-first note that such a factorization may not 
-generally be possible.  For example, 
+2. For your bivector example \( A = \Bn \Bm \),
+first note that such a factorization may not
+generally be possible.  For example,
 an \R{4} bivector such as \( A = \Be_{12} + \Be_{34} \) cannot be decomposed into a product of two vectors (this is an example of a bivector that
 is not a 2-blade.)
 
-If the bivector has such a factorization, that decomposition amounts to a choice of basis.  
+If the bivector has such a factorization, that decomposition amounts to a choice of basis.
 For example:
 \begin{equation*}
 A = \Be_{12} + \Be_{23} + \Be_{31},
@@ -67,30 +67,30 @@ We may compute the reverse from the original representation
 or using the first factorization
 \begin{equation*}
 \begin{aligned}
-\tilde{A} 
-&= 
+\tilde{A}
+&=
 \frac{ \Be_2 - \Be_1 }{2}
 \lr{ \Be_1 + \Be_2 - 2 \Be_3 }  \\
 &=
 \inv{2} \lr{ \Be_{21} - \Be_{11} + \Be_{22} - \Be_{12} - 2 \Be_{23} + 2 \Be_{13} } \\
-&= 
+&=
 \Be_{21} + \Be_{32} + \Be_{13},
 \end{aligned}
 \end{equation*}
 or using the second factorization
 \begin{equation*}
 \begin{aligned}
-   \tilde{A} 
-   &= 
+   \tilde{A}
+   &=
 \lr{ 2 \Be_1 - \Be_2 - \Be_3 }
 \frac{ \Be_3 - \Be_2 }{2}  \\
-   &= 
+   &=
 \inv{2} \lr{
    2 \Be_{13} - 2 \Be_{12}
-   - \Be_{23} + \Be_{22} 
+   - \Be_{23} + \Be_{22}
    - \Be_{33} + \Be_{32}
 } \\
-&= 
+&=
 \Be_{21} + \Be_{32} + \Be_{13}.
 \end{aligned}
 \end{equation*}

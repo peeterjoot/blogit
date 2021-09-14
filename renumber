@@ -67,28 +67,32 @@
 
 #../latex/bin/lgrep whyaddition.tex | tee o ; . ./o
 #perl -p -i ../latex/bin/latexRegex.pl whyaddition.tex
-#
-../latex/bin/lgrep identities.tex | tee o ; . ./o
+
+#../latex/bin/lgrep identities.tex | tee o ; . ./o
 #perl -p -i ../latex/bin/latexRegex.pl identities.tex
-../latex/bin/lgrep reflection.tex | tee o ; . ./o
-perl -p -i ../latex/bin/latexRegex.pl reflection.tex
-../latex/bin/lgrep McMahonRelativity.tex | tee o ; . ./o
-perl -p -i ../latex/bin/latexRegex.pl McMahonRelativity.tex
-../latex/bin/lgrep reversion.tex | tee o ; . ./o
-perl -p -i ../latex/bin/latexRegex.pl reversion.tex
-../latex/bin/lgrep exponentialmultivector.tex | tee o ; . ./o
-perl -p -i ../latex/bin/latexRegex.pl exponentialmultivector.tex
-../latex/bin/lgrep 4dwedge.tex | tee o ; . ./o
-perl -p -i ../latex/bin/latexRegex.pl 4dwedge.tex
-../latex/bin/lgrep signature.tex | tee o ; . ./o
-perl -p -i ../latex/bin/latexRegex.pl signature.tex
-../latex/bin/lgrep mvi.tex | tee o ; . ./o
-perl -p -i ../latex/bin/latexRegex.pl mvi.tex
-../latex/bin/lgrep dotwedgedef.tex | tee o ; . ./o
-perl -p -i ../latex/bin/latexRegex.pl dotwedgedef.tex
-../latex/bin/lgrep innerouter.tex | tee o ; . ./o
-perl -p -i ../latex/bin/latexRegex.pl innerouter.tex
-../latex/bin/lgrep bladeDotWedgeSymmetryIdentitiesTheorem.tex | tee o ; . ./o
-perl -p -i ../latex/bin/latexRegex.pl bladeDotWedgeSymmetryIdentitiesTheorem.tex
-../latex/bin/lgrep units.tex | tee o ; . ./o
-perl -p -i ../latex/bin/latexRegex.pl units.tex
+
+#../latex/bin/lgrep reflection.tex | tee o ; . ./o
+#perl -p -i ../latex/bin/latexRegex.pl reflection.tex
+#../latex/bin/lgrep McMahonRelativity.tex | tee o ; . ./o
+#perl -p -i ../latex/bin/latexRegex.pl McMahonRelativity.tex
+#../latex/bin/lgrep reversion.tex | tee o ; . ./o
+#perl -p -i ../latex/bin/latexRegex.pl reversion.tex
+#../latex/bin/lgrep exponentialmultivector.tex | tee o ; . ./o
+#perl -p -i ../latex/bin/latexRegex.pl exponentialmultivector.tex
+#../latex/bin/lgrep 4dwedge.tex | tee o ; . ./o
+#perl -p -i ../latex/bin/latexRegex.pl 4dwedge.tex
+#../latex/bin/lgrep signature.tex | tee o ; . ./o
+#perl -p -i ../latex/bin/latexRegex.pl signature.tex
+#../latex/bin/lgrep mvi.tex | tee o ; . ./o
+#perl -p -i ../latex/bin/latexRegex.pl mvi.tex
+#../latex/bin/lgrep dotwedgedef.tex | tee o ; . ./o
+#perl -p -i ../latex/bin/latexRegex.pl dotwedgedef.tex
+#../latex/bin/lgrep innerouter.tex | tee o ; . ./o
+#perl -p -i ../latex/bin/latexRegex.pl innerouter.tex
+#../latex/bin/lgrep bladeDotWedgeSymmetryIdentitiesTheorem.tex | tee o ; . ./o
+#perl -p -i ../latex/bin/latexRegex.pl bladeDotWedgeSymmetryIdentitiesTheorem.tex
+#../latex/bin/lgrep units.tex | tee o ; . ./o
+#perl -p -i ../latex/bin/latexRegex.pl units.tex
+
+../latex/bin/lgrep parallelogram.tex | tee o ; . ./o
+perl -p -i ../latex/bin/latexRegex.pl parallelogram.tex

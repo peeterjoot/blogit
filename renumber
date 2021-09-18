@@ -96,3 +96,5 @@
 
 ../latex/bin/lgrep parallelogram.tex | tee o ; . ./o
 perl -p -i ../latex/bin/latexRegex.pl parallelogram.tex
+../latex/bin/lgrep surface.tex | tee o ; . ./o
+perl -p -i ../latex/bin/latexRegex.pl surface.tex

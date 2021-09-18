@@ -1,0 +1,59 @@
+%
+% Copyright © 2021 Peeter Joot.  All Rights Reserved.
+% Licenced as described in the file LICENSE under the root directory of this GIT repository.
+%
+%{
+\input{../latex/blogpost.tex}
+\renewcommand{\basename}{surface}
+%\renewcommand{\dirname}{notes/phy1520/}
+\renewcommand{\dirname}{notes/ece1228-electromagnetic-theory/}
+%\newcommand{\dateintitle}{}
+%\newcommand{\keywords}{}
+
+\input{../latex/peeter_prologue_print2.tex}
+
+\usepackage{peeters_layout_exercise}
+\usepackage{peeters_braket}
+\usepackage{peeters_figures}
+\usepackage{siunitx}
+\usepackage{verbatim}
+%\usepackage{mhchem} % \ce{}
+%\usepackage{macros_bm} % \bcM
+%\usepackage{macros_qed} % \qedmarker
+%\usepackage{txfonts} % \ointclockwise
+
+\beginArtNoToc
+
+\generatetitle{XXX}
+%\chapter{XXX}
+%\label{chap:surface}
+You want to form a wedge product of the differentials (of a parameterized surface) to construct an area element.  The wedge products encode an oriented area element, and do not require any notion of a normal that could be ambiguous in a higher dimensional space.  Such an area element can be described using differential forms, or in geometric algebra.  Here is a rough outline of such a surface encoding in the geometric algebra formalism:
+
+Suppose your surface is parameterized by
+\begin{equation*}
+   \Bx = \Bx(u,v).
+\end{equation*}
+The partials are tangent to the surface
+\begin{equation*}
+\begin{aligned}
+\Bx_u &= 
+\PD{u}{\Bx}  \\
+\Bx_v &= 
+\PD{v}{\Bx}
+\end{aligned}
+\end{equation*}
+and you can form a surface area element by wedging the differentials \( d\Bx_u = \Bx_u du, d\Bx_v dv \) along each of those tangent space directions
+\begin{equation*}
+   d^2 \Bx = (\Bx_u \wedge \Bx_v) \, du dv.
+\end{equation*}
+
+If you happen to be in 3D, this area element can be related to the cross product by multiplying by the (trivector) pseudoscalar \( I = \Be_1 \Be_2 \Be_3 \), 
+\begin{equation*}
+   -I d^2 \Bx = (\Bx_u \cross \Bx_v) \, du dv.
+\end{equation*}
+
+In differential forms, the notation and nomenclature is a bit different (2-form vs. bivector, hodge dual vs. pseudoscalar product) but a lot of the ideas should be similar.
+
+%}
+%\EndArticle
+\EndNoBibArticle

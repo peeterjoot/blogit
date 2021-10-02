@@ -1,0 +1,80 @@
+%
+% Copyright © 2021 Peeter Joot.  All Rights Reserved.
+% Licenced as described in the file LICENSE under the root directory of this GIT repository.
+%
+%{
+\input{../latex/blogpost.tex}
+\renewcommand{\basename}{rotation}
+%\renewcommand{\dirname}{notes/phy1520/}
+\renewcommand{\dirname}{notes/ece1228-electromagnetic-theory/}
+%\newcommand{\dateintitle}{}
+%\newcommand{\keywords}{}
+
+\input{../latex/peeter_prologue_print2.tex}
+
+\usepackage{peeters_layout_exercise}
+\usepackage{peeters_braket}
+\usepackage{peeters_figures}
+\usepackage{siunitx}
+\usepackage{verbatim}
+%\usepackage{mhchem} % \ce{}
+%\usepackage{macros_bm} % \bcM
+%\usepackage{macros_qed} % \qedmarker
+%\usepackage{txfonts} % \ointclockwise
+
+\beginArtNoToc
+
+\generatetitle{XXX}
+%\chapter{XXX}
+%\label{chap:rotation}
+
+I'd suggest popping in some specific vectors to get a feeling for things.  For example, suppose that \( \Bi = \Be_1 \Be_2 \),
+so that \( \Bu_\parallel = a \Be_1 + b \Be_2 \), and \( \Bu_\perp = c \Be_3 + \cdots \).
+
+Since
+\begin{equation*}
+\begin{aligned}
+   \Be_1 e^{\Bi \alpha}
+   &= \Be_1 \lr{ \cos\alpha + \Be_1 \Be_2 \sin\alpha } \\
+   &= \cos\alpha \Be_1 + \sin\alpha \Be_1 \Be_1 \Be_2 \\
+   &= \cos\alpha \Be_1 - \sin\alpha \Be_1 \Be_2 \Be_1 \\
+   &= \lr{ \cos\alpha - \Bi \sin\alpha } \Be_1 \\
+   &= e^{-\Bi \alpha} \Be_1,
+\end{aligned}
+\end{equation*}
+and
+\begin{equation*}
+\begin{aligned}
+   \Be_2 e^{\Bi \alpha}
+   &= \Be_2 \lr{ \cos\alpha + \Be_1 \Be_2 \sin\alpha } \\
+   &= \cos\alpha \Be_2 + \sin\alpha \Be_2 \Be_1 \Be_2 \\
+   &= \lr{ \cos\alpha + \Be_2 \Be_1 \sin\alpha } \Be_2 \\
+   &= \lr{ \cos\alpha - \Bi \sin\alpha } \Be_2 \\
+   &= e^{-\Bi \alpha} \Be_2.
+\end{aligned}
+\end{equation*}
+You can use a superposition argument to conclude that
+\begin{equation*}
+   \Bx e^{\Bi \alpha} = e^{-\Bi \alpha} \Bx,
+\end{equation*}
+for any \( \Bx \in \Span \setlr{\Be_1, \Be_2} \).  In particular \( \Bu_\parallel e^{\Bi\theta/2} = e^{-\Bi\theta/2} \Bu_\parallel \).
+
+For any component of the vector that is perpendicular to the plane of rotation, such as \( \Be_3 \) for example, we have
+\begin{equation*}
+\begin{aligned}
+   \Be_3 e^{\Bi \alpha}
+   &= \Be_3 \lr{ \cos\alpha + \Be_1 \Be_2 \sin\alpha } \\
+   &= \cos\alpha \Be_3 + \sin\alpha \Be_3 \Be_1 \Be_2 \\
+   &= \lr{ \cos\alpha + \Bi \sin\alpha } \Be_3 \\
+   &= e^{\Bi \alpha} \Be_3,
+\end{aligned}
+\end{equation*}
+since the sign changes twice as you permute the factors of the trivector (i.e.: \( \Be_3 \Be_1 \Be_2 = - \Be_1 \Be_3 \Be_2 = + \Be_1 \Be_2 \Be_3 \) ).  Again, a superposition argument allows you to conclude that \( \Bu_\perp e^{\Bi\theta/2} = e^{\Bi\theta/2} \Bu_\perp \).
+
+In short, a complex exponential for a rotation in the plane \( \Bi \) commutes with components of the vector that lie off the plane, but conjugate-commutes with components of the vector that lie in the plane.
+
+These two facts allow you to make sense of what you've labelled line 4.
+
+%}
+\EndArticle
+%\EndNoBibArticle

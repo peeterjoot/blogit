@@ -1,0 +1,104 @@
+%
+% Copyright © 2021 Peeter Joot.  All Rights Reserved.
+% Licenced as described in the file LICENSE under the root directory of this GIT repository.
+%
+%{
+\input{../latex/blogpost.tex}
+\renewcommand{\basename}{spinorinversion}
+%\renewcommand{\dirname}{notes/phy1520/}
+\renewcommand{\dirname}{notes/ece1228-electromagnetic-theory/}
+%\newcommand{\dateintitle}{}
+%\newcommand{\keywords}{}
+
+\input{../latex/peeter_prologue_print2.tex}
+
+\usepackage{peeters_layout_exercise}
+\usepackage{peeters_braket}
+\usepackage{peeters_figures}
+\usepackage{siunitx}
+\usepackage{verbatim}
+%\usepackage{mhchem} % \ce{}
+%\usepackage{macros_bm} % \bcM
+%\usepackage{macros_qed} % \qedmarker
+%\usepackage{txfonts} % \ointclockwise
+
+\beginArtNoToc
+
+\generatetitle{XXX}
+%\chapter{XXX}
+%\label{chap:spinorinversion}
+
+For the special case of spinor \( Z_{ij} \in \mathbb{Cl}(2,0) \), 
+we can setup this system of equations in matrix form, provided we are careful with the ordering of products.  For example:
+\begin{equation*}
+\begin{bmatrix}
+   Z_{11} & Z_{12} \\
+   Z_{21} & Z_{22} \\
+\end{bmatrix}
+\begin{bmatrix}
+   x_1 \\
+   x_2
+\end{bmatrix}
+=
+\begin{bmatrix}
+   a_1 \\
+   a_2
+\end{bmatrix}.
+\end{equation*}
+Here we must define matrix multiplication so that any products are taken in the order of the matrices.  That is
+\begin{equation*}
+\begin{bmatrix}
+   Z_{11} & Z_{12} \\
+   Z_{21} & Z_{22} \\
+\end{bmatrix}
+\begin{bmatrix}
+   x_1 \\
+   x_2
+\end{bmatrix}
+=
+\begin{bmatrix}
+   Z_{11} x_1 + Z_{12} x_2  \\
+   Z_{21} x_1 + Z_{22} x_2
+\end{bmatrix},
+\end{equation*}
+and not
+\begin{equation*}
+\begin{bmatrix}
+   Z_{11} & Z_{12} \\
+   Z_{21} & Z_{22} \\
+\end{bmatrix}
+\begin{bmatrix}
+   x_1 \\
+   x_2
+\end{bmatrix}
+=
+\begin{bmatrix}
+   x_1 Z_{11} + Z_{12} x_2  \\
+   Z_{21} x_1 + x_2 Z_{22}
+\end{bmatrix},
+\end{equation*}
+or any other permutation.  Because the even grade elements of \( Z_{ij} \in \mathbb{Cl}(2,0) \) all commute (this space is isomorphic to complex numbers),
+we can just invert this matrix.
+\begin{equation*}
+\begin{bmatrix}
+   x_1 \\
+   x_2
+\end{bmatrix}
+=
+\inv{ Z_{11} Z_{22} - Z_{12} Z_{21} }
+\begin{bmatrix}
+   Z_{22} & -Z_{12} \\
+  -Z_{21} & Z_{11} \\
+\end{bmatrix}
+\begin{bmatrix}
+   a_1 \\
+   a_2
+\end{bmatrix}.
+\end{equation*}
+We still must be careful with ordering when the \( 2x2 \) matrix inverse is multiplied with the matrix of vectors, but multiplying that out should solve the system.
+
+This approach should also be possible for similar systems in this space with more variables.
+
+%}
+%\EndArticle
+\EndNoBibArticle

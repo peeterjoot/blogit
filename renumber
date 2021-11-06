@@ -104,3 +104,5 @@ perl -p -i ../latex/bin/latexRegex.pl rotation.tex
 perl -p -i ../latex/bin/latexRegex.pl testit.tex
 ../latex/bin/lgrep hayden.tex | tee o ; . ./o
 perl -p -i ../latex/bin/latexRegex.pl hayden.tex
+../latex/bin/lgrep spinorinversion.tex | tee o ; . ./o
+perl -p -i ../latex/bin/latexRegex.pl spinorinversion.tex

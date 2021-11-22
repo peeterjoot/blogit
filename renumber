@@ -106,3 +106,5 @@ perl -p -i ../latex/bin/latexRegex.pl testit.tex
 perl -p -i ../latex/bin/latexRegex.pl hayden.tex
 ../latex/bin/lgrep spinorinversion.tex | tee o ; . ./o
 perl -p -i ../latex/bin/latexRegex.pl spinorinversion.tex
+../latex/bin/lgrep vectordotbivector.tex | tee o ; . ./o
+perl -p -i ../latex/bin/latexRegex.pl vectordotbivector.tex

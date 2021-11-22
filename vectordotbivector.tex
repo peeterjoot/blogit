@@ -1,0 +1,111 @@
+%
+% Copyright © 2021 Peeter Joot.  All Rights Reserved.
+% Licenced as described in the file LICENSE under the root directory of this GIT repository.
+%
+%{
+\input{../latex/blogpost.tex}
+\renewcommand{\basename}{vectordotbivector}
+%\renewcommand{\dirname}{notes/phy1520/}
+\renewcommand{\dirname}{notes/ece1228-electromagnetic-theory/}
+%\newcommand{\dateintitle}{}
+%\newcommand{\keywords}{}
+
+\input{../latex/peeter_prologue_print2.tex}
+
+\usepackage{peeters_layout_exercise}
+\usepackage{peeters_braket}
+\usepackage{peeters_figures}
+\usepackage{siunitx}
+\usepackage{verbatim}
+%\usepackage{mhchem} % \ce{}
+%\usepackage{macros_bm} % \bcM
+%\usepackage{macros_qed} % \qedmarker
+%\usepackage{txfonts} % \ointclockwise
+
+\beginArtNoToc
+
+\generatetitle{XXX}
+%\chapter{XXX}
+%\label{chap:vectordotbivector}
+
+The identities
+
+$$a\cdot b= (ab+ba)/2$$
+
+$$a\wedge b=(ab-ba)/2$$
+
+are correct, but they are only for vectors \( a, b \).  The equation
+
+$$a\cdot(b\wedge c) = (a(b\wedge c) - (b\wedge c)a)/2$$
+
+(with the negative sign), is also correct.  In general, if \( M \) is a k-vector, and \( a \) is a vector, then one has
+
+\begin{equation*}
+a \cdot M
+=
+\inv{2} \lr{ a M + (-1)^{k-1} M a }.
+\end{equation*}
+
+I don't know how the Matrix Gateway book derives eq 2.14.  Here's one way to show it, rewriting the dot product as a grade 1 selection (i.e. take just the vector parts of any multivector products)
+\begin{equation*}
+\begin{aligned}
+a \cdot \lr{ b \wedge c }
+&=
+\gpgradeone{ a \lr{ b \wedge c } } \\
+   &=
+\gpgradeone{ a \lr{ b c - b \cdot c } } \\
+&=
+\gpgradeone{ a b c } - a \lr{ b \cdot c },
+\end{aligned}
+\end{equation*}
+however, using \( b a = 2 a \cdot b - b a \), we have
+\begin{equation*}
+\begin{aligned}
+\gpgradeone{ a b c }
+&=
+\gpgradeone{ \lr{ 2 a \cdot b - b a } c } \\
+&=
+2 \lr{ a \cdot b } c - \gpgradeone{ b a c } \\
+&=
+2 \lr{ a \cdot b } c - \gpgradeone{ b \lr{ 2 a \cdot c - c a } } \\
+&=
+2 \lr{ a \cdot b } c - 2 \lr{ a \cdot c } b + \gpgradeone{ b c a } \\
+&=
+2 \lr{ a \cdot b } c - 2 \lr{ a \cdot c } b + \lr{ b \wedge c } \cdot a + \lr{ b \cdot c } a.
+\end{aligned}
+\end{equation*}
+
+Putting the pieces together, we have
+\begin{equation*}
+a \cdot \lr{ b \wedge c }
+=
+2 \lr{ a \cdot b } c - 2 \lr{ a \cdot c } b + \lr{ b \wedge c } \cdot a.
+\end{equation*}
+Finally, note that the reverse of vector is a vector (\(\tilde{a} = a\)), so if we apply the reversion operator to the last term:
+\begin{equation*}
+\begin{aligned}
+\lr{ b \wedge c } \cdot a
+%&=
+%\widetilde{\lr{ b \wedge c } \cdot a} \\
+&=
+a \cdot \lr{ c \wedge b } \\
+&=
+-a \cdot \lr{ b \wedge c },
+\end{aligned}
+\end{equation*}
+and then substitute this back in, we have derived eq 2.14 from the text:
+\begin{equation*}
+a \cdot \lr{ b \wedge c }
+=
+2 \lr{ a \cdot b } c - 2 \lr{ a \cdot c } b - a \lr{ b \wedge c },
+\end{equation*}
+or
+\begin{equation*}
+a \cdot \lr{ b \wedge c }
+=
+\lr{ a \cdot b } c - \lr{ a \cdot c } b.
+\end{equation*}
+
+%}
+%\EndArticle
+\EndNoBibArticle

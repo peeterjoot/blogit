@@ -108,3 +108,5 @@ perl -p -i ../latex/bin/latexRegex.pl hayden.tex
 perl -p -i ../latex/bin/latexRegex.pl spinorinversion.tex
 ../latex/bin/lgrep vectordotbivector.tex | tee o ; . ./o
 perl -p -i ../latex/bin/latexRegex.pl vectordotbivector.tex
+../latex/bin/lgrep jordan1inverse.tex | tee o ; . ./o
+perl -p -i ../latex/bin/latexRegex.pl jordan1inverse.tex

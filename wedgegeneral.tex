@@ -1,0 +1,176 @@
+%
+% Copyright © 2022 Peeter Joot.  All Rights Reserved.
+% Licenced as described in the file LICENSE under the root directory of this GIT repository.
+%
+%{
+\input{../latex/blogpost.tex}
+\renewcommand{\basename}{wedgegeneral}
+%\renewcommand{\dirname}{notes/phy1520/}
+\renewcommand{\dirname}{notes/ece1228-electromagnetic-theory/}
+%\newcommand{\dateintitle}{}
+%\newcommand{\keywords}{}
+
+\input{../latex/peeter_prologue_print2.tex}
+
+\usepackage{peeters_layout_exercise}
+\usepackage{peeters_braket}
+\usepackage{peeters_figures}
+\usepackage{siunitx}
+\usepackage{verbatim}
+%\usepackage{mhchem} % \ce{}
+%\usepackage{macros_bm} % \bcM
+%\usepackage{macros_qed} % \qedmarker
+%\usepackage{txfonts} % \ointclockwise
+
+\beginArtNoToc
+
+% part of : https://math.stackexchange.com/questions/4232381/calculating-the-wedge-product-for-2-4d-vectors
+\generatetitle{Wedge product expansion in non-Euclidean spaces.}
+%\chapter{Wedge product expansion in non-Euclidean spaces.}
+%\label{chap:wedgegeneral}
+
+Given a basis for a non-Euclidean N-dimensional vector space \( \setlr{f_\mu} \), and it's reciprocal basis \( \setlr{f^\mu} \) where \( f_\mu \cdot f^\nu = {\delta_\mu}^\nu \), the decomposition of a vector in this space along each of the basis directions has the form (sums implied)
+\begin{equation}\label{eqn:wedgegeneral:20}
+x = \lr{ x \cdot f^\mu } f_\mu.
+\end{equation}
+Observe that \( x \cdot f^\mu \) are the coordinates of the vector \( x \) with respect to the basis \( \setlr{f_\mu} \).  A visualization of such a decomposition with respect to a pair of vectors is illustrated in \cref{fig:decompositionExample2D:decompositionExample2DFig1}.
+\imageFigure{../figures/blogit/decompositionExample2DFig1}{Resolution of a vector with respect to a pair of basis vectors.}{fig:decompositionExample2D:decompositionExample2DFig1}{0.3}
+
+Writing
+\begin{equation}\label{eqn:wedgegeneral:40}
+y = \lr{ y \cdot f^\mu } f_\mu,
+\end{equation}
+let's expand the wedge product \( x \wedge y \) in terms their coordinates for this specific basis.  We have
+\begin{equation}\label{eqn:wedgegeneral:60}
+\begin{aligned}
+x \wedge y
+&=
+\lr{ \lr{ x \cdot f^\mu } f_\mu } \wedge
+\lr{ \lr{ y \cdot f^\nu } f_\nu } \\
+&=
+\lr{ x \cdot f^\mu }
+\lr{ y \cdot f^\nu }
+\lr{
+f_\mu \wedge f_\nu
+} \\
+&=
+\sum_{\mu \ne \nu}
+\lr{ x \cdot f^\mu }
+\lr{ y \cdot f^\nu }
+\lr{
+f_\mu \wedge f_\nu
+} \\
+%&=
+%\lr{
+%\sum_{\mu < \nu}
+%+
+%\sum_{\mu > \nu}
+%}
+%\lr{ x \cdot f^\mu }
+%\lr{ y \cdot f^\nu }
+%\lr{
+%f_\mu \wedge f_\nu
+%} \\
+&=
+\sum_{\mu < \nu}
+\lr{ x \cdot f^\mu }
+\lr{ y \cdot f^\nu }
+\lr{
+f_\mu \wedge f_\nu
+}
++
+\sum_{\nu > \mu}
+\lr{ x \cdot f^\nu }
+\lr{ y \cdot f^\mu }
+\lr{
+f_\nu \wedge f_\mu
+} \\
+&=
+\sum_{\mu < \nu}
+\lr{
+\lr{ x \cdot f^\mu }
+\lr{ y \cdot f^\nu }
+-
+\lr{ y \cdot f^\mu }
+\lr{ x \cdot f^\nu }
+}
+\lr{
+f_\mu \wedge f_\nu
+},
+\end{aligned}
+\end{equation}
+where we have used the fact that \( f_\mu \wedge f_\mu = 0 \), for any \( \mu \), have performed a dummy index swap in the second sum, and finally, used the antisymmetry property \( f_\nu \wedge f_\mu = - f_\mu \wedge f_\nu \) to group terms.  We see that the coordinates of each of the basis bivectors has a determinant structure
+\begin{equation}\label{eqn:wedgegeneral:80}
+   x \wedge y =
+\sum_{\mu < \nu}
+\begin{vmatrix}
+   x \cdot f^\mu  & x \cdot f^\nu  \\
+   y \cdot f^\mu  & y \cdot f^\nu
+\end{vmatrix}
+f_\mu \wedge f_\nu.
+\end{equation}
+We may reduce this sum to its simplest form by introducing an orthonormal ``standard'' basis \( \setlr{e_1, e_2} \) for the subspace containing the span of \( x, y \)  such that \( x \) is colinear with \( e_1 \).  That is
+\begin{equation}\label{eqn:wedgegeneral:100}
+\begin{aligned}
+   x &= \lr{ x \cdot e^1 } e_1 \\
+   y &=
+   \lr{ y \cdot e^1 } e_1 +
+   \lr{ y \cdot e^2 } e_2.
+\end{aligned}
+\end{equation}
+Given that we are allowing the underlying vector space to be non-Euclidean, by ``orthonormal'' here, we mean \( e_\mu \cdot e_\mu = \pm 1\), for \( \mu \in \setlr{1,2} \), and \( e_1 \cdot e_2 = 0 \).  In terms of this basis, the wedge of the two vectors expands to
+\begin{equation}\label{eqn:wedgegeneral:120}
+   x \wedge y =
+\begin{vmatrix}
+   x \cdot e^1  & 0            \\
+   y \cdot e^1  & y \cdot e^2
+\end{vmatrix}
+e_1 \wedge e_2.
+\end{equation}
+We see that such a basis choice ``diagonalizes'' the determinant coefficient of the one remaining wedge product basis bivector, leaving just
+\begin{equation}\label{eqn:wedgegeneral:140}
+   x \wedge y =
+\lr{ x \cdot e^1 }
+\lr{ y \cdot e^2 }
+e_1 \wedge e_2.
+\end{equation}
+If we form a parallelogram by placing \( y \) at the head of \( x \) and then complete a loop back along \( -x \) and \( -y \), as
+illustrated in \cref{fig:wedgeStandardBasis:wedgeStandardBasisFig2}, we see that
+\( x \cdot e^1 \) is the length of the base of the parallelogram, and \( y \cdot e^2 \) is the length of the projection of \( y \) along the perpendicular to \( x \).
+\imageFigure{../figures/blogit/wedgeStandardBasisFig2}{Parallelogram area}{fig:wedgeStandardBasis:wedgeStandardBasisFig2}{0.3}
+
+In the example above the wedge product's numerical coefficient is positive, but if we had computed \( y \wedge x \), as illustrated in \cref{fig:ywedgex:ywedgexFig3}, the base vector is now \( -x \cdot e^1 e_1 \), so
+\begin{equation}\label{eqn:wedgegeneral:160}
+   y \wedge x =
+\lr{ -x \cdot e^1 }
+\lr{ y \cdot e^2 }
+e_1 \wedge e_2
+=
+   x \wedge y,
+\end{equation}
+as required algebraically, so we say that \( x \wedge y \) is a signed area with respect to the orientation of the basic \( \setlr{ e_1, e_2 } \).  In particular, if the wedge is positive, it has the same orientation as the square formed by applying this parallelogram construction recipe to the vectors \( e_1, e_2 \) as illustrated in \cref{fig:e1wedgee2:e1wedgee2Fig4}.
+\imageFigure{../figures/blogit/ywedgexFig3}{\( y \wedge x \).}{fig:ywedgex:ywedgexFig3}{0.3}
+\imageFigure{../figures/blogit/e1wedgee2Fig4}{Unit bivector.}{fig:e1wedgee2:e1wedgee2Fig4}{0.3}
+
+Observe that the wedge product's signed area interpretation is also basis dependent.  For example, had we selected \( f_1 = -e_1, f_2 = e_2 \) as our basis vectors, then the numerical coefficient \( \lr{ x \cdot f^1 } \lr{ y \cdot f^2 } \) would flip sign accordingly, and we would say that \( x \wedge y \) has a negative sign with respect to the bivector \( f_1 \wedge f_2 \).
+%
+%\begin{equation*}
+%\begin{aligned}
+%I \Bk
+%&=
+%\Bi \Bj \Bk \Bk \\
+%&=
+%\Bi \Bj  \\
+%&=
+%\Bi \wedge \Bj.
+%\end{aligned}
+%\end{equation*}
+%
+%
+%\begin{equation*}
+%   \Bx \wedge \By = I \lr{ \Bx \cross \By }.
+%\end{equation*}
+%
+%}
+%\EndArticle
+\EndNoBibArticle

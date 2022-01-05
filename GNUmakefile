@@ -17,6 +17,7 @@ all :: $(GENERATED_PDFS)
 #all :: xtox.pdf
 
 m : McMahonRelativity.pdf
+w : wedgegeneral.pdf
 
 #$(THISBOOK).pdf :: $(wildcard *.tex)
 #$(GENERATED_PDFS) :: $(JUSTBOOKDEPENDENCIES) $(LOCAL_FILES) $(GENERATED_SOURCES) $(COPIED_FILES) $(LOCAL_COPIED_FILES) Bibliography.bib

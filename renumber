@@ -115,3 +115,5 @@
 
 ../latex/bin/lgrep wedgegeneral.tex | tee o ; . ./o
 perl -p -i ../latex/bin/latexRegex.pl wedgegeneral.tex
+../latex/bin/lgrep bivectorFactor.tex | tee o ; . ./o
+perl -p -i ../latex/bin/latexRegex.pl bivectorFactor.tex

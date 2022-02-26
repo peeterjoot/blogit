@@ -78,6 +78,31 @@ For which we find
 \end{equation*}
 Observe that the scale factor here is exactly \( \Ba^2 \).
 
+Another way to do this, for \R{3}, is to take advantage of duality.  In particular, let \( B = \pm I \Bn \), where \( \Bn \) is a normal to the plane.  Then for any vector \( \Be \)
+\begin{equation*}
+\begin{aligned}
+\Ba = \Be \cdot B
+&= \Be \cdot (I \Bn)  \\
+&= \gpgradeone{ \Be I \Bn }  \\
+&= \gpgradeone{ \Be \Bn I }  \\
+&= \gpgradeone{ (\Be \cdot \Bn + \Be \wedge \Bn) I }  \\
+&= \gpgradeone{ \Be \wedge \Bn I }  \\
+&= \gpgradeone{ (\Be \cross \Bn) I^2 }  \\
+&= \Bn \cross \Be.
+\end{aligned}
+\end{equation*}
+Such a vector is perpendicular to the normal (i.e.: lies in the plane).  You can repeat this, computing \( \Bn \cross \Ba \), to find a second vector in the plane, perpendicular to \( \Ba \).
+
+I happened to have written \( B \) above in the dual form \( \Bn = - B I \), or \( B = I \Bn \), which can be seen by multiplication
+\begin{equation*}
+\begin{aligned}
+\Bn & -B I  \\
+    &= -\lr{ a_1 \Be_{23} + a_2 \Be_{31} + a_3 \Be_{12} } \Be_{123} \\
+    &= a_1 \Be_{1} + a_2 \Be_{2} + a_3 \Be_{3},
+\end{aligned}
+\end{equation*}
+so you can pick off the normal coordinates easily.
+
 %}
 \EndArticle
 %\EndNoBibArticle

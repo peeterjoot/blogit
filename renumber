@@ -113,7 +113,10 @@
 #../latex/bin/lgrep whatiswedge.tex | tee o ; . ./o
 #perl -p -i ../latex/bin/latexRegex.pl whatiswedge.tex
 
-../latex/bin/lgrep wedgegeneral.tex | tee o ; . ./o
-perl -p -i ../latex/bin/latexRegex.pl wedgegeneral.tex
-../latex/bin/lgrep bivectorFactor.tex | tee o ; . ./o
-perl -p -i ../latex/bin/latexRegex.pl bivectorFactor.tex
+#../latex/bin/lgrep wedgegeneral.tex | tee o ; . ./o
+#perl -p -i ../latex/bin/latexRegex.pl wedgegeneral.tex
+#../latex/bin/lgrep bivectorFactor.tex | tee o ; . ./o
+#perl -p -i ../latex/bin/latexRegex.pl bivectorFactor.tex
+
+../latex/bin/lgrep dyadicVsGa.tex | tee o ; . ./o
+perl -p -i ../latex/bin/latexRegex.pl dyadicVsGa.tex

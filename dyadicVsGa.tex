@@ -1,0 +1,173 @@
+%
+% Copyright © 2022 Peeter Joot.  All Rights Reserved.
+% Licenced as described in the file LICENSE under the root directory of this GIT repository.
+%
+%{
+\input{../latex/blogpost.tex}
+\renewcommand{\basename}{dyadicVsGa}
+%\renewcommand{\dirname}{notes/phy1520/}
+\renewcommand{\dirname}{notes/ece1228-electromagnetic-theory/}
+%\newcommand{\dateintitle}{}
+%\newcommand{\keywords}{}
+
+\input{../latex/peeter_prologue_print2.tex}
+
+\usepackage{peeters_layout_exercise}
+\usepackage{peeters_braket}
+\usepackage{peeters_figures}
+\usepackage{siunitx}
+\usepackage{verbatim}
+%\usepackage{mhchem} % \ce{}
+%\usepackage{macros_bm} % \bcM
+%\usepackage{macros_qed} % \qedmarker
+%\usepackage{txfonts} % \ointclockwise
+
+\beginArtNoToc
+
+\generatetitle{Vector gradients in dyadic notation and geometric algebra.}
+%\chapter{XXX}
+%\label{chap:dyadicVsGa}
+
+This is an exploration of the dyadic representation of the gradient acting on a vector in \R{3}, and an examination of how that representation corresponds with equivalent structures as expressed using geometric algebra (GA for short.)
+
+\section{GA gradient of a vector.}
+In GA we are free to express the product of the gradient and a vector field by adjacency.  In coordinates (summation over repeated indexes assumed), such a product has the form
+\begin{equation}\label{eqn:dyadicVsGa:20}
+\begin{aligned}
+   \spacegrad \Bv
+   &= \lr{ \Be_i \partial_i } \lr{ v_j \Be_j } \\
+   &= \lr{ \partial_i v_j } \Be_i \Be_j.
+\end{aligned}
+\end{equation}
+In this sum, any terms with \( i = j \) are scalars since \( \Be_i^2 = 1 \), and the remaining terms are bivectors.
+This can be written compactly as
+\begin{dmath}\label{eqn:dyadicVsGa:40}
+   \spacegrad \Bv = \spacegrad \cdot \Bv + \spacegrad \wedge \Bv,
+\end{dmath}
+or for \R{3}
+\begin{equation}\label{eqn:dyadicVsGa:60}
+   \spacegrad \Bv = \spacegrad \cdot \Bv + I \lr{ \spacegrad \cross \Bv},
+\end{equation}
+either of which breaks the gradient into into divergence and curl components.  In \cref{eqn:dyadicVsGa:40} this vector gradient is expressed
+using the bivector valued curl operator \( (\spacegrad \wedge \Bv) \), whereas
+\cref{eqn:dyadicVsGa:60} is expressed using the vector valued dual form of the curl \( (\spacegrad \cross \Bv) \) from convential vector algebra.
+
+It is worth noting that order matters in the GA coordinate expansion of \cref{eqn:dyadicVsGa:20}.  It is not correct to write
+\begin{equation}\label{eqn:dyadicVsGa:80}
+   \spacegrad \Bv
+   = \lr{ \partial_i v_j } \Be_j \Be_i,
+\end{equation}
+which is only true when the curl, \( \spacegrad \wedge \Bv = 0 \), is zero.
+
+\section{Dyadic representation.}
+Given a vector field \( \Bv = \Bv(\Bx) \), the differential of that field can be computed by chain rule
+\begin{equation}\label{eqn:dyadicVsGa:100}
+   d\Bv = \PD{x_i}{\Bv} dx_i = \lr{ d\Bx \cdot \spacegrad} \Bv,
+\end{equation}
+where \( d\Bx = \Be_i dx_i \).  This is a representation invariant form of the differential, where we have a scalar operator \( d\Bx \cdot \spacegrad \) acting on the vector field \( \Bv \).  The matrix representation of this differential can be written as
+\begin{equation}\label{eqn:dyadicVsGa:120}
+   d\Bv = \lr{
+      {\begin{bmatrix}
+      d\Bx
+\end{bmatrix}}^\dagger
+\begin{bmatrix}
+\spacegrad
+\end{bmatrix}
+}
+\begin{bmatrix}
+\Bv
+\end{bmatrix}
+,
+\end{equation}
+where
+we are using the dagger to designate transposition, and each of the terms on the right are the coordinate matrixes of the vectors with respect to the standard basis
+\begin{equation}\label{eqn:dyadicVsGa:140}
+\begin{bmatrix}
+   d\Bx
+\end{bmatrix}
+   =
+\begin{bmatrix}
+   dx_1 \\
+   dx_2 \\
+   dx_3
+\end{bmatrix},\quad
+\begin{bmatrix}
+   \Bv
+\end{bmatrix}
+   =
+\begin{bmatrix}
+   v_1 \\
+   v_2 \\
+   v_3
+\end{bmatrix},\quad % \mbox{and}
+\begin{bmatrix}
+   \spacegrad
+\end{bmatrix}
+   =
+\begin{bmatrix}
+   \partial_1 \\
+   \partial_2 \\
+   \partial_3
+\end{bmatrix}.
+\end{equation}
+
+In \cref{eqn:dyadicVsGa:120} the parens are very important, as the expression is meaningless without them.  With the parens we have a \((1 \times 3)(3 \times 1)\) matrix (i.e. a scalar) multiplied with a \(3\times 1\) matrix.  That becomes ill-formed if we drop the parens since we are left with an incompatible product of a \((3\times1)(3\times1)\) matrix on the right.  The dyadic notation, which introducing a tensor product into the mix, is a mechanism to make sense of the possibility of such a product.  Can we make sense of an expression like \( \spacegrad \Bv \) without the geometric product in our toolbox?
+
+Stepping towards that question, let's examine the coordinate expansion of our vector differential \cref{eqn:dyadicVsGa:100}, which is
+\begin{equation}\label{eqn:dyadicVsGa:160}
+d\Bv = dx_i \lr{ \partial_i v_j } \Be_j.
+\end{equation}
+If we allow a matrix of vectors, this has a block matrix form
+\begin{equation}\label{eqn:dyadicVsGa:180}
+   d\Bv =
+   {\begin{bmatrix}
+   d\Bx
+\end{bmatrix}}^\dagger
+\begin{bmatrix}
+\spacegrad \directproduct \Bv
+\end{bmatrix}
+\begin{bmatrix}
+   \Be_1 \\
+   \Be_2 \\
+   \Be_3
+\end{bmatrix}
+.
+\end{equation}
+Here we introduce the tensor product
+\begin{dmath}\label{eqn:dyadicVsGa:200}
+\spacegrad \directproduct \Bv
+= \partial_i v_j \, \Be_i \directproduct \Be_j,
+\end{dmath}
+and designate the matrix of coordinates \( \partial_i v_j \), a second order tensor, by \(
+\begin{bmatrix}
+\spacegrad \directproduct \Bv
+\end{bmatrix}
+\).
+
+We have succeeded in factoring out a vector gradient.  We can introduce dot product between vectors and a direct product of vectors, by observing that
+\cref{eqn:dyadicVsGa:180} has the structure of a quadradic form, and define
+\begin{equation}\label{eqn:dyadicVsGa:220}
+   \Bx \cdot (\Ba \directproduct \Bb) \equiv
+   {\begin{bmatrix}
+   \Bx
+\end{bmatrix}}^\dagger
+\begin{bmatrix}
+   \Ba \directproduct \Bb
+\end{bmatrix}
+\begin{bmatrix}
+   \Be_1 \\
+   \Be_2 \\
+   \Be_3
+\end{bmatrix},
+\end{equation}
+so that \cref{eqn:dyadicVsGa:180} takes the form
+\begin{equation}\label{eqn:dyadicVsGa:240}
+   d\Bv = d\Bx \cdot \lr{ \spacegrad \directproduct \Bv }.
+\end{equation}
+Such a dot product gives operational meaning to the gradient-vector tensor product.
+
+\section{Symmetrization and antisymmetrization of the vector differential in GA.}
+
+%}
+%\EndArticle
+\EndNoBibArticle

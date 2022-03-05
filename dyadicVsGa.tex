@@ -208,8 +208,9 @@ M \spacegrad N
 where parens have been used to indicate the scope of applicibility of the partials.  In particular, this means that we may write the divergence as a GA symmetric sum
 \begin{equation}\label{eqn:dyadicVsGa:360}
    \spacegrad \cdot \Bv = \inv{2} \lr{
-   \spacegrad \Bv + \Bv \spacegrad }.
+   \spacegrad \Bv + \Bv \spacegrad },
 \end{equation}
+which clearly corresponds to the symmetric term \( \Bd = (1/2) \lr{ \spacegrad \directproduct \Bv + \lr{ \spacegrad \directproduct \Bv }^\dagger } \) from \cref{eqn:dyadicVsGa:260}.
 
 Let's assume that we can write our vector differential in terms of a divergence term isomorphic to the symmetric sum in 
 \cref{eqn:dyadicVsGa:260}, and a ``something else'', \(\BX\).  That is
@@ -229,9 +230,9 @@ is a vector expression to be reduced to something simpler.  That reduction is po
    \Bc \cdot (\Ba \wedge \Bb)
    =
    (\Bc \cdot \Ba) \Bb
-   - (\Bc \cdot \Bb) \Ba.
+   - (\Bc \cdot \Bb) \Ba,
 \end{equation}
-We find
+so we find
 \begin{equation}\label{eqn:dyadicVsGa:440}
    \BX = \spacegrad \cdot \lr{ d\Bx \wedge \Bv }.
 \end{equation}

@@ -172,7 +172,7 @@ Such a dot product gives operational meaning to the gradient-vector tensor produ
 Using the dyadic notation, it's possible to split a vector derivative into symmetric and antisymmetric components with respect to the gradient-vector direct product
 \begin{equation}\label{eqn:dyadicVsGa:260}
 \begin{aligned}
-   d\Bv 
+   d\Bv
    &= d\Bx \cdot
    \lr{
       \inv{2} \lr{ \spacegrad \directproduct \Bv + \lr{ \spacegrad \directproduct \Bv }^\dagger }
@@ -212,7 +212,7 @@ where parens have been used to indicate the scope of applicibility of the partia
 \end{equation}
 which clearly corresponds to the symmetric term \( \Bd = (1/2) \lr{ \spacegrad \directproduct \Bv + \lr{ \spacegrad \directproduct \Bv }^\dagger } \) from \cref{eqn:dyadicVsGa:260}.
 
-Let's assume that we can write our vector differential in terms of a divergence term isomorphic to the symmetric sum in 
+Let's assume that we can write our vector differential in terms of a divergence term isomorphic to the symmetric sum in
 \cref{eqn:dyadicVsGa:260}, and a ``something else'', \(\BX\).  That is
 \begin{equation}\label{eqn:dyadicVsGa:380}
 \begin{aligned}
@@ -237,18 +237,195 @@ so we find
    \BX = \spacegrad \cdot \lr{ d\Bx \wedge \Bv }.
 \end{equation}
 
-We find the following GA split of the vector differential into symmetric and antisymmetric terms
+We find that the vector differential can be split into divergence and non-divergence term as follows
 \begin{equation}\label{eqn:dyadicVsGa:460}
-   \boxed{
    d\Bv
    = (d\Bx \cdot \spacegrad) \Bv
-   = d\Bx (\spacegrad \cdot \Bv) 
+   = d\Bx (\spacegrad \cdot \Bv)
    +
    \spacegrad \cdot \lr{ d\Bx \wedge \Bv }.
-}
 \end{equation}
-Such a split avoids the indeterminant nature of the tensor product, which we only give meaning by introducing the quadratic form based dot product given by
-\cref{eqn:dyadicVsGa:220}.
+There is a problem with this analysis, as pointed out by Brian:
+For a purely incompressible flow, \(\spacegrad \cdot \Bv = 0\), yet, in general, an incompressible flow can have a non-zero deformation tensor!
+
+Also, given the nature of the matrix expansion of the antisymmetric tensor, we should have had a curl term in the mix and we do not.  The conclusion must be that \cref{eqn:dyadicVsGa:460} is a split into divergence and non-divergence terms, but we really wanted a split into curl and non-curl terms.
+
+\section{Symmetrization and antisymmetrization of the vector differential in GA: Take II.}
+Identification of \( \ifrac{1}{2} \lr{ \spacegrad \directproduct \Bv + \lr{ \spacegrad \directproduct \Bv }^\dagger } \) with the divergence was incorrect.
+
+Let's explicitly expand out our symmetric tensor component fully to see what it really yields, without guessing.
+\begin{equation}\label{eqn:dyadicVsGa:480}
+\begin{aligned}
+   d\Bx \cdot
+   \inv{2}
+\lr{ \spacegrad \directproduct \Bv + \lr{ \spacegrad \directproduct \Bv }^\dagger }
+&=
+   d\Bx \cdot
+   \inv{2}
+\lr{
+\begin{bmatrix}
+   \partial_i v_j
+\end{bmatrix}
++
+\begin{bmatrix}
+   \partial_j v_i
+\end{bmatrix}
+} \\
+&=
+dx_i
+   \inv{2}
+\begin{bmatrix}
+   \partial_i v_j +
+   \partial_j v_i
+\end{bmatrix}
+\begin{bmatrix}
+   \Be_1 \\
+   \Be_2 \\
+   \Be_3
+\end{bmatrix}.
+\end{aligned}
+\end{equation}
+The symmetric matrix that represents this direct product tensor is
+\begin{equation}\label{eqn:dyadicVsGa:500}
+   \inv{2}
+\begin{bmatrix}
+   \partial_i v_j +
+   \partial_j v_i
+\end{bmatrix}
+=
+\inv{2}
+\begin{bmatrix}
+   2 \partial_1 v_1 & \partial_1 v_2 + \partial_2 v_1 & \partial_1 v_3 + \partial_3 v_1 \\
+   \partial_2 v_1 + \partial_1 v_2 & 2 \partial_2 v_2 & \partial_2 v_3 + \partial_3 v_2 \\
+   \partial_3 v_1 + \partial_1 v_3 & \partial_3 v_2 + \partial_2 v_3 & \partial_3 v_1 + \partial_1 v_3 \\
+\end{bmatrix}
+.
+\end{equation}
+This certainly isn't isomorphic to the divergence.  Instead, the trace of this matrix is the portion that is isomorphic to the divergence.  The rest is something else.  Let's put the tensors into vector form to understand what they really represent.
+
+For the symmetric part we have
+\begin{equation}\label{eqn:dyadicVsGa:520}
+\begin{aligned}
+   d\Bx \cdot
+   \inv{2}
+\lr{ \spacegrad \directproduct \Bv + \lr{ \spacegrad \directproduct \Bv }^\dagger }
+&=
+dx_i
+   \inv{2}
+\begin{bmatrix}
+   \partial_i v_j +
+   \partial_j v_i
+\end{bmatrix}
+\begin{bmatrix}
+   \Be_1 \\
+   \Be_2 \\
+   \Be_3
+\end{bmatrix} \\
+&=
+\inv{2} \lr{
+   \lr{ d\Bx \cdot \spacegrad } \Bv + \spacegrad \lr{ d\Bx \cdot \Bv }
+},
+\end{aligned}
+\end{equation}
+and, similarily, for the antisymmetric tensor component, we have
+\begin{equation}\label{eqn:dyadicVsGa:540}
+\begin{aligned}
+   d\Bx \cdot
+   \inv{2}
+\lr{ \spacegrad \directproduct \Bv - \lr{ \spacegrad \directproduct \Bv }^\dagger }
+&=
+dx_i
+   \inv{2}
+\begin{bmatrix}
+   \partial_i v_j -
+   \partial_j v_i
+\end{bmatrix}
+\begin{bmatrix}
+   \Be_1 \\
+   \Be_2 \\
+   \Be_3
+\end{bmatrix} \\
+&=
+\inv{2} \lr{
+   \lr{ d\Bx \cdot \spacegrad } \Bv - \spacegrad \lr{ d\Bx \cdot \Bv }
+} \\
+&=
+\inv{2}
+d\Bx \cdot \lr{ \spacegrad \wedge \Bv}.
+\end{aligned}
+\end{equation}
+We find an isomorphism of the antisymmetric term with the curl, but the symmetric term has a divergence component, plus more.
+
+If we want to we can split the symmetric component into it's divergence and non-divergence terms, we get
+\begin{equation}\label{eqn:dyadicVsGa:560}
+\begin{aligned}
+d\Bx \cdot \Bd
+&=
+\inv{2}
+\lr{
+   \lr{ d\Bx \cdot \spacegrad } \Bv + \spacegrad \lr{ d\Bx \cdot \Bv }
+} \\
+&=
+\inv{2}
+\lr{
+   d\Bx \lr{ \spacegrad \cdot \Bv } + \spacegrad \cdot \lr{ d\Bx \wedge \Bv } + \spacegrad \lr{ d\Bx \cdot \Bv }
+} \\
+&=
+\inv{2}
+\lr{
+   d\Bx \lr{ \spacegrad \cdot \Bv } + \gpgradeone{ \spacegrad \lr{ d\Bx \wedge \Bv } + \spacegrad \lr{ d\Bx \cdot \Bv } }
+} \\
+&=
+\inv{2}
+\lr{
+   d\Bx \lr{ \spacegrad \cdot \Bv } + \gpgradeone{ \spacegrad d\Bx\, \Bv }
+},
+\end{aligned}
+\end{equation}
+so for incompressible flow, the GA representation is a single grade one selection
+\begin{equation}\label{eqn:dyadicVsGa:600}
+d\Bx \cdot \Bd = \inv{2} \gpgradeone{ \spacegrad d\Bx\, \Bv }.
+\end{equation}
+It is a little unfortunate that we cannot factor out the \( d\Bx \) term.  We can do that for the
+GA representation of the antisymmetric tensor contribution, which is just
+\begin{equation}\label{eqn:dyadicVsGa:580}
+\BOmega
+=
+\inv{2} \spacegrad \wedge \Bv.
+\end{equation}
+
+In summary, we have
+\begin{equation}\label{eqn:dyadicVsGa:620}
+\begin{aligned}
+   d\Bv
+   &= \lr{ d\Bx \cdot \spacegrad } \Bv \\
+   &= d\Bx (\spacegrad \cdot \Bv)
+   +
+   \spacegrad \cdot \lr{ d\Bx \wedge \Bv } \\
+   &=
+   d\Bx \cdot \lr{ \Bd + \BOmega },
+\end{aligned}
+\end{equation}
+where
+\begin{equation}\label{eqn:dyadicVsGa:640}
+\begin{aligned}
+   d\Bx \cdot \Bd &=
+\inv{2} \lr{
+   \lr{ d\Bx \cdot \spacegrad } \Bv + \spacegrad \lr{ d\Bx \cdot \Bv }
+} \\
+&=
+\inv{2}
+\lr{
+   d\Bx \lr{ \spacegrad \cdot \Bv } + \gpgradeone{ \spacegrad d\Bx\, \Bv }
+}
+\end{aligned},
+\end{equation}
+and
+\begin{equation}\label{eqn:dyadicVsGa:660}
+\BOmega
+=
+\inv{2} \spacegrad \wedge \Bv.
+\end{equation}
 
 %}
 %\EndArticle

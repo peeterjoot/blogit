@@ -394,19 +394,48 @@ GA representation of the antisymmetric tensor contribution, which is just
 \inv{2} \spacegrad \wedge \Bv.
 \end{equation}
 
-In summary, we have
+Let's see what the antisymmetric tensor equivalent looks like in the incompressible case, by subtracting a divergence term
+\begin{dmath}\label{eqn:dyadicVsGa:680}
+   d\Bx \cdot \lr{ \spacegrad \wedge \Bv } - d\Bx \lr{ \spacegrad \cdot \Bv }
+   =
+   \gpgradeone{ d\Bx \lr{ \spacegrad \wedge \Bv } - d\Bx \lr{ \spacegrad \cdot \Bv } }
+   =
+   \gpgradeone{ -d\Bx \lr{ \Bv \wedge \spacegrad } - d\Bx \lr{ \Bv \cdot \spacegrad } }
+   =
+   -\gpgradeone{ d\Bx \Bv \spacegrad },
+\end{dmath}
+so we have
+\begin{equation}\label{eqn:dyadicVsGa:700}
+   d\Bx \cdot \lr{ \spacegrad \wedge \Bv } = d\Bx \lr{ \spacegrad \cdot \Bv } - \gpgradeone{ d\Bx\, \Bv \spacegrad }.
+\end{equation}
+Both the symmetric and antisymmetric tensors have compressible components.
+
+\section{Summary.}
+We found that it was possible to split the vector differential into a divergence and incompressible components, as follows
 \begin{equation}\label{eqn:dyadicVsGa:620}
 \begin{aligned}
    d\Bv
    &= \lr{ d\Bx \cdot \spacegrad } \Bv \\
    &= d\Bx (\spacegrad \cdot \Bv)
    +
-   \spacegrad \cdot \lr{ d\Bx \wedge \Bv } \\
-   &=
-   d\Bx \cdot \lr{ \Bd + \BOmega },
+   \spacegrad \cdot \lr{ d\Bx \wedge \Bv }.
 \end{aligned}
 \end{equation}
-where
+
+With
+\begin{equation}\label{eqn:dyadicVsGa:720}
+\begin{aligned}
+   d\Bv
+   &= d\Bx \cdot
+   \lr{
+      \inv{2} \lr{ \spacegrad \directproduct \Bv + \lr{ \spacegrad \directproduct \Bv }^\dagger }
+      +
+      \inv{2} \lr{ \spacegrad \directproduct \Bv - \lr{ \spacegrad \directproduct \Bv }^\dagger }
+      } \\
+      &= d\Bx \cdot \lr{ \Bd + \BOmega },
+\end{aligned}
+\end{equation}
+we found the following correspondences between the symmetric and antisymmetric tensor product components
 \begin{equation}\label{eqn:dyadicVsGa:640}
 \begin{aligned}
    d\Bx \cdot \Bd &=
@@ -422,9 +451,32 @@ where
 \end{equation}
 and
 \begin{equation}\label{eqn:dyadicVsGa:660}
-\BOmega
-=
-\inv{2} \spacegrad \wedge \Bv.
+\begin{aligned}
+d\Bx \cdot \BOmega
+&=
+\inv{2} d\Bx \cdot \lr{ \spacegrad \wedge \Bv } \\
+&=
+\inv{2} \lr{
+d\Bx \lr{ \spacegrad \cdot \Bv } - \gpgradeone{ d\Bx\, \Bv \spacegrad }
+}.
+\end{aligned}
+\end{equation}
+
+In the incompressible case where \( \spacegrad \cdot \Bv = 0 \), we have
+\begin{equation}\label{eqn:dyadicVsGa:740}
+\begin{aligned}
+    d\Bx \cdot \Bd &= \inv{2} \gpgradeone{ \spacegrad d\Bx\, \Bv } \\
+d\Bx \cdot \BOmega &= -\inv{2} \gpgradeone{ d\Bx\, \Bv \spacegrad },
+\end{aligned}
+\end{equation}
+and
+\begin{equation}\label{eqn:dyadicVsGa:760}
+\begin{aligned}
+   d\Bv
+   &= d\Bx \cdot \lr{ \Bd + \BOmega } \\
+   &= \inv{2} \gpgradeone{ \spacegrad d\Bx\, \Bv - d\Bx\, \Bv \spacegrad } \\
+   &= d\Bx \cdot \lr{ \spacegrad \wedge \Bv }.
+\end{aligned}
 \end{equation}
 
 %}

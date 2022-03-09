@@ -118,5 +118,8 @@
 #../latex/bin/lgrep bivectorFactor.tex | tee o ; . ./o
 #perl -p -i ../latex/bin/latexRegex.pl bivectorFactor.tex
 
-../latex/bin/lgrep dyadicVsGa.tex | tee o ; . ./o
-perl -p -i ../latex/bin/latexRegex.pl dyadicVsGa.tex
+#../latex/bin/lgrep dyadicVsGa.tex | tee o ; . ./o
+#perl -p -i ../latex/bin/latexRegex.pl dyadicVsGa.tex
+
+../latex/bin/lgrep tensorComponents.tex | tee o ; . ./o
+perl -p -i ../latex/bin/latexRegex.pl tensorComponents.tex

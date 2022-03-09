@@ -1,0 +1,182 @@
+<a href="http://peeterjoot.com/archives/math2022/tensorComponents.pdf">[If mathjax doesn't display properly for you, click here for a PDF of this post]</a>
+
+Verifying the GA form for the symmetric and antisymmetric components of the different rate of strain.
+
+We found geometric algebra representations for the symmetric and antisymmetric components for a gradient-vector direct product.  In particular, given
+\begin{equation}\label{eqn:tensorComponents:20}
+d\Bv = d\Bx \cdot \lr{ \spacegrad \otimes \Bv }
+\end{equation}
+we found
+\begin{equation}\label{eqn:tensorComponents:40}
+\begin{aligned}
+   d\Bx \cdot \Bd
+   &=
+\inv{2} d\Bx \cdot \lr{
+\spacegrad \otimes \Bv
++
+\lr{\spacegrad \otimes \Bv }^\dagger
+} \\
+&=
+\inv{2} \lr{
+   d\Bx \lr{ \spacegrad \cdot \Bv }
+   +
+   \gpgradeone{ \spacegrad d\Bx \Bv }
+},
+\end{aligned}
+\end{equation}
+and
+\begin{equation}\label{eqn:tensorComponents:60}
+\begin{aligned}
+   d\Bx \cdot \BOmega
+   &=
+\inv{2} d\Bx \cdot \lr{
+\spacegrad \otimes \Bv
+-
+\lr{\spacegrad \otimes \Bv }^\dagger
+} \\
+&=
+\inv{2} \lr{
+   d\Bx \lr{ \spacegrad \cdot \Bv }
+   -
+   \gpgradeone{ d\Bx \Bv \spacegrad }
+}.
+\end{aligned}
+\end{equation}
+
+Let's expand each of these in coordinates to verify that these are correct.  For the symmetric component, that is
+\begin{equation}\label{eqn:tensorComponents:80}
+\begin{aligned}
+   d\Bx \cdot \Bd
+   &=
+   \inv{2}
+   \lr{
+      dx_i \partial_j v_j \Be_i
+      +
+      \partial_j dx_i v_k \gpgradeone{ \Be_j \Be_i \Be_k }
+   } \\
+   &=
+   \inv{2} dx_i
+   \lr{
+      \partial_j v_j \Be_i
+      +
+      \partial_j v_k \lr{ \delta_{ji} \Be_k + \lr{ \Be_j \wedge \Be_i } \cdot \Be_k }
+   } \\
+   &=
+   \inv{2} dx_i
+   \lr{
+      \partial_j v_j \Be_i
+      +
+      \partial_j v_k \lr{ \delta_{ji} \Be_k + \delta_{ik} \Be_j - \delta_{jk} \Be_i }
+   } \\
+   &=
+   \inv{2} dx_i
+   \lr{
+      \partial_j v_j \Be_i
+      +
+      \partial_i v_k \Be_k
+      +
+      \partial_j v_i \Be_j
+      -
+      \partial_j v_j \Be_i
+   } \\
+   &=
+   \inv{2} dx_i
+   \lr{
+      \partial_i v_k \Be_k
+      +
+      \partial_j v_i \Be_j
+   } \\
+   &=
+   dx_i \inv{2} \lr{ \partial_i v_j + \partial_j v_i } \Be_j.
+\end{aligned}
+\end{equation}
+Sure enough, we that the product contains the matrix element of the symmetric component of \( \spacegrad \otimes \Bv \).
+
+Now let's verify that our GA antisymmetric tensor product representation works out.
+\begin{equation}\label{eqn:tensorComponents:100}
+\begin{aligned}
+   d\Bx \cdot \BOmega
+   &=
+   \inv{2}
+   \lr{
+      dx_i \partial_j v_j \Be_i
+      -
+      dx_i \partial_k v_j \gpgradeone{ \Be_i \Be_j \Be_k }
+   } \\
+   &=
+   \inv{2} dx_i
+   \lr{
+      \partial_j v_j \Be_i
+      -
+      \partial_k v_j
+      \lr{ \delta_{ij} \Be_k + \delta_{jk} \Be_i - \delta_{ik} \Be_j }
+   } \\
+   &=
+   \inv{2} dx_i
+   \lr{
+      \partial_j v_j \Be_i
+      -
+      \partial_k v_i \Be_k
+      -
+      \partial_k v_k \Be_i
+      +
+      \partial_i v_j \Be_j
+   } \\
+   &=
+   \inv{2} dx_i
+   \lr{
+      \partial_i v_j \Be_j
+      -
+      \partial_k v_i \Be_k
+   } \\
+   &=
+   dx_i
+   \inv{2}
+   \lr{
+      \partial_i v_j
+      -
+      \partial_j v_i
+   }
+   \Be_j.
+\end{aligned}
+\end{equation}
+As expected,
+we that this product contains the matrix element of the antisymmetric component of \( \spacegrad \otimes \Bv \).
+
+We also found previously that \( \BOmega \) is just a curl, namely
+\begin{equation}\label{eqn:tensorComponents:120}
+   \BOmega = \inv{2} \lr{ \spacegrad \wedge \Bv } = \inv{2} \lr{ \partial_i v_j } \Be_i \wedge \Be_j,
+\end{equation}
+which directly encodes the antisymmetric component of \( \spacegrad \otimes \Bv \).  We can also see that by fully expanding \( d\Bx \cdot \BOmega \), which gives
+\begin{equation}\label{eqn:tensorComponents:140}
+\begin{aligned}
+   d\Bx \cdot \BOmega
+   &=
+   dx_i \inv{2} \lr{ \partial_j v_k }
+   \Be_i \cdot \lr{ \Be_j \wedge \Be_k } \\
+   &=
+   dx_i \inv{2} \lr{ \partial_j v_k }
+   \lr{
+      \delta_{ij} \Be_k
+      -
+      \delta_{ik} \Be_j
+   } \\
+   &=
+   dx_i \inv{2}
+   \lr{
+   \lr{ \partial_i v_k } \Be_k
+      -
+   \lr{ \partial_j v_i }
+      \Be_j
+   } \\
+   &=
+   dx_i \inv{2}
+   \lr{
+      \partial_i v_j - \partial_j v_i
+   }
+   \Be_j,
+\end{aligned}
+\end{equation}
+as expected.
+
+[mathjax]

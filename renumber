@@ -123,3 +123,5 @@
 
 ../latex/bin/lgrep tensorComponents.tex | tee o ; . ./o
 perl -p -i ../latex/bin/latexRegex.pl tensorComponents.tex
+../latex/bin/lgrep lineintersection.tex | tee o ; . ./o
+perl -p -i ../latex/bin/latexRegex.pl lineintersection.tex

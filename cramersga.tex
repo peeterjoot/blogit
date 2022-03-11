@@ -73,7 +73,7 @@ we can restate the problem as
 \begin{dmath}\label{eqn:cramersga:40}
 \Ba x + \Bb y = \Bc.
 \end{dmath}
-Should we wish to solve for \( x \), we just wedge with \( \By \), and to solve for \( y \) we just wedge with \( \Bx \)
+Should we wish to solve for \( x \), we just wedge with \( \Bb \), and to solve for \( y \) we just wedge with \( \Ba \)
 \begin{equation}\label{eqn:cramersga:60}
 \begin{aligned}
 \Ba \wedge \Bb x + \cancel{\Bb\wedge \Bb}  y &= \Bc \wedge \Bb \\
@@ -95,6 +95,23 @@ y &= \frac{ \begin{vmatrix} \Ba & \Bc \end{vmatrix} }{ \begin{vmatrix}\Ba & \Bb 
 \end{aligned}
 \end{equation}
 
+% discord chat:
+%\section{foo}
+%
+%$$\mathbf{a} x + \mathbf{b} y = \mathbf{c}.$$
+%
+%Should we wish to solve for $ x $, we just wedge with $ \mathbf{y} $, and to solve for $ y $ we just wedge with $ \mathbf{x} $
+%
+%If a solution exists, then we get:
+%
+%$$\begin{aligned}   x &= \frac{ \mathbf{c} \wedge \mathbf{b} }{ \mathbf{a} \wedge \mathbf{b} } \\    y &= \frac{ \mathbf{a} \wedge \mathbf{c} }{ \mathbf{a} \wedge \mathbf{b} },\end{aligned}$$
+%
+%but this ratio of wedge products can be expanded as the respective determinants, yielding the 2D case of Cramer's rule:
+%
+%$$\begin{aligned} x &= \frac{ \begin{vmatrix} c_1 & b_1 \\ c_2 & b_2 \end{vmatrix} \mathbf{e}_1 \mathbf{e}_2 }{ \begin{vmatrix} a_1 & b_1 \\ a_2 & b_2 \end{vmatrix} \mathbf{e}_1 \mathbf{e}_2 } \\ y &= \frac{ \begin{vmatrix} a_1 & c_1 \\ a_2 & c_2 \end{vmatrix} \mathbf{e}_1 \mathbf{e}_2 }{ \begin{vmatrix} a_1 & b_1 \\ a_2 & b_2 \end{vmatrix} \mathbf{e}_1 \mathbf{e}_2 }\end{aligned}$$
+%
+%The same idea follows for higher dimensional cases.
+%
 %}
 %\EndArticle
 \EndNoBibArticle

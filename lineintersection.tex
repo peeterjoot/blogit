@@ -1,0 +1,53 @@
+%
+% Copyright © 2022 Peeter Joot.  All Rights Reserved.
+% Licenced as described in the file LICENSE under the root directory of this GIT repository.
+%
+%{
+\input{../latex/blogpost.tex}
+\renewcommand{\basename}{lineintersection}
+%\renewcommand{\dirname}{notes/phy1520/}
+\renewcommand{\dirname}{notes/ece1228-electromagnetic-theory/}
+%\newcommand{\dateintitle}{}
+%\newcommand{\keywords}{}
+
+\input{../latex/peeter_prologue_print2.tex}
+
+\usepackage{peeters_layout_exercise}
+\usepackage{peeters_braket}
+\usepackage{peeters_figures}
+\usepackage{siunitx}
+\usepackage{verbatim}
+%\usepackage{mhchem} % \ce{}
+%\usepackage{macros_bm} % \bcM
+%\usepackage{macros_qed} % \qedmarker
+%\usepackage{txfonts} % \ointclockwise
+
+\beginArtNoToc
+
+\generatetitle{XXX}
+%\chapter{XXX}
+
+Given two lines:
+\begin{equation*}
+\begin{aligned}
+\Br_1 &= \Bp + \alpha \Bu \\
+\Br_2 &= \Bq + \beta \Bv \\
+\end{aligned}
+\end{equation*}
+Intersection is:
+\begin{equation*}
+\Bq + \beta \Bv = \Bp + \alpha \Bu,
+\end{equation*}
+and wedging with \(\Bv\) (say), we have
+\begin{equation*}
+\Bq \wedge \Bv = \Bp \wedge \Bv + \alpha \Bu \wedge \Bv,
+\end{equation*}
+so if the solution exists
+\begin{equation*}
+\alpha = \frac{(\Bq - \Bp) \wedge \Bv}{\Bu \wedge \Bv},
+\end{equation*}
+which determines the point of intersection (from \(\Br_1\)).
+
+%}
+\EndArticle
+%\EndNoBibArticle

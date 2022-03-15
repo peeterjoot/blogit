@@ -121,7 +121,12 @@
 #../latex/bin/lgrep dyadicVsGa.tex | tee o ; . ./o
 #perl -p -i ../latex/bin/latexRegex.pl dyadicVsGa.tex
 
-../latex/bin/lgrep tensorComponents.tex | tee o ; . ./o
-perl -p -i ../latex/bin/latexRegex.pl tensorComponents.tex
-../latex/bin/lgrep lineintersection.tex | tee o ; . ./o
-perl -p -i ../latex/bin/latexRegex.pl lineintersection.tex
+#../latex/bin/lgrep tensorComponents.tex | tee o ; . ./o
+#perl -p -i ../latex/bin/latexRegex.pl tensorComponents.tex
+#../latex/bin/lgrep lineintersection.tex | tee o ; . ./o
+#perl -p -i ../latex/bin/latexRegex.pl lineintersection.tex
+#../latex/bin/lgrep pauliMatrix.tex.tex | tee o ; . ./o
+#perl -p -i ../latex/bin/latexRegex.pl pauliMatrix.tex.tex
+
+../latex/bin/lgrep greens.tex | tee o ; . ./o
+perl -p -i ../latex/bin/latexRegex.pl greens.tex

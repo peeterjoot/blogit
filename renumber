@@ -128,5 +128,8 @@
 #../latex/bin/lgrep pauliMatrix.tex.tex | tee o ; . ./o
 #perl -p -i ../latex/bin/latexRegex.pl pauliMatrix.tex.tex
 
-../latex/bin/lgrep greens.tex | tee o ; . ./o
-perl -p -i ../latex/bin/latexRegex.pl greens.tex
+#../latex/bin/lgrep greens.tex | tee o ; . ./o
+#perl -p -i ../latex/bin/latexRegex.pl greens.tex
+
+../latex/bin/lgrep formsvsga.tex | tee o ; . ./o
+perl -p -i ../latex/bin/latexRegex.pl formsvsga.tex

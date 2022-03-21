@@ -1,0 +1,388 @@
+%
+% Copyright © 2022 Peeter Joot.  All Rights Reserved.
+% Licenced as described in the file LICENSE under the root directory of this GIT repository.
+%
+%{
+\input{../latex/blogpost.tex}
+\renewcommand{\basename}{formsvsga}
+%\renewcommand{\dirname}{notes/phy1520/}
+\renewcommand{\dirname}{notes/ece1228-electromagnetic-theory/}
+%\newcommand{\dateintitle}{}
+%\newcommand{\keywords}{}
+
+\input{../latex/peeter_prologue_print2.tex}
+
+\usepackage{peeters_layout_exercise}
+\usepackage{peeters_braket}
+\usepackage{peeters_figures}
+\usepackage{siunitx}
+\usepackage{verbatim}
+%\usepackage{mhchem} % \ce{}
+%\usepackage{macros_bm} % \bcM
+%\usepackage{macros_qed} % \qedmarker
+%\usepackage{txfonts} % \ointclockwise
+
+\beginArtNoToc
+
+\generatetitle{Different electromagnetic formalisms}
+%\chapter{Differnent electromagnetic formalisms}
+%\label{chap:formsvsga}
+
+This is a pretty tough question to answer without subjective bias.  To arm the reader to weigh the pros and cons, I will attempt a summary of the relationships between some of the formalisms that are available for the student, focusing on the representations of Maxwell's equation (or equations, as applicable.)  This will include two geometric algebra representations (one using a Euclidean spatial basis, and another using a relativisitic four-vector basis), as well as the tensor formalism (used extensively for electromagnitism applications where their relativisitic nature is important), and a relativisitic differential forms represention.
+
+Other formalisms that will not be detailed here include Euclidean differential forms (mentioned in \citep{flanders1989dfa}), quaternion representations (\citep{jack2003physical}), and geometric algebra ``paravector'' representations that presents special relativity using a Euclidean four-vector basis and special complex-number like operators (\citep{baylis2004electrodynamics}, \citep{chappell2014geometric}).
+
+\subsection{Vector form.}
+I'll restrict the discussion to linear isotropic media, for which Maxwell's equations have the form
+\begin{equation*}
+\begin{aligned}
+   \spacegrad \cross \BE &= - \PD{t}{\BB} \\
+   \spacegrad \cross \BB &= \mu \BJ + \epsilon \mu \PD{t}{\BE} \\
+   \spacegrad \cdot \BE  &= \inv{\epsilon} \rho \\
+   \spacegrad \cdot \BB  &= 0.
+\end{aligned}
+\end{equation*}
+It will be useful to cast our derivative operators and fields in a dimensionally consistent way.  With \( \eta = \sqrt{\mu/\epsilon} \), and \( c = 1/\sqrt{\mu\epsilon} \), we have
+\begin{equation*}
+\begin{aligned}
+   \spacegrad \cross \BE &= - \inv{c} \PD{t}{(c \BB)} \\
+   \spacegrad \cross ( c\BB ) &= \eta \BJ + \inv{c} \PD{t}{\BE} \\
+   \spacegrad \cdot \BE  &= \eta c \rho \\
+   \spacegrad \cdot (c \BB)  &= 0.
+\end{aligned}
+\end{equation*}
+
+\subsection{Geometric algebra (Euclidean spatial basis.)}
+Using the identity \( \Ba \Bb = \Ba \cdot \Bb + I \lr{ \Ba \cross \Bb } \), where \( I = \Be_1 \Be_2 \Be_3 \) we can merge the cross and dot products for each of the fields above, and form a gradient equation for each of \( \BE, \BB \)
+\begin{equation*}
+\begin{aligned}
+   \spacegrad \BE &= \eta c \rho - \inv{c} I \PD{t}{( c \BB)} \\
+   I \spacegrad ( c\BB ) &= -\eta \BJ - \inv{c} \PD{t}{\BE}.
+\end{aligned}
+\end{equation*}
+Adding these and regrouping slightly yields Maxwell's equation (singular) in multivector form
+\begin{equation*}
+   \lr{ \spacegrad + \inv{c} \PD{t}{} } \lr{ \BE + I c \BB } = \eta \lr{ c \rho - \BJ }.
+\end{equation*}
+The electric and magnetic fields are grouped into single variable with vector and bivector components
+\begin{equation*}
+   F = \BE + I c \BB,
+\end{equation*}
+and the sources are grouped into a single multivector current with scalar and vector components
+\begin{equation*}
+   J = \eta \lr{ c \rho - \BJ }.
+\end{equation*}
+This pretties up Maxwell's equation slightly, which we can now write as just
+\begin{equation*}
+   \lr{ \spacegrad + \inv{c} \PD{t}{} } F = J.
+\end{equation*}
+Note that one can recover each of the original Maxwell's equations by grade selection, as there is a scalar, vector, bivector, and trivector grade of this equation, each of which corresponds to one of the original vector Maxwell's equations.
+
+Demonstrating how to work with Maxwell's equation in this form is beyond the scope of this answer.  Interested readers are referred to \citep{pjootGAEE}.  This is not an unbiased recommendation (i.e.: it is my book), it is, however, available for free in pdf form at http://peeterjoot.com/writing/geometric-algebra-for-electrical-engineers/.
+
+\subsection{Geometric algebra (STA, the Spacetime algebra.)}
+Maxwell's equation in the form above used a Euclidean spatial basis.  In Maxwell's equation The space and time derivative operator \( \spacegrad + (1/c) \partial/\partial_t \) strongly hints at the relativisitic structure, where time and space and aspects of a single story, for the theory of electromagnetism.  We can call this out using an explicitly relativistic notation, but there is unfortunately some additional baggage required.
+
+We utilize the Dirac basis \( \setlr{ \gamma_0, \gamma_1, \gamma_2, \gamma_3 } \).  These four-vector basis elements are commonly used in relativisitic quantum theory, where they have various matrix representations, but always satisify the conditions
+\begin{equation*}
+   \inv{2} \lr{ \gamma_\mu \gamma_\nu + \gamma_\nu \gamma_\mu } = g_{\mu\nu}.
+\end{equation*}
+Specifically,
+\begin{equation*}
+   \gamma_0 \gamma_0 = 1 = -\gamma_k \gamma_k, \forall k \in {1,2,3}
+\end{equation*}
+and
+\begin{equation*}
+   \gamma_\mu \gamma_\nu = - \gamma_\nu \gamma_\mu \forall \mu \ne \nu,
+\end{equation*}
+where following relativisitic conventions, we use Greek indices to represent values \( 0, 1,2,3 \), and Latin indices for \( 1,2,3 \).
+
+In geometric algebra terms, this is nothing more than the specification of the dot product, and a statement that perpendicular vectors anticommute.  We are free to use the Dirac basis, as specified above, without caring about implementation specific issues, like any of the possible matrix representations.  A geometric algebra constructed in this fashion using the Dirac basis is referred to as SpaceTime Algebra (STA).  I will attempt a compact overview of how it can be used to formulate Maxwell's equations.
+
+It is useful to define a reciprocal basis \( \setlr{ \gamma^0, \gamma^1, \gamma^2, \gamma^3 } \), satisfying \( \gamma^\mu \cdot \gamma_\nu = {\delta^\mu}_\nu \), or \( \gamma^0 = \gamma_0, \gamma^k = \gamma_k \).  A four vector in STA then has the structure
+\begin{equation*}
+   x = x_\mu \gamma^\mu = x^\mu \gamma_\mu,
+\end{equation*}
+where \( x_\mu = x \cdot \gamma_\mu \) and \( x^\mu = x \cdot \gamma^\mu \).
+
+If an observer has wordline \( c t \gamma_0 \), we say that this observer is stationary in the \( \gamma_0 \) frame, and can utilize dot and wedge products with \( \gamma_0 \) to determine the timelike and spacelike components of a four vector with respect to that frame.  For example, given a four vector velocity
+\begin{equation*}
+   v = \gamma \frac{dx^0}{dt} \gamma_0 + \gamma \frac{dx^k}{dt} \gamma_k
+\end{equation*}
+the timelike component of this four vector from a stationary observer frame is
+\begin{equation*}
+v \cdot \gamma_0 = \gamma \frac{dx^0}{dt},
+\end{equation*}
+and the spatial component of this four vector from a stationary observer frame is
+\begin{equation*}
+v \wedge \gamma_0 = \gamma \frac{dx^0}{dt} \gamma_k \gamma_0.
+\end{equation*}
+We write this as
+\begin{equation*}
+   v = \lr{ v_0 + \Bv } \gamma_0,
+\end{equation*}
+where our spatial vector \( \Bv \) is represented with a bivector basis \( \setlr{ \gamma_k \gamma_0 } \).  The student of QFT may recognize such bivectors as a representation of the ``Pauli'' basis elements, which all square to one, just like the \R{3} Euclidean basis elements \( \setlr{ \Be_1, \Be_2, \Be_3 } \).
+
+The take away of all of this is that we represent spatial quatites in STA using the bivectors representing unit space-time planes.  Let's see how such a \( \Be_k = \gamma_k \gamma_0 \) representation transforms each of the terms in Maxwell's equations \( \spacegrad + \PD{x_0}{} \), \( F = \BE + I c \BB \), and \( J = \eta\lr{ c \rho - \BJ } \).
+
+We start with the spatial pseudoscalar
+\begin{equation*}
+   I = \Be_1 \Be_2 \Be_3
+   =
+   (\gamma_1 \gamma_0) (\gamma_2 \gamma_0)(\gamma_3 \gamma_0),
+\end{equation*}
+can be reduced to
+\begin{equation*}
+   I =
+   \gamma_0 \gamma_1 \gamma_2 \gamma_3,
+\end{equation*}
+which now has the form of an STA unit pseudoscalar, now a product of the four basis elements.  Unlike the \R{3} pseudoscalar with commutes with all spatial vectors, it is worth noting that the STA pseudoscalar anticommutes with all four-vectors.
+
+Plugging this into the Maxwell field, we have
+\begin{equation*}
+\begin{aligned}
+F
+&= \gamma_k \gamma_0 E^k + c \gamma_0 \gamma_1 \gamma_2 \gamma_3 \gamma_k \gamma_0 B^k \\
+&= \gamma_k \gamma_0 E^k + c \gamma_1 \gamma_2 \gamma_3 \gamma_k B^k.
+\end{aligned}
+\end{equation*}
+The electric field component of \( F \) (really the electric field component of \( F \) with respect to the stationary observer frame \( \gamma_0 \)), is a space-time bivector, whereas the magnetic contribution to the total field is an STA spatial bivector.  Specifically
+\begin{equation*}
+   F = \gamma_k \gamma_0 E^k - c \lr{
+      \gamma_2 \gamma_3 B^1
+      +
+      \gamma_3 \gamma_1 B^2
+      +
+      \gamma_1 \gamma_2 B^3
+   }.
+\end{equation*}
+We have one component for each of the six STA unit bivectors.  We can write this out in component form as
+\begin{equation*}
+   F = \inv{2} \gamma_\mu \wedge \gamma_\nu F^{\mu\nu} = \sum_{\mu < \nu} \gamma_\mu \wedge \gamma_\nu F^{\mu\nu}.
+\end{equation*}
+where \( F^{\mu\nu} \) is a completely antisymetric tensor.
+The reader can verify that the electric and magnetic field components of this bivector valued field can be picked off with
+\begin{equation*}
+\begin{aligned}
+   \BE &= \inv{2} \lr{ F - \gamma_0 F \gamma_0 } \\
+   I c \BB &= \inv{2} \lr{ F + \gamma_0 F \gamma_0 },
+\end{aligned}
+\end{equation*}
+which again highlights the fact that the electric and magnetic fields are observer dependent quantities.
+
+In STA, we write Maxwell's equation as
+\begin{equation*}
+   \gamma_0 \lr{ \spacegrad + \PD{x_0}{} } F = \gamma_0 \eta \lr{ c \rho - \BJ }.
+\end{equation*}
+Let's perform those multiplications to see why this is desirable.  We will see that the multivector space-time derivative and the multivector current are both reduced to particularly simple four-vectors forms.  For the derivatives, we have
+\begin{equation*}
+\begin{aligned}
+   \gamma_0 \lr{ \gamma_k \gamma_0 \PD{x^k}{} + \PD{x_0}{} }
+   &=
+   -\gamma_k \PD{x^k}{} + \PD{x_0}{} \gamma_0 \\
+   &=
+   \gamma^k \PD{x^k}{} + \PD{x_0}{} \gamma^0 \\
+   &= \gamma^\mu \partial_\mu.
+\end{aligned}
+\end{equation*}
+where \( \partial_\mu \equiv \PDi{x^\mu}{} \).  We call this the spacetime gradient and designate it with a non-boldface nabla symbol \( \grad \).
+The multivector current is transformed similarly
+\begin{equation*}
+\begin{aligned}
+   \gamma_0 \eta \lr{ c \rho - \BJ }
+   =
+   \gamma_0 \eta \lr{ c \rho - \gamma_k \gamma_0 J^k }
+   =
+   \eta \lr{ \gamma_0 c \rho + \gamma_k J^k }
+\end{aligned}
+\end{equation*}
+We write this as a four vector
+\begin{equation*}
+   J = J^\mu \gamma_\mu,
+\end{equation*}
+where \( J^\mu = (\eta c\rho, \eta J^k) \).  This leaves us with a spectacularily compact representation of Maxwell's equation
+\begin{equation*}
+   \grad F = J.
+\end{equation*}
+
+There is considerable literature available for STA, examples of which include \citep{doran2003gap} and \citep{hestenes1966space}.  A good supplementary reference for the basics of special relativity, such as \citep{landau1980classical} is also recommended.
+\subsection{Tensor formalism.}
+The STA representation of Maxwell's equation is readily converted into tensor form.  To do so, note that
+\begin{equation*}
+   \grad F
+   =
+   \grad \cdot F
+   +
+   \grad \cdot F
+   = J,
+\end{equation*}
+represents two equations, a trivector equation
+\begin{equation*}
+   \grad \wedge F = 0,
+\end{equation*}
+and a vector equation
+\begin{equation*}
+   \grad \cdot F = J.
+\end{equation*}
+
+The tensor forms of both follow from expansion in coordinates.  First, for the trivector equation, we have
+\begin{equation*}
+\begin{aligned}
+   0
+   &= \grad \wedge F \\
+   &= \lr{ \gamma^\nu \partial_\nu } \wedge \inv{2} \gamma^\alpha \wedge \gamma^\sigma F_{\alpha\sigma} \\
+   &= \inv{2}
+   \lr{ \gamma^\nu \wedge \gamma^\alpha \wedge \gamma^\sigma }
+   \partial_\nu F_{\alpha\sigma}.
+\end{aligned}
+\end{equation*}
+Wedging once more with \( \gamma^\mu \) gives us a grade-4 equation
+\begin{equation*}
+\begin{aligned}
+0
+   &=
+\inv{2}
+   \lr{ \gamma^\mu \gamma^\nu \wedge \gamma^\alpha \wedge \gamma^\sigma } \partial_\nu F_{\alpha\sigma}
+   &=
+   -\frac{I}{2} \epsilon^{\mu\nu\alpha\sigma} \partial_\nu F_{\alpha\sigma},
+\end{aligned}
+\end{equation*}
+where \( \epsilon^{\mu\nu\alpha\sigma} \) is the completely antisymmetric Levi-Civita symbol.
+We may write this in scalar form as
+\begin{equation*}
+   \epsilon^{\mu\nu\alpha\sigma} \partial_\nu F_{\alpha\sigma} = 0,
+\end{equation*}
+This includes both of the non-source Maxwell's equations \( \spacegrad \cdot B = 0 \), and \( \spacegrad \cross \BE = - \PD{t}{\BB} \) as special cases.
+
+To expand the sources term of Maxwell's equation in coordinates, first note that
+\begin{equation*}
+\begin{aligned}
+   \grad \cdot F
+   &=
+   \inv{2} \gamma^\mu \partial_\mu \cdot \lr{ \gamma_\alpha \wedge \gamma_\beta } F^{\alpha\beta} \\
+   &=
+   \inv{2} \gamma^\mu \cdot \lr{ \gamma_\alpha \wedge \gamma_\beta } \partial_\mu F^{\alpha\beta} \\
+   &=
+   \inv{2} \lr{ \gamma_\beta {\delta^\mu}_\alpha - \gamma_\alpha {\delta^\mu}_\beta } \partial_\mu F^{\alpha\beta} \\
+   &=
+   \inv{2} \lr{
+      \gamma_\beta \partial_\mu F^{\mu\beta}
+      -
+      \gamma_\alpha \partial_\mu F^{\alpha\mu}
+   } \\
+   &=
+   \gamma_\beta \partial_\mu F^{\mu\beta}.
+\end{aligned}
+\end{equation*}
+Now dotting both sides of \( \grad \cdot F = J \) with \( \gamma^\nu \), gives us
+\begin{equation*}
+\begin{aligned}
+J^\nu
+&=
+(\gamma^\nu \cdot \gamma_\beta) \partial_\mu F^{\mu\beta} \\
+&=
+{\delta^\nu}_\beta \partial_\mu F^{\mu\beta} \\
+&=
+\partial_\mu F^{\mu\nu}.
+\end{aligned}
+\end{equation*}
+This encorporates Gauss's law \( \spacegrad \cdot \BE = \rho/\epsilon \), and the Maxwell-Faraday equation \( \spacegrad \cross \BB = \mu \BJ + \epsilon \mu \PD{t}{\BE} \) into a single relationship, and we may write all of Maxwell' equations together as
+\begin{equation*}
+\begin{aligned}
+   \partial_\mu F^{\mu\nu} &= J^\nu \\
+   \epsilon^{\mu\nu\alpha\sigma} \partial_\nu F_{\alpha\sigma} &= 0.
+\end{aligned}
+\end{equation*}
+\subsection{Differential forms (relativisitic.)}
+The STA formalism may also be readily translated to the language of differential forms.  For our field
+\begin{equation*}
+   F = \inv{2} \gamma^\mu \wedge \gamma^\nu F_{\mu\nu},
+\end{equation*}
+we have only to replace the \( \gamma^\alpha \)'s with differential elements \( dx^\alpha\)'s, so the 2-form for the field is
+\begin{equation*}
+   F = \inv{2} dx^\mu \wedge dx^\nu F_{\mu\nu}.
+\end{equation*}
+The differential forms operator \( d \) is isomorphic to \( \grad \wedge \), so the first of Maxwell's equations in its differential forms representation is just
+\begin{equation*}
+   d F = 0.
+\end{equation*}
+To deal with our \( \grad \cdot F = J \) contribution to Maxwell's equation, we have a bit of a problem, since we want three forms, but have vectors.  We can solve that my rescaling Maxwell's equation by the pseudoscalar, and then selecting just the grade three component
+\begin{equation*}
+\begin{aligned}
+I J
+&= \gpgradethree{ I \grad F } \\
+&= \gpgradethree{ \grad (-I F) } \\
+&= \grad \wedge (-I F).
+\end{aligned}
+\end{equation*}
+We want differential forms representations for both \( I J \) and the bivector \( -I F \).  First
+\begin{equation*}
+\begin{aligned}
+I J
+&=
+\gamma_0 \gamma_1 \gamma_2 \gamma_3 \gamma^\mu J_\mu \\
+&=
+\gamma_0 \gamma_1 \gamma_2 J_3
+-
+\gamma_0 \gamma_1 \gamma_3 J_2
++
+\gamma_0 \gamma_2 \gamma_3 J_1
+-
+\gamma_1 \gamma_2 \gamma_3 J_0 \\
+&=
+\gamma^0 \gamma^1 \gamma^2 J_3
+-
+\gamma^0 \gamma^1 \gamma^3 J_2
++
+\gamma^0 \gamma^2 \gamma^3 J_1
++
+\gamma^1 \gamma^2 \gamma^3 J_0,
+\end{aligned}
+\end{equation*}
+and for the dual field, we have
+\begin{equation*}
+\begin{aligned}
+   -I F
+   =
+   -I \lr{ \BE + I c \BB }
+   =
+   c \BB - I \BE
+   =
+   c \gamma_k \gamma_0 B^k + \gamma_1 \gamma_2 E^3 + \gamma_2 \gamma_3 E^1 + \gamma_3 \gamma_1 E^3,
+\end{aligned}
+\end{equation*}
+so we may write
+\begin{equation*}
+   d(*F) = J,
+\end{equation*}
+where
+\begin{equation*}
+   *F =
+   -c dx^k dx^0 B^k + dx^1 dx^2 E^3 + dx^2 dx^3 E^1 + dx^3 dx^1 E^3,
+\end{equation*}
+and
+\begin{equation*}
+   J =
+   dx^1 dx^2 dx^3 \rho/\epsilon
+   -
+   \eta
+   dx^0 \lr{
+      dx^1 dx^2 J^3
+      +
+      dx^2 dx^3 J^1
+      +
+      dx^3 dx^1 J^2
+   }.
+\end{equation*}
+Here I've used \(*F\) as a symbol representing the dual.  In GA the dual of a multivector \( M \) is \( \pm I M \), where the sign convention varies.  In differential forms the duality operation is performed with \(*\), which is called the Hodge-star operator, which has a specific meaning.  I don't know if the sign conventions for Hodge-star operations varies in the differential forms literature, but what I've written above happens to match \citep{flanders1989dfa}.
+
+\subsection{Summary}
+I've attempted to demonstrate how a number of Maxwell's equations representations are related.  This included the connections between the vector, geometric algebra, tensor, and differential forms representations.  In both tensor and differential forms, Maxwell's equations are both represented as two equations, one for the source terms and one for the non-source terms.  
+
+Some considerations for picking what to use include:
+Both of the geometric algebra representations above, merge Maxwell's equation into a single equation.  One argument for the utility of such an equation is that the spacetime gradient is an invertable operator, allowing for a direct Green's function representation of the solution without first resorting to solving the system with potentials.  
+Use of potentials is somewhat ugly in the multivector form of Maxwell's equation, but very slick in the STA formalism (where the field is represented in terms of a four-potential \(A\) as just \( F = \grad \wedge A \).  
+The STA, tensor, and differential forms representations of Maxwell's equations above all carry some relativistic baggage.  That toolbox comes with a learning curve, but also provides significant power.
+
+%}
+\EndArticle

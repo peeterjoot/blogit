@@ -1,0 +1,156 @@
+%
+% Copyright © 2022 Peeter Joot.  All Rights Reserved.
+% Licenced as described in the file LICENSE under the root directory of this GIT repository.
+%
+%{
+\input{../latex/blogpost.tex}
+\renewcommand{\basename}{gaugeFreedomAndPotentialsMaxwell}
+%\renewcommand{\dirname}{notes/phy1520/}
+\renewcommand{\dirname}{notes/ece1228-electromagnetic-theory/}
+%\newcommand{\dateintitle}{}
+%\newcommand{\keywords}{}
+
+\input{../latex/peeter_prologue_print2.tex}
+
+\usepackage{peeters_layout_exercise}
+\usepackage{peeters_braket}
+\usepackage{peeters_figures}
+\usepackage{siunitx}
+\usepackage{verbatim}
+%\usepackage{mhchem} % \ce{}
+%\usepackage{macros_bm} % \bcM
+\usepackage{macros_qed} % \qedmarker
+%\usepackage{txfonts} % \ointclockwise
+
+\beginArtNoToc
+
+\generatetitle{Gauge freedom and four-potentials in the STA form of Maxwell's equation.}
+%\chapter{Gauge freedom and four-potentials in the STA form of Maxwell's equation.}
+%\label{chap:gaugeFreedomAndPotentialsMaxwell}
+
+\section{Motivation.}
+In a recent video on the tensor structure of Maxwell's equation, I made a little side trip down the road of potential solutions and gauge transformations.
+
+The initial point of that side trip was just to point out that the Faraday tensor can be expressed in terms of four potential coordinates
+\begin{equation}\label{eqn:gaugeFreedomAndPotentialsMaxwell:20}
+   F_{\mu\nu} = \partial_\mu A_\nu - \partial_\nu A_\mu,
+\end{equation}
+but before I got there I tried to motivate this.  In this post, I'll outline the same ideas.
+\section{STA representation of Maxwell's equation.}
+We'd gone through the work to show that Maxwell's equation has the STA form
+\begin{equation}\label{eqn:gaugeFreedomAndPotentialsMaxwell:40}
+   \grad F = J.
+\end{equation}
+This is a deceptively compact representation, as it requires all of the following definitions
+\begin{equation}\label{eqn:gaugeFreedomAndPotentialsMaxwell:60}
+   \grad = \gamma^\mu \partial_\mu = \gamma_\mu \partial^\mu,
+\end{equation}
+\begin{equation}\label{eqn:gaugeFreedomAndPotentialsMaxwell:80}
+   \partial_\mu = \PD{x^\mu}{},
+\end{equation}
+\begin{equation}\label{eqn:gaugeFreedomAndPotentialsMaxwell:100}
+   \gamma^\mu \cdot \gamma_\nu = {\delta^\mu}_\nu,
+\end{equation}
+\begin{equation}\label{eqn:gaugeFreedomAndPotentialsMaxwell:160}
+   \gamma_\mu \cdot \gamma_\nu = g_{\mu\nu},
+\end{equation}
+\begin{equation}\label{eqn:gaugeFreedomAndPotentialsMaxwell:120}
+\begin{aligned}
+   F
+   &= \BE + I c \BB  \\
+   %&= E^k \gamma_k \gamma_0 - c \lr{ B^3 \gamma_1 \gamma_3 + B^2 \gamma_3 \gamma_1 + B^1 \gamma_2 \gamma_3 } \\
+   &= -E^k \gamma^k \gamma^0 - \inv{2} c B^r \gamma^s \gamma^t \epsilon^{r s t} \\
+   &= \inv{2} \gamma^{\mu} \wedge \gamma^{\nu} F_{\mu\nu},
+\end{aligned}
+\end{equation}
+and
+\begin{equation}\label{eqn:gaugeFreedomAndPotentialsMaxwell:140}
+\begin{aligned}
+   J &= \gamma_\mu J^\mu  \\
+   J^\mu &= \frac{\rho}{\epsilon} \gamma_0 + \eta (\BJ \cdot \Be_k).
+\end{aligned}
+\end{equation}
+
+\section{Four-potentials in the STA representation.}
+In order to find the tensor form of Maxwell's equation (starting from the STA representation), we first split the equation into two, since
+\begin{equation}\label{eqn:gaugeFreedomAndPotentialsMaxwell:180}
+\grad F = \grad \cdot F + \grad \wedge F = J.
+\end{equation}
+The dot product is a four-vector, the wedge term is a trivector, and the current is a four-vector, so we have one grade-1 equation and one grade-3 equation
+\begin{equation}\label{eqn:gaugeFreedomAndPotentialsMaxwell:200}
+\begin{aligned}
+   \grad \cdot F &= J \\
+   \grad \wedge F &= 0.
+\end{aligned}
+\end{equation}
+The potential comes into the mix, since the curl equation above means that \( F \) necessarily can be written as the curl of some four-vector
+\begin{equation}\label{eqn:gaugeFreedomAndPotentialsMaxwell:220}
+   F = \grad \wedge A.
+\end{equation}
+One justification of this is that \( a \wedge (a \wedge b) = 0 \), for any vectors \( a, b \).  Expanding such a double-curl out in coordinates is also worthwhile
+\begin{equation}\label{eqn:gaugeFreedomAndPotentialsMaxwell:240}
+\begin{aligned}
+   \grad \wedge \lr{ \grad \wedge A }
+   &=
+   \lr{ \gamma_\mu \partial^\mu }
+   \wedge
+   \lr{ \gamma_\nu \partial^\nu }
+   \wedge
+   A \\
+   &=
+   \gamma^\mu \wedge \gamma^\nu \wedge \lr{ \partial_\mu \partial_\nu A }.
+\end{aligned}
+\end{equation}
+Provided we have equality of mixed partials, this is a product of an antisymmetric factor and a symmetric factor, so the full sum is zero.
+
+Things get interesting if one imposes a \( \grad \cdot A = \partial_\mu A^\mu = 0 \) constraint on the potential.  If we do so, then
+\begin{equation}\label{eqn:gaugeFreedomAndPotentialsMaxwell:260}
+   \grad F = \grad^2 A = J.
+\end{equation}
+Observe that \( \grad^2 \) is the wave equation operator (often written as \( \delSquaredBox \).)  That is
+\begin{equation}\label{eqn:gaugeFreedomAndPotentialsMaxwell:280}
+\begin{aligned}
+   \grad^2
+   &= \partial^\mu \partial_\mu \\
+   &= \partial_0 \partial_0
+   - \partial_1 \partial_1
+   - \partial_2 \partial_2
+   - \partial_3 \partial_3 \\
+   &= \inv{c^2} \PDSq{t}{}  - \spacegrad^2.
+\end{aligned}
+\end{equation}
+This is also an operator for which the Green's function is well known (\citep{jackson1975cew}), which means that we can immediately write the solutions
+\begin{equation}\label{eqn:gaugeFreedomAndPotentialsMaxwell:300}
+   A(x) = \int G(x,x') J(x') d^4 x'.
+\end{equation}
+However, we have no a-priori guarantee that such a solution has zero divergence.  We can fix that by making a gauge transformation of the form
+\begin{equation}\label{eqn:gaugeFreedomAndPotentialsMaxwell:320}
+   A \rightarrow A - \grad \chi.
+\end{equation}
+Observe that such a transformation does not change the electromagnetic field
+\begin{equation}\label{eqn:gaugeFreedomAndPotentialsMaxwell:340}
+   F = \grad \wedge A \rightarrow \grad \wedge \lr{ A - \grad \chi },
+\end{equation}
+since
+\begin{equation}\label{eqn:gaugeFreedomAndPotentialsMaxwell:360}
+   \grad \wedge \grad \chi = 0,
+\end{equation}
+(also by equality of mixed partials.)  Suppose that \( \tilde{A} \) is a solution of \( \grad^2 \tilde{A} = J \), and \( \tilde{A} = A + \grad \chi \), where \( A \) is a zero divergence field to be determined, then
+\begin{equation}\label{eqn:gaugeFreedomAndPotentialsMaxwell:380}
+   \grad \cdot \tilde{A}
+   =
+   \grad \cdot A + \grad^2 \chi,
+\end{equation}
+or
+\begin{equation}\label{eqn:gaugeFreedomAndPotentialsMaxwell:400}
+\grad^2 \chi = \grad \cdot \tilde{A}.
+\end{equation}
+So if \( \tilde{A} \) does not have zero divergence, we can find a \( \chi \)
+\begin{equation}\label{eqn:gaugeFreedomAndPotentialsMaxwell:420}
+   \chi(x) = \int G(x,x') \grad' \cdot \tilde{A}(x') d^4 x',
+\end{equation}
+so that \( A = \tilde{A} - \grad \chi \) does have zero divergence.
+
+%}
+\EndArticle
+%\EndNoBibArticle

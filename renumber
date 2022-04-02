@@ -134,5 +134,8 @@
 #../latex/bin/lgrep formsvsga.tex | tee o ; . ./o
 #perl -p -i ../latex/bin/latexRegex.pl formsvsga.tex
 
-../latex/bin/lgrep gaugeFreedomAndPotentialsMaxwell.tex | tee o ; . ./o
-perl -p -i ../latex/bin/latexRegex.pl gaugeFreedomAndPotentialsMaxwell.tex
+#../latex/bin/lgrep gaugeFreedomAndPotentialsMaxwell.tex | tee o ; . ./o
+#perl -p -i ../latex/bin/latexRegex.pl gaugeFreedomAndPotentialsMaxwell.tex
+
+../latex/bin/lgrep reciprocalAndTangentspace.tex | tee o ; . ./o
+perl -p -i ../latex/bin/latexRegex.pl reciprocalAndTangentspace.tex

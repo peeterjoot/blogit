@@ -1,0 +1,171 @@
+%
+% Copyright © 2022 Peeter Joot.  All Rights Reserved.
+% Licenced as described in the file LICENSE under the root directory of this GIT repository.
+%
+%{
+\input{../latex/blogpost.tex}
+\renewcommand{\basename}{reciprocalAndTangentspace}
+%\renewcommand{\dirname}{notes/phy1520/}
+\renewcommand{\dirname}{notes/ece1228-electromagnetic-theory/}
+%\newcommand{\dateintitle}{}
+%\newcommand{\keywords}{}
+
+\input{../latex/peeter_prologue_print2.tex}
+
+\usepackage{peeters_layout_exercise}
+\usepackage{peeters_braket}
+\usepackage{peeters_figures}
+\usepackage{siunitx}
+\usepackage{verbatim}
+%\usepackage{mhchem} % \ce{}
+%\usepackage{macros_bm} % \bcM
+%\usepackage{macros_qed} % \qedmarker
+%\usepackage{txfonts} % \ointclockwise
+
+\beginArtNoToc
+
+\generatetitle{Curvilinear coordinates and reciprocal frames.}
+%\chapter{XXX}
+%\label{chap:reciprocalAndTangentspace}
+
+\section{Curvilear coordinates.}
+Let's start by considering a two parameter surface specified by \( \Bx = \Bx(a,b) \).  This defines a surface, for which the partials are both tangent to at each point of the surface.  We write
+\begin{equation}\label{eqn:reciprocalAndTangentspace:20}
+\begin{aligned}
+   \Bx_a &= \PD{a}{\Bx} \\
+   \Bx_b &= \PD{b}{\Bx}.
+\end{aligned}
+\end{equation}
+We call \( \Span{ \Bx_a, \Bx_b } \) the tangent space of the surface at the parameter values \( a,b \).  One important role of the curvilinear vectors \( \Bx_a, \Bx_b \) is to describe the area element for the subspace
+\begin{dmath}\label{eqn:reciprocalAndTangentspace:40}
+   d\Bx_a \wedge d\Bx_b
+   =
+   \lr{ \Bx_a \wedge \Bx_b } da db.
+\end{dmath}
+Observe that for a two dimensional space, this has the form
+\begin{equation}\label{eqn:reciprocalAndTangentspace:60}
+d\Bx_a \wedge d\Bx_b =
+\begin{vmatrix}
+   \Bx_a & \Bx_b
+\end{vmatrix} \Bi\, da db,
+\end{equation}
+where \( \Bi \) is the pseudoscalar for the space.  The reader may be familiar with the determinant here, which is the Jacobian encountered in a change of variable context.
+We may generalize this idea of tangent space to more variables an obvious fashion.  For example, given
+\begin{equation}\label{eqn:reciprocalAndTangentspace:80}
+   \Bx = \Bx(a^1, a^2, \cdots, a^M),
+\end{equation}
+we write
+\begin{equation}\label{eqn:reciprocalAndTangentspace:100}
+   \Bx_{a^i} = \PD{a^i}{\Bx}.
+\end{equation}
+
+Let's look at some examples, starting with circular coordinates in a plane
+\begin{equation}\label{eqn:reciprocalAndTangentspace:120}
+   \Bx(r, \theta) = r \Be_1 e^{i\theta},
+\end{equation}
+where \( i = \Be_1 \Be_2 \).  Our tangent space vectors are
+\begin{equation}\label{eqn:reciprocalAndTangentspace:140}
+   \Bx_r = \Be_1 e^{i\theta},
+\end{equation}
+and
+\begin{dmath}\label{eqn:reciprocalAndTangentspace:160}
+   \Bx_\theta
+   = r \Be_1 i e^{i\theta}
+   = r \Be_2 e^{i\theta}.
+\end{dmath}
+The area element in this case is
+\begin{dmath}\label{eqn:reciprocalAndTangentspace:180}
+   d\Bx_r \wedge d\Bx_\theta
+   =
+   \Bx_r \wedge \Bx_\theta dr d\theta
+   =
+   \gpgradetwo{
+   \Be_1 e^{i\theta}
+r \Be_2 e^{i\theta} }
+dr d\theta
+   = i r dr d\theta.
+\end{dmath}
+Integration over a circular region gives
+\begin{dmath}\label{eqn:reciprocalAndTangentspace:200}
+   \int_{r = 0}^R \int_{\theta=0}^{2\pi} d\Bx_r \wedge d\Bx_\theta
+   =
+   i \int_{r = 0}^R
+   r dr
+   \int_{\theta=0}^{2\pi}
+   d\theta
+   =
+   i \frac{R^2}{2} 2 \pi
+   = i \pi R^2.
+\end{dmath}
+This is the area of the circle, scaled by the unit bivector that represents the orientation of the plane in this two dimensional subspace.
+
+As another example, consider a spherical parameterization, as illustrated in
+\cref{fig:sphericalCoordinates:sphericalCoordinatesFig2}.
+\begin{dmath}\label{eqn:reciprocalAndTangentspace:220}
+   \Bx(r, \theta, \phi) = r \Be_1 e^{i\phi} \sin\theta + r \Be_3 \cos\theta.
+\end{dmath}
+\imageFigure{../figures/blogit/sphericalCoordinatesFig2}{Spherical coordinates.}{fig:sphericalCoordinates:sphericalCoordinatesFig2}{0.3}
+Our curvilinear vectors in this case are
+\begin{dmath}\label{eqn:reciprocalAndTangentspace:240}
+   \Bx_r = \Be_1 e^{i\phi} \sin\theta + \Be_3 \cos\theta,
+\end{dmath}
+\begin{dmath}\label{eqn:reciprocalAndTangentspace:260}
+   \Bx_\theta = r \Be_1 e^{i\phi} \cos\theta - r \Be_3 \sin\theta,
+\end{dmath}
+\begin{dmath}\label{eqn:reciprocalAndTangentspace:280}
+   \Bx_\phi = r \Be_2 e^{i\phi} \sin\theta.
+\end{dmath}
+In this case our (pseudoscalar) volume element is
+\begin{dmath}\label{eqn:reciprocalAndTangentspace:300}
+   d\Bx_r  \wedge
+   d\Bx_\theta \wedge
+   d\Bx_\phi
+   =
+   r^2 \sin\theta \gpgradethree{
+      \lr{ \Be_1 e^{i\phi} \sin\theta + \Be_3 \cos\theta }
+      \lr{ \Be_1 e^{i\phi} \cos\theta - \Be_3 \sin\theta }
+   \Be_2 e^{i\phi}
+}
+\, dr d\theta d\phi
+   =
+   r^2 \sin\theta \gpgradethree{
+      \lr{ \Be_1 e^{i\phi} \sin\theta + \Be_3 \cos\theta }
+      \lr{ \Be_1 \cos\theta - \Be_3 e^{-i\phi} \sin\theta }
+   \Be_2
+   } \, dr d\theta d\phi
+   =
+   r^2 \sin\theta \gpgradethree{
+      \lr{ -\Be_1 \Be_3 \sin^2\theta
+      +
+      \Be_3 \Be_1 \cos^2\theta
+   }
+   \Be_2
+   } \, dr d\theta d\phi
+   =
+   \Be_3 \Be_1 \Be_2 r^2 \sin\theta
+   \, dr d\theta d\phi
+   =
+   I r^2 \sin \theta
+   \, dr d\theta d\phi.
+\end{dmath}
+This is just the standard spherical volume element, but scaled with the pseudoscalar.  We would find \( \int_{r=0}^R \int_{\phi=0}^{2 \pi} \int_{\theta=0}^\pi d\Bx_r  \wedge d\Bx_\theta \wedge d\Bx_\phi = I (4/3) \pi R^3 \), the volume of the sphere, again weighted by the pseudoscalar for the space.
+
+\section{Reciprocal frame vectors.}
+Any vector that is in that tangent plane \( \Span{ \Bx_a, \Bx_b } \) has the form
+\begin{equation}\label{eqn:reciprocalAndTangentspace:320}
+   \By = y^a \Bx_a + y^b \Bx_b.
+\end{equation}
+This is illustrated in \cref{fig:tangentPlane:tangentPlaneFig1}.
+\imageFigure{../figures/blogit/tangentPlaneFig1}{Tangent plane for two parameter surface.}{fig:tangentPlane:tangentPlaneFig1}{0.3}
+
+We call \( y^a, y^b \) the coordinates of the vector \( \By \) with respect to the basis for the tangent space \( \Span{ \Bx_a, \Bx_b } \).  The computation of these coordinates is facilitated by finding the reciprocal frame \( \Bx^a, \Bx_b \) for the tangent space that satisfies both \( \Bx^a, \Bx^b \in \Span {\Bx_a, \Bx_b } \), and
+\begin{equation}\label{eqn:reciprocalAndTangentspace:340}
+   \Bx^\mu \cdot \Bx_\nu = {\delta^\mu}_\nu,
+\end{equation}
+for all \( \mu \in \setlr{a,b} \).
+
+Demonstrating by example
+
+%}
+%\EndArticle
+\EndNoBibArticle

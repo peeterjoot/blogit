@@ -37,11 +37,11 @@ Let's start by considering a two parameter surface specified by \( \Bx = \Bx(a,b
 \end{aligned}
 \end{equation}
 We call \( \Span{ \Bx_a, \Bx_b } \) the tangent space of the surface at the parameter values \( a,b \).  One important role of the curvilinear vectors \( \Bx_a, \Bx_b \) is to describe the area element for the subspace
-\begin{dmath}\label{eqn:reciprocalAndTangentspace:40}
+\begin{equation}\label{eqn:reciprocalAndTangentspace:40}
    d\Bx_a \wedge d\Bx_b
    =
    \lr{ \Bx_a \wedge \Bx_b } da db.
-\end{dmath}
+\end{equation}
 Observe that for a two dimensional space, this has the form
 \begin{equation}\label{eqn:reciprocalAndTangentspace:60}
 d\Bx_a \wedge d\Bx_b =
@@ -150,8 +150,38 @@ In this case our (pseudoscalar) volume element is
 \end{dmath}
 This is just the standard spherical volume element, but scaled with the pseudoscalar.  We would find \( \int_{r=0}^R \int_{\phi=0}^{2 \pi} \int_{\theta=0}^\pi d\Bx_r  \wedge d\Bx_\theta \wedge d\Bx_\phi = I (4/3) \pi R^3 \), the volume of the sphere, again weighted by the pseudoscalar for the space.
 
+As a final example, let's pick the coordinates associated a relativistic boost and scale parameterization in spacetime, illustrated in
+\cref{fig:boost:boostFig3}, with \( r = 1 \).
+\imageFigure{../figures/blogit/boostFig3}{Boost worldline.}{fig:boost:boostFig3}{0.3}
+\begin{dmath}\label{eqn:reciprocalAndTangentspace:360}
+x = r \gamma_0 e^{\gamma_0 \gamma_1 \alpha}.
+\end{dmath}
+For this surface we have
+\begin{equation}\label{eqn:reciprocalAndTangentspace:380}
+\begin{aligned}
+   x_r &= \gamma_0 e^{\gamma_0 \gamma_1 \alpha} \\
+   x_\alpha &= r \gamma_1 e^{\gamma_0 \gamma_1 \alpha}.
+\end{aligned}
+\end{equation}
+In this case the volume element is
+\begin{dmath}\label{eqn:reciprocalAndTangentspace:400}
+   dx_r \wedge dx_\alpha
+   = r dr d\alpha \gpgradetwo{
+      \gamma_0 e^{\gamma_{01} \alpha}
+      \gamma_1 e^{\gamma_{01} \alpha}
+   }
+   = r dr d\alpha \gpgradetwo{
+      \gamma_0
+      \gamma_1
+      e^{-\gamma_{01} \alpha}
+      e^{\gamma_{01} \alpha}
+   }
+   = \gamma_{01} r dr d\alpha.
+\end{dmath}
+This is cosmetically similar to the circular area element above, also weighted by a pseudoscalar, but in this case, \( \alpha \) is not restricted to a bounded interval.  We also see that the basic ideas here work for both Euclidean and non-Euclidean vector spaces.
+
 \section{Reciprocal frame vectors.}
-Any vector that is in that tangent plane \( \Span{ \Bx_a, \Bx_b } \) has the form
+Returning to a two dimensional surface, with tangent plane \( \Span{ \Bx_a, \Bx_b } \), any vector in that plane has the form
 \begin{equation}\label{eqn:reciprocalAndTangentspace:320}
    \By = y^a \Bx_a + y^b \Bx_b.
 \end{equation}
@@ -164,7 +194,37 @@ We call \( y^a, y^b \) the coordinates of the vector \( \By \) with respect to t
 \end{equation}
 for all \( \mu \in \setlr{a,b} \).
 
-Demonstrating by example
+We may demonstrate that this works by example, dotting with each of our reciprocal frame vectors
+\begin{dmath}\label{eqn:reciprocalAndTangentspace:420}
+   y \cdot \Bx^a
+   =
+   \lr{ y^a \Bx_a + y^b \Bx_b } \cdot \Bx^a
+   =
+   y^a \lr{ \Bx_a \cdot \Bx^a } + y^b \lr{\Bx_b \cdot \Bx^a }
+   = y^a,
+\end{dmath}
+and similarly
+\begin{dmath}\label{eqn:reciprocalAndTangentspace:440}
+   y \cdot \Bx^b
+   =
+   \lr{ y^a \Bx_a + y^b \Bx_b } \cdot \Bx^b
+   =
+   y^a \lr{ \Bx_a \cdot \Bx^b } + y^b \lr{\Bx_b \cdot \Bx^b }
+   = y^b.
+\end{dmath}
+Provided we can find these reciprocal vectors, they provide the projections along each of the respective directions, allowing us to write the coordinate decomposition as
+\begin{dmath}\label{eqn:reciprocalAndTangentspace:460}
+   \By =
+   \lr{ \By \cdot \Bx^a } \Bx_a
+   +
+   \lr{ \By \cdot \Bx^b } \Bx_b.
+\end{dmath}
+This is a generalization of
+\begin{dmath}\label{eqn:reciprocalAndTangentspace:480}
+   \Bx = \sum_i \lr{ \Bx \cdot \Be_i } \Be_i,
+\end{dmath}
+a sum of projections, that we have for Euclidean orthonormal bases.  The reciprocal frame allows us to find the coordinates with respect to a oblique (non-orthonormal) basis,
+also not imposing a requirement for the space to be Euclidean.
 
 %}
 %\EndArticle

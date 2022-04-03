@@ -188,6 +188,7 @@ Returning to a two dimensional surface, with tangent plane \( \Span{ \Bx_a, \Bx_
 This is illustrated in \cref{fig:tangentPlane:tangentPlaneFig1}.
 \imageFigure{../figures/blogit/tangentPlaneFig1}{Tangent plane for two parameter surface.}{fig:tangentPlane:tangentPlaneFig1}{0.3}
 
+\subsection{Coordinates.}
 We call \( y^a, y^b \) the coordinates of the vector \( \By \) with respect to the basis for the tangent space \( \Span{ \Bx_a, \Bx_b } \).  The computation of these coordinates is facilitated by finding the reciprocal frame \( \Bx^a, \Bx_b \) for the tangent space that satisfies both \( \Bx^a, \Bx^b \in \Span {\Bx_a, \Bx_b } \), and
 \begin{equation}\label{eqn:reciprocalAndTangentspace:340}
    \Bx^\mu \cdot \Bx_\nu = {\delta^\mu}_\nu,
@@ -195,36 +196,152 @@ We call \( y^a, y^b \) the coordinates of the vector \( \By \) with respect to t
 for all \( \mu \in \setlr{a,b} \).
 
 We may demonstrate that this works by example, dotting with each of our reciprocal frame vectors
-\begin{dmath}\label{eqn:reciprocalAndTangentspace:420}
+\begin{equation}\label{eqn:reciprocalAndTangentspace:420}
+\begin{aligned}
    y \cdot \Bx^a
-   =
-   \lr{ y^a \Bx_a + y^b \Bx_b } \cdot \Bx^a
-   =
-   y^a \lr{ \Bx_a \cdot \Bx^a } + y^b \lr{\Bx_b \cdot \Bx^a }
-   = y^a,
-\end{dmath}
+   &=
+   \lr{ y^a \Bx_a + y^b \Bx_b } \cdot \Bx^a \\
+   &=
+   y^a \lr{ \Bx_a \cdot \Bx^a } + y^b \lr{\Bx_b \cdot \Bx^a } \\
+   &= y^a,
+\end{aligned}
+\end{equation}
 and similarly
-\begin{dmath}\label{eqn:reciprocalAndTangentspace:440}
+\begin{equation}\label{eqn:reciprocalAndTangentspace:440}
+\begin{aligned}
    y \cdot \Bx^b
-   =
-   \lr{ y^a \Bx_a + y^b \Bx_b } \cdot \Bx^b
-   =
-   y^a \lr{ \Bx_a \cdot \Bx^b } + y^b \lr{\Bx_b \cdot \Bx^b }
-   = y^b.
-\end{dmath}
-Provided we can find these reciprocal vectors, they provide the projections along each of the respective directions, allowing us to write the coordinate decomposition as
-\begin{dmath}\label{eqn:reciprocalAndTangentspace:460}
+   &=
+   \lr{ y^a \Bx_a + y^b \Bx_b } \cdot \Bx^b \\
+   &=
+   y^a \lr{ \Bx_a \cdot \Bx^b } + y^b \lr{\Bx_b \cdot \Bx^b } \\
+   &= y^b.
+\end{aligned}
+\end{equation}
+Provided we can find these reciprocal vectors, they provide the projections along each of the respective directions, allowing us to formulate the coordinate decomposition with respect to either the curvilinear or the reciprocal basis
+\begin{equation}\label{eqn:reciprocalAndTangentspace:460}
    \By =
    \lr{ \By \cdot \Bx^a } \Bx_a
    +
-   \lr{ \By \cdot \Bx^b } \Bx_b.
-\end{dmath}
+   \lr{ \By \cdot \Bx^b } \Bx_b
+   =
+   \lr{ \By \cdot \Bx_a } \Bx^a
+   +
+   \lr{ \By \cdot \Bx_b } \Bx^b.
+\end{equation}
 This is a generalization of
-\begin{dmath}\label{eqn:reciprocalAndTangentspace:480}
+\begin{equation}\label{eqn:reciprocalAndTangentspace:480}
    \Bx = \sum_i \lr{ \Bx \cdot \Be_i } \Be_i,
-\end{dmath}
+\end{equation}
 a sum of projections, that we have for Euclidean orthonormal bases.  The reciprocal frame allows us to find the coordinates with respect to a oblique (non-orthonormal) basis,
 also not imposing a requirement for the space to be Euclidean.
+
+\subsection{Orthogonal curvilinear coordinates.}
+When our tangent plane vectors are orthogonal, computation of the reciprocal frame just requires scaling.  That scaling, perhaps not suprisingly, given the name reciprocal, just requires a vector inverse.  For our two parameter case, that is just
+\begin{equation}\label{eqn:reciprocalAndTangentspace:500}
+   \Bx^a = \inv{\Bx_a} = \frac{\Bx_a}{\Bx_a \cdot \Bx_a}
+   , \quad
+   \Bx^b = \inv{\Bx_b} = \frac{\Bx_b}{\Bx_b \cdot \Bx_b}.
+\end{equation}
+The reader can readily verify that
+\( \Bx^a \cdot \Bx_a = \Bx^b \cdot \Bx_b = 1 \), and
+\( \Bx^a \cdot \Bx_b = \Bx^b \cdot \Bx_a = 0 \).
+
+As an example, using the circular frame considered above, where we had
+\begin{equation}\label{eqn:reciprocalAndTangentspace:520}
+\begin{aligned}
+   \Bx_r &= \Be_1 e^{i\theta} \\
+   \Bx_\theta &= r \Be_2 e^{i\theta},
+\end{aligned}
+\end{equation}
+the reciprocals are just
+\begin{equation}\label{eqn:reciprocalAndTangentspace:540}
+\begin{aligned}
+   \Bx^r &= \Be_1 e^{i\theta} \\
+\Bx^\theta &= \inv{r} \Be_2 e^{i\theta}.
+\end{aligned}
+\end{equation}
+In this specific case, the reader can also readily verify that
+\( \Bx^r \cdot \Bx_r = \Bx^\theta \cdot \Bx_\theta = 1 \), and
+\( \Bx^r \cdot \Bx_\theta = \Bx^\theta \cdot \Bx_r = 0 \).
+
+Similarly, for the spherical frame basis (\cref{eqn:reciprocalAndTangentspace:240}, ...), we have
+\begin{equation}\label{eqn:reciprocalAndTangentspace:560}
+   \Bx_r^2 = \Abs{e^{i\phi} \sin\theta}^2 + \cos^2\theta = 1,
+\end{equation}
+\begin{equation}\label{eqn:reciprocalAndTangentspace:580}
+   \Bx_\theta^2 = r^2 \lr{ \Abs{e^{i\phi} \cos\theta}^2 + \sin^2\theta } = r^2,
+\end{equation}
+and
+\begin{equation}\label{eqn:reciprocalAndTangentspace:600}
+   \Bx_\phi^2 = r^2 \sin^2\theta,
+\end{equation}
+so the spherical reciprocals are just
+\begin{equation}\label{eqn:reciprocalAndTangentspace:620}
+   \Bx^r = \Be_1 e^{i\phi} \sin\theta + \Be_3 \cos\theta,
+\end{equation}
+\begin{equation}\label{eqn:reciprocalAndTangentspace:640}
+   \Bx^\theta = \inv{r} \lr{ \Be_1 e^{i\phi} \cos\theta - \Be_3 \sin\theta},
+\end{equation}
+\begin{equation}\label{eqn:reciprocalAndTangentspace:660}
+   \Bx^\phi = \inv{r \sin\theta} \Be_2 e^{i\phi}.
+\end{equation}
+
+Using straight inversion to compute the reciprocal frame vectors even works for non-Euclidean spaces.  Consider the following example, using the relativisitic (Dirac) basis
+\begin{equation}\label{eqn:reciprocalAndTangentspace:680}
+   x(a,b) = a \lr{ \gamma_1 + \gamma_2 } + b \gamma_3,
+\end{equation}
+for which we have
+\begin{equation}\label{eqn:reciprocalAndTangentspace:700}
+   x_a = \gamma_1 + \gamma_2,
+\end{equation}
+and
+\begin{equation}\label{eqn:reciprocalAndTangentspace:720}
+   x_b = \gamma_3.
+\end{equation}
+We have to be a bit more careful to compute the squares for this mixed metric space, but if we do that, we find
+\begin{equation}\label{eqn:reciprocalAndTangentspace:740}
+   x_a^2 =
+   \gamma_1^2 + \gamma_2^2
+= -2,
+\end{equation}
+and
+\begin{equation}\label{eqn:reciprocalAndTangentspace:760}
+   x_b^2 = -1,
+\end{equation}
+so
+\begin{equation}\label{eqn:reciprocalAndTangentspace:780}
+   x^a = -\inv{2} \lr{ \gamma_1 + \gamma_2} ,
+\end{equation}
+and
+\begin{equation}\label{eqn:reciprocalAndTangentspace:800}
+   x^b = -\gamma_3.
+\end{equation}
+However, other than the fact that our vectors may square to either positive or negative values, the reciprocals are still trivial to calculate.
+
+This example also serves to point out the importance of the span constraint \( x^a, x^b \in \Span \setlr{ x_a, x_b } \).  For example, suppose we altered one of the reciprocal frames with a vector component that is orthogonal to either of the original \( x_a, x_b \) vectors, such as
+\begin{equation}\label{eqn:reciprocalAndTangentspace:820}
+   x^b = -\gamma_3 + 2 \gamma_0.
+\end{equation}
+We still have \( x^a \cdot x_a = x^b \cdot x_b = 1 \), and \( x^a \cdot x_b = x^b \cdot x_a = 0 \), but can no longer write \( y = \lr{ y \cdot x_a } x^a + \lr{ y \cdot x_b } x^b \) for any vector \( y \in \Span \setlr{ x_a, x_b } \), since this would now introduce a contribution in space that no longer lies in the tangent plane.
+
+Another gotcha to consider for non-Euclidean spaces is that we will need some other way to compute the reciprocals if we have lightlike vectors (with zero square) as in the following parameterization
+\begin{equation}\label{eqn:reciprocalAndTangentspace:840}
+   x(a,b) =
+   a \lr{ \gamma_0 + \gamma_1 } +
+   b \lr{ \gamma_0 - \gamma_1 }.
+\end{equation}
+Here both of the tangent space vectors
+\begin{equation}\label{eqn:reciprocalAndTangentspace:860}
+\begin{aligned}
+   x_a &= \gamma_0 + \gamma_1 \\
+   x_b &= \gamma_0 - \gamma_1,
+\end{aligned}
+\end{equation}
+are lightlike.  This basis spans the \(ct,x\) spacetime plane (\(\Span \setlr{ \gamma_0, \gamma_1 } \)), so we can reach any points on that plane.  Clearly it must be possible to find the coordinates of vectors on that plane with respect to this basis, but we will have to figure out how to do so.  We also do not know how to find the coordinates of vectors that lie in the tangent planes with curvilinear basis vectors that are not-orthogonal.
+
+\subsection{Reciprocal frame for non-orthogonal coordinates.}
+Now let's figure out how to compute the reciprocal vectors for the more general case where the tangent space vectors are not orthogonal.
+Doing so for a two parameter surface will be sufficient, as the generalization to higher degree surfaces will be clear.
 
 %}
 %\EndArticle

@@ -343,6 +343,226 @@ are lightlike.  This basis spans the \(ct,x\) spacetime plane (\(\Span \setlr{ \
 Now let's figure out how to compute the reciprocal vectors for the more general case where the tangent space vectors are not orthogonal.
 Doing so for a two parameter surface will be sufficient, as the generalization to higher degree surfaces will be clear.
 
+Given \( \Bx^a, \Bx^b \in \Span \setlr{ \Bx_a, \Bx_b } \), we set
+\begin{equation}\label{eqn:reciprocalAndTangentspace:880}
+\begin{aligned}
+   \Bx^a &= \alpha^1 \Bx_a + \alpha^2 \Bx_b \\
+   \Bx^b &= \beta^1 \Bx_a + \beta^2 \Bx_b,
+\end{aligned}
+\end{equation}
+subject to the constraints \( \Bx^\mu \cdot \Bx_\nu = {\delta^\mu}_\nu, \forall \mu,\nu \in a,b \).  That is
+\begin{equation}\label{eqn:reciprocalAndTangentspace:900}
+\begin{aligned}
+   \Bx^a \cdot \Bx_a &= \alpha^1 \Bx_a \cdot \Bx_a + \alpha^2 \Bx_b \cdot \Bx_a = 1 \\
+   \Bx^a \cdot \Bx_b &= \alpha^1 \Bx_a \cdot \Bx_b + \alpha^2 \Bx_b \cdot \Bx_b = 0 \\
+   \Bx^b \cdot \Bx_a &= \beta^1 \Bx_a \cdot \Bx_a + \beta^2 \Bx_b \cdot \Bx_a = 0 \\
+   \Bx^b \cdot \Bx_b &= \beta^1 \Bx_a \cdot \Bx_b + \beta^2 \Bx_b \cdot \Bx_b = 1.
+\end{aligned}
+\end{equation}
+With
+\begin{equation}\label{eqn:reciprocalAndTangentspace:920}
+   D =
+\begin{bmatrix}
+   \Bx_a \cdot \Bx_a & \Bx_b \cdot \Bx_a \\
+   \Bx_a \cdot \Bx_b & \Bx_b \cdot \Bx_b
+\end{bmatrix},
+\end{equation}
+that is
+\begin{equation}\label{eqn:reciprocalAndTangentspace:940}
+\begin{aligned}
+   D
+\begin{bmatrix}
+   \alpha^1 \\
+   \alpha^2 \\
+\end{bmatrix}
+&=
+\begin{bmatrix}
+   1 \\
+   0
+\end{bmatrix} \\
+   D
+\begin{bmatrix}
+   \beta^1 \\
+   \beta^2 \\
+\end{bmatrix}
+&=
+\begin{bmatrix}
+   0 \\
+   1
+\end{bmatrix} \\
+\end{aligned}.
+\end{equation}
+Since
+\begin{equation}\label{eqn:reciprocalAndTangentspace:960}
+   D^{-1}
+   =
+   \inv{
+\begin{vmatrix}
+   \Bx_a \cdot \Bx_a & \Bx_b \cdot \Bx_a \\
+   \Bx_a \cdot \Bx_b & \Bx_b \cdot \Bx_b
+\end{vmatrix}
+}
+\begin{bmatrix}
+   \Bx_b \cdot \Bx_b & -\Bx_b \cdot \Bx_a \\
+   -\Bx_a \cdot \Bx_b & \Bx_a \cdot \Bx_a
+\end{bmatrix},
+\end{equation}
+we have
+\begin{equation}\label{eqn:reciprocalAndTangentspace:980}
+\begin{aligned}
+\begin{bmatrix}
+   \alpha^1 \\
+   \alpha^2 \\
+\end{bmatrix}
+&=
+\inv{
+\Bx_a^2 \Bx_b^2 - \lr{ \Bx_a \cdot \Bx_b }^2
+}
+\begin{bmatrix}
+   \Bx_b \cdot \Bx_b  \\
+   -\Bx_a \cdot \Bx_b
+\end{bmatrix} \\
+\begin{bmatrix}
+   \beta^1 \\
+   \beta^2 \\
+\end{bmatrix}
+&=
+\inv{
+\Bx_a^2 \Bx_b^2 - \lr{ \Bx_a \cdot \Bx_b }^2
+}
+\begin{bmatrix}
+   -\Bx_b \cdot \Bx_a \\
+   \Bx_a \cdot \Bx_a
+\end{bmatrix}.
+\end{aligned}
+\end{equation}
+Back substitution gives
+\begin{equation}\label{eqn:reciprocalAndTangentspace:1000}
+\begin{aligned}
+\Bx^a
+&=
+\frac{
+   \Bx_b^2 \Bx_a - \lr{\Bx_a \cdot \Bx_b} \Bx_b
+}
+{
+   \Bx_a^2 \Bx_b^2 - \lr{ \Bx_a \cdot \Bx_b }^2
+} \\
+\Bx^b
+&=
+\frac{
+   -\lr{ \Bx_b \cdot \Bx_a } \Bx_a
++
+   \Bx_a^2 \Bx_b
+}
+{
+   \Bx_a^2 \Bx_b^2 - \lr{ \Bx_a \cdot \Bx_b }^2
+}.
+\end{aligned}
+\end{equation}
+
+\subsection{Geometric algebra form of the reciprocal frame vectors.}
+The mess of dot products above is not terribly desirable.  This can be cleaned up significantly, by observing that a 
+bivector term can be factored from both the numerator and denominator.  In particular, using the distribution identity, a squared bivector has the form
+\begin{equation}\label{eqn:reciprocalAndTangentspace:1020}
+\begin{aligned}
+   \lr{ \Ba \wedge \Bb }^2
+   &=
+   \lr{ \Ba \wedge \Bb }
+   \cdot
+   \lr{ \Ba \wedge \Bb } \\
+   &=
+   \lr{ \lr{ \Ba \wedge \Bb } \cdot \Ba } \cdot \Bb \\
+   &=
+   \lr{ \lr{ \Bb \cdot \Ba } \Ba - \Ba^2 \Bb } \cdot \Bb \\
+   &=
+   \lr{ \Bb \cdot \Ba }^2 - \Ba^2 \Bb^2.
+\end{aligned}
+\end{equation}
+Also
+\begin{equation}\label{eqn:reciprocalAndTangentspace:1040}
+   \lr{ \Ba \wedge \Bb } \cdot \Bc =
+   \lr{ \Bb \cdot \Bc } \Ba
+   -
+   \lr{ \Ba \cdot \Bc } \Bb.
+\end{equation}
+
+Using these, we can write
+\begin{equation}\label{eqn:reciprocalAndTangentspace:1060}
+\begin{aligned}
+\Bx^a
+&=
+\frac{
+   \Bx_b \cdot \lr{ \Bx_a \wedge \Bx_b }
+}
+{
+   \lr{ \Bx_a \wedge \Bx_b }^2
+} \\
+\Bx^b
+&=
+\frac{
+   -\Bx_a \cdot \lr{ \Bx_a \wedge \Bx_b }
+}
+{
+   \lr{ \Bx_a \wedge \Bx_b }^2
+} \\
+\end{aligned},
+\end{equation}
+or
+\begin{equation}\label{eqn:reciprocalAndTangentspace:1080}
+\begin{aligned}
+\Bx^a
+&=
+\Bx_b \cdot \inv{ \lr{ \Bx_a \wedge \Bx_b } } \\
+\Bx^b
+&=
+-\Bx_a \cdot \inv{ \lr{ \Bx_a \wedge \Bx_b } }.
+\end{aligned}
+\end{equation}
+
+It's immediately clear why this works.  Take for example
+\begin{equation}\label{eqn:reciprocalAndTangentspace:1100}
+\begin{aligned}
+\Bx_a \cdot \Bx^a
+&=
+\Bx_a \cdot \lr{ \Bx_b \cdot \inv{ \lr{ \Bx_a \wedge \Bx_b } } } \\
+&=
+\lr{ \Bx_a \wedge \Bx_b } \cdot \inv{ \lr{ \Bx_a \wedge \Bx_b } } \\
+&=
+1,
+\end{aligned}
+\end{equation}
+and
+\begin{equation}\label{eqn:reciprocalAndTangentspace:1120}
+\begin{aligned}
+\Bx_b \cdot \Bx^a
+&=
+\Bx_b \cdot \lr{ \Bx_b \cdot \inv{ \lr{ \Bx_a \wedge \Bx_b } } } \\
+&=
+\lr{ \Bx_b \wedge \Bx_b } \cdot \inv{ \lr{ \Bx_a \wedge \Bx_b } } \\
+&=
+0.
+\end{aligned}
+\end{equation}
+
+It's immediately obvious that if we generalize to a three parameter surface, then we must have
+\begin{equation}\label{eqn:reciprocalAndTangentspace:1140}
+\begin{aligned}
+\Bx^a
+&=
+\lr{ \Bx_b \wedge \Bx_c } \cdot \inv{ \lr{ \Bx_a \wedge \Bx_b \wedge \Bx_c } } \\
+\Bx^b
+&=
+-\lr{ \Bx_a \wedge \Bx_c } \cdot \inv{ \lr{ \Bx_a \wedge \Bx_b \wedge \Bx_c } } \\
+\Bx^c
+&=
+\lr{ \Bx_b \wedge \Bx_c } \cdot \inv{ \lr{ \Bx_a \wedge \Bx_b \wedge \Bx_c } }.
+\end{aligned}
+\end{equation}
+
+How to generalize to still higher dimensions is clear.
+
+\subsection{Matrix solution of the reciprocal frame vectors.}
+
 %}
 %\EndArticle
 \EndNoBibArticle

@@ -461,7 +461,7 @@ Back substitution gives
 \end{equation}
 
 \subsection{Geometric algebra form of the reciprocal frame vectors.}
-The mess of dot products above is not terribly desirable.  This can be cleaned up significantly, by observing that a 
+The mess of dot products above is not terribly desirable.  This can be cleaned up significantly, by observing that a
 bivector term can be factored from both the numerator and denominator.  In particular, using the distribution identity, a squared bivector has the form
 \begin{equation}\label{eqn:reciprocalAndTangentspace:1020}
 \begin{aligned}
@@ -559,9 +559,137 @@ It's immediately obvious that if we generalize to a three parameter surface, the
 \end{aligned}
 \end{equation}
 
-How to generalize to still higher dimensions is clear.
+How to generalize to still higher dimensions is clear.  Specifically, given \( \Bx = \Bx(a^1, a^2, \cdots, a^m) \), let's write \( \Bx_i = \PDi{a^i}{\Bx} \), with reciprocals \( \Bx^i \).  Then the reciprocals are given by
+\begin{equation}\label{eqn:reciprocalAndTangentspace:1300}
+\Bx^i = (-1)^{i-1} \lr{ \Bx_1 \wedge \cdots \Bx_{i-1} \wedge \Bx_{i+1} \cdots \Bx_m } \cdot \inv{ \Bx_1 \wedge \Bx_2 \wedge \cdots \Bx_m }.
+\end{equation}
+In the leading blade, we have a wedge of all the basis elements, except for \( \Bx_i \), and each time we move down the line, the sign changes by a factor of one.
+
+Let's apply this blade dot product form of the reciprocal frame vectors to some non-orthogonal examples.  For the first example, consider an elliptical parameterization
+\begin{equation}\label{eqn:reciprocalAndTangentspace:1320}
+   \Bx = a \Be_1 \cos\theta + a \epsilon \Be_2 \sin\theta.
+\end{equation}
+We find that curvilinear bases vectors
+\begin{equation}\label{eqn:reciprocalAndTangentspace:1340}
+\begin{aligned}
+   \Bx_a &= \Be_1 \cos\theta + \epsilon \Be_2 \sin\theta \\
+   \Bx_\theta &= -a \Be_1 \sin\theta + a \epsilon \Be_2 \cos\theta.
+\end{aligned}
+\end{equation}
+We can check that these are generally non-orthogonal as
+\begin{dmath}\label{eqn:reciprocalAndTangentspace:1360}
+   \Bx_a \cdot \Bx_\theta = - a \cos\theta \sin\theta + a \epsilon^2 \cos\theta \sin\theta
+   = \frac{a}{2} \lr{ 1 - \epsilon^2 } \sin\lr{ 2 \theta },
+\end{dmath}
+which shows that these vectors are orthogonal in the limiting circular case, where the eccentricity \( \epsilon \) goes to one, and at the points \( \theta = n \pi/2 \).
+The area element is
+\begin{equation}\label{eqn:reciprocalAndTangentspace:1380}
+\begin{aligned}
+   d\Bx_a \wedge d\Bx_\theta
+   &= \lr{ \Be_1 \cos\theta + \epsilon \Be_2 \sin\theta } \wedge \lr{ -a \Be_1 \sin\theta + a \epsilon \Be_2 \cos\theta } \, da d\theta \\
+   &= a \epsilon \Be_1 \Be_2 \lr{ \cos^2 \theta + \sin^2 \theta } \, da d\theta \\
+   &= i a \epsilon da d\theta.
+\end{aligned}
+\end{equation}
+We can use this to find the (unit pseudoscalar scaled) area of an ellipse, which is
+\begin{equation}\label{eqn:reciprocalAndTangentspace:1400}
+\begin{aligned}
+   A &= \int_{a = 0}^a \int_{\theta = 0}^{2\pi} d\Bx_a \wedge d\Bx_\theta  \\
+     &= \int_{a = 0}^a \int_{\theta = 0}^{2\pi} i a \epsilon da d\theta \\
+     &= i \frac{a^2}{2} \epsilon \lr{ 2 \pi } \\
+     &= i \pi a \lr{ a \epsilon }.
+\end{aligned}
+\end{equation}
+As a check observe that we recover the circular area in the limit \( \epsilon \rightarrow 1 \), where \( a = a \epsilon \) is the radius of the circle.
+Now let's find our reciprocals
+\begin{equation}\label{eqn:reciprocalAndTangentspace:1420}
+\begin{aligned}
+   \Bx^a
+   &= \Bx_\theta \cdot \inv{ i a \epsilon } \\
+   &= \inv{a \epsilon} \lr{ -a \Be_1 \sin\theta + a \epsilon \Be_2 \cos\theta } \cdot \lr{ \Be_2 \Be_1 } \\
+   &= \inv{\epsilon} \lr{ \Be_2 \sin\theta + \epsilon \Be_1 \cos\theta },
+\end{aligned}
+\end{equation}
+and
+\begin{equation}\label{eqn:reciprocalAndTangentspace:1440}
+\begin{aligned}
+   \Bx^\theta
+   &= -\Bx_a \cdot \inv{ i a \epsilon } \\
+   &= -\inv{a \epsilon} \lr{ \Be_1 \cos\theta + \epsilon \Be_2 \sin\theta } \cdot \lr{ \Be_2 \Be_1 } \\
+   &= \inv{a \epsilon} \lr{ \Be_2 \cos\theta - \epsilon \Be_1 \sin\theta }.
+\end{aligned}
+\end{equation}
+%   \Bx_a &= \Be_1 \cos\theta + \epsilon \Be_2 \sin\theta \\
+%   \Bx_\theta &= -a \Be_1 \sin\theta + a \epsilon \Be_2 \cos\theta.
 
 \subsection{Matrix solution of the reciprocal frame vectors.}
+An alternative, one that is possibly more computationally effecient, is using matrix algebra to perform the same computation.  Considering the two parameter case again, we can write
+\begin{equation}\label{eqn:reciprocalAndTangentspace:1160}
+   X =
+\begin{bmatrix}
+   \Bx_a & \Bx_b
+\end{bmatrix},
+\end{equation}
+so
+\begin{equation}\label{eqn:reciprocalAndTangentspace:1180}
+\begin{aligned}
+   \Bx^a &= X
+\begin{bmatrix}
+   \alpha^1 \\
+   \alpha^2 \\
+\end{bmatrix} \\
+   \Bx^b &= X
+\begin{bmatrix}
+   \beta^1 \\
+   \beta^2 \\
+\end{bmatrix}.
+\end{aligned}
+\end{equation}
+We can also write
+\begin{equation}\label{eqn:reciprocalAndTangentspace:1200}
+   D = X^\T G X,
+\end{equation}
+where \( G \) is the metric matrix for the space.  For most of physics, there are really only two metrics of interest.  The first is the identity matrix \( G = I \), which we use for Euclidean spaces, and \( G = \pm \diag(1,-1,-1,-1) \), the metric for special relativity.
+
+This gives us
+\begin{equation}\label{eqn:reciprocalAndTangentspace:1220}
+\begin{aligned}
+   \Bx^a &= X \lr{ X^\T G X }^{-1} \begin{bmatrix} 1 \\ 0 \end{bmatrix} \\
+   \Bx^b &= X \lr{ X^\T G X }^{-1} \begin{bmatrix} 0 \\ 1 \end{bmatrix}.
+\end{aligned}
+\end{equation}
+
+To understand why this works, note that
+\begin{equation}\label{eqn:reciprocalAndTangentspace:1240}
+\begin{bmatrix}
+   \Bx_a \cdot \Bx^a & \Bx_a \cdot \Bx^b \\
+   \Bx_b \cdot \Bx^a & \Bx_b \cdot \Bx^b
+\end{bmatrix}
+=
+X^\T
+G
+\begin{bmatrix}
+   \Bx^a & \Bx^b
+\end{bmatrix},
+\end{equation}
+but
+\begin{equation}\label{eqn:reciprocalAndTangentspace:1260}
+\begin{bmatrix}
+   \Bx^a & \Bx^b
+\end{bmatrix}
+=
+   X \lr{ X^\T G X }^{-1}
+\begin{bmatrix}
+   1 & 0 \\
+   0 & 1
+\end{bmatrix}
+=
+   X \lr{ X^\T G X }^{-1}.
+\end{equation}
+So, we see that the reciprocal frame vectors given by \cref{eqn:reciprocalAndTangentspace:1220} is inevitable given that they must satisfy
+\begin{equation}\label{eqn:reciprocalAndTangentspace:1280}
+X^\T G X \lr{ X^\T G X }^{-1} = I.
+\end{equation}
 
 %}
 %\EndArticle

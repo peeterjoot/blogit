@@ -326,9 +326,7 @@ We still have \( x^a \cdot x_a = x^b \cdot x_b = 1 \), and \( x^a \cdot x_b = x^
 
 Another gotcha to consider for non-Euclidean spaces is that we will need some other way to compute the reciprocals if we have lightlike vectors (with zero square) as in the following parameterization
 \begin{equation}\label{eqn:reciprocalAndTangentspace:840}
-   x(a,b) =
-   a \lr{ \gamma_0 + \gamma_1 } +
-   b \lr{ \gamma_0 - \gamma_1 }.
+   x(a,b) = a \lr{ \gamma_0 + \gamma_1 } + b \lr{ \gamma_0 - \gamma_1 }.
 \end{equation}
 Here both of the tangent space vectors
 \begin{equation}\label{eqn:reciprocalAndTangentspace:860}
@@ -565,7 +563,8 @@ How to generalize to still higher dimensions is clear.  Specifically, given \( \
 \end{equation}
 In the leading blade, we have a wedge of all the basis elements, except for \( \Bx_i \), and each time we move down the line, the sign changes by a factor of one.
 
-Let's apply this blade dot product form of the reciprocal frame vectors to some non-orthogonal examples.  For the first example, consider an elliptical parameterization
+Let's apply this blade dot product form of the reciprocal frame vectors to some non-orthogonal examples.  For the first example, consider an elliptical parameterization illustrated in \cref{fig:ellipseTangentSpace:ellipseTangentSpaceFig1}.
+\imageFigure{../figures/blogit/ellipseTangentSpaceFig1}{Elliptical parameter differentials.}{fig:ellipseTangentSpace:ellipseTangentSpaceFig1}{0.3}
 \begin{equation}\label{eqn:reciprocalAndTangentspace:1320}
    \Bx = a \Be_1 \cos\theta + a \epsilon \Be_2 \sin\theta.
 \end{equation}
@@ -581,7 +580,7 @@ We can check that these are generally non-orthogonal as
    \Bx_a \cdot \Bx_\theta = - a \cos\theta \sin\theta + a \epsilon^2 \cos\theta \sin\theta
    = \frac{a}{2} \lr{ 1 - \epsilon^2 } \sin\lr{ 2 \theta },
 \end{dmath}
-which shows that these vectors are orthogonal in the limiting circular case, where the eccentricity \( \epsilon \) goes to one, and at the points \( \theta = n \pi/2 \).
+which shows that these vectors are orthogonal only in the limiting circular case, where the eccentricity \( \epsilon \) goes to one, or at the specific points \( \theta = n \pi/2 \).
 The area element is
 \begin{equation}\label{eqn:reciprocalAndTangentspace:1380}
 \begin{aligned}
@@ -619,8 +618,41 @@ and
    &= \inv{a \epsilon} \lr{ \Be_2 \cos\theta - \epsilon \Be_1 \sin\theta }.
 \end{aligned}
 \end{equation}
-%   \Bx_a &= \Be_1 \cos\theta + \epsilon \Be_2 \sin\theta \\
-%   \Bx_\theta &= -a \Be_1 \sin\theta + a \epsilon \Be_2 \cos\theta.
+
+Let's return to the relativistic two parameter surface of \cref{eqn:reciprocalAndTangentspace:840}.  Our area element is
+\begin{equation}\label{eqn:reciprocalAndTangentspace:1460}
+\begin{aligned}
+   dx_a \wedge dx_b &=
+\lr{
+\gamma_0 + \gamma_1
+}
+\wedge
+\lr{
+\gamma_0 - \gamma_1
+}
+\, da db \\
+&= 2 \gamma_1 \gamma_0\, da db.
+\end{aligned}
+\end{equation}
+so our reciprocals are
+\begin{equation}\label{eqn:reciprocalAndTangentspace:1480}
+\begin{aligned}
+   x^a
+   &= x_b \cdot \inv{ 2 \gamma_{10} } \\
+   &= \inv{2} \lr{ \gamma_0 - \gamma_1 } \cdot \gamma_{01} \\
+   &= \inv{2} \lr{ \gamma_1 - \gamma_0 },
+\end{aligned}
+\end{equation}
+and
+\begin{equation}\label{eqn:reciprocalAndTangentspace:1500}
+\begin{aligned}
+   x^b
+   &= -x_a \cdot \inv{ 2 \gamma_{10} } \\
+   &= - \inv{2} \lr{ \gamma_0 + \gamma_1 } \cdot \gamma_{01} \\
+   &= - \inv{2} \lr{ \gamma_1 + \gamma_0 }.
+\end{aligned}
+\end{equation}
+Sure enough we are able to compute a set of reciprocal frame vectors, satisfying the definition.  In this case, both of those are also lightlike, even though they span the \( ct,x\) plane.
 
 \subsection{Matrix solution of the reciprocal frame vectors.}
 An alternative, one that is possibly more computationally effecient, is using matrix algebra to perform the same computation.  Considering the two parameter case again, we can write
@@ -690,6 +722,257 @@ So, we see that the reciprocal frame vectors given by \cref{eqn:reciprocalAndTan
 \begin{equation}\label{eqn:reciprocalAndTangentspace:1280}
 X^\T G X \lr{ X^\T G X }^{-1} = I.
 \end{equation}
+
+\section{Gradient in curvilinear coordinates.}
+We define the gradient \(\spacegrad\), implicitly as a directional derivative of the following form
+\begin{equation}\label{eqn:reciprocalAndTangentspace:1520}
+   \Ba \cdot \spacegrad f = \evalbar{ \ddt{} f(\Bx + \Ba t)  }{t = 0}.
+\end{equation}
+Expanding by chain rule, this is
+\begin{dmath}\label{eqn:reciprocalAndTangentspace:1540}
+\Ba \cdot \spacegrad f
+= \evalbar{ \PD{(x^i + a^i t)}{f} \PD{t}{(x^i + a^i t)} }{ t = 0 }
+= a^i \PD{x^i}{f}
+= \lr{ \Ba \cdot \Be^i} \PD{x^i}{f}
+= \Ba \cdot \lr{ \Be^i \PD{x^i}{} } f,
+\end{dmath}
+so, the gradient with respect to the standard basis \( \setlr{ \Be_i } \), and it's reciprocal frame \( \setlr{\Be^i} \), is
+\begin{dmath}\label{eqn:reciprocalAndTangentspace:1560}
+   \spacegrad = \Be^i \PD{x^i}{}.
+\end{dmath}
+The reciprocal basis pairing here is an allowance for non-Euclidean spaces, and for Euclidean spaces reduces to the usual, since \( \Be^i = \Be_i \).
+Next we consider a change of coordinates, where
+\begin{dmath}\label{eqn:reciprocalAndTangentspace:1580}
+   x^i = x^i( a^1, a^2, \cdots, a^n ).
+\end{dmath}
+Expressing the gradient in terms of these parameters, we have
+\begin{dmath}\label{eqn:reciprocalAndTangentspace:1600}
+   \spacegrad = \Be^i \PD{x^i}{a^j} \PD{a^j}{}.
+\end{dmath}
+With
+\begin{equation}\label{eqn:reciprocalAndTangentspace:1620}
+   \Bx^j = \Be^i \PD{x^i}{a^j} = \spacegrad a^j,
+\end{equation}
+we have
+\begin{equation}\label{eqn:reciprocalAndTangentspace:1640}
+   \spacegrad = \Bx^j \PD{a^j}{}.
+\end{equation}
+These parameter gradients have been written as \( \Bx^j \)'s as they are reciprocal to \( \Bx_j = \PDi{a_j}{\Bx} \).  
+To show this, we just have to computing the dot products of such a pair, and apply the chain rule in reverse
+\begin{equation}\label{eqn:reciprocalAndTangentspace:1660}
+\begin{aligned}
+   \Bx^i \cdot \Bx_j &= \lr{ \Be^k \PD{x^k}{a^i} } \cdot \PD{a^j}{\Bx} \\
+   &= \lr{ \Be^k \PD{x^k}{a^i} } \cdot \lr{ \PD{a^j}{x^m} \Be_m } \\
+   &= {\delta^k}_m \PD{x^k}{a^i} \PD{a^j}{x^m} \\
+   &= \PD{x^m}{a^i} \PD{a^j}{x^m} \\
+   &= \PD{a^j}{a^i} \\
+   &= {\delta^i}_j.
+\end{aligned}
+\end{equation}
+This provides yet another way to compute our reciprocal frame.  Manually computing the reciprocal frame vectors this way can be pretty hard if we try to do this in the straightforward braindead way, but we will see there is an easier way.
+
+Illustrating by example, consider the circular parameterization again, with
+\begin{equation}\label{eqn:reciprocalAndTangentspace:1680}
+   \Bx = \Be_1 e^{i \theta}, \quad i = \Be_1 \Be_2.
+\end{equation}
+In order to take the gradients of \( r, \theta \), we can first write out our parameterization in coordinates
+\begin{equation}\label{eqn:reciprocalAndTangentspace:1700}
+\begin{aligned}
+   x &= r \cos\theta \\
+   y &= r \sin\theta,
+\end{aligned}
+\end{equation}
+or
+\begin{equation}\label{eqn:reciprocalAndTangentspace:1720}
+\begin{aligned}
+   r^2 &= x^2 + y^2 \\
+   \tan\theta = \frac{y}{x}.
+\end{aligned}
+\end{equation}
+The \( r \) gradient is easy to compute
+\begin{dmath}\label{eqn:reciprocalAndTangentspace:1740}
+   \spacegrad r^2
+   = 2 x \Be_1 + 2 y \Be_2,
+\end{dmath}
+or
+\begin{dmath}\label{eqn:reciprocalAndTangentspace:1760}
+   \spacegrad r
+   = \frac{x}{r} \Be_1 + \frac{y}{r} \Be_2
+   = \cos\theta \Be_1 + \sin\theta \Be_2
+   = \Be_1 e^{i\theta}.
+\end{dmath}
+For the \( \theta \) gradient we have
+\begin{dmath}\label{eqn:reciprocalAndTangentspace:1780}
+   \sec^2 \theta \spacegrad \theta
+   = \spacegrad
+   \frac{y}{x}
+   =
+   \Be_1 \PD{x}{} \frac{y}{x}
+   +
+   \Be_2 \PD{y}{} \frac{y}{x}
+   =
+   -\Be_1 \frac{y}{x^2} + \Be_2 \inv{x},
+\end{dmath}
+so
+\begin{equation}\label{eqn:reciprocalAndTangentspace:1800}
+\begin{aligned}
+   \spacegrad \theta
+   &=
+   \cos^2\theta \lr{ -\Be_1 \frac{r \sin\theta}{r^2 \cos^2\theta} + \Be_2 \inv{r \cos\theta} } \\
+   &=
+   \inv{r} \lr{ -\Be_1 \sin\theta + \Be_2 \cos\theta } \\
+   &=
+   \frac{\Be_2}{r} \lr{ -\Be_2 \Be_1 \sin\theta + \cos\theta } \\
+   &=
+   \inv{r} \Be_2 e^{i\theta}.
+\end{aligned}
+\end{equation}
+We get the same results, but it was a lot trickier to compute than the vector-bivector dot products or matrix inverses, and that computation only seemed possible because we could solve for \( r, \theta \) in this specific case.
+
+What is really cool, is that we don't actually have to be able to solve for the parameters as functions of the coordinates, since we can use the same implicit differentiation methods used above in a more systematic fashion.  Let's use the two variable case again to illustrate the method.  The generalization will be clear.
+
+Let
+\begin{equation}\label{eqn:reciprocalAndTangentspace:1820}
+\begin{aligned}
+   x &= f(a,b) \\
+   y &= g(a,b).
+\end{aligned}
+\end{equation}
+We can compute the gradients of \( f, g\), which are
+\begin{equation}\label{eqn:reciprocalAndTangentspace:1840}
+\begin{aligned}
+   \spacegrad f &= \spacegrad x = \Be^1 \\
+   \spacegrad g &= \spacegrad y = \Be^2.
+\end{aligned}
+\end{equation}
+We can expand the \( f,g \) gradients by chain rule
+\begin{equation}\label{eqn:reciprocalAndTangentspace:1860}
+\begin{aligned}
+   \spacegrad f
+   &= \Be^\mu \PD{x^\mu}{f} \\
+   &=
+   \Be^\mu \PD{x^\mu}{a} \PD{a}{f}
+   +
+   \Be^\mu \PD{x^\mu}{b} \PD{b}{f} \\
+   &=
+   \PD{a}{f} \spacegrad a
+   +
+   \PD{b}{f} \spacegrad b.
+\end{aligned}
+\end{equation}
+Similarly
+\begin{equation}\label{eqn:reciprocalAndTangentspace:1880}
+   \spacegrad g
+   =
+   \PD{a}{g} \spacegrad a
+   +
+   \PD{b}{g} \spacegrad b,
+\end{equation}
+so
+\begin{equation}\label{eqn:reciprocalAndTangentspace:1900}
+\begin{bmatrix}
+   \PD{a}{f} & \PD{b}{f} \\
+   \PD{a}{g} & \PD{b}{g}
+\end{bmatrix}
+\begin{bmatrix}
+   \spacegrad a \\
+   \spacegrad b \\
+\end{bmatrix}
+=
+\begin{bmatrix}
+   \Be^1 \\
+   \Be^2
+\end{bmatrix}.
+\end{equation}
+We may rewrite this matrix of partials in terms of the coordinates \( x = x^1, y = x^2 \)
+\begin{equation}\label{eqn:reciprocalAndTangentspace:1920}
+\begin{bmatrix}
+   \PD{a}{x^1} & \PD{b}{x^1} \\
+   \PD{a}{x^2} & \PD{b}{x^2}
+\end{bmatrix}
+= \frac{\partial(x^1, x^2)}{\partial(a,b)} = J,
+\end{equation}
+which is the Jacobian \( J \).  We now have a complete solution for the reciprocal frame vectors as a matrix equation
+\begin{equation}\label{eqn:reciprocalAndTangentspace:1940}
+\begin{bmatrix}
+   \spacegrad a \\
+   \spacegrad b \\
+\end{bmatrix}
+= J^{-1}
+\begin{bmatrix}
+   \Be^1 \\
+   \Be^2
+\end{bmatrix}.
+\end{equation}
+If we had more coordinates and parameters, we just have to add more entries to each of these matrices.
+
+Let's write this out this solution explicitly for the two parameter case
+\begin{equation}\label{eqn:reciprocalAndTangentspace:1960}
+\begin{bmatrix}
+   \spacegrad a \\
+   \spacegrad b \\
+\end{bmatrix}
+=
+\frac{
+\begin{bmatrix}
+   \PD{b}{x^2} & -\PD{b}{x^1} \\
+   -\PD{a}{x^2} & \PD{a}{x^1}
+\end{bmatrix}
+\begin{bmatrix}
+   \Be^1 \\
+   \Be^2
+\end{bmatrix}
+}{
+   \PD{a}{x^1} \PD{b}{x^2} - \PD{b}{x^1} \PD{a}{x^2}
+},
+\end{equation}
+or
+\begin{equation}\label{eqn:reciprocalAndTangentspace:1980}
+\begin{aligned}
+   \spacegrad a &= \inv{\Abs{J}} \lr{ \PD{b}{x^2} \Be^1  -\PD{b}{x^1} \Be^2 } \\
+   \spacegrad b &= \inv{\Abs{J}} \lr{ -\PD{a}{x^2} \Be^1 + \PD{a}{x^1} \Be^2 }.
+\end{aligned}
+\end{equation}
+
+Let's try this, using our circular parameterization again.  We have
+\begin{equation}\label{eqn:reciprocalAndTangentspace:2000}
+\begin{aligned}
+   x &= r \cos\theta \\
+   y &= r \sin\theta,
+\end{aligned}
+\end{equation}
+so
+\begin{equation}\label{eqn:reciprocalAndTangentspace:2020}
+J =
+\begin{bmatrix}
+   \cos\theta & -r \sin\theta \\
+   \sin\theta & r \cos\theta
+\end{bmatrix},
+\end{equation}
+so
+\begin{equation}\label{eqn:reciprocalAndTangentspace:2040}
+   \Abs{J} = r \lr{ \cos^2\theta + \sin^2 \theta } = r.
+\end{equation}
+Our gradients, using \cref{eqn:reciprocalAndTangentspace:1980} are
+\begin{equation}\label{eqn:reciprocalAndTangentspace:2060}
+\begin{aligned}
+   \spacegrad r
+   &= \inv{r} \lr{ \Be_1 \PD{\theta}{} (r \sin\theta) - \Be_2 \PD{\theta}{} (r \cos\theta) } \\
+   &= \Be_1 \cos\theta + \Be_2 \sin\theta \\
+   &= \Be_1 e^{i\theta},
+\end{aligned}
+\end{equation}
+and
+\begin{equation}\label{eqn:reciprocalAndTangentspace:2080}
+\begin{aligned}
+   \spacegrad \theta
+   &= \inv{r} \lr{ -\Be_1 \PD{r}{} (r \sin\theta) + \Be_2 \PD{r}{} (r \cos\theta) } \\
+   &= \inv{r} \lr{ -\Be_1 \sin\theta + \Be_2 \cos\theta } \\
+   &= \frac{\Be_2}{r} \lr{ -\Be_2 \Be_1 \sin\theta + \cos\theta } \\
+   &= \inv{r} \Be_2 e^{i \theta},
+\end{aligned}
+\end{equation}
+as expected.
 
 %}
 %\EndArticle

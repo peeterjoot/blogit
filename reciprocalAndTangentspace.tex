@@ -655,79 +655,99 @@ and
 Sure enough we are able to compute a set of reciprocal frame vectors, satisfying the definition.  In this case, both of those are also lightlike, even though they span the \( ct,x\) plane.
 
 \subsection{Matrix solution of the reciprocal frame vectors.}
-An alternative, one that is possibly more computationally effecient, is using matrix algebra to perform the same computation.  Considering the two parameter case again, we can write
+An alternative, one that is possibly more computationally effecient, is using matrix algebra to perform the same computation.
+Consider an m-parameter surface \( \Bx = \Bx(a^1, \cdots, a^m) \), with \( \Bx_i = \PDi{a^i}{\Bx} \), we can form a Jacobian matrix of all the partials
 \begin{equation}\label{eqn:reciprocalAndTangentspace:1160}
    J =
 \begin{bmatrix}
-   \Bx_a & \Bx_b
-\end{bmatrix},
-\end{equation}
-so
-\begin{equation}\label{eqn:reciprocalAndTangentspace:1180}
-\begin{aligned}
-   \Bx^a &= J
-\begin{bmatrix}
-   \alpha^1 \\
-   \alpha^2 \\
-\end{bmatrix} \\
-   \Bx^b &= J
-\begin{bmatrix}
-   \beta^1 \\
-   \beta^2 \\
+   \Bx_1 & \Bx_2 & \cdots & \Bx_m
 \end{bmatrix}.
-\end{aligned}
 \end{equation}
-We can also write \cref{eqn:reciprocalAndTangentspace:920} as
+We can now cast each reciprocal vector into a matrix equation to be solved, say
+\begin{equation}\label{eqn:reciprocalAndTangentspace:1180}
+   \Bx^i = J \Balpha_i,
+\end{equation}
+where \( \Balpha_i \) is an unknown column matrix to be determined for each reciprocal vector.
+The m-parameter generalization of \cref{eqn:reciprocalAndTangentspace:920} is
+\begin{equation}\label{eqn:reciprocalAndTangentspace:2140}
+   D \Balpha_i = \Be_i,
+\end{equation}
+where
 \begin{equation}\label{eqn:reciprocalAndTangentspace:1200}
    D = J^\T G J,
 \end{equation}
-where \( G \) is the metric matrix for the space.  For most of physics, there are really only two metrics of interest.  The first is the identity matrix \( G = I \), which we use for Euclidean spaces, and \( G = \pm \diag(1,-1,-1,-1) \), the metric for special relativity.
+and \( G \) is the metric matrix \footnote{For most of physics, there are really only two metrics of interest.  The first is the identity matrix \( G = I \), which we use for Euclidean spaces, and \( G = \pm \diag(1,-1,-1,-1) \), the metric for special relativity.} for the space.
 
-This gives us
-\begin{equation}\label{eqn:reciprocalAndTangentspace:1220}
-\begin{aligned}
-   \Bx^a &= J \lr{ J^\T G J }^{-1} \begin{bmatrix} 1 \\ 0 \end{bmatrix} \\
-   \Bx^b &= J \lr{ J^\T G J }^{-1} \begin{bmatrix} 0 \\ 1 \end{bmatrix}.
-\end{aligned}
-\end{equation}
-
-To understand why this works, note that
-\begin{equation}\label{eqn:reciprocalAndTangentspace:1240}
+In block matrix form, we have
+\begin{equation}\label{eqn:reciprocalAndTangentspace:2160}
+J^\T G J
 \begin{bmatrix}
-   \Bx_a \cdot \Bx^a & \Bx_a \cdot \Bx^b \\
-   \Bx_b \cdot \Bx^a & \Bx_b \cdot \Bx^b
+\Balpha_1 & \cdots & \Balpha_m
+\end{bmatrix}
+= I,
+\end{equation}
+or
+\begin{equation}\label{eqn:reciprocalAndTangentspace:2220}
+\begin{bmatrix}
+\Balpha_1 & \cdots & \Balpha_m
 \end{bmatrix}
 =
-J^\T
-G
+\lr{J^\T G J}^{-1}.
+\end{equation}
+
+Let
+\begin{equation}\label{eqn:reciprocalAndTangentspace:2180}
+X =
 \begin{bmatrix}
-   \Bx^a & \Bx^b
+   \Bx^1 & \cdots & \Bx^m
 \end{bmatrix},
 \end{equation}
-but
-\begin{equation}\label{eqn:reciprocalAndTangentspace:1260}
+so
+\begin{equation}\label{eqn:reciprocalAndTangentspace:2200}
+   X = J
 \begin{bmatrix}
-   \Bx^a & \Bx^b
+   \Balpha_1 & \cdots & \Balpha_m
 \end{bmatrix}
 =
-   J \lr{ J^\T G J }^{-1}
-\begin{bmatrix}
-   1 & 0 \\
-   0 & 1
-\end{bmatrix}
-=
-   J \lr{ J^\T G J }^{-1}.
-\end{equation}
-So, we see that the reciprocal frame vectors given by \cref{eqn:reciprocalAndTangentspace:1220} is inevitable given that they must satisfy
-\begin{equation}\label{eqn:reciprocalAndTangentspace:1280}
-J^\T G J \lr{ J^\T G J }^{-1} = I.
+J
+\lr{J^\T G J}^{-1}.
 \end{equation}
 
-Also note that in the case where the number of parameters equals the dimension of the vector space, we can simplify  \( J \lr{ J^\T G J }^{-1} \) considerably.  That becomes
+%To understand why this works, note that
+%\begin{equation}\label{eqn:reciprocalAndTangentspace:1240}
+%\begin{bmatrix}
+%   \Bx_a \cdot \Bx^a & \Bx_a \cdot \Bx^b \\
+%   \Bx_b \cdot \Bx^a & \Bx_b \cdot \Bx^b
+%\end{bmatrix}
+%=
+%J^\T
+%G
+%\begin{bmatrix}
+%   \Bx^a & \Bx^b
+%\end{bmatrix},
+%\end{equation}
+%but
+%\begin{equation}\label{eqn:reciprocalAndTangentspace:1260}
+%\begin{bmatrix}
+%   \Bx^a & \Bx^b
+%\end{bmatrix}
+%=
+%   J \lr{ J^\T G J }^{-1}
+%\begin{bmatrix}
+%   1 & 0 \\
+%   0 & 1
+%\end{bmatrix}
+%=
+%   J \lr{ J^\T G J }^{-1}.
+%\end{equation}
+%So, we see that the reciprocal frame vectors given by \cref{eqn:reciprocalAndTangentspace:1220} is inevitable given that they must satisfy
+%\begin{equation}\label{eqn:reciprocalAndTangentspace:1280}
+%J^\T G J \lr{ J^\T G J }^{-1} = I.
+%\end{equation}
+
+In the special case where the number of parameters equals the dimension of the vector space, \( J \) is both square and invertible, so we can simplify things considerably
 \begin{equation}\label{eqn:reciprocalAndTangentspace:2100}
-\begin{bmatrix}
-   \Bx^a & \Bx^b & \cdots
-\end{bmatrix}
+X
 =
 J \lr{ J^\T G J }^{-1}
 =

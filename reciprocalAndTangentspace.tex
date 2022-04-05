@@ -657,7 +657,7 @@ Sure enough we are able to compute a set of reciprocal frame vectors, satisfying
 \subsection{Matrix solution of the reciprocal frame vectors.}
 An alternative, one that is possibly more computationally effecient, is using matrix algebra to perform the same computation.  Considering the two parameter case again, we can write
 \begin{equation}\label{eqn:reciprocalAndTangentspace:1160}
-   X =
+   J =
 \begin{bmatrix}
    \Bx_a & \Bx_b
 \end{bmatrix},
@@ -665,29 +665,29 @@ An alternative, one that is possibly more computationally effecient, is using ma
 so
 \begin{equation}\label{eqn:reciprocalAndTangentspace:1180}
 \begin{aligned}
-   \Bx^a &= X
+   \Bx^a &= J
 \begin{bmatrix}
    \alpha^1 \\
    \alpha^2 \\
 \end{bmatrix} \\
-   \Bx^b &= X
+   \Bx^b &= J
 \begin{bmatrix}
    \beta^1 \\
    \beta^2 \\
 \end{bmatrix}.
 \end{aligned}
 \end{equation}
-We can also write
+We can also write \cref{eqn:reciprocalAndTangentspace:920} as
 \begin{equation}\label{eqn:reciprocalAndTangentspace:1200}
-   D = X^\T G X,
+   D = J^\T G J,
 \end{equation}
 where \( G \) is the metric matrix for the space.  For most of physics, there are really only two metrics of interest.  The first is the identity matrix \( G = I \), which we use for Euclidean spaces, and \( G = \pm \diag(1,-1,-1,-1) \), the metric for special relativity.
 
 This gives us
 \begin{equation}\label{eqn:reciprocalAndTangentspace:1220}
 \begin{aligned}
-   \Bx^a &= X \lr{ X^\T G X }^{-1} \begin{bmatrix} 1 \\ 0 \end{bmatrix} \\
-   \Bx^b &= X \lr{ X^\T G X }^{-1} \begin{bmatrix} 0 \\ 1 \end{bmatrix}.
+   \Bx^a &= J \lr{ J^\T G J }^{-1} \begin{bmatrix} 1 \\ 0 \end{bmatrix} \\
+   \Bx^b &= J \lr{ J^\T G J }^{-1} \begin{bmatrix} 0 \\ 1 \end{bmatrix}.
 \end{aligned}
 \end{equation}
 
@@ -698,7 +698,7 @@ To understand why this works, note that
    \Bx_b \cdot \Bx^a & \Bx_b \cdot \Bx^b
 \end{bmatrix}
 =
-X^\T
+J^\T
 G
 \begin{bmatrix}
    \Bx^a & \Bx^b
@@ -710,17 +710,32 @@ but
    \Bx^a & \Bx^b
 \end{bmatrix}
 =
-   X \lr{ X^\T G X }^{-1}
+   J \lr{ J^\T G J }^{-1}
 \begin{bmatrix}
    1 & 0 \\
    0 & 1
 \end{bmatrix}
 =
-   X \lr{ X^\T G X }^{-1}.
+   J \lr{ J^\T G J }^{-1}.
 \end{equation}
 So, we see that the reciprocal frame vectors given by \cref{eqn:reciprocalAndTangentspace:1220} is inevitable given that they must satisfy
 \begin{equation}\label{eqn:reciprocalAndTangentspace:1280}
-X^\T G X \lr{ X^\T G X }^{-1} = I.
+J^\T G J \lr{ J^\T G J }^{-1} = I.
+\end{equation}
+
+Also note that in the case where the number of parameters equals the dimension of the vector space, we can simplify  \( J \lr{ J^\T G J }^{-1} \) considerably.  That becomes
+\begin{equation}\label{eqn:reciprocalAndTangentspace:2100}
+\begin{bmatrix}
+   \Bx^a & \Bx^b & \cdots
+\end{bmatrix}
+=
+J \lr{ J^\T G J }^{-1}
+=
+   J J^{-1} G^{-1} {J^\T}^{-1}
+=
+   G^{-1} {J^\T}^{-1}
+=
+\lr{ J^\T G }^{-1}.
 \end{equation}
 
 \section{Gradient in curvilinear coordinates.}
@@ -755,9 +770,11 @@ With
 \end{equation}
 we have
 \begin{equation}\label{eqn:reciprocalAndTangentspace:1640}
-   \spacegrad = \Bx^j \PD{a^j}{}.
+   \spacegrad = \Bx^j \PD{a^j}{},
 \end{equation}
-These parameter gradients have been written as \( \Bx^j \)'s as they are reciprocal to \( \Bx_j = \PDi{a_j}{\Bx} \).  
+a curvilinear representation of the gradient.
+
+These parameter gradients have been written as \( \Bx^j \)'s as they are reciprocal to \( \Bx_j = \PDi{a_j}{\Bx} \).
 To show this, we just have to computing the dot products of such a pair, and apply the chain rule in reverse
 \begin{equation}\label{eqn:reciprocalAndTangentspace:1660}
 \begin{aligned}
@@ -827,9 +844,20 @@ so
    \inv{r} \Be_2 e^{i\theta}.
 \end{aligned}
 \end{equation}
-We get the same results, but it was a lot trickier to compute than the vector-bivector dot products or matrix inverses, and that computation only seemed possible because we could solve for \( r, \theta \) in this specific case.
+As well as finding our reciprocals \( \Bx^r = \spacegrad r, \Bx^\theta = \spacegrad \theta \), we know know the circular representation of the gradient
+\begin{equation}\label{eqn:reciprocalAndTangentspace:2120}
+\spacegrad
+=
+\Be_1 e^{i\theta}
+\PD{r}{}
++
+\inv{r} \Be_2 e^{i\theta} \PD{\theta}{}
+= \rcap \PD{r}{} + \inv{r} \thetacap \PD{\theta}{}.
+\end{equation}
 
-What is really cool, is that we don't actually have to be able to solve for the parameters as functions of the coordinates, since we can use the same implicit differentiation methods used above in a more systematic fashion.  Let's use the two variable case again to illustrate the method.  The generalization will be clear.
+It was a lot trickier to compute the reciprocal frame vectors this way than our previous vector-bivector dot products or matrix inverse methods.  That computation also only seemed possible because we could solve for \( r, \theta \) in this specific case.  What would we do when we have more complicated and unseparable parameterizations?
+
+Well, we don't actually have to be able to solve for the parameters as functions of the coordinates, since we can use the same implicit differentiation methods used above in a more systematic fashion.  Let's use the two variable case again to illustrate the method.  The generalization will be clear.
 
 Let
 \begin{equation}\label{eqn:reciprocalAndTangentspace:1820}

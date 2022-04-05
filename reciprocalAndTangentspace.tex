@@ -28,7 +28,7 @@
 %\chapter{XXX}
 %\label{chap:reciprocalAndTangentspace}
 
-\section{Curvilear coordinates.}
+\section{Curvilinear coordinates.}
 Let's start by considering a two parameter surface specified by \( \Bx = \Bx(a,b) \).  This defines a surface, for which the partials are both tangent to at each point of the surface.  We write
 \begin{equation}\label{eqn:reciprocalAndTangentspace:20}
 \begin{aligned}
@@ -236,7 +236,7 @@ a sum of projections, that we have for Euclidean orthonormal bases.  The recipro
 also not imposing a requirement for the space to be Euclidean.
 
 \subsection{Orthogonal curvilinear coordinates.}
-When our tangent plane vectors are orthogonal, computation of the reciprocal frame just requires scaling.  That scaling, perhaps not suprisingly, given the name reciprocal, just requires a vector inverse.  For our two parameter case, that is just
+When our tangent plane vectors are orthogonal, computation of the reciprocal frame just requires scaling.  That scaling, perhaps not surprisingly, given the name reciprocal, just requires a vector inverse.  For our two parameter case, that is just
 \begin{equation}\label{eqn:reciprocalAndTangentspace:500}
    \Bx^a = \inv{\Bx_a} = \frac{\Bx_a}{\Bx_a \cdot \Bx_a}
    , \quad
@@ -286,7 +286,7 @@ so the spherical reciprocals are just
    \Bx^\phi = \inv{r \sin\theta} \Be_2 e^{i\phi}.
 \end{equation}
 
-Using straight inversion to compute the reciprocal frame vectors even works for non-Euclidean spaces.  Consider the following example, using the relativisitic (Dirac) basis
+Using straight inversion to compute the reciprocal frame vectors even works for non-Euclidean spaces.  Consider the following example, using the relativistic (Dirac) basis
 \begin{equation}\label{eqn:reciprocalAndTangentspace:680}
    x(a,b) = a \lr{ \gamma_1 + \gamma_2 } + b \gamma_3,
 \end{equation}
@@ -655,7 +655,7 @@ and
 Sure enough we are able to compute a set of reciprocal frame vectors, satisfying the definition.  In this case, both of those are also lightlike, even though they span the \( ct,x\) plane.
 
 \subsection{Matrix solution of the reciprocal frame vectors.}
-An alternative, one that is possibly more computationally effecient, is using matrix algebra to perform the same computation.
+An alternative, one that is possibly more computationally efficient, is using matrix algebra to perform the same computation.
 Consider an m-parameter surface \( \Bx = \Bx(a^1, \cdots, a^m) \), with \( \Bx_i = \PDi{a^i}{\Bx} \), we can form a Jacobian matrix of all the partials
 \begin{equation}\label{eqn:reciprocalAndTangentspace:1160}
    J =
@@ -745,17 +745,19 @@ J
 %J^\T G J \lr{ J^\T G J }^{-1} = I.
 %\end{equation}
 
-In the special case where the number of parameters equals the dimension of the vector space, \( J \) is both square and invertible, so we can simplify things considerably
+In the special case where the number of parameters equals the dimension of the vector space, \( J \) is both square and (generally) invertible, so we can simplify things considerably
 \begin{equation}\label{eqn:reciprocalAndTangentspace:2100}
+\begin{aligned}
 X
-=
-J \lr{ J^\T G J }^{-1}
-=
-   J J^{-1} G^{-1} {J^\T}^{-1}
-=
-   G^{-1} {J^\T}^{-1}
-=
-\lr{ J^\T G }^{-1}.
+&=
+J \lr{ J^\T G J }^{-1} \\
+&=
+   J J^{-1} G^{-1} {(J^\T)}^{-1} \\
+&=
+   G^{-1} {(J^\T)}^{-1} \\
+&=
+   \lr{ J^\T G }^{-1}.
+\end{aligned}
 \end{equation}
 
 \section{Gradient in curvilinear coordinates.}
@@ -875,100 +877,183 @@ As well as finding our reciprocals \( \Bx^r = \spacegrad r, \Bx^\theta = \spaceg
 = \rcap \PD{r}{} + \inv{r} \thetacap \PD{\theta}{}.
 \end{equation}
 
-It was a lot trickier to compute the reciprocal frame vectors this way than our previous vector-bivector dot products or matrix inverse methods.  That computation also only seemed possible because we could solve for \( r, \theta \) in this specific case.  What would we do when we have more complicated and unseparable parameterizations?
-
-Well, we don't actually have to be able to solve for the parameters as functions of the coordinates, since we can use the same implicit differentiation methods used above in a more systematic fashion.  Let's use the two variable case again to illustrate the method.  The generalization will be clear.
-
-Let
-\begin{equation}\label{eqn:reciprocalAndTangentspace:1820}
+It was a lot trickier to compute the reciprocal frame vectors this way than our previous vector-bivector dot products or matrix inverse methods.  That computation also only seemed possible because we could solve for \( r, \theta \) in this specific case.  What would we do when we have more complicated and inseparable parameterizations?
+Well, we don't actually have to be able to solve for the parameters as functions of the coordinates, since we can use the same implicit differentiation methods used above in a more systematic fashion.
+Given
+\begin{equation}\label{eqn:reciprocalAndTangentspace:2240}
+x^i = x^i(a^1, a^2, \cdots, a^n),
+\end{equation}
+the gradients of each of these coordinates is
+\begin{equation}\label{eqn:reciprocalAndTangentspace:2260}
 \begin{aligned}
-   x &= f(a,b) \\
-   y &= g(a,b).
+\spacegrad x^i
+=
+e^j \PD{x^j}{x^i}
+= e^j {\delta^i}_j
+= e^i.
 \end{aligned}
 \end{equation}
-We can compute the gradients of \( f, g\), which are
-\begin{equation}\label{eqn:reciprocalAndTangentspace:1840}
+and
+\begin{equation}\label{eqn:reciprocalAndTangentspace:2280}
 \begin{aligned}
-   \spacegrad f &= \spacegrad x = \Be^1 \\
-   \spacegrad g &= \spacegrad y = \Be^2.
+\spacegrad x^i
+&=
+e^j \PD{x^j}{x^i} \\
+&=
+e^j \PD{a^k}{x^i} \PD{x^j}{a^k} \\
+&=
+\PD{a^k}{x^i} \spacegrad a^k
 \end{aligned}
 \end{equation}
-We can expand the \( f,g \) gradients by chain rule
-\begin{equation}\label{eqn:reciprocalAndTangentspace:1860}
-\begin{aligned}
-   \spacegrad f
-   &= \Be^\mu \PD{x^\mu}{f} \\
-   &=
-   \Be^\mu \PD{x^\mu}{a} \PD{a}{f}
-   +
-   \Be^\mu \PD{x^\mu}{b} \PD{b}{f} \\
-   &=
-   \PD{a}{f} \spacegrad a
-   +
-   \PD{b}{f} \spacegrad b.
-\end{aligned}
+or
+\begin{equation}\label{eqn:reciprocalAndTangentspace:2300}
+\PD{a^k}{x^i} \spacegrad a^k = \Be^i.
 \end{equation}
-Similarly
-\begin{equation}\label{eqn:reciprocalAndTangentspace:1880}
-   \spacegrad g
-   =
-   \PD{a}{g} \spacegrad a
-   +
-   \PD{b}{g} \spacegrad b,
-\end{equation}
-so
-\begin{equation}\label{eqn:reciprocalAndTangentspace:1900}
+In block matrix form, this is
+\begin{equation}\label{eqn:reciprocalAndTangentspace:2320}
 \begin{bmatrix}
-   \PD{a}{f} & \PD{b}{f} \\
-   \PD{a}{g} & \PD{b}{g}
+\spacegrad a^1 & \cdots & \spacegrad a^n
 \end{bmatrix}
 \begin{bmatrix}
-   \spacegrad a \\
-   \spacegrad b \\
+\PD{a^1}{x^1} & \cdots & \PD{a^1}{x^n} \\
+\vdots &  & \\
+\PD{a^n}{x^1} & \cdots & \PD{a^n}{x^n}
 \end{bmatrix}
 =
 \begin{bmatrix}
-   \Be^1 \\
-   \Be^2
+\Be^1 & \cdots & \Be^n
 \end{bmatrix}.
 \end{equation}
-We may rewrite this matrix of partials in terms of the coordinates \( x = x^1, y = x^2 \)
-\begin{equation}\label{eqn:reciprocalAndTangentspace:1920}
+Note that
+\begin{equation}\label{eqn:reciprocalAndTangentspace:2340}
+{
 \begin{bmatrix}
-   \PD{a}{x^1} & \PD{b}{x^1} \\
-   \PD{a}{x^2} & \PD{b}{x^2}
+\Be_1 & \cdots & \Be_n
 \end{bmatrix}
-= \frac{\partial(x^1, x^2)}{\partial(a,b)} = J,
-\end{equation}
-which is the Jacobian \( J \).  We now have a complete solution for the reciprocal frame vectors as a matrix equation
-\begin{equation}\label{eqn:reciprocalAndTangentspace:1940}
+}^\T
+G
 \begin{bmatrix}
-   \spacegrad a \\
-   \spacegrad b \\
+\Be^1 & \cdots & \Be^n
 \end{bmatrix}
-= J^{-1}
-\begin{bmatrix}
-   \Be^1 \\
-   \Be^2
-\end{bmatrix}.
+= I,
 \end{equation}
-If we had more coordinates and parameters, we just have to add more entries to each of these matrices.
+or
+\begin{equation}\label{eqn:reciprocalAndTangentspace:2360}
+\begin{bmatrix}
+\Be^1 & \cdots & \Be^n
+\end{bmatrix}
+= G^{-1},
+\end{equation}
+so
+\begin{equation}\label{eqn:reciprocalAndTangentspace:2380}
+\begin{bmatrix}
+\spacegrad a^1 & \cdots & \spacegrad a^n
+\end{bmatrix}
+J^\T = G^{-1}.
+\end{equation}
+This gives us
+\begin{equation}\label{eqn:reciprocalAndTangentspace:2400}
+X =
+G^{-1}
+\lr{J^\T}^{-1}
+=
+\lr{J^\T G}^{-1},
+\end{equation}
+as we found in \cref{eqn:reciprocalAndTangentspace:2100}.
 
-Let's write this out this solution explicitly for the two parameter case
+%%Let's use the two variable case again to illustrate the method.  The generalization will be clear.
+%%
+%%Let
+%%\begin{equation}\label{eqn:reciprocalAndTangentspace:1820}
+%%\begin{aligned}
+%%   x &= f(a,b) \\
+%%   y &= g(a,b).
+%%\end{aligned}
+%%\end{equation}
+%%We can compute the gradients of \( f, g\), which are
+%%\begin{equation}\label{eqn:reciprocalAndTangentspace:1840}
+%%\begin{aligned}
+%%   \spacegrad f &= \spacegrad x = \Be^1 \\
+%%   \spacegrad g &= \spacegrad y = \Be^2.
+%%\end{aligned}
+%%\end{equation}
+%%We can expand the \( f,g \) gradients by chain rule
+%%\begin{equation}\label{eqn:reciprocalAndTangentspace:1860}
+%%\begin{aligned}
+%%   \spacegrad f
+%%   &= \Be^\mu \PD{x^\mu}{f} \\
+%%   &=
+%%   \Be^\mu \PD{x^\mu}{a} \PD{a}{f}
+%%   +
+%%   \Be^\mu \PD{x^\mu}{b} \PD{b}{f} \\
+%%   &=
+%%   \PD{a}{f} \spacegrad a
+%%   +
+%%   \PD{b}{f} \spacegrad b.
+%%\end{aligned}
+%%\end{equation}
+%%Similarly
+%%\begin{equation}\label{eqn:reciprocalAndTangentspace:1880}
+%%   \spacegrad g
+%%   =
+%%   \PD{a}{g} \spacegrad a
+%%   +
+%%   \PD{b}{g} \spacegrad b,
+%%\end{equation}
+%%so
+%%\begin{equation}\label{eqn:reciprocalAndTangentspace:1900}
+%%\begin{bmatrix}
+%%   \PD{a}{f} & \PD{b}{f} \\
+%%   \PD{a}{g} & \PD{b}{g}
+%%\end{bmatrix}
+%%\begin{bmatrix}
+%%   \spacegrad a \\
+%%   \spacegrad b \\
+%%\end{bmatrix}
+%%=
+%%\begin{bmatrix}
+%%   \Be^1 \\
+%%   \Be^2
+%%\end{bmatrix}.
+%%\end{equation}
+%%We may rewrite this matrix of partials in terms of the coordinates \( x = x^1, y = x^2 \)
+%%\begin{equation}\label{eqn:reciprocalAndTangentspace:1920}
+%%\begin{bmatrix}
+%%   \PD{a}{x^1} & \PD{b}{x^1} \\
+%%   \PD{a}{x^2} & \PD{b}{x^2}
+%%\end{bmatrix}
+%%= \frac{\partial(x^1, x^2)}{\partial(a,b)} = J,
+%%\end{equation}
+%%which is the Jacobian \( J \).  We now have a complete solution for the reciprocal frame vectors as a matrix equation
+%%\begin{equation}\label{eqn:reciprocalAndTangentspace:1940}
+%%\begin{bmatrix}
+%%   \spacegrad a \\
+%%   \spacegrad b \\
+%%\end{bmatrix}
+%%= J^{-1}
+%%\begin{bmatrix}
+%%   \Be^1 \\
+%%   \Be^2
+%%\end{bmatrix}.
+%%\end{equation}
+%%If we had more coordinates and parameters, we just have to add more entries to each of these matrices.
+
+Let's write this out explicitly for the two parameter (Euclidean) case, and apply it to our circular parameterization
 \begin{equation}\label{eqn:reciprocalAndTangentspace:1960}
 \begin{bmatrix}
-   \spacegrad a \\
-   \spacegrad b \\
+   \spacegrad a & \spacegrad b
 \end{bmatrix}
+=
+{\begin{bmatrix}
+\PD{a}{x^1} & \PD{a}{x^2} \\
+\PD{b}{x^1} & \PD{b}{x^2}
+\end{bmatrix}
+}^{-1}
 =
 \frac{
 \begin{bmatrix}
-   \PD{b}{x^2} & -\PD{b}{x^1} \\
-   -\PD{a}{x^2} & \PD{a}{x^1}
-\end{bmatrix}
-\begin{bmatrix}
-   \Be^1 \\
-   \Be^2
+   \PD{b}{x^2} & -\PD{a}{x^2} \\
+   -\PD{b}{x^1} & \PD{a}{x^1}
 \end{bmatrix}
 }{
    \PD{a}{x^1} \PD{b}{x^2} - \PD{b}{x^1} \PD{a}{x^2}
@@ -977,12 +1062,12 @@ Let's write this out this solution explicitly for the two parameter case
 or
 \begin{equation}\label{eqn:reciprocalAndTangentspace:1980}
 \begin{aligned}
-   \spacegrad a &= \inv{\Abs{J}} \lr{ \PD{b}{x^2} \Be^1  -\PD{b}{x^1} \Be^2 } \\
-   \spacegrad b &= \inv{\Abs{J}} \lr{ -\PD{a}{x^2} \Be^1 + \PD{a}{x^1} \Be^2 }.
+   \spacegrad a &= \inv{\Abs{J}} \lr{ \PD{b}{x^2} \Be_1  -\PD{b}{x^1} \Be_2 } \\
+   \spacegrad b &= \inv{\Abs{J}} \lr{ -\PD{a}{x^2} \Be_1 + \PD{a}{x^1} \Be_2 }.
 \end{aligned}
 \end{equation}
 
-Let's try this, using our circular parameterization again.  We have
+Application to the our familiar circular parameterization gives
 \begin{equation}\label{eqn:reciprocalAndTangentspace:2000}
 \begin{aligned}
    x &= r \cos\theta \\

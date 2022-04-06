@@ -50,7 +50,7 @@ d\Bx_a \wedge d\Bx_b =
 \end{vmatrix} \Bi\, da db,
 \end{equation}
 where \( \Bi \) is the pseudoscalar for the space.  The reader may be familiar with the determinant here, which is the Jacobian encountered in a change of variable context.
-We may generalize this idea of tangent space to more variables an obvious fashion.  For example, given
+We may generalize this idea of tangent space to more variables in an obvious fashion.  For example, given
 \begin{equation}\label{eqn:reciprocalAndTangentspace:80}
    \Bx = \Bx(a^1, a^2, \cdots, a^M),
 \end{equation}
@@ -150,7 +150,7 @@ In this case our (pseudoscalar) volume element is
 \end{dmath}
 This is just the standard spherical volume element, but scaled with the pseudoscalar.  We would find \( \int_{r=0}^R \int_{\phi=0}^{2 \pi} \int_{\theta=0}^\pi d\Bx_r  \wedge d\Bx_\theta \wedge d\Bx_\phi = I (4/3) \pi R^3 \), the volume of the sphere, again weighted by the pseudoscalar for the space.
 
-As a final example, let's pick the coordinates associated a relativistic boost and scale parameterization in spacetime, illustrated in
+As a final example, let's pick the coordinates associated withwith  a relativistic boost and scale parameterization in spacetime, illustrated in
 \cref{fig:boost:boostFig3}, with \( r = 1 \).
 \imageFigure{../figures/blogit/boostFig3}{Boost worldline.}{fig:boost:boostFig3}{0.3}
 \begin{dmath}\label{eqn:reciprocalAndTangentspace:360}
@@ -189,7 +189,7 @@ This is illustrated in \cref{fig:tangentPlane:tangentPlaneFig1}.
 \imageFigure{../figures/blogit/tangentPlaneFig1}{Tangent plane for two parameter surface.}{fig:tangentPlane:tangentPlaneFig1}{0.3}
 
 \subsection{Coordinates.}
-We call \( y^a, y^b \) the coordinates of the vector \( \By \) with respect to the basis for the tangent space \( \Span{ \Bx_a, \Bx_b } \).  The computation of these coordinates is facilitated by finding the reciprocal frame \( \Bx^a, \Bx_b \) for the tangent space that satisfies both \( \Bx^a, \Bx^b \in \Span {\Bx_a, \Bx_b } \), and
+We call \( y^a, y^b \) the coordinates of the vector \( \By \) with respect to the basis for the tangent space \( \Span{ \Bx_a, \Bx_b } \).  The computation of these coordinates is facilitated by finding the reciprocal frame \( \Bx^a, \Bx^b \) for the tangent space that satisfies both \( \Bx^a, \Bx^b \in \Span {\Bx_a, \Bx_b } \), and
 \begin{equation}\label{eqn:reciprocalAndTangentspace:340}
    \Bx^\mu \cdot \Bx_\nu = {\delta^\mu}_\nu,
 \end{equation}
@@ -228,12 +228,11 @@ Provided we can find these reciprocal vectors, they provide the projections alon
    +
    \lr{ \By \cdot \Bx_b } \Bx^b.
 \end{equation}
-This is a generalization of
+For orthonornal Euclidean vectors, this reduces to the familiar sum of projections
 \begin{equation}\label{eqn:reciprocalAndTangentspace:480}
-   \Bx = \sum_i \lr{ \Bx \cdot \Be_i } \Be_i,
+   \Bx = \sum_i \lr{ \Bx \cdot \Be_i } \Be_i.
 \end{equation}
-a sum of projections, that we have for Euclidean orthonormal bases.  The reciprocal frame allows us to find the coordinates with respect to a oblique (non-orthonormal) basis,
-also not imposing a requirement for the space to be Euclidean.
+The reciprocal frame allows us to find the coordinates with respect to a oblique (non-orthonormal) basis, also not imposing a requirement for the space to be Euclidean.
 
 \subsection{Orthogonal curvilinear coordinates.}
 When our tangent plane vectors are orthogonal, computation of the reciprocal frame just requires scaling.  That scaling, perhaps not surprisingly, given the name reciprocal, just requires a vector inverse.  For our two parameter case, that is just
@@ -335,7 +334,7 @@ Here both of the tangent space vectors
    x_b &= \gamma_0 - \gamma_1,
 \end{aligned}
 \end{equation}
-are lightlike.  This basis spans the \(ct,x\) spacetime plane (\(\Span \setlr{ \gamma_0, \gamma_1 } \)), so we can reach any points on that plane.  Clearly it must be possible to find the coordinates of vectors on that plane with respect to this basis, but we will have to figure out how to do so.  We also do not know how to find the coordinates of vectors that lie in the tangent planes with curvilinear basis vectors that are not-orthogonal.
+are lightlike.  This basis spans the \(ct,x\) spacetime plane (\(\Span \setlr{ \gamma_0, \gamma_1 } \)), so we can reach any points on that plane.  Clearly it must be possible to find the coordinates of vectors on that plane with respect to this basis, but we will have to figure out how to do so.  We also do not know how to find the coordinates of vectors that lie in the tangent planes with curvilinear basis vectors that are non-orthogonal.
 
 \subsection{Reciprocal frame for non-orthogonal coordinates.}
 Now let's figure out how to compute the reciprocal vectors for the more general case where the tangent space vectors are not orthogonal.
@@ -553,7 +552,7 @@ It's immediately obvious that if we generalize to a three parameter surface, the
 -\lr{ \Bx_a \wedge \Bx_c } \cdot \inv{ \lr{ \Bx_a \wedge \Bx_b \wedge \Bx_c } } \\
 \Bx^c
 &=
-\lr{ \Bx_b \wedge \Bx_c } \cdot \inv{ \lr{ \Bx_a \wedge \Bx_b \wedge \Bx_c } }.
+\lr{ \Bx_a \wedge \Bx_b } \cdot \inv{ \lr{ \Bx_a \wedge \Bx_b \wedge \Bx_c } }.
 \end{aligned}
 \end{equation}
 
@@ -578,7 +577,7 @@ We find that curvilinear bases vectors
 We can check that these are generally non-orthogonal as
 \begin{dmath}\label{eqn:reciprocalAndTangentspace:1360}
    \Bx_a \cdot \Bx_\theta = - a \cos\theta \sin\theta + a \epsilon^2 \cos\theta \sin\theta
-   = \frac{a}{2} \lr{ 1 - \epsilon^2 } \sin\lr{ 2 \theta },
+   = \frac{a}{2} \lr{ \epsilon^2 - 1 } \sin\lr{ 2 \theta },
 \end{dmath}
 which shows that these vectors are orthogonal only in the limiting circular case, where the eccentricity \( \epsilon \) goes to one, or at the specific points \( \theta = n \pi/2 \).
 The area element is
@@ -866,7 +865,7 @@ so
    \inv{r} \Be_2 e^{i\theta}.
 \end{aligned}
 \end{equation}
-As well as finding our reciprocals \( \Bx^r = \spacegrad r, \Bx^\theta = \spacegrad \theta \), we know know the circular representation of the gradient
+As well as finding our reciprocals \( \Bx^r = \spacegrad r, \Bx^\theta = \spacegrad \theta \), we now know the circular representation of the gradient
 \begin{equation}\label{eqn:reciprocalAndTangentspace:2120}
 \spacegrad
 =

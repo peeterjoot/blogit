@@ -44,9 +44,9 @@ $$\partial_{\textbf{e}_1} F = 2\textbf{e}_1 -\textbf{e}_2 + \textbf{e}_2\textbf{
 or
 $$\partial_{\textbf{e}_1} F = 0 -\textbf{e}_2 + \textbf{e}_2\textbf{e}_3$$
 
-This most likely isn't correct, i'm having a hard time undestanding how to compute those derivatives in the Clifford algebra. If the question is answered, I would also like to understand how to compute an $n$-vector derivative and even a multivector derivative.
+This most likely isn't correct, I'm having a hard time understanding how to compute those derivatives in the Clifford algebra. If the question is answered, I would also like to understand how to compute an $n$-vector derivative and even a multivector derivative.
 
-In Alan Mcdonald's book, Vector and Geometric Calculus, he treats $\mathbb{R}^m$ as a vector space and simply defines the vector derivative as
+In Alan MacDonald's book, Vector and Geometric Calculus, he treats $\mathbb{R}^m$ as a vector space and simply defines the vector derivative as
 $$\partial_{h} F = h^i \frac{\partial F}{\partial x^i} $$
 where $h = h^i\textbf{e}_i$ and $x^i$ are coordinates on $\mathbb{R}^m$. But this makes any function $F$ be implicitly defined on $\mathbb{R}^m$ and not general subspaces of $C \ell(\mathbb{R}^m)$.
 
@@ -83,7 +83,7 @@ or
 \begin{equation}\label{eqn:directionalDerivatives:80}
    X = \sum_{i < \cdots < j} \lr{ X * \lr{ e^i \wedge \cdots \wedge e^j } } \lr{ e^i \wedge \cdots \wedge e^j }^{-1}.
 \end{equation}
-In either case, the basis \( \setlr{ e_1, \cdots, e_m } \), need not be orthonormal, not Euclidean.  In the latter case, we've written the components of the multivector in terms of the reciprocal frame satisfying \( e^i \cdot e_j = {\delta^i}_j \), and \( e^i \in \Span \setlr{ e_1, \cdots, e_m } \). Both of these expansions are effectively coordinate expansions.  We may make that more explicit, by writing
+In either case, the basis \( \setlr{ e_1, \cdots, e_m } \), need not be orthonormal, not Euclidean.  In the latter case, we've written the components of the multivector in terms of the reciprocal frame satisfying \( e^i \cdot e_j = {\delta^i}_j \), where \( e^i \in \Span \setlr{ e_1, \cdots, e_m } \). Both of these expansions are effectively coordinate expansions.  We may make that more explicit, by writing
 \begin{equation}\label{eqn:directionalDerivatives:100}
 \begin{aligned}
    X^{i \cdots j} &= X * \lr{ e^j \wedge \cdots \wedge e^i } \\
@@ -96,6 +96,109 @@ so
    = \sum_{i < \cdots < j} X^{i \cdots j} \lr{ e_i \wedge \cdots \wedge e_j }
    = \sum_{i < \cdots < j} X_{i \cdots j} \lr{ e^i \wedge \cdots \wedge e^j }.
 \end{equation}
+
+To make things more concrete, assume that the domain of \( F \) is a two dimensional geometric algebra, where we may represent a multivector with coordinates
+\begin{equation}\label{eqn:directionalDerivatives:140}
+   X = x^0 + x^1 e_1 + x^2 e_2 + x^{12} e_{12},
+\end{equation}
+where \( e_{12} = e_1 \wedge e_2 \) is a convenient shorthand.  We can now expand the directional derivative in coordinates
+\begin{equation}\label{eqn:directionalDerivatives:160}
+\begin{aligned}
+   \evalbar{\frac{dF(X + t A)}{dt}}{t = 0}
+   &=
+   \evalbar{
+      \PD{(x^0 + t a^0)}{F} \PD{t}{(x^0 + t a^0)}
+   }{t = 0}
+   +
+   \evalbar{
+      \PD{(x^1 + t a^1)}{F} \PD{t}{(x^1 + t a^1)}
+   }{t = 0} \\
+   &\quad
+   +
+   \evalbar{
+      \PD{(x^2 + t a^2)}{F} \PD{t}{(x^2 + t a^2)}
+   }{t = 0}
+   +
+   \evalbar{
+      \PD{(x^{12} + t a^{12})}{F} \PD{t}{(x^{12} + t a^{12})}
+   }{t = 0} \\
+   &=
+   a^0 \PD{x^0}{F}
+   +
+   a^1 \PD{x^1}{F}
+   +
+   a^2 \PD{x^2}{F}
+   +
+   a^{12} \PD{x^{12}}{F}.
+\end{aligned}
+\end{equation}
+We may express the \( A \) dependence above without coordinates by introducing a number of factors of unity
+\begin{equation}\label{eqn:directionalDerivatives:180}
+\begin{aligned}
+   \evalbar{\frac{dF(X + t A)}{dt}}{t = 0}
+   &=
+   \lr{a^0 1} 1 \PD{x^0}{F}
+   +
+   \lr{ a^1 e_1 } e^1 \PD{x^1}{F}
+   +
+   \lr{ a^2 e_2 } e^2 \PD{x^2}{F}
+   +
+   \lr{ a^{12} e_{12} } e^{21} \PD{x^{12}}{F} \\
+   &=
+   \lr{
+   \lr{a^0 1} 1 \PD{x^0}{}
+   +
+   \lr{ a^1 e_1 } e^1 \PD{x^1}{}
+   +
+   \lr{ a^2 e_2 } e^2 \PD{x^2}{}
+   +
+   \lr{ a^{12} e_{12} } e^{21} \PD{x^{12}}{}
+   } F \\
+   &=
+   A * \lr{
+      \PD{x^0}{}
+      +
+      e^1 \PD{x^1}{}
+      +
+      e^2 \PD{x^2}{}
+      +
+      e^{21} \PD{x^{12}}{}
+   } F.
+\end{aligned}
+\end{equation}
+Now we see the form of the multivector derivative, which is
+\begin{equation}\label{eqn:directionalDerivatives:200}
+   \partial_X =
+      \PD{x^0}{}
+      +
+      e^1 \PD{x^1}{}
+      +
+      e^2 \PD{x^2}{}
+      +
+      e^{21} \PD{x^{12}}{},
+\end{equation}
+or more generally
+\begin{equation}\label{eqn:directionalDerivatives:220}
+   \partial_X = \sum_{i < \cdots < j} e^{j \cdots i} \PD{x^{i \cdots j}}{}.
+\end{equation}
+
+Let's apply this to your function
+\begin{equation}\label{eqn:directionalDerivatives:240}
+\begin{aligned}
+   F(X)
+   &= X \lr{ e_1 - e_2 } + e_1 e_2 e_3 \\
+   &= \lr{ x^0 + x^1 e_1 + x^2 e_2 + x^3 e_3 + x^{12} e_{12} + x^{23} e_{23} + x^{13} e_{13} + x^{123} e_{123} } \lr{ e_1 - e_2 } + e_1 e_2 e_3.
+\end{aligned}
+\end{equation}
+Our multivector gradient is
+\begin{equation}\label{eqn:directionalDerivatives:260}
+\begin{aligned}
+   \partial_X F(X)
+   &= \lr{ 1 + e^1 e_1 + e^2 e_2 + e^3 e_3 + e^{21} e_{12} + e^{32} e_{23} + e^{31} e_{13} + e^{321} e_{123} } \lr{ e_1 - e_2 } \\
+   &= 2^3 \lr{ e_1 - e_2 }.
+\end{aligned}
+\end{equation}
+We have had to resort to coordinates to compute the multivector gradient, but in the end, we do end up (at least in this case) with a coordinate free result.
 
 %}
 \EndArticle

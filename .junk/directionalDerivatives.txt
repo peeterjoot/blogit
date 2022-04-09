@@ -1,0 +1,38 @@
+As you noted, there is some notational inconsistency between different authors on this subject.  You mentioned [2] who writes the directional derivative as
+$$   \partial_\mathbf{h} F(\mathbf{x}) = \lim_{t\rightarrow 0} \frac{F(\mathbf{x} + t \mathbf{h}) - F(\mathbf{x})}{t},$$
+where he makes the identification $ \partial_\mathbf{h} F(\mathbf{x}) = \left( { \mathbf{h} \cdot \boldsymbol{\nabla} } \right) F(\mathbf{x}) $.  Similarly [1] writes
+$$   A * \partial_X F(X) = {\left.{{\frac{dF(X + t A)}{dt}}}\right\vert}_{{t = 0}},$$
+where $ A * B = \left\langle{{ A B }}\right\rangle $ is a scalar grade operator.  In the first case, the domain of the function $ F $ was vectors, whereas the second construction is an explicit multivector formulation.  Should the domain of $ F $ be restricted to vectors, we may make the identification $ \partial_X = \boldsymbol{\nabla} = \sum e^i \partial_i $, however we are interested in the form of the derivative operator for multivectors.  To see how that works, let's expand out the direction derivative in coordinates.
+
+The first step is a coordinate expansion of our multivector $ X $.  We may write
+$$   X = \sum_{i < \cdots < j} \left( { X * \left( { e_i \wedge \cdots \wedge e_j } \right) } \right) \left( { e_i \wedge \cdots \wedge e_j } \right)^{-1},$$
+or
+$$   X = \sum_{i < \cdots < j} \left( { X * \left( { e^i \wedge \cdots \wedge e^j } \right) } \right) \left( { e^i \wedge \cdots \wedge e^j } \right)^{-1}.$$
+In either case, the basis $ \left\{ { e_1, \cdots, e_m } \right\} $, need not be orthonormal, not Euclidean.  In the latter case, we've written the components of the multivector in terms of the reciprocal frame satisfying $ e^i \cdot e_j = {\delta^i}_j $, where $ e^i \in \text{span} \left\{ { e_1, \cdots, e_m } \right\} $. Both of these expansions are effectively coordinate expansions.  We may make that more explicit, by writing
+$$\begin{aligned}   X^{i \cdots j} &= X * \left( { e^j \wedge \cdots \wedge e^i } \right) \\    X_{i \cdots j} &= X * \left( { e_j \wedge \cdots \wedge e_i } \right),\end{aligned}$$
+so
+$$   X   = \sum_{i < \cdots < j} X^{i \cdots j} \left( { e_i \wedge \cdots \wedge e_j } \right)   = \sum_{i < \cdots < j} X_{i \cdots j} \left( { e^i \wedge \cdots \wedge e^j } \right).$$
+
+To make things more concrete, assume that the domain of $ F $ is a two dimensional geometric algebra, where we may represent a multivector with coordinates
+$$   X = x^0 + x^1 e_1 + x^2 e_2 + x^{12} e_{12},$$
+where $ e_{12} = e_1 \wedge e_2 $ is a convenient shorthand.  We can now expand the directional derivative in coordinates
+$$\begin{aligned}   {\left.{{\frac{dF(X + t A)}{dt}}}\right\vert}_{{t = 0}}   &=   {\left.{{      \frac{\partial {F}}{\partial {(x^0 + t a^0)}} \frac{\partial {(x^0 + t a^0)}}{\partial {t}}   }}\right\vert}_{{t = 0}}   +   {\left.{{      \frac{\partial {F}}{\partial {(x^1 + t a^1)}} \frac{\partial {(x^1 + t a^1)}}{\partial {t}}   }}\right\vert}_{{t = 0}} \\    &\quad   +   {\left.{{      \frac{\partial {F}}{\partial {(x^2 + t a^2)}} \frac{\partial {(x^2 + t a^2)}}{\partial {t}}   }}\right\vert}_{{t = 0}}   +   {\left.{{      \frac{\partial {F}}{\partial {(x^{12} + t a^{12})}} \frac{\partial {(x^{12} + t a^{12})}}{\partial {t}}   }}\right\vert}_{{t = 0}} \\    &=   a^0 \frac{\partial {F}}{\partial {x^0}}   +   a^1 \frac{\partial {F}}{\partial {x^1}}   +   a^2 \frac{\partial {F}}{\partial {x^2}}   +   a^{12} \frac{\partial {F}}{\partial {x^{12}}}.\end{aligned}$$
+We may express the $ A $ dependence above without coordinates by introducing a number of factors of unity
+$$\begin{aligned}   {\left.{{\frac{dF(X + t A)}{dt}}}\right\vert}_{{t = 0}}   &=   \left( {a^0 1} \right) 1 \frac{\partial {F}}{\partial {x^0}}   +   \left( { a^1 e_1 } \right) e^1 \frac{\partial {F}}{\partial {x^1}}   +   \left( { a^2 e_2 } \right) e^2 \frac{\partial {F}}{\partial {x^2}}   +   \left( { a^{12} e_{12} } \right) e^{21} \frac{\partial {F}}{\partial {x^{12}}} \\    &=   \left( {   \left( {a^0 1} \right) 1 \frac{\partial {}}{\partial {x^0}}   +   \left( { a^1 e_1 } \right) e^1 \frac{\partial {}}{\partial {x^1}}   +   \left( { a^2 e_2 } \right) e^2 \frac{\partial {}}{\partial {x^2}}   +   \left( { a^{12} e_{12} } \right) e^{21} \frac{\partial {}}{\partial {x^{12}}}   } \right) F \\    &=   A * \left( {      \frac{\partial {}}{\partial {x^0}}      +      e^1 \frac{\partial {}}{\partial {x^1}}      +      e^2 \frac{\partial {}}{\partial {x^2}}      +      e^{21} \frac{\partial {}}{\partial {x^{12}}}   } \right) F.\end{aligned}$$
+Now we see the form of the multivector derivative, which is
+$$   \partial_X =      \frac{\partial {}}{\partial {x^0}}      +      e^1 \frac{\partial {}}{\partial {x^1}}      +      e^2 \frac{\partial {}}{\partial {x^2}}      +      e^{21} \frac{\partial {}}{\partial {x^{12}}},$$
+or more generally
+$$   \partial_X = \sum_{i < \cdots < j} e^{j \cdots i} \frac{\partial {}}{\partial {x^{i \cdots j}}}.$$
+
+Let's apply this to your function
+$$\begin{aligned}   F(X)   &= X \left( { e_1 - e_2 } \right) + e_1 e_2 e_3 \\    &= \left( { x^0 + x^1 e_1 + x^2 e_2 + x^3 e_3 + x^{12} e_{12} + x^{23} e_{23} + x^{13} e_{13} + x^{123} e_{123} } \right) \left( { e_1 - e_2 } \right) + e_1 e_2 e_3.\end{aligned}$$
+Our multivector gradient is
+$$\begin{aligned}   \partial_X F(X)   &= \left( { 1 + e^1 e_1 + e^2 e_2 + e^3 e_3 + e^{21} e_{12} + e^{32} e_{23} + e^{31} e_{13} + e^{321} e_{123} } \right) \left( { e_1 - e_2 } \right) \\    &= 2^3 \left( { e_1 - e_2 } \right).\end{aligned}$$
+We have had to resort to coordinates to compute the multivector gradient, but in the end, we do end up (at least in this case) with a coordinate free result.
+
+
+<h1>References</h1>
+
+[1] C. Doran and A.N. Lasenby. <em>Geometric algebra for physicists</em>. Cambridge University Press New York, Cambridge, UK, 1st edition,  2003.
+
+[2] A. Macdonald. <em>Vector and Geometric Calculus</em>. CreateSpace Independent Publishing Platform, 2012.

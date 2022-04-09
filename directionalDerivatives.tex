@@ -1,0 +1,102 @@
+%
+% Copyright © 2022 Peeter Joot.  All Rights Reserved.
+% Licenced as described in the file LICENSE under the root directory of this GIT repository.
+%
+%{
+\input{../latex/blogpost.tex}
+\renewcommand{\basename}{directionalDerivatives}
+%\renewcommand{\dirname}{notes/phy1520/}
+\renewcommand{\dirname}{notes/ece1228-electromagnetic-theory/}
+%\newcommand{\dateintitle}{}
+%\newcommand{\keywords}{}
+
+\input{../latex/peeter_prologue_print2.tex}
+
+\usepackage{peeters_layout_exercise}
+\usepackage{peeters_braket}
+\usepackage{peeters_figures}
+\usepackage{siunitx}
+\usepackage{verbatim}
+%\usepackage{mhchem} % \ce{}
+%\usepackage{macros_bm} % \bcM
+%\usepackage{macros_qed} % \qedmarker
+%\usepackage{txfonts} % \ointclockwise
+
+\beginArtNoToc
+
+\generatetitle{Differentiation in Geometric Calculus, Computing Vector Derivatives of Multivector-Valued Functions}
+%\chapter{XXX}
+%\label{chap:directionalDerivatives}
+
+\section{Question}
+I haven't found an explicit formula and way to compute vector derivatives in geometric calculus. For instance, let $V \simeq \mathbb{R}^3$ with the usual orthonormal basis $\{\textbf{e}_i\}_{i=1}^3$ and $C \ell(V)$ its universal Clifford algebra. Consider the multivector-valued function of a vector, that is $F: P_1(C\ell(V)) \to C \ell (V)$ (where $P_1$ is the projection operator), defined as
+$$F(x) = x(\textbf{e}_1 - \textbf{e}_2) + \textbf{e}_1\textbf{e}_2 \textbf{e}_3$$
+where $x \in P_1(C \ell (V))$. Consider that $x = \textbf{e}_1$, then
+$$F(\textbf{e}_1) = \textbf{e}_1(\textbf{e}_1 - \textbf{e}_2) + \textbf{e}_1\textbf{e}_2 \textbf{e}_3  = {\textbf{e}_1}^2 - \textbf{e}_1 \textbf{e}_2 + \textbf{e}_1\textbf{e}_2\textbf{e}_3$$
+$$F(\textbf{e}_1) = 1 - \textbf{e}_1 \textbf{e}_2 + \textbf{e}_1\textbf{e}_2\textbf{e}_3$$
+
+What would it mean to take the vector derivative $\partial_x$ of the function $F$? My line of reasoning is
+$$\partial_x F(x) = \partial_x (x \textbf{e}_1) - \partial_x (x\textbf{e}_2) + \partial_x (\textbf{e}_1\textbf{e}_2\textbf{e}_3)$$
+and, using $x=\textbf{e}_1$ for instance, we would have
+$$\partial_{\textbf{e}_1} F = \partial_{\textbf{e}_1}({\textbf{e}_1}^2) - \partial_{\textbf{e}_1}(\textbf{e}_1)\textbf{e}_2 + \partial_{\textbf{e}_1}(\textbf{e}_1)\textbf{e}_2\textbf{e}_3$$
+where $\partial_{\textbf{e}_1}({\textbf{e}_1}^2) = 2\textbf{e}_1$, but ${\textbf{e}_1}^2 = 1$ and $\partial_{\textbf{e}_1}(1) = 0$, this reasoning leads to an ambiguity. In the end
+$$\partial_{\textbf{e}_1} F = 2\textbf{e}_1 -\textbf{e}_2 + \textbf{e}_2\textbf{e}_3$$
+or
+$$\partial_{\textbf{e}_1} F = 0 -\textbf{e}_2 + \textbf{e}_2\textbf{e}_3$$
+
+This most likely isn't correct, i'm having a hard time undestanding how to compute those derivatives in the Clifford algebra. If the question is answered, I would also like to understand how to compute an $n$-vector derivative and even a multivector derivative.
+
+In Alan Mcdonald's book, Vector and Geometric Calculus, he treats $\mathbb{R}^m$ as a vector space and simply defines the vector derivative as
+$$\partial_{h} F = h^i \frac{\partial F}{\partial x^i} $$
+where $h = h^i\textbf{e}_i$ and $x^i$ are coordinates on $\mathbb{R}^m$. But this makes any function $F$ be implicitly defined on $\mathbb{R}^m$ and not general subspaces of $C \ell(\mathbb{R}^m)$.
+
+In David Hestenes and Garret Sobczyk's book, Clifford Algebra to Geometric Calculus A Unified Language for Mathematics and Physics, they define the vector derivative using the directional directional derivative as
+$$a \cdot \partial_X F(x) = \left.\frac{\partial}{\partial \tau} F(x+a\tau ) \right\vert_{\tau =0}
+= \lim_{\tau \to 0} \frac{F(x+a\tau) - F(x)}{\tau}$$
+and, duo the generality desired, they never go on to give $\partial_x$ an explicit formula, since this would require a choice of basis. They do derive extensively its properties and its "algebra", and derive that
+$$\partial_x F = \partial_x \cdot F + \partial_x \wedge F$$
+
+In the Wikipedia article on geometric calculus (https://en.wikipedia.org/wiki/Geometric_calculus), the derivative
+$$\partial_{\textbf{e}_i} = \partial_i$$
+is simply stated as the derivative in the direction of $\textbf{e}_i$, does this imply to calculate $\partial/\partial x^i$ just like Alan does in his book?
+
+If this is indeed the case, that is, the association of points in $\mathbb{R}^n$ to vectors in $P_1(C\ell(V))$ is "essential" to compute those derivatives, how would this theory come when considering manifolds as the base space, since this impossibilitates the use of points as vectors.
+
+So, a recap. I haven't been able to understand how to compute vector derivatives of multivector-valued functions on $P_1(C\ell(V))$. From all I could see, this operation depends on the base space $\mathbb{R}^n \simeq V$ to allow for those calculations, but this seems to restrict those functions to just $\mathbb{R}^n$ and not really to vectors, $p$-vectors and multivectors.
+
+\section{Answer}
+As you noted, there is some notational inconsistency between different authors on this subject.  You mentioned \citep{aMacdonaldVAGC} who writes the directional derivative as
+\begin{equation}\label{eqn:directionalDerivatives:20}
+   \partial_\Bh F(\Bx) = \lim_{t\rightarrow 0} \frac{F(\Bx + t \Bh) - F(\Bx)}{t},
+\end{equation}
+where he makes the identification \( \partial_\Bh F(\Bx) = \lr{ \Bh \cdot \spacegrad } F(\Bx) \).  Similarly \citep{doran2003gap} writes
+\begin{equation}\label{eqn:directionalDerivatives:40}
+   A * \partial_X F(X) = \evalbar{\frac{dF(X + t A)}{dt}}{t = 0},
+\end{equation}
+where \( A * B = \gpgradezero{ A B } \) is a scalar grade operator.  In the first case, the domain of the function \( F \) was vectors, whereas the second construction is an explicit multivector formulation.  Should the domain of \( F \) be restricted to vectors, we may make the identification \( \partial_X = \spacegrad = \sum e^i \partial_i \), however we are interested in the form of the derivative operator for multivectors.  To see how that works, let's expand out the direction derivative in coordinates.
+
+The first step is a coordinate expansion of our multivector \( X \).  We may write
+\begin{equation}\label{eqn:directionalDerivatives:60}
+   X = \sum_{i < \cdots < j} \lr{ X * \lr{ e_i \wedge \cdots \wedge e_j } } \lr{ e_i \wedge \cdots \wedge e_j }^{-1},
+\end{equation}
+or
+\begin{equation}\label{eqn:directionalDerivatives:80}
+   X = \sum_{i < \cdots < j} \lr{ X * \lr{ e^i \wedge \cdots \wedge e^j } } \lr{ e^i \wedge \cdots \wedge e^j }^{-1}.
+\end{equation}
+In either case, the basis \( \setlr{ e_1, \cdots, e_m } \), need not be orthonormal, not Euclidean.  In the latter case, we've written the components of the multivector in terms of the reciprocal frame satisfying \( e^i \cdot e_j = {\delta^i}_j \), and \( e^i \in \Span \setlr{ e_1, \cdots, e_m } \). Both of these expansions are effectively coordinate expansions.  We may make that more explicit, by writing
+\begin{equation}\label{eqn:directionalDerivatives:100}
+\begin{aligned}
+   X^{i \cdots j} &= X * \lr{ e^j \wedge \cdots \wedge e^i } \\
+   X_{i \cdots j} &= X * \lr{ e_j \wedge \cdots \wedge e_i },
+\end{aligned}
+\end{equation}
+so
+\begin{equation}\label{eqn:directionalDerivatives:120}
+   X
+   = \sum_{i < \cdots < j} X^{i \cdots j} \lr{ e_i \wedge \cdots \wedge e_j }
+   = \sum_{i < \cdots < j} X_{i \cdots j} \lr{ e^i \wedge \cdots \wedge e^j }.
+\end{equation}
+
+%}
+\EndArticle
+%\EndNoBibArticle

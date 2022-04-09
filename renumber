@@ -137,5 +137,8 @@
 #../latex/bin/lgrep gaugeFreedomAndPotentialsMaxwell.tex | tee o ; . ./o
 #perl -p -i ../latex/bin/latexRegex.pl gaugeFreedomAndPotentialsMaxwell.tex
 
-../latex/bin/lgrep reciprocalAndTangentspace.tex | tee o ; . ./o
-perl -p -i ../latex/bin/latexRegex.pl reciprocalAndTangentspace.tex
+#../latex/bin/lgrep reciprocalAndTangentspace.tex | tee o ; . ./o
+#perl -p -i ../latex/bin/latexRegex.pl reciprocalAndTangentspace.tex
+
+../latex/bin/lgrep directionalDerivatives.tex | tee o ; . ./o
+perl -p -i ../latex/bin/latexRegex.pl directionalDerivatives.tex

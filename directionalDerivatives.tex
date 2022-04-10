@@ -77,13 +77,23 @@ where \( A * B = \gpgradezero{ A B } \) is a scalar grade operator.  In the firs
 
 The first step is a coordinate expansion of our multivector \( X \).  We may write
 \begin{equation}\label{eqn:directionalDerivatives:60}
-   X = \sum_{i < \cdots < j} \lr{ X * \lr{ e_i \wedge \cdots \wedge e_j } } \lr{ e_i \wedge \cdots \wedge e_j }^{-1},
+\begin{aligned}
+   X
+   &= \sum_{i < \cdots < j} \lr{ X * \lr{ e_i \wedge \cdots \wedge e_j } } \lr{ e_i \wedge \cdots \wedge e_j }^{-1} \\
+   &= \sum_{i < \cdots < j} \lr{ X * \lr{ e_i \wedge \cdots \wedge e_j } } \lr{ e^j \wedge \cdots \wedge e^i }
+\end{aligned}
 \end{equation}
 or
 \begin{equation}\label{eqn:directionalDerivatives:80}
-   X = \sum_{i < \cdots < j} \lr{ X * \lr{ e^i \wedge \cdots \wedge e^j } } \lr{ e^i \wedge \cdots \wedge e^j }^{-1}.
+\begin{aligned}
+   X
+   &= \sum_{i < \cdots < j} \lr{ X * \lr{ e^i \wedge \cdots \wedge e^j } } \lr{ e^i \wedge \cdots \wedge e^j }^{-1} \\
+   &= \sum_{i < \cdots < j} \lr{ X * \lr{ e^i \wedge \cdots \wedge e^j } } \lr{ e_j \wedge \cdots \wedge e_i }
+\end{aligned}
 \end{equation}
-In either case, the basis \( \setlr{ e_1, \cdots, e_m } \), need not be orthonormal, not Euclidean.  In the latter case, we've written the components of the multivector in terms of the reciprocal frame satisfying \( e^i \cdot e_j = {\delta^i}_j \), where \( e^i \in \Span \setlr{ e_1, \cdots, e_m } \). Both of these expansions are effectively coordinate expansions.  We may make that more explicit, by writing
+In either case, the basis \( \setlr{ e_1, \cdots, e_m } \), need not be orthonormal, not Euclidean.  We are able to utilize the reciprocal frame
+\( e^i \in \Span \setlr{ e_1, \cdots, e_m } \), where \( e^i \cdot e_j = {\delta^i}_j \) to express the m-blade inverses in a compact fashion.
+Both \cref{eqn:directionalDerivatives:60} and \cref{eqn:directionalDerivatives:80} are effectively multivector coordinant expansions.  To make that more explicit, let
 \begin{equation}\label{eqn:directionalDerivatives:100}
 \begin{aligned}
    X^{i \cdots j} &= X * \lr{ e^j \wedge \cdots \wedge e^i } \\
@@ -97,6 +107,7 @@ so
    = \sum_{i < \cdots < j} X_{i \cdots j} \lr{ e^i \wedge \cdots \wedge e^j }.
 \end{equation}
 
+With a coordinate expansion of our multivector variable in hand, we may not compute the direction derivative.
 To make things more concrete, assume that the domain of \( F \) is a two dimensional geometric algebra, where we may represent a multivector with coordinates
 \begin{equation}\label{eqn:directionalDerivatives:140}
    X = x^0 + x^1 e_1 + x^2 e_2 + x^{12} e_{12},
@@ -137,22 +148,22 @@ We may express the \( A \) dependence above without coordinates by introducing a
 \begin{aligned}
    \evalbar{\frac{dF(X + t A)}{dt}}{t = 0}
    &=
-   \lr{a^0 1} 1 \PD{x^0}{F}
+   a^0 \lr{1 1} \PD{x^0}{F}
    +
-   \lr{ a^1 e_1 } e^1 \PD{x^1}{F}
+   a^1 \lr{ e_1  e^1 } \PD{x^1}{F}
    +
-   \lr{ a^2 e_2 } e^2 \PD{x^2}{F}
+   a^2 \lr{ e_2  e^2 } \PD{x^2}{F}
    +
-   \lr{ a^{12} e_{12} } e^{21} \PD{x^{12}}{F} \\
+   a^{12} \lr{ e_{12}  e^{21} } \PD{x^{12}}{F} \\
    &=
    \lr{
-   \lr{a^0 1} 1 \PD{x^0}{}
-   +
-   \lr{ a^1 e_1 } e^1 \PD{x^1}{}
-   +
-   \lr{ a^2 e_2 } e^2 \PD{x^2}{}
-   +
-   \lr{ a^{12} e_{12} } e^{21} \PD{x^{12}}{}
+      \lr{ a^0 1 } 1 \PD{x^0}{}
+      +
+      \lr{ a^1 e_1 } e^1  \PD{x^1}{}
+      +
+      \lr{ a^2 e_2 }  e^2  \PD{x^2}{}
+      +
+      \lr{ a^{12} e_{12} } e^{21}  \PD{x^{12}}{}
    } F \\
    &=
    A * \lr{

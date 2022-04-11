@@ -1,0 +1,66 @@
+In the identity
+$$   u v = u \cdot v + u \wedge v,$$
+the quantities are all vectors.  It is possible to define the dot and wedge products of bivectors and other higher grade objects, but such definitions are usually defined in terms of grade selection.  Suppose that a multivector M has a grade-k component, then that component is written as
+$$   {\left\langle{{M}}\right\rangle}_{{k}}.$$
+In particular, since the product of two vectors, always has a grade-0 and a grade-2 component, we may write
+$$   u v =   {\left\langle{{u v}}\right\rangle}_{{0}} +   {\left\langle{{u v}}\right\rangle}_{{2}}.$$
+Instead of defining the product of two vectors in terms of the dot and wedge product, we can flip that on it's head by defining the dot and wedge products in terms of grade selection
+$$\begin{aligned}   u \cdot v &\equiv {\left\langle{{u v}}\right\rangle}_{{0}} \\    u \wedge v &\equiv {\left\langle{{u v}}\right\rangle}_{{2}}\end{aligned}$$
+
+In general, if $ A_k $ is a k-blade (a product of k perpendicular vectors), and $ B_j $ is a j-blade, then we define
+$$\begin{aligned}   A_k \cdot B_j &\equiv {\left\langle{{A_k B_j}}\right\rangle}_{{\left\lvert {k - j} \right\rvert}} \\    A_k \wedge B_j &\equiv {\left\langle{{A_k B_j}}\right\rangle}_{{k + j}},\end{aligned}$$
+but the product of the two may have a whole pile of intermediate grades
+$$   A_k B_j = A_k \cdot B_j + {\left\langle{{A_k B_j}}\right\rangle}_{{\left\lvert {k - j} \right\rvert + 2}} + \cdots {\left\langle{{A_k B_j}}\right\rangle}_{{k + j - 2}} + A_k \wedge B_j.$$
+
+The dot product $ \left( { e_1 \wedge e_2 } \right) \cdot \left( { e_1 \wedge e_2 } \right) $ can be computed, but this isn't the same as the dot product in the $ u v = u \cdot v + u \wedge v $ identity.
+
+If you do want to compute the dot product of two 2-blades, this can be computed with the distribution identity
+$$\begin{aligned}\left( { a \wedge b } \right) \cdot \left( { c \wedge d } \right)&= \left( { \left( { a \wedge b } \right) \cdot c } \right) \cdot d \\ &= \left( { a ( b \cdot c ) - b (a \cdot c) } \right) \cdot d \\ &= ( a  \cdot d ) ( b \cdot c ) - (b \cdot d ) (a \cdot c).\end{aligned}$$
+For your specific case
+$$\begin{aligned}\left( { e_1 \wedge e_2 } \right) \cdot \left( { e_1 \wedge e_2 } \right)&= \left( { \left( { e_1 \wedge e_2 } \right) \cdot e_1 } \right) \cdot e_2 \\ &= \left( { e_1 ( e_2 \cdot e_1 ) - e_2 (e_1 \cdot e_1) } \right) \cdot e_2 \\ &= - (e_2 \cdot e_2) (e_1 \cdot e_1) \\ &= -1.\end{aligned}$$
+You get the same result because the dot product of a bivector equals the scalar grade of that square, so $ i^2 = i \cdot i $, if $ i = e_1 e_2 $.
+
+<h1>An axiomatic approach.</h1>
+If this is confusing, I would guess that part of the confusion is due to the fact that the relation
+$$   u v = u \cdot v + u \wedge v,$$
+is not really fundamental.  What is fundamental is the contraction axiom
+$$   u^2 = u \cdot u.$$
+Working from this (and a few other axioms) one can find the $ u v = u \cdot v + u \wedge v $ identity, plus a lot more.
+
+In particular, there are a few immediate consequences of the contraction axiom.  The first is that any product of parallel vectors is a scalar, the dot product of the two.  For example, if $ x = a \hat{x} $ and $ y = b \hat{x} $, where $ \hat{x} \cdot \hat{x} = 1 $ is a unit vector, then
+$$\begin{aligned}   x y   &= \left( { a \hat{x} } \right) \left( { b \hat{x} } \right) \\    &= a b \hat{x}^2 \\    &= a b \\    &= x \cdot y.\end{aligned}$$
+
+A second consequence of the contraction axiom is that perpendicular vectors anticommute.  Suppose $ x \cdot z = 0 $, and consider the square of their sum
+$$\begin{aligned}   \left( { x + z } \right)^2 = \left( { x + z } \right) \cdot \left( { x + z } \right)   = x \cdot x + z \cdot z.\end{aligned}$$
+however, expanding the vector products explicitly (taking care to maintain ordering of terms), we have
+$$\begin{aligned}   \left( { x + z } \right)^2   &= \left( { x + z } \right) \left( { x + z } \right) \\    &= x x + x z + z x + z z \\    &= x \cdot x + x z + z x + z \cdot z.\end{aligned}$$
+Comparing these we find that
+$$   x z + z x = 0,$$
+or
+$$   x z = - z x,$$
+for any perpendicular $ x, z $.
+
+This product of two perpendicular vectors $ x z $ is irriducible.  We call this a bivector.  We've found that the product of two parallel vectors is a scalar, whereas the product of two perpendicular vectors is a bivector.  It is reasonable to assume that the product of two general vectors has both a scalar and a bivector component.  We can show that this is the case, by computing the product of two general vectors $ x, y $. We can decompose $ y $ into components that are parallel and perpendicular to $ x $
+$$\begin{aligned}   y_\parallel &= \frac{y \cdot x }{x \cdot x} x \\    y_\perp &= y - y_\parallel.\end{aligned}$$
+The product $ x y $ is now
+$$x y = x y_\parallel + x y_\perp.$$
+The first term is a scalar, since $ x, y_\parallel $ are parallel.  Similarly, the second component is a bivector since $ x, y_\perp $ are perpendicular.  We can cast this scalar term directly in terms of $ x, y $ by noting
+$$\begin{aligned}x y_\parallel&= x \cdot y_\parallel  \\ &= x \cdot \left( { y_\parallel + y_\perp } \right) \\ &= x \cdot y,\end{aligned}$$
+We've found that the scalar component of the product $ x y $ is the dot product of the two vectors.
+
+If we compute the product $ y x $, we find
+$$\begin{aligned}y x&= y_\parallel x + y_\perp x \\ &= y \cdot x - x y_\perp \\ &= x \cdot y - x y_\perp.\end{aligned}$$
+
+Combining these, we find a multivector representation of the dot product
+$$   x \cdot y = \frac{1}{{2}} \left( { x y + y x } \right).$$
+
+We've identified the scalar component of the vector product $ x y $ as the dot product, and found that it can be represented as a symmetric sum.  This means that the bivector term of the vector product has an antisymmetric representation.  In particular
+$$\begin{aligned}   x y   &=   \frac{1}{{2}} \left( { x y + y x } \right)   +   \frac{1}{{2}} \left( { x y - y x } \right) \\    &=   x \cdot y +   \frac{1}{{2}} \left( { x y - y x } \right).\end{aligned}$$
+We define an operator notation for this antisymmetric sum, writing
+$$   x \wedge y \equiv   \frac{1}{{2}} \left( { x y - y x } \right).$$
+It is clear that this operator, called the wedge product, is antisymmetric in $ x, y $.  It's also clear from this definition that $ x \wedge x = 0 $.  Moreoever, this operator filters out any components of the vectors that are colinear.  We can see that filtering properly explicitly, by expanding one of the vectors in terms of components parallel to and perpendicular to the other
+$$\begin{aligned}\frac{1}{{2}} \left( { x y - y x } \right)   &= \frac{1}{{2}} \left( { x \left( { y_\parallel + y_\perp } \right) - \left( { y_\parallel + y_\perp } \right) x } \right) \\    &= \frac{1}{{2}} \left( { x \cdot y_\parallel + x y_\perp - y_\parallel \cdot x - y_\perp x } \right) \\    &= x y_\perp.\end{aligned}$$
+
+Having defined the wedge product as an antisymmetric sum, and having identified the symmetric sum as the dot product, we arrive at
+$$   x y = x \cdot y + x \wedge y,$$
+however, from an axiomatic point of view, this is a consequence, instead of the defining relationship.

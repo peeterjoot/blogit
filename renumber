@@ -140,5 +140,8 @@
 #../latex/bin/lgrep reciprocalAndTangentspace.tex | tee o ; . ./o
 #perl -p -i ../latex/bin/latexRegex.pl reciprocalAndTangentspace.tex
 
-../latex/bin/lgrep directionalDerivatives.tex | tee o ; . ./o
-perl -p -i ../latex/bin/latexRegex.pl directionalDerivatives.tex
+#../latex/bin/lgrep directionalDerivatives.tex | tee o ; . ./o
+#perl -p -i ../latex/bin/latexRegex.pl directionalDerivatives.tex
+
+../latex/bin/lgrep imaginaryQ.tex | tee o ; . ./o
+perl -p -i ../latex/bin/latexRegex.pl imaginaryQ.tex

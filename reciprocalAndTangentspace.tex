@@ -657,14 +657,14 @@ Sure enough we are able to compute a set of reciprocal frame vectors, satisfying
 An alternative, one that is possibly more computationally efficient, is using matrix algebra to perform the same computation.
 Consider an m-parameter surface \( \Bx = \Bx(a^1, \cdots, a^m) \), with \( \Bx_i = \PDi{a^i}{\Bx} \), we can form a Jacobian matrix of all the partials
 \begin{equation}\label{eqn:reciprocalAndTangentspace:1160}
-   J =
+   J^\T =
 \begin{bmatrix}
    \Bx_1 & \Bx_2 & \cdots & \Bx_m
 \end{bmatrix}.
 \end{equation}
 We can now cast each reciprocal vector into a matrix equation to be solved, say
 \begin{equation}\label{eqn:reciprocalAndTangentspace:1180}
-   \Bx^i = J \Balpha_i,
+   \Bx^i = J^\T \Balpha_i,
 \end{equation}
 where \( \Balpha_i \) is an unknown column matrix to be determined for each reciprocal vector.
 The m-parameter generalization of \cref{eqn:reciprocalAndTangentspace:920} is
@@ -673,13 +673,13 @@ The m-parameter generalization of \cref{eqn:reciprocalAndTangentspace:920} is
 \end{equation}
 where
 \begin{equation}\label{eqn:reciprocalAndTangentspace:1200}
-   D = J^\T G J,
+   D = J G J^\T,
 \end{equation}
 and \( G \) is the metric matrix \footnote{For most of physics, there are really only two metrics of interest.  The first is the identity matrix \( G = I \), which we use for Euclidean spaces, and \( G = \pm \diag(1,-1,-1,-1) \), the metric for special relativity.} for the space.
 
 In block matrix form, we have
 \begin{equation}\label{eqn:reciprocalAndTangentspace:2160}
-J^\T G J
+J G J^\T
 \begin{bmatrix}
 \Balpha_1 & \cdots & \Balpha_m
 \end{bmatrix}
@@ -691,7 +691,7 @@ or
 \Balpha_1 & \cdots & \Balpha_m
 \end{bmatrix}
 =
-\lr{J^\T G J}^{-1}.
+\lr{J G J^\T}^{-1}.
 \end{equation}
 
 Let
@@ -703,13 +703,13 @@ X =
 \end{equation}
 so
 \begin{equation}\label{eqn:reciprocalAndTangentspace:2200}
-   X = J
+   X = J^\T
 \begin{bmatrix}
    \Balpha_1 & \cdots & \Balpha_m
 \end{bmatrix}
 =
-J
-\lr{J^\T G J}^{-1}.
+J^\T
+\lr{J G J^\T}^{-1}.
 \end{equation}
 
 %To understand why this works, note that
@@ -719,7 +719,7 @@ J
 %   \Bx_b \cdot \Bx^a & \Bx_b \cdot \Bx^b
 %\end{bmatrix}
 %=
-%J^\T
+%J
 %G
 %\begin{bmatrix}
 %   \Bx^a & \Bx^b
@@ -731,31 +731,31 @@ J
 %   \Bx^a & \Bx^b
 %\end{bmatrix}
 %=
-%   J \lr{ J^\T G J }^{-1}
+%   J^\T \lr{ J G J^\T }^{-1}
 %\begin{bmatrix}
 %   1 & 0 \\
 %   0 & 1
 %\end{bmatrix}
 %=
-%   J \lr{ J^\T G J }^{-1}.
+%   J^\T \lr{ J G J^\T }^{-1}.
 %\end{equation}
 %So, we see that the reciprocal frame vectors given by \cref{eqn:reciprocalAndTangentspace:1220} is inevitable given that they must satisfy
 %\begin{equation}\label{eqn:reciprocalAndTangentspace:1280}
-%J^\T G J \lr{ J^\T G J }^{-1} = I.
+%J G J^\T \lr{ J G J^\T }^{-1} = I.
 %\end{equation}
 
-In the special case where the number of parameters equals the dimension of the vector space, \( J \) is both square and (generally) invertible, so we can simplify things considerably
+In the special case where the number of parameters equals the dimension of the vector space, \( J^\T \) is both square and (generally) invertible, so we can simplify things considerably
 \begin{equation}\label{eqn:reciprocalAndTangentspace:2100}
 \begin{aligned}
 X
 &=
-J \lr{ J^\T G J }^{-1} \\
+J^\T \lr{ J G J^\T }^{-1} \\
 &=
-   J J^{-1} G^{-1} {(J^\T)}^{-1} \\
+J^\T \lr{J^\T}^{-1} G^{-1} J^{-1} \\
 &=
-   G^{-1} {(J^\T)}^{-1} \\
+   G^{-1} J^{-1} \\
 &=
-   \lr{ J^\T G }^{-1}.
+   \lr{ J G }^{-1}.
 \end{aligned}
 \end{equation}
 
@@ -948,15 +948,15 @@ so
 \begin{bmatrix}
 \spacegrad a^1 & \cdots & \spacegrad a^n
 \end{bmatrix}
-J^\T = G^{-1}.
+J = G^{-1}.
 \end{equation}
 This gives us
 \begin{equation}\label{eqn:reciprocalAndTangentspace:2400}
 X =
 G^{-1}
-\lr{J^\T}^{-1}
+\lr{J}^{-1}
 =
-\lr{J^\T G}^{-1},
+\lr{J G}^{-1},
 \end{equation}
 as we found in \cref{eqn:reciprocalAndTangentspace:2100}.
 
@@ -1021,15 +1021,15 @@ as we found in \cref{eqn:reciprocalAndTangentspace:2100}.
 %%   \PD{a}{x^1} & \PD{b}{x^1} \\
 %%   \PD{a}{x^2} & \PD{b}{x^2}
 %%\end{bmatrix}
-%%= \frac{\partial(x^1, x^2)}{\partial(a,b)} = J,
+%%= \frac{\partial(x^1, x^2)}{\partial(a,b)} = J^\T,
 %%\end{equation}
-%%which is the Jacobian \( J \).  We now have a complete solution for the reciprocal frame vectors as a matrix equation
+%%which is the Jacobian \( J^\T \).  We now have a complete solution for the reciprocal frame vectors as a matrix equation
 %%\begin{equation}\label{eqn:reciprocalAndTangentspace:1940}
 %%\begin{bmatrix}
 %%   \spacegrad a \\
 %%   \spacegrad b \\
 %%\end{bmatrix}
-%%= J^{-1}
+%%= J^\T^{-1}
 %%\begin{bmatrix}
 %%   \Be^1 \\
 %%   \Be^2
@@ -1075,7 +1075,7 @@ Application to the our familiar circular parameterization gives
 \end{equation}
 so
 \begin{equation}\label{eqn:reciprocalAndTangentspace:2020}
-J =
+J^\T =
 \begin{bmatrix}
    \cos\theta & -r \sin\theta \\
    \sin\theta & r \cos\theta

@@ -1,0 +1,71 @@
+%
+% Copyright © 2022 Peeter Joot.  All Rights Reserved.
+% Licenced as described in the file LICENSE under the root directory of this GIT repository.
+%
+%{
+\input{../latex/blogpost.tex}
+\renewcommand{\basename}{independent}
+%\renewcommand{\dirname}{notes/phy1520/}
+\renewcommand{\dirname}{notes/ece1228-electromagnetic-theory/}
+%\newcommand{\dateintitle}{}
+%\newcommand{\keywords}{}
+
+\input{../latex/peeter_prologue_print2.tex}
+
+\usepackage{peeters_layout_exercise}
+\usepackage{peeters_braket}
+\usepackage{peeters_figures}
+\usepackage{siunitx}
+\usepackage{verbatim}
+%\usepackage{mhchem} % \ce{}
+%\usepackage{macros_bm} % \bcM
+%\usepackage{macros_qed} % \qedmarker
+%\usepackage{txfonts} % \ointclockwise
+
+\beginArtNoToc
+
+\generatetitle{XXX}
+%\chapter{XXX}
+%\label{chap:independent}
+
+Question: How can you show if $\Ba_1,\dots,\Ba_k$ are linearly independent, then their wedge product is non-zero?
+
+You could reduce this problem to showing that the determinant of the coordinates is non-zero if the vectors are independent.
+
+Consider the simplest two vector case \(\Ba, \Bb \in \mathbb{R}^N\) first.  Expansion of the wedge in coordinates gives
+
+\begin{equation*}
+\begin{aligned}
+\Ba \wedge \Bb 
+&= \sum_{ij} \lr{ a_i \Be_i } \wedge \lr{ b_i \Be_j } \\
+&= \lr{ \sum_{i < j} + \sum_{i > j} } a_i b_j \Be_i \Be_j \\
+&= \sum_{i < j} \lr{ a_i b_j - a_j b_i } \Be_i \Be_j \\
+&= \sum_{i < j} \begin{vmatrix} a_i & a_j \\ b_i & b_j \end{vmatrix} \Be_i \Be_j.
+\end{aligned}
+\end{equation*}
+
+For \(\Ba, \Bb \in \mathbb{R}^2\) this is just a single determinant, but for higher dimensional spaces, you can always find two orthonormal vectors in the plane of the wedge product,
+\begin{equation*}
+   \Bf_1 \cdot \Bf_2 = 0,
+\end{equation*}
+and with respect to that subspace basis, one has
+\begin{equation*}
+a \wedge b = \begin{vmatrix} a_1' & a_2' \\ b_1' & b_2' \end{vmatrix} \Bf_1 \Bf_2.
+\end{equation*}
+The problem is now reduced to showing that the determinant of the coordinates with respect to this basis is non-zero if the vectors are linearly independent, which is a well known theorem.
+
+Similarly, at least for non-degenerate spaces, one can find an orthonormal basis \( \Bf_1, \cdots, \Bf_k \in \mathrm{Span} \{ \Ba_1, \cdots \Ba_k \}, \Bf_i \cdot \Bf_j = \pm \delta_{ij} \) for which
+\begin{equation*}
+   \Ba_1 \wedge \cdots \wedge \Ba_k = 
+\begin{vmatrix}
+   a_{11} & \cdots & a_{1k} \\
+    & \vdots & \\
+   a_{k1} & \cdots & a_{kk} \\
+\end{vmatrix}
+\Bf_1 \cdots \Bf_k
+\end{equation*}
+and this determinant of the coordinates is non-zero if the vectors are linearly independent.
+
+%}
+%\EndArticle
+\EndNoBibArticle

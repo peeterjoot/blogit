@@ -147,3 +147,5 @@
 perl -p -i ../latex/bin/latexRegex.pl imaginaryQ.tex
 ../latex/bin/lgrep independent.tex | tee o ; . ./o
 perl -p -i ../latex/bin/latexRegex.pl independent.tex
+../latex/bin/lgrep trivectorAntisymmetrization.tex | tee o ; . ./o
+perl -p -i ../latex/bin/latexRegex.pl trivectorAntisymmetrization.tex

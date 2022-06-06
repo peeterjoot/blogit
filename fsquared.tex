@@ -1,0 +1,230 @@
+%
+% Copyright © 2022 Peeter Joot.  All Rights Reserved.
+% Licenced as described in the file LICENSE under the root directory of this GIT repository.
+%
+%{
+\input{../latex/blogpost.tex}
+\renewcommand{\basename}{fsquared}
+%\renewcommand{\dirname}{notes/phy1520/}
+\renewcommand{\dirname}{notes/ece1228-electromagnetic-theory/}
+%\newcommand{\dateintitle}{}
+%\newcommand{\keywords}{}
+
+\input{../latex/peeter_prologue_print2.tex}
+
+\usepackage{peeters_layout_exercise}
+\usepackage{peeters_braket}
+\usepackage{peeters_figures}
+\usepackage{siunitx}
+\usepackage{verbatim}
+\usepackage{macros_cal}
+%\usepackage{mhchem} % \ce{}
+%\usepackage{macros_bm} % \bcM
+%\usepackage{macros_qed} % \qedmarker
+%\usepackage{txfonts} % \ointclockwise
+
+\beginArtNoToc
+
+\generatetitle{Square of electrodynamic field.}
+%\chapter{Square of electrodynamic field.}
+%\label{chap:fsquared}
+
+The electrodynamic Lagrangian (without magnetic sources) has the form
+\begin{dmath}\label{eqn:fsquared:20}
+\LL = F \cdot F + \alpha F \cdot J,
+\end{dmath}
+where \( \alpha \) is a constant that depends on the unit system.
+My suspicion is that one or both of the bivector or quadvector grades of \( F^2 \) are required for Maxwell's equation with magnetic sources.
+
+Let's expand out \( F^2 \) in coordinates, as preparation for computing the Euler-Lagrange equations.  The scalar and pseudoscalar components both simplify easily into compact relationships, but the bivector term is messier.  We start with the coordinate expansion of our field, which we may write in either upper or lower index form
+\begin{equation}\label{eqn:fsquared:40}
+   F = \inv{2} \gamma_\mu \wedge \gamma_\nu F^{\mu\nu}
+    = \inv{2} \gamma^\mu \wedge \gamma^\nu F_{\mu\nu}.
+\end{equation}
+The square is
+\begin{dmath}\label{eqn:fsquared:60}
+F^2 = F \cdot F + \gpgradetwo{F^2} + F \wedge F.
+\end{dmath}
+
+Let's compute the scalar term first.  We need to make a change of dummy indexes, for one of the \( F \)'s.  It will also be convenient to use upper indexes in one factor, and lowers in the other.  We find
+\begin{equation}\label{eqn:fsquared:80}
+\begin{aligned}
+F \cdot F
+&=
+\inv{4}
+   \lr{ \gamma_\mu \wedge \gamma_\nu } \cdot \lr{ \gamma^\alpha \wedge \gamma^\beta }
+   F^{\mu\nu}
+   F_{\alpha\beta} \\
+   &=
+\inv{4}
+\lr{
+   {\delta_\nu}^\alpha {\delta_\mu}^\beta
+   - {\delta_\mu}^\alpha {\delta_\nu}^\beta
+}
+   F^{\mu\nu}
+   F_{\alpha\beta} \\
+   &=
+\inv{4}
+\lr{
+   F^{\mu\nu} F_{\nu\mu}
+   -
+   F^{\mu\nu} F_{\mu\nu}
+} \\
+&=
+-\inv{2}
+   F^{\mu\nu} F_{\mu\nu}.
+\end{aligned}
+\end{equation}
+
+Now, let's compute the pseudoscalar component of \( F^2 \).  This time we uniformly use upper index components for the tensor, and find
+\begin{equation}\label{eqn:fsquared:100}
+\begin{aligned}
+   F \wedge F
+   &=
+\inv{4}
+   \lr{ \gamma_\mu \wedge \gamma_\nu } \wedge \lr{ \gamma_\alpha \wedge \gamma_\beta }
+   F^{\mu\nu}
+   F^{\alpha\beta} \\
+   &=
+   \frac{I}{4}
+   \epsilon_{\mu\nu\alpha\beta} F^{\mu\nu} F^{\alpha\beta},
+\end{aligned}
+\end{equation}
+where \( \epsilon_{\mu\nu\alpha\beta} \) is the completely antisymmetric (Levi-Civita) tensor of rank four.
+This pseudoscalar components picks up all the products of components of \( F \) where all indexes are different.
+
+Now, let's try computing the bivector term of the product.  This will require fancier index gymnastics.
+\begin{equation}\label{eqn:fsquared:120}
+\begin{aligned}
+\gpgradetwo{F^2}
+&=
+\inv{4}
+\gpgradetwo{
+   \lr{ \gamma_\mu \wedge \gamma_\nu } \lr{ \gamma^\alpha \wedge \gamma^\beta }
+}
+   F^{\mu\nu}
+   F_{\alpha\beta} \\
+&=
+\inv{4}
+\gpgradetwo{
+   \gamma_\mu \gamma_\nu \lr{ \gamma^\alpha \wedge \gamma^\beta }
+}
+   F^{\mu\nu}
+   F_{\alpha\beta}
+   -
+\inv{4}
+\lr{ \gamma_\mu \cdot \gamma_\nu} \lr{ \gamma^\alpha \wedge \gamma^\beta } F^{\mu\nu} F_{\alpha\beta}.
+\end{aligned}
+\end{equation}
+The dot product term is killed, since \( \lr{ \gamma_\mu \cdot \gamma_\nu} F^{\mu\nu} = g_{\mu\nu} F^{\mu\nu} \) is the contraction of a symmetric tensor with an antisymmetric tensor.  We can now proceed to expand the grade two selection
+\begin{equation}\label{eqn:fsquared:140}
+\begin{aligned}
+\gpgradetwo{
+   \gamma_\mu \gamma_\nu \lr{ \gamma^\alpha \wedge \gamma^\beta }
+}
+&=
+\gamma_\mu \wedge \lr{ \gamma_\nu \cdot \lr{ \gamma^\alpha \wedge \gamma^\beta } }
+   +
+\gamma_\mu \cdot \lr{ \gamma_\nu \wedge \lr{ \gamma^\alpha \wedge \gamma^\beta } } \\
+&=
+\gamma_\mu \wedge
+\lr{
+   {\delta_\nu}^\alpha \gamma^\beta
+   -
+   {\delta_\nu}^\beta \gamma^\alpha
+}
++
+g_{\mu\nu} \lr{ \gamma^\alpha \wedge \gamma^\beta }
+-
+{\delta_\mu}^\alpha \lr{ \gamma_\nu \wedge \gamma^\beta }
++
+{\delta_\mu}^\beta \lr{ \gamma_\nu \wedge \gamma^\alpha } \\
+&=
+{\delta_\nu}^\alpha  \lr{ \gamma_\mu \wedge \gamma^\beta }
+-
+{\delta_\nu}^\beta \lr{ \gamma_\mu \wedge \gamma^\alpha }
+-
+{\delta_\mu}^\alpha \lr{ \gamma_\nu \wedge \gamma^\beta }
++
+{\delta_\mu}^\beta \lr{ \gamma_\nu \wedge \gamma^\alpha }.
+\end{aligned}
+\end{equation}
+Observe that I've taken the liberty to drop the \( g_{\mu\nu} \) term.   Strictly speaking, this violated the equality, but won't matter since we will contract this with \( F^{\mu\nu} \).
+We are left with
+\begin{equation}\label{eqn:fsquared:160}
+\begin{aligned}
+   4 \gpgradetwo{ F^2 }
+   &=
+   \lr{
+{\delta_\nu}^\alpha  \lr{ \gamma_\mu \wedge \gamma^\beta }
+-
+{\delta_\nu}^\beta \lr{ \gamma_\mu \wedge \gamma^\alpha }
+-
+{\delta_\mu}^\alpha \lr{ \gamma_\nu \wedge \gamma^\beta }
++
+{\delta_\mu}^\beta \lr{ \gamma_\nu \wedge \gamma^\alpha }
+}
+   F^{\mu\nu}
+   F_{\alpha\beta}  \\
+   &=
+   F^{\mu\nu}
+   \lr{
+\lr{ \gamma_\mu \wedge \gamma^\alpha }
+   F_{\nu\alpha}
+-
+\lr{ \gamma_\mu \wedge \gamma^\alpha }
+   F_{\alpha\nu}
+-
+\lr{ \gamma_\nu \wedge \gamma^\alpha }
+   F_{\mu\alpha}
++
+\lr{ \gamma_\nu \wedge \gamma^\alpha }
+   F_{\alpha\mu}
+} \\
+&=
+   2 F^{\mu\nu}
+   \lr{
+\lr{ \gamma_\mu \wedge \gamma^\alpha }
+   F_{\nu\alpha}
++
+\lr{ \gamma_\nu \wedge \gamma^\alpha }
+   F_{\alpha\mu}
+} \\
+&=
+   2 F^{\nu\mu}
+\lr{ \gamma_\nu \wedge \gamma^\alpha }
+   F_{\mu\alpha}
++
+   2 F^{\mu\nu}
+\lr{ \gamma_\nu \wedge \gamma^\alpha }
+   F_{\alpha\mu},
+\end{aligned}
+\end{equation}
+which leaves us with
+\begin{equation}\label{eqn:fsquared:180}
+   \gpgradetwo{ F^2 }
+   =
+\lr{ \gamma_\nu \wedge \gamma^\alpha }
+   F^{\mu\nu}
+   F_{\alpha\mu}.
+\end{equation}
+I suspect that there must be an easier way to find this result.
+
+We now have the complete coordinate expansion of \( F^2 \), separated by grade
+\begin{equation}\label{eqn:fsquared:200}
+   F^2 =
+-\inv{2}
+   F^{\mu\nu} F_{\mu\nu}
+   +
+\lr{ \gamma_\nu \wedge \gamma^\alpha }
+   F^{\mu\nu}
+   F_{\alpha\mu}
+   +
+   \frac{I}{4}
+   \epsilon_{\mu\nu\alpha\beta} F^{\mu\nu} F^{\alpha\beta}.
+\end{equation}
+Tomorrow's task is to start evaluating the Euler-Lagrange equations for this multivector Lagrangian density, and see what we get.
+
+%}
+%\EndArticle
+\EndNoBibArticle

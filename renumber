@@ -143,9 +143,14 @@
 #../latex/bin/lgrep directionalDerivatives.tex | tee o ; . ./o
 #perl -p -i ../latex/bin/latexRegex.pl directionalDerivatives.tex
 
-../latex/bin/lgrep imaginaryQ.tex | tee o ; . ./o
-perl -p -i ../latex/bin/latexRegex.pl imaginaryQ.tex
-../latex/bin/lgrep independent.tex | tee o ; . ./o
-perl -p -i ../latex/bin/latexRegex.pl independent.tex
-../latex/bin/lgrep trivectorAntisymmetrization.tex | tee o ; . ./o
-perl -p -i ../latex/bin/latexRegex.pl trivectorAntisymmetrization.tex
+#../latex/bin/lgrep imaginaryQ.tex | tee o ; . ./o
+#perl -p -i ../latex/bin/latexRegex.pl imaginaryQ.tex
+
+#../latex/bin/lgrep independent.tex | tee o ; . ./o
+#perl -p -i ../latex/bin/latexRegex.pl independent.tex
+
+#../latex/bin/lgrep trivectorAntisymmetrization.tex | tee o ; . ./o
+#perl -p -i ../latex/bin/latexRegex.pl trivectorAntisymmetrization.tex
+
+../latex/bin/lgrep fsquared.tex | tee o ; . ./o
+#perl -p -i ../latex/bin/latexRegex.pl fsquared.tex

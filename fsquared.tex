@@ -29,12 +29,16 @@
 %\chapter{Square of electrodynamic field.}
 %\label{chap:fsquared}
 
+\section{Motivation.}
+
 The electrodynamic Lagrangian (without magnetic sources) has the form
 \begin{dmath}\label{eqn:fsquared:20}
-\LL = F \cdot F + \alpha F \cdot J,
+\LL = F \cdot F + a A \cdot J,
 \end{dmath}
-where \( \alpha \) is a constant that depends on the unit system.
+where \( a \) is a constant that depends on the unit system, \( A, J \) are a four-vectors, and \( F = \grad \wedge A \).
 My suspicion is that one or both of the bivector or quadvector grades of \( F^2 \) are required for Maxwell's equation with magnetic sources.
+
+\subsection{Square of the field.}
 
 Let's expand out \( F^2 \) in coordinates, as preparation for computing the Euler-Lagrange equations.  The scalar and pseudoscalar components both simplify easily into compact relationships, but the bivector term is messier.  We start with the coordinate expansion of our field, which we may write in either upper or lower index form
 \begin{equation}\label{eqn:fsquared:40}
@@ -223,7 +227,157 @@ We now have the complete coordinate expansion of \( F^2 \), separated by grade
    \frac{I}{4}
    \epsilon_{\mu\nu\alpha\beta} F^{\mu\nu} F^{\alpha\beta}.
 \end{equation}
-Tomorrow's task is to start evaluating the Euler-Lagrange equations for this multivector Lagrangian density, and see what we get.
+The next task is to start evaluating the Euler-Lagrange equations for this multivector Lagrangian density, and see what we get.  Before doing so, let's figure out what value we want for the constant \( a \).
+
+\subsection{Maxwell's equations in STA and Tensor forms.}
+
+We are going to use the coordinate expansion of the Lagrangian, so we need the tensor form of Maxwell's equation for comparison.
+
+Maxwell's equations, with electric and fictional magnetic sources (useful for antenna theory and other engineering applications), are
+\begin{equation}\label{eqn:fsquared:220}
+\begin{aligned}
+\spacegrad \cdot \BE &= \frac{\rho}{\epsilon} \\
+\spacegrad \cross \BE &= - \BM - \mu \PD{t}{\BH} \\
+\spacegrad \cdot \BH &= \frac{\rho_\txtm}{\mu} \\
+\spacegrad \cross \BH &= \BJ + \epsilon \PD{t}{\BE}.
+\end{aligned}
+\end{equation}
+We can assemble these into a single geometric algebra equation,
+\begin{equation}\label{eqn:fsquared:240}
+   \lr{ \spacegrad + \inv{c} \PD{t}{} } F = \eta \lr{ c \rho - \BJ } + I \lr{ c \rho_m - \BM },
+\end{equation}
+where \( F = \BE + \eta I \BH = \BE + I c \BB \).
+
+We can put this into STA form by multiplying through by \( \gamma_0 \), making the identification \( \Be_k = \gamma_k \gamma_0 \).  For the space time derivatives, we have
+\begin{equation}\label{eqn:fsquared:260}
+\begin{aligned}
+   \gamma_0 \lr{ \spacegrad + \inv{c} \PD{t}{} }
+   &=
+   \gamma_0 \lr{ \gamma_k \gamma_0 \PD{x_k}{} + \PD{x_0}{} } \\
+   &=
+   -\gamma_k \partial_k + \gamma_0 \partial_0 \\
+   &=
+   \gamma^k \partial_k + \gamma^0 \partial_0 \\
+   &=
+   \gamma^\mu \partial_\mu \\
+   &\equiv \grad
+   .
+\end{aligned}
+\end{equation}
+For our 0,2 multivectors on the right hand side, we find, for example
+\begin{equation}\label{eqn:fsquared:280}
+\begin{aligned}
+   \gamma_0 \eta \lr{ c \rho - \BJ }
+   &=
+\gamma_0 \eta c \rho - \gamma_0 \gamma_k \gamma_0 \eta (\BJ \cdot \Be_k)  \\
+&=
+\gamma_0 \eta c \rho + \gamma_k \eta (\BJ \cdot \Be_k)  \\
+&=
+\gamma_0 \frac{\rho}{\epsilon} + \gamma_k \eta (\BJ \cdot \Be_k).
+\end{aligned}
+\end{equation}
+So, if we make the identifications
+\begin{equation}\label{eqn:fsquared:300}
+\begin{aligned}
+   J^0 &= \frac{\rho}{\epsilon} \\
+   J^k &= \eta \lr{ \BJ \cdot \Be_k } \\
+   M^0 &= c \rho_m \\
+   M^k &= \BM \cdot \Be_k,
+\end{aligned}
+\end{equation}
+and \( J = J^\mu \gamma_\mu, M = M^\mu \gamma_\mu \), and \( \grad = \gamma^\mu \partial_\mu \) we find the STA form of Maxwell's equation, including magnetic sources
+\begin{equation}\label{eqn:fsquared:320}
+   \grad F = J - I M.
+\end{equation}
+
+The electromagnetic field, in it's STA representation is a bivector, which we can write without reference to observer specific electric and magnetic fields, as
+\begin{equation}\label{eqn:fsquared:340}
+   F = \inv{2} {\gamma_\mu \wedge \gamma_\nu} F^{\mu\nu},
+\end{equation}
+where \( F^{\mu\nu} \) is an arbitrary antisymmetric 2nd rank tensor.  Maxwell's equation has a vector and trivector component, which may be split out explicitly using grade selection, to find
+\begin{equation}\label{eqn:fsquared:360}
+\begin{aligned}
+   \grad \cdot F &= J \\
+   \grad \wedge F &= -I M.
+\end{aligned}
+\end{equation}
+
+Dotting the vector equation with \( \gamma^\mu \), we have
+\begin{equation}\label{eqn:fsquared:380}
+\begin{aligned}
+   J^\mu
+   &=
+   \inv{2} \gamma^\mu \cdot \lr{ \gamma^\alpha \cdot \lr{ \gamma_{\sigma} \wedge \gamma_{\pi} } \partial_\alpha F^{\sigma \pi} } \\
+   &=
+   \inv{2} \lr{
+      {\delta^\mu}_\pi {\delta^\alpha}_\sigma
+      -
+      {\delta^\mu}_\sigma {\delta^\alpha}_\pi
+   }
+   \partial_\alpha F^{\sigma \pi}  \\
+   &=
+   \inv{2}
+   \lr{
+      \partial_\sigma F^{\sigma \mu}
+      -
+      \partial_\pi F^{\mu \pi}
+   }
+   \\
+   &=
+      \partial_\sigma F^{\sigma \mu}.
+\end{aligned}
+\end{equation}
+
+We can find the tensor form of the trivector equation by wedging it with \( \gamma^\mu \).  On the left we have
+\begin{equation}\label{eqn:fsquared:400}
+\begin{aligned}
+\gamma^\mu \wedge \lr{ \grad \wedge F }
+&=
+\inv{2} \gamma^\mu \wedge \gamma^\nu \wedge \gamma^\alpha \wedge \gamma^\beta \partial_\nu F_{\alpha\beta} \\
+&=
+\inv{2} I \epsilon^{\mu\nu\alpha\beta} \partial_\nu F_{\alpha\beta}.
+\end{aligned}
+\end{equation}
+On the right, we have
+\begin{equation}\label{eqn:fsquared:420}
+\begin{aligned}
+   \gamma^\mu \wedge \lr{ -I M }
+   &=
+   -\gpgrade{ \gamma^\mu I M }{4} \\
+   &=
+   \gpgrade{ I \gamma^\mu M }{4} \\
+   &=
+   I \lr{ \gamma^\mu \cdot M } \\
+   &=
+   I M^\mu,
+\end{aligned}
+\end{equation}
+so we have
+\begin{equation}\label{eqn:fsquared:440}
+\begin{aligned}
+   \partial_\nu \lr{
+\inv{2}
+\epsilon^{\mu\nu\alpha\beta}
+F_{\alpha\beta}
+}
+=
+M^\mu.
+\end{aligned}
+\end{equation}
+Note that, should we want to, we can define a dual tensor \( G^{\mu\nu} = -(1/2) \epsilon^{\mu\nu\alpha\beta} F_{\alpha\beta} \), so that the electric and magnetic components of Maxwell's equation have the same structure
+\begin{equation}\label{eqn:fsquared:460}
+   \partial_\nu F^{\nu\mu} = J^{\mu}, \quad \partial_\nu G^{\nu\mu} = M^{\mu}.
+\end{equation}
+
+Now that we have the tensor form of Maxwell's equation, we can proceed to try to find the Lagrangian.  We will assume that the Lagrangian density for Maxwell's equation has the multivector structure
+\begin{equation}\label{eqn:fsquared:n}
+   \LL = \gpgrade{F^2}{0,4} + a \lr{ A \cdot J } + b I \lr{ A \cdot M},
+\end{equation}
+where \( F = \grad \wedge A \).  My hunch, since the multivector current has the form \( J - I M \), is that we don't actually need the grade two component of \( F^2 \), despite having spent the time computing it, thinking that it might be required.
+
+Next time, we'll remind ourselves what the field Euler-Lagrange equations look like, and evaluate them to see if we can find the constants \(a, b\).
+
+%\subsection{Field Euler-Lagrange equations.}
 
 %}
 %\EndArticle

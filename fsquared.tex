@@ -370,14 +370,228 @@ Note that, should we want to, we can define a dual tensor \( G^{\mu\nu} = -(1/2)
 \end{equation}
 
 Now that we have the tensor form of Maxwell's equation, we can proceed to try to find the Lagrangian.  We will assume that the Lagrangian density for Maxwell's equation has the multivector structure
-\begin{equation}\label{eqn:fsquared:n}
+\begin{equation}\label{eqn:fsquared:480}
    \LL = \gpgrade{F^2}{0,4} + a \lr{ A \cdot J } + b I \lr{ A \cdot M},
 \end{equation}
 where \( F = \grad \wedge A \).  My hunch, since the multivector current has the form \( J - I M \), is that we don't actually need the grade two component of \( F^2 \), despite having spent the time computing it, thinking that it might be required.
 
 Next time, we'll remind ourselves what the field Euler-Lagrange equations look like, and evaluate them to see if we can find the constants \(a, b\).
 
-%\subsection{Field Euler-Lagrange equations.}
+\subsection{Maxwell's equations for electric sources.}
+Given the Lagrangian
+\begin{equation}\label{eqn:fsquared:500}
+\LL = F \cdot F + a \lr{ A \cdot J },
+\end{equation}
+we may derive Maxwell's equations from it, fixing the constant \( a \) by doing so.  We can do this three different ways, with direct variation with respect to the field components \( A_\mu \), using the Euler-Lagrange equations, or with direct variation with respect to \( A = \gamma^\mu A_\mu \), as a single four-vector field variable.
+
+Let's try this first with direct variation using the coordinate expansion of \( A \).  The action is
+\begin{equation}\label{eqn:fsquared:520}
+S = \int d^4 x \lr{ -\inv{2} F_{\mu\nu} F^{\mu\nu} + a J^\mu A_\mu }.
+\end{equation}
+The variational principle requires the action variation to be zero for all \( \delta A_\mu \), where \( \delta A_\mu = 0 \) on the boundaries of the space.  That is
+\begin{equation}\label{eqn:fsquared:540}
+\begin{aligned}
+0 &= \delta S  \\
+  &= \int d^4 x \lr{ -\inv{2} \lr{ \delta F_{\mu\nu} } F^{\mu\nu} -\inv{2} F_{\mu\nu} \delta F^{\mu\nu} + a J^\mu \delta A_\mu } \\
+  &= \int d^4 x \lr{ - \lr{ \delta F_{\mu\nu} } F^{\mu\nu} + a J^\mu \delta A_\mu } \\
+  &= \int d^4 x \lr{ - \lr{ \delta \lr{ \partial_\mu A_\nu - \partial_\nu A_\mu } } F^{\mu\nu} + a J^\mu \delta A_\mu } \\
+  &= \int d^4 x \lr{ - \lr{ \partial_\mu \delta A_\nu - \partial_\nu \delta A_\mu } F^{\mu\nu} + a J^\mu \delta A_\mu } \\
+  &= \int d^4 x \lr{ - \lr{ \lr{ \partial_\mu \delta A_\nu } F^{\mu\nu} - \lr{ \partial_\mu \delta A_\nu } F^{\nu\mu} } + a J^\mu \delta A_\mu } \\
+  &= \int d^4 x \lr{ - 2 \lr{ \partial_\mu \delta A_\nu } F^{\mu\nu} + a J^\mu \delta A_\mu } \\
+  &= \int d^4 x \lr{ - 2 \partial_\mu \lr{ \delta A_\nu F^{\mu\nu} } + 2 \delta A_\nu \partial_\mu F^{\mu\nu} + a J^\mu \delta A_\mu } \\
+  &= \int d^4 x \lr{ 2 \delta A_\nu \partial_\mu F^{\mu\nu} + a J^\nu \delta A_\nu } \\
+  &= \int d^4 x \lr{ 2 \partial_\mu F^{\mu\nu} + a J^\nu } \delta A_\nu.
+\end{aligned}
+\end{equation}
+We have all the usual types of index gymnastics above, and dropped the complete derivative term since \( \delta A_\nu \) is zero on the boundary by definition.  Since the end result must be zero for all variations, we must have
+\begin{equation}\label{eqn:fsquared:560}
+0 = 2 \partial_\mu F^{\mu\nu} + a J^\nu.
+\end{equation}
+We also determine our constant \( a = -2 \).
+
+Now, let's do the same calculation using the Euler-Lagrange equations.  We derive those by varying a general Lagrangian density, just as above
+\begin{equation}\label{eqn:fsquared:580}
+\begin{aligned}
+   0 
+   &=
+   \delta S  \\
+   &= \int d^4 x \delta \LL(A_\mu, \partial_\nu A_\mu) \\
+   &= \int d^4 x \lr{ \PD{A_\mu}{\LL} \delta A_\mu + \PD{(\partial_\nu A_\mu)}{\LL} \delta \partial_\nu A_\mu } \\
+   &= \int d^4 x \lr{ \PD{A_\mu}{\LL} \delta A_\mu + \PD{(\partial_\nu A_\mu)}{\LL} \partial_\nu \delta A_\mu } \\
+   &= \int d^4 x \lr{ \PD{A_\mu}{\LL} \delta A_\mu 
+   + \partial_\nu \lr{ \PD{(\partial_\nu A_\mu)}{\LL} \delta A_\mu } 
+   - \lr{ \partial_\nu \PD{(\partial_\nu A_\mu)}{\LL} } \delta A_\mu 
+} \\
+   &= \int d^4 x \lr{ \PD{A_\mu}{\LL} - \lr{ \partial_\nu \PD{(\partial_\nu A_\mu)}{\LL} } } \delta A_\mu.
+\end{aligned}
+\end{equation}
+Since this is zero for all variations \( \delta A_\mu \), we find the field Euler-Lagrange equations are
+\begin{equation}\label{eqn:fsquared:600}
+   \PD{A_\mu}{\LL} = \partial_\nu \PD{(\partial_\nu A_\mu)}{\LL} .
+\end{equation}
+
+We should be able to re-derive Maxwell's equations from the Lagrangian using these field Euler-Lagrange equations, with a bit less work, since we've pre-calculated some of the variation.  Let's try that.  Since we now know the value of the constant \( a \), our Lagrangian is
+\begin{equation}\label{eqn:fsquared:620}
+   \LL = -\inv{2} F_{\mu\nu} F^{\mu\nu} - 2 J^\mu A_\mu.
+\end{equation}
+
+On the LHS we have
+\begin{equation}\label{eqn:fsquared:640}
+\begin{aligned}
+\PD{A_\mu}{\LL} 
+&=
+\PD{A_\mu}{} \lr{ - 2 J^\nu A_\nu } \\
+&=
+- 2 J^\mu.
+\end{aligned}
+\end{equation}
+For the RHS, let's first calculate
+\begin{equation}\label{eqn:fsquared:660}
+\begin{aligned}
+\PD{(\partial_\nu A_\mu)}{\LL} 
+&=
+\PD{(\partial_\nu A_\mu)}{}
+\lr{ 
+   -\inv{2} F_{\alpha\beta} F^{\alpha\beta} 
+} \\
+&=
+-
+\lr{
+   \PD{(\partial_\nu A_\mu)}{}
+      F_{\alpha\beta} 
+}
+   F^{\alpha\beta} 
+\\
+&=
+-
+\lr{
+   \PD{(\partial_\nu A_\mu)}{}
+   \lr{
+      \partial_\alpha A_\beta - \partial_\beta A_\alpha
+   }
+}
+   F^{\alpha\beta} 
+\\
+&=
+- F^{\nu\mu} 
++ F^{\mu\nu} \\
+&=
+- 2 F^{\nu\mu} 
+.
+\end{aligned}
+\end{equation}
+We are left with
+\begin{equation}\label{eqn:fsquared:680}
+   -2 \partial_\nu F^{\nu\mu} = -2 J^\mu.
+\end{equation}
+This is the source portion of Maxwell's equation (after canceling \( -2's \)), as expected.
+
+Now let's perform a (mostly) coordinate free evaluation of the variation.  We should be able to vary \( A \) directly without first expanding it in coordinates.
+
+We write the field as a curl
+\begin{equation}\label{eqn:fsquared:700}
+   F = \grad \wedge A.
+\end{equation}
+For completeness sake, before continuing, since we've not already done so, we should verify that this is equivalent to the tensor expansion of \( F \) that we have been using.  We find that by expanding the gradient and the field in coordinates
+\begin{equation}\label{eqn:fsquared:720}
+\begin{aligned}
+   F 
+   &= \grad \wedge A \\
+   &= \lr{ \gamma^\mu \partial_\mu } \wedge \lr{ \gamma^\nu A_\nu } \\
+   &= \lr{ \gamma^\mu \wedge \gamma^\nu } \partial_\mu A_\nu \\
+   &= \inv{2} \lr{ 
+   \lr{ \gamma^\mu \wedge \gamma^\nu } \partial_\mu A_\nu
+   +
+   \lr{ \gamma^\mu \wedge \gamma^\nu } \partial_\mu A_\nu
+   } \\
+   &= \inv{2} \lr{ 
+   \lr{ \gamma^\mu \wedge \gamma^\nu } \partial_\mu A_\nu
+   +
+   \lr{ \gamma^\nu \wedge \gamma^\mu } \partial_\nu A_\mu
+   } \\
+   &= \inv{2} \
+   \lr{ \gamma^\mu \wedge \gamma^\nu } 
+   \lr{
+   \partial_\mu A_\nu - \partial_\nu A_\mu
+   } \\
+   &= \inv{2} \
+   \lr{ \gamma^\mu \wedge \gamma^\nu } F_{\mu\nu},
+\end{aligned}
+\end{equation}
+as claimed.
+
+We want to expand the gradient portion of \( \grad \wedge A \), but leave the field as is.  That is
+\begin{equation}\label{eqn:fsquared:740}
+   \grad \wedge A = \gamma^\mu \wedge \partial_\mu A.
+\end{equation}
+The scalar part of \( F^2 \) is therefore
+\begin{equation}\label{eqn:fsquared:760}
+\begin{aligned}
+F \cdot F
+&=
+\lr{ \gamma^\mu \wedge \partial_\mu A } \cdot \lr{ \gamma^\nu \wedge \partial_\nu A } \\
+&=
+\gamma^\mu \cdot \lr{ \partial_\mu A \cdot \lr{ \gamma^\nu \wedge \partial_\nu A } } \\
+&=
+\lr{ \gamma^\nu \cdot \partial_\mu A } \lr{ \gamma^\mu \cdot \partial_\nu A }
+-
+\lr{ \gamma^\mu \cdot \gamma^\nu } \lr{ (\partial_\mu A) \cdot (\partial_\nu A) }.
+\end{aligned}
+\end{equation}
+Our Lagrangian is now fully specified in terms of \( A \) and it's derivatives.
+\begin{equation}\label{eqn:fsquared:780}
+   \LL = 
+   \lr{ \gamma^\nu \cdot \partial_\mu A } \lr{ \gamma^\mu \cdot \partial_\nu A }
+-
+\lr{ \gamma^\mu \cdot \gamma^\nu } \lr{ (\partial_\mu A) \cdot (\partial_\nu A) }
+- 2 J \cdot A.
+\end{equation}
+Observe the symmetry, with respect to index swap, in the first two terms.  This means that the variation is just
+\begin{equation}\label{eqn:fsquared:800}
+\begin{aligned}
+   \delta \LL 
+&= 
+   2 \lr{ \gamma^\nu \cdot \partial_\mu A } \lr{ \gamma^\mu \cdot \delta \partial_\nu A }
+-
+2 \lr{ \gamma^\mu \cdot \gamma^\nu } \lr{ (\partial_\mu A) \cdot (\delta \partial_\nu A) }
+- 2 J \cdot \delta A
+\\
+&= 
+   2 \lr{ \gamma^\nu \cdot \partial_\mu A } \lr{ \gamma^\mu \cdot \partial_\nu \delta A }
+-
+2 \lr{ \gamma^\mu \cdot \gamma^\nu } \lr{ (\partial_\mu A) \cdot (\partial_\nu \delta A) }
+- 2 J \cdot \delta A
+\\
+&= 
+2 \partial_\nu \lr{ \lr{ \gamma^\nu \cdot \partial_\mu A } \lr{ \gamma^\mu \cdot \delta A } }
+- 2 \partial_\nu \lr{ \lr{ \gamma^\mu \cdot \gamma^\nu } \lr{ (\partial_\mu A) \cdot \delta A } } \\
+&\quad
+-2 \lr{ \partial_\nu \gamma^\nu \cdot \partial_\mu A } \lr{ \gamma^\mu \cdot \delta A }
++ 2 \lr{ \gamma^\mu \cdot \partial_\nu \gamma^\nu } \lr{ (\partial_\mu A) \cdot \delta A }
+- 2 J \cdot \delta A \\
+&=
+2 (\delta A) \cdot \lr{ 
+- \lr{ \grad \cdot \partial_\mu A } \gamma^\mu 
++ \lr{ \gamma^\mu \cdot \grad } \partial_\mu A
+- J 
+} \\
+&=
+2 (\delta A) \cdot \lr{ 
+\grad \cdot \lr{ \gamma^\mu \wedge \partial_\mu A } - J
+} \\
+&=
+2 (\delta A) \cdot \lr{ 
+\grad \cdot F - J
+}.
+\end{aligned}
+\end{equation}
+The complete derivative term above was dropped, leaving us with the source part of Maxwell's equation
+\begin{equation}\label{eqn:fsquared:n}
+   \grad \cdot F = J.
+\end{equation}
+It makes sense that we should not have to resort to coordinates, and sure enough, we are able to avoid doing so.
+
+There's more to do that we will tackle in subsequent posts.  Questions include, how do we express the Euler-Lagrange equations without resorting to coordinates?  We also want to tackle the Lagrangian with magnetic source contributions.
 
 %}
 %\EndArticle

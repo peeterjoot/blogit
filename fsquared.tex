@@ -586,12 +586,58 @@ Observe the symmetry, with respect to index swap, in the first two terms.  This 
 \end{aligned}
 \end{equation}
 The complete derivative term above was dropped, leaving us with the source part of Maxwell's equation
-\begin{equation}\label{eqn:fsquared:n}
+\begin{equation}\label{eqn:fsquared:820}
    \grad \cdot F = J.
 \end{equation}
 It makes sense that we should not have to resort to coordinates, and sure enough, we are able to avoid doing so.
 
-There's more to do that we will tackle in subsequent posts.  Questions include, how do we express the Euler-Lagrange equations without resorting to coordinates?  We also want to tackle the Lagrangian with magnetic source contributions.
+We have more to do.
+Questions include, how do we express the Euler-Lagrange equations without resorting to coordinates?  What form of Lagrangian do we need for magnetic charge and current densities?  Can we find Maxwell's equation in one shot from a multivector Lagrangian without resorting to coordinates, or will we need separate Lagrangians for electric and magnetic contributions?  Can we find all of Maxwell's equations without relying on conditions like \( \grad \wedge \lr{ \grad \wedge A } = 0 \) (i.e. the Biannci identity)?
+
+\subsection{Maxwell's equations with magnetic charge and current densities, from Lagrangian.}
+%This is the 4th part in a series on finding Maxwell's equations (including the fictitious magnetic sources that are useful in engineering) from a Lagrangian representation.
+%<a href="http://peeterjoot.com/archives/math2022/fsquared_v4.pdf">[Click here for a PDF version of this series of posts, up to and including this one.]</a>  The <a href="http://peeterjoot.com/2022/06/05/square-of-electrodynamic-field/">first</a> and <a href="http://peeterjoot.com/2022/06/11/maxwells-equations-in-sta-and-tensor-forms/">second</a>, and <a href="http://peeterjoot.com/2022/06/13/maxwells-equations-from-lagrangian-for-electric-sources/">third</a> parts are also available here on this blog.
+
+Now, let's suppose that we have a pseudoscalar Lagrangian density of the following form
+\begin{equation}\label{eqn:fsquared:840}
+\begin{aligned}
+   \LL &= F \wedge F + b I A \cdot M \\
+       &= \inv{4} I \epsilon_{\mu\nu\alpha\beta} F^{\mu\nu} F^{\alpha\beta} + b I A^\mu M_\mu.
+\end{aligned}
+\end{equation}
+We'll use the Euler-Lagrange equations in upper index form
+\begin{equation}\label{eqn:fsquared:860}
+   \PD{A^\alpha}{\LL} = \partial^\beta \PD{(\partial_\beta A^\alpha)}{\LL},
+\end{equation}
+and find
+\begin{equation}\label{eqn:fsquared:880}
+\begin{aligned}
+   b I M_\alpha 
+   &=
+   \partial^\alpha \lr{ 
+      \inv{2} I \epsilon_{\mu\nu\sigma\pi} F^{\mu\nu} \PD{(\partial^\beta A^\alpha)}{F^{\sigma\pi}}
+   } \\
+   &=
+      \inv{2} I \epsilon_{\mu\nu\sigma\pi} 
+   \partial^\alpha \lr{ 
+      F^{\mu\nu} \PD{(\partial^\beta A^\alpha)}{}\lr{\partial^\sigma A^\pi - \partial_\pi A^\sigma}
+   } \\
+   &=
+      \inv{2} I 
+   \partial^\alpha \lr{ 
+      \epsilon_{\mu\nu\beta\alpha} 
+      F^{\mu\nu} 
+      -
+      \epsilon_{\mu\nu\alpha\beta} 
+      F^{\mu\nu} 
+   } \\
+   &=
+      I 
+   \partial^\alpha 
+      \epsilon_{\mu\nu\beta\alpha} 
+      F^{\mu\nu} 
+\end{aligned}
+\end{equation}
 
 %}
 %\EndArticle

@@ -412,15 +412,15 @@ We also determine our constant \( a = -2 \).
 Now, let's do the same calculation using the Euler-Lagrange equations.  We derive those by varying a general Lagrangian density, just as above
 \begin{equation}\label{eqn:fsquared:580}
 \begin{aligned}
-   0 
+   0
    &=
    \delta S  \\
    &= \int d^4 x \delta \LL(A_\mu, \partial_\nu A_\mu) \\
    &= \int d^4 x \lr{ \PD{A_\mu}{\LL} \delta A_\mu + \PD{(\partial_\nu A_\mu)}{\LL} \delta \partial_\nu A_\mu } \\
    &= \int d^4 x \lr{ \PD{A_\mu}{\LL} \delta A_\mu + \PD{(\partial_\nu A_\mu)}{\LL} \partial_\nu \delta A_\mu } \\
-   &= \int d^4 x \lr{ \PD{A_\mu}{\LL} \delta A_\mu 
-   + \partial_\nu \lr{ \PD{(\partial_\nu A_\mu)}{\LL} \delta A_\mu } 
-   - \lr{ \partial_\nu \PD{(\partial_\nu A_\mu)}{\LL} } \delta A_\mu 
+   &= \int d^4 x \lr{ \PD{A_\mu}{\LL} \delta A_\mu
+   + \partial_\nu \lr{ \PD{(\partial_\nu A_\mu)}{\LL} \delta A_\mu }
+   - \lr{ \partial_\nu \PD{(\partial_\nu A_\mu)}{\LL} } \delta A_\mu
 } \\
    &= \int d^4 x \lr{ \PD{A_\mu}{\LL} - \lr{ \partial_\nu \PD{(\partial_\nu A_\mu)}{\LL} } } \delta A_\mu.
 \end{aligned}
@@ -438,7 +438,7 @@ We should be able to re-derive Maxwell's equations from the Lagrangian using the
 On the LHS we have
 \begin{equation}\label{eqn:fsquared:640}
 \begin{aligned}
-\PD{A_\mu}{\LL} 
+\PD{A_\mu}{\LL}
 &=
 \PD{A_\mu}{} \lr{ - 2 J^\nu A_\nu } \\
 &=
@@ -448,19 +448,19 @@ On the LHS we have
 For the RHS, let's first calculate
 \begin{equation}\label{eqn:fsquared:660}
 \begin{aligned}
-\PD{(\partial_\nu A_\mu)}{\LL} 
+\PD{(\partial_\nu A_\mu)}{\LL}
 &=
 \PD{(\partial_\nu A_\mu)}{}
-\lr{ 
-   -\inv{2} F_{\alpha\beta} F^{\alpha\beta} 
+\lr{
+   -\inv{2} F_{\alpha\beta} F^{\alpha\beta}
 } \\
 &=
 -
 \lr{
    \PD{(\partial_\nu A_\mu)}{}
-      F_{\alpha\beta} 
+      F_{\alpha\beta}
 }
-   F^{\alpha\beta} 
+   F^{\alpha\beta}
 \\
 &=
 -
@@ -470,13 +470,13 @@ For the RHS, let's first calculate
       \partial_\alpha A_\beta - \partial_\beta A_\alpha
    }
 }
-   F^{\alpha\beta} 
+   F^{\alpha\beta}
 \\
 &=
-- F^{\nu\mu} 
+- F^{\nu\mu}
 + F^{\mu\nu} \\
 &=
-- 2 F^{\nu\mu} 
+- 2 F^{\nu\mu}
 .
 \end{aligned}
 \end{equation}
@@ -495,22 +495,22 @@ We write the field as a curl
 For completeness sake, before continuing, since we've not already done so, we should verify that this is equivalent to the tensor expansion of \( F \) that we have been using.  We find that by expanding the gradient and the field in coordinates
 \begin{equation}\label{eqn:fsquared:720}
 \begin{aligned}
-   F 
+   F
    &= \grad \wedge A \\
    &= \lr{ \gamma^\mu \partial_\mu } \wedge \lr{ \gamma^\nu A_\nu } \\
    &= \lr{ \gamma^\mu \wedge \gamma^\nu } \partial_\mu A_\nu \\
-   &= \inv{2} \lr{ 
+   &= \inv{2} \lr{
    \lr{ \gamma^\mu \wedge \gamma^\nu } \partial_\mu A_\nu
    +
    \lr{ \gamma^\mu \wedge \gamma^\nu } \partial_\mu A_\nu
    } \\
-   &= \inv{2} \lr{ 
+   &= \inv{2} \lr{
    \lr{ \gamma^\mu \wedge \gamma^\nu } \partial_\mu A_\nu
    +
    \lr{ \gamma^\nu \wedge \gamma^\mu } \partial_\nu A_\mu
    } \\
    &= \inv{2} \
-   \lr{ \gamma^\mu \wedge \gamma^\nu } 
+   \lr{ \gamma^\mu \wedge \gamma^\nu }
    \lr{
    \partial_\mu A_\nu - \partial_\nu A_\mu
    } \\
@@ -540,7 +540,7 @@ F \cdot F
 \end{equation}
 Our Lagrangian is now fully specified in terms of \( A \) and it's derivatives.
 \begin{equation}\label{eqn:fsquared:780}
-   \LL = 
+   \LL =
    \lr{ \gamma^\nu \cdot \partial_\mu A } \lr{ \gamma^\mu \cdot \partial_\nu A }
 -
 \lr{ \gamma^\mu \cdot \gamma^\nu } \lr{ (\partial_\mu A) \cdot (\partial_\nu A) }
@@ -549,20 +549,20 @@ Our Lagrangian is now fully specified in terms of \( A \) and it's derivatives.
 Observe the symmetry, with respect to index swap, in the first two terms.  This means that the variation is just
 \begin{equation}\label{eqn:fsquared:800}
 \begin{aligned}
-   \delta \LL 
-&= 
+   \delta \LL
+&=
    2 \lr{ \gamma^\nu \cdot \partial_\mu A } \lr{ \gamma^\mu \cdot \delta \partial_\nu A }
 -
 2 \lr{ \gamma^\mu \cdot \gamma^\nu } \lr{ (\partial_\mu A) \cdot (\delta \partial_\nu A) }
 - 2 J \cdot \delta A
 \\
-&= 
+&=
    2 \lr{ \gamma^\nu \cdot \partial_\mu A } \lr{ \gamma^\mu \cdot \partial_\nu \delta A }
 -
 2 \lr{ \gamma^\mu \cdot \gamma^\nu } \lr{ (\partial_\mu A) \cdot (\partial_\nu \delta A) }
 - 2 J \cdot \delta A
 \\
-&= 
+&=
 2 \partial_\nu \lr{ \lr{ \gamma^\nu \cdot \partial_\mu A } \lr{ \gamma^\mu \cdot \delta A } }
 - 2 \partial_\nu \lr{ \lr{ \gamma^\mu \cdot \gamma^\nu } \lr{ (\partial_\mu A) \cdot \delta A } } \\
 &\quad
@@ -570,17 +570,17 @@ Observe the symmetry, with respect to index swap, in the first two terms.  This 
 + 2 \lr{ \gamma^\mu \cdot \partial_\nu \gamma^\nu } \lr{ (\partial_\mu A) \cdot \delta A }
 - 2 J \cdot \delta A \\
 &=
-2 (\delta A) \cdot \lr{ 
-- \lr{ \grad \cdot \partial_\mu A } \gamma^\mu 
+2 (\delta A) \cdot \lr{
+- \lr{ \grad \cdot \partial_\mu A } \gamma^\mu
 + \lr{ \gamma^\mu \cdot \grad } \partial_\mu A
-- J 
+- J
 } \\
 &=
-2 (\delta A) \cdot \lr{ 
+2 (\delta A) \cdot \lr{
 \grad \cdot \lr{ \gamma^\mu \wedge \partial_\mu A } - J
 } \\
 &=
-2 (\delta A) \cdot \lr{ 
+2 (\delta A) \cdot \lr{
 \grad \cdot F - J
 }.
 \end{aligned}
@@ -595,49 +595,204 @@ We have more to do.
 Questions include, how do we express the Euler-Lagrange equations without resorting to coordinates?  What form of Lagrangian do we need for magnetic charge and current densities?  Can we find Maxwell's equation in one shot from a multivector Lagrangian without resorting to coordinates, or will we need separate Lagrangians for electric and magnetic contributions?  Can we find all of Maxwell's equations without relying on conditions like \( \grad \wedge \lr{ \grad \wedge A } = 0 \) (i.e. the Biannci identity)?
 
 \subsection{Maxwell's equations with magnetic charge and current densities, from Lagrangian.}
-%This is the 4th part in a series on finding Maxwell's equations (including the fictitious magnetic sources that are useful in engineering) from a Lagrangian representation.
-%<a href="http://peeterjoot.com/archives/math2022/fsquared_v4.pdf">[Click here for a PDF version of this series of posts, up to and including this one.]</a>  The <a href="http://peeterjoot.com/2022/06/05/square-of-electrodynamic-field/">first</a> and <a href="http://peeterjoot.com/2022/06/11/maxwells-equations-in-sta-and-tensor-forms/">second</a>, and <a href="http://peeterjoot.com/2022/06/13/maxwells-equations-from-lagrangian-for-electric-sources/">third</a> parts are also available here on this blog.
-
 Now, let's suppose that we have a pseudoscalar Lagrangian density of the following form
 \begin{equation}\label{eqn:fsquared:840}
 \begin{aligned}
    \LL &= F \wedge F + b I A \cdot M \\
-       &= \inv{4} I \epsilon_{\mu\nu\alpha\beta} F^{\mu\nu} F^{\alpha\beta} + b I A^\mu M_\mu.
+       &= \inv{4} I \epsilon^{\mu\nu\alpha\beta} F_{\mu\nu} F_{\alpha\beta} + b I A_\mu M^\mu.
 \end{aligned}
 \end{equation}
-We'll use the Euler-Lagrange equations in upper index form
-\begin{equation}\label{eqn:fsquared:860}
-   \PD{A^\alpha}{\LL} = \partial^\beta \PD{(\partial_\beta A^\alpha)}{\LL},
-\end{equation}
-and find
+Let's fix \( b \) by evaluating this with the Euler-Lagrange equations
+%We'll use the Euler-Lagrange equations in upper index form
+%\begin{equation}\label{eqn:fsquared:860}
+%   \PD{A^\alpha}{\LL} = \partial^\beta \PD{(\partial_\beta A^\alpha)}{\LL},
+%\end{equation}
+%and find
 \begin{equation}\label{eqn:fsquared:880}
 \begin{aligned}
-   b I M_\alpha 
+   b I M^\alpha
    &=
-   \partial^\alpha \lr{ 
-      \inv{2} I \epsilon_{\mu\nu\sigma\pi} F^{\mu\nu} \PD{(\partial^\beta A^\alpha)}{F^{\sigma\pi}}
+   \partial_\alpha \lr{
+      \inv{2} I \epsilon^{\mu\nu\sigma\pi} F_{\mu\nu} \PD{(\partial_\beta A_\alpha)}{F_{\sigma\pi}}
    } \\
    &=
-      \inv{2} I \epsilon_{\mu\nu\sigma\pi} 
-   \partial^\alpha \lr{ 
-      F^{\mu\nu} \PD{(\partial^\beta A^\alpha)}{}\lr{\partial^\sigma A^\pi - \partial_\pi A^\sigma}
+      \inv{2} I \epsilon^{\mu\nu\sigma\pi}
+   \partial_\alpha \lr{
+      F_{\mu\nu} \PD{(\partial_\beta A_\alpha)}{}\lr{\partial_\sigma A_\pi - \partial_\pi A_\sigma}
    } \\
    &=
-      \inv{2} I 
-   \partial^\alpha \lr{ 
-      \epsilon_{\mu\nu\beta\alpha} 
-      F^{\mu\nu} 
+      \inv{2} I
+   \partial_\alpha \lr{
+      \epsilon^{\mu\nu\beta\alpha}
+      F_{\mu\nu}
       -
-      \epsilon_{\mu\nu\alpha\beta} 
-      F^{\mu\nu} 
+      \epsilon^{\mu\nu\alpha\beta}
+      F_{\mu\nu}
    } \\
    &=
-      I 
-   \partial^\alpha 
-      \epsilon_{\mu\nu\beta\alpha} 
-      F^{\mu\nu} 
+      I
+   \partial_\alpha
+      \epsilon^{\mu\nu\beta\alpha}
+      F_{\mu\nu}
 \end{aligned}
 \end{equation}
+Remember that we want \(
+   \partial_\nu \lr{
+\inv{2}
+\epsilon^{\mu\nu\alpha\beta}
+F_{\alpha\beta}
+}
+=
+M^\mu \), so after swapping indexes we see that \( b = 2 \).
+
+We would find the same thing if we vary the Lagrangian directly with respect to variations \( \delta A_\mu \).  However, let's try that variation with respect to a four-vector field variable \( \delta A \) instead.  Our multivector Lagrangian is
+\begin{equation}\label{eqn:fsquared:900}
+\begin{aligned}
+   \LL
+   &= F \wedge F + 2 I M \cdot A \\
+   &=
+   \lr{ \gamma^\mu \wedge \partial_\mu A } \wedge \lr{ \gamma^\nu \wedge \partial_\nu A } + 2 (I M) \wedge A.
+\end{aligned}
+\end{equation}
+We've used a duality transformation on the current term that will come in handy shortly.  The Lagrangian variation is
+\begin{equation}\label{eqn:fsquared:920}
+\begin{aligned}
+\delta \LL
+&=
+   2 \lr{ \gamma^\mu \wedge \partial_\mu A } \wedge \lr{ \gamma^\nu \wedge \delta \partial_\nu A } + 2 (I M) \wedge \delta A \\
+&=
+   2 \partial_\nu \lr{ \lr{ \gamma^\mu \wedge \partial_\mu A } \wedge \lr{ \gamma^\nu \wedge \delta A } }
+   -
+   2 \lr{ \gamma^\mu \wedge \partial_\nu \partial_\mu A } \wedge \lr{ \gamma^\nu \wedge \delta A }
+   + 2 (I M) \wedge \delta A \\
+&=
+   2 \lr{ - \lr{ \gamma^\mu \wedge \partial_\nu \partial_\mu A } \wedge \gamma^\nu + I M } \wedge \delta A \\
+&=
+2 \lr{ - \grad \wedge (\partial_\nu A ) \wedge \gamma^\nu + I M } \wedge \delta A.
+\end{aligned}
+\end{equation}
+We've dropped the complete derivative term, as the \( \delta A \) is zero on the boundary.   For the action variation to be zero, we require
+\begin{equation}\label{eqn:fsquared:940}
+\begin{aligned}
+   0
+   &= - \grad \wedge (\partial_\nu A ) \wedge \gamma^\nu + I M \\
+   &= \grad \wedge \gamma^\nu \wedge (\partial_\nu A ) + I M \\
+   &= \grad \wedge \lr{ \grad \wedge A } + I M \\
+   &= \grad \wedge F + I M,
+\end{aligned}
+\end{equation}
+or
+\begin{equation}\label{eqn:fsquared:960}
+   \grad \wedge F = -I M.
+\end{equation}
+Here we've had to dodge a sneaky detail, namely that \( \grad \wedge \lr{ \grad \wedge A } = 0 \), provided \( A \) has sufficient continuity that we can assert mixed partials.  We will see a way to resolve this contradiction when we vary a Lagrangian density that includes both electric and magnetic field contributions.  That's a game for a different day.
+
+\subsection{Multivector Lagrangian for Maxwell's equation.}
+We've found the charge and currency dependency parts of Maxwell's equations for both electric and magnetic sources, using scalar and pseudoscalar Lagrangian densities respectively.
+
+Now comes the really cool part.  We can form a multivector Lagrangian and find Maxwell's equation in it's entirety in a single operation, without resorting to usual coordinate expansion of the fields.
+
+Our Lagrangian is
+\begin{equation}\label{eqn:fsquared:980}
+   \LL = \inv{2} F^2 - \gpgrade{A \lr{ J - I M}}{0,4},
+\end{equation}
+where \( F = \grad \wedge A \).
+
+The variation of the action formed from this Lagrangian density is
+\begin{equation}\label{eqn:fsquared:1000}
+   \delta S = \int d^4 x \lr{
+      \inv{2} \lr{ F \delta F + (\delta F) F } - \gpgrade{ \delta A \lr{ J - I M} }{0,4}
+   }.
+\end{equation}
+Both \( F \) and \( \delta F \) are STA bivectors, and for any two bivectors the symmetric sum of their products, selects the grade 0,4 components of the product.  That is, for bivectors, \( F, G \), we have
+\begin{equation}\label{eqn:fsquared:1020}
+   \inv{2}\lr{ F G + G F } = \gpgrade{F G}{0,4} = \gpgrade{G F}{0,4}.
+\end{equation}
+This means that the action variation integrand can all be placed into a 0,4 grade selection operation
+\begin{equation}\label{eqn:fsquared:1040}
+   \delta S
+   = \int d^4 x \gpgrade{
+      (\delta F) F - \delta A \lr{ J - I M}
+   }{0,4}.
+\end{equation}
+Let's look at the \( (\delta F) F \) multivector in more detail
+\begin{equation}\label{eqn:fsquared:1060}
+\begin{aligned}
+(\delta F) F
+&=
+\delta \lr{ \gamma^\mu \wedge \partial_\mu A } F \\
+&=
+\lr{ \gamma^\mu \wedge \delta \partial_\mu A } F \\
+&=
+   \lr{ \gamma^\mu \wedge \partial_\mu \delta A } F \\
+&=
+-
+\lr{ (\partial_\mu \delta A) \wedge \gamma^\mu } F \\
+&=
+-
+(\partial_\mu \delta A) \gamma^\mu F
+-
+\lr{ (\partial_\mu \delta A) \cdot \gamma^\mu } F
+\\
+\end{aligned}
+\end{equation}
+This second term is a bivector, so once filtered with a grade 0,4 selection operator, will be obliterated.
+We are left with
+\begin{equation}\label{eqn:fsquared:1080}
+\begin{aligned}
+   \delta S
+   &= \int d^4 x \gpgrade{
+-
+(\partial_\mu \delta A) \gamma^\mu F
+      - \delta A \lr{ J - I M}
+   }{0,4}
+   \\
+   &= \int d^4 x \gpgrade{
+-
+\partial_\mu \lr{
+\delta A \gamma^\mu F
+}
++ \delta A \gamma^\mu \partial_\mu F
+      - \delta A \lr{ J - I M}
+   }{0,4}
+   \\
+   &= \int d^4 x
+   \gpgrade{
+      \delta A \lr{ \grad F - \lr{ J - I M} }
+}{0,4}.
+\end{aligned}
+\end{equation}
+As before, the total derivative term has been dropped, as variations \( \delta A \) are zero on the boundary.  The remaining integrand must be zero for all variations, so we conclude that
+\begin{equation}\label{eqn:fsquared:1100}
+   \boxed{
+   \grad F = J - I M.
+}
+\end{equation}
+Almost magically, out pops Maxwell's equation in it's full glory, with both four vector charge and current density, and also the trivector (fictitious) magnetic charge and current densities, should we want to include those.
+
+\subsubsection{A final detail.}
+There's one last thing to say.  If you have a nagging objection to me having declared that \( \grad F - \lr{ J - I M} = 0 \) when the whole integrand was enclosed in a grade 0,4 selection operator.  Shouldn't we have to account for the grade selection operator somehow?  Yes, we should, and I cheated a bit to not do so, but we get the same answer if we do.  To handle this with a bit more finesse, we split \( \grad F - \lr{ J - I M}  \) into it's vector and trivector components, and consider those separately
+\begin{equation}\label{eqn:fsquared:1120}
+\gpgrade{
+      \delta A \lr{ \grad F - \lr{ J - I M} }
+}{0,4}
+=
+\delta A \cdot \lr{ \grad \cdot F - J }
++
+\delta A \wedge \lr{ \grad \wedge F + I M }.
+\end{equation}
+We require these to be zero for all variations \( \delta A \), which gives us two independent equations
+\begin{equation}\label{eqn:fsquared:1140}
+\begin{aligned}
+   \grad \cdot F - \lr{ J - I M}  &= 0 \\
+   \grad \wedge F + I M &= 0.
+\end{aligned}
+\end{equation}
+However, we can now add up these equations, using \( \grad F = \grad \cdot F + \grad \wedge F \) to find, sure enough, that
+\begin{equation}\label{eqn:fsquared:1160}
+   \grad F = J - I M,
+\end{equation}
+as stated, somewhat sloppily, before.
 
 %}
 %\EndArticle

@@ -39,7 +39,6 @@ where \( a \) is a constant that depends on the unit system, \( A, J \) are a fo
 My suspicion is that one or both of the bivector or quadvector grades of \( F^2 \) are required for Maxwell's equation with magnetic sources.
 
 \subsection{Square of the field.}
-
 Let's expand out \( F^2 \) in coordinates, as preparation for computing the Euler-Lagrange equations.  The scalar and pseudoscalar components both simplify easily into compact relationships, but the bivector term is messier.  We start with the coordinate expansion of our field, which we may write in either upper or lower index form
 \begin{equation}\label{eqn:fsquared:40}
    F = \inv{2} \gamma_\mu \wedge \gamma_\nu F^{\mu\nu}
@@ -228,9 +227,7 @@ We now have the complete coordinate expansion of \( F^2 \), separated by grade
    \epsilon_{\mu\nu\alpha\beta} F^{\mu\nu} F^{\alpha\beta}.
 \end{equation}
 The next task is to start evaluating the Euler-Lagrange equations for this multivector Lagrangian density, and see what we get.  Before doing so, let's figure out what value we want for the constant \( a \).
-
 \subsection{Maxwell's equations in STA and Tensor forms.}
-
 We are going to use the coordinate expansion of the Lagrangian, so we need the tensor form of Maxwell's equation for comparison.
 
 Maxwell's equations, with electric and fictional magnetic sources (useful for antenna theory and other engineering applications), are
@@ -375,8 +372,7 @@ Now that we have the tensor form of Maxwell's equation, we can proceed to try to
 \end{equation}
 where \( F = \grad \wedge A \).  My hunch, since the multivector current has the form \( J - I M \), is that we don't actually need the grade two component of \( F^2 \), despite having spent the time computing it, thinking that it might be required.
 
-Next time, we'll remind ourselves what the field Euler-Lagrange equations look like, and evaluate them to see if we can find the constants \(a, b\).
-
+Next, we'll remind ourselves what the field Euler-Lagrange equations look like, and evaluate them to see if we can find the constants \(a, b\).
 \subsection{Maxwell's equations for electric sources.}
 Given the Lagrangian
 \begin{equation}\label{eqn:fsquared:500}
@@ -593,7 +589,6 @@ It makes sense that we should not have to resort to coordinates, and sure enough
 
 We have more to do.
 Questions include, how do we express the Euler-Lagrange equations without resorting to coordinates?  What form of Lagrangian do we need for magnetic charge and current densities?  Can we find Maxwell's equation in one shot from a multivector Lagrangian without resorting to coordinates, or will we need separate Lagrangians for electric and magnetic contributions?  Can we find all of Maxwell's equations without relying on conditions like \( \grad \wedge \lr{ \grad \wedge A } = 0 \) (i.e. the Biannci identity)?
-
 \subsection{Maxwell's equations with magnetic charge and current densities, from Lagrangian.}
 Now, let's suppose that we have a pseudoscalar Lagrangian density of the following form
 \begin{equation}\label{eqn:fsquared:840}
@@ -685,7 +680,7 @@ or
 \begin{equation}\label{eqn:fsquared:960}
    \grad \wedge F = -I M.
 \end{equation}
-Here we've had to dodge a sneaky detail, namely that \( \grad \wedge \lr{ \grad \wedge A } = 0 \), provided \( A \) has sufficient continuity that we can assert mixed partials.  We will see a way to resolve this contradiction when we vary a Lagrangian density that includes both electric and magnetic field contributions.  That's a game for a different day.
+Here we've had to dodge a sneaky detail, namely that \( \grad \wedge \lr{ \grad \wedge A } = 0 \), provided \( A \) has sufficient continuity that we can assert mixed partials.  We will see a way to resolve this contradiction when we vary a Lagrangian density that includes both electric and magnetic field contributions.
 
 \subsection{Multivector Lagrangian for Maxwell's equation.}
 We've found the charge and currency dependency parts of Maxwell's equations for both electric and magnetic sources, using scalar and pseudoscalar Lagrangian densities respectively.
@@ -784,7 +779,7 @@ There's one last thing to say.  If you have a nagging objection to me having dec
 We require these to be zero for all variations \( \delta A \), which gives us two independent equations
 \begin{equation}\label{eqn:fsquared:1140}
 \begin{aligned}
-   \grad \cdot F - \lr{ J - I M}  &= 0 \\
+   \grad \cdot F - J &= 0 \\
    \grad \wedge F + I M &= 0.
 \end{aligned}
 \end{equation}

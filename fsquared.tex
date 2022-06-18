@@ -38,7 +38,7 @@ The electrodynamic Lagrangian (without magnetic sources) has the form
 where \( a \) is a constant that depends on the unit system, \( A, J \) are a four-vectors, and \( F = \grad \wedge A \).
 My suspicion is that one or both of the bivector or quadvector grades of \( F^2 \) are required for Maxwell's equation with magnetic sources.
 
-\subsection{Square of the field.}
+\section{Square of the field.}
 Let's expand out \( F^2 \) in coordinates, as preparation for computing the Euler-Lagrange equations.  The scalar and pseudoscalar components both simplify easily into compact relationships, but the bivector term is messier.  We start with the coordinate expansion of our field, which we may write in either upper or lower index form
 \begin{equation}\label{eqn:fsquared:40}
    F = \inv{2} \gamma_\mu \wedge \gamma_\nu F^{\mu\nu}
@@ -227,7 +227,7 @@ We now have the complete coordinate expansion of \( F^2 \), separated by grade
    \epsilon_{\mu\nu\alpha\beta} F^{\mu\nu} F^{\alpha\beta}.
 \end{equation}
 The next task is to start evaluating the Euler-Lagrange equations for this multivector Lagrangian density, and see what we get.  Before doing so, let's figure out what value we want for the constant \( a \).
-\subsection{Maxwell's equations in STA and Tensor forms.}
+\section{Maxwell's equations in STA and Tensor forms.}
 We are going to use the coordinate expansion of the Lagrangian, so we need the tensor form of Maxwell's equation for comparison.
 
 Maxwell's equations, with electric and fictional magnetic sources (useful for antenna theory and other engineering applications), are
@@ -373,7 +373,7 @@ Now that we have the tensor form of Maxwell's equation, we can proceed to try to
 where \( F = \grad \wedge A \).  My hunch, since the multivector current has the form \( J - I M \), is that we don't actually need the grade two component of \( F^2 \), despite having spent the time computing it, thinking that it might be required.
 
 Next, we'll remind ourselves what the field Euler-Lagrange equations look like, and evaluate them to see if we can find the constants \(a, b\).
-\subsection{Maxwell's equations for electric sources.}
+\section{Maxwell's equations for electric sources.}
 Given the Lagrangian
 \begin{equation}\label{eqn:fsquared:500}
 \LL = F \cdot F + a \lr{ A \cdot J },
@@ -589,7 +589,7 @@ It makes sense that we should not have to resort to coordinates, and sure enough
 
 We have more to do.
 Questions include, how do we express the Euler-Lagrange equations without resorting to coordinates?  What form of Lagrangian do we need for magnetic charge and current densities?  Can we find Maxwell's equation in one shot from a multivector Lagrangian without resorting to coordinates, or will we need separate Lagrangians for electric and magnetic contributions?  Can we find all of Maxwell's equations without relying on conditions like \( \grad \wedge \lr{ \grad \wedge A } = 0 \) (i.e. the Biannci identity)?
-\subsection{Maxwell's equations with magnetic charge and current densities, from Lagrangian.}
+\section{Maxwell's equations with magnetic charge and current densities, from Lagrangian.}
 Now, let's suppose that we have a pseudoscalar Lagrangian density of the following form
 \begin{equation}\label{eqn:fsquared:840}
 \begin{aligned}
@@ -682,7 +682,7 @@ or
 \end{equation}
 Here we've had to dodge a sneaky detail, namely that \( \grad \wedge \lr{ \grad \wedge A } = 0 \), provided \( A \) has sufficient continuity that we can assert mixed partials.  We will see a way to resolve this contradiction when we vary a Lagrangian density that includes both electric and magnetic field contributions.
 
-\subsection{Multivector Lagrangian for Maxwell's equation.}
+\section{Multivector Lagrangian for Maxwell's equation.}
 We've found the charge and currency dependency parts of Maxwell's equations for both electric and magnetic sources, using scalar and pseudoscalar Lagrangian densities respectively.
 
 Now comes the really cool part.  We can form a multivector Lagrangian and find Maxwell's equation in it's entirety in a single operation, without resorting to usual coordinate expansion of the fields.
@@ -765,7 +765,7 @@ As before, the total derivative term has been dropped, as variations \( \delta A
 \end{equation}
 Almost magically, out pops Maxwell's equation in it's full glory, with both four vector charge and current density, and also the trivector (fictitious) magnetic charge and current densities, should we want to include those.
 
-\subsubsection{A final detail.}
+\subsection{A final detail.}
 There's one last thing to say.  If you have a nagging objection to me having declared that \( \grad F - \lr{ J - I M} = 0 \) when the whole integrand was enclosed in a grade 0,4 selection operator.  Shouldn't we have to account for the grade selection operator somehow?  Yes, we should, and I cheated a bit to not do so, but we get the same answer if we do.  To handle this with a bit more finesse, we split \( \grad F - \lr{ J - I M}  \) into it's vector and trivector components, and consider those separately
 \begin{equation}\label{eqn:fsquared:1120}
 \gpgrade{
@@ -788,6 +788,172 @@ However, we can now add up these equations, using \( \grad F = \grad \cdot F + \
    \grad F = J - I M,
 \end{equation}
 as stated, somewhat sloppily, before.
+
+\section{Progressing towards coordinate free form of the Euler-Lagrange equations.}
+We managed to find Maxwell's equation in it's STA form by variation of a multivector Lagrangian, with respect to a four-vector field (the potential).  That approach differed from the usual variation with respect to the coordinates of that four-vector, or the use of the Euler-Lagrange equations with respect to those coordinates.
+
+\subsection{Euler-Lagrange equations.}
+Having done so, an immediate question is whether we can express the Euler-Lagrange equations with respect to the four-potential in it's entirety, instead of the coordinates of that vector.  I have some intuition about how to complete avoid that use of coordinates, but first we can get part way there.
+
+Consider a general Lagrangian, dependent on a field \( A \) and all it's derivatives \( \partial_\mu A \)
+\begin{equation}\label{eqn:fsquared:1180}
+\LL = \LL( A, \partial_\mu A ).
+\end{equation}
+
+The variational principle requires
+\begin{equation}\label{eqn:fsquared:1200}
+   0 = \delta S = \int d^4 x \delta \LL( A, \partial_\mu A ).
+\end{equation}
+That variation can be expressed as a limiting parametric operation as follows
+\begin{equation}\label{eqn:fsquared:1220}
+   \delta S
+   = \int d^4 x
+   \lr{
+   \lim_{t \rightarrow 0} \ddt{} \LL( A + t \delta A )
+   +
+   \sum_\mu
+   \lim_{t \rightarrow 0} \ddt{} \LL( \partial_\mu A + t \delta \partial_\mu A )
+   }
+\end{equation}
+We eventually want a coordinate free expression for the variation, but we'll use them to get there.  We can expand the first derivative by chain rule as
+\begin{equation}\label{eqn:fsquared:1240}
+\begin{aligned}
+   \lim_{t \rightarrow 0} \ddt{} \LL( A + t \delta A )
+   &=
+   \lim_{t \rightarrow 0} \PD{(A^\alpha + t \delta A^\alpha)}{\LL} \PD{t}{}(A^\alpha + t \delta A^\alpha) \\
+   &=
+   \PD{A^\alpha}{\LL} \delta A^\alpha.
+\end{aligned}
+\end{equation}
+This has the structure of a directional derivative \( A \).  In particular, let
+\begin{equation}\label{eqn:fsquared:1260}
+   \grad_A = \gamma^\alpha \PD{A^\alpha}{},
+\end{equation}
+so we have
+\begin{equation}\label{eqn:fsquared:1280}
+   \lim_{t \rightarrow 0} \ddt{} \LL( A + t \delta A )
+   = \delta A \cdot \grad_A.
+\end{equation}
+Similarly,
+\begin{equation}\label{eqn:fsquared:1300}
+   \lim_{t \rightarrow 0} \ddt{} \LL( \partial_\mu A + t \delta \partial_\mu A )
+   =
+   \PD{(\partial_\mu A^\alpha)}{\LL} \delta \partial_\mu A^\alpha,
+\end{equation}
+so we can define a gradient with respect to each of the derivatives of \(A \) as
+\begin{equation}\label{eqn:fsquared:1320}
+   \grad_{\partial_\mu A} = \gamma^\alpha \PD{(\partial_\mu A^\alpha)}{}.
+\end{equation}
+Our variation can now be expressed in a somewhat coordinate free form
+\begin{equation}\label{eqn:fsquared:1340}
+   \delta S = \int d^4 x \lr{
+      \lr{\delta A \cdot \grad_A} \LL + \lr{ \lr{\delta \partial_\mu A} \cdot \grad_{\partial_\mu A} } \LL
+   }.
+\end{equation}
+We now sum implicitly over pairs of indexes \( \mu \) (i.e. we are treating \( \grad_{\partial_\mu A} \) as an upper index entity).  We can now proceed with our chain rule expansion
+\begin{equation}\label{eqn:fsquared:1360}
+\begin{aligned}
+\delta S
+&= \int d^4 x \lr{
+      \lr{\delta A \cdot \grad_A} \LL + \lr{ \lr{\delta \partial_\mu A} \cdot \grad_{\partial_\mu A} } \LL
+} \\
+&= \int d^4 x \lr{
+      \lr{\delta A \cdot \grad_A} \LL + \lr{ \lr{\partial_\mu \delta A} \cdot \grad_{\partial_\mu A} } \LL
+} \\
+&= \int d^4 x \lr{
+\lr{\delta A \cdot \grad_A} \LL
++ \partial_\mu \lr{ \lr{ \delta A \cdot \grad_{\partial_\mu A} } \LL }
+- \lr{\PD{x^\mu}{} \delta A \cdot \grad_{\partial_\mu A} \LL}_{\delta A}
+}.
+\end{aligned}
+\end{equation}
+As usual, we kill off the boundary term, by insisting that \( \delta A = 0 \) on the boundary, leaving us with a four-vector form of the field Euler-Lagrange equations
+\begin{equation}\label{eqn:fsquared:1380}
+\lr{\delta A \cdot \grad_A} \LL = \lr{\PD{x^\mu}{} \delta A \cdot \grad_{\partial_\mu A} \LL}_{\delta A},
+\end{equation}
+where the RHS derivatives are taken with \(\delta A \) held fixed.  We seek solutions of this equation that hold for all variations \( \delta A \).
+\subsection{Application to the Maxwell Lagrangian.}
+For the Maxwell application we need a few helper calculations.  The first, given a multivector \( B \), is
+\begin{equation}\label{eqn:fsquared:1400}
+\begin{aligned}
+   \lr{ \delta A \cdot \grad_A } A B
+&=
+\delta A^\alpha \PD{A^\alpha}{} \gamma_\beta A^\beta B \\
+&=
+\delta A^\alpha \gamma_\alpha B \\
+&=
+\lr{ \delta A } B.
+\end{aligned}
+\end{equation}
+
+Now let's compute, for multivector \( B \)
+\begin{equation}\label{eqn:fsquared:1420}
+\begin{aligned}
+\lr{ \delta A \cdot \grad_{\partial_\mu A} } B F
+&=
+\delta A^\alpha \PD{(\partial_\mu A^\alpha)} B \lr{ \gamma^\beta \wedge \partial_\beta \lr{ \gamma_\pi A^\pi } } \\
+&=
+\delta A^\alpha B \lr{ \gamma^\mu \wedge \gamma_\alpha } \\
+&=
+B \lr{ \gamma^\mu \wedge \delta A }.
+\end{aligned}
+\end{equation}
+
+Our Lagrangian is
+\begin{equation}\label{eqn:fsquared:1440}
+   \LL = \inv{2} F^2 - \gpgrade{A \lr{ J - I M } }{0,4},
+\end{equation}
+so
+\begin{equation}\label{eqn:fsquared:1460}
+\lr{\delta A \cdot \grad_A} \LL
+=
+-\gpgrade{ \lr{ \delta A } \lr{ J - I M } }{0,4},
+\end{equation}
+and
+\begin{equation}\label{eqn:fsquared:1480}
+\begin{aligned}
+\lr{ \delta A \cdot \grad_{\partial_\mu A} } \inv{2} F^2
+&=
+\inv{2} \lr{ F \lr{ \gamma^\mu \wedge \delta A } + \lr{ \gamma^\mu \wedge \delta A } F } \\
+&=
+\gpgrade{
+   \lr{ \gamma^\mu \wedge \delta A } F
+}{0,4} \\
+&=
+-\gpgrade{
+   \lr{ \delta A \wedge \gamma^\mu } F
+}{0,4} \\
+&=
+-\gpgrade{
+   \delta A \gamma^\mu  F
+   -
+   \lr{ \delta A \cdot \gamma^\mu } F
+}{0,4} \\
+&=
+-\gpgrade{
+   \delta A \gamma^\mu  F
+}{0,4}.
+\end{aligned}
+\end{equation}
+Taking derivatives (holding \( \delta A \) fixed), we have
+\begin{equation}\label{eqn:fsquared:1500}
+\begin{aligned}
+-\gpgrade{ \lr{ \delta A } \lr{ J - I M } }{0,4}
+&=
+-\gpgrade{
+   \delta A \partial_\mu \gamma^\mu F
+}{0,4} \\
+&=
+-\gpgrade{
+   \delta A \grad F
+}{0,4}.
+\end{aligned}
+\end{equation}
+We've already seen that the solution can be expressed without grade selection as
+\begin{equation}\label{eqn:fsquared:1520}
+   \grad F = \lr{ J - I M },
+\end{equation}
+which is Maxwell's equation in it's STA form.  It's not clear that this is really any less work, but it's a step towards a coordinate free evaluation of the Maxwell Lagrangian (at least not having to use the coordinates \( A^\mu \) as we have to do in the tensor formalism.)
 
 %}
 %\EndArticle

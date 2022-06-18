@@ -287,7 +287,7 @@ and \( J = J^\mu \gamma_\mu, M = M^\mu \gamma_\mu \), and \( \grad = \gamma^\mu 
    \grad F = J - I M.
 \end{equation}
 
-The electromagnetic field, in it's STA representation is a bivector, which we can write without reference to observer specific electric and magnetic fields, as
+The electromagnetic field, in the STA representation is a bivector, which we can write without reference to observer specific electric and magnetic fields, as
 \begin{equation}\label{eqn:fsquared:340}
    F = \inv{2} {\gamma_\mu \wedge \gamma_\nu} F^{\mu\nu},
 \end{equation}
@@ -954,6 +954,86 @@ We've already seen that the solution can be expressed without grade selection as
    \grad F = \lr{ J - I M },
 \end{equation}
 which is Maxwell's equation in it's STA form.  It's not clear that this is really any less work, but it's a step towards a coordinate free evaluation of the Maxwell Lagrangian (at least not having to use the coordinates \( A^\mu \) as we have to do in the tensor formalism.)
+
+\section{A coordinate free variation of the Maxwell equation multivector Lagrangian.}
+
+For what is now (probably) the final step in this exploration, we now wish to evaluate the variation of the multivector Maxwell Lagrangian
+\begin{equation}\label{eqn:fsquared:1440x}
+   \LL = \inv{2} F^2 - \gpgrade{A \lr{ J - I M } }{0,4},
+\end{equation}
+without resorting to coordinate expansion of any part of \( F = \grad \wedge A \).  We'd initially evaluated this, expanding both \( \grad \) and \( A \) in coordinates, and then just \( \grad \), but we can avoid both.
+In particular, given a coordinate free Lagrangian, and a coordinate free form of Maxwell's equation as the final destination, there must be a way to get there directly.
+
+It is clear how to work through the first part of the action variation argument, without resorting to any sort of coordinate expansion
+\begin{equation}\label{eqn:fsquared:1540}
+\begin{aligned}
+\delta S
+&=
+\int d^4 x \lr{ \inv{2} \lr{ \delta F } F + F \lr{ \delta F } } - \gpgrade{ \lr{ \delta F } \lr{ J - I M } }{0,4} \\
+&=
+\int d^4 x \gpgrade{ \lr{ \delta F } F - \lr{ \delta A } \lr{ J - I M } }{0,4} \\
+&=
+\int d^4 x \gpgrade{ \lr{ \grad \wedge \lr{\delta A} } F - \lr{ \delta A } \lr{ J - I M } }{0,4} \\
+&=
+-\int d^4 x \gpgrade{ \lr{ \lr{\delta A} \grad } F - \lr{ \lr{ \delta A } \cdot \grad } F + \lr{ \delta A } \lr{ J - I M } }{0,4} \\
+&=
+-\int d^4 x \gpgrade{ \lr{ \lr{\delta A} \grad } F + \lr{ \delta A } \lr{ J - I M } }{0,4}.
+\end{aligned}
+\end{equation}
+
+In the last three lines, it is important to note that \( \grad \) acts bidirectionally, but on \( \delta A \), but not \( F \).
+In particular, if \( B, C \) are multivectors, we interpret the bidirectional action of the gradient as
+\begin{equation}\label{eqn:fsquared:1560}
+\begin{aligned}
+   B \lrgrad C &=
+   B \gamma^\mu \lrpartial_\mu C \\
+   &=
+   (\partial_\mu B) \gamma^\mu C
+   +
+   B \gamma^\mu (\partial_\mu C),
+\end{aligned}
+\end{equation}
+where the partial operators on the first line are bidirectionally acting, and braces have been used in the last line to indicate the scope of the operators in the chain rule expansion.
+
+Let's also use arrows to clarify the directionality of this first part of the action variation, writing
+\begin{equation}\label{eqn:fsquared:1580}
+\begin{aligned}
+\delta S
+&=
+-\int d^4 x \gpgrade{ \lr{\delta A} \lgrad F + \lr{ \delta A } \lr{ J - I M } }{0,4} \\
+&=
+-\int d^4 x \gpgrade{ \lr{\delta A} \lrgrad F - \lr{\delta A} \rgrad F + \lr{ \delta A } \lr{ J - I M } }{0,4}.
+\end{aligned}
+\end{equation}
+We can cast the first term into an integrand that can be evaluated using the Fundamental Theorem of Geometric Calculus, by introducing a
+a parameterization \( x = x(a_\mu) \), for which the tangent space basis vectors are \( \Bx_{a_\mu} = \PDi{a_\mu}{x} \), and the pseudoscalar volume element is
+\begin{equation}\label{eqn:fsquared:1640}
+   d^4 \Bx = \lr{ \Bx_{a_0} \wedge \Bx_{a_1} \wedge \Bx_{a_2} \wedge \Bx_{a_3} } da_0 da_1 da_2 da_3 = I d^4 x.
+\end{equation}
+Writing \( d^4 x = -I d^4 \Bx \), we have
+\begin{equation}\label{eqn:fsquared:1600}
+\begin{aligned}
+\delta S
+&=
+-\int_V d^4 x \gpgrade{ \lr{\delta A} \lrgrad F - \lr{\delta A} \rgrad F + \lr{ \delta A } \lr{ J - I M } }{0,4} \\
+&=
+-\int_V \gpgrade{ -\lr{\delta A} I d^4 \Bx \lrgrad F - d^4 x \lr{\delta A} \rgrad F + d^4 x \lr{ \delta A } \lr{ J - I M } }{0,4} \\
+&=
+\int_{\partial V} \gpgrade{ \lr{\delta A} I d^3 \Bx F }{0,4}
++ \int_V d^4 x \gpgrade{ \lr{\delta A} \lr{ \rgrad F - J + I M } }{0,4}.
+\end{aligned}
+\end{equation}
+The first integral is killed since \( \delta A = 0 \) on the boundary.  For the second integral to be zero for all variations \( \delta A \), we must have
+\begin{equation}\label{eqn:fsquared:1660}
+   \gpgrade{ \lr{\delta A} \lr{ \rgrad F - J + I M } }{0,4} = 0,
+\end{equation}
+but have argued previously that we can drop the grade selection, leaving
+\begin{equation}\label{eqn:fsquared:1620}
+   \boxed{
+      \grad F = J - I M
+   },
+\end{equation}
+where the directional indicator on our gradient has been dropped, since there is no longer any ambiguity.  This is Maxwell's equation in it's coordinate free STA form, found using the variational principle from a coordinate free multivector Maxwell Lagrangian, without having to resort to a coordinate expansion of that Lagrangian.
 
 %}
 %\EndArticle

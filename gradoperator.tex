@@ -1,0 +1,76 @@
+%
+% Copyright © 2022 Peeter Joot.  All Rights Reserved.
+% Licenced as described in the file LICENSE under the root directory of this GIT repository.
+%
+%{
+\input{../latex/blogpost.tex}
+\renewcommand{\basename}{gradoperator}
+%\renewcommand{\dirname}{notes/phy1520/}
+\renewcommand{\dirname}{notes/ece1228-electromagnetic-theory/}
+%\newcommand{\dateintitle}{}
+%\newcommand{\keywords}{}
+
+\input{../latex/peeter_prologue_print2.tex}
+
+\usepackage{peeters_layout_exercise}
+\usepackage{peeters_braket}
+\usepackage{peeters_figures}
+\usepackage{siunitx}
+\usepackage{verbatim}
+%\usepackage{mhchem} % \ce{}
+%\usepackage{macros_bm} % \bcM
+%\usepackage{macros_qed} % \qedmarker
+%\usepackage{txfonts} % \ointclockwise
+
+\beginArtNoToc
+
+\generatetitle{XXX}
+%\chapter{XXX}
+%\label{chap:gradoperator}
+
+It's not uncommon to allow the gradient to act bidirectionally in geometric algebra.  For example if
+\( Q, R \) are multivectors, then the bidirectional action of the gradient in a \( Q, R \) sandwich is
+\begin{equation}\label{eqn:maxwellLagrangian:1950}
+\begin{aligned}
+   Q \grad R
+   &= \partial_k \lr{ Q e^k R } \\
+   &= \lr{ \partial_k Q} e^k R + Q e^k \lr{ \partial_k R }.
+\end{aligned}
+\end{equation}
+
+This chain rule expansion is often written using overdots to designate the scope of the partial operators, where the vector basis elements have to stay in place in whatever multivector expression contains the gradient.  i.e.:
+\begin{equation}\label{eqn:gradoperator:1970}
+   Q \grad R \equiv \dot{Q} \dot{\grad} R + Q \dot{\grad} \dot{R}.
+\end{equation}
+
+Recall that the dot product of any two vectors can be written as a symmetric vector product
+\begin{equation}\label{eqn:gradoperator:1990}
+   A \cdot J = \inv{2} \lr{ A J + J A }.
+\end{equation}
+This also works for the gradient, provided you allow the gradient to act bidirectionally.  So, when you say \( \dot{J} \dot{\grad} \) looks like an operator, you have nailed it.  The gradient is acting as an operator (as it always does), but this time to the left, using the overdots to specify the scope.
+
+If you aren't comfortable just substituting \( a = \grad \) above, here's an explicit expansion of that symmetric sum that illustrates that does work
+\begin{equation}\label{eqn:gradoperator:2010}
+\begin{aligned}
+   \inv{2} \lr{ \grad J + \dot{J} \dot{\grad} }
+      &= \inv{2} \lr{ e^k \partial_k J + \partial_k J e^k } \\
+      &= \partial_k \inv{2} \lr{ e^k J + J e^k } \\
+      &= \partial_k e^k \cdot J \\
+      &= \grad \cdot J.
+\end{aligned}
+\end{equation}
+
+Similarly, for the wedge product, we can use the gradient in an antisymmetric sum, just like any non-operator vector:
+\begin{equation}\label{eqn:gradoperator:2030}
+\begin{aligned}
+   \inv{2} \lr{ \grad J - \dot{J} \dot{\grad} }
+      &= \inv{2} \lr{ e^k \partial_k J - \partial_k J e^k } \\
+      &= \partial_k \inv{2} \lr{ e^k J - J e^k } \\
+      &= \partial_k e^k \wedge J \\
+      &= \grad \wedge J.
+\end{aligned}
+\end{equation}
+
+%}
+\EndArticle
+%\EndNoBibArticle

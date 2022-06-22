@@ -154,3 +154,5 @@
 
 ../latex/bin/lgrep fsquared.tex | tee o ; . ./o
 #perl -p -i ../latex/bin/latexRegex.pl fsquared.tex
+../latex/bin/lgrep gradoperator.tex | tee o ; . ./o
+perl -p -i ../latex/bin/latexRegex.pl gradoperator.tex

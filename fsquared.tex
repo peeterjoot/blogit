@@ -1112,6 +1112,18 @@ which is \( \grad F = J - I M \), as desired.  This resolves the \cref{eqn:fsqua
 
 On the positive side, for non-fictitious electric sources, the case that we care about in physics, we still have the pleasantry of being able to use a simple multivector (coordinate-free) Lagrangian, and vary that in a coordinate free fashion to find Maxwell's equation.  This has an aesthetic quality that is arguably superior to the usual procedure of using the Euler-Lagrange equations and lots of index gymnastics to find the tensor form of Maxwell's equation (i.e. the vector part of Maxwell's) and applying the Bianchi identity to fill in the pieces (i.e. the trivector component of Maxwell's.)
 
+\section{bivector grade of \( F^2 \).}
+tBuLi points out that the bivector grade of \( F^2 \) should be zero, since it's the commutator of \( F \) with itself.  This isn't obvious from the tensor expansion, but sure enough, that is true, as we can verify from the tensor expansion, with an index swap and some raising and lowering:
+\begin{equation}\label{eqn:fsquared:1900}
+\begin{aligned}
+   \gpgradetwo{F^2} 
+   &= \gamma_\alpha \wedge \gamma^\beta F_{\alpha\mu} F^{\beta\mu} \\
+   &= \gamma_\beta \wedge \gamma^\alpha F_{\beta\mu} F^{\alpha\mu} \\
+   &= \gamma^\beta \wedge \gamma_\alpha F^{\beta\mu} F_{\alpha\mu} \\
+   &= -\gpgradetwo{F^2}.
+\end{aligned}
+\end{equation}
+
 %}
 %\EndArticle
 \EndNoBibArticle

@@ -1,0 +1,67 @@
+13/Sep/2020;xtox.tex;{-x}^{-x} using complex numbers to get there.
+13/Sep/2020;wedge.tex;4D wedge product reduction. probably math.se
+13/Sep/2020;versor_inverse.tex;
+13/Sep/2020;vectorspace.tex;
+13/Sep/2020;vectorasarrow.tex;
+13/Sep/2020;pseudoPlusVector.tex;
+13/Sep/2020;old.tex;
+13/Sep/2020;multivector.tex;
+13/Sep/2020;inthepipe.tex;
+13/Sep/2020;iinverse.tex;
+13/Sep/2020;hyperwedge.tex;
+13/Sep/2020;examples.tex;
+13/Sep/2020;determinant.tex;
+13/Sep/2020;d4x.tex;
+13/Sep/2020;crashem.tex;
+13/Sep/2020;coordinates1.tex;
+15/Nov/2020;yy.tex;
+15/Nov/2020;xx.tex;
+17/Nov/2020;fibonacci.tex;
+17/Nov/2020;fibonacciblog.tex;
+3/Dec/2020;pepin.tex;
+19/Apr/2021;boolean.tex;
+19/Apr/2021;mandelbrot.tex;
+19/Apr/2021;i4.tex;
+27/Jun/2021;lyapaper.tex;
+27/Jun/2021;m2.tex;
+27/Jun/2021;mandel3.tex;
+27/Jun/2021;whyaddition.tex;
+14/Sep/2021;identities.tex;
+14/Sep/2021;reflection.tex;
+14/Sep/2021;McMahonRelativity.tex;
+14/Sep/2021;reversion.tex;
+14/Sep/2021;exponentialmultivector.tex;
+14/Sep/2021;4dwedge.tex;
+14/Sep/2021;signature.tex;
+14/Sep/2021;mvi.tex;
+14/Sep/2021;dotwedgedef.tex;
+14/Sep/2021;innerouter.tex;
+14/Sep/2021;bladeDotWedgeSymmetryIdentitiesTheorem.tex;
+14/Sep/2021;units.tex;
+3/Jan/2022;parallelogram.tex;
+3/Jan/2022;surface.tex;
+3/Jan/2022;rotation.tex;
+3/Jan/2022;testit.tex;
+3/Jan/2022;hayden.tex;
+3/Jan/2022;spinorinversion.tex;
+3/Jan/2022;vectordotbivector.tex;math.se -- more confusion about dot product identities vectors vs. vectors and non-vectors.
+5/Jan/2022;jordan1inverse.tex;an aborted math.se answer.  I misunderstood the question and realized after writing this up.
+3/Jan/2022;whatiswedge.tex;math.se attempt to answer: I can't understand whether the wedge product is supposed to generate a matrix, a vector, or even an area?
+3/Jan/2022;wedgegeneral.tex;Wedge product expansion in non-Euclidean spaces.  This was a math.se answer -- url in the file.
+26/Feb/2022;bivectorFactor.tex;How to find factors of a bivector.  Think this was a math.se answer.
+6/Mar/2022;dyadicVsGa.tex;Vector gradients in dyadic notation and geometric algebra.  Predecessor of the appendix in the academic paper.
+8/Mar/2022;tensorComponents.tex;Verifying the GA form for the symmetric and antisymmetric components of the different rate of strain.  Predecessor of the appendix in the academic paper.
+11/Mar/2022;cramersga.tex;Cramer's rule in geometric algebra: a review and derivation.
+11/Mar/2022;lineintersection.tex;intersection of two lines in R^N
+12/Mar/2022;pauliMatrix.tex;This was my old 'Geometric Algebra equivalants for Pauli Matrices' article -- reextracted to share standalone.
+15/Mar/2022;greens.tex;summary of Green's function vlog series.
+21/Mar/2022;formsvsga_mathse.tex;a specialization of formsvsga_mathse.tex specifically for math.se
+22/Mar/2022;formsvsga.tex;math.se answer.  tensor, GA and differential forms representations of Maxwell's equation.
+27/Mar/2022;gaugeFreedomAndPotentialsMaxwell.tex;followup for a vlog post.  STA gauge freedom -- potentials and gauge freedom.
+9/Apr/2022;directionalDerivatives.tex;math.se answer about GA directional derivatives with respect to multivector variables.
+11/Apr/2022;reciprocalAndTangentspace.tex;blog post (or series) about reciprocal frame, tangent spaces, gradient representations.  This is a candidate for classical mechanics notes.
+5/Jun/2022;imaginaryQ.tex;math.se answer on grade selection to define dot and wedge products.
+5/Jun/2022;independent.tex;probably math.se answer on linear independence, wedge products, and determinants
+5/Jun/2022;trivectorAntisymmetrization.tex;math.se answer on total antisymmetrization of trivector wedge products
+22/Jun/2022;fsquared.tex;blog post series on Maxwell's equation STA Lagrangian representations, including magnetic sources
+22/Jun/2022;gradoperator.tex;a less exploratory version of fsquared.tex.  This is a candidate for classical mechanics notes.

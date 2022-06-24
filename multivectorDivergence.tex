@@ -1,0 +1,58 @@
+%
+% Copyright © 2022 Peeter Joot.  All Rights Reserved.
+% Licenced as described in the file LICENSE under the root directory of this GIT repository.
+%
+%{
+\input{../latex/blogpost.tex}
+\renewcommand{\basename}{multivectorDivergence}
+%\renewcommand{\dirname}{notes/phy1520/}
+\renewcommand{\dirname}{notes/ece1228-electromagnetic-theory/}
+%\newcommand{\dateintitle}{}
+%\newcommand{\keywords}{}
+
+\input{../latex/peeter_prologue_print2.tex}
+
+\usepackage{peeters_layout_exercise}
+\usepackage{peeters_braket}
+\usepackage{peeters_figures}
+\usepackage{siunitx}
+\usepackage{verbatim}
+%\usepackage{mhchem} % \ce{}
+%\usepackage{macros_bm} % \bcM
+%\usepackage{macros_qed} % \qedmarker
+%\usepackage{txfonts} % \ointclockwise
+
+\beginArtNoToc
+
+\generatetitle{XXX}
+%\chapter{XXX}
+%\label{chap:multivectorDivergence}
+
+% https://math.stackexchange.com/q/4479569/359
+
+Given a 2D multivector
+\begin{equation*}
+X = x^0 + x^1 e_1 + x^2 e_2 + x^{12} e_{12},
+\end{equation*}
+where \( e_{12} = e_1 \wedge e_2 \), you can show that the multivector gradient has the form
+\begin{equation*}
+\partial_X = \frac{\partial {}}{\partial {x^0}} + e^1 \frac{\partial {}}{\partial {x^1}} + e^2 \frac{\partial {}}{\partial {x^2}} + e^{21} \frac{\partial {}}{\partial {x^{12}}}.
+\end{equation*}
+
+I think that the only sensible definition of the divergence of \( F = F^0 + F^1 e_1 + F^2 e_2 + F^{12} e_{12} \) would be the scalar product of the gradient with \( F \).  That is
+\begin{equation*}
+\begin{aligned}
+\partial_X * F
+&=
+\lr{
+\frac{\partial {}}{\partial {x^0}} + e^1 \frac{\partial {}}{\partial {x^1}} + e^2 \frac{\partial {}}{\partial {x^2}} + e^{21} \frac{\partial {}}{\partial {x^{12}}}} * \lr{ F^0 + F^1 e_1 + F^2 e_2 + F^{12} e_{12} } \\
+&=
+\frac{\partial F^0}{\partial {x^0}} + \frac{\partial F^1}{\partial {x^1}} + \frac{\partial F^2}{\partial {x^2}} + \frac{\partial F^{12}}{\partial {x^{12}}}.
+\end{aligned}
+\end{equation*}
+
+Note that the above expression allows for non-Euclidean basis vectors, and utilizes the reciprocal basis vectors \( e^k \cdot e_j = {\delta^{k}}_j \).  For the Euclidean case that can be simplified with \( e_1 = e^1, e_2 = e^2, e_1^2 = e_2^2 = 1 \).
+
+%}
+\EndArticle
+%\EndNoBibArticle

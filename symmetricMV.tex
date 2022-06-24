@@ -1,0 +1,72 @@
+%
+% Copyright © 2022 Peeter Joot.  All Rights Reserved.
+% Licenced as described in the file LICENSE under the root directory of this GIT repository.
+%
+%{
+\input{../latex/blogpost.tex}
+\renewcommand{\basename}{symmetricMV}
+%\renewcommand{\dirname}{notes/phy1520/}
+\renewcommand{\dirname}{notes/ece1228-electromagnetic-theory/}
+%\newcommand{\dateintitle}{}
+%\newcommand{\keywords}{}
+
+\input{../latex/peeter_prologue_print2.tex}
+
+\usepackage{peeters_layout_exercise}
+\usepackage{peeters_braket}
+\usepackage{peeters_figures}
+\usepackage{siunitx}
+\usepackage{verbatim}
+%\usepackage{mhchem} % \ce{}
+%\usepackage{macros_bm} % \bcM
+%\usepackage{macros_qed} % \qedmarker
+%\usepackage{txfonts} % \ointclockwise
+
+\beginArtNoToc
+
+\generatetitle{XXX}
+%\chapter{XXX}
+%\label{chap:symmetricMV}
+
+% https://math.stackexchange.com/q/4477736/359 Symmetric multi-vector
+You picked the matrix representation
+\begin{equation}\label{eqn:symmetricMV:20}
+a +x \Be_1 +y \Be_1 + b \Be_1 \Be_2 \sim
+\begin{bmatrix}
+a+x & -b+y \\ b+y & a-x
+\end{bmatrix},
+\end{equation}
+but there are lots of possible matrix representations of multivectors.  For example, an alternate representation for the 2D multivector basis elements could use the Pauli matrices
+\begin{equation}\label{eqn:symmetricMV:40}
+\begin{aligned}
+   1 &=
+\begin{bmatrix}
+   1 & 0 \\
+   0 & 1
+\end{bmatrix} \\
+\Be_1 &= \PauliX \\
+\Be_2 &= \PauliY \\
+\Be_1 \Be_2 &= \PauliX \PauliY =
+\begin{bmatrix}
+   i & 0 \\
+   0 & -i
+\end{bmatrix},
+\end{aligned}
+\end{equation}
+for which you would have
+\begin{equation}\label{eqn:symmetricMV:60}
+a + x \Be_1 + y \Be_1 + b \Be_1 \Be_2 \sim
+\begin{bmatrix}
+   a + i b &  x - i y \\
+   x + i y & a - i b
+\end{bmatrix}.
+\end{equation}
+Like your construction, you can also recover all the multivector coordinates from such a representation.
+
+If you construct an matrix representaiton of this sort, the meaning of symmetrical will vary based on the representation chosen.  As a general statement, such symmetry is not neccessarily meaningful, although it could be for some specific representations.
+
+If you are looking for matrix representations for the (3,1) space time algebra case, the obvious candidate are the Dirac matrices (of which there are also many representations.)
+
+%}
+%\EndArticle
+\EndNoBibArticle

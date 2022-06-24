@@ -152,9 +152,12 @@
 #../latex/bin/lgrep trivectorAntisymmetrization.tex | tee o ; . ./o
 #perl -p -i ../latex/bin/latexRegex.pl trivectorAntisymmetrization.tex
 
-../latex/bin/lgrep fsquared.tex | tee o ; . ./o
+#../latex/bin/lgrep fsquared.tex | tee o ; . ./o
 #perl -p -i ../latex/bin/latexRegex.pl fsquared.tex
-../latex/bin/lgrep gradoperator.tex | tee o ; . ./o
-perl -p -i ../latex/bin/latexRegex.pl gradoperator.tex
-../latex/bin/lgrep multivectorDivergence.tex | tee o ; . ./o
-perl -p -i ../latex/bin/latexRegex.pl multivectorDivergence.tex
+#../latex/bin/lgrep gradoperator.tex | tee o ; . ./o
+#perl -p -i ../latex/bin/latexRegex.pl gradoperator.tex
+#../latex/bin/lgrep multivectorDivergence.tex | tee o ; . ./o
+#perl -p -i ../latex/bin/latexRegex.pl multivectorDivergence.tex
+
+../latex/bin/lgrep symmetricMV.tex | tee o ; . ./o
+#perl -p -i ../latex/bin/latexRegex.pl symmetricMV.tex

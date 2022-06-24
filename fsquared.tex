@@ -1124,6 +1124,36 @@ tBuLi points out that the bivector grade of \( F^2 \) should be zero, since it's
 \end{aligned}
 \end{equation}
 
+Looking at the coordinate expansion of \( F^2 \), it isn't obvious that the pseudoscalar term of \( F^2 \) must be zero in a similar way.  In fact we can disprove that by example.
+
+Given \( F = \grad \wedge A \), we can construct non-simple values of \( F \) for which \( F \wedge F \ne 0 \).  For example, let
+\begin{equation}\label{eqn:fsquared:1920}
+\begin{aligned}
+   2 &= \partial^0 A^1 - \partial^1 A^0 \\
+   2 &= \partial^2 A^3 - \partial^3 A^2.
+\end{aligned}
+\end{equation}
+One solution is
+\begin{equation}\label{eqn:fsquared:1940}
+\begin{aligned}
+   A^0 &= x^1 \\
+   A^1 &= x^0 \\
+   A^2 &= x^3 \\
+   A^3 &= -x^2.
+\end{aligned}
+\end{equation}
+For that we have
+\begin{equation}\label{eqn:fsquared:1960}
+\begin{aligned}
+F &= \grad \wedge A
+&= \lr{ \gamma^0 \partial_0 + \gamma^1 \partial_1 + \gamma^2 \partial_2 + \gamma^3 \partial_3 } \wedge \lr{ \gamma_0 x^1 + \gamma_1 x^0 + \gamma_2 x^3 - \gamma_3 x^2 } \\
+&= \lr{ \gamma^0 \partial_0 + \gamma^1 \partial_1 + \gamma^2 \partial_2 + \gamma^3 \partial_3 } \wedge \lr{ \gamma^0 x^1 - \gamma^1 x^0 - \gamma^2 x^3 + \gamma^3 x^2 } \\
+&= \gamma^0 \wedge (-\gamma^1) + \gamma^1 \wedge \gamma^0 + \gamma^2 \wedge \gamma^3 + \gamma^3 \wedge (-\gamma^2) \\
+&= 2 \lr{ \gamma_0 \wedge \gamma_1 + \gamma_2 \wedge \gamma_3 },
+\end{aligned}
+\end{equation}
+which isn't simple.  Such an \( F \) has a purely pseudoscalar square.
+
 %}
 %\EndArticle
 \EndNoBibArticle

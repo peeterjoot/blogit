@@ -1,0 +1,91 @@
+%
+% Copyright © 2022 Peeter Joot.  All Rights Reserved.
+% Licenced as described in the file LICENSE under the root directory of this GIT repository.
+%
+%{
+\input{../latex/blogpost.tex}
+\renewcommand{\basename}{gafpInertialTensorQ}
+%\renewcommand{\dirname}{notes/phy1520/}
+\renewcommand{\dirname}{notes/ece1228-electromagnetic-theory/}
+%\newcommand{\dateintitle}{}
+%\newcommand{\keywords}{}
+
+\input{../latex/peeter_prologue_print2.tex}
+
+\usepackage{peeters_layout_exercise}
+\usepackage{peeters_braket}
+\usepackage{peeters_figures}
+\usepackage{siunitx}
+\usepackage{verbatim}
+%\usepackage{mhchem} % \ce{}
+%\usepackage{macros_bm} % \bcM
+%\usepackage{macros_qed} % \qedmarker
+%\usepackage{txfonts} % \ointclockwise
+
+\beginArtNoToc
+
+% https://math.stackexchange.com/questions/4493584/missing-stepsintuition-for-geometric-algebra-manipulations/4494143#4494143
+\generatetitle{XXX}
+%\chapter{XXX}
+%\label{chap:gafpInertialTensorQ}
+
+First note that the right bivector can be expanded as
+\begin{equation*}
+x \wedge \lr{ x \cdot B } 
+= x \lr{ x \cdot B } - x \cdot \lr{ x \cdot B }.
+\end{equation*}
+Note that the dot product term is a scalar.  We plug this in to the original expression
+\begin{equation*}
+\begin{aligned}
+   A \cdot \lr{ x \wedge \lr{ x \cdot B } } 
+   &= \gpgradezero{ A \cdot \lr{ x \wedge \lr{ x \cdot B } } } \\
+   &= \gpgradezero{ A \lr{ x \lr{ x \cdot B } - x \cdot \lr{ x \cdot B } } } \\
+   &= \gpgradezero{ A x \lr{ x \cdot B } } - \gpgradezero{ A \lr{ x \cdot \lr{ x \cdot B } } }.
+\end{aligned}
+\end{equation*}
+In the second grade selection operator, we have the product of a bivector with a scalar, which is grade-2 (no scalar grades), so it is killed leaving us with
+\begin{equation*}
+\begin{aligned}
+   A \cdot \lr{ x \wedge \lr{ x \cdot B } } 
+   &= \gpgradezero{ A x \lr{ x \cdot B } } \\
+   &= \gpgradezero{ \lr{ A \cdot x + A \wedge x } \lr{ x \cdot B } } \\
+   &= \gpgradezero{ \lr{ A \cdot x } \lr{ x \cdot B } } + \gpgradezero{ \lr{ A \wedge x } \lr{ x \cdot B } }.
+\end{aligned}
+\end{equation*}
+This time within the second grade selection operator, we have the product of a trivector and a vector, which is a bivector, and has no grade-0 components, so that grade selection is zero.  We are left with
+\begin{equation*}
+\begin{aligned}
+   A \cdot \lr{ x \wedge \lr{ x \cdot B } } 
+   &= \gpgradezero{ \lr{ A \cdot x } \lr{ x \cdot B } } \\
+   &= \lr{ A \cdot x } \cdot \lr{ x \cdot B } \\
+   &= -\lr{ x \cdot A } \cdot \lr{ x \cdot B }.
+\end{aligned}
+\end{equation*}
+This step isn't required to find the next expression in the text, the \( \gpgradezero{ \lr{ A \cdot x } x B } \), but can be used to answer your second question.
+
+Now we apply a reverse operation, noting that \( \lr{M N}^{\dagger} = N^\dagger M^\dagger \), for any multivectors \( M, N \), and that scalars and vectors are their own reverses.  Both \( A \cdot x , x \cdot B \) are vectors, so
+\begin{equation*}
+\begin{aligned}
+   \gpgradezero{ \lr{ A \cdot x } \lr{ x \cdot B } }^\dagger
+   &=
+   \gpgradezero{ \lr{ x \cdot B } \lr{ A \cdot x } } \\
+   &=
+   -\lr{ x \cdot B } \cdot \lr{ x \cdot A }.
+\end{aligned}
+\end{equation*}
+This shows that \( A \cdot \lr{ x \wedge \lr{ x \cdot B } }  \) is symmetric in \( A, B \), which provides the end result of (3.126).  We didn't really need the second-last intermediate step \( \gpgradezero{ \lr{ A \cdot x } x B } \), but it's fairly simple to show that from the above, should you want to.
+
+For the second question, from the above, note that 
+\begin{equation*}
+\begin{aligned}
+A \cdot \lr{ x \wedge \lr{ x \cdot A } } &=
+   -\lr{ x \cdot A } \cdot \lr{ x \cdot A } \\
+   &=
+   -\lr{ x \cdot A }^2,
+\end{aligned}
+\end{equation*}
+since \( x \cdot A \) is a vector that, when wedged with itself, is zero.  Substitution of \( A = I a \) provides the transition from the first to second line in the second question.
+
+%}
+%\EndArticle
+\EndNoBibArticle

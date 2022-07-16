@@ -161,3 +161,5 @@
 
 ../latex/bin/lgrep symmetricMV.tex | tee o ; . ./o
 #perl -p -i ../latex/bin/latexRegex.pl symmetricMV.tex
+../latex/bin/lgrep gafpInertialTensorQ.tex | tee o ; . ./o
+perl -p -i ../latex/bin/latexRegex.pl gafpInertialTensorQ.tex

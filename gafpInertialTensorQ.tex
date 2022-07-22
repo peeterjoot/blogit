@@ -29,30 +29,26 @@
 %\chapter{XXX}
 %\label{chap:gafpInertialTensorQ}
 
-First note that the right bivector can be expanded as
-\begin{equation*}
-x \wedge \lr{ x \cdot B } 
-= x \lr{ x \cdot B } - x \cdot \lr{ x \cdot B }.
-\end{equation*}
-Note that the dot product term is a scalar.  We plug this in to the original expression
+We can replace the wedge product from the right bivector term with a geometric product
 \begin{equation*}
 \begin{aligned}
-   A \cdot \lr{ x \wedge \lr{ x \cdot B } } 
-   &= \gpgradezero{ A \cdot \lr{ x \wedge \lr{ x \cdot B } } } \\
-   &= \gpgradezero{ A \lr{ x \lr{ x \cdot B } - x \cdot \lr{ x \cdot B } } } \\
-   &= \gpgradezero{ A x \lr{ x \cdot B } } - \gpgradezero{ A \lr{ x \cdot \lr{ x \cdot B } } }.
+x \wedge \lr{ x \cdot B } &= x \lr{ x \cdot B } - x \cdot \lr{ x \cdot B } \\
+                          &= x \lr{ x \cdot B },
 \end{aligned}
 \end{equation*}
-In the second grade selection operator, we have the product of a bivector with a scalar, which is grade-2 (no scalar grades), so it is killed leaving us with
+since \( x \) and \( x \cdot B \) are perpendicular ( \( x \cdot B \) is the projection of \( x \) onto \( B \), but rotated 90 degrees in that plane).  As pointed out by mreman, this also follows from the identity \( x \cdot (y \cdot B) = (x \wedge y) \cdot B \).
+
+The dot product in the original expression, can now be written as a grade selection
 \begin{equation*}
 \begin{aligned}
    A \cdot \lr{ x \wedge \lr{ x \cdot B } } 
+   &= \gpgradezero{ A \lr{ x \wedge \lr{ x \cdot B } } } \\
    &= \gpgradezero{ A x \lr{ x \cdot B } } \\
    &= \gpgradezero{ \lr{ A \cdot x + A \wedge x } \lr{ x \cdot B } } \\
    &= \gpgradezero{ \lr{ A \cdot x } \lr{ x \cdot B } } + \gpgradezero{ \lr{ A \wedge x } \lr{ x \cdot B } }.
 \end{aligned}
 \end{equation*}
-This time within the second grade selection operator, we have the product of a trivector and a vector, which is a bivector, and has no grade-0 components, so that grade selection is zero.  We are left with
+The second grade selection operator, is a product of a trivector and a vector, which is a bivector, and has no grade-0 components, so that grade selection is zero.  We are left with
 \begin{equation*}
 \begin{aligned}
    A \cdot \lr{ x \wedge \lr{ x \cdot B } } 

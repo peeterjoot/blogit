@@ -1,0 +1,125 @@
+%
+% Copyright © 2022 Peeter Joot.  All Rights Reserved.
+% Licenced as described in the file LICENSE under the root directory of this GIT repository.
+%
+%{
+\input{../latex/blogpost.tex}
+\renewcommand{\basename}{regularNgon}
+%\renewcommand{\dirname}{notes/phy1520/}
+\renewcommand{\dirname}{notes/ece1228-electromagnetic-theory/}
+%\newcommand{\dateintitle}{}
+%\newcommand{\keywords}{}
+
+\input{../latex/peeter_prologue_print2.tex}
+
+\usepackage{peeters_layout_exercise}
+\usepackage{peeters_braket}
+\usepackage{peeters_figures}
+\usepackage{siunitx}
+\usepackage{verbatim}
+%\usepackage{mhchem} % \ce{}
+%\usepackage{macros_bm} % \bcM
+%\usepackage{macros_qed} % \qedmarker
+%\usepackage{txfonts} % \ointclockwise
+
+\beginArtNoToc
+
+\generatetitle{Interior angles of a regular n-sided polygon.}
+%\chapter{XXX}
+%\label{chap:regularNgon}
+
+For reasons that I can't explain, I woke up this morning dreaming about the interior angles of regular polygons.  i.e. the angles \( \pi - \theta \) \cref{fig:polygonProblem:polygonProblemFig1}.
+\imageFigure{../figures/blogit/polygonProblemFig1}{Regular polygon, interior angles.}{fig:polygonProblem:polygonProblemFig1}{0.3}
+
+The logical way to calculate that angle would be to slice the polygon up into triangles from the center, since each slice would have an interior angle would be \( 2 \pi / N \), and then the problem is just trigonometric.  However, in my dream, I was going around the outside, each time rotating by a constant angle, until reaching the original starting point.  This was a vector algebra problem, instead of a trigonometric problem, as illustrated in
+\cref{fig:iteratingPolygon:iteratingPolygonFig2}.
+\imageFigure{../figures/blogit/iteratingPolygonFig2}{Polygon vertex iteration.}{fig:iteratingPolygon:iteratingPolygonFig2}{0.3}
+
+I didn't have the computational power in my dream to solve the problem, and had to write it down when I woke up, to do so.  The problem has the structure of a recurrence relation:
+\begin{equation}\label{eqn:regularNgon:20}
+\Bp_k  = \Bp_{k-1} + a \Be_1 \lr{ e^{i\theta} }^{k-1},
+\end{equation}
+where
+\begin{equation}\label{eqn:regularNgon:40}
+   \Bp_N = \Bp_0.
+\end{equation}
+
+We can write these out explicitly for the first few \( k \) to see the pattern
+\begin{equation}\label{eqn:regularNgon:60}
+\begin{aligned}
+   \Bp_2
+   &= \Bp_{1} + a \Be_1 \lr{ e^{i\theta} }^{2-1} \\
+   &= \Bp_{0} + a \Be_1 \lr{ e^{i\theta} }^{1-1} + a \Be_1 \lr{ e^{i\theta} }^{2-1} \\
+   &= \Bp_{0} + a \Be_1 \lr{ 1 + \lr{ e^{i\theta} }^{2-1} },
+\end{aligned}
+\end{equation}
+or
+\begin{equation}\label{eqn:regularNgon:80}
+\Bp_k = \Bp_{0} + a \Be_1 \lr{ 1 + e^{i\theta} + \lr{ e^{i\theta} }^{2-1} + \cdots + \lr{ e^{i\theta} }^{k-1} },
+\end{equation}
+so the equation to solve (for \(\theta\)) is
+\begin{equation}\label{eqn:regularNgon:100}
+   \Bp_N = \Bp_0 + a \Be_1 \lr{ 1 + \cdots + \lr{ e^{i\theta} }^{N-1} } = \Bp_0,
+\end{equation}
+or
+\begin{equation}\label{eqn:regularNgon:120}
+   1 + \cdots + \lr{ e^{i\theta} }^{N-1} = 0.
+\end{equation}
+The LHS is a geometric series of the form
+\begin{equation}\label{eqn:regularNgon:140}
+   S_N = 1 + \alpha + \cdots \alpha^{N-1}.
+\end{equation}
+Recall that the trick to solve this is noting that
+\begin{equation}\label{eqn:regularNgon:160}
+   \alpha S_N = \alpha + \cdots \alpha^{N-1} + \alpha^N,
+\end{equation}
+so
+\begin{equation}\label{eqn:regularNgon:180}
+   \alpha S_N - S_N = \alpha^N - 1,
+\end{equation}
+or
+\begin{equation}\label{eqn:regularNgon:200}
+S_N = \frac{\alpha^N - 1}{\alpha - 1}.
+\end{equation}
+For our polygon, we seek a zero numerator, that is
+\begin{equation}\label{eqn:regularNgon:220}
+   e^{N i \theta} = 1,
+\end{equation}
+and the smallest \( \theta \) solution to this equation is
+\begin{equation}\label{eqn:regularNgon:240}
+   N \theta = 2 \pi,
+\end{equation}
+or
+\begin{equation}\label{eqn:regularNgon:260}
+   \theta = \frac{2 \pi}{N}.
+\end{equation}
+The interior angle is the complement of this, since we are going around the outside edge.  That is
+\begin{equation}\label{eqn:regularNgon:280}
+\begin{aligned}
+   \pi - \theta &= \pi - \frac{2 \pi}{N} \\ &= \frac{ N - 2 }{N} \pi,
+\end{aligned}
+\end{equation}
+and the sum of all the interior angles is
+\begin{equation}\label{eqn:regularNgon:300}
+   N \lr{ \pi - \theta } = \lr{N - 2 } \pi.
+\end{equation}
+
+Plugging in some specific values, for \( N = 3, 4, 5, 6 \), we find that the interior angles are \( \pi/3, \pi/2, 3 \pi/5, 4 \pi/6 \), and the respective sums of these interior angles for the entire polygons are \( \pi, 2 \pi, 3 \pi, 4 \pi \).
+
+Like, I said, this isn't the simplest way to solve this problem.  Instead, we could solve for \( 2 \mu \) with respect to interior triangle illustrated in
+\cref{fig:easyWayPolygon:easyWayPolygonFig3}, where
+\imageFigure{../figures/blogit/easyWayPolygonFig3}{Polygon interior geometry.}{fig:easyWayPolygon:easyWayPolygonFig3}{0.3}
+\begin{equation}\label{eqn:regularNgon:320}
+   2 \mu + \frac{ 2\pi}{N} = \pi,
+\end{equation}
+or
+\begin{equation}\label{eqn:regularNgon:340}
+   2 \mu = \frac{N - 2}{N} \pi,
+\end{equation}
+as found the hard way.  The hard way was kind of fun though.
+
+The toughest problem to solve would be ``why on earth was my brain pondering this in the early morning?'' I didn't even go to bed thinking about anything math or geometry related (we finished the night with the brain-dead activity of watching an episode of ``Stranger things''.)
+
+%}
+%\EndArticle
+\EndNoBibArticle

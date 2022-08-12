@@ -1,0 +1,80 @@
+%
+% Copyright © 2022 Peeter Joot.  All Rights Reserved.
+% Licenced as described in the file LICENSE under the root directory of this GIT repository.
+%
+%{
+\input{../latex/blogpost.tex}
+\renewcommand{\basename}{mvWedgeExample}
+%\renewcommand{\dirname}{notes/phy1520/}
+\renewcommand{\dirname}{notes/ece1228-electromagnetic-theory/}
+%\newcommand{\dateintitle}{}
+%\newcommand{\keywords}{}
+
+\input{../latex/peeter_prologue_print2.tex}
+
+\usepackage{peeters_layout_exercise}
+\usepackage{peeters_braket}
+\usepackage{peeters_figures}
+\usepackage{siunitx}
+\usepackage{verbatim}
+%\usepackage{mhchem} % \ce{}
+%\usepackage{macros_bm} % \bcM
+%\usepackage{macros_qed} % \qedmarker
+%\usepackage{txfonts} % \ointclockwise
+
+\beginArtNoToc
+
+% https://math.stackexchange.com/a/4510960/359
+\generatetitle{Am I interpreting the wedge product correctly?}
+%\chapter{XXX}
+%\label{chap:mvWedgeExample}
+
+I'd write, for multivectors \( A, B \)
+\begin{equation*}
+A \wedge B = \sum_{r,s} \left \langle \left \langle A \right \rangle _r \left \langle B \right \rangle _s \right \rangle _{r+s}
+\end{equation*}
+or for \( A_r, B_s \), blades of grades \( r, s \) respectively
+\begin{equation*}
+   A_r \wedge B_s = \gpgrade{A_r B_s}{r+s}.
+\end{equation*}
+i.e.: for the general outer product of two multivectors, you take the outer products of all the respective grades, but if you are operating on blades, which are, by definition, products of perpendicular vectors, so they can be written as outer products, then the outer product is just the grade selection of the sum of the respective grades.
+
+I'd rewrite your example as
+\begin{equation*}
+\begin{aligned}
+   A &= 1 + e_1 + e_{12} + 2 e_{23} \\
+   B &= 2 + e_1 + e_4,
+\end{aligned}
+\end{equation*}
+not using any \(r,s\) suffixes here, as this isn't a blade of any specific grade.  For these multivectors, you can select out all the specific grades, which are
+\begin{equation*}
+\begin{aligned}
+   A_0 &= 1 \\
+   A_1 &= e_1 \\
+   A_2 &= e_{12} + 2 e_{23} \\
+   B_0 &= 2 \\
+   B_1 &= e_1 + e_4.
+\end{aligned}
+\end{equation*}
+Now you can form the outer products of all these single-grade components
+\begin{equation*}
+\begin{aligned}
+A \wedge B 
+&=
+\lr{ A_0 \wedge B_0 }
++ \lr{ A_0 \wedge B_1 + A_1 \wedge B_0 }
++ \lr{ A_2 \wedge B_0 + A_1 \wedge B_1 }
++ \lr{ A_2 \wedge B_1 } \\
+&=
+\lr{ 2 } + \lr{ e_1 + e_4 + 2 e_1 } + \lr{ 2 e_{12} + 4 e_{23} + e_1 \wedge \lr{ e_1 + e_4 } }
+   + \lr{ e_{124} + 2 e_{231} + 2 e_{234} } \\
+&=
+   \lr{ 2 } + \lr{ 3 e_1 + e_4 } + \lr{ 2 e_{12} + 4 e_{23} + e_{14} }
+   + \lr{ e_{124} + 2 e_{123} + 2 e_{234} }.
+\end{aligned}
+\end{equation*}
+Here, I've used braces to group the respective grade \(0,1,2,3\) components of this general outer product.
+
+%}
+\EndArticle
+%\EndNoBibArticle

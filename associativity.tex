@@ -31,6 +31,8 @@
 % not mine:
 % https://math.stackexchange.com/questions/4516657/apparent-inconsistency-in-geometric-product-associativity
 
+\section{Question}
+
 With a little bit of work, I have proven to myself that the geometric product between three vectors is associative ($a$, $b$, and $c$ are 1-vectors):
 \begin{equation*}
 \begin{aligned}
@@ -72,6 +74,255 @@ Is it that my understanding of associativity is incorrect in that $(ab)(cd)$ is 
 
 My digging into this comes from the desire to understand $e_{12} e_{23}$ which is short-hand for $(e_1 \wedge e_2)(e_2 \wedge e_3)$ (note, geometric product for $()()$) where $e_1$, $e_2$, $e_3$ are orthonormal basis vectors and I have been unable to determine whether the result should be $0$ or $e_{13}$. Also, that $e_1 e_2 e_2 e_3$ comes up in my working out of geometric products when $e_1 e_2$ is used as shorthand for $e_1 \wedge e_2$.
 
+
+\section{Answer}
+
+It looks like you are missing a factor in your expansion of \( \lr{a \wedge b} \lr{c \wedge d} \).  In general, a product of bivectors \( A B \), should have scalar, bivector, and quadvector components:
+\begin{equation*}
+A B = A \cdot B + \gpgradetwo{ A B } + A \wedge B,
+\end{equation*}
+so for \( A = a \wedge b, B = c \wedge d \), we have
+\begin{equation*}
+   \lr{ a \wedge b }
+   \lr{ c \wedge d }
+   =
+   \lr{ a \wedge b }
+   \cdot
+   \lr{ c \wedge d }
+   +
+   \gpgradetwo{
+   \lr{ a \wedge b }
+   \lr{ c \wedge d }
+}
+   +
+   \lr{ a \wedge b }
+   \wedge
+   \lr{ c \wedge d }.
+\end{equation*}
+Let's expand out that grade-two selection:
+\begin{equation*}
+\begin{aligned}
+   \gpgradetwo{
+   \lr{ a \wedge b }
+   \lr{ c \wedge d }
+}
+&=
+   \gpgradetwo{
+   \lr{ a b - a \cdot b }
+   \lr{ c \wedge d }
+} \\
+&=
+   \gpgradetwo{
+   \lr{ a b \lr{ c \wedge d } } } 
+   - \lr{ a \cdot b } \lr{ c \wedge d } \\
+&=
+   a \wedge \lr{ b \cdot \lr{ c \wedge d } } 
+   +
+   a \cdot \lr{ b \wedge \lr{ c \wedge d } } 
+   - \lr{ a \cdot b } \lr{ c \wedge d } \\
+\end{aligned}
+\end{equation*}
+The first term expands as
+\begin{equation*}
+   a \wedge \lr{ b \cdot \lr{ c \wedge d } } 
+   =
+   \lr{ b \cdot c } \lr{ a \wedge d } 
+   -
+   \lr{ b \cdot d } \lr{ a \wedge c },
+\end{equation*}
+and the second term as
+\begin{equation*}
+   a \cdot \lr{ b \wedge \lr{ c \wedge d } } 
+   =
+\lr{ a \cdot b } \lr{ c \wedge d }
+-
+\lr{ a \cdot c } \lr{ b \wedge d }
++
+\lr{ a \cdot d } \lr{ b \wedge c }.
+\end{equation*}
+Also, as you pointed out,
+\begin{equation*}
+\begin{aligned}
+   \lr{ a \wedge b }
+   \cdot
+   \lr{ c \wedge d }
+   &=
+   \gpgradezero{
+   \lr{ a \wedge b }
+   \lr{ c \wedge d }
+} \\
+   &=
+   \gpgradezero{
+   \lr{ a b - a \cdot b }
+   \lr{ c \wedge d }
+} \\
+   &=
+   \gpgradezero{
+   a b \lr{ c \wedge d }
+} \\
+&=
+a \cdot \lr{ b \cdot \lr{ c \wedge d } } \\
+&=
+\lr{ b \cdot c } \lr{ a \cdot d }
+-
+\lr{ b \cdot d } \lr{ a \cdot c }.
+\end{aligned}
+\end{equation*}
+
+Putting all the pieces together, we have
+\begin{equation*}
+\begin{aligned}
+\lr{ a \wedge b } \lr{ c \wedge d }
+&= \lr{ a \cdot b } \lr{ c \cdot d } + \lr{ b \cdot c } \lr{ a \cdot d } - \lr{ b \cdot d } \lr{ a \cdot c } \\
+&\quad+ \lr{ b \cdot c } \lr{ a \wedge d } - \lr{ b \cdot d } \lr{ a \wedge c } \\
+&\quad+ \lr{ a \cdot b } \lr{ c \wedge d } - \lr{ a \cdot c } \lr{ b \wedge d } + \lr{ a \cdot d } \lr{ b \wedge c } \\
+&\quad- \lr{ a \cdot b } \lr{ c \wedge d } \\
+&\quad+ a \wedge b \wedge c \wedge d 
+.
+\end{aligned}
+\end{equation*}
+
+\section{motivation}
+
+Because \( e_k \wedge e_j = e_k e_j \) whenever \( k \ne j \), we have
+\begin{equation*}
+\begin{aligned}
+\lr{e_1 \wedge e_2} \lr{ e_2 \wedge e_3 }
+&=
+\lr{e_1 e_2} \lr{ e_2 e_3 } \\
+&=
+e_1 e_2 e_2 e_3  \\
+&=
+e_1 \lr{ e_2 e_2 } e_3  \\
+&=
+e_1 e_3.
+\end{aligned}
+\end{equation*}
+As the dot and wedges of a pair of bivectors are the grade-0 and grade-4 terms respectively, you can immediately conclude that
+\begin{equation*}
+\lr{e_1 \wedge e_2} \cdot \lr{ e_2 \wedge e_3 } = 0,
+\end{equation*}
+\begin{equation*}
+\lr{e_1 \wedge e_2} \wedge \lr{ e_2 \wedge e_3 } = 0,
+\end{equation*}
+and
+\begin{equation*}
+   \gpgradetwo{\lr{e_1 \wedge e_2} \lr{ e_2 \wedge e_3 }} = e_1 e_3.
+\end{equation*}
+
+\section{One expansion.}
+
+Here's one way to expand the product of four vectors, grouping the first and last pairs.
+\begin{equation*}
+\begin{aligned}
+a b c d 
+&=
+\lr{ a \cdot b + a \wedge b } \lr{ c \cdot d + c \wedge d } \\
+&=
+\lr{ a \cdot b } \lr{ c \cdot d } \\
+&+\quad
+\lr{ a \cdot b } \lr{ c \wedge d }
++
+\lr{ c \cdot d } \lr{ a \wedge b }  \\
+&+\quad 
+\lr{ a \wedge b }\lr{ c \wedge d }.
+\end{aligned}
+\end{equation*}
+The first term of this bivector-bivector product can be expanded with application of \( a b = a \cdot b + a \wedge b \) in reverse
+\begin{equation*}
+\begin{aligned}
+\lr{ a \wedge b }\lr{ c \wedge d }
+&=
+\lr{ a b - a \cdot b }\lr{ c \wedge d } \\
+&=
+a b 
+\lr{ c \wedge d } 
+- \lr{ a \cdot b } 
+\lr{ c \wedge d } 
+\end{aligned}
+\end{equation*}
+The product of \( b \) with \( c \wedge d \) is
+\begin{equation*}
+\begin{aligned}
+b 
+\lr{ c \wedge d } 
+&=
+b \cdot
+\lr{ c \wedge d } 
++
+b \wedge
+\lr{ c \wedge d }  \\
+&=
+\lr{ b \cdot c } d
+- \lr{ b \cdot d } c
++ b \wedge c \wedge d.
+\end{aligned}
+\end{equation*}
+Multiplying this by \( a \) on the left, we have a scalar grade
+\begin{equation*}
+   \gpgradezero{
+   a b \lr{ c \wedge d } 
+}
+= \lr{ b \cdot c } \lr{ a \cdot d } - \lr{ b \cdot d } \lr{ a \cdot c },
+\end{equation*}
+a bivector grade
+\begin{equation*}
+\begin{aligned}
+\gpgradetwo{
+   a b \lr{ c \wedge d } 
+}
+&=
+\lr{ b \cdot c } \lr{ a \wedge d }
+- \lr{ b \cdot d } \lr{ a \wedge c }
++ a \cdot \lr{ b \wedge c \wedge d } \\
+&=
+\lr{ b \cdot c } \lr{ a \wedge d }
+- \lr{ b \cdot d } \lr{ a \wedge c } \\
+&\quad + \lr{ a \cdot b } \lr{ c \wedge d } 
+- \lr{ a \cdot c } \lr{ b \wedge d } 
++ \lr{ a \cdot d } \lr{ b \wedge c },
+\end{aligned}
+\end{equation*}
+and a grade-four component
+\begin{equation*}
+\gpgradefour{
+   a b \lr{ c \wedge d } 
+}
+=
+   a \wedge b \wedge c \wedge d.
+\end{equation*}
+Putting all the pieces together, here are all the grades of the \( a b c d \) product
+\begin{equation*}
+\begin{aligned}
+   \gpgradezero{ a b c d } 
+   &=
+\lr{ a \cdot b } \lr{ c \cdot d } 
++
+\lr{ b \cdot c } \lr{ a \cdot d } - \lr{ b \cdot d } \lr{ a \cdot c } \\
+   \gpgradetwo{ a b c d } 
+   &=
+  \lr{ a \cdot b } \lr{ c \wedge d }
++ \lr{ c \cdot d } \lr{ a \wedge b }  
+- \lr{ a \cdot b } \lr{ c \wedge d } \\
+&\quad
++ \lr{ b \cdot c } \lr{ a \wedge d }
+- \lr{ b \cdot d } \lr{ a \wedge c }
++ \lr{ a \cdot b } \lr{ c \wedge d } \\
+&\quad
+- \lr{ a \cdot c } \lr{ b \wedge d } 
++ \lr{ a \cdot d } \lr{ b \wedge c } \\
+   &=
+  \lr{ a \cdot b } \lr{ c \wedge d }
++ \lr{ c \cdot d } \lr{ a \wedge b }  
++ \lr{ b \cdot c } \lr{ a \wedge d } \\
+&\quad - \lr{ b \cdot d } \lr{ a \wedge c }
+- \lr{ a \cdot c } \lr{ b \wedge d } 
++ \lr{ a \cdot d } \lr{ b \wedge c } \\
+   \gpgradefour{ a b c d } 
+   &=
+   a \wedge b \wedge c \wedge d.
+\end{aligned}
+\end{equation*}
 
 %}
 \EndArticle

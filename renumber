@@ -169,3 +169,5 @@ perl -p -i ../latex/bin/latexRegex.pl regularNgon.tex
 perl -p -i ../latex/bin/latexRegex.pl mvWedgeExample.tex
 ../latex/bin/lgrep associativity.tex | tee o ; . ./o
 perl -p -i ../latex/bin/latexRegex.pl associativity.tex
+../latex/bin/lgrep dotsymmetric.tex | tee o ; . ./o
+perl -p -i ../latex/bin/latexRegex.pl dotsymmetric.tex

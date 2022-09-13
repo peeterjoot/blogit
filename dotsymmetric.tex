@@ -1,0 +1,86 @@
+%
+% Copyright © 2022 Peeter Joot.  All Rights Reserved.
+% Licenced as described in the file LICENSE under the root directory of this GIT repository.
+%
+%{
+\input{../latex/blogpost.tex}
+\renewcommand{\basename}{dotsymmetric}
+%\renewcommand{\dirname}{notes/phy1520/}
+\renewcommand{\dirname}{notes/ece1228-electromagnetic-theory/}
+%\newcommand{\dateintitle}{}
+%\newcommand{\keywords}{}
+
+\input{../latex/peeter_prologue_print2.tex}
+
+\usepackage{peeters_layout_exercise}
+\usepackage{peeters_braket}
+\usepackage{peeters_figures}
+\usepackage{siunitx}
+\usepackage{verbatim}
+%\usepackage{mhchem} % \ce{}
+%\usepackage{macros_bm} % \bcM
+%\usepackage{macros_qed} % \qedmarker
+%\usepackage{txfonts} % \ointclockwise
+
+\beginArtNoToc
+
+\generatetitle{XXX}
+%\chapter{XXX}
+%\label{chap:dotsymmetric}
+
+There isn't actually that much choice in what to call such a symmetric product of vectors.  Consider first the product of two vectors
+\( a = \sum_i x_i \Be_i \) and \( b = \sum_i y_i \Be_i \), assuming that \( \setlr{ \Be_1, \cdots \Be_N } \) is an orthonormal basis.
+\begin{equation*}
+\begin{aligned}
+   a b
+   &= \sum_{1 \le i,j \le N} x_i \Be_i y_j \Be_j \\
+   &= \sum_{i = j} x_i y_i \Be_i^2 + \sum_{i \ne j} x_i y_j \Be_i \Be_j \\
+   &= \sum_{i = 1}^N x_i y_i + \sum_{i \ne j} x_i y_j \Be_i \Be_j \\
+   &= \sum_{i = 1}^N x_i y_i + \sum_{1 \le i < j \le N} \lr{ x_i y_j - x_j y_i } \Be_i \Be_j \\
+   &= \sum_{i = 1}^N x_i y_i + \sum_{1 \le i < j \le N} 
+\begin{vmatrix}
+   x_i & x_j \\
+   y_i & y_j
+\end{vmatrix}
+   \Be_i \Be_j.
+\end{aligned}
+\end{equation*}
+Reversing the products, we find
+\begin{equation*}
+\begin{aligned}
+   b a
+   &= \sum_{i = 1}^N y_i x_i + \sum_{1 \le i < j \le N} 
+\begin{vmatrix}
+   y_i & y_j \\
+   x_i & x_j
+\end{vmatrix}
+   \Be_i \Be_j \\
+   &= \sum_{i = 1}^N x_i y_i - \sum_{1 \le i < j \le N} 
+\begin{vmatrix}
+   x_i & x_j \\
+   y_i & y_j 
+\end{vmatrix}
+   \Be_i \Be_j.
+\end{aligned}
+\end{equation*}
+
+Forming the symmetrization, there isn't any choice about the specific value of this scalar term
+\begin{equation*}
+   \inv{2} \lr{ a b + b a } = \sum_{i = 1}^N x_i y_i,
+\end{equation*}
+and we are forced to identify it as the dot product.
+
+Incidentally, we also hve no choice about the specific value of the grade-2 portion of the vector product, which we may similarily pick out using an antisymmetrical sum
+\begin{equation*}
+   \inv{2} \lr{ a b - b a } = \sum_{1 \le i < j \le N} 
+\begin{vmatrix}
+   x_i & x_j \\
+   y_i & y_j 
+\end{vmatrix}
+   \Be_i \Be_j.
+\end{equation*}
+We can then define the grade-2 part of the vector product as the wedge product.  From the coordinate expansion above, it is clear that this has the desired properties \( a \wedge a = 0, a \wedge b = - b \wedge a \).  It's also possible to show that this has the \( \sin\theta \) (parallelogram area) property that we desire of the wedge product.
+
+%}
+%\EndArticle
+\EndNoBibArticle

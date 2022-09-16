@@ -37,7 +37,7 @@ There isn't actually that much choice in what to call such a symmetric product o
    &= \sum_{i = j} x_i y_i \Be_i^2 + \sum_{i \ne j} x_i y_j \Be_i \Be_j \\
    &= \sum_{i = 1}^N x_i y_i + \sum_{i \ne j} x_i y_j \Be_i \Be_j \\
    &= \sum_{i = 1}^N x_i y_i + \sum_{1 \le i < j \le N} \lr{ x_i y_j - x_j y_i } \Be_i \Be_j \\
-   &= \sum_{i = 1}^N x_i y_i + \sum_{1 \le i < j \le N} 
+   &= \sum_{i = 1}^N x_i y_i + \sum_{1 \le i < j \le N}
 \begin{vmatrix}
    x_i & x_j \\
    y_i & y_j
@@ -49,16 +49,16 @@ Reversing the products, we find
 \begin{equation*}
 \begin{aligned}
    b a
-   &= \sum_{i = 1}^N y_i x_i + \sum_{1 \le i < j \le N} 
+   &= \sum_{i = 1}^N y_i x_i + \sum_{1 \le i < j \le N}
 \begin{vmatrix}
    y_i & y_j \\
    x_i & x_j
 \end{vmatrix}
    \Be_i \Be_j \\
-   &= \sum_{i = 1}^N x_i y_i - \sum_{1 \le i < j \le N} 
+   &= \sum_{i = 1}^N x_i y_i - \sum_{1 \le i < j \le N}
 \begin{vmatrix}
    x_i & x_j \\
-   y_i & y_j 
+   y_i & y_j
 \end{vmatrix}
    \Be_i \Be_j.
 \end{aligned}
@@ -72,10 +72,10 @@ and we are forced to identify the symmetric sum as the dot product.
 
 Incidentally, we also have no choice about the specific value of the grade-2 portion of the vector product, which we may similarily pick out using an antisymmetrical sum
 \begin{equation*}
-   \inv{2} \lr{ a b - b a } = \sum_{1 \le i < j \le N} 
+   \inv{2} \lr{ a b - b a } = \sum_{1 \le i < j \le N}
 \begin{vmatrix}
    x_i & x_j \\
-   y_i & y_j 
+   y_i & y_j
 \end{vmatrix}
    \Be_i \Be_j.
 \end{equation*}

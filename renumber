@@ -171,3 +171,5 @@ perl -p -i ../latex/bin/latexRegex.pl mvWedgeExample.tex
 perl -p -i ../latex/bin/latexRegex.pl associativity.tex
 ../latex/bin/lgrep dotsymmetric.tex | tee o ; . ./o
 perl -p -i ../latex/bin/latexRegex.pl dotsymmetric.tex
+../latex/bin/lgrep amomentum.tex | tee o ; . ./o
+perl -p -i ../latex/bin/latexRegex.pl amomentum.tex

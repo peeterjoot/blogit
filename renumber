@@ -154,22 +154,30 @@
 
 #../latex/bin/lgrep fsquared.tex | tee o ; . ./o
 #perl -p -i ../latex/bin/latexRegex.pl fsquared.tex
+
 #../latex/bin/lgrep gradoperator.tex | tee o ; . ./o
 #perl -p -i ../latex/bin/latexRegex.pl gradoperator.tex
+
 #../latex/bin/lgrep multivectorDivergence.tex | tee o ; . ./o
 #perl -p -i ../latex/bin/latexRegex.pl multivectorDivergence.tex
 
-../latex/bin/lgrep symmetricMV.tex | tee o ; . ./o
+#../latex/bin/lgrep symmetricMV.tex | tee o ; . ./o
 #perl -p -i ../latex/bin/latexRegex.pl symmetricMV.tex
-../latex/bin/lgrep gafpInertialTensorQ.tex | tee o ; . ./o
-perl -p -i ../latex/bin/latexRegex.pl gafpInertialTensorQ.tex
-../latex/bin/lgrep regularNgon.tex | tee o ; . ./o
-perl -p -i ../latex/bin/latexRegex.pl regularNgon.tex
-../latex/bin/lgrep mvWedgeExample.tex | tee o ; . ./o
-perl -p -i ../latex/bin/latexRegex.pl mvWedgeExample.tex
-../latex/bin/lgrep associativity.tex | tee o ; . ./o
-perl -p -i ../latex/bin/latexRegex.pl associativity.tex
-../latex/bin/lgrep dotsymmetric.tex | tee o ; . ./o
-perl -p -i ../latex/bin/latexRegex.pl dotsymmetric.tex
-../latex/bin/lgrep amomentum.tex | tee o ; . ./o
-perl -p -i ../latex/bin/latexRegex.pl amomentum.tex
+
+#../latex/bin/lgrep gafpInertialTensorQ.tex | tee o ; . ./o
+#perl -p -i ../latex/bin/latexRegex.pl gafpInertialTensorQ.tex
+
+#../latex/bin/lgrep regularNgon.tex | tee o ; . ./o
+#perl -p -i ../latex/bin/latexRegex.pl regularNgon.tex
+
+#../latex/bin/lgrep mvWedgeExample.tex | tee o ; . ./o
+#perl -p -i ../latex/bin/latexRegex.pl mvWedgeExample.tex
+
+#../latex/bin/lgrep associativity.tex | tee o ; . ./o
+#perl -p -i ../latex/bin/latexRegex.pl associativity.tex
+
+#../latex/bin/lgrep dotsymmetric.tex | tee o ; . ./o
+#perl -p -i ../latex/bin/latexRegex.pl dotsymmetric.tex
+
+#../latex/bin/lgrep amomentum.tex | tee o ; . ./o
+#perl -p -i ../latex/bin/latexRegex.pl amomentum.tex

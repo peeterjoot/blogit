@@ -181,3 +181,5 @@
 
 #../latex/bin/lgrep amomentum.tex | tee o ; . ./o
 #perl -p -i ../latex/bin/latexRegex.pl amomentum.tex
+../latex/bin/lgrep planckLength.tex | tee o ; . ./o
+perl -p -i ../latex/bin/latexRegex.pl planckLength.tex

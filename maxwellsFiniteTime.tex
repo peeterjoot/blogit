@@ -1,0 +1,109 @@
+%
+% Copyright © 2022 Peeter Joot.  All Rights Reserved.
+% Licenced as described in the file LICENSE under the root directory of this GIT repository.
+%
+%{
+\input{../latex/blogpost.tex}
+\renewcommand{\basename}{maxwellsFiniteTime}
+%\renewcommand{\dirname}{notes/phy1520/}
+\renewcommand{\dirname}{notes/ece1228-electromagnetic-theory/}
+%\newcommand{\dateintitle}{}
+%\newcommand{\keywords}{}
+
+\input{../latex/peeter_prologue_print2.tex}
+
+\usepackage{peeters_layout_exercise}
+\usepackage{peeters_braket}
+\usepackage{peeters_figures}
+\usepackage{siunitx}
+\usepackage{verbatim}
+
+\beginArtNoToc
+
+\generatetitle{Maxwell's equation: finite time differences.}
+%\chapter{XXX}
+%\label{chap:maxwellsFiniteTime}
+
+Starting point is \citep{pjootGAEE}, writing Maxwell's equations as
+
+\begin{subequations}
+\begin{equation}\label{eqn:maxwellsFiniteTime:20}
+\lr{\spacegrad + \inv{c} \PD{t}{}} F = J
+\end{equation}
+\begin{equation}\label{eqn:maxwellsFiniteTime:40}
+F = \BE + I \eta \BH \quad(= \BE + I c \BB)
+\end{equation}
+\begin{equation}\label{eqn:maxwellsFiniteTime:60}
+   J = \eta \lr{ c \rho - \BJ } + I \lr{ c \rho_\txtm - \BM }.
+\end{equation}
+\end{subequations}
+
+Solving for just the time variation, we have
+\begin{equation}\label{eqn:maxwellsFiniteTime:80}
+\PD{t}{F} = c J - c \spacegrad F,
+\end{equation}
+but since the LHS has just vector and bitvector terms, we can apply a grade-1,2 selection operator to both sides to find
+\begin{equation}\label{eqn:maxwellsFiniteTime:100}
+\begin{aligned}
+\PD{t}{F}
+&=
+\gpgrade{
+c J - c \spacegrad F}{1,2} \\
+&=
+- c \eta \BJ - c I \BM
+- c
+\gpgrade{ \spacegrad F}{1,2} \\
+&=
+- \frac{\BJ}{\epsilon} - c I \BM
+- c
+\gpgrade{ \spacegrad F}{1,2}.
+\end{aligned}
+\end{equation}
+% c \eta = \sqrt{ \mu/\epsilon    x    1/\mu\epsilon}
+% c \eta = 1/\epsilon
+
+Writing \( F(t_k) = F_k, t_k = t_0 + k \Delta t \), we may form a finite time approximation
+as follows
+\begin{equation}\label{eqn:maxwellsFiniteTime:120}
+   \PD{t}{F} \approx \frac{F_{k+1} - F_k}{\Delta t}.
+\end{equation}
+Here, I've arbitarily opted for forward time differences, but backwards differences could be used if desired.  Plugging this into Maxwell's equation, we have
+\begin{equation}\label{eqn:maxwellsFiniteTime:140}
+F_{k+1} =
+F_k - \Delta t \lr{
+  \frac{\BJ}{\epsilon} + c I \BM
++ c
+\gpgrade{ \spacegrad F_k}{1,2}
+},
+\end{equation}
+where \( \BJ, \BM \) are also evaluated at \( t = t_k \).
+
+\section{Component form.}
+In your PDF you expanded everything in terms of the field components.  We can do that here too, selecting the vector and bivector components of \cref{eqn:maxwellsFiniteTime:100} to find
+%%\begin{subequations}
+%\begin{equation}\label{eqn:freespace:3399}
+%\begin{aligned}
+%\spacegrad \cross \BE &= - \BM - \PD{t}{\BB} \\
+%c^2 \spacegrad \cross \BB &= \inv{\epsilon} \BJ + \PD{t}{\BE},
+%\end{aligned}
+%\end{equation}
+%or
+%\PD{t}{\BB} &= -\BM - \spacegrad \cross \BE
+%\PD{t}{\BE} = c^2 \spacegrad \cross \BB - \inv{\epsilon} \BJ
+\begin{equation}\label{eqn:maxwellsFiniteTime:3419}
+\begin{aligned}
+\PD{t}{\BE} &= - \frac{\BJ}{\epsilon} - c^2 I \lr{ \spacegrad \wedge \BB } \\
+\PD{t}{I c \BB} &= - c I \BM - c \spacegrad \wedge \BE,
+\end{aligned}
+\end{equation}
+or
+\begin{equation}\label{eqn:maxwellsFiniteTime:3439}
+\begin{aligned}
+\PD{t}{\BE} &= - \frac{\BJ}{\epsilon} + c^2 \spacegrad \cross \BB \\
+\PD{t}{\BB} &= - \BM - \spacegrad \cross \BE,
+\end{aligned}
+\end{equation}
+just takes us full circle, since these are just the Ampere-Maxwell, and Maxwell-Faraday equations respectively.
+
+%}
+\EndArticle

@@ -1,0 +1,135 @@
+%
+% Copyright © 2022 Peeter Joot.  All Rights Reserved.
+% Licenced as described in the file LICENSE under the root directory of this GIT repository.
+%
+%{
+\input{../latex/blogpost.tex}
+\renewcommand{\basename}{canonicalbivectors}
+%\renewcommand{\dirname}{notes/phy1520/}
+\renewcommand{\dirname}{notes/ece1228-electromagnetic-theory/}
+%\newcommand{\dateintitle}{}
+%\newcommand{\keywords}{}
+
+\input{../latex/peeter_prologue_print2.tex}
+
+\usepackage{peeters_layout_exercise}
+\usepackage{peeters_braket}
+\usepackage{peeters_figures}
+\usepackage{siunitx}
+\usepackage{verbatim}
+%\usepackage{mhchem} % \ce{}
+%\usepackage{macros_bm} % \bcM
+%\usepackage{macros_qed} % \qedmarker
+%\usepackage{txfonts} % \ointclockwise
+
+\beginArtNoToc
+
+\generatetitle{Canonical bivectors in spacetime algebra.}
+%\chapter{Canonical bivectors}
+%\label{chap:canonicalbivectors}
+
+I've been enjoying XylyXylyX's \href{https://www.youtube.com/watch?v=Bt0qLGami5M}{QED Prerequisites Geometric Algebra: Spacetime} YouTube series, which is doing a thorough walk through of \citep{dressel2015spacetime}, filling in missing details.  The last episode \href{https://youtu.be/2ZSjkVJW6m0}{QED Prerequisites Geometric Algebra 15: Complex Structure}, left things with a bit of a cliff hanger, mentioning a ``canonical'' form for STA bivectors that was intriging.
+
+The idea is that STA bivectors, like spacetime vectors can be spacelike, timelike, or lightlike (i.e.: positive, negative, or zero square), but can also have a complex signature (squaring to a 0,4-multivector.)
+
+The only context that I knew of that one wanted to square an STA bivector is for the electrodynamic field Lagrangian, which has an \( F^2 \) term.  In no other context, was the signature of \( F \), the electrodynamic field, of interest that I knew of, so I'd never considered this ``Canonical form'' representation.
+
+Here are some examples:
+\begin{equation}\label{eqn:canonicalbivectors:20}
+\begin{aligned}
+F &= \gamma_{10}, \quad F^2 = 1 \\
+F &= \gamma_{23}, \quad F^2 = -1 \\
+F &= 4 \gamma_{10} + \gamma_{13}, \quad F^2 = 15 \\
+F &= \gamma_{10} + \gamma_{13}, \quad F^2 = 0 \\
+F &= \gamma_{10} + 4 \gamma_{13}, \quad F^2 = -15 \\
+F &= \gamma_{10} + \gamma_{23}, \quad F^2 = 2 I \\
+F &= \gamma_{10} - 2 \gamma_{23}, \quad F^2 = -3 + 4 I.
+\end{aligned}
+\end{equation}
+You can see in this table that all the \( F \)'s that are purely electric, have a positive signature, and all the purely magnetic fields have a negative signature, but when there is a mix, anything goes.  The idea behind the canonical representation in the paper is to write
+\begin{equation}\label{eqn:canonicalbivectors:40}
+F = f e^{I \phi},
+\end{equation}
+where \( f^2 \) is real and positive, assuming that \( F \) is not lightlike.
+
+The paper gives a formula for computing \( f \) and \( \phi\), but let's do this by example, putting all the \( F^2 \)'s above into their complex polar form representation, like so
+\begin{equation}\label{eqn:canonicalbivectors:60}
+\begin{aligned}
+F &= \gamma_{10}, \quad F^2 = 1  \\
+F &= \gamma_{23}, \quad F^2 = 1 e^{\pi I} \\
+F &= 4 \gamma_{10} + \gamma_{13}, \quad F^2 = 15  \\
+F &= \gamma_{10} + \gamma_{13}, \quad F^2 = 0 \\
+F &= \gamma_{10} + 4 \gamma_{13}, \quad F^2 = 15 e^{\pi I} \\
+F &= \gamma_{10} + \gamma_{23}, \quad F^2 = 2 e^{(\pi/2) I} \\
+F &= \gamma_{10} - 2 \gamma_{23}, \quad F^2 = 5 e^{ (\pi - \arctan(4/3)) I}
+\end{aligned}
+\end{equation}
+
+Since we can put \( F^2 \) in polar form, we can factor out half of that phase angle, so that we are left with a bivector that has a positive square.  If we write
+\begin{equation}\label{eqn:canonicalbivectors:80}
+F^2 = \Abs{F^2} e^{2 \phi I},
+\end{equation}
+we can then form
+\begin{equation}\label{eqn:canonicalbivectors:100}
+f = F e^{-\phi I}.
+\end{equation}
+
+If we want an equation for \( \phi \), we can just write
+\begin{equation}\label{eqn:canonicalbivectors:120}
+2 \phi = \Arg( F^2 ).
+\end{equation}
+This is a bit better (I think) than the form given in the paper, since it will uniformly rotate \( F^2 \) toward the positive region of the real axis, whereas the paper's formula sometimes rotates towards the negative reals, which is a strange seeming polar form to use.
+
+Let's compute \( f \) for \( F = \gamma_{10} - 2 \gamma_{23} \), using
+\begin{equation}\label{eqn:canonicalbivectors:140}
+2 \phi = \pi - \arctan(4/3).
+\end{equation}
+The exponential expands to
+\begin{equation}\label{eqn:canonicalbivectors:160}
+e^{-\phi I} = \inv{\sqrt{5}} \lr{ 1 - 2 I }.
+\end{equation}
+
+Multiplying each of the bivector components by $1 - 2 I$, we find
+\begin{equation}\label{eqn:canonicalbivectors:180}
+\begin{aligned}
+   \gamma_{10} \lr{ 1 - 2 I}
+   &=
+   \gamma_{10} - 2 \gamma_{100123} \\
+   &=
+   \gamma_{10} - 2 \gamma_{1123} \\
+   &=
+   \gamma_{10} + 2 \gamma_{23},
+\end{aligned}
+\end{equation}
+and
+\begin{equation}\label{eqn:canonicalbivectors:200}
+\begin{aligned}
+   - 2 \gamma_{23} \lr{ 1 - 2 I}
+   &=
+   - 2 \gamma_{23}
+   + 4 \gamma_{230123} \\
+   &=
+   - 2 \gamma_{23}
++ 4 \gamma_{23}^2 \gamma_{01} \\
+   &=
+   - 2 \gamma_{23}
++ 4 \gamma_{10},
+\end{aligned}
+\end{equation}
+leaving
+\begin{equation}\label{eqn:canonicalbivectors:220}
+f = \sqrt{5} \gamma_{10},
+\end{equation}
+so the canonican form is
+\begin{equation}\label{eqn:canonicalbivectors:240}
+F = \gamma_{10} - 2 \gamma_{23} = \sqrt{5} \gamma_{10} \frac{1 + 2 I}{\sqrt{5}}.
+\end{equation}
+
+It's interesting here that \( f \), in this case, is a spatial bivector (i.e.: pure electric field), but that clearly isn't always going to be the case, since we can have a case like,
+\begin{equation}\label{eqn:canonicalbivectors:260}
+   F = 4 \gamma_{10} + \gamma_{13} = 4 \gamma_{10} + \gamma_{20} I,
+\end{equation}
+from the table above, that has both electric and magnetic field components, yet is already in the canonical form, with \( F^2 = 15 \).  The canonical \( f \), despite having a positive square, is not neccessarily a spatial bivector (as it may have both grades 1,2 in the spatial representation, not just the electric field, spatial grade-1 component.)
+
+%}
+\EndArticle

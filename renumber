@@ -184,5 +184,10 @@
 #../latex/bin/lgrep planckLength.tex | tee o ; . ./o
 #perl -p -i ../latex/bin/latexRegex.pl planckLength.tex
 
-../latex/bin/lgrep maxwellsFiniteTime.tex | tee o ; . ./o
-perl -p -i ../latex/bin/latexRegex.pl maxwellsFiniteTime.tex
+#../latex/bin/lgrep maxwellsFiniteTime.tex | tee o ; . ./o
+#perl -p -i ../latex/bin/latexRegex.pl maxwellsFiniteTime.tex
+#../latex/bin/lgrep etazeta.tex | tee o ; . ./o
+#perl -p -i ../latex/bin/latexRegex.pl etazeta.tex
+
+../latex/bin/lgrep canonicalbivectors.tex | tee o ; . ./o
+#perl -p -i ../latex/bin/latexRegex.pl canonicalbivectors.tex

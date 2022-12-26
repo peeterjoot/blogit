@@ -189,5 +189,8 @@
 #../latex/bin/lgrep etazeta.tex | tee o ; . ./o
 #perl -p -i ../latex/bin/latexRegex.pl etazeta.tex
 
-../latex/bin/lgrep canonicalbivectors.tex | tee o ; . ./o
+#../latex/bin/lgrep canonicalbivectors.tex | tee o ; . ./o
 #perl -p -i ../latex/bin/latexRegex.pl canonicalbivectors.tex
+
+../latex/bin/lgrep inscribedTriangleProblem.tex | tee o ; . ./o
+#perl -p -i ../latex/bin/latexRegex.pl inscribedTriangleProblem.tex

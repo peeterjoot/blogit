@@ -1,0 +1,64 @@
+%
+% Copyright © 2022 Peeter Joot.  All Rights Reserved.
+% Licenced as described in the file LICENSE under the root directory of this GIT repository.
+%
+%{
+\input{../latex/blogpost.tex}
+\renewcommand{\basename}{hestenesFindX}
+%\renewcommand{\dirname}{notes/phy1520/}
+\renewcommand{\dirname}{notes/ece1228-electromagnetic-theory/}
+%\newcommand{\dateintitle}{}
+%\newcommand{\keywords}{}
+
+\input{../latex/peeter_prologue_print2.tex}
+
+\usepackage{peeters_layout_exercise}
+\usepackage{peeters_braket}
+\usepackage{peeters_figures}
+\usepackage{siunitx}
+\usepackage{verbatim}
+%\usepackage{mhchem} % \ce{}
+%\usepackage{macros_bm} % \bcM
+%\usepackage{macros_qed} % \qedmarker
+%\usepackage{txfonts} % \ointclockwise
+
+\beginArtNoToc
+
+\generatetitle{XXX}
+%\chapter{XXX}
+%\label{chap:hestenesFindX}
+%A simplified version of part of gabookI/basics/nfcmCh2.tex
+To solve
+\begin{equation}\label{eqn:hestenesFindX:20}
+   s \Bx + \Ba \lr{ \Bx \cdot \Bb } = \Bc,
+\end{equation}
+for \(\Bx\), we may dot or wedge the whole equation with the constant vectors.  In particular, respectively dotting with \( \Bb \) and wedging with \( \Ba \) gives
+\begin{equation}\label{eqn:hestenesFindX:40}
+\begin{aligned}
+   s \lr{ \Bx \cdot \Bb } + \Ba \cdot \Bb \lr{ \Bx \cdot \Bb } &= \Bc \cdot \Bb \\
+   s \lr{ \Bx \wedge \Ba } + \lr{ \Ba \wedge \Ba } \lr{ \Bx \cdot \Bb } = \Bc \wedge \Ba
+\end{aligned}
+\end{equation}
+The first equation can now be solved for \( \Bx \cdot \Bb \), namely
+\begin{equation}\label{eqn:hestenesFindX:60}
+   \Bx \cdot \Bb = \frac{ \Bc \cdot \Bb }{ s + \Ba \cdot \Bb },
+\end{equation}
+and the second equation can be solved for \( \Bx \wedge \Ba \), noting that \( \Ba \wedge \Ba = 0 \), to find
+\begin{equation}\label{eqn:hestenesFindX:80}
+\Bx \wedge \Ba = \inv{s} \Bc \wedge \Ba.
+\end{equation}
+Now dot this bivector equation with \( \Bb \), noting that
+\begin{equation}\label{eqn:hestenesFindX:100}
+   \lr{ \Bx \wedge \Ba } \cdot \Bb
+   =
+   \Bx \lr{ \Ba \cdot \Bb } - \lr{ \Bx \cdot \Bb } \Ba,
+\end{equation}
+or
+\begin{equation}\label{eqn:hestenesFindX:120}
+\Bx \lr{ \Ba \cdot \Bb } = \lr{ \Bx \cdot \Bb } \Ba + \inv{s} \lr{ \Bc \wedge \Ba } \cdot \Bb
+\end{equation}
+Substitution of \( \Bx \cdot \Bb \) and some rearrangement solves for \( \Bx \).
+
+%}
+%\EndArticle
+\EndNoBibArticle

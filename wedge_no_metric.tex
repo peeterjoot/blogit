@@ -1,0 +1,124 @@
+%
+% Copyright © 2023 Peeter Joot.  All Rights Reserved.
+% Licenced as described in the file LICENSE under the root directory of this GIT repository.
+%
+%{
+\input{../latex/blogpost.tex}
+\renewcommand{\basename}{wedge_no_metric}
+%\renewcommand{\dirname}{notes/phy1520/}
+\renewcommand{\dirname}{notes/ece1228-electromagnetic-theory/}
+%\newcommand{\dateintitle}{}
+%\newcommand{\keywords}{}
+
+\input{../latex/peeter_prologue_print2.tex}
+
+\usepackage{peeters_layout_exercise}
+\usepackage{peeters_braket}
+\usepackage{peeters_figures}
+\usepackage{siunitx}
+\usepackage{verbatim}
+%\usepackage{mhchem} % \ce{}
+%\usepackage{macros_bm} % \bcM
+%\usepackage{macros_qed} % \qedmarker
+%\usepackage{txfonts} % \ointclockwise
+
+\beginArtNoToc
+
+\generatetitle{XXX}
+%\chapter{XXX}
+%\label{chap:wedge_no_metric}
+
+The wedge product in geometric algebra is typically defined in one of two ways, the first as the completely antisymmetrized product
+\begin{equation}\label{eqn:wedge_no_metric:20}
+\Ba \wedge \Bb = \inv{2} \lr{ \Ba \Bb - \Bb \Ba },
+\end{equation}
+and the second, as the grade-2 selection of a product of two vectors
+\begin{equation}\label{eqn:wedge_no_metric:40}
+\Ba \wedge \Bb = \gpgradetwo{ \Ba \Bb }.
+\end{equation}
+In the first case, a metric for the vector space is required for this definition to expand in the usual fashion.  In the second case, the definition is really of no use whatsoever without the metric.
+
+Let's look at the antisymmetrized product and see where the metric dependencies are implied.  Suppose that we have a two dimensional vector space with basis \(\setlr{\Be_1, \Be_2}\), where
+\begin{equation}\label{eqn:wedge_no_metric:60}
+\begin{aligned}
+   \Ba &= a^1 \Be_1 + a^2 \Be_2 \\
+   \Bb &= b^1 \Be_1 + b^2 \Be_2.
+\end{aligned}
+\end{equation}
+If we imposed a metric \( \Be_i \cdot \Be_j = g_{ij} \), then it gives us a notion of length and orthonormality, but do we need that for the wedge product, if defined as an antisymmetric sum?  That antisymmetric sum expands as
+\begin{equation}\label{eqn:wedge_no_metric:80}
+\begin{aligned}
+\Ba \wedge \Bb 
+&= \inv{2} \lr{ \Ba \Bb - \Bb \Ba } \\
+&= \inv{2} \sum_{i,j = 1}^2 \lr{ a^i b^j \Be_i \Be_j - b^i a^j \Be_i \Be_j } \\
+&= 
+\inv{2} \sum_{i \ne j} \lr{ a^i b^j \Be_i \Be_j - b^i a^j \Be_i \Be_j } 
++ 
+\inv{2} \sum_{i = 1}^2 \lr{ a^i b^i \Be_i \Be_i - b^i a^i \Be_i \Be_i }  \\
+&= 
+\sum_{i \ne j} a^i b^j \inv{2} \lr{ \Be_i \Be_j - \Be_j \Be_i } 
+\end{aligned}
+\end{equation}
+
+This wedge product definition, even without a metric, allows us to conclude that 
+\begin{equation}\label{eqn:wedge_no_metric:100}
+\begin{aligned}
+   \Ba \wedge \Ba &= 0 \\
+   \Ba \wedge \Bb &= -\Bb \wedge \Ba,
+\end{aligned}
+\end{equation}
+but we don't know how to reduce an expression like
+\begin{equation}\label{eqn:wedge_no_metric:120}
+\inv{2} \lr{ \Be_i \Be_j - \Be_j \Be_i },
+\end{equation}
+nor can we give any meaning to any of \( \Norm{\Ba} \), \(\Norm{\Bb}\), \( \Norm{ \Ba \wedge \Bb } \).
+
+In geometric algebra, the metric is usually introduced by way of the contraction axiom
+\begin{equation}\label{eqn:wedge_no_metric:140}
+   \Ba^2 = \Ba \cdot \Ba.
+\end{equation}
+When expanded in coordinates, this brings the metric into the mix explicitly
+\begin{equation}\label{eqn:wedge_no_metric:160}
+\begin{aligned}
+   \Ba^2 
+   &=
+   \sum_{i,j = 1}^N \lr{ a^i \Be_i } \cdot \lr{ a^j \Be_j } \\
+   &=
+   \sum_{i,j = 1}^N a^i a^j \Be_i \cdot \Be_j \\
+   &=
+   \sum_{i,j = 1}^N a^i a^j g_{ij}.
+\end{aligned}
+\end{equation}
+Given this axiom, we have
+\begin{equation}\label{eqn:wedge_no_metric:180}
+   \lr{ \Ba + \Bb }^2 = \Ba^2 + \Bb^2 + \Ba \Bb + \Bb \Ba,
+\end{equation}
+but also
+\begin{equation}\label{eqn:wedge_no_metric:200}
+   \lr{ \Ba + \Bb }^2 = \lr{ \Ba + \Bb } \cdot \lr{ \Ba + \Bb } = \Ba^2 + \Bb^2 + 2 \Ba \cdot \Bb,
+\end{equation}
+so we are able to see that the symmetric sum is the dot product, that is
+\begin{equation}\label{eqn:wedge_no_metric:220}
+   \Ba \cdot \Bb = \inv{2} \lr{ \Ba \Bb + \Bb \Ba },
+\end{equation}
+and 
+\begin{equation}\label{eqn:wedge_no_metric:240}
+\Bb \Ba = -\Ba \Bb + 2 \Ba \cdot \Bb.
+\end{equation}
+In particular,
+\begin{equation}\label{eqn:wedge_no_metric:260}
+\begin{aligned}
+   \Be_i \wedge \Be_j
+   &=
+\inv{2} \lr{ \Be_i \Be_j - \Be_j \Be_i } \\
+&=
+\inv{2} \lr{ \Be_i \Be_j - \lr{ -\Be_i \Be_j + 2 \Be_i \cdot \Be_j } } \\
+&=
+\Be_i \Be_j - \Be_i \cdot \Be_j.
+\end{aligned}
+\end{equation}
+Only by virtue of having a metric in play, do we see the notion of grade fall out of the mix in a natural fashion (here, the wedge product of our basis vectors, is observed to be the portion of the vector product that has the scalar part of the product subtracted off.)
+
+%}
+%\EndArticle
+\EndNoBibArticle

@@ -197,3 +197,6 @@
 
 #../latex/bin/lgrep hestenesFindX.tex | tee o ; . ./o
 #perl -p -i ../latex/bin/latexRegex.pl hestenesFindX.tex
+
+../latex/bin/lgrep wedge_no_metric.tex | tee o ; . ./o
+#perl -p -i ../latex/bin/latexRegex.pl wedge_no_metric.tex

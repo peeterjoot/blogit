@@ -198,5 +198,8 @@
 #../latex/bin/lgrep hestenesFindX.tex | tee o ; . ./o
 #perl -p -i ../latex/bin/latexRegex.pl hestenesFindX.tex
 
-../latex/bin/lgrep wedge_no_metric.tex | tee o ; . ./o
+#../latex/bin/lgrep wedge_no_metric.tex | tee o ; . ./o
 #perl -p -i ../latex/bin/latexRegex.pl wedge_no_metric.tex
+
+../latex/bin/lgrep circular.tex | tee o ; . ./o
+#perl -p -i ../latex/bin/latexRegex.pl circular.tex

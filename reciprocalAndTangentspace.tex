@@ -148,7 +148,9 @@ In this case our (pseudoscalar) volume element is
    I r^2 \sin \theta
    \, dr d\theta d\phi.
 \end{dmath}
-This is just the standard spherical volume element, but scaled with the pseudoscalar.  We would find \( \int_{r=0}^R \int_{\phi=0}^{2 \pi} \int_{\theta=0}^\pi d\Bx_r  \wedge d\Bx_\theta \wedge d\Bx_\phi = I (4/3) \pi R^3 \), the volume of the sphere, again weighted by the pseudoscalar for the space.
+This is just the standard spherical volume element, but scaled with the pseudoscalar.  If we integrate the upper half of the volume (above the x-y plane), we would find \( \int_{r=0}^R \int_{\phi=0}^{2 \pi} \int_{\theta=0}^{\pi/2} d\Bx_r  \wedge d\Bx_\theta \wedge d\Bx_\phi = (1/2) I (4/3) \pi R^3 \), half the volume of the sphere, again weighted by the pseudoscalar for the space.  The sign would be negated for the lower half of plane, since our volume element is not strictly positive everywhere.  This change of sign is not unique to this geometric algebra formulation, as we would have to integrate 
+\( \int \Abs{\partial(x, y, z)/\partial(r,\theta, \phi)} \, dr d\theta d\phi \)
+if we were computing the spherical volume using a standard scalar change of variables (taking the absolute value of our Jacobian.)
 
 As a final example, let's pick the coordinates associated withwith  a relativistic boost and scale parameterization in spacetime, illustrated in
 \cref{fig:boost:boostFig3}, with \( r = 1 \).

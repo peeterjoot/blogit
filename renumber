@@ -73,48 +73,67 @@
 
 #../latex/bin/lgrep reflection.tex | tee o ; . ./o
 #perl -p -i ../latex/bin/latexRegex.pl reflection.tex
+
 #../latex/bin/lgrep McMahonRelativity.tex | tee o ; . ./o
 #perl -p -i ../latex/bin/latexRegex.pl McMahonRelativity.tex
+
 #../latex/bin/lgrep reversion.tex | tee o ; . ./o
 #perl -p -i ../latex/bin/latexRegex.pl reversion.tex
+
 #../latex/bin/lgrep exponentialmultivector.tex | tee o ; . ./o
 #perl -p -i ../latex/bin/latexRegex.pl exponentialmultivector.tex
+
 #../latex/bin/lgrep 4dwedge.tex | tee o ; . ./o
 #perl -p -i ../latex/bin/latexRegex.pl 4dwedge.tex
+
 #../latex/bin/lgrep signature.tex | tee o ; . ./o
 #perl -p -i ../latex/bin/latexRegex.pl signature.tex
+
 #../latex/bin/lgrep mvi.tex | tee o ; . ./o
 #perl -p -i ../latex/bin/latexRegex.pl mvi.tex
+
 #../latex/bin/lgrep dotwedgedef.tex | tee o ; . ./o
 #perl -p -i ../latex/bin/latexRegex.pl dotwedgedef.tex
+
 #../latex/bin/lgrep innerouter.tex | tee o ; . ./o
 #perl -p -i ../latex/bin/latexRegex.pl innerouter.tex
+
 #../latex/bin/lgrep bladeDotWedgeSymmetryIdentitiesTheorem.tex | tee o ; . ./o
 #perl -p -i ../latex/bin/latexRegex.pl bladeDotWedgeSymmetryIdentitiesTheorem.tex
+
 #../latex/bin/lgrep units.tex | tee o ; . ./o
 #perl -p -i ../latex/bin/latexRegex.pl units.tex
 
 #../latex/bin/lgrep parallelogram.tex | tee o ; . ./o
 #perl -p -i ../latex/bin/latexRegex.pl parallelogram.tex
+
 #../latex/bin/lgrep surface.tex | tee o ; . ./o
 #perl -p -i ../latex/bin/latexRegex.pl surface.tex
+
 #../latex/bin/lgrep rotation.tex | tee o ; . ./o
 #perl -p -i ../latex/bin/latexRegex.pl rotation.tex
+
 #../latex/bin/lgrep testit.tex | tee o ; . ./o
 #perl -p -i ../latex/bin/latexRegex.pl testit.tex
+
 #../latex/bin/lgrep hayden.tex | tee o ; . ./o
 #perl -p -i ../latex/bin/latexRegex.pl hayden.tex
+
 #../latex/bin/lgrep spinorinversion.tex | tee o ; . ./o
 #perl -p -i ../latex/bin/latexRegex.pl spinorinversion.tex
+
 #../latex/bin/lgrep vectordotbivector.tex | tee o ; . ./o
 #perl -p -i ../latex/bin/latexRegex.pl vectordotbivector.tex
+
 #../latex/bin/lgrep jordan1inverse.tex | tee o ; . ./o
 #perl -p -i ../latex/bin/latexRegex.pl jordan1inverse.tex
+
 #../latex/bin/lgrep whatiswedge.tex | tee o ; . ./o
 #perl -p -i ../latex/bin/latexRegex.pl whatiswedge.tex
 
 #../latex/bin/lgrep wedgegeneral.tex | tee o ; . ./o
 #perl -p -i ../latex/bin/latexRegex.pl wedgegeneral.tex
+
 #../latex/bin/lgrep bivectorFactor.tex | tee o ; . ./o
 #perl -p -i ../latex/bin/latexRegex.pl bivectorFactor.tex
 
@@ -123,8 +142,10 @@
 
 #../latex/bin/lgrep tensorComponents.tex | tee o ; . ./o
 #perl -p -i ../latex/bin/latexRegex.pl tensorComponents.tex
+
 #../latex/bin/lgrep lineintersection.tex | tee o ; . ./o
 #perl -p -i ../latex/bin/latexRegex.pl lineintersection.tex
+
 #../latex/bin/lgrep pauliMatrix.tex.tex | tee o ; . ./o
 #perl -p -i ../latex/bin/latexRegex.pl pauliMatrix.tex.tex
 
@@ -181,11 +202,13 @@
 
 #../latex/bin/lgrep amomentum.tex | tee o ; . ./o
 #perl -p -i ../latex/bin/latexRegex.pl amomentum.tex
+
 #../latex/bin/lgrep planckLength.tex | tee o ; . ./o
 #perl -p -i ../latex/bin/latexRegex.pl planckLength.tex
 
 #../latex/bin/lgrep maxwellsFiniteTime.tex | tee o ; . ./o
 #perl -p -i ../latex/bin/latexRegex.pl maxwellsFiniteTime.tex
+
 #../latex/bin/lgrep etazeta.tex | tee o ; . ./o
 #perl -p -i ../latex/bin/latexRegex.pl etazeta.tex
 
@@ -201,5 +224,5 @@
 #../latex/bin/lgrep wedge_no_metric.tex | tee o ; . ./o
 #perl -p -i ../latex/bin/latexRegex.pl wedge_no_metric.tex
 
-../latex/bin/lgrep circular.tex | tee o ; . ./o
-#perl -p -i ../latex/bin/latexRegex.pl circular.tex
+#../latex/bin/lgrep circularAndSphericalAreaVolumeAndBoundaries.tex | tee o ; . ./o
+#perl -p -i ../latex/bin/latexRegex.pl circularAndSphericalAreaVolumeAndBoundaries.tex

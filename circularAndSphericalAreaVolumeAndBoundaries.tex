@@ -30,7 +30,7 @@
 \section{Motivation}
 Maverick posed the following question on the \href{https://discord.com/channels/607264339480674324/925683732403335188/1068849424157130822}{bivector discord}
 
-``I saw your blog post on curvilinear coordinates in geometric calculus.  I saw your derivation of the volume of a sphere using this technique and decided for practice by doing a surface integral to calculate the area of sphere using the quantity $\partial{\theta} \wedge \partial{\phi}~ dA$  is there a way to integrate this without simply taking the magnitude of this quantity and then integrating or are we limited to only integrating quantities that are 1 dimensional like scalars and pseudoscalars''.
+``I saw \href{http://peeterjoot.com/2022/04/05/curvilinear-coordinates-and-reciprocal-frames/}{your blog post on curvilinear coordinates in geometric calculus}.  I saw your derivation of the volume of a sphere using this technique and decided for practice by doing a surface integral to calculate the area of sphere using the quantity $\partial{\theta} \wedge \partial{\phi}~ dA$  is there a way to integrate this without simply taking the magnitude of this quantity and then integrating or are we limited to only integrating quantities that are 1 dimensional like scalars and pseudoscalars''.
 
 My initial response was that, sure, we should be able to compute bivector and trivector valued integrals.  However, in retrospect, the reality is a bit more subtle.  
 
@@ -126,8 +126,8 @@ The spherical scalar area is
 A 
 &= \int_{\theta = 0}^{\pi} \int_{\phi = 0}^{2 \pi} \Abs{ r^2 \sin\theta I \rcap }  \,d\theta d\phi \\
 &= r^2 \int_{\theta = 0}^{\pi} \int_{\phi = 0}^{2 \pi} \Abs{ \sin\theta } \,d\theta d\phi \\
-&= 8 r^2 \int_{\theta = 0}^{\pi/2} \int_{\phi = 0}^{\pi/2} \sin\theta \,d\theta d\phi \\
-&= 8 r^2 \frac{\pi}{2} \\
+&= 2 r^2 \int_{\theta = 0}^{\pi/2} \int_{\phi = 0}^{2 \pi} \sin\theta \,d\theta d\phi \\
+&= 2 r^2 \lr{ 2 \pi } \\
 &= 4 \pi r^2.
 \end{aligned}
 \end{equation}
@@ -146,12 +146,12 @@ This integrand is positive above the azimuthal plane, and negative below, so wil
 \begin{aligned}
 V 
 &= \int_{r = 0}^{R} \int_{\theta = 0}^{\pi} \int_{\phi = 0}^{2 \pi} \Abs{ r^2 \sin\theta I } \,dr d\theta d\phi \\
-&= 8 \int_{r = 0}^{R} \int_{\theta = 0}^{\pi/2} \int_{\phi = 0}^{\pi/2} r^2 \sin\theta \,dr d\theta d\phi \\
-&= 8 \frac{R^3}{3} \frac{\pi}{2} \\
+&= 2 \int_{r = 0}^{R} \int_{\theta = 0}^{\pi/2} \int_{\phi = 0}^{2 \pi} r^2 \sin\theta \,dr d\theta d\phi \\
+&= 2 \frac{R^3}{3} \lr{ 2 \pi } \\
 &= \frac{4}{3} \pi R^3.
 \end{aligned}
 \end{equation}
-Had the sign of our volume element been invariant over the entire integration region, as it was for the circular area computation (but not the circular boundary computation), we could have computed this as a pseudoscalar integral.  For example, if we wanted to know what the oriented volume of the first quadrant of the sphere was, we could compute that directly, as
+Had the sign of our volume element been invariant over the entire integration region, as it was for the circular area computation (but not the circular boundary computation), we could have computed this as a pseudoscalar integral.  For example, if we wanted to know what the oriented volume of the first octant of the sphere was, we could compute that directly, as
 \begin{equation}\label{eqn:circularAndSphericalAreaVolumeAndBoundaries:280}
 \begin{aligned}
 V_1 &= \int_{r = 0}^{R} \int_{\theta = 0}^{\pi/2} \int_{\phi = 0}^{\pi/2} r^2 \sin\theta I \,dr d\theta d\phi \\

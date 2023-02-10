@@ -71,18 +71,18 @@ We need to compute the area element first
 \Bx_1 \wedge \Bx_2
 &= \lr{ \Be_1 \cos v + \beta \Be_2 \sin v } \wedge u \lr{ -\Be_1 \sin v + \beta \Be_2 \cos v } \\
 &= u \gpgradetwo{ \lr{ \Be_1 \cos v + \beta \Be_2 \sin v } \lr{ -\Be_1 \sin v + \beta \Be_2 \cos v } } \\
-&= u \lr{ 
+&= u \lr{
 \beta \Be_{12} \cos^2 v - \beta \Be_{21} \sin^2 v
 } \\
 &= u \beta i,
 \end{aligned}
 \end{equation}
-where \( i = \Be_{12} \). 
+where \( i = \Be_{12} \).
 
 The reciprocal frame vectors are given by
 \begin{equation}\label{eqn:ellipseCurvilinear:80}
 \begin{aligned}
-\Bx^1 
+\Bx^1
    &= \Bx_2 \cdot \inv{ \Bx_1 \wedge \Bx_2 } \\
    &= u \lr{ -\Be_1 \sin v + \beta \Be_2 \cos v } \inv{ u \beta i } \\
    %&= \lr{ - \inv{\beta} \Be_1 \sin v + \Be_2 \cos v } (-i)
@@ -91,7 +91,7 @@ The reciprocal frame vectors are given by
 \end{equation}
 \begin{equation}\label{eqn:ellipseCurvilinear:100}
 \begin{aligned}
-   \Bx^2 
+   \Bx^2
    &= -\Bx_1 \cdot \inv{ \Bx_1 \wedge \Bx_2 } \\
    &= - \lr{ \Be_1 \cos v + \beta \Be_2 \sin v } \cdot \inv{ u \beta i } \\
    %&= \lr{ \Be_1 \cos v + \beta \Be_2 \sin v } \frac{i}{ u \beta }
@@ -103,22 +103,22 @@ The reciprocal frame vectors are given by
 To verify that \( \Bx_i \cdot \Bx^j = {\delta_i}^j \) we can compute each of the dot products
 \begin{equation}\label{eqn:ellipseCurvilinear:120}
 \begin{aligned}
-\Bx^1 \cdot \Bx_1 
+\Bx^1 \cdot \Bx_1
 &= \gpgradezero{
 \lr{ \Be_1 \cos v + \beta \Be_2 \sin v } \lr{ \inv{\beta} \Be_2 \sin v + \Be_1 \cos v }
 } \\
-&= 
+&=
 \cos^2 v + \sin^2 v \\
 &= 1,
 \end{aligned}
 \end{equation}
 \begin{equation}\label{eqn:ellipseCurvilinear:140}
 \begin{aligned}
-\Bx^2 \cdot \Bx_2 
+\Bx^2 \cdot \Bx_2
 &= \gpgradezero{
 u \lr{ -\Be_1 \sin v + \beta \Be_2 \cos v } \inv{u} \lr{ \inv{\beta} \Be_2 \cos v - \Be_1 \sin v }
 } \\
-&= 
+&=
 % \lr{ -\Be_1 \sin v + \beta \Be_2 \cos v } \lr{ \inv{\beta} \Be_2 \cos v - \Be_1 \sin v }
 \sin^2 v + \cos^2 v \\
 &= 1,
@@ -126,11 +126,11 @@ u \lr{ -\Be_1 \sin v + \beta \Be_2 \cos v } \inv{u} \lr{ \inv{\beta} \Be_2 \cos 
 \end{equation}
 \begin{equation}\label{eqn:ellipseCurvilinear:160}
 \begin{aligned}
-\Bx^1 \cdot \Bx_2 
+\Bx^1 \cdot \Bx_2
 &= \gpgradezero{
 \lr{ \inv{\beta} \Be_2 \sin v + \Be_1 \cos v } u \lr{ -\Be_1 \sin v + \beta \Be_2 \cos v }
 } \\
-&= 
+&=
 u \sin v \cos v - u \cos v \sin v \\
 &= 0.
 \end{aligned}
@@ -141,8 +141,8 @@ u \sin v \cos v - u \cos v \sin v \\
 &= \gpgradezero{
 \inv{u} \lr{ \inv{\beta} \Be_2 \cos v - \Be_1 \sin v } \lr{ \Be_1 \cos v + \beta \Be_2 \sin v }
 } \\
-&= 
-\inv{u} \lr{ 
+&=
+\inv{u} \lr{
 \cos v \sin v - \sin v \cos v
 }
 \\

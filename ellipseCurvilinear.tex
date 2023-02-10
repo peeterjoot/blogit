@@ -31,15 +31,15 @@
 \makeproblem{Elliptic parameterization.}{problem:ellipseCurvilinear:200}{
 An elliptical area can be parameterized as
 \begin{equation}\label{eqn:ellipseCurvilinear:20}
-   \Bx(u, v) = u \lr{ \Be_1 \cos v + \beta \Be_2 \sin v },
+   \Bx(u_1, u_2) = u_1 \lr{ \Be_1 \cos u_2 + \beta \Be_2 \sin u_2 },
 \end{equation}
 where \( \beta = \sqrt{1 - \epsilon^2} \), and \( \epsilon \) is the eccentricity of the ellipse.
 \makesubproblem{}{problem:ellipseCurvilinear:200:a}
 Compute the curvilinear vectors
 \begin{equation}\label{eqn:ellipseCurvilinear:200}
 \begin{aligned}
-   \Bx_1 &= \PDi{u}{\Bx} \\
-   \Bx_2 &= \PDi{v}{\Bx}.
+   \Bx_1 &= \PDi{u_1}{\Bx} \\
+   \Bx_2 &= \PDi{u_2}{\Bx}.
 \end{aligned}
 \end{equation}
 \makesubproblem{}{problem:ellipseCurvilinear:200:b}
@@ -59,8 +59,8 @@ Verify that \( \Bx_i \cdot \Bx^j = {\delta_i}^j \).
 The curvilinear basis associated with this parameterization can be computed by inspection
 \begin{equation}\label{eqn:ellipseCurvilinear:40}
 \begin{aligned}
-   \Bx_1 &= \Be_1 \cos v + \beta \Be_2 \sin v \\
-   \Bx_2 &= u \lr{ -\Be_1 \sin v + \beta \Be_2 \cos v }.
+   \Bx_1 &= \Be_1 \cos u_2 + \beta \Be_2 \sin u_2 \\
+   \Bx_2 &= u_1 \lr{ -\Be_1 \sin u_2 + \beta \Be_2 \cos u_2 }.
 \end{aligned}
 \end{equation}
 \makesubanswer{}{problem:ellipseCurvilinear:200:b}
@@ -69,12 +69,12 @@ We need to compute the area element first
 \begin{equation}\label{eqn:ellipseCurvilinear:60}
 \begin{aligned}
 \Bx_1 \wedge \Bx_2
-&= \lr{ \Be_1 \cos v + \beta \Be_2 \sin v } \wedge u \lr{ -\Be_1 \sin v + \beta \Be_2 \cos v } \\
-&= u \gpgradetwo{ \lr{ \Be_1 \cos v + \beta \Be_2 \sin v } \lr{ -\Be_1 \sin v + \beta \Be_2 \cos v } } \\
-&= u \lr{
-\beta \Be_{12} \cos^2 v - \beta \Be_{21} \sin^2 v
+&= \lr{ \Be_1 \cos u_2 + \beta \Be_2 \sin u_2 } \wedge u_1 \lr{ -\Be_1 \sin u_2 + \beta \Be_2 \cos u_2 } \\
+&= u_1 \gpgradetwo{ \lr{ \Be_1 \cos u_2 + \beta \Be_2 \sin u_2 } \lr{ -\Be_1 \sin u_2 + \beta \Be_2 \cos u_2 } } \\
+&= u_1 \lr{
+\beta \Be_{12} \cos^2 u_2 - \beta \Be_{21} \sin^2 u_2
 } \\
-&= u \beta i,
+&= u_1 \beta i,
 \end{aligned}
 \end{equation}
 where \( i = \Be_{12} \).
@@ -84,18 +84,18 @@ The reciprocal frame vectors are given by
 \begin{aligned}
 \Bx^1
    &= \Bx_2 \cdot \inv{ \Bx_1 \wedge \Bx_2 } \\
-   &= u \lr{ -\Be_1 \sin v + \beta \Be_2 \cos v } \inv{ u \beta i } \\
-   %&= \lr{ - \inv{\beta} \Be_1 \sin v + \Be_2 \cos v } (-i)
-   &= \inv{\beta} \Be_2 \sin v + \Be_1 \cos v,
+   &= u_1 \lr{ -\Be_1 \sin u_2 + \beta \Be_2 \cos u_2 } \inv{ u_1 \beta i } \\
+   %&= \lr{ - \inv{\beta} \Be_1 \sin u_2 + \Be_2 \cos u_2 } (-i)
+   &= \inv{\beta} \Be_2 \sin u_2 + \Be_1 \cos u_2,
 \end{aligned}
 \end{equation}
 \begin{equation}\label{eqn:ellipseCurvilinear:100}
 \begin{aligned}
    \Bx^2
    &= -\Bx_1 \cdot \inv{ \Bx_1 \wedge \Bx_2 } \\
-   &= - \lr{ \Be_1 \cos v + \beta \Be_2 \sin v } \cdot \inv{ u \beta i } \\
-   %&= \lr{ \Be_1 \cos v + \beta \Be_2 \sin v } \frac{i}{ u \beta }
-   &= \inv{u} \lr{ \inv{\beta} \Be_2 \cos v - \Be_1 \sin v }.
+   &= - \lr{ \Be_1 \cos u_2 + \beta \Be_2 \sin u_2 } \inv{ u_1 \beta i } \\
+   %&= \lr{ \Be_1 \cos u_2 + \beta \Be_2 \sin u_2 } \frac{i}{ u_1 \beta }
+   &= \inv{u_1} \lr{ \inv{\beta} \Be_2 \cos u_2 - \Be_1 \sin u_2 }.
 \end{aligned}
 \end{equation}
 
@@ -105,10 +105,10 @@ To verify that \( \Bx_i \cdot \Bx^j = {\delta_i}^j \) we can compute each of the
 \begin{aligned}
 \Bx^1 \cdot \Bx_1
 &= \gpgradezero{
-\lr{ \Be_1 \cos v + \beta \Be_2 \sin v } \lr{ \inv{\beta} \Be_2 \sin v + \Be_1 \cos v }
+\lr{ \Be_1 \cos u_2 + \beta \Be_2 \sin u_2 } \lr{ \inv{\beta} \Be_2 \sin u_2 + \Be_1 \cos u_2 }
 } \\
 &=
-\cos^2 v + \sin^2 v \\
+\cos^2 u_2 + \sin^2 u_2 \\
 &= 1,
 \end{aligned}
 \end{equation}
@@ -116,11 +116,11 @@ To verify that \( \Bx_i \cdot \Bx^j = {\delta_i}^j \) we can compute each of the
 \begin{aligned}
 \Bx^2 \cdot \Bx_2
 &= \gpgradezero{
-u \lr{ -\Be_1 \sin v + \beta \Be_2 \cos v } \inv{u} \lr{ \inv{\beta} \Be_2 \cos v - \Be_1 \sin v }
+u_1 \lr{ -\Be_1 \sin u_2 + \beta \Be_2 \cos u_2 } \inv{u_1} \lr{ \inv{\beta} \Be_2 \cos u_2 - \Be_1 \sin u_2 }
 } \\
 &=
-% \lr{ -\Be_1 \sin v + \beta \Be_2 \cos v } \lr{ \inv{\beta} \Be_2 \cos v - \Be_1 \sin v }
-\sin^2 v + \cos^2 v \\
+% \lr{ -\Be_1 \sin u_2 + \beta \Be_2 \cos u_2 } \lr{ \inv{\beta} \Be_2 \cos u_2 - \Be_1 \sin u_2 }
+\sin^2 u_2 + \cos^2 u_2 \\
 &= 1,
 \end{aligned}
 \end{equation}
@@ -128,10 +128,10 @@ u \lr{ -\Be_1 \sin v + \beta \Be_2 \cos v } \inv{u} \lr{ \inv{\beta} \Be_2 \cos 
 \begin{aligned}
 \Bx^1 \cdot \Bx_2
 &= \gpgradezero{
-\lr{ \inv{\beta} \Be_2 \sin v + \Be_1 \cos v } u \lr{ -\Be_1 \sin v + \beta \Be_2 \cos v }
+\lr{ \inv{\beta} \Be_2 \sin u_2 + \Be_1 \cos u_2 } u_1 \lr{ -\Be_1 \sin u_2 + \beta \Be_2 \cos u_2 }
 } \\
 &=
-u \sin v \cos v - u \cos v \sin v \\
+u_1 \sin u_2 \cos u_2 - u_1 \cos u_2 \sin u_2 \\
 &= 0.
 \end{aligned}
 \end{equation}
@@ -139,11 +139,11 @@ u \sin v \cos v - u \cos v \sin v \\
 \begin{aligned}
 \Bx^2 \cdot \Bx_1
 &= \gpgradezero{
-\inv{u} \lr{ \inv{\beta} \Be_2 \cos v - \Be_1 \sin v } \lr{ \Be_1 \cos v + \beta \Be_2 \sin v }
+\inv{u_1} \lr{ \inv{\beta} \Be_2 \cos u_2 - \Be_1 \sin u_2 } \lr{ \Be_1 \cos u_2 + \beta \Be_2 \sin u_2 }
 } \\
 &=
-\inv{u} \lr{
-\cos v \sin v - \sin v \cos v
+\inv{u_1} \lr{
+\cos u_2 \sin u_2 - \sin u_2 \cos u_2
 }
 \\
 &= 0.
@@ -152,5 +152,5 @@ u \sin v \cos v - u \cos v \sin v \\
 } % answer
 
 %}
-\EndArticle
-%\EndNoBibArticle
+%\EndArticle
+\EndNoBibArticle

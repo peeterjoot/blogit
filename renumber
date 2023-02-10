@@ -226,3 +226,6 @@
 
 #../latex/bin/lgrep circularAndSphericalAreaVolumeAndBoundaries.tex | tee o ; . ./o
 #perl -p -i ../latex/bin/latexRegex.pl circularAndSphericalAreaVolumeAndBoundaries.tex
+
+../latex/bin/lgrep ellipseCurvilinear.tex | tee o ; . ./o
+#perl -p -i ../latex/bin/latexRegex.pl ellipseCurvilinear.tex

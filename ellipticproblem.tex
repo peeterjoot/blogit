@@ -15,6 +15,7 @@
 \usepackage{peeters_layout_exercise}
 \usepackage{peeters_braket}
 \usepackage{peeters_figures}
+\usepackage{amsthm}
 \usepackage{siunitx}
 \usepackage{verbatim}
 %\usepackage{mhchem} % \ce{}
@@ -27,6 +28,36 @@
 \generatetitle{XXX}
 %\chapter{XXX}
 %\label{chap:ellipticproblem}
+
+\makelemma{Hyperbolic identities.}{lemma:ellipticproblem:280}{
+\begin{equation}\label{eqn:ellipticproblem:300}
+2 \cosh\lr{ \mu - i \theta } \sinh\lr{ \mu + i \theta }
+=
+   \sinh(2 \mu) + i \sin(2 \theta).
+\end{equation}
+} % lemma
+
+\begin{proof}
+\begin{equation}\label{eqn:ellipticproblem:320}
+\begin{aligned}
+\cosh\lr{ \mu - i \theta } \sinh\lr{ \mu + i \theta }
+&=
+\frac{1}{4}
+   \lr{ e^{\mu - i\theta} - e^{-\mu + i \theta } } \lr{ e^{\mu + i\theta} - e^{-\mu - i \theta } }
+\\
+&=
+\frac{1}{4} \lr{
+   e^{2 \mu} - e^{-2\mu} + e^{2 i \theta} - e^{-2 i \theta}
+} \\
+&=
+\inv{2} \lr{  \sinh(2 \mu) + i \sin(2 \theta) }.
+\end{aligned}
+\end{equation}
+Note that a corollary is that
+\begin{equation}\label{eqn:ellipticproblem:340}
+2 \cosh\lr{ \mu } \sinh\lr{ \mu } = \sinh(2 \mu).
+\end{equation}
+\end{proof}
 
 \makeproblem{Elliptic curvilinear and reciprocal basis.}{problem:ellipticproblem:10}{
 \makesubproblem{}{problem:ellipticproblem:10:a}
@@ -116,23 +147,9 @@ s \gpgradetwo{
    i \cosh\lr{ \mu - i \theta } \sinh\lr{ \mu + i \theta }
 } \\
 &=
-s \gpgradetwo{
-  i  \cosh\lr{ \mu - i \theta } \sinh\lr{ \mu + i \theta }
-} \\
-&=
-\frac{s}{4} \gpgradetwo{
-   i \lr{ e^{\mu - i\theta} - e^{-\mu + i \theta } } \lr{ e^{\mu + i\theta} - e^{-\mu - i \theta } }
-} \\
-&=
-\frac{s}{4} \gpgradetwo{
-   i \lr{ e^{2 \mu} - e^{-2\mu} + e^{2 i \theta} - e^{-2 i \theta} }
-} \\
-&=
 \frac{s}{2} \gpgradetwo{
-   i \sinh(2 \mu) - \sin(2 \theta)
+   i \lr{ \sinh(2 \mu) + i \sin(2 \theta) }
 } \\
-&=
-\frac{s i}{2} \sinh (2 \mu) \\
 &=
 s i \cosh \mu \sinh \mu.
 \end{aligned}
@@ -157,12 +174,80 @@ and
 \end{aligned}
 \end{equation}
 \makesubanswer{}{problem:ellipticproblem:10:d}
-%\Bx_s &= \Be_1 \cosh\lr{ \mu + i \theta } \\
-%\Bx_\theta &= \Be_2 s \sinh\lr{ \mu + i \theta } \\
-%\Bx^s &= \Be_1 \frac{\sinh\lr{ \mu + i \theta }}{\cosh \mu \sinh \mu},
-%\Bx^\theta &= \frac{ \Be_2 \cosh\lr{ \mu + i \theta } }{ s \cosh \mu \sinh \mu}.
+\begin{equation}\label{eqn:ellipticproblem:260}
+\begin{aligned}
+\Bx_s \cdot \Bx^s
+   &= \gpgradezero{
+\Be_1 \cosh\lr{ \mu + i \theta } \Be_1 \frac{\sinh\lr{ \mu + i \theta }}{\cosh \mu \sinh \mu}
+} \\
+   &=
+\inv{\cosh \mu \sinh \mu}
+\gpgradezero{
+\Be_1^2 \cosh\lr{ \mu - i \theta } \lr{\sinh\lr{ \mu + i \theta }}
+} \\
+   &=
+\inv{\cosh \mu \sinh \mu}
+\gpgradezero{
+   \inv{2} \lr{ \sinh(2 \mu) + i \sin(2 \theta) }
+} \\
+&=
+\frac{\sinh(2 \mu) }{2 \cosh \mu \sinh \mu} \\
+&= 1.
+\end{aligned}
+\end{equation}
+\begin{equation}\label{eqn:ellipticproblem:360}
+\begin{aligned}
+\Bx_\theta \cdot \Bx^\theta
+&=
+\gpgradezero{
+\Be_2 s \sinh\lr{ \mu + i \theta }
+\frac{ \Be_2 \cosh\lr{ \mu + i \theta } }{ s \cosh \mu \sinh \mu}
+} \\
+&=
+\inv{ \cosh \mu \sinh \mu}
+\gpgradezero{
+\sinh\lr{ \mu + i \theta }
+\Be_2^2 \cosh\lr{ \mu - i \theta }
+} \\
+&= 1.
+\end{aligned}
+\end{equation}
+\begin{equation}\label{eqn:ellipticproblem:380}
+\begin{aligned}
+\Bx_s \cdot \Bx^\theta
+&=
+\gpgradezero{
+\Be_1 \cosh\lr{ \mu + i \theta }
+\frac{ \Be_2 \cosh\lr{ \mu + i \theta } }{ s \cosh \mu \sinh \mu}
+} \\
+&=
+\inv{ s \cosh \mu \sinh \mu}
+\gpgradezero{
+   \Be_{12} \cosh\lr{ \mu - i \theta } \cosh\lr{ \mu + i \theta }
+} \\
+&=
+\frac{ \Abs{ \cosh\lr{ \mu + i \theta } }^2 }
+{ s \cosh \mu \sinh \mu}
+\gpgradezero{
+   \Be_{12}
+} \\
+&= 0.
+\end{aligned}
+\end{equation}
+\begin{equation}\label{eqn:ellipticproblem:400}
+\begin{aligned}
+\Bx^s \cdot \Bx_\theta
+&=
+\gpgradezero{
+\Be_1 \frac{\sinh\lr{ \mu + i \theta }}{\cosh \mu \sinh \mu}
+\Be_2 s \sinh\lr{ \mu + i \theta }
+} \\
+&=
+\frac{ s \Abs{\sinh\lr{ \mu + i \theta }}^2 }{\cosh \mu \sinh \mu} \gpgradezero{ \Be_{12} } \\
+&= 0.
+\end{aligned}
+\end{equation}
 } % answer
-
 
 %}
 %\EndArticle

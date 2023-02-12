@@ -19,6 +19,7 @@ all :: $(GENERATED_PDFS)
 m : McMahonRelativity.pdf
 w : wedgegeneral.pdf
 e : ellipticproblem.pdf
+g : greensIntroProblem.pdf
 
 #$(THISBOOK).pdf :: $(wildcard *.tex)
 #$(GENERATED_PDFS) :: $(JUSTBOOKDEPENDENCIES) $(LOCAL_FILES) $(GENERATED_SOURCES) $(COPIED_FILES) $(LOCAL_COPIED_FILES) Bibliography.bib

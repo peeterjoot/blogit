@@ -42,9 +42,9 @@ In GA we are free to express the product of the gradient and a vector field by a
 \end{equation}
 In this sum, any terms with \( i = j \) are scalars since \( \Be_i^2 = 1 \), and the remaining terms are bivectors.
 This can be written compactly as
-\begin{dmath}\label{eqn:dyadicVsGa:40}
+\begin{equation}\label{eqn:dyadicVsGa:40}
    \spacegrad \Bv = \spacegrad \cdot \Bv + \spacegrad \wedge \Bv,
-\end{dmath}
+\end{equation}
 or for \R{3}
 \begin{equation}\label{eqn:dyadicVsGa:60}
    \spacegrad \Bv = \spacegrad \cdot \Bv + I \lr{ \spacegrad \cross \Bv},
@@ -135,10 +135,10 @@ If we allow a matrix of vectors, this has a block matrix form
 .
 \end{equation}
 Here we introduce the tensor product
-\begin{dmath}\label{eqn:dyadicVsGa:200}
+\begin{equation}\label{eqn:dyadicVsGa:200}
 \spacegrad \directproduct \Bv
 = \partial_i v_j \, \Be_i \directproduct \Be_j,
-\end{dmath}
+\end{equation}
 and designate the matrix of coordinates \( \partial_i v_j \), a second order tensor, by \(
 \begin{bmatrix}
 \spacegrad \directproduct \Bv
@@ -198,13 +198,15 @@ and given a bivector \( B \) and a vector \( \Ba \), the bivector-vector dot pro
 \end{equation}
 
 We may apply these to expressions where one of the vector terms is the gradient, but must allow for the gradient to act bidirectionally.  That is, given multivectors \( M, N \)
-\begin{dmath}\label{eqn:dyadicVsGa:340}
+\begin{equation}\label{eqn:dyadicVsGa:340}
+\begin{aligned}
 M \spacegrad N
-=
-\partial_i (M \Be_i N)
-=
+&=
+\partial_i (M \Be_i N) \\
+&=
 (\partial_i M) \Be_i N + M \Be_i (\partial_i N),
-\end{dmath}
+\end{aligned}
+\end{equation}
 where parens have been used to indicate the scope of applicibility of the partials.  In particular, this means that we may write the divergence as a GA symmetric sum
 \begin{equation}\label{eqn:dyadicVsGa:360}
    \spacegrad \cdot \Bv = \inv{2} \lr{
@@ -395,15 +397,17 @@ GA representation of the antisymmetric tensor contribution, which is just
 \end{equation}
 
 Let's see what the antisymmetric tensor equivalent looks like in the incompressible case, by subtracting a divergence term
-\begin{dmath}\label{eqn:dyadicVsGa:680}
+\begin{equation}\label{eqn:dyadicVsGa:680}
+\begin{aligned}
    d\Bx \cdot \lr{ \spacegrad \wedge \Bv } - d\Bx \lr{ \spacegrad \cdot \Bv }
-   =
-   \gpgradeone{ d\Bx \lr{ \spacegrad \wedge \Bv } - d\Bx \lr{ \spacegrad \cdot \Bv } }
-   =
-   \gpgradeone{ -d\Bx \lr{ \Bv \wedge \spacegrad } - d\Bx \lr{ \Bv \cdot \spacegrad } }
-   =
+   &=
+   \gpgradeone{ d\Bx \lr{ \spacegrad \wedge \Bv } - d\Bx \lr{ \spacegrad \cdot \Bv } } \\
+   &=
+   \gpgradeone{ -d\Bx \lr{ \Bv \wedge \spacegrad } - d\Bx \lr{ \Bv \cdot \spacegrad } } \\
+   &=
    -\gpgradeone{ d\Bx \Bv \spacegrad },
-\end{dmath}
+\end{aligned}
+\end{equation}
 so we have
 \begin{equation}\label{eqn:dyadicVsGa:700}
    d\Bx \cdot \lr{ \spacegrad \wedge \Bv } = d\Bx \lr{ \spacegrad \cdot \Bv } - \gpgradeone{ d\Bx\, \Bv \spacegrad }.

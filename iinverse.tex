@@ -35,18 +35,18 @@
 % \citep{griffiths1999introduction}
 
 You can always factor a unit-bivector \( \Bi = \Bu \Bv \) (at least in 2-3 dimensions), where \( \Bu, \Bv \) are orthogonal vectors (which can be orthonormal if you choose), then
-\begin{dmath}\label{eqn:iinverse:n}
+\begin{equation}\label{eqn:iinverse:n}
    \Bi^{-1} = \inv{\Bv} \inv{\Bu} = \frac{\Bv \Bu}{\Bu^2 \Bv^2}.
-\end{dmath}
+\end{equation}
 
 The simplest examples are those where the bivector is some scalar multiple of two clearly orthonormal factors, such as 
 
-\begin{dmath}\label{eqn:iinverse:n}
+\begin{equation}\label{eqn:iinverse:n}
 (\Be_1 \Be_2)^{-1} = \inv{\Be_2} \inv{\Be_1} = \Be_2 \Be_1,
-\end{dmath}
+\end{equation}
 
 A less trivial example is \( \Bi = \inv{\sqrt{3}}\lr{ \Be_1 \Be_2 + \Be_2 \Be_3 + \Be_3 \Be_1 } \), where possible factorizations include
-\begin{dmath}\label{eqn:iinverse:n}
+\begin{equation}\label{eqn:iinverse:n}
 \begin{aligned}
    \Bi 
    &= \inv{\sqrt{3}} 
@@ -54,10 +54,10 @@ A less trivial example is \( \Bi = \inv{\sqrt{3}}\lr{ \Be_1 \Be_2 + \Be_2 \Be_3 
    &= \inv{\sqrt{3}} 
    \frac{ \Be_3 - \Be_2 }{2} \lr{ 2 \Be_1 - \Be_2 - \Be_3 },
 \end{aligned}
-\end{dmath}
+\end{equation}
 but once you find such factors, you can easily compute $\mathbf{i}^{-1} = -\mathbf{i}$ using these factors, for example:
 
-\begin{dmath}\label{eqn:iinverse:n}
+\begin{equation}\label{eqn:iinverse:n}
 \begin{aligned}
 \Bi^{-1} 
 &= 2 \sqrt{3} \frac{ 2 \Be_1 - \Be_2 - \Be_3 }{6} \frac{ \Be_3 - \Be_2 }{2 } \\
@@ -65,7 +65,7 @@ but once you find such factors, you can easily compute $\mathbf{i}^{-1} = -\math
 &= \inv{\sqrt{3}} \lr{ \Be_1 \Be_3 + \Be_2 \Be_1 + \Be_3 \Be_2 }
 &= -\Bi.
 \end{aligned}
-\end{dmath}
+\end{equation}
 
 %}
 \EndArticle

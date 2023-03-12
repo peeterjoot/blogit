@@ -5,14 +5,14 @@
 \subsection{Vector dot product.}
 In engineering, vectors are usually represented as \( N \times 1 \) column matrixes\footnote{Matrices are like meth or crack to engineers, who will attempt to cast everything as a matrix problem.}.
 A vector \( \Bx \) with coordinates \((x,y,z)\) would have the representation
-\begin{dmath}\label{eqn:multivector:60}
+\begin{equation}\label{eqn:multivector:60}
 \Bx =
 \begin{bmatrix}
 x \\
 y \\
 z
 \end{bmatrix}.
-\end{dmath}
+\end{equation}
 With a coordinate representation, we can add and subtract vectors by simply adding and subtracting their coordinates.
 For example, with
 \(
@@ -55,7 +55,7 @@ a x_3 + b y_3
 \end{equation}
 
 We may decompose a vector into components in each of the ``unit directions'' as follows
-\begin{dmath}\label{eqn:multivector:160}
+\begin{equation}\label{eqn:multivector:160}
 \Bx =
 \begin{bmatrix}
 x \\
@@ -83,7 +83,7 @@ z
 0 \\
 1 \\
 \end{bmatrix}.
-\end{dmath}
+\end{equation}
 The vectors with a single one value in each of the directions may be interpretted as unit vectors, vectors with length one in each of the respective directions.
 If we write
 \begin{equation}\label{eqn:prerequisites:20}
@@ -107,9 +107,9 @@ If we write
 \end{bmatrix}.
 \end{equation}
 then the matrix representation of the vector takes the form
-\begin{dmath}\label{eqn:prerequisites:40}
+\begin{equation}\label{eqn:prerequisites:40}
 \Bx = x \Be_1 + y \Be_2 + z \Be_3.
-\end{dmath}
+\end{equation}
 Here we have assumed that the set of vectors
 \( \setlr{ \Be_1, \Be_2, \Be_3 } \) were all mutually perpendicular.
 With that assumption, we call such an ordered set the standard basis.
@@ -137,9 +137,9 @@ The
 coordinate representation of a vector encodes the direction, at least assuming that a vector is anchored at the zero vector (the origin), and the arrow head sits at the location specified by the coordinates.
 However, we must also supplement the coordinate representation with an operation that provides the length of the vector.
 That operation is the dot product, which has the following general form
-\begin{dmath}\label{eqn:multivector:101}
+\begin{equation}\label{eqn:multivector:101}
 \Bx \cdot \By = \Bx^\T G \By,
-\end{dmath}
+\end{equation}
 where \( G \) is a symmetric matrix, called the metric.
 When \( G = I \), the identity matrix, then the dot product provides a compact encoding of the Euclidean length
 \begin{equation}\label{eqn:multivector:80}
@@ -148,7 +148,7 @@ When \( G = I \), the identity matrix, then the dot product provides a compact e
 The Euclidean dot product (i.e. \( G = I \)) has an absolute maximum value when the two vectors are colinear, and is zero when the two vectors are perpendicular.
 
 The idea of a metric may appear to be useless abstraction, but it has applications in both physics and computer graphics.  In particular, the metric for the four-vectors of special relativity is
-\begin{dmath}\label{eqn:multivector:120}
+\begin{equation}\label{eqn:multivector:120}
 G =
 \pm
 \begin{bmatrix}
@@ -157,7 +157,7 @@ G =
 0 & 0 & 1 & 0 \\
 0 & 0 & 0 & 1
 \end{bmatrix}.
-\end{dmath}
+\end{equation}
 Vectors can be characterized as either
 ``timelike'' or ``spacelike'', depending on the sign of their
 ``squared-length''.
@@ -171,4 +171,3 @@ conformal and projective geometric algebra literature for details, as the are be
 If all this seems too complicated, one of the saving graces is that the metric that is used in all the
 geometric algebra applications that I'm aware of is always a
 diagonal matrix with diagonal values that have values \( 0, \pm 1 \).
-XX

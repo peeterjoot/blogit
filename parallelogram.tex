@@ -28,78 +28,53 @@
 %\chapter{Area of a parallelogram}
 %\label{chap:parallelogram}
 
-\begin{dmath}\label{eqn:parallelogram:20}
+\begin{equation}\label{eqn:parallelogram:20}
+\begin{aligned}
 \textrm{Area}^2
-= \Norm{\Bx}^2 \Norm{\By - \lr{\By \cdot \xcap} \xcap }^2
-= \Norm{\Bx}^2
-\lr{\By - \lr{\By \cdot \xcap} \xcap }\cdot \lr{\By - \lr{\By \cdot \xcap} \xcap }
-= \Norm{\Bx}^2
-\lr{
-\By \cdot \By + \lr{ \By \cdot \xcap }^2 \xcap \cdot \xcap - 2 \lr{ \xcap \cdot \By }^2
-}
-= \Norm{\Bx}^2
-\lr{
-\By \cdot \By - \lr{ \By \cdot \xcap }^2
-}
-=
-\Norm{\Bx}^2 \Norm{\By}^2 - \lr{ \By \cdot \xcap }^2 \Norm{\Bx}^2
-=
-\Norm{\Bx}^2 \Norm{\By}^2 - \lr{ \Bx \cdot \By }^2.
-\end{dmath}
+&= \Norm{\Bx}^2 \Norm{\By - \lr{\By \cdot \xcap} \xcap }^2 \\
+&= \Norm{\Bx}^2 \lr{\By - \lr{\By \cdot \xcap} \xcap }\cdot \lr{\By - \lr{\By \cdot \xcap} \xcap } \\
+&= \Norm{\Bx}^2 \lr{ \By \cdot \By + \lr{ \By \cdot \xcap }^2 \xcap \cdot \xcap - 2 \lr{ \xcap \cdot \By }^2 } \\
+&= \Norm{\Bx}^2 \lr{ \By \cdot \By - \lr{ \By \cdot \xcap }^2 } \\
+&= \Norm{\Bx}^2 \Norm{\By}^2 - \lr{ \By \cdot \xcap }^2 \Norm{\Bx}^2 \\
+&= \Norm{\Bx}^2 \Norm{\By}^2 - \lr{ \Bx \cdot \By }^2.
+\end{aligned}
+\end{equation}
 
 In components
-\begin{dmath}\label{eqn:parallelogram:40}
+\begin{equation}\label{eqn:parallelogram:40}
+\begin{aligned}
 \textrm{Area}^2
-=
-\Norm{\Bx}^2 \Norm{\By}^2 - \lr{ \Bx \cdot \By }^2
-=
-\sum_{i = 1}^N x_i x_i
-\sum_{j = 1}^N x_j x_j
--
-\sum_{i = 1}^N x_i y_i
-\sum_{j = 1}^N x_j y_j
-=
-\sum_{i,j= 1}^N x_i x_i y_j y_j - x_i y_i x_j y_j
-=
-\sum_{i,j= 1}^N x_i y_j \lr{ x_i y_j - y_i x_j }
-=
-\sum_{i,j= 1}^N
-x_i y_j
-\begin{vmatrix}
-   x_i & y_i \\
-   x_j & y_j \\
-\end{vmatrix}
-=
-\lr{
-\sum_{i<j}
-+
-\cancel{\sum_{i=j}}
-+
-\sum_{i>j}
-}
-x_i y_j
+&= \Norm{\Bx}^2 \Norm{\By}^2 - \lr{ \Bx \cdot \By }^2 \\
+&= \sum_{i = 1}^N x_i x_i \sum_{j = 1}^N x_j x_j - \sum_{i = 1}^N x_i y_i \sum_{j = 1}^N x_j y_j \\
+&= \sum_{i,j= 1}^N x_i x_i y_j y_j - x_i y_i x_j y_j \\
+&= \sum_{i,j= 1}^N x_i y_j \lr{ x_i y_j - y_i x_j } \\
+&= \sum_{i,j= 1}^N x_i y_j \begin{vmatrix} x_i & y_i \\ x_j & y_j \\ \end{vmatrix} \\
+&= \lr{ \sum_{i<j} + \cancel{\sum_{i=j}} 
++ \sum_{i>j} } x_i y_j
 \begin{vmatrix}
    x_i & y_i \\
    x_j & y_j \\
 \end{vmatrix}.
-\end{dmath}
+\end{aligned}
+\end{equation}
 
 But
-\begin{dmath}\label{eqn:parallelogram:60}
+\begin{equation}\label{eqn:parallelogram:60}
+\begin{aligned}
 \sum_{i > j}
 x_i y_j
 \begin{vmatrix}
    x_i & y_i \\
    x_j & y_j \\
 \end{vmatrix}
-=
+&=
 \sum_{a > b}
 x_a y_b
 \begin{vmatrix}
    x_a & y_a \\
    x_b & y_b \\
-\end{vmatrix}
-=
+\end{vmatrix} \\
+&=
 % b -> i
 % a -> j
 \sum_{j > i}
@@ -107,32 +82,35 @@ x_j y_i
 \begin{vmatrix}
    x_j & y_j \\
    x_i & y_i \\
-\end{vmatrix}
-=
+\end{vmatrix} \\
+&=
 -\sum_{i < j}
 x_j y_i
 \begin{vmatrix}
    x_i & y_i \\
    x_j & y_j \\
 \end{vmatrix},
-\end{dmath}
+\end{aligned}
+\end{equation}
 so
-\begin{dmath}\label{eqn:parallelogram:80}
+\begin{equation}\label{eqn:parallelogram:80}
+\begin{aligned}
 \textrm{Area}^2
-=
+&=
 \sum_{i < j}
 \lr{ x_i y_j - x_j y_i  }
 \begin{vmatrix}
    x_i & y_i \\
    x_j & y_j \\
-\end{vmatrix}
-=
+\end{vmatrix} \\
+&=
 \sum_{i < j}
 {\begin{vmatrix}
    x_i & y_i \\
    x_j & y_j \\
 \end{vmatrix}}^2.
-\end{dmath}
+\end{aligned}
+\end{equation}
 
 In \R{3} this happens to be the squared length of \( \Bx \cross \By \), but in \R{N} this
 has the look of the length of a two index entity with \( \binom{N}{2} \) components,

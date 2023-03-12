@@ -50,9 +50,9 @@ F_n = \frac{ \lr{ 1 + \sqrt{5} }^n - \lr{ 1 - \sqrt{5} }^n }{ 2^n \sqrt{5} }.
 \end{equation*}
 } % theorem
 This is a rather miraculous and interesting looking equation.  Other than the \(\sqrt{5}\) scale factor, this is exactly the difference of the nth powers of the golden ratio \( \phi = (1+\sqrt{5})/2 \), and \( 1 - \phi = (1-\sqrt{5})/2 \).  That is:
-\begin{dmath}\label{eqn:fibonacci:60}
+\begin{equation}\label{eqn:fibonacci:60}
 F_n = \frac{\phi^n - (1 -\phi)^n}{\sqrt{5}}.
-\end{dmath}
+\end{equation}
 
 How on Earth would somebody figure this out?
 % https://books.google.com/books?id=QGgLbf2oFUYC&pg=PA29
@@ -60,133 +60,138 @@ According to \href{https://books.google.com/books?id=QGgLbf2oFUYC&pg=PA29}{Tatte
 
 Understanding this from the ground up looks like it's a pretty deep rabbit hole to dive into.  Let's save that game for another day, but try the more pedestrian task of proving that this formula works.
 \begin{proof}
-\begin{dmath}\label{eqn:fibonacci:80}
-\sqrt{5} F_n =
-\sqrt{5} \lr{ F_{n-2} + F_{n-1} }
-=
-\phi^{n-2} - \lr{ 1 - \phi}^{n-2}
-+ \phi^{n-1} - \lr{ 1 - \phi}^{n-1}
-=
-\phi^{n-2} \lr{ 1 + \phi }
--\lr{1 - \phi}^{n-2} \lr{ 1 + 1 - \phi }
-=
-\phi^{n-2}
-\frac{ 3 + \sqrt{5} }{2}
--\lr{1 - \phi}^{n-2}
-\frac{ 3 - \sqrt{5} }{2}.
-\end{dmath}
+\begin{equation}\label{eqn:fibonacci:80}
+\begin{aligned}
+\sqrt{5} F_n 
+&= \sqrt{5} \lr{ F_{n-2} + F_{n-1} } \\
+&= \phi^{n-2} - \lr{ 1 - \phi}^{n-2} + \phi^{n-1} - \lr{ 1 - \phi}^{n-1} \\
+&= \phi^{n-2} \lr{ 1 + \phi } -\lr{1 - \phi}^{n-2} \lr{ 1 + 1 - \phi } \\
+&= \phi^{n-2} \frac{ 3 + \sqrt{5} }{2} -\lr{1 - \phi}^{n-2} \frac{ 3 - \sqrt{5} }{2}.
+\end{aligned}
+\end{equation}
 However,
-\begin{dmath}\label{eqn:fibonacci:100}
+\begin{equation}\label{eqn:fibonacci:100}
+\begin{aligned}
 \phi^2
-= \lr{ \frac{ 1 + \sqrt{5} }{2} }^2
-= \frac{ 1 + 2 \sqrt{5} + 5 }{4}
-= \frac{ 3 + \sqrt{5} }{2},
-\end{dmath}
+&= \lr{ \frac{ 1 + \sqrt{5} }{2} }^2 \\
+&= \frac{ 1 + 2 \sqrt{5} + 5 }{4} \\
+&= \frac{ 3 + \sqrt{5} }{2},
+\end{aligned}
+\end{equation}
 and
-\begin{dmath}\label{eqn:fibonacci:120}
+\begin{equation}\label{eqn:fibonacci:120}
+\begin{aligned}
 (1-\phi)^2
-= \lr{ \frac{ 1 - \sqrt{5} }{2} }^2
-= \frac{ 1 - 2 \sqrt{5} + 5 }{4}
-= \frac{ 3 - \sqrt{5} }{2},
-\end{dmath}
+&= \lr{ \frac{ 1 - \sqrt{5} }{2} }^2 \\
+&= \frac{ 1 - 2 \sqrt{5} + 5 }{4} \\
+&= \frac{ 3 - \sqrt{5} }{2},
+\end{aligned}
+\end{equation}
 so
-\begin{dmath}\label{eqn:fibonacci:140}
+\begin{equation}\label{eqn:fibonacci:140}
 \sqrt{5} F_n = \phi^n - (1-\phi)^n.
-\end{dmath}
+\end{equation}
 \end{proof}
 \section{How the square root fives cancel out.}
 One of the interesting things in this Fibonacci formula, is the \( \sqrt{5} \)'s that are all over the place, while the formula represents only integer values.  Expanding the formula in binomial series shows us exactly why those terms all vanish.  Consider the first few values of \( n \) explicitly.
-\begin{dmath}\label{eqn:fibonacci:160}
+\begin{equation}\label{eqn:fibonacci:160}
+\begin{aligned}
 F_1
-= \frac{ 1 + \sqrt{5} - \lr{ 1 - \sqrt{5} } }{ 2^1 \sqrt{5} }
-= \frac{ 2 \sqrt{5} }{ 2^1 \sqrt{5} }
-= 1,
-\end{dmath}
-\begin{dmath}\label{eqn:fibonacci:180}
+&= \frac{ 1 + \sqrt{5} - \lr{ 1 - \sqrt{5} } }{ 2^1 \sqrt{5} } \\
+&= \frac{ 2 \sqrt{5} }{ 2^1 \sqrt{5} } \\
+&= 1,
+\end{aligned}
+\end{equation}
+\begin{equation}\label{eqn:fibonacci:180}
+\begin{aligned}
 F_2
-= \frac{ 1 + 2 \sqrt{5} + 5 - \lr{ 1 - 2 \sqrt{5} + 5 } }{ 2^2 \sqrt{5} }
-= \frac{ 4 \sqrt{5} }{ 2^2 \sqrt{5} }
-= 1,
-\end{dmath}
-\begin{dmath}\label{eqn:fibonacci:200}
+&= \frac{ 1 + 2 \sqrt{5} + 5 - \lr{ 1 - 2 \sqrt{5} + 5 } }{ 2^2 \sqrt{5} } \\
+&= \frac{ 4 \sqrt{5} }{ 2^2 \sqrt{5} } \\
+&= 1,
+\end{aligned}
+\end{equation}
+\begin{equation}\label{eqn:fibonacci:200}
+\begin{aligned}
 F_3
-	= \frac{ 1 + 3 \sqrt{5} + 3 (5) + \sqrt{5} 5 - \lr{ 1 - 3 \sqrt{5} + 3(5) - \sqrt{5} 5 } }{ 2^3 \sqrt{5} }
-= \frac{ 2 \lr{ 3 \sqrt{5} + \sqrt{5} 5 } }{ 2^3 \sqrt{5} }
-= \frac{ 3 + 5 }{ 2^2 }
-= 2.
-\end{dmath}
+&= \frac{ 1 + 3 \sqrt{5} + 3 (5) + \sqrt{5} 5 - \lr{ 1 - 3 \sqrt{5} + 3(5) - \sqrt{5} 5 } }{ 2^3 \sqrt{5} } \\
+&= \frac{ 2 \lr{ 3 \sqrt{5} + \sqrt{5} 5 } }{ 2^3 \sqrt{5} } \\
+&= \frac{ 3 + 5 }{ 2^2 } \\
+&= 2.
+\end{aligned}
+\end{equation}
 In the general case, we have
-\begin{dmath}\label{eqn:fibonacci:220}
+\begin{equation}\label{eqn:fibonacci:220}
+\begin{aligned}
 2^n \sqrt{5} F_n
-=
-\sum_{k = 0}^n
+&= \sum_{k = 0}^n
 \binom{n}{k}
 {\sqrt{5}}^k
 -
-\sum_{k = 0}^n \binom{n}{k} (-\sqrt{5})^k
-=
-2 \sum_{1 \le k \le n, \mbox{$k$ is odd}} \binom{n}{k} (\sqrt{5})^k
-=
-2 \sqrt{5} \sum_{m = 0}^{\floor*{(n-1)/2}} \binom{n}{2 m + 1} 5^m,
-\end{dmath}
+\sum_{k = 0}^n \binom{n}{k} (-\sqrt{5})^k \\
+&= 2 \sum_{1 \le k \le n, \mbox{$k$ is odd}} \binom{n}{k} (\sqrt{5})^k \\
+&= 2 \sqrt{5} \sum_{m = 0}^{\floor*{(n-1)/2}} \binom{n}{2 m + 1} 5^m,
+\end{aligned}
+\end{equation}
 % k = 2 m + 1, m = 0, 2 m + 1 <= n ; m <= (n-1)/2
 so (for any \( n > 0 \)),
-\begin{dmath}\label{eqn:fibonacci:240}
+\begin{equation}\label{eqn:fibonacci:240}
 F_n =
 \inv{2^{n-1}} \sum_{m = 0}^{\floor*{(n-1)/2}} \binom{n}{2 m + 1} 5^m.
-\end{dmath}
+\end{equation}
 Since only the odd powers of \( \sqrt{5} \) in the binomial expansions survive, the root in the basement is obliterated every time, leaving only integers upstairs, and a power of two factor downstairs.
 It is still somewhat remarkable seeming that there is always a perfect cancellation of all the factors of two in the basement.
 %, but we can see easily why the end result, for any \( n \) has no \( \sqrt{5} \) terms in it.
 \section{Guessing the nth Fibonacci formula.}
 We can rearrange the formula for the nth Fibonacci number as a difference equation
-\begin{dmath}\label{eqn:fibonacci:260}
+\begin{equation}\label{eqn:fibonacci:260}
 F_n - F_{n-1} = F_{n-2}.
-\end{dmath}
+\end{equation}
 This is a second order difference equation, so my naive expectation is that there are two particular solutions involved.  We know the answer, so it's not too hard to guess that the particular form of the solution has the following form
-\begin{dmath}\label{eqn:fibonacci:280}
+\begin{equation}\label{eqn:fibonacci:280}
 F_n = \alpha a^n + \beta b^n.
-\end{dmath}
+\end{equation}
 Given this guess, can we take some of the magic out of the formula, by just solving for \( \alpha, \beta, a, b \)?  Let's try that
 \begin{equation}\label{eqn:fibonacci:300}
 F_0 = \alpha + \beta = 0,
 \end{equation}
-\begin{dmath}\label{eqn:fibonacci:320}
-F_1 = \alpha a + \beta b
-    = \alpha \lr{ a - b } = 1,
-\end{dmath}
+\begin{equation}\label{eqn:fibonacci:320}
+\begin{aligned}
+F_1 &= \alpha a + \beta b \\
+    &= \alpha \lr{ a - b } = 1,
+\end{aligned}
+\end{equation}
 and
-\begin{dmath}\label{eqn:fibonacci:340}
+\begin{equation}\label{eqn:fibonacci:340}
+\begin{aligned}
 F_n
-= F_{n-1} + F_{n-2}
-=
-\alpha \lr{ a^{n-1} + a^{n-2} }
--\alpha \lr{ b^{n-1} + b^{n-2} }
-=
-\alpha a^{n-2} \lr{ 1 + a }
--\alpha b^{n-2} \lr{ 1 + b },
-\end{dmath}
+&= F_{n-1} + F_{n-2}
+&= \alpha \lr{ a^{n-1} + a^{n-2} } -\alpha \lr{ b^{n-1} + b^{n-2} }
+&= \alpha a^{n-2} \lr{ 1 + a } -\alpha b^{n-2} \lr{ 1 + b },
+\end{aligned}
+\end{equation}
 so
-\begin{dmath}\label{eqn:fibonacci:360}
+\begin{equation}\label{eqn:fibonacci:360}
 \begin{aligned}
 a^2 &= a + 1 \\
 b^2 &= b + 1.
 \end{aligned}
-\end{dmath}
+\end{equation}
 If we complete the square we find
-\begin{dmath}\label{eqn:fibonacci:380}
+\begin{equation}\label{eqn:fibonacci:380}
 \lr{ a - \inv{2} }^2 = 1 + \inv{4} = \frac{5}{4},
-\end{dmath}
+\end{equation}
 or
-\begin{dmath}\label{eqn:fibonacci:400}
+\begin{equation}\label{eqn:fibonacci:400}
 a, b = \inv{2} \pm \frac{\sqrt{5}}{2}.
-\end{dmath}
+\end{equation}
 Out pop the golden ratio and it's complement.  Clearly we need to pick alternate roots for \( a \) and \( b \) or else we'd have zero for every value of \( n > 0 \).  Suppose we pick the positive root for \( a \), then to find the scaling constant \( \alpha \), we just compute
-\begin{dmath}\label{eqn:fibonacci:420}
-1 =
-\alpha \lr{ \frac{ 1 + \sqrt{5}}{2} - \frac{ 1 - \sqrt{5} }{2} }
-= \alpha \sqrt{5},
-\end{dmath}
+\begin{equation}\label{eqn:fibonacci:420}
+\begin{aligned}
+1 
+&= \alpha \lr{ \frac{ 1 + \sqrt{5}}{2} - \frac{ 1 - \sqrt{5} }{2} } \\
+&= \alpha \sqrt{5},
+\end{aligned}
+\end{equation}
 so our system \cref{eqn:fibonacci:280} has the solution:
 \begin{equation}\label{eqn:fibonacci:520}
 \begin{aligned}
@@ -200,26 +205,29 @@ b &= \frac{1 - \sqrt{5}}{2} \\
 We now see a path that will systematically lead us from the Fibonacci difference equation to the final result, and have only to fill in a few missing steps to understand how this could be discovered from scratch.
 \paragraph{Motivating the root-fives.}
 I showed this to Sofia, and she came up with a neat very direct way to motivate the \( \sqrt{5} \).  It follows naturally (again knowing the answer), by assuming the Fibonacci formula has the following form:
-\begin{dmath}\label{eqn:fibonacci:440}
+\begin{equation}\label{eqn:fibonacci:440}
 F_n = \inv{x} \lr{
    \lr{ \frac{1 + x}{2}}^n
    -
    \lr{ \frac{1 - x}{2}}^n
 }.
-\end{dmath}
+\end{equation}
 We have only to plug in \( n = 3 \) to find
-\begin{dmath}\label{eqn:fibonacci:460}
-2 x = \inv{4} \lr{ 1 + 3 x + 3 x^2 + x^3 - \lr{ 1 - 3 x + 3 x^2 - x^3 } }
-= \inv{2} \lr{ 3 x + x^3 },
-\end{dmath}
+\begin{equation}\label{eqn:fibonacci:460}
+\begin{aligned}
+2 x
+&= \inv{4} \lr{ 1 + 3 x + 3 x^2 + x^3 - \lr{ 1 - 3 x + 3 x^2 - x^3 } } \\
+&= \inv{2} \lr{ 3 x + x^3 },
+\end{aligned}
+\end{equation}
 or
-\begin{dmath}\label{eqn:fibonacci:480}
+\begin{equation}\label{eqn:fibonacci:480}
 8 = 3 + x^2,
-\end{dmath}
+\end{equation}
 so
-\begin{dmath}\label{eqn:fibonacci:500}
+\begin{equation}\label{eqn:fibonacci:500}
 x = \pm \sqrt{5}.
-\end{dmath}
+\end{equation}
 Again the \( \sqrt{5} \)'s pop out naturally, taking away some of the mystery of the cool formula.
 \section{Deriving the nth Fibonacci formula.}
 There was a particularly unsatisfactory aspect of the \cref{eqn:fibonacci:280} guess.  In particular, we didn't have any reason to guess the form of that solution, except for the fact that we already knew the answer.  Now we will attempt to attack this in a more systematic fashion, so that each step along the way seems logical.  First, we need to put a couple goodies in our toolbox.
@@ -245,12 +253,12 @@ Given a sum \( F_n \) of the form \cref{dfn:fibonacci:980}, the difference opera
 \end{equation*}
 } % theorem
 \begin{proof}
-\begin{dmath}\label{eqn:fibonacci:960}
+\begin{equation}\label{eqn:fibonacci:960}
 \Delta F_n =
 \sum_{k = a}^n G_k + C
 - \lr{ \sum_{k = a}^{n-1} G_k + C }
 = G_n.
-\end{dmath}
+\end{equation}
 \end{proof}
 
 Computing differences is pretty easy.  What we want to do is the inverse operation (analogous to integration), where we find a closed form representation of \( F_n \) given a difference equation \( \Delta F_n = G_n \).
@@ -267,43 +275,45 @@ n^3 &= \Delta \lr{ \frac{n^2}{4}\lr{n + 1}^2 }.
 } % theorem
 \begin{proof}
 The \( \Delta n \) identity is easily verified
-\begin{dmath}\label{eqn:fibonacci:1000}
+\begin{equation}\label{eqn:fibonacci:1000}
 \Delta n = n - (n-1) = 1.
-\end{dmath}
+\end{equation}
 For higher orders it is a bit tedious to verify directly, but we can iteratively build up those results by evaluating the difference operator on each of the powers of \( n \).
-\begin{dmath}\label{eqn:fibonacci:660}
+\begin{equation}\label{eqn:fibonacci:660}
+\begin{aligned}
 \Delta n^2
-= n^2 - (n-1)^2
-= n^2 - (n^2 - 2 n + 1)
-= 2 n - 1,
-= 2 n - \Delta n.
-\end{dmath}
+&= n^2 - (n-1)^2 \\
+&= n^2 - (n^2 - 2 n + 1) \\
+&= 2 n - 1 \\
+&= 2 n - \Delta n.
+\end{aligned}
+\end{equation}
 Because the difference operator is linear, we can rearrange to find
-\begin{dmath}\label{eqn:fibonacci:1020}
+\begin{equation}\label{eqn:fibonacci:1020}
 \Delta \lr{ n^2 + n } = 2 n.
-\end{dmath}
+\end{equation}
 Dividing through by \( 2 \) and factoring out an \( n \), recovers the desired result.
 
 For the next power, we have
-\begin{dmath}\label{eqn:fibonacci:680}
+\begin{equation}\label{eqn:fibonacci:680}
+\begin{aligned}
 \Delta n^3
-= n^3 - (n-1)^3
-= n^3 - (n^3 - 3 n^2 + 3 n - 1)
-= 3 n^2 - 3 n + 1
-= 3 n^2 - 3 \Delta \frac{n}{2}\lr{ n + 1 } + \Delta n,
-\end{dmath}
+&= n^3 - (n-1)^3 \\
+&= n^3 - (n^3 - 3 n^2 + 3 n - 1) \\
+&= 3 n^2 - 3 n + 1 \\
+&= 3 n^2 - 3 \Delta \frac{n}{2}\lr{ n + 1 } + \Delta n,
+\end{aligned}
+\end{equation}
 or
-\begin{dmath}\label{eqn:fibonacci:1040}
+\begin{equation}\label{eqn:fibonacci:1040}
+\begin{aligned}
 3 n^2
-=
-\Delta \lr{n} \lr{ n^2 + \frac{3}{2}\lr{ n + 1} - 1 }
-=
-\Delta \frac{n}{2} \lr{ 2 n^2 + 3\lr{ n + 1} - 2}
-=
-\Delta \frac{n}{2} \lr{ 2 n^2 + 3 n + 1 }
-=
-\Delta \frac{n}{2} \lr{ 2 n + 1}\lr{ n + 1 }
-\end{dmath}
+&= \Delta \lr{n} \lr{ n^2 + \frac{3}{2}\lr{ n + 1} - 1 } \\
+&= \Delta \frac{n}{2} \lr{ 2 n^2 + 3\lr{ n + 1} - 2} \\
+&= \Delta \frac{n}{2} \lr{ 2 n^2 + 3 n + 1 } \\
+&= \Delta \frac{n}{2} \lr{ 2 n + 1}\lr{ n + 1 }.
+\end{aligned}
+\end{equation}
 Dividing through by \( 3 \) recovers the desired result.
 
 The final result is left to the reader.  It can be derived or verified easily with a couple lines of Mathematica code.
@@ -318,84 +328,84 @@ Find the sums \( \sum_{k = 1}^n k^m \), for \( m = 1, 2, 3 \).
 F_n = \sum_{k = 1}^n k = 1 + 2 + \cdots n,
 \end{equation}
 satisfying
-\begin{dmath}\label{eqn:fibonacci:1080}
+\begin{equation}\label{eqn:fibonacci:1080}
+\begin{aligned}
 \Delta F_n
-= F_n - F_{n-1}
-=
-(n + (n-1) + \cdots + 1)
--
-((n-1) + \cdots + 1)
-= n = \Delta \frac{n}{2}(n + 1).
-\end{dmath}
+&= F_n - F_{n-1} \\
+&= (n + (n-1) + \cdots + 1) - ((n-1) + \cdots + 1) \\
+&= n = \Delta \frac{n}{2}(n + 1).
+\end{aligned}
+\end{equation}
 We must have
-\begin{dmath}\label{eqn:fibonacci:1100}
+\begin{equation}\label{eqn:fibonacci:1100}
 F_n = \frac{n}{2}\lr{ n + 1} + C.
-\end{dmath}
+\end{equation}
 To fix \( C \) consider \( F_1 \)
 \begin{equation}\label{eqn:fibonacci:1180}
 F_1 = \inv{2}(1 + 1) + C = 1,
 \end{equation}
 so \( C = 0 \), so we find Gauss's summation formula
-\begin{dmath}\label{eqn:fibonacci:1200}
+\begin{equation}\label{eqn:fibonacci:1200}
 \sum_{k = 1}^n k = \frac{n}{2}\lr{ n + 1},
-\end{dmath}
+\end{equation}
 as expected.
 \item \( m = 2 \).  Now let's do the sum of squares
-\begin{dmath}\label{eqn:fibonacci:1120}
+\begin{equation}\label{eqn:fibonacci:1120}
 F_n = \sum_{k = 1}^n k^2,
-\end{dmath}
+\end{equation}
 for which we have
 \begin{equation}\label{eqn:fibonacci:1140}
 \Delta F_n = n^2 = \Delta \frac{n}{6}( 2 n + 1 )(n+1),
 \end{equation}
 so
-\begin{dmath}\label{eqn:fibonacci:1160}
+\begin{equation}\label{eqn:fibonacci:1160}
 F_n = \frac{n}{6}( 2 n + 1 )(n+1) + C.
-\end{dmath}
+\end{equation}
 Clearly \( C = 0 \) satisfies the boundary condition, leaving
-\begin{dmath}\label{eqn:fibonacci:1220}
+\begin{equation}\label{eqn:fibonacci:1220}
 \sum_{k = 1}^n k^2 =
 \frac{n}{6}( 2 n + 1 )(n+1).
-\end{dmath}
+\end{equation}
 \item \( m = 3 \).  We see the pattern, so for the sum of cubes, we can just write down the answer
-\begin{dmath}\label{eqn:fibonacci:1240}
+\begin{equation}\label{eqn:fibonacci:1240}
 \sum_{k = 1}^n k^3 =
 \frac{n^2}{4}\lr{n + 1}^2
 .
-\end{dmath}
+\end{equation}
 \end{itemize}
 } % answer
 
 Now that we have some basic comfort with the ideas of difference equations, and their solutions,
 let's get back to the Fibonacci problem.  In that case, we have
-\begin{dmath}\label{eqn:fibonacci:1260}
+\begin{equation}\label{eqn:fibonacci:1260}
 F_n = F_{n-1} + F_{n-2}.
-\end{dmath}
+\end{equation}
 Stated as a difference equation, this is
-\begin{dmath}\label{eqn:fibonacci:1280}
+\begin{equation}\label{eqn:fibonacci:1280}
 \Delta F_n = F_{n-2}.
-\end{dmath}
+\end{equation}
 Before tackling the Fibonacci problem, let's try one that slightly simpler.
 \makeproblem{A simpler problem.}{problem:fibonacci:1300}{
 Solve \( \Delta F_n = F_{n-1} \), where \( F_0 = 0, F_1 = 1 \).
 } % problem
 \makeanswer{problem:fibonacci:1300}{
 The problem to solve is just
-\begin{dmath}\label{eqn:fibonacci:1300}
+\begin{equation}\label{eqn:fibonacci:1300}
 F_n = 2 F_{n-1}.
-\end{dmath}
+\end{equation}
 This sequence is \( \setlr{ 1, 2, 4, 8, \cdots } \), so we can solve it by inspection, and the answer is just \( F_n = 2^{n-1} \).  We want inspiration for the Fibonacci problem, so let's pretend that we can't see the answer, but that we can guess something close, and see if it works.  Namely, let's guess:
-\begin{dmath}\label{eqn:fibonacci:1320}
+\begin{equation}\label{eqn:fibonacci:1320}
 F_n = \alpha a^n + C.
-\end{dmath}
+\end{equation}
 If we plug this trial solution into our difference equation, we get
-\begin{dmath}\label{eqn:fibonacci:1340}
+\begin{equation}\label{eqn:fibonacci:1340}
+\begin{aligned}
 \alpha a^{n-1} + C
-=
-\Delta F_n
-= \alpha \lr{ a^n - a^{n-1} }
-= \alpha a^{n-1} \lr{ a - 1 }
-\end{dmath}
+&= \Delta F_n \\
+&= \alpha \lr{ a^n - a^{n-1} } \\
+&= \alpha a^{n-1} \lr{ a - 1 }
+\end{aligned}
+\end{equation}
 This can be satisfied by setting \( C = 0 \) and \( a - 1 = 1 \), or \( a = 2 \), as we already knew.  To fix the constant \( \alpha \) we utilize our boundary constraints, namely
 \begin{equation}\label{eqn:fibonacci:1400}
 F_1 = 1 = \alpha 2 
@@ -409,41 +419,42 @@ Without worrying about boundary constraints, find the solutions to \( \Delta F_n
 } % problem
 \makeanswer{problem:fibonacci:1420}{
 Inserting our trial solution, we have
-\begin{dmath}\label{eqn:fibonacci:1420}
+\begin{equation}\label{eqn:fibonacci:1420}
+\begin{aligned}
 \alpha a^n
-=
-F_n
-= F_{n-1} + F_{n-2}
-= \alpha \lr{ a^{n-1} + a^{n-2} }
-= \alpha a^{n-2} \lr{ a + 1 },
-\end{dmath}
+&= F_n \\
+&= F_{n-1} + F_{n-2} \\
+&= \alpha \lr{ a^{n-1} + a^{n-2} } \\
+&= \alpha a^{n-2} \lr{ a + 1 },
+\end{aligned}
+\end{equation}
 so our ``characteristic equation'' is
-\begin{dmath}\label{eqn:fibonacci:1440}
+\begin{equation}\label{eqn:fibonacci:1440}
 a + 1 = a^2.
-\end{dmath}
+\end{equation}
 Completing the square yields
-\begin{dmath}\label{eqn:fibonacci:1460}
+\begin{equation}\label{eqn:fibonacci:1460}
 \lr{ a - \inv{2} }^2 = 1 + \inv{4},
-\end{dmath}
+\end{equation}
 or
-\begin{dmath}\label{eqn:fibonacci:1480}
+\begin{equation}\label{eqn:fibonacci:1480}
 a = \inv{2} \pm \frac{\sqrt{5}}{2}.
-\end{dmath}
+\end{equation}
 Bamn.  There's our golden ratio, and it's buddy!
 We find that
-\begin{dmath}\label{eqn:fibonacci:1500}
+\begin{equation}\label{eqn:fibonacci:1500}
 F_n = \alpha \lr{\frac{1 \pm \sqrt{5}}{2} }^n,
-\end{dmath}
+\end{equation}
 are solutions to the difference equation \cref{eqn:fibonacci:1280}.
 } % answer
 
 Since we have a second order difference equation, we need a superposition of both solutions to try to satisfy the boundary conditions.  In particular, we want to find the constants
-\begin{dmath}\label{eqn:fibonacci:1520}
+\begin{equation}\label{eqn:fibonacci:1520}
 F_n =
 \alpha_{+} \lr{\frac{1 + \sqrt{5}}{2} }^n
 +
 \alpha_{-} \lr{\frac{1 - \sqrt{5}}{2} }^n + C.
-\end{dmath}
+\end{equation}
 However, we already did this when we guessed used \( F_n = \alpha a^n + \beta b^n \) as a trial solution.  When we did that, it was just to see if we could find the end result, knowing only the structure of the solution, but none of the specific constants.  Now we have justified why that was a reasonable trial solution, since exactly this structure follows naturally from the difference equation itself.
 
 This train of thought, makes me want to dig out my little Dover book on difference equations \citep{levy1992finite} that I've had since I was a kid.  I think I only worked through the first chapter of that book.  I have a lot of little sad neglected Dover books on mathematics and physics that I bought super cheap at the World's Biggest Bookstore when I was back in school.  It will be interesting to see how to tackle problems such as this, in a still more systematic fashion.

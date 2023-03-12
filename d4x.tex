@@ -35,11 +35,11 @@
 % \citep{griffiths1999introduction}
 
 I think that your construction is over-specified.  You want 4 parameters to parameterize the space time volume.  For example, suppose that you have a vector function of time and space coordinates that spans the integration volume of interest
-\begin{dmath}\label{eqn:d4x:20}
+\begin{equation}\label{eqn:d4x:20}
 \Bu = t \Be_0 + x \Be_1 + y \Be_2 + z \Be_3,
-\end{dmath}
+\end{equation}
 then the natural way to express the differential volume element is just
-\begin{dmath}\label{eqn:d4x:40}
+\begin{equation}\label{eqn:d4x:40}
    \sqrt{g} d^4 x =
    \lr{ \PD{t}{\Bu} dt } \wedge
    \lr{ \PD{x}{\Bu} dx } \wedge
@@ -47,7 +47,7 @@ then the natural way to express the differential volume element is just
    \lr{ \PD{z}{\Bu} dz }
    =
    \Be_0 \Be_1 \Be_2 \Be_3 dt dx dy dz.
-\end{dmath}
+\end{equation}
 I've included your \( \sqrt{g} \) term on the left hand side since the wedge product of the differentials implicitly builds in the Jacobian structure that I assume this represents.
 
 %}

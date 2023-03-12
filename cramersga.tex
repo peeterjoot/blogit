@@ -32,11 +32,11 @@ I've been asked to review a paper that uses linear algebra methods to evaluate r
 We learned Cramer's rule in high school without derivation, but the derivation is quite simple, and it just follows from the use of repeated wedge products.
 
 In case you've forgotten, the Cramer's rule for the linear system
-\begin{dmath}\label{eqn:cramersga:120}
+\begin{equation}\label{eqn:cramersga:120}
 \Ba_1 x_1 + \Ba_2 x_2 \cdots + \Ba_n x_n = \Bb,
-\end{dmath}
+\end{equation}
 is to form the ratio of determinants
-\begin{dmath}\label{eqn:cramersga:140}
+\begin{equation}\label{eqn:cramersga:140}
 \frac{
 \begin{vmatrix}
    \Ba_1 & \Ba_2 & \cdots & \Ba_k & \cdots & \Ba_n \\
@@ -47,9 +47,9 @@ is to form the ratio of determinants
    \Ba_1 & \Ba_2 & \cdots & \Ba_k & \cdots & \Ba_n \\
 \end{vmatrix}
 },
-\end{dmath}
+\end{equation}
 and if you want to solve for \( x_k \), then replace \( \Ba_k \) with \( \Bb \) in the numerator
-\begin{dmath}\label{eqn:cramersga:160}
+\begin{equation}\label{eqn:cramersga:160}
    x_k =
 \frac{
 \begin{vmatrix}
@@ -61,7 +61,7 @@ and if you want to solve for \( x_k \), then replace \( \Ba_k \) with \( \Bb \) 
    \Ba_1 & \Ba_2 & \cdots & \Ba_k & \cdots & \Ba_n \\
 \end{vmatrix}
 }.
-\end{dmath}
+\end{equation}
 The way that I knew of connecting the wedge product to linear system solution was as follows.  Given a linear system such as
 \begin{equation}\label{eqn:cramersga:20}
 \begin{aligned}
@@ -70,9 +70,9 @@ The way that I knew of connecting the wedge product to linear system solution wa
 \end{aligned}
 \end{equation}
 we can restate the problem as
-\begin{dmath}\label{eqn:cramersga:40}
+\begin{equation}\label{eqn:cramersga:40}
 \Ba x + \Bb y = \Bc.
-\end{dmath}
+\end{equation}
 Should we wish to solve for \( x \), we just wedge with \( \Bb \), and to solve for \( y \) we just wedge with \( \Ba \)
 \begin{equation}\label{eqn:cramersga:60}
 \begin{aligned}

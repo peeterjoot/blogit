@@ -68,86 +68,94 @@ where \( i = \Be_1 \Be_2 \).  Our tangent space vectors are
    \Bx_r = \Be_1 e^{i\theta},
 \end{equation}
 and
-\begin{dmath}\label{eqn:reciprocalAndTangentspace:160}
+\begin{equation}\label{eqn:reciprocalAndTangentspace:160}
+\begin{aligned}
    \Bx_\theta
-   = r \Be_1 i e^{i\theta}
-   = r \Be_2 e^{i\theta}.
-\end{dmath}
+   &= r \Be_1 i e^{i\theta} \\
+   &= r \Be_2 e^{i\theta}.
+\end{aligned}
+\end{equation}
 The area element in this case is
-\begin{dmath}\label{eqn:reciprocalAndTangentspace:180}
+\begin{equation}\label{eqn:reciprocalAndTangentspace:180}
+\begin{aligned}
    d\Bx_r \wedge d\Bx_\theta
-   =
-   \Bx_r \wedge \Bx_\theta dr d\theta
-   =
+   &=
+   \Bx_r \wedge \Bx_\theta dr d\theta \\
+   &=
    \gpgradetwo{
    \Be_1 e^{i\theta}
 r \Be_2 e^{i\theta} }
-dr d\theta
-   = i r dr d\theta.
-\end{dmath}
+dr d\theta \\
+&= i r dr d\theta.
+\end{aligned}
+\end{equation}
 Integration over a circular region gives
-\begin{dmath}\label{eqn:reciprocalAndTangentspace:200}
+\begin{equation}\label{eqn:reciprocalAndTangentspace:200}
+\begin{aligned}
    \int_{r = 0}^R \int_{\theta=0}^{2\pi} d\Bx_r \wedge d\Bx_\theta
-   =
+   &=
    i \int_{r = 0}^R
    r dr
    \int_{\theta=0}^{2\pi}
-   d\theta
-   =
-   i \frac{R^2}{2} 2 \pi
-   = i \pi R^2.
-\end{dmath}
+   d\theta \\
+   &=
+   i \frac{R^2}{2} 2 \pi \\
+   &= i \pi R^2.
+\end{aligned}
+\end{equation}
 This is the area of the circle, scaled by the unit bivector that represents the orientation of the plane in this two dimensional subspace.
 
 As another example, consider a spherical parameterization, as illustrated in
 \cref{fig:sphericalCoordinates:sphericalCoordinatesFig2}.
-\begin{dmath}\label{eqn:reciprocalAndTangentspace:220}
+\begin{equation}\label{eqn:reciprocalAndTangentspace:220}
    \Bx(r, \theta, \phi) = r \Be_1 e^{i\phi} \sin\theta + r \Be_3 \cos\theta.
-\end{dmath}
+\end{equation}
 \imageFigure{../figures/blogit/sphericalCoordinatesFig2}{Spherical coordinates.}{fig:sphericalCoordinates:sphericalCoordinatesFig2}{0.3}
 Our curvilinear vectors in this case are
-\begin{dmath}\label{eqn:reciprocalAndTangentspace:240}
+\begin{equation}\label{eqn:reciprocalAndTangentspace:240}
    \Bx_r = \Be_1 e^{i\phi} \sin\theta + \Be_3 \cos\theta,
-\end{dmath}
-\begin{dmath}\label{eqn:reciprocalAndTangentspace:260}
+\end{equation}
+\begin{equation}\label{eqn:reciprocalAndTangentspace:260}
    \Bx_\theta = r \Be_1 e^{i\phi} \cos\theta - r \Be_3 \sin\theta,
-\end{dmath}
-\begin{dmath}\label{eqn:reciprocalAndTangentspace:280}
+\end{equation}
+\begin{equation}\label{eqn:reciprocalAndTangentspace:280}
    \Bx_\phi = r \Be_2 e^{i\phi} \sin\theta.
-\end{dmath}
+\end{equation}
 In this case our (pseudoscalar) volume element is
-\begin{dmath}\label{eqn:reciprocalAndTangentspace:300}
+\begin{equation}\label{eqn:reciprocalAndTangentspace:300}
+\begin{aligned}
    d\Bx_r  \wedge
    d\Bx_\theta \wedge
    d\Bx_\phi
-   =
+   &=
    r^2 \sin\theta \gpgradethree{
       \lr{ \Be_1 e^{i\phi} \sin\theta + \Be_3 \cos\theta }
       \lr{ \Be_1 e^{i\phi} \cos\theta - \Be_3 \sin\theta }
    \Be_2 e^{i\phi}
 }
-\, dr d\theta d\phi
-   =
+\, dr d\theta d\phi \\
+&=
    r^2 \sin\theta \gpgradethree{
       \lr{ \Be_1 e^{i\phi} \sin\theta + \Be_3 \cos\theta }
       \lr{ \Be_1 \cos\theta - \Be_3 e^{-i\phi} \sin\theta }
    \Be_2
-   } \, dr d\theta d\phi
-   =
+   } \, dr d\theta d\phi \\
+   &=
    r^2 \sin\theta \gpgradethree{
       \lr{ -\Be_1 \Be_3 \sin^2\theta
       +
       \Be_3 \Be_1 \cos^2\theta
    }
    \Be_2
-   } \, dr d\theta d\phi
-   =
+   } \, dr d\theta d\phi \\
+   &=
    \Be_3 \Be_1 \Be_2 r^2 \sin\theta
-   \, dr d\theta d\phi
-   =
+   \, dr d\theta d\phi \\
+   &=
    I r^2 \sin \theta
    \, dr d\theta d\phi.
-\end{dmath}
+\end{aligned}
+\end{equation}
 This is just the standard spherical volume element, but scaled with the pseudoscalar.  If we integrate the upper half of the volume (above the x-y plane), we would find \( \int_{r=0}^R \int_{\phi=0}^{2 \pi} \int_{\theta=0}^{\pi/2} d\Bx_r  \wedge d\Bx_\theta \wedge d\Bx_\phi = (1/2) I (4/3) \pi R^3 \), half the volume of the sphere, again weighted by the pseudoscalar for the space.  The sign would be negated for the lower half of plane, since our volume element is not strictly positive everywhere.  This change of sign is not unique to this geometric algebra formulation, as we would have to integrate 
 \( \int \Abs{\partial(x, y, z)/\partial(r,\theta, \phi)} \, dr d\theta d\phi \)
 if we were computing the spherical volume using a standard scalar change of variables (taking the absolute value of our Jacobian.)
@@ -155,9 +163,9 @@ if we were computing the spherical volume using a standard scalar change of vari
 As a final example, let's pick the coordinates associated withwith  a relativistic boost and scale parameterization in spacetime, illustrated in
 \cref{fig:boost:boostFig3}, with \( r = 1 \).
 \imageFigure{../figures/blogit/boostFig3}{Boost worldline.}{fig:boost:boostFig3}{0.3}
-\begin{dmath}\label{eqn:reciprocalAndTangentspace:360}
+\begin{equation}\label{eqn:reciprocalAndTangentspace:360}
 x = r \gamma_0 e^{\gamma_0 \gamma_1 \alpha}.
-\end{dmath}
+\end{equation}
 For this surface we have
 \begin{equation}\label{eqn:reciprocalAndTangentspace:380}
 \begin{aligned}
@@ -166,20 +174,22 @@ For this surface we have
 \end{aligned}
 \end{equation}
 In this case the volume element is
-\begin{dmath}\label{eqn:reciprocalAndTangentspace:400}
+\begin{equation}\label{eqn:reciprocalAndTangentspace:400}
+\begin{aligned}
    dx_r \wedge dx_\alpha
-   = r dr d\alpha \gpgradetwo{
+   &= r dr d\alpha \gpgradetwo{
       \gamma_0 e^{\gamma_{01} \alpha}
       \gamma_1 e^{\gamma_{01} \alpha}
-   }
-   = r dr d\alpha \gpgradetwo{
+   } \\
+   &= r dr d\alpha \gpgradetwo{
       \gamma_0
       \gamma_1
       e^{-\gamma_{01} \alpha}
       e^{\gamma_{01} \alpha}
-   }
-   = \gamma_{01} r dr d\alpha.
-\end{dmath}
+   } \\
+   &= \gamma_{01} r dr d\alpha.
+\end{aligned}
+\end{equation}
 This is cosmetically similar to the circular area element above, also weighted by a pseudoscalar, but in this case, \( \alpha \) is not restricted to a bounded interval.  We also see that the basic ideas here work for both Euclidean and non-Euclidean vector spaces.
 
 \section{Reciprocal frame vectors.}
@@ -577,10 +587,10 @@ We find that curvilinear bases vectors
 \end{aligned}
 \end{equation}
 We can check that these are generally non-orthogonal as
-\begin{dmath}\label{eqn:reciprocalAndTangentspace:1360}
+\begin{equation}\label{eqn:reciprocalAndTangentspace:1360}
    \Bx_a \cdot \Bx_\theta = - a \cos\theta \sin\theta + a \epsilon^2 \cos\theta \sin\theta
    = \frac{a}{2} \lr{ \epsilon^2 - 1 } \sin\lr{ 2 \theta },
-\end{dmath}
+\end{equation}
 which shows that these vectors are orthogonal only in the limiting circular case, where the eccentricity \( \epsilon \) goes to one, or at the specific points \( \theta = n \pi/2 \).
 The area element is
 \begin{equation}\label{eqn:reciprocalAndTangentspace:1380}
@@ -767,26 +777,28 @@ We define the gradient \(\spacegrad\), implicitly as a directional derivative of
    \Ba \cdot \spacegrad f = \evalbar{ \ddt{} f(\Bx + \Ba t)  }{t = 0}.
 \end{equation}
 Expanding by chain rule, this is
-\begin{dmath}\label{eqn:reciprocalAndTangentspace:1540}
+\begin{equation}\label{eqn:reciprocalAndTangentspace:1540}
+\begin{aligned}
 \Ba \cdot \spacegrad f
-= \evalbar{ \PD{(x^i + a^i t)}{f} \PD{t}{(x^i + a^i t)} }{ t = 0 }
-= a^i \PD{x^i}{f}
-= \lr{ \Ba \cdot \Be^i} \PD{x^i}{f}
-= \Ba \cdot \lr{ \Be^i \PD{x^i}{} } f,
-\end{dmath}
+&= \evalbar{ \PD{(x^i + a^i t)}{f} \PD{t}{(x^i + a^i t)} }{ t = 0 } \\
+&= a^i \PD{x^i}{f} \\
+&= \lr{ \Ba \cdot \Be^i} \PD{x^i}{f} \\
+&= \Ba \cdot \lr{ \Be^i \PD{x^i}{} } f,
+\end{aligned}
+\end{equation}
 so, the gradient with respect to the standard basis \( \setlr{ \Be_i } \), and it's reciprocal frame \( \setlr{\Be^i} \), is
-\begin{dmath}\label{eqn:reciprocalAndTangentspace:1560}
+\begin{equation}\label{eqn:reciprocalAndTangentspace:1560}
    \spacegrad = \Be^i \PD{x^i}{}.
-\end{dmath}
+\end{equation}
 The reciprocal basis pairing here is an allowance for non-Euclidean spaces, and for Euclidean spaces reduces to the usual, since \( \Be^i = \Be_i \).
 Next we consider a change of coordinates, where
-\begin{dmath}\label{eqn:reciprocalAndTangentspace:1580}
+\begin{equation}\label{eqn:reciprocalAndTangentspace:1580}
    x^i = x^i( a^1, a^2, \cdots, a^n ).
-\end{dmath}
+\end{equation}
 Expressing the gradient in terms of these parameters, we have
-\begin{dmath}\label{eqn:reciprocalAndTangentspace:1600}
+\begin{equation}\label{eqn:reciprocalAndTangentspace:1600}
    \spacegrad = \Be^i \PD{x^i}{a^j} \PD{a^j}{}.
-\end{dmath}
+\end{equation}
 With
 \begin{equation}\label{eqn:reciprocalAndTangentspace:1620}
    \Bx^j = \Be^i \PD{x^i}{a^j} = \spacegrad a^j,
@@ -830,29 +842,28 @@ or
 \end{aligned}
 \end{equation}
 The \( r \) gradient is easy to compute
-\begin{dmath}\label{eqn:reciprocalAndTangentspace:1740}
+\begin{equation}\label{eqn:reciprocalAndTangentspace:1740}
    \spacegrad r^2
    = 2 x \Be_1 + 2 y \Be_2,
-\end{dmath}
+\end{equation}
 or
-\begin{dmath}\label{eqn:reciprocalAndTangentspace:1760}
+\begin{equation}\label{eqn:reciprocalAndTangentspace:1760}
+\begin{aligned}
    \spacegrad r
-   = \frac{x}{r} \Be_1 + \frac{y}{r} \Be_2
-   = \cos\theta \Be_1 + \sin\theta \Be_2
-   = \Be_1 e^{i\theta}.
-\end{dmath}
+   &= \frac{x}{r} \Be_1 + \frac{y}{r} \Be_2 \\
+   &= \cos\theta \Be_1 + \sin\theta \Be_2 \\
+   &= \Be_1 e^{i\theta}.
+\end{aligned}
+\end{equation}
 For the \( \theta \) gradient we have
-\begin{dmath}\label{eqn:reciprocalAndTangentspace:1780}
+\begin{equation}\label{eqn:reciprocalAndTangentspace:1780}
+\begin{aligned}
    \sec^2 \theta \spacegrad \theta
-   = \spacegrad
-   \frac{y}{x}
-   =
-   \Be_1 \PD{x}{} \frac{y}{x}
-   +
-   \Be_2 \PD{y}{} \frac{y}{x}
-   =
-   -\Be_1 \frac{y}{x^2} + \Be_2 \inv{x},
-\end{dmath}
+   &= \spacegrad \frac{y}{x} \\
+   &= \Be_1 \PD{x}{} \frac{y}{x} + \Be_2 \PD{y}{} \frac{y}{x} \\
+   &= -\Be_1 \frac{y}{x^2} + \Be_2 \inv{x},
+\end{aligned}
+\end{equation}
 so
 \begin{equation}\label{eqn:reciprocalAndTangentspace:1800}
 \begin{aligned}

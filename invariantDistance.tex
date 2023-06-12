@@ -1,0 +1,68 @@
+%
+% Copyright © 2023 Peeter Joot.  All Rights Reserved.
+% Licenced as described in the file LICENSE under the root directory of this GIT repository.
+%
+%{
+\input{../latex/blogpost.tex}
+\renewcommand{\basename}{invariantDistance}
+%\renewcommand{\dirname}{notes/phy1520/}
+\renewcommand{\dirname}{notes/ece1228-electromagnetic-theory/}
+%\newcommand{\dateintitle}{}
+%\newcommand{\keywords}{}
+
+\input{../latex/peeter_prologue_print2.tex}
+
+\usepackage{peeters_layout_exercise}
+\usepackage{peeters_braket}
+\usepackage{peeters_figures}
+\usepackage{siunitx}
+\usepackage{verbatim}
+%\usepackage{mhchem} % \ce{}
+%\usepackage{macros_bm} % \bcM
+%\usepackage{macros_qed} % \qedmarker
+%\usepackage{txfonts} % \ointclockwise
+\beginArtNoToc
+\generatetitle{XXX}
+%\chapter{XXX}
+%\label{chap:invariantDistance}
+The typical physical argument usually used to justifies the negative signature usually starts with describing lightlike behaviour, roughly along the following lines.
+
+Consider two frames, one moving along the fixed direction at a constant rate.  We form pairs, called ``events'', that have coordinates \((t, \Bx)\) in \(O\) and \((t', \Bx')\) in \(O'\).
+
+One of the axioms of relativity is that the concept of simultaneity is relative.
+In order to model the mathematics of our events, without a notion of simultaneity, we must now also introduce different time coordinates \(t\), and \(t'\) in the two frames.
+
+Let us imagine that at time \(t_1\) light is emitted at \(\Bx_1\), and at time \(t_2\) this light is absorbed.  Our space time events are then \((t_1, \Bx_1)\) and \((t_2, \Bx_2)\).  In the \(O\) frame, the light will go a distance \(c(t_2 - t_1)\).  This same distance can also be expressed as
+%
+\begin{equation*}
+\sqrt{ (\Bx_1 - \Bx_2)^2}.
+\end{equation*}
+These are equal.  It is convenient to work without the square roots, so we write
+\begin{equation*}
+(\Bx_1 - \Bx_2)^2 = c^2 (t_2 - t_1)^2.
+\end{equation*}
+
+Similarly, in the second frame, we must have
+\begin{equation*}
+(\Bx_1' - \Bx_2')^2 = c^2 (t_2' - t_1')^2,
+\end{equation*}
+or
+\begin{equation*}
+0 = (\Bx_1 - \Bx_2)^2 - c^2 (t_2 - t_1)^2 = (\Bx_1' - \Bx_2')^2 - c^2 (t_2' - t_1')^2.
+\end{equation*}
+or for a small change in both position and time
+\begin{equation*}
+0 = d\Bx^2 - c^2 dt^2 = d{\Bx'}^2 - c^2 {dt'}^2
+\end{equation*}
+
+More generally, when one describes things that are not lightlike, we define a spacetime interval
+\begin{equation*}
+ds^2 = d\Bx^2 - c^2 dt^2 = d{\Bx'}^2 - c^2 {dt'}^2,
+\end{equation*}
+that is invariant in all reference frames.  This can be considered a dot product of the difference of two almost adjacent events (with itself), and then out pops the requirement for a difference of sign for the spacelike and timelike components of the four-vector.
+
+Any good book of relativity will explain all this much better, but at the heart of the argument will be the requirement to discard the familiar notion of any sort of absolute simultaneity.  Arguing from that as a starting point, we end up with this mixed signature metric for free.
+
+%}
+%\EndArticle
+\EndNoBibArticle

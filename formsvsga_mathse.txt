@@ -21,7 +21,7 @@ This pretties up Maxwell's equation slightly, which we can now write as just
 $$   \left( { \boldsymbol{\nabla} + \frac{1}{{c}} \frac{\partial {}}{\partial {t}} } \right) F = J.$$
 Note that one can recover each of the original Maxwell's equations by grade selection, as there is a scalar, vector, bivector, and trivector grade of this equation, each of which corresponds to one of the original vector Maxwell's equations.
 
-Demonstrating how to work with Maxwell's equation in this form is beyond the scope of this answer.  Interested readers are referred to [6].  This is not an unbiased recommendation (i.e.: it is my book), it is, however, available <a href="http://peeterjoot.com/writing/geometric-algebra-for-electrical-engineers/">for free in pdf form.</a>
+Demonstrating how to work with Maxwell's equation in this form is beyond the scope of this answer.  Interested readers are referred to [6].  This is not an unbiased recommendation (i.e.: it is my book), it is, however, available <a href="https://peeterjoot.com/writing/geometric-algebra-for-electrical-engineers/">for free in pdf form.</a>
 
 <h2>Geometric algebra (STA, the Spacetime algebra.)</h2>
 Maxwell's equation in the form above used a Euclidean spatial basis.  In Maxwell's equation, the space and time derivative operator ($ \boldsymbol{\nabla} + (1/c) \partial/\partial_t $) is a strong hint of a relativistic structure, where time and space and aspects of a single story.  We can call this out using an explicitly relativistic notation, but there is unfortunately some additional baggage required.

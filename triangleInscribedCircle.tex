@@ -1,0 +1,107 @@
+%
+% Copyright © 2023 Peeter Joot.  All Rights Reserved.
+% Licenced as described in the file LICENSE under the root directory of this GIT repository.
+%
+%{
+\input{../latex/blogpost.tex}
+\renewcommand{\basename}{triangleInscribedCircle}
+%\renewcommand{\dirname}{notes/phy1520/}
+\renewcommand{\dirname}{notes/ece1228-electromagnetic-theory/}
+%\newcommand{\dateintitle}{}
+%\newcommand{\keywords}{}
+
+\input{../latex/peeter_prologue_print2.tex}
+
+\usepackage{peeters_layout_exercise}
+\usepackage{peeters_braket}
+\usepackage{peeters_figures}
+\usepackage{siunitx}
+\usepackage{verbatim}
+%\usepackage{movie15} 
+%\usepackage{media9} 
+%\usepackage{mhchem} % \ce{}
+%\usepackage{macros_bm} % \bcM
+%\usepackage{macros_qed} % \qedmarker
+%\usepackage{txfonts} % \ointclockwise
+
+\beginArtNoToc
+
+\generatetitle{Inscribed circle in a triangle}
+%\chapter{Inscribed circle in a triangle}
+%\label{chap:triangleInscribedCircle}
+
+\section{Motivation}
+
+In Jim Smith's recent \href{https://www.youtube.com/watch?v=pmgxXKbWmC4}{Handling Rejection! Using Geometric Algebra to Find the Incircle of a Triangle} video, he uses an area argument to find the center point of a circle inscribed in a triangle, as illustrated in \cref{fig:triangleWithInscribedCircle:triangleWithInscribedCircleFig1}.
+\imageFigure{../figures/blogit/triangleWithInscribedCircleFig1}{Triangle with inscribed circle.}{fig:triangleWithInscribedCircle:triangleWithInscribedCircleFig1}{0.3}
+
+In the video, Jim mentioned that he first tried calculating the intersection of the bivectors, but didn't like the form of the solution.  I'm curious what aspect of that solution wasn't desirable, since it is a pretty compact way to solve the system.
+
+\section{Setup.}
+A very convenient way to describe a triangle is with a pair of vectors for two of the edges, say \( \Ba, \Bb \), where the third edge is \( \Bc = \Ba -\Bb \).  In Jim's problem, he started with the scalar lengths of all the edges \( a, b, c \).  The two representations are interchangable.  We can set
+\begin{equation}\label{eqn:triangleInscribedCircle:n}\
+\begin{aligned}
+   \Ba &= a\Be_1 \\
+   \Bb &= b \Be_1 e^{i\theta_c},
+\end{aligned}
+\end{equation}
+where \( i = \Be_1 \Be_2 \), and \( \theta_c \) is the angle opposite edge \( \Bc \), which can be found from the cosine law
+\begin{equation}\label{eqn:triangleInscribedCircle:20}
+   \Bc^2 = \lr{ \Ba - \Bb }^2 = \Ba^2 + \Bb^2 - 2 \Ba \cdot \Bb = a^2 + b^2 - 2 a b \cos\theta_c,
+\end{equation}
+or
+\begin{equation}\label{eqn:triangleInscribedCircle:40}
+   \theta_c = \cos^{-1} \lr{ \frac{a^2 + b^2 - c^2}{2 a b} }.
+\end{equation}
+\section{The center point.}
+The points on our bisectors are
+\begin{equation}\label{eqn:triangleInscribedCircle:60}
+\begin{aligned}
+   r_c(t) &= t \lr{ \acap + \bcap } \\
+   r_b(t) &= \Ba + t \lr{ \acap + \ccap } \\
+   r_a(t) &= \Bb + t \lr{ \ccap - \bcap }.
+\end{aligned}
+\end{equation}
+We can find the intersection of any two of these to find the center point of the circle.  For example, we seek solutions of
+\begin{equation}\label{eqn:triangleInscribedCircle:80}
+   u \lr{ \acap + \bcap } = \Ba + v \lr{ \acap + \ccap }.
+\end{equation}
+We can wedge this with either of the \( u, v \) vector factors, to eliminate one of the scalars in this equation.  Seeking \( u \), we wedge with \( \acap + \ccap \), for
+\begin{equation}\label{eqn:triangleInscribedCircle:100}
+   u \lr{ \acap + \ccap } \wedge \lr{ \acap + \bcap } = \lr{ \acap + \ccap } \wedge \Ba = \ccap \wedge \Ba.
+\end{equation}
+so
+\begin{equation}\label{eqn:triangleInscribedCircle:120}
+   \Bz = \lr{ \acap + \bcap } \lr{ \lr{ \ccap \wedge \Ba } \cdot \inv{ \lr{ \acap + \ccap } \wedge \lr{ \acap + \bcap } } }.
+\end{equation}
+Having found the center, we can calculate the radius that touches the \( a \) edge, which is just
+\begin{equation}\label{eqn:triangleInscribedCircle:140}
+   \Rej{\Ba}{\Bz} = \lr{ \Bz \wedge \acap } \cdot \acap.
+\end{equation}
+The scalar radius is
+\begin{equation}\label{eqn:triangleInscribedCircle:160}
+r = \Norm{ \Bz \wedge \acap }.
+\end{equation}
+Using a Mathematica Manipulate, I plotted this solution, employing a duality transformation to calculate the bivectors using cross products (avoiding any  GA package dependencies.)  That is
+\begin{equation}\label{eqn:triangleInscribedCircle:180}
+   \Bz = \lr{ \acap + \bcap } \lr{ \lr{ \ccap \cross \Ba } \cdot \inv{ \lr{ \acap + \ccap } \cross \lr{ \acap + \bcap } } }.
+\end{equation}
+\begin{equation}\label{eqn:triangleInscribedCircle:200}
+r = \Norm{ \Bz \cross \acap }.
+\end{equation}
+%\imageFigure{../figures/blogit/triangleWithInscribedCircleFig2}{Triangle with inscribed circle.}{fig:triangleWithInscribedCircle:triangleWithInscribedCircleFig2}{0.3}
+%\begin{center}%
+%   \captionsetup{type=figure}%
+%   \includegraphics[totalheight=0.3\textheight]{../figures/blogit/triangleWithInscribedCircleFig2.mp4}%
+%   \caption{Triangle with inscribed circle.}%
+%   \label{fig:movie}%
+%\end{center}%
+
+%\begin{frame}{:Triangle with inscribed circle}
+%    \centering
+%    \includemovie[autoplay]{10cm}{10cm}{../figures/blogit/triangleWithInscribedCircleFig2.mp4}
+%\end{frame}
+
+%}
+%\EndArticle
+\EndNoBibArticle

@@ -82,13 +82,15 @@ The scalar radius is
 \begin{equation}\label{eqn:triangleInscribedCircle:160}
 r = \Norm{ \Bz \wedge \acap }.
 \end{equation}
-Using a Mathematica Manipulate, I plotted this solution, employing a duality transformation to calculate the bivectors using cross products (avoiding any  GA package dependencies.)  That is
+\section{Calculation.}
+Using a Mathematica Manipulate, \href{https://github.com/peeterjoot/mathematica/blob/master/blogit/triangleInscribedCircle.nb}{I plotted this solution}, employing a duality transformation to calculate the bivectors using cross products (avoiding any  GA package dependencies.)  That is
 \begin{equation}\label{eqn:triangleInscribedCircle:180}
    \Bz = \lr{ \acap + \bcap } \lr{ \lr{ \ccap \cross \Ba } \cdot \inv{ \lr{ \acap + \ccap } \cross \lr{ \acap + \bcap } } }.
 \end{equation}
 \begin{equation}\label{eqn:triangleInscribedCircle:200}
 r = \Norm{ \Bz \cross \acap }.
 \end{equation}
+Of course, using Mathematica, we could have just used it's more general \( \textrm{Solve} \) function, and need not grow our own wedge product based implementation.
 %\imageFigure{../figures/blogit/triangleWithInscribedCircleFig2}{Triangle with inscribed circle.}{fig:triangleWithInscribedCircle:triangleWithInscribedCircleFig2}{0.3}
 %\begin{center}%
 %   \captionsetup{type=figure}%

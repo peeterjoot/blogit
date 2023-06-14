@@ -242,5 +242,8 @@
 #../latex/bin/lgrep invariantDistance.tex | tee o ; . ./o
 #perl -p -i ../latex/bin/latexRegex.pl invariantDistance.tex
 
-../latex/bin/lgrep triangleInscribedCircle.tex | tee o ; . ./o
-perl -p -i ../latex/bin/latexRegex.pl triangleInscribedCircle.tex
+#../latex/bin/lgrep triangleInscribedCircle.tex | tee o ; . ./o
+#perl -p -i ../latex/bin/latexRegex.pl triangleInscribedCircle.tex
+
+../latex/bin/lgrep bicomplexGA20.tex | tee o ; . ./o
+perl -p -i ../latex/bin/latexRegex.pl bicomplexGA20.tex

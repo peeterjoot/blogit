@@ -1,0 +1,95 @@
+%
+% Copyright © 2023 Peeter Joot.  All Rights Reserved.
+% Licenced as described in the file LICENSE under the root directory of this GIT repository.
+%
+%{
+\input{../latex/blogpost.tex}
+\renewcommand{\basename}{bicomplexGA20}
+%\renewcommand{\dirname}{notes/phy1520/}
+\renewcommand{\dirname}{notes/ece1228-electromagnetic-theory/}
+%\newcommand{\dateintitle}{}
+%\newcommand{\keywords}{}
+
+\input{../latex/peeter_prologue_print2.tex}
+
+\usepackage{peeters_layout_exercise}
+\usepackage{peeters_braket}
+\usepackage{peeters_figures}
+\usepackage{siunitx}
+\usepackage{verbatim}
+%\usepackage{mhchem} % \ce{}
+%\usepackage{macros_bm} % \bcM
+%\usepackage{macros_qed} % \qedmarker
+%\usepackage{txfonts} % \ointclockwise
+
+\beginArtNoToc
+
+\generatetitle{A complex-pair representation of GA(2,0).}
+%\chapter{A complex-pair representation of GA(2,0)}
+%\label{chap:bicomplexGA20}
+
+Suppose that we want to represent GA(2,0) (Euclidean) multivectors as a pair of complex numbers, with a structure like
+\begin{equation}\label{eqn:bicomplexGA20:20}
+M = (m_1, m_2),
+\end{equation}
+where
+\begin{equation}\label{eqn:bicomplexGA20:40}
+\begin{aligned}
+   \gpgrade{M}{0,2} &\sim m_1 \\
+   \gpgrade{M}{1} &\sim m_2.
+\end{aligned}
+\end{equation}
+Specifically
+\begin{equation}\label{eqn:bicomplexGA20:60}
+\begin{aligned}
+   \gpgrade{M}{0} &\sim \Real(m_1) \\
+   \gpgrade{M}{1} \cdot \Be_1 &\sim \Real(m_2) \\
+   \gpgrade{M}{1} \cdot \Be_2 &\sim \Imag(m_2) \\
+   \gpgrade{M}{2} i^{-1} &\sim \Imag(m_1),
+\end{aligned}
+\end{equation}
+where \( i \sim \Be_1 \Be_2 \).
+
+Let's figure out how we can represent the various GA products, starting with the geometric product.  Let
+\begin{equation}\label{eqn:bicomplexGA20:80}
+\begin{aligned}
+   M &= \gpgrade{M}{0,2} + \gpgrade{M}{1} = (m_1, m_2) = (m_{11} + m_{12} i, m_{21} + m_{22} i) \\
+   N &= \gpgrade{N}{0,2} + \gpgrade{N}{1} = (n_1, n_2) = (n_{11} + n_{12} i, n_{21} + n_{22} i),
+\end{aligned}
+\end{equation}
+so
+\begin{equation}\label{eqn:bicomplexGA20:200}
+\begin{aligned}
+   M N
+   &= \gpgrade{M}{0,2} \gpgrade{N}{0,2} + \gpgrade{M}{1} \gpgrade{N}{1}  \\
+   &\quad+ \gpgrade{M}{1} \gpgrade{N}{0,2} + \gpgrade{M}{0,2} \gpgrade{N}{1}
+\end{aligned}
+\end{equation}
+
+The first two terms have only even grades, and the second two terms are vectors.  The complete representation of the even grade components of this multivector product is
+\begin{equation}\label{eqn:bicomplexGA20:240}
+   \gpgrade{M N}{0,2} \sim \lr{ m_1 n_1 + \Real(m_2 n_2^\conj) - i \Imag(m_2 n_2^\conj), 0 },
+\end{equation}
+or
+\begin{equation}\label{eqn:bicomplexGA20:260}
+\begin{aligned}
+   \gpgrade{M N}{0} &= \Real\lr{ m_1 n_1 + m_2 n_2^\conj } \\
+   \gpgrade{M N}{2} i^{-1} &= \Imag\lr{ m_1 n_1 - m_2 n_2^\conj }.
+\end{aligned}
+\end{equation}
+
+For the vector components we have
+\begin{equation}\label{eqn:bicomplexGA20:280}
+\begin{aligned}
+   \gpgrade{M N}{1}
+   &=
+   \gpgrade{M}{1} \gpgrade{N}{0} + \gpgrade{M}{0} \gpgrade{N}{1}
+   +
+   \gpgrade{M}{1} \gpgrade{N}{2} + \gpgrade{M}{2} \gpgrade{N}{1} \\
+   &= \gpgrade{M}{1} n_{11} + m_{11} \gpgrade{N}{1} + \gpgrade{M}{1} i n_{22} + i m_{22} \gpgrade{N}{1}.
+\end{aligned}
+\end{equation}
+
+%}
+%\EndArticle
+\EndNoBibArticle

@@ -42,10 +42,10 @@ where
 Specifically
 \begin{equation}\label{eqn:bicomplexGA20:60}
 \begin{aligned}
-   \gpgrade{M}{0} &\sim \Real(m_1) \\
-   \gpgrade{M}{1} \cdot \Be_1 &\sim \Real(m_2) \\
-   \gpgrade{M}{1} \cdot \Be_2 &\sim \Imag(m_2) \\
-   \gpgrade{M}{2} i^{-1} &\sim \Imag(m_1),
+   \gpgrade{M}{0} &= \Real(m_1) \\
+   \gpgrade{M}{1} \cdot \Be_1 &= \Real(m_2) \\
+   \gpgrade{M}{1} \cdot \Be_2 &= \Imag(m_2) \\
+   \gpgrade{M}{2} i^{-1} &= \Imag(m_1),
 \end{aligned}
 \end{equation}
 where \( i \sim \Be_1 \Be_2 \).
@@ -87,6 +87,41 @@ For the vector components we have
    +
    \gpgrade{M}{1} \gpgrade{N}{2} + \gpgrade{M}{2} \gpgrade{N}{1} \\
    &= \gpgrade{M}{1} n_{11} + m_{11} \gpgrade{N}{1} + \gpgrade{M}{1} i n_{22} + i m_{22} \gpgrade{N}{1}.
+\end{aligned}
+\end{equation}
+For these,
+\begin{equation}\label{eqn:bicomplexGA20:300}
+\begin{aligned}
+   \gpgrade{M}{1} i
+   &= \lr{ m_{21} \Be_1 + m_{22} \Be_2 } \Be_{12}
+   &= - m_{22} \Be_1 + m_{21} \Be_2,
+\end{aligned}
+\end{equation}
+and
+\begin{equation}\label{eqn:bicomplexGA20:320}
+\begin{aligned}
+   i \gpgrade{N}{1}
+   &= \Be_{12} \lr{ n_{21} \Be_1 + n_{22} \Be_2 }
+   &=
+   n_{22} \Be_1 - n_{21} \Be_2.
+\end{aligned}
+\end{equation}
+Comparing to
+\begin{equation}\label{eqn:bicomplexGA20:340}
+   i (a + i b)
+   = -b + i a,
+\end{equation}
+we see that
+\begin{equation}\label{eqn:bicomplexGA20:360}
+   \gpgrade{M N}{1}
+   \sim
+   \lr{ 0, n_{11} m_2 + m_{11} n_2 + n_{22} i m_2 - m_{22} i n_2 }.
+\end{equation}
+If we want the vector coordinates, those are
+\begin{equation}\label{eqn:bicomplexGA20:380}
+\begin{aligned}
+   \gpgrade{M N}{1} \cdot \Be_1 &= \Real \lr{ n_{11} m_2 + m_{11} n_2 + n_{22} i m_2 - m_{22} i n_2 } \\
+   \gpgrade{M N}{1} \cdot \Be_2 &= \Imag \lr{ n_{11} m_2 + m_{11} n_2 + n_{22} i m_2 - m_{22} i n_2 }.
 \end{aligned}
 \end{equation}
 

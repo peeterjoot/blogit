@@ -27,7 +27,7 @@
 \generatetitle{A complex-pair representation of GA(2,0).}
 %\chapter{A complex-pair representation of GA(2,0)}
 %\label{chap:bicomplexGA20}
-
+\section{Motivation.}
 Suppose that we want to represent GA(2,0) (Euclidean) multivectors as a pair of complex numbers, with a structure like
 \begin{equation}\label{eqn:bicomplexGA20:20}
 M = (m_1, m_2),
@@ -50,6 +50,7 @@ Specifically
 \end{equation}
 where \( i \sim \Be_1 \Be_2 \).
 
+\section{Multivector product representation.}
 Let's figure out how we can represent the various GA products, starting with the geometric product.  Let
 \begin{equation}\label{eqn:bicomplexGA20:80}
 \begin{aligned}
@@ -86,7 +87,7 @@ For the vector components we have
    \gpgrade{M}{1} \gpgrade{N}{0} + \gpgrade{M}{0} \gpgrade{N}{1}
    +
    \gpgrade{M}{1} \gpgrade{N}{2} + \gpgrade{M}{2} \gpgrade{N}{1} \\
-   &= \gpgrade{M}{1} n_{11} + m_{11} \gpgrade{N}{1} + \gpgrade{M}{1} i n_{22} + i m_{22} \gpgrade{N}{1}.
+   &= \gpgrade{M}{1} n_{11} + m_{11} \gpgrade{N}{1} + \gpgrade{M}{1} i n_{12} + i m_{12} \gpgrade{N}{1}.
 \end{aligned}
 \end{equation}
 For these,
@@ -115,15 +116,23 @@ we see that
 \begin{equation}\label{eqn:bicomplexGA20:360}
    \gpgrade{M N}{1}
    \sim
-   \lr{ 0, n_{11} m_2 + m_{11} n_2 + n_{22} i m_2 - m_{22} i n_2 }.
+   \lr{ 0, n_{11} m_2 + m_{11} n_2 + n_{12} i m_2 - m_{12} i n_2 }.
 \end{equation}
 If we want the vector coordinates, those are
 \begin{equation}\label{eqn:bicomplexGA20:380}
 \begin{aligned}
-   \gpgrade{M N}{1} \cdot \Be_1 &= \Real \lr{ n_{11} m_2 + m_{11} n_2 + n_{22} i m_2 - m_{22} i n_2 } \\
-   \gpgrade{M N}{1} \cdot \Be_2 &= \Imag \lr{ n_{11} m_2 + m_{11} n_2 + n_{22} i m_2 - m_{22} i n_2 }.
+   \gpgrade{M N}{1} \cdot \Be_1 &= \Real \lr{ n_{11} m_2 + m_{11} n_2 + n_{12} i m_2 - m_{12} i n_2 } \\
+   \gpgrade{M N}{1} \cdot \Be_2 &= \Imag \lr{ n_{11} m_2 + m_{11} n_2 + n_{12} i m_2 - m_{12} i n_2 }.
 \end{aligned}
 \end{equation}
+
+\section{Summary.}
+\begin{equation}\label{eqn:bicomplexGA20:n}
+M N \sim
+   \lr{ m_1 n_1 + \Real(m_2 n_2^\conj) - i \Imag(m_2 n_2^\conj), n_{11} m_2 + m_{11} n_2 + n_{12} i m_2 - m_{12} i n_2 }.
+\end{equation}
+
+A \href{https://github.com/peeterjoot/gapauli/blob/master/Cl20.m}{sample Mathematica implementation} is available, as well as \href{https://github.com/peeterjoot/gapauli/blob/master/testCl20.nb}{an example notebook} (that also doubles as a test case.)
 
 %}
 %\EndArticle

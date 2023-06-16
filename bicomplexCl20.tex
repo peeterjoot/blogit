@@ -1,0 +1,123 @@
+%
+% Copyright © 2023 Peeter Joot.  All Rights Reserved.
+% Licenced as described in the file LICENSE under the root directory of this GIT repository.
+%
+%{
+\input{../latex/blogpost.tex}
+\renewcommand{\basename}{bicomplexCl20}
+%\renewcommand{\dirname}{notes/phy1520/}
+\renewcommand{\dirname}{notes/ece1228-electromagnetic-theory/}
+%\newcommand{\dateintitle}{}
+%\newcommand{\keywords}{}
+
+\input{../latex/peeter_prologue_print2.tex}
+
+\usepackage{peeters_layout_exercise}
+\usepackage{peeters_braket}
+\usepackage{peeters_figures}
+\usepackage{siunitx}
+\usepackage{verbatim}
+%\usepackage{mhchem} % \ce{}
+%\usepackage{macros_bm} % \bcM
+%\usepackage{macros_qed} % \qedmarker
+%\usepackage{txfonts} % \ointclockwise
+
+\beginArtNoToc
+
+\generatetitle{Complex-pair representation of GA(2,0) multivectors}
+%\chapter{Complex-pair representation of GA(2,0) multivectors}
+%\label{chap:bicomplexCl20}
+
+We found previously that a complex pair representation of a GA(2,0) multivector had a compact geometric product realization.  Now that we know the answer, let's work backwards from that representation to verify that everything matches our expectations.
+
+We are representing a multivector of the form
+\begin{equation}\label{eqn:bicomplexCl20:20}
+   M = a + b \Be_1 \Be_2 + x \Be_1 + y \Be_2,
+\end{equation}
+as the pair of complex numbers
+\begin{equation}\label{eqn:bicomplexCl20:40}
+   M \sim \lr{ a + i b, x + i y }.
+\end{equation}
+Given a pair of multivectors with this complex representation
+\begin{equation}\label{eqn:bicomplexCl20:60}
+\begin{aligned}
+   M &= \lr{ z_1, z_2 } \\
+   N &= \lr{ q_1, q_2 },
+\end{aligned}
+\end{equation}
+we found that our geometric product representation was
+\begin{equation}\label{eqn:bicomplexCl20:80}
+M N \sim
+   \lr{ z_1 q_1 + z_2^\conj q_2, z_2 q_1 + z_1^\conj q_2 }.
+\end{equation}
+
+Our task is now to verify that this is correct.  Let's set
+\begin{equation}\label{eqn:bicomplexCl20:100}
+\begin{aligned}
+   z_1 &= a + i b \\
+   q_1 &= a' + i b' \\
+   z_2 &= x + i y \\
+   q_2 &= x' + i y',
+\end{aligned}
+\end{equation}
+and proceed with an expansion of the even grade components
+\begin{equation}\label{eqn:bicomplexCl20:120}
+\begin{aligned}
+   z_1 q_1 + z_2^\conj q_2
+   &=
+   \lr{ a + i b } \lr{ a' + i b' }
+   +
+   \lr{ x - i y } \lr{ x' + i y' } \\
+   &=
+   a a' - b b' + x x' + y y'
+   + i \lr{ b a' + a b' + x y' - y x' } \\
+   &=
+   x x' + y y' + i \lr{ x y' - y x' } + \quad a a' - b b' + i \lr{ b a' + a b' }.
+\end{aligned}
+\end{equation}
+The first terms is clearly the geometric product of two vectors
+\begin{equation}\label{eqn:bicomplexCl20:140}
+   \lr{ x \Be_1 + y \Be_2 } \lr{ x' \Be_1 + y' \Be_2 }
+   =
+   x x' + y y' + i \lr{ x y' - y x' },
+\end{equation}
+and we are able to verify that the second parts can be factored too
+\begin{equation}\label{eqn:bicomplexCl20:160}
+   \lr{ a + b i } \lr{ a' + b' i }
+   =
+   a a' - b b' + i \lr{ b a' + a b' }.
+\end{equation}
+This leaves us with
+\begin{equation}\label{eqn:bicomplexCl20:180}
+   \gpgrade{ M N }{0,2} = \gpgradeone{ M } \gpgradeone{ N } + \gpgrade{ M }{0,2} \gpgrade{ N }{0,2},
+\end{equation}
+as expected.  This part of our representation checks out.
+
+Now, let's look at the vector component of our representation.  First note that to convert from our complex representation of our vector \( z = x + i y \) to the standard basis representation of our vector, we need only multiply by \( \Be_1 \) on the left, for example:
+\begin{equation}\label{eqn:bicomplexCl20:220}
+\Be_1 \lr{ x + i y } = \Be_1 x + \Be_1 \Be_1 \Be_2 y = \Be_1 x + \Be_2 y.
+\end{equation}
+So, for the vector component of our assumed product representation, we have
+\begin{equation}\label{eqn:bicomplexCl20:200}
+\begin{aligned}
+   \Be_1 \lr{ z_2 q_1 + z_1^\conj q_2 }
+&=
+\Be_1 \lr{ x + i y } \lr{ a' + i b' }
++
+\Be_1 \lr{ a - i b } \lr{ x' + i y' } \\
+&=
+\Be_1 \lr{ x + i y } \lr{ a' + i b' }
++
+\lr{ a + i b } \Be_1 \lr{ x' + i y' } \\
+&=
+\gpgradeone{ M } \gpgrade{ N}{0,2}
++ \gpgrade{ M }{0,2} \gpgradeone{ N},
+\end{aligned}
+\end{equation}
+as expected.
+
+Our complex-pair realization of the geometric product checks out.
+
+%}
+%\EndArticle
+\EndNoBibArticle

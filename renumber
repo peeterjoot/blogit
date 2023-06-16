@@ -245,5 +245,8 @@
 #../latex/bin/lgrep triangleInscribedCircle.tex | tee o ; . ./o
 #perl -p -i ../latex/bin/latexRegex.pl triangleInscribedCircle.tex
 
-../latex/bin/lgrep bicomplexGA20.tex | tee o ; . ./o
-perl -p -i ../latex/bin/latexRegex.pl bicomplexGA20.tex
+#../latex/bin/lgrep bicomplexGA20.tex | tee o ; . ./o
+#perl -p -i ../latex/bin/latexRegex.pl bicomplexGA20.tex
+
+../latex/bin/lgrep bicomplexCl20.tex | tee o ; . ./o
+perl -p -i ../latex/bin/latexRegex.pl bicomplexCl20.tex

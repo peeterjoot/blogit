@@ -127,12 +127,72 @@ If we want the vector coordinates, those are
 \end{equation}
 
 \section{Summary.}
-\begin{equation}\label{eqn:bicomplexGA20:n}
+\begin{equation}\label{eqn:bicomplexGA20:400}
 M N \sim
    \lr{ m_1 n_1 + \Real(m_2 n_2^\conj) - i \Imag(m_2 n_2^\conj), n_{11} m_2 + m_{11} n_2 + n_{12} i m_2 - m_{12} i n_2 }.
 \end{equation}
 
 A \href{https://github.com/peeterjoot/gapauli/blob/master/Cl20.m}{sample Mathematica implementation} is available, as well as \href{https://github.com/peeterjoot/gapauli/blob/master/testCl20.nb}{an example notebook} (that also doubles as a test case.)
+
+\section{Clarification.}
+I skipped a step above, showing the correspondances to the dot and wedge product.
+
+Let \(z = a + bi\), and \(w = c + di\).  Then:
+\begin{equation}\label{eqn:bicomplexGA20:420}
+\begin{aligned}
+   z w^\conj
+   &=
+   \lr{ a + b i } \lr{ c - d i } \\
+   &= a c + b d -i \lr{ a d - b c }.
+\end{aligned}
+\end{equation}
+Compare that to the geometric product of two vectors \( \Bx = a \Be_1 + b \Be_2 \), and \( \By = c \Be_1 + d \Be_2 \), where we have
+\begin{equation}\label{eqn:bicomplexGA20:440}
+\begin{aligned}
+   \Bx \By &= \Bx \cdot \By + \Bx \wedge \By \\
+   &= \lr{ a \Be_1 + b \Be_2 } \lr{ c \Be_1 + d \Be_2 } \\
+   &= a c + b d + \Be_1 \Be_2 \lr{ a d - b c }.
+\end{aligned}
+\end{equation}
+So we have
+\begin{equation}\label{eqn:bicomplexGA20:460}
+\begin{aligned}
+   a b + cd &= \Bx \cdot \By = \Real \lr{ z w^\conj } \\
+   a d - b c &= \lr{ \Bx \wedge \By } \Be_{12}^{-1} = - \Imag \lr{ z w^\conj }.
+\end{aligned}
+\end{equation}
+We see that \( \lr{z w^\conj}^\conj = z^\conj w \) can be used as a representation of the geometric product (setting \( i = \Be_1 \Be_2 \) as usual.)
+
+\section{Another simplification.}
+We have sums of the form
+\begin{equation}\label{eqn:bicomplexGA20:480}
+   \Real(z) w \pm \Imag(z) i w
+\end{equation}
+above.  Let's see if those can be simplified.  For the positive case we have
+\begin{equation}\label{eqn:bicomplexGA20:500}
+\begin{aligned}
+   \Real(z) w + \Imag(z) i w
+   &=
+   \inv{2} \lr{ z + z^\conj } w + \inv{2} \lr{ z - z^\conj } w \\
+   &=
+   z w,
+\end{aligned}
+\end{equation}
+and for the negative case, we have
+\begin{equation}\label{eqn:bicomplexGA20:520}
+\begin{aligned}
+   \Real(z) w - \Imag(z) i w
+   &=
+   \inv{2} \lr{ z + z^\conj } w - \inv{2} \lr{ z - z^\conj } w \\
+   &=
+   z^\conj w.
+\end{aligned}
+\end{equation}
+This, with the vector-vector product simplification above, means that we can represent the full multivector product in this representation as just
+\begin{equation}\label{eqn:bicomplexGA20:540}
+M N \sim
+   \lr{ m_1 n_1 + m_2^\conj n_2, m_2 n_1 + m_1^\conj n_2 }.
+\end{equation}
 
 %}
 %\EndArticle

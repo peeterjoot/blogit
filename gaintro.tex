@@ -1,0 +1,120 @@
+%
+% Copyright © 2023 Peeter Joot.  All Rights Reserved.
+% Licenced as described in the file LICENSE under the root directory of this GIT repository.
+%
+%{
+\input{../latex/blogpost.tex}
+\renewcommand{\basename}{gaintro}
+%\renewcommand{\dirname}{notes/phy1520/}
+\renewcommand{\dirname}{notes/ece1228-electromagnetic-theory/}
+%\newcommand{\dateintitle}{}
+%\newcommand{\keywords}{}
+
+\input{../latex/peeter_prologue_print2.tex}
+
+\usepackage{peeters_layout_exercise}
+\usepackage{peeters_braket}
+\usepackage{peeters_figures}
+\usepackage{siunitx}
+\usepackage{verbatim}
+\usepackage{peeters_tablebox}
+%\usepackage{mhchem} % \ce{}
+%\usepackage{macros_bm} % \bcM
+%\usepackage{macros_qed} % \qedmarker
+%\usepackage{txfonts} % \ointclockwise
+
+\beginArtNoToc
+
+\generatetitle{An(other) introduction to geometric algebra}
+%\chapter{An introduction to geometric algebra}
+%\label{chap:gaintro}
+
+\section{Definition}
+\makedefinition{Multivector space.}{dfn:gaintro:20}{
+Given an \( N \) dimensional dot product space \( V = \Span\setlr{\Bx_i| i \in [1,N]} \), the multivector space \( G(V) \) is a vector space with elements \( G(V) = \setlr{M | M = a_0 + a_i \Bx_i + a_{ij} \Bx_i \Bx_j + a_{ijk} \Bx_i \Bx_j \Bx_k + \cdots, a_{i j \cdots} \in \bbR} \) where, for \( R, S, T \in G(V), \Bx \in V \), the elements of \( G(V) \) form an algebra where
+\begin{tablebox}[tabularx={X|Y}]%{Multivector space axioms.}
+    Multiplication is distributive  & \( R( S + T ) = R S + R T \), \( (R + S)T = R T + S T \) \\ \hline
+    Multiplication is associative & \( (R S) T = R ( S T ) \) \\ \hline
+    Contraction axiom & \( \Bx^2 = \Bx \cdot \Bx, \,\forall \Bx \in V \) \\ \hline
+\end{tablebox}
+We say that \( G(V) \) is generated from \( V \).
+} % definition
+
+\section{Simplest example: One dimension generating vector space.}
+This is a very abstract start.  Let's try to understand it by considering some examples.  We'll start with the very simplest case, where our vector space is a one dimensional vector space \( V = \Span\setlr{ a \Be, a \in \bbR } \), where \( \Be \cdot \Be = 1 \) is a unit vector for the space.
+
+We want to consider all the possible products of vectors.  The product of two vectors reduces to a scalar
+\begin{equation}\label{eqn:gaintro:40}
+\lr{ a \Be } \lr{ b \Be }
+= a b \Be^2 = a b,
+\end{equation}
+and the product of three vectors is a vector
+\begin{equation}\label{eqn:gaintro:60}
+\lr{ a \Be } \lr{ b \Be } \lr{ c \Be } = a b c \Be^2 \Be = a b c \Be.
+\end{equation}
+Generalizing slightly, it should be clear that any product of an even number of vectors is a scalar, and products of even numbers of vectors are vectors.  This means that the geometric algebra is closed with only two basic elements, one scalar, and one vector
+\begin{equation}\label{eqn:gaintro:80}
+G(V) = \setlr{ a + b \Be, a \in R, b \in R }.
+\end{equation}
+
+Suppose we form two general multivectors
+\begin{equation}\label{eqn:gaintro:100}
+\begin{aligned}
+R &= a + b \Be \\
+S &= \alpha + \beta \Be \\
+\end{aligned}
+\end{equation}
+The product of these multivectors, unsuprisingly, is also a multivector
+\begin{equation}\label{eqn:gaintro:120}
+\begin{aligned}
+R S
+&= \lr{ a + b \Be } \lr{ \alpha + \beta \Be } \\
+&= a \alpha + b \beta \Be^2 + \lr{ a \beta + b \alpha } \Be \\
+&= a \alpha + b \beta + \lr{ a \beta + b \alpha } \Be.
+\end{aligned}
+\end{equation}
+For this algebra, any sums or products of multivectors, can have only scalar and vector components.  We say that the scalar components of a multivector have grade zero, and the vector components of a multivector have grade one.  We will generalize the concept of grade shortly.
+\section{Next simplest example: Two dimension generating vector space.}
+Now consider a two dimensional Euclidean vector space \( V = \Span \setlr{ \Be_1, \Be_2 } \), where \( \Be_1, \Be_2 \) are orthonormal vectors.
+
+Just as we saw, in the one dimensional toy algebra, that repeated products \( \Be^k, k \in \bbZ \) could be reduced, we will see that is the case for this 2D geometric algebra.  We'll see that any products with repeated factors can be reduced to scalars, vectors, or a product of the two basis vectors (we will call such a product a bivector)
+\begin{equation}\label{eqn:gaintro:140}
+\begin{aligned}
+\Be_1 \Be_2 \Be_1                   &\propto \Be_2 \\
+\Be_2 \Be_1 \Be_2 \Be_1             &\propto 1 \\
+\Be_1 \Be_2 \Be_1 \Be_2 \Be_1       &\propto \Be_1 \\
+\Be_2 \Be_1 \Be_2 \Be_1 \Be_2 \Be_1 &\propto \Be_1 \Be_2.
+\end{aligned}
+\end{equation}
+
+To understand how that is the case, consider the vector \( \Bx = \Be_1 + \Be_2 \).  By the contraction axiom, we have
+\begin{equation}\label{eqn:gaintro:160}
+\begin{aligned}
+\Bx^2
+&= \Bx \cdot \Bx \\
+&= \Be_1 \cdot \Be_1 + \Be_2 \cdot \Be_2 \\
+&= 2.
+\end{aligned}
+\end{equation}
+We can also expand this product directly
+\begin{equation}\label{eqn:gaintro:180}
+\begin{aligned}
+\Bx^2
+&= \lr{ \Be_1 + \Be_2 } \lr{ \Be_1 + \Be_2 } \\
+&= \Be_1^2 + \Be_2^2 + \Be_1 \Be_2 + \Be_2 \Be_1 \\
+&= 2 + \Be_1 \Be_2 + \Be_2 \Be_1.
+\end{aligned}
+\end{equation}
+Comparing the two, we find that
+\begin{equation}\label{eqn:gaintro:200}
+\Be_1 \Be_2 + \Be_2 \Be_1 = 0,
+\end{equation}
+or
+\begin{equation}\label{eqn:gaintro:220}
+\Be_2 \Be_1 = -\Be_1 \Be_2.
+\end{equation}
+Products of a pair of perpendicular unit vectors anticommute.  It's left as an exersize, using the same argument, to show that products of any perpendicular vectors anticommute.  We see that should we wish to switch the order of a pair of perpendicular vectors, then we have to toggle the sign of the product for each such switcheroo.
+
+%}
+%\EndArticle
+\EndNoBibArticle

@@ -251,5 +251,8 @@
 #../latex/bin/lgrep bicomplexCl20.tex | tee o ; . ./o
 #perl -p -i ../latex/bin/latexRegex.pl bicomplexCl20.tex
 
-../latex/bin/lgrep toriodal.tex | tee o ; . ./o
+#../latex/bin/lgrep toriodal.tex | tee o ; . ./o
 #perl -p -i ../latex/bin/latexRegex.pl toriodal.tex
+
+../latex/bin/lgrep gaintro.tex | tee o ; . ./o
+#perl -p -i ../latex/bin/latexRegex.pl gaintro.tex

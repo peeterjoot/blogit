@@ -31,17 +31,17 @@
 
 \section{Definition}
 \makedefinition{Multivector space.}{dfn:gaintro:20}{
-Given an \( N \) dimensional dot product space \( V = \Span\setlr{\Bx_i| i \in [1,N]} \), the multivector space \( G(V) \) is a vector space with elements \( G(V) = \setlr{M | M = a_0 + a_i \Bx_i + a_{ij} \Bx_i \Bx_j + a_{ijk} \Bx_i \Bx_j \Bx_k + \cdots, a_{i j \cdots} \in \bbR} \) where, for \( R, S, T \in G(V), \Bx \in V \), the elements of \( G(V) \) form an algebra where
+Given an \( N \) dimensional dot product space \( V = \Span\setlr{\Bx_i| i \in [1,N]} \), the multivector space \( G(V) \) is a vector space with elements \( G(V) = \setlr{M | M = a_0 + a_i \Bx_i + a_{ij} \Bx_i \Bx_j + a_{ijk} \Bx_i \Bx_j \Bx_k + \cdots, a_{i j \cdots} \in \bbR} \) where, for \( R, S, T \in G(V) \), the elements of \( G(V) \) form an algebra subject to constraints
 \begin{tablebox}[tabularx={X|Y}]%{Multivector space axioms.}
     Multiplication is distributive  & \( R( S + T ) = R S + R T \), \( (R + S)T = R T + S T \) \\ \hline
     Multiplication is associative & \( (R S) T = R ( S T ) \) \\ \hline
-    Contraction axiom & \( \Bx^2 = \Bx \cdot \Bx, \,\forall \Bx \in V \) \\ \hline
+    Contraction axiom & \( \Bx^2 = \Bx \cdot \Bx, \,\forall \Bx \in V. \) \\ \hline
 \end{tablebox}
 We say that \( G(V) \) is generated from \( V \).
 } % definition
 
 \section{Simplest example: One dimension generating vector space.}
-This is a very abstract start.  Let's try to understand it by considering some examples.  We'll start with the very simplest case, where our vector space is a one dimensional vector space \( V = \Span\setlr{ a \Be, a \in \bbR } \), where \( \Be \cdot \Be = 1 \) is a unit vector for the space.
+This is a very abstract start.  Let's try to understand it by considering some examples.  We'll start with the very simplest case, where our generating vector space is a one dimensional vector space \( \Rm{1} = \Span\setlr{ a \Be, a \in \bbR } \), where \( \Be \cdot \Be = 1 \) is a unit vector for the space.
 
 We want to consider all the possible products of vectors.  The product of two vectors reduces to a scalar
 \begin{equation}\label{eqn:gaintro:40}
@@ -54,7 +54,7 @@ and the product of three vectors is a vector
 \end{equation}
 Generalizing slightly, it should be clear that any product of an even number of vectors is a scalar, and products of even numbers of vectors are vectors.  This means that the geometric algebra is closed with only two basic elements, one scalar, and one vector
 \begin{equation}\label{eqn:gaintro:80}
-G(V) = \setlr{ a + b \Be, a \in R, b \in R }.
+G(\Rm{1}) = \setlr{ a + b \Be, a \in R, b \in R }.
 \end{equation}
 
 Suppose we form two general multivectors
@@ -64,7 +64,7 @@ R &= a + b \Be \\
 S &= \alpha + \beta \Be \\
 \end{aligned}
 \end{equation}
-The product of these multivectors, unsuprisingly, is also a multivector
+The product of these multivectors, unsurprisingly, is also a multivector
 \begin{equation}\label{eqn:gaintro:120}
 \begin{aligned}
 R S
@@ -75,14 +75,14 @@ R S
 \end{equation}
 For this algebra, any sums or products of multivectors, can have only scalar and vector components.  We say that the scalar components of a multivector have grade zero, and the vector components of a multivector have grade one.  We will generalize the concept of grade shortly.
 \section{Next simplest example: Two dimension generating vector space.}
-Now consider a two dimensional Euclidean vector space \( V = \Span \setlr{ \Be_1, \Be_2 } \), where \( \Be_1, \Be_2 \) are orthonormal vectors.
+Now consider a two dimensional Euclidean vector space \( \Rm{2} = \Span \setlr{ \Be_1, \Be_2 } \), where \( \Be_1, \Be_2 \) are orthonormal vectors.
 
-Just as we saw, in the one dimensional toy algebra, that repeated products \( \Be^k, k \in \bbZ \) could be reduced, we will see that is the case for this 2D geometric algebra.  We'll see that any products with repeated factors can be reduced to scalars, vectors, or a product of the two basis vectors (we will call such a product a bivector)
+Just as we saw, in the one dimensional toy algebra, that repeated products \( \Be^k, k \in \bbZ \) could be reduced, we will see that is the case for this 2D geometric algebra.  We'll see that any products with repeated factors can be reduced to scalars, vectors, or a product of the two basis vectors (we will call such a product a bivector, and say that it has grade two)
 \begin{equation}\label{eqn:gaintro:140}
 \begin{aligned}
-\Be_1 \Be_2 \Be_1                   &\propto \Be_2 \\
-\Be_2 \Be_1 \Be_2 \Be_1             &\propto 1 \\
-\Be_1 \Be_2 \Be_1 \Be_2 \Be_1       &\propto \Be_1 \\
+\Be_2 \Be_1 \Be_2                   &\propto \Be_1 \\
+\Be_1 \Be_2 \Be_1 \Be_2             &\propto 1 \\
+\Be_2 \Be_1 \Be_2 \Be_1 \Be_2       &\propto \Be_2 \\
 \Be_2 \Be_1 \Be_2 \Be_1 \Be_2 \Be_1 &\propto \Be_1 \Be_2.
 \end{aligned}
 \end{equation}
@@ -113,7 +113,68 @@ or
 \begin{equation}\label{eqn:gaintro:220}
 \Be_2 \Be_1 = -\Be_1 \Be_2.
 \end{equation}
-Products of a pair of perpendicular unit vectors anticommute.  It's left as an exersize, using the same argument, to show that products of any perpendicular vectors anticommute.  We see that should we wish to switch the order of a pair of perpendicular vectors, then we have to toggle the sign of the product for each such switcheroo.
+Products of a pair of perpendicular unit vectors anticommute.  It's left as an exercise, using the same argument, to show that products of any perpendicular vectors anticommute.  We see that should we wish to switch the order of a pair of perpendicular vectors, then we have to toggle the sign of the product for each such switcheroo.
+Now let's consider the vector product examples above, and see how they can be reduced (and find their actual values.)
+\begin{subequations}
+\label{eqn:gaintro:240}
+\begin{equation}\label{eqn:gaintro:260}
+\begin{aligned}
+\Be_2 \Be_1 \Be_2 
+&=
+\lr{ \Be_2 \Be_1 } \Be_2 \\
+&=
+-\lr{ \Be_1 \Be_2 } \Be_2 \\
+&=
+- \Be_1 \lr{ \Be_2 \Be_2 } \\
+&=
+- \Be_1,
+\end{aligned}
+\end{equation}
+\begin{equation}\label{eqn:gaintro:280}
+\begin{aligned}
+\Be_1 \Be_2 \Be_1 \Be_2 
+&= \Be_1 \lr{ \Be_2 \Be_1 \Be_2 } \\
+&= \Be_1 \lr{ -\Be_1 } \\
+&= -1,
+\end{aligned}
+\end{equation}
+\begin{equation}\label{eqn:gaintro:300}
+\begin{aligned}
+\Be_2 \Be_1 \Be_2 \Be_1 \Be_2 
+&= \lr{\Be_2 \Be_1 \Be_2 \Be_1 } \Be_2 \\
+&= \lr{-1} \Be_2 \\
+&= -\Be_2,
+\end{aligned}
+\end{equation}
+\begin{equation}\label{eqn:gaintro:320}
+\begin{aligned}
+\end{aligned}
+\end{equation}
+\begin{equation}\label{eqn:gaintro:340}
+\begin{aligned}
+\Be_2 \Be_1 \Be_2 \Be_1 \Be_2 \Be_1 
+&= \lr{ \Be_2 \Be_1 \Be_2 \Be_1 \Be_2 } \Be_1  \\
+&= \lr{ -\Be_2 } \Be_1 \\
+&= \Be_1 \Be_2.
+\end{aligned}
+\end{equation}
+\end{subequations}
+If we have a product of vectors that has adjacent repeated factors of either \( \Be_1\) or \( \Be_2 \), they will annihilate, leaving only alternating factors of the bivector \( \Be_1 \Be_2 \).  As seen above, the ``basis'' bivector \( i = \Be_1 \Be_2 \), squares to \( -1 \), so any even number of \( i \) factors will be a scalar, whereas an odd number of \( i \) factors is a bivector (proportional to \( i \).)
+
+We can now write the multivector space in a fairly compact form
+\begin{equation}\label{eqn:gaintro:360}
+G(\Rm{2}) = \setlr{ a + b \Be_1 + c \Be_2 + d \Be_1 \Be_2, (a,b,c,d) \in R }.
+\end{equation}
+\section{Grade.}
+We have established that \( G(\Rm{1}) \) and \( G(\Rm{2}) \) were both closed.  Both \cref{eqn:gaintro:80} and \cref{eqn:gaintro:360} had 
+the scalar (grade-1), and vector (grade-1) contributions to this vector space.
+However, in \( G(\Rm{2}) \) we have a new term, proportional to an irreducible product of two vectors, the bivector term that we say has grade-2.
+
+Some thought will show that we can do the same for \( V = \Rm{3} \).  The multivector space generated from \( \Rm{3} \) is
+\begin{equation}\label{eqn:gaintro:380}
+G(\Rm{3}) = \setlr{ a_0 + a_1 \Be_1 + a_2 \Be_2 + a_3 \Be_3 + a_{12} \Be_1 \Be_2 + a_{23} \Be_2 \Be_3 + a_{31} \Be_3 \Be_1 + a_{123} \Be_1 \Be_2 \Be_3, a_{ij\cdots} \in R }.
+\end{equation}
+This time we have a number of bivector basis elements (all grade-2), as well as a new trivector (grade-3) term that is an irreducible product of three perpendicular vectors.
 
 %}
 %\EndArticle

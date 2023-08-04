@@ -256,3 +256,5 @@
 
 ../latex/bin/lgrep gaintro.tex | tee o ; . ./o
 #perl -p -i ../latex/bin/latexRegex.pl gaintro.tex
+../latex/bin/lgrep recipq.tex | tee o ; . ./o
+perl -p -i ../latex/bin/latexRegex.pl recipq.tex

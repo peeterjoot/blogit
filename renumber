@@ -258,3 +258,5 @@
 #perl -p -i ../latex/bin/latexRegex.pl gaintro.tex
 ../latex/bin/lgrep recipq.tex | tee o ; . ./o
 perl -p -i ../latex/bin/latexRegex.pl recipq.tex
+../latex/bin/lgrep contraction_vs_dot.tex | tee o ; . ./o
+perl -p -i ../latex/bin/latexRegex.pl contraction_vs_dot.tex

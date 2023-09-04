@@ -1,0 +1,135 @@
+%
+% Copyright © 2023 Peeter Joot.  All Rights Reserved.
+% Licenced as described in the file LICENSE under the root directory of this GIT repository.
+%
+%{
+\input{../latex/blogpost.tex}
+\renewcommand{\basename}{radialderivatives}
+%\renewcommand{\dirname}{notes/phy1520/}
+\renewcommand{\dirname}{notes/ece1228-electromagnetic-theory/}
+%\newcommand{\dateintitle}{}
+%\newcommand{\keywords}{}
+
+\input{../latex/peeter_prologue_print2.tex}
+
+\usepackage{peeters_layout_exercise}
+\usepackage{peeters_braket}
+\usepackage{peeters_macros}
+\usepackage{peeters_figures}
+\usepackage{siunitx}
+\usepackage{verbatim}
+\usepackage{amsthm}
+%\usepackage{mhchem} % \ce{}
+%\usepackage{macros_bm} % \bcM
+%\usepackage{macros_qed} % \qedmarker
+%\usepackage{txfonts} % \ointclockwise
+
+\beginArtNoToc
+
+\generatetitle{Radial derivatives.}
+%\chapter{Radial derivatives.}
+%\label{chap:radialderivatives}
+
+In my last couple GA YouTube videos, circular and spherical coordinates were examined.  We found the form of the unit vector derivatives in both cases.  Let's now look at a more general case, where we write
+\begin{equation}\label{eqn:radialderivatives:20}
+\Br = r \rcap,
+\end{equation}
+leaving the angular dependence of \( \rcap \) unspecified.  We want to find both \( \Br' \) and \( \rcap'\).
+
+\makelemma{Radial length derivative.}{lemma:radialderivatives:40}{
+The derivative of a spherical length \( r \) can be expressed as
+\begin{equation*}
+\frac{dr}{dt} = \rcap \cdot \frac{d\Br}{dt}.
+\end{equation*}
+} % lemma
+\begin{proof}
+We write \( r^2 = \Br \cdot \Br \), and take derivatives of both sides, to find
+\begin{equation}\label{eqn:radialderivatives:60}
+2 r \frac{dr}{dt} = 2 \Br \cdot \frac{d\Br}{dt},
+\end{equation}
+or
+\begin{equation}\label{eqn:radialderivatives:80}
+\frac{dr}{dt} = \frac{\Br}{r} \cdot \frac{d\Br}{dt} = \rcap \cdot \frac{d\Br}{dt}.
+\end{equation}
+\end{proof}
+
+Application of the chain rule to \cref{eqn:radialderivatives:20} is straightforward
+\begin{equation}\label{eqn:radialderivatives:100}
+\Br' = r' \rcap + r \rcap',
+\end{equation}
+but we don't know the form for \( \rcap' \).  We could proceed with a niave expansion of
+\begin{equation}\label{eqn:radialderivatives:120}
+\frac{d}{dt} \lr{ \frac{\Br}{r} },
+\end{equation}
+but we can be sneaky, and perform a projective and rejective split of \( \Br' \) with respect to \( \rcap \).  That is
+\begin{equation}\label{eqn:radialderivatives:140}
+\begin{aligned}
+\Br'
+&= \rcap \rcap \Br' \\
+&= \rcap \lr{ \rcap \Br' } \\
+&= \rcap \lr{ \rcap \cdot \Br' + \rcap \wedge \Br'} \\
+&= \rcap \lr{ r' + \rcap \wedge \Br'}.
+\end{aligned}
+\end{equation}
+We used \cref{lemma:radialderivatives:40} in the last step above, and after distribution, find
+\begin{equation}\label{eqn:radialderivatives:160}
+\Br' = r' \rcap + \rcap \lr{ \rcap \wedge \Br' }.
+\end{equation}
+Comparing to \cref{eqn:radialderivatives:100}, we see that
+\begin{equation}\label{eqn:radialderivatives:180}
+r \rcap' = \rcap \lr{ \rcap \wedge \Br' }.
+\end{equation}
+We see that the radial unit vector derivative is proportional to the rejection of \( \rcap \) from \( \Br' \)
+\begin{equation}\label{eqn:radialderivatives:200}
+\rcap' = \inv{r} \Rej{\rcap}{\Br'} = \inv{r^3} \Br \lr{ \Br \wedge \Br' }.
+\end{equation}
+The vector \( \rcap' \) is perpendicular to \( \rcap \) for any parameterization of it's orientation, or in symbols
+\begin{equation}\label{eqn:radialderivatives:220}
+\rcap \cdot \rcap' = 0.
+\end{equation}
+We saw this for the circular and spherical parameterizations, and see now that this also holds more generally.
+
+%\makeproblem{Perform a niave computation of \( \rcap' \).}{problem:radialderivatives:240}{
+\makeproblem{}{problem:radialderivatives:240}{
+Find \cref{eqn:radialderivatives:200} without being sneaky.
+} % problem
+\makeanswer{problem:radialderivatives:240}{
+\begin{equation}\label{eqn:radialderivatives:280}
+\begin{aligned}
+\rcap'
+&= \frac{d}{dt} \lr{ \frac{\Br}{r} } \\
+&= \inv{r} \Br' - \inv{r^2} \Br r' \\
+&= \inv{r} \Br' - \inv{r} \rcap r' \\
+&= \inv{r} \lr{ \Br' - \rcap r' } \\
+&= \inv{r} \lr{ \rcap \rcap \Br' - \rcap r' } \\
+&= \inv{r} \rcap \lr{ \rcap \Br' - r' } \\
+&= \inv{r} \rcap \lr{ \rcap \Br' - \rcap \cdot \Br' } \\
+&= \inv{r} \rcap \lr{ \rcap \wedge \Br' }.
+\end{aligned}
+\end{equation}
+} % answer
+
+\makeproblem{}{problem:radialderivatives:300}{
+Show that \cref{eqn:radialderivatives:200} can be expressed as a triple vector cross product
+\begin{equation}\label{eqn:radialderivatives:230}
+\rcap' = \inv{r^3} \lr{ \Br \cross \Br' } \cross \Br,
+\end{equation}
+} % problem
+\makeanswer{problem:radialderivatives:300}{
+While this may be familiar from elementary calculus, such as in \citep{salas1990coa}, we can show follows easily from our GA result
+\begin{equation}\label{eqn:radialderivatives:300}
+\begin{aligned}
+\rcap'
+&= \inv{r} \rcap \lr{ \rcap \wedge \Br' } \\
+&= \inv{r} \gpgradeone{ \rcap \lr{ \rcap \wedge \Br' } } \\
+&= \inv{r} \gpgradeone{ \rcap I \lr{ \rcap \cross \Br' } } \\
+&= \inv{r} \gpgradeone{ I \lr{ \rcap \cdot \lr{ \rcap \cross \Br' } + \rcap \wedge \lr{ \rcap \cross \Br' } } } \\
+&= \inv{r} \gpgradeone{ I^2 \rcap \cross \lr{ \rcap \cross \Br' } } \\
+&= \inv{r} \lr{ \rcap \cross \Br' } \cross \rcap.
+\end{aligned}
+\end{equation}
+} % answer
+
+%}
+\EndArticle
+%\EndNoBibArticle

@@ -263,9 +263,11 @@
 #../latex/bin/lgrep contraction_vs_dot.tex | tee o ; . ./o
 #perl -p -i ../latex/bin/latexRegex.pl contraction_vs_dot.tex
 
-../latex/bin/lgrep radialderivatives.tex | tee o ; . ./o
-perl -p -i ../latex/bin/latexRegex.pl radialderivatives.tex
-../latex/bin/lgrep figuretest.tex | tee o ; . ./o
-perl -p -i ../latex/bin/latexRegex.pl figuretest.tex
+#../latex/bin/lgrep radialderivatives.tex | tee o ; . ./o
+#perl -p -i ../latex/bin/latexRegex.pl radialderivatives.tex
+
+#../latex/bin/lgrep figuretest.tex | tee o ; . ./o
+#perl -p -i ../latex/bin/latexRegex.pl figuretest.tex
+
 ../latex/bin/lgrep solarellipse.tex | tee o ; . ./o
 perl -p -i ../latex/bin/latexRegex.pl solarellipse.tex

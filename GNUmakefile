@@ -19,6 +19,7 @@ endif
 #all :: d4x.pdf
 #all :: xtox.pdf
 
+s : solarellipse.pdf
 #m : McMahonRelativity.pdf
 #w : wedgegeneral.pdf
 #e : ellipticproblem.pdf

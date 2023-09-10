@@ -76,9 +76,9 @@
 27/Dec/2022;hestenesFindX.tex;discord question: https://discord.com/channels/607264339480674324/925683732403335188/1057286422970769428
 10/Jan/2023;wedge_no_metric.tex;https://math.stackexchange.com/a/4615561/359
 04/Feb/2023;circularAndSphericalAreaVolumeAndBoundaries.tex;https://peeterjoot.com/2023/02/04/circular-and-spherical-area-volume-and-boundary-integrals/ a correction to the original reciprocalAndTangentspace.tex
-10/Feb/2023;ellipseCurvilinear.tex;working version for GAelectrodynamics
-10/Feb/2023;ellipticproblem.tex;working version for GAelectrodynamics
-11/Feb/2023;greensIntroProblem.tex;working version for GAelectrodynamics
+10/Feb/2023;moved/ellipseCurvilinear.tex;working version for GAelectrodynamics
+10/Feb/2023;moved/ellipticproblem.tex;working version for GAelectrodynamics
+11/Feb/2023;moved/greensIntroProblem.tex;working version for GAelectrodynamics
 12/Feb/2023;twoForceStaticsProblem.tex;two force statics problem.  Will incorporate part of this into GAEE.
 12/Jun/2023;triangleInscribedCircle.tex;circle inscribed in triangle.
 5/Dec/2022;canonicalbivectors.tex;?
@@ -89,7 +89,8 @@
 15/Sep/2022;regularNgon.tex;?
 13/Jun/2023;bicomplexGA20.tex;A complex-pair representation of GA(2,0)
 15/Jun/2023;bicomplexCl20.tex;A complex-pair representation of GA(2,0): second pass.
-30/Jul/2023;toriodal.tex;Incorporated into GAbook.
-4/Aug/2023;recipq.tex;Q and A (twitter DM) w/ Nicholas that was easier as .tex.  Incorporated into GAEE.
+30/Jul/2023;moved/toriodal.tex;Incorporated into GAbook.
+4/Aug/2023;moved/recipq.tex;Q and A (twitter DM) w/ Nicholas that was easier as .tex.  Incorporated into GAEE.
 24/Aug/2023;contraction_vs_dot.tex;Q and A (twitter DM) w/ Nicholas
-8/Sep/2023;radialderivatives.tex;a text representation of my radial representation youtube video.
+8/Sep/2023;moved/radialderivatives.tex;a text representation of my radial representation youtube video.  Incorporated into classicalmechanics
+9/Sep/2023;figuretest.tex;imageFigure macro test.

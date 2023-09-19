@@ -132,8 +132,8 @@ The interesting thing here is how we have managed to connect the geometric notio
 Recall that the SVD of a matrix \( M \) and it's pseudoinverse \( M^\dagger \) has the form
 \begin{equation}\label{eqn:cramersProjection:260}
 \begin{aligned}
-M &= U \Sigma V^\* \\
-M^\dagger &= V \Sigma^\dagger U^\*,
+M &= U \Sigma V^\conj \\
+M^\dagger &= V \Sigma^\dagger U^\conj,
 \end{aligned}
 \end{equation}
 where \( U, V \) are orthonormal square matrices, and \( \Sigma \) is block diagonal with generalized eigenvalues along a subset of it's primary diagonal, and \( \Sigma^\dagger \) is the conjugate transpose of \( \Sigma \), with the non-zero diagonal elements all inverted.
@@ -141,9 +141,9 @@ When we form an approximate solution
 \begin{equation}\label{eqn:cramersProjection:280}
 \Bx
 = M^\dagger \Bc
-= V \Sigma^\dagger U^\* \Bc,
+= V \Sigma^\dagger U^\conj \Bc,
 \end{equation}
-there is a projection onto the solution space, through the action of \( \Sigma^\dagger \), filtering out components that do not contribute to the ``least squares'' solution.  The dot products of our bivectors in the approximate wedge product solution, looks like it has the same effect.
+there is a projection onto the solution space, through the action of \( \Sigma^\dagger \), filtering out components that do not contribute to the ``least squares'' solution.  This has the same effect as the dot products of our bivectors in the approximate wedge product solution, but without the geometry of the problem being as clear.
 
 %}
 %\EndArticle

@@ -1,0 +1,150 @@
+%
+% Copyright © 2023 Peeter Joot.  All Rights Reserved.
+% Licenced as described in the file LICENSE under the root directory of this GIT repository.
+%
+%{
+\input{../latex/blogpost.tex}
+\renewcommand{\basename}{cramersProjection}
+%\renewcommand{\dirname}{notes/phy1520/}
+\renewcommand{\dirname}{notes/ece1228-electromagnetic-theory/}
+%\newcommand{\dateintitle}{}
+%\newcommand{\keywords}{}
+
+\input{../latex/peeter_prologue_print2.tex}
+
+\usepackage{peeters_layout_exercise}
+\usepackage{peeters_braket}
+\usepackage{peeters_figures}
+\usepackage{siunitx}
+\usepackage{verbatim}
+%\usepackage{mhchem} % \ce{}
+%\usepackage{macros_bm} % \bcM
+%\usepackage{macros_qed} % \qedmarker
+%\usepackage{txfonts} % \ointclockwise
+
+\beginArtNoToc
+
+\generatetitle{Revisiting linear solution systems using the wedge product}
+%\chapter{Revisiting linear solution systems using the wedge product}
+%\label{chap:cramersProjection}
+
+\section{Exact system.}
+Recall that we can use the wedge product to solve linear systems.  For example, assuming that \( \Ba, \Bb \) are not colinear, the system
+\begin{equation}\label{eqn:cramersProjection:20}
+x \Ba + y \Bb = \Bc,
+\end{equation}
+if it has a solution, can be solved for \( x \) and \( y \) by wedging with \( \Bb \), and \( \Ba \) respectively.
+For example, wedging with \( \Bb \), from the right, gives
+\begin{equation}\label{eqn:cramersProjection:40}
+x \lr{ \Ba \wedge \Bb } + y \lr{ \Bb \wedge \Bb } = \Bc \wedge \Bb,
+\end{equation}
+but since \( \Bb \wedge \Bb = 0 \),
+we are left with
+\begin{equation}\label{eqn:cramersProjection:60}
+x \lr{ \Ba \wedge \Bb } = \Bc \wedge \Bb,
+\end{equation}
+and since \( \Ba, \Bb \) are not colinear, which means that \( \Ba \wedge \Bb \ne 0 \), we have
+\begin{equation}\label{eqn:cramersProjection:80}
+x = \inv{ \Ba \wedge \Bb } \Bc \wedge \Bb.
+\end{equation}
+Similarly, we can wedge with \( \Ba \) (from the left), to find
+\begin{equation}\label{eqn:cramersProjection:100}
+y = \inv{ \Ba \wedge \Bb } \Ba \wedge \Bc.
+\end{equation}
+This works because, if the system has a solution, all the bivectors \( \Ba \wedge \Bb \), \( \Ba \wedge \Bc \), and \( \Bb \wedge \Bc \), are all scalar multiples of each other, so we can just divide the two bivectors, and the results must be scalars.
+
+\section{Cramer's rule.}
+Incidentally, observe that for \R{2}, this is the ``Cramer's rule'' solution to the system, since
+\begin{equation}\label{eqn:cramersProjection:180}
+\Bx \wedge \By = \begin{vmatrix} \Bx & \By \end{vmatrix} \Be_1 \Be_2,
+\end{equation}
+where we are treating \( \Bx \) and \( \By \) here as column vectors of the coordinates.  This means that, after dividing out the plane pseudoscalar \( \Be_1 \Be_2 \), we have
+\begin{equation}\label{eqn:cramersProjection:200}
+\begin{aligned}
+x
+&=
+\frac{
+\begin{vmatrix}
+\Bc & \Bb \\
+\end{vmatrix}
+}{
+\begin{vmatrix}
+\Ba & \Bb
+\end{vmatrix}
+} \\
+y
+&=
+\frac{
+\begin{vmatrix}
+\Ba & \Bc \\
+\end{vmatrix}
+}{
+\begin{vmatrix}
+\Ba & \Bb
+\end{vmatrix}
+}.
+\end{aligned}
+\end{equation}
+This follows the usual Cramer's rule proscription, where we form determinants of the coordinates of the spanning vectors, replace either of the original vectors in the numerator with the target vector (depending on which variable we seek), and then take ratios of the two determinants.
+
+\section{Least squares solution.}
+Now, let's consider the case, where the system \cref{eqn:cramersProjection:20} cannot be solved exactly.  Geometrically, the best we can do is to try to solve the related ``least squares'' problem
+\begin{equation}\label{eqn:cramersProjection:120}
+x \Ba + y \Bb = \Bc_\parallel,
+\end{equation}
+where \( \Bc_\parallel \) is the projection of \( \Bc \) onto the plane spanned by \( \Ba, \Bb \).  Regardless of the value of \( \Bc \), we can always find a solution to this problem.  For example, solving for \( x \), we have
+\begin{equation}\label{eqn:cramersProjection:160}
+\begin{aligned}
+x
+&= \inv{ \Ba \wedge \Bb } \Bc_\parallel \wedge \Bb \\
+&= \inv{ \Ba \wedge \Bb } \cdot \lr{ \Bc_\parallel \wedge \Bb } \\
+&= \inv{ \Ba \wedge \Bb } \cdot \lr{ \Bc \wedge \Bb } - \inv{ \Ba \wedge \Bb } \cdot \lr{ \Bc_\perp \wedge \Bb }.
+\end{aligned}
+\end{equation}
+Let's look at the second term, which can be written
+\begin{equation}\label{eqn:cramersProjection:140}
+\begin{aligned}
+- \inv{ \Ba \wedge \Bb } \cdot \lr{ \Bc_\perp \wedge \Bb }
+&=
+- \frac{ \Ba \wedge \Bb }{ \lr{ \Ba \wedge \Bb}^2 } \cdot \lr{ \Bc_\perp \wedge \Bb } \\
+&\propto
+\lr{ \Ba \wedge \Bb } \cdot \lr{ \Bc_\perp \wedge \Bb } \\
+&=
+\lr{ \lr{ \Ba \wedge \Bb } \cdot \Bc_\perp } \cdot \Bb \\
+&=
+\lr{ \Ba \lr{ \Bb \cdot \Bc_\perp} - \Bb \lr{ \Ba \cdot \Bc_\perp} } \cdot \Bb \\
+&=
+0.
+\end{aligned}
+\end{equation}
+The zero above follows because \( \Bc_\perp \) is perpendicular to both \( \Ba \) and \( \Bb \) by construction.  Geometrically, we are trying to dot two perpendicular bivectors, where \( \Bb \) is a common factor of those two bivectors.
+
+We see that our least squares solution, to this two variable linear system problem, is
+\begin{equation}\label{eqn:cramersProjection:220}
+x = \inv{ \Ba \wedge \Bb } \cdot \lr{ \Bc \wedge \Bb }.
+\end{equation}
+\begin{equation}\label{eqn:cramersProjection:240}
+y = \inv{ \Ba \wedge \Bb } \cdot \lr{ \Ba \wedge \Bc }.
+\end{equation}
+
+The interesting thing here is how we have managed to connect the geometric notion of the optimal solution, the equivalent of a least squares solution (which we can compute with the Moore-Penrose inverse, or with an SVD (Singlular Value Decomposition)), with the entirely geometric notion of selecting for the portion of the desired solution that lies within the span of the set of input vectors, provided that the spanning vectors for that hyperplane are linearly independent.
+
+Recall that the SVD of a matrix \( M \) and it's pseudoinverse \( M^\dagger \) has the form
+\begin{equation}\label{eqn:cramersProjection:260}
+\begin{aligned}
+M &= U \Sigma V^\* \\
+M^\dagger &= V \Sigma^\dagger U^\*,
+\end{aligned}
+\end{equation}
+where \( U, V \) are orthonormal square matrices, and \( \Sigma \) is block diagonal with generalized eigenvalues along a subset of it's primary diagonal, and \( \Sigma^\dagger \) is the conjugate transpose of \( \Sigma \), with the non-zero diagonal elements all inverted.
+When we form an approximate solution
+\begin{equation}\label{eqn:cramersProjection:280}
+\Bx
+= M^\dagger \Bc
+= V \Sigma^\dagger U^\* \Bc,
+\end{equation}
+there is a projection onto the solution space, through the action of \( \Sigma^\dagger \), filtering out components that do not contribute to the ``least squares'' solution.  The dot products of our bivectors in the approximate wedge product solution, looks like it has the same effect.
+
+%}
+%\EndArticle
+\EndNoBibArticle

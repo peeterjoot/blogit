@@ -269,5 +269,8 @@
 #../latex/bin/lgrep figuretest.tex | tee o ; . ./o
 #perl -p -i ../latex/bin/latexRegex.pl figuretest.tex
 
-../latex/bin/lgrep solarellipse.tex | tee o ; . ./o
-perl -p -i ../latex/bin/latexRegex.pl solarellipse.tex
+#../latex/bin/lgrep solarellipse.tex | tee o ; . ./o
+#perl -p -i ../latex/bin/latexRegex.pl solarellipse.tex
+
+../latex/bin/lgrep cramersProjection.tex | tee o ; . ./o
+perl -p -i ../latex/bin/latexRegex.pl cramersProjection.tex

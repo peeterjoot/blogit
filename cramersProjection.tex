@@ -117,7 +117,8 @@ Let's look at the second term, which can be written
 0.
 \end{aligned}
 \end{equation}
-The zero above follows because \( \Bc_\perp \) is perpendicular to both \( \Ba \) and \( \Bb \) by construction.  Geometrically, we are trying to dot two perpendicular bivectors, where \( \Bb \) is a common factor of those two bivectors.
+The zero above follows because \( \Bc_\perp \) is perpendicular to both \( \Ba \) and \( \Bb \) by construction.  Geometrically, we are trying to dot two perpendicular bivectors, where \( \Bb \) is a common factor of those two bivectors, as illustrated in \cref{fig:perpPlanes:perpPlanesFig1}.
+\imageFigure{../figures/blogit/perpPlanesFig1}{Perpendicular bivectors.}{fig:perpPlanes:perpPlanesFig1}{0.3}
 
 We see that our least squares solution, to this two variable linear system problem, is
 \begin{equation}\label{eqn:cramersProjection:220}
@@ -127,7 +128,7 @@ x = \inv{ \Ba \wedge \Bb } \cdot \lr{ \Bc \wedge \Bb }.
 y = \inv{ \Ba \wedge \Bb } \cdot \lr{ \Ba \wedge \Bc }.
 \end{equation}
 
-The interesting thing here is how we have managed to connect the geometric notion of the optimal solution, the equivalent of a least squares solution (which we can compute with the Moore-Penrose inverse, or with an SVD (Singlular Value Decomposition)), with the entirely geometric notion of selecting for the portion of the desired solution that lies within the span of the set of input vectors, provided that the spanning vectors for that hyperplane are linearly independent.
+The interesting thing here is how we have managed to connect the geometric notion of the optimal solution, the equivalent of a least squares solution (which we can compute with the Moore-Penrose inverse, or with an SVD (Singular Value Decomposition)), with the entirely geometric notion of selecting for the portion of the desired solution that lies within the span of the set of input vectors, provided that the spanning vectors for that hyperplane are linearly independent.
 
 Recall that the SVD of a matrix \( M \) and it's pseudoinverse \( M^\dagger \) has the form
 \begin{equation}\label{eqn:cramersProjection:260}

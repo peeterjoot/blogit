@@ -274,3 +274,5 @@
 
 ../latex/bin/lgrep cramersProjection.tex | tee o ; . ./o
 perl -p -i ../latex/bin/latexRegex.pl cramersProjection.tex
+../latex/bin/lgrep squareInCircle.tex | tee o ; . ./o
+perl -p -i ../latex/bin/latexRegex.pl squareInCircle.tex

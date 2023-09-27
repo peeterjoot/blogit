@@ -1,0 +1,73 @@
+%
+% Copyright © 2023 Peeter Joot.  All Rights Reserved.
+% Licenced as described in the file LICENSE under the root directory of this GIT repository.
+%
+%{
+\input{../latex/blogpost.tex}
+\renewcommand{\basename}{squareInCircle}
+%\renewcommand{\dirname}{notes/phy1520/}
+\renewcommand{\dirname}{notes/ece1228-electromagnetic-theory/}
+%\newcommand{\dateintitle}{}
+%\newcommand{\keywords}{}
+
+\input{../latex/peeter_prologue_print2.tex}
+
+\usepackage{peeters_layout_exercise}
+\usepackage{peeters_braket}
+\usepackage{peeters_figures}
+\usepackage{siunitx}
+\usepackage{verbatim}
+%\usepackage{mhchem} % \ce{}
+%\usepackage{macros_bm} % \bcM
+%\usepackage{macros_qed} % \qedmarker
+%\usepackage{txfonts} % \ointclockwise
+
+\beginArtNoToc
+
+\generatetitle{A silly geometry problem: length of side of square in circular quadrant}
+%\chapter{A silly geometry problem: length of side of square in circular quadrant}
+%\label{chap:squareInCircle}
+
+Problem from \href{https://youtu.be/7ZIImuW0PBA}{Solving a geometry question that no one can figure out}.
+
+My solution (before numerical reduction), using basic trig and complex numbers, is illustrated in \cref{fig:myway:mywayFig1}.
+\imageFigure{../figures/blogit/mywayFig1}{With complex numbers.}{fig:myway:mywayFig1}{0.3}
+
+We have
+\begin{equation}\label{eqn:squareInCircle:20}
+\begin{aligned}
+s &= x \cos\theta \\
+y &= x \sin\theta \\
+p &= y + x e^{i\theta} \\
+q &= i s + x e^{i\theta} \\
+\Abs{q} &= y + 5 \\
+\Abs{p - q} &= 2.
+\end{aligned}
+\end{equation}
+This can be reduced to
+\begin{equation}\label{eqn:squareInCircle:40}
+\begin{aligned}
+\Abs{ x e^{i\theta} - 5 } &= 2 \\
+x \Abs{ i \cos\theta + e^{i\theta} } &= x \sin\theta + 5.
+\end{aligned}
+\end{equation}
+
+My wife figured out how to do it with just Pythagoras, as illustrated in \cref{fig:sofiasWay:sofiasWayFig2}.
+\imageFigure{../figures/blogit/sofiasWayFig2}{With Pythagoras.}{fig:sofiasWay:sofiasWayFig2}{0.3}
+\begin{equation}\label{eqn:squareInCircle:60}
+\begin{aligned}
+\lr{ 5 - s }^2 + y^2 &= 4 \\
+\lr{ s + y }^2 + s^2 &= \lr{ y + 5 }^2 \\
+x^2 &= s^2 + y^2.
+\end{aligned}
+\end{equation}
+
+Either way, the numerical solution is 4.12.  The geometry looks like \cref{fig:squareInCircle:squareInCircleFig1}.
+
+\imageFigure{../figures/blogit/squareInCircleFig1}{Lengths to scale.}{fig:squareInCircle:squareInCircleFig1}{0.3}
+
+A mathematica notebook to compute the numerical part of the problem (either way) and plot the figure to scale \href{https://github.com/peeterjoot/mathematica/blob/master/blogit/squareInCircleFig1.nb}{can be found in my mathematica github repo.}
+
+%}
+%\EndArticle
+\EndNoBibArticle

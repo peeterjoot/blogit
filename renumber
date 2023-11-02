@@ -272,7 +272,11 @@
 #../latex/bin/lgrep solarellipse.tex | tee o ; . ./o
 #perl -p -i ../latex/bin/latexRegex.pl solarellipse.tex
 
-../latex/bin/lgrep cramersProjection.tex | tee o ; . ./o
-perl -p -i ../latex/bin/latexRegex.pl cramersProjection.tex
-../latex/bin/lgrep squareInCircle.tex | tee o ; . ./o
-perl -p -i ../latex/bin/latexRegex.pl squareInCircle.tex
+#../latex/bin/lgrep cramersProjection.tex | tee o ; . ./o
+#perl -p -i ../latex/bin/latexRegex.pl cramersProjection.tex
+
+#../latex/bin/lgrep squareInCircle.tex | tee o ; . ./o
+#perl -p -i ../latex/bin/latexRegex.pl squareInCircle.tex
+
+#../latex/bin/lgrep dotcircular.tex | tee o ; . ./o
+#perl -p -i ../latex/bin/latexRegex.pl dotcircular.tex

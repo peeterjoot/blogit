@@ -1,0 +1,219 @@
+%
+% Copyright © 2023 Peeter Joot.  All Rights Reserved.
+% Licenced as described in the file LICENSE under the root directory of this GIT repository.
+%
+%{
+\input{../latex/blogpost.tex}
+\renewcommand{\basename}{dotcircular}
+%\renewcommand{\dirname}{notes/phy1520/}
+\renewcommand{\dirname}{notes/ece1228-electromagnetic-theory/}
+%\newcommand{\dateintitle}{}
+%\newcommand{\keywords}{}
+
+\input{../latex/peeter_prologue_print2.tex}
+
+\usepackage{peeters_layout_exercise}
+\usepackage{peeters_braket}
+\usepackage{peeters_figures}
+\usepackage{siunitx}
+\usepackage{verbatim}
+%\usepackage{mhchem} % \ce{}
+%\usepackage{macros_bm} % \bcM
+%\usepackage{macros_qed} % \qedmarker
+%\usepackage{txfonts} % \ointclockwise
+
+\beginArtNoToc
+
+% https://math.stackexchange.com/questions/4798911/on-vector-multiplication
+\generatetitle{XXX}
+%\chapter{XXX}
+%\label{chap:dotcircular}
+
+Point 2 is an axiom, used to define vector multiplication.  I wouldn't say that this is used to define the dot product.  Instead, one must already have a definition of the dot product, specifically, one must know what the value is for the dot products between any basis vectors (such a set of dot products for the basis vectors, usually arranged in matrix form, is called the metric of the space.)
+
+Once this is done, it is possible to see that a product of two vectors, subject to all the appropriate axioms, does have a dot product component.  This isn't really defining the dot product that way, but instead seeing the dot product as a term in a derived result.
+
+Here's an outline of the argument.  Our assumptions are that we have an algebra, that is a vector space equipped with a bilinear product, and that for our product, if \( \Ba, \Bb, \Bc \) are vectors, we require
+\begin{enumerate}
+\item \( \Ba (\Bb \Bc) = (\Ba \Bb) \Bc \), and
+\item \( \Ba^2 = \Ba \cdot \Ba \) (the contraction axiom),
+\end{enumerate}
+as well as all the usual vector space properties (products are associative with respect to addition, zero element, ...)
+
+Suppose that \( \Be_1, \Be_2 \) are unit vectors, then
+\begin{equation}\label{eqn:dotcircular:20}
+\begin{aligned}
+\lr{ \Be_1 + \Be_2 }^2
+&= \lr{ \Be_1 + \Be_2 } \lr{ \Be_1 + \Be_2 } \\
+&= \Be_1 \Be_1 + \Be_1 \Be_2 + \Be_2 \Be_1 + \Be_2 \Be_2 \\
+&= 1 + \Be_1 \Be_2 + \Be_2 \Be_1 + 1,
+\end{aligned}
+\end{equation}
+but by 2, we also have \( \lr{ \Be_1 + \Be_2 }^2 = \lr{ \Be_1 + \Be_2 } \cdot \lr{ \Be_1 + \Be_2 } = 2 \), so
+\begin{equation}\label{eqn:dotcircular:40}
+2 + \Be_1 \Be_2 + \Be_2 \Be_1 = 2,
+\end{equation}
+or
+\begin{equation}\label{eqn:dotcircular:60}
+\Be_2 \Be_1 = -\Be_1 \Be_2.
+\end{equation}
+Clearly, this argument can be repeated with any set of indexes \( i \ne j \), so we can conclude that for orthonormal vectors \( \Be_i \ne \Be_j \) we have
+\begin{equation}\label{eqn:dotcircular:80}
+\Be_j \Be_i = -\Be_i \Be_j.
+\end{equation}
+
+Now let's look at a product of vectors (in \R{3}), say
+\begin{equation}\label{eqn:dotcircular:100}
+\begin{aligned}
+\Ba &= \sum_{i = 1}^3 a_i \Be_i \\
+\Bb &= \sum_{j = 1}^3 a_j \Be_j,
+\end{aligned}
+\end{equation}
+for which we have
+\begin{equation}\label{eqn:dotcircular:120}
+\begin{aligned}
+\Ba \Bb
+&=
+\lr{ \sum_{i = 1}^3 a_i \Be_i } \lr{ \sum_{j = 1}^3 a_j \Be_j } \\
+&=
+\sum_{i = j} a_i b_j \Be_i \Be_j
++
+\sum_{i \ne j} a_i b_j \Be_i \Be_j \\
+&=
+\sum_{i=1}^3 a_i b_i \Be_i \Be_i
++
+\sum_{i < j} a_i b_j \Be_i \Be_j
++
+\sum_{i > j} a_i b_j \Be_i \Be_j \\
+&=
+\sum_{i=1}^3 a_i b_i
++
+\sum_{i < j} a_i b_j \Be_i \Be_j
++
+\sum_{j < i} a_j b_i \Be_j \Be_i.
+\end{aligned}
+\end{equation}
+We have a scalar term, clearly the dot product, as one part of this vector product, and a set of terms that all have vector products.  We can make use of the identity \( \Be_j \Be_i = -\Be_i \Be_j \), to group the vector product terms above, to find
+\begin{equation}\label{eqn:dotcircular:140}
+\Ba \Bb
+= \Ba \cdot \Bb + \sum_{i < j} \lr{ a_i b_j - a_j b_i } \Be_i \Be_j.
+\end{equation}
+By virtue of having been lazy with the index bounds in the summation above, note that this decomposition actually holds for any Euclidean vector space, not just \R{3}.
+
+We can introduce a notation for this second non-scalar term, and call it the wedge product, designated
+\begin{equation}\label{eqn:dotcircular:160}
+\Ba \wedge \Bb
+= \sum_{i < j}
+\begin{vmatrix}
+a_i & a_j \\
+b_i & b_j \\
+\end{vmatrix}
+\Be_i \Be_j,
+\end{equation}
+and after doing so, we can write
+\begin{equation}\label{eqn:dotcircular:180}
+\Ba \Bb = \Ba \cdot \Bb + \Ba \wedge \Bb.
+\end{equation}
+What we've really done here is decompose a product of two vectors into it's scalar and bivector parts, and not define the dot product in terms of the geometric product.
+
+The relation to the \R{3} cross product comes by observing that we can factor out a quantity \( I = \Be_1 \Be_2 \Be_3 \) from the wedge product, using
+\begin{equation}\label{eqn:dotcircular:260}
+\Be_1 \Be_2
+=
+\Be_1 \Be_2 \Be_3 \Be_3 \\
+=
+I \Be_3,
+\end{equation}
+\begin{equation}\label{eqn:dotcircular:280}
+\Be_2 \Be_3
+=
+\Be_1 \Be_1 \Be_2 \Be_3
+=
+\Be_1 I,
+\end{equation}
+and
+\begin{equation}\label{eqn:dotcircular:300}
+\Be_1 \Be_3
+=
+\Be_1 \Be_2 \Be_2 \Be_3
+=
+-\Be_2 \Be_1 \Be_2 \Be_3
+=
+-\Be_2 I.
+\end{equation}
+It's not hard to show that \( I \) commutes with any vector, so we find
+
+\begin{equation}\label{eqn:dotcircular:161}
+\begin{aligned}
+\Ba \wedge \Bb
+&= \sum_{i < j}
+\begin{vmatrix}
+a_i & a_j \\
+b_i & b_j \\
+\end{vmatrix}
+\Be_i \Be_j \\
+&=
+\begin{vmatrix}
+a_1 & a_2 \\
+b_1 & b_2 \\
+\end{vmatrix}
+\Be_1 \Be_2
++
+\begin{vmatrix}
+a_1 & a_3 \\
+b_1 & b_3 \\
+\end{vmatrix}
+\Be_1 \Be_3
++
+\begin{vmatrix}
+a_2 & a_3 \\
+b_2 & b_3 \\
+\end{vmatrix}
+\Be_2 \Be_3  \\
+&=
+\begin{vmatrix}
+a_1 & a_2 \\
+b_1 & b_2 \\
+\end{vmatrix}
+I \Be_3
+-
+\begin{vmatrix}
+a_1 & a_3 \\
+b_1 & b_3 \\
+\end{vmatrix}
+I \Be_2
++
+\begin{vmatrix}
+a_2 & a_3 \\
+b_2 & b_3 \\
+\end{vmatrix}
+I \Be_1 \\
+&=
+I \lr{ \Ba \cross \Bb }.
+\end{aligned}
+\end{equation}
+
+This lets us decompose the \R{3} vector product into dot product and cross product terms
+\begin{equation}\label{eqn:dotcircular:320}
+\Ba \Bb = \Ba \cdot \Bb + I \lr{ \Ba \cross \Bb }.
+\end{equation}
+
+This isn't defining the dot or cross products, but just identifying them as constituents of the vector product, provided you define that vector product using the contraction axiom.
+
+That said, some geometric algebra authors will treat the decomposition \( \Ba \Bb = \Ba \cdot \Bb + \Ba \wedge \Bb \) as fundamental, as opposed to derived, and then flip it around and define the dot and wedge products in terms of this identity.  That's done by making note of the antisymmetry of the wedge product to write
+\begin{equation}\label{eqn:dotcircular:200}
+\Bb \Ba = \Ba \cdot \Bb - \Ba \wedge \Bb,
+\end{equation}
+and then rearrange to find
+\begin{equation}\label{eqn:dotcircular:220}
+\Ba \cdot \Bb = \inv{2} \lr{ \Ba \Bb + \Bb \Ba },
+\end{equation}
+and
+\begin{equation}\label{eqn:dotcircular:240}
+\Ba \wedge \Bb = \inv{2} \lr{ \Ba \Bb - \Bb \Ba }.
+\end{equation}
+These are both true identities, but should really be treated as consequences of the contraction axiom \( \Ba^2 = \Ba \cdot \Ba \).  When they are treated as fundamental defining properties, it leads to a great deal of confusion.
+
+%}
+%\EndArticle
+\EndNoBibArticle

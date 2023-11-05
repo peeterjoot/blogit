@@ -280,3 +280,6 @@
 
 #../latex/bin/lgrep dotcircular.tex | tee o ; . ./o
 #perl -p -i ../latex/bin/latexRegex.pl dotcircular.tex
+
+#../latex/bin/lgrep crossQuestion.tex | tee o ; . ./o
+#perl -p -i ../latex/bin/latexRegex.pl crossQuestion.tex

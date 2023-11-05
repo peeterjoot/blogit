@@ -1,0 +1,92 @@
+%
+% Copyright © 2023 Peeter Joot.  All Rights Reserved.
+% Licenced as described in the file LICENSE under the root directory of this GIT repository.
+%
+%{
+\input{../latex/blogpost.tex}
+\renewcommand{\basename}{crossQuestion}
+%\renewcommand{\dirname}{notes/phy1520/}
+\renewcommand{\dirname}{notes/ece1228-electromagnetic-theory/}
+%\newcommand{\dateintitle}{}
+%\newcommand{\keywords}{}
+
+\input{../latex/peeter_prologue_print2.tex}
+
+\usepackage{peeters_layout_exercise}
+\usepackage{peeters_braket}
+\usepackage{peeters_figures}
+\usepackage{siunitx}
+\usepackage{verbatim}
+%\usepackage{mhchem} % \ce{}
+%\usepackage{macros_bm} % \bcM
+%\usepackage{macros_qed} % \qedmarker
+%\usepackage{txfonts} % \ointclockwise
+
+\beginArtNoToc
+
+% https://math.stackexchange.com/questions/4800650/intuition-for-why-a-90-degree-rotation-of-a-vector-about-an-arbitrary-axis-can-b
+\generatetitle{Cross product question}
+%\chapter{Cross product question}
+%
+
+Note that \( \ucap \) and \( \Bv \) necessarily lie in a plane, so it's possible to decompose \( \Bv \) into components that lie strictly in that plane.  Suppose \( \{ \fcap_1, \fcap_2 \} \) is a basis for that plane, and further simplify things by setting \( \fcap_1 = \ucap \).  Then we have
+\begin{equation*}
+\ucap = \fcap_1
+\end{equation*}
+\begin{equation*}
+\Bv = v \fcap_1 \cos\theta + v \fcap_2 \sin\theta,
+\end{equation*}
+where \( v = \Norm{\Bv} \), and \( \fcap_1 \cdot \fcap_2 = 0 \).
+
+With that change of basis made, you now have
+\begin{equation*}
+\ucap \cross \Bv
+= v \fcap_1 \cross \lr{ \fcap_1 \cos\theta + \fcap_2 \sin\theta }
+\end{equation*}
+\begin{equation*}
+= \lr{ \fcap_1 \cross \fcap_2 } v \sin\theta.
+\end{equation*}
+This is a vector is in a direction perpendicular to the plane that \( \ucap \) and \( \Bv \) lie in, and has the magnitude of the parallelogram formed by \( \ucap \) and \( \Bv \).
+
+You can now identify the coordinate expressions in your original question.
+First let's write \( \wcap = \fcap_1 \cross \fcap_2 \) for the direction of that vector perpendicular to the \( \ucap, \Bv \) plane, so
+\begin{equation*}
+u_x (\xcap \cross \vcap) +
+u_y (\ycap \cross \vcap) +
+u_z (\zcap \cross \vcap)
+= \sin\theta \wcap.
+\end{equation*}
+Since \( \sin\theta \) is the area of the paralellogram formed by \( \ucap, \vcap \), let's write this as
+\begin{equation*}
+\textrm{Area}(\ucap, \vcap)
+=
+u_x (\xcap \cross \vcap) \cdot \wcap +
+u_y (\ycap \cross \vcap) \cdot \wcap +
+u_z (\zcap \cross \vcap) \cdot \wcap,
+\end{equation*}
+or
+\begin{equation*}
+\textrm{Area}(\ucap, \vcap)
+=
+u_x \begin{vmatrix} \xcap & \vcap & \wcap \end{vmatrix} +
+u_y \begin{vmatrix} \ycap & \vcap & \wcap \end{vmatrix} +
+u_z \begin{vmatrix} \zcap & \vcap & \wcap \end{vmatrix}
+\end{equation*}
+Each of these triple product determinants represents the volume of the parallelopiped respectively formed by \( \xcap, \ycap, \zcap \) on one edge, and \( \vcap, \wcap \) on the other edges.  Each of these volumes is less than the total \( \ucap, \vcap \) parallelopiped area, and the factors \( u_x, u_y, u_z \) represent the weightings of the decomposition of those areas into each of these components, computed by evaluating a set of parallelopiped volumes.
+
+\section{Aside:}
+It doesn't actually matter for conceptualizing the geometry of the situtation, but if you want to compute \( \fcap_2 \), or \( \theta \), you can do so by writing
+\begin{equation*}
+\Bv = (\Bv \cdot \ucap) \ucap + \ucap \cross \lr{ \Bv \cross \ucap },
+\end{equation*}
+so
+\begin{equation*}
+\cos\theta = \vcap \cdot \ucap
+\end{equation*}
+\begin{equation*}
+\fcap_2 \sin\theta = \ucap \cross \lr{ \vcap \cross \ucap }.
+\end{equation*}
+
+%}
+%\EndArticle
+\EndNoBibArticle

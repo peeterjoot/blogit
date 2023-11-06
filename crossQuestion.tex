@@ -72,7 +72,20 @@ u_x \begin{vmatrix} \xcap & \vcap & \wcap \end{vmatrix} +
 u_y \begin{vmatrix} \ycap & \vcap & \wcap \end{vmatrix} +
 u_z \begin{vmatrix} \zcap & \vcap & \wcap \end{vmatrix}
 \end{equation*}
-Each of these triple product determinants represents the volume of the parallelopiped respectively formed by \( \xcap, \ycap, \zcap \) on one edge, and \( \vcap, \wcap \) on the other edges.  Each of these volumes is less than the total \( \ucap, \vcap \) parallelopiped area, and the factors \( u_x, u_y, u_z \) represent the weightings of the decomposition of those areas into each of these components, computed by evaluating a set of parallelopiped volumes.
+Each of these triple product determinants represents the volume of the parallelopiped respectively formed by \( \xcap, \ycap, \zcap \) on one edge, and \( \vcap, \wcap \) on the other edges.
+
+We see that the cross product, which can be thought of as an parallelogram area computing machine, can also be recast as a parallopiped volume computing machine, if one of the vectors making extending the parallogram into a volume is a unit vector perpendicular to the plane containing the original two vectors.  That is
+\begin{equation*}
+\textrm{Area}(\ucap, \vcap) = \textrm{Volume}(\ucap, \vcap, \wcap) = \begin{vmatrix} \ucap & \vcap & \wcap \end{vmatrix}.
+\end{equation*}
+or
+\begin{equation*}
+\textrm{Volume}(\ucap, \vcap, \wcap)
+= u_x \textrm{Volume}(\xcap, \vcap, \wcap)
++ u_y \textrm{Volume}(\ycap, \vcap, \wcap)
++ u_z \textrm{Volume}(\zcap, \vcap, \wcap).
+\end{equation*}
+This volume function \( \textrm{Volume}(\ucap, \vcap, \wcap) \) is multilinear.  Of note here is that it is linear in the \( \ucap \) parameter, so we see that the factors \( u_x, u_y, u_z \) represent the weightings of the total volume of this extended space with respect to the volume computation with respect to each of the \( \xcap, \ycap, \zcap \) directions instead of \( \ucap \).
 
 \section{Aside:}
 It doesn't actually matter for conceptualizing the geometry of the situtation, but if you want to compute \( \fcap_2 \), or \( \theta \), you can do so by writing

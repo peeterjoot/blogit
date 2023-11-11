@@ -1,0 +1,178 @@
+%
+% Copyright © 2023 Peeter Joot.  All Rights Reserved.
+% Licenced as described in the file LICENSE under the root directory of this GIT repository.
+%
+%{
+\input{../latex/blogpost.tex}
+\renewcommand{\basename}{formAndCurl}
+%\renewcommand{\dirname}{notes/phy1520/}
+\renewcommand{\dirname}{notes/ece1228-electromagnetic-theory/}
+%\newcommand{\dateintitle}{}
+%\newcommand{\keywords}{}
+
+\input{../latex/peeter_prologue_print2.tex}
+
+%\usepackage{amsthm}
+\usepackage{peeters_layout_exercise}
+\usepackage{peeters_braket}
+\usepackage{peeters_figures}
+\usepackage{siunitx}
+\usepackage{peeters_tablebox}
+%\usepackage{macros_qed}
+%\usepackage{xcolor}
+
+%\usepackage{mhchem} % \ce{}
+%\usepackage{macros_bm} % \bcM
+%\usepackage{macros_qed} % \qedmarker
+%\usepackage{txfonts} % \ointclockwise
+
+%\newcommand{\makedefinition}[3]{%
+%\begin{definition}[#1]\label{#2}%
+%#3%
+%\end{definition}%
+%}
+
+\beginArtNoToc
+
+\generatetitle{Geometric calculus equivalents for some vector calculus identities.}
+%\chapter{Geometric calculus equivalents for some vector calculus identities.}
+%\label{chap:formAndCurl}
+
+I was asked about the geometric algebra equivalents of some of the vector calculus identities from \citep{vboucharMATH215}.  This includes identities like
+\begin{equation}\label{eqn:formAndCurl:20}
+\begin{aligned}
+\spacegrad (f g) &= f \spacegrad g + g \spacegrad f \\
+\spacegrad \cross (f \BF) &= f \spacegrad \cross \BF + (\spacegrad f) \cross \BF \\
+\spacegrad \cdot (f \BF) &= f \spacegrad \cdot \BF + (\spacegrad f) \cdot \BF \\
+\spacegrad \cross (\BF \cross \BG) &= (\spacegrad \cdot \BF) \cdot \BG - \BF \cdot (\spacegrad \cross G),
+\end{aligned}
+\end{equation}
+however, the point of these particular lecture notes is the interface between traditional Gibbs vector calculus and differential forms. That's a much bigger topic, and perhaps not what I was actually being asked about.  It is however, an interesting topic.
+
+In particular, these notes identify the cross product representation of the curl \( \spacegrad \cross \BF \) as the equivalent to the exterior derivative of a one form (which has been mapped to a vector function.)
+
+In geometric algebra, this isn't the identification we would use.  Instead we should identify the ``bivector curl'' \( \spacegrad \wedge \BF \) as the logical equivalent of the exterior derivative of that one form, and in general identify \( \spacegrad \wedge A_k \) as the exterior derivative of a k-form (k-blade).  In the notes to follow, the wedge of the gradient with a function, will be called the curl of that function, even if we are operating in \R{3} where the cross product is defined.
+
+Let's explore some of this.
+
+The starting place of the article was to define a one form and it's exterior derivative was essentially as follows
+\makedefinition{The exterior derivative of a one form.}{dfn:formAndCurl:40}{
+Let \( f : \mathbb{R}^N \rightarrow \mathbb{R} \) be a zero form.  It's exterior derivative is
+\begin{equation*}
+df = \sum_i dx_i \PD{x_i}{f}.
+\end{equation*}
+} % definition
+
+I've stated that the GA equivalent of the exterior derivative was a curl \( \spacegrad \wedge A \), and this doesn't look anything curl like, so right away, we have some trouble to deal with.  To resolve that trouble, let's step back to the gradient, which we haven't defined yet.  In the article, the gradient (of a scalar function) was defined as a coordinate triplet
+\begin{equation}\label{eqn:formAndCurl:60}
+\spacegrad \Bf = \lr{ \PD{f}{x}, \PD{f}{y}, \PD{f}{z} }.
+\end{equation}
+In GA we don't like representations where the basis vectors are implicit, so we'd prefer to define
+\makedefinition{The gradient of a function.}{dfn:formAndCurl:80}{
+We define the gradient of multivector \( f(x_1, x_2, \cdots, x_N) \), and denote it by \( \spacegrad f \)
+\begin{equation*}
+\spacegrad f = \sum_{i=1}^N \Be_i \PD{x_i}{f},
+\end{equation*}
+where \( \setlr{ \Be_1, \cdots \Be_N } \) is an orthonormal basis for \R{N}.
+} % definition
+Unlike the article, we do not restrict \( f \) to be a scalar function, since we do not have a problem with a vector valued operator directly multiplying a vector or any product of vectors.  Instead \( f \) can be a multivector function, with scalar, vector, bivector, trivector, ... components, and we define the gradient the same way.
+
+In order to define the curl of a k-blade, we need a reminder of how we define the wedge of a vector with a k-blade.  Recall that this is how we generally define the wedge between two blades.
+\makedefinition{}{dfn:formAndCurl:100}{
+Let \( A_r \) be a r-blade, and \( B_s \) a s-blade.  The wedge of \( A_r \) with \( B_s \) is
+\begin{equation}\label{eqn:formAndCurl:120}
+A_r \wedge B_s = \gpgrade{A_r B_s}{r+s}.
+\end{equation}
+} % definition
+In particular, if \( \Ba \) is a vector, then the wedge with an s-blade \( B_s \) is
+\begin{equation}\label{eqn:formAndCurl:140}
+\Ba \wedge B_s = \gpgrade{\Ba B_s}{s+1},
+\end{equation}
+which is just the \( s+1 \) grade selection of their product.  Furthermore, if \( f \) is a scalar, then
+\begin{equation}\label{eqn:formAndCurl:160}
+\Ba \wedge f = \gpgrade{\Ba f}{1} = \Ba f.
+\end{equation}
+We can now state the curl of a k-blade
+\makedefinition{Curl of a k-blade.}{dfn:formAndCurl:180}{
+Let \( A_k \) be a k-blade.  We define the curl of a k-blade as the wedge product of the gradient with that k-blade, designated
+\begin{equation*}
+\spacegrad \wedge A_k.
+\end{equation*}
+} % definition
+Observe, given our generalized wedge product definition above, that the curl of a scalar function \( f \), is in fact just the gradient of that function
+\begin{equation}\label{eqn:formAndCurl:200}
+\spacegrad \wedge f = \spacegrad f = \sum_i \Be_i \PD{x_i}{f}.
+\end{equation}
+This has exactly the structure of the exterior derivative of a one form, as stated in \cref{dfn:formAndCurl:40}, but we have replaced \( dx_i \) with a basis vector \( \Be_i \).
+
+In differental forms, if \( \omega = f_i dx_i \) is a one-form, it's exterior derivative \( d \omega \) is
+\begin{equation}\label{eqn:formAndCurl:220}
+\begin{aligned}
+d\omega
+&= \sum_j d( f_j dx_j ) \\
+&= \sum_j d( f_j ) \wedge dx_j \\
+&= \sum_j \lr{ \sum_i dx_i \PD{x_i}{f_j} } \wedge dx_j \\
+&= \sum_{ji} \PD{x_i}{f_j} dx_i \wedge dx_j \\
+&= \sum_{j \ne i} \PD{x_i}{f_j} dx_i \wedge dx_j \\
+&=
+\sum_{i < j} \PD{x_i}{f_j} dx_i \wedge dx_j
++
+\sum_{j < i} \PD{x_i}{f_j} dx_i \wedge dx_j \\
+&=
+\sum_{i < j} \PD{x_i}{f_j} dx_i \wedge dx_j
++
+\sum_{i < j} \PD{x_j}{f_i} dx_j \wedge dx_i \\
+&=
+\sum_{i < j} \lr{
+\PD{x_i}{f_j}
+-
+\PD{x_j}{f_i}
+} dx_i \wedge dx_j.
+\end{aligned}
+\end{equation}
+
+Now let's look at the coordinate representation of the curl of a 1-blade (a vector).  If \( \Bf = \sum_i \Be_i f_i \) is a vector, then it's curl is
+\begin{equation}\label{eqn:formAndCurl:240}
+\begin{aligned}
+\spacegrad \wedge \Bf
+&=
+\sum_{ij} \lr{ \Be_i \PD{x_i}{} } \wedge \lr{ \Be_j f_j } \\
+&=
+\sum_{ij} \lr{ \Be_i \wedge \Be_j } \PD{x_i}{f_j} \\
+&=
+\sum_{i \ne j} \lr{ \Be_i \wedge \Be_j } \PD{x_i}{f_j} \\
+&=
+\sum_{i < j} \lr{ \Be_i \wedge \Be_j } \PD{x_i}{f_j}
++
+\sum_{j < i} \lr{ \Be_i \wedge \Be_j } \PD{x_i}{f_j} \\
+&=
+\sum_{i < j} \lr{ \Be_i \wedge \Be_j } \PD{x_i}{f_j}
++
+\sum_{i < j} \lr{ \Be_j \wedge \Be_i } \PD{x_j}{f_i} \\
+&=
+\sum_{i < j} \lr{ \Be_i \wedge \Be_j } \lr{ \PD{x_i}{f_j} - \PD{x_j}{f_i} }.
+\end{aligned}
+\end{equation}
+Again, we have a one-to-one correspondence between the curl and the exterior derivative.  If we are translating from differential forms, again, we see that we simply replace any differentials \( dx_i \) with the basis vectors \( \Be_i \).
+
+Note that in differential forms, we often assume that there is an implicit wedge product between any different one form elements, writing
+\begin{equation}\label{eqn:formAndCurl:260}
+dx_1 \wedge dx_2 = dx_1 dx_2.
+\end{equation}
+This works out fine when we map differentials to basis vectors, since
+\begin{equation}\label{eqn:formAndCurl:280}
+\Be_1 \Be_2 =
+\Be_1 \cdot \Be_2
++
+\Be_1 \wedge \Be_2
+=
+\Be_1 \wedge \Be_2.
+\end{equation}
+However, we have to be more careful in GA when using indexed expressions, since
+\begin{equation}\label{eqn:formAndCurl:300}
+\Be_i \Be_j = \Be_i \cdot \Be_j + \Be_i \wedge \Be_j.
+\end{equation}
+The dot product portion of the RHS is only zero if \( i \ne j \).
+
+%}
+\EndArticle

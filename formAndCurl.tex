@@ -586,7 +586,6 @@ For the \R{3} part of the story, we have
 \end{equation}
 \end{proof}
 
-
 We have just one identity left in the article to find the GA equivalent of, but will split that into two logical pieces.
 \makelemma{Dual of triple wedge.}{lemma:formAndCurl:660}{
 If \( \Ba, \Bb, \Bc \in \mathbb{R}^3 \) are vectors, then
@@ -662,6 +661,30 @@ f
 \end{aligned}
 \end{equation}
 The \R{3} part of the lemma follows from \cref{lemma:formAndCurl:660}.
+\end{proof}
+\makelemma{Curl of a bivector.}{lemma:formAndCurl:930}{
+Let \( \Ba, \Bb \) be vectors.  The curl of their wedge is
+\begin{equation*}
+\spacegrad \wedge \lr{ \Ba \wedge \Bb } = \Bb \wedge \lr{ \spacegrad \wedge \Ba } - \Ba \wedge \lr{ \spacegrad \wedge \Bb }
+\end{equation*}
+For \R{3}, this can be expressed as the divergence of a cross product
+\begin{equation*}
+\spacegrad \cdot \lr{ \Ba \cross \Bb } = \Bb \cross \lr{ \spacegrad \cross \Ba } - \Ba \cross \lr{ \spacegrad \cross \Bb }
+\end{equation*}
+} % lemma
+\begin{proof}
+The GA case is a trivial chain rule application
+\begin{equation}\label{eqn:formAndCurl:950}
+\begin{aligned}
+\rspacegrad \wedge \lr{ \Ba \wedge \Bb }
+&=
+\lr{ \spacegrad' \wedge \Ba'} \wedge \Bb
++
+\lr{ \spacegrad' \wedge \Ba } \wedge \Bb'
+&= \Bb \wedge \lr{ \spacegrad \wedge \Ba } - \Ba \wedge \lr{ \spacegrad \wedge \Bb }.
+\end{aligned}
+\end{equation}
+The \R{3} case, is less obvious by inspection, but follows from \cref{lemma:formAndCurl:660}.
 \end{proof}
 
 %}

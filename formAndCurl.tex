@@ -12,7 +12,7 @@
 
 \input{../latex/peeter_prologue_print2.tex}
 
-%\usepackage{amsthm}
+\usepackage{amsthm}
 \usepackage{peeters_layout_exercise}
 \usepackage{peeters_braket}
 \usepackage{peeters_figures}
@@ -38,22 +38,18 @@
 %\chapter{Geometric calculus equivalents for some vector calculus identities.}
 %\label{chap:formAndCurl}
 
-I was asked about the geometric algebra equivalents of some of the vector calculus identities from \citep{vboucharMATH215}.  This includes identities like
+I was asked about the geometric algebra equivalents of some of the vector calculus identities from \citep{vboucharMATH215}.  I'll call the specific page of those calculus notes ``the article''.  The article includes identities like
 \begin{equation}\label{eqn:formAndCurl:20}
 \begin{aligned}
 \spacegrad (f g) &= f \spacegrad g + g \spacegrad f \\
 \spacegrad \cross (f \BF) &= f \spacegrad \cross \BF + (\spacegrad f) \cross \BF \\
 \spacegrad \cdot (f \BF) &= f \spacegrad \cdot \BF + (\spacegrad f) \cdot \BF \\
-\spacegrad \cross (\BF \cross \BG) &= (\spacegrad \cdot \BF) \cdot \BG - \BF \cdot (\spacegrad \cross G),
+\spacegrad \cross (\BF \cross \BG) &= (\spacegrad \cdot \BF) \cdot \BG - \BF \cdot (\spacegrad \cross \BG),
 \end{aligned}
 \end{equation}
-however, the point of these particular lecture notes is the interface between traditional Gibbs vector calculus and differential forms. That's a much bigger topic, and perhaps not what I was actually being asked about.  It is however, an interesting topic.
+but the point of these particular lecture notes is the interface between traditional Gibbs vector calculus and differential forms. That's a much bigger topic, and perhaps not what I was actually being asked about.  It is, however, an interesting topic, so let's explore it.
 
-In particular, these notes identify the cross product representation of the curl \( \spacegrad \cross \BF \) as the equivalent to the exterior derivative of a one form (which has been mapped to a vector function.)
-
-In geometric algebra, this isn't the identification we would use.  Instead we should identify the ``bivector curl'' \( \spacegrad \wedge \BF \) as the logical equivalent of the exterior derivative of that one form, and in general identify \( \spacegrad \wedge A_k \) as the exterior derivative of a k-form (k-blade).  In the notes to follow, the wedge of the gradient with a function, will be called the curl of that function, even if we are operating in \R{3} where the cross product is defined.
-
-Let's explore some of this.
+The article identifies the cross product representation of the curl \( \spacegrad \cross \BF \) as the equivalent to the exterior derivative of a one form (which has been mapped to a vector function.) In geometric algebra, this isn't the identification we would use.  Instead we should identify the ``bivector curl'' \( \spacegrad \wedge \BF \) as the logical equivalent of the exterior derivative of that one form, and in general identify \( \spacegrad \wedge A_k \) as the exterior derivative of a k-form (k-blade).  In my notes to follow, the wedge of the gradient with a function, will be called the curl of that function, even if we are operating in \R{3} where the cross product is defined.
 
 The starting place of the article was to define a one form and it's exterior derivative was essentially as follows
 \makedefinition{The exterior derivative of a one form.}{dfn:formAndCurl:40}{
@@ -65,7 +61,7 @@ df = \sum_i dx_i \PD{x_i}{f}.
 
 I've stated that the GA equivalent of the exterior derivative was a curl \( \spacegrad \wedge A \), and this doesn't look anything curl like, so right away, we have some trouble to deal with.  To resolve that trouble, let's step back to the gradient, which we haven't defined yet.  In the article, the gradient (of a scalar function) was defined as a coordinate triplet
 \begin{equation}\label{eqn:formAndCurl:60}
-\spacegrad \Bf = \lr{ \PD{f}{x}, \PD{f}{y}, \PD{f}{z} }.
+\spacegrad \Bf = \lr{ \PD{x}{f}, \PD{y}{f}, \PD{z}{f} }.
 \end{equation}
 In GA we don't like representations where the basis vectors are implicit, so we'd prefer to define
 \makedefinition{The gradient of a function.}{dfn:formAndCurl:80}{
@@ -173,6 +169,224 @@ However, we have to be more careful in GA when using indexed expressions, since
 \Be_i \Be_j = \Be_i \cdot \Be_j + \Be_i \wedge \Be_j.
 \end{equation}
 The dot product portion of the RHS is only zero if \( i \ne j \).
+
+Now let's look at the equivalence between the exterior derivative of a two-form with the curl.  Let's write
+\begin{equation}\label{eqn:formAndCurl:320}
+\eta = \sum_{ij} f_{ij} dx_i \wedge dx_j
+\end{equation}
+The exterior derivative of \( \eta \) is
+\begin{equation}\label{eqn:formAndCurl:340}
+\begin{aligned}
+d \eta
+&=
+\sum_{i,j} d( f_{ij} dx_i \wedge dx_j ) \\
+&=
+\sum_{i,j,k} \lr{ \PD{x_k}{f_{ij}} dx_k } \wedge dx_i \wedge dx_j \\
+&=
+\sum_{i,j,k} \PD{x_k}{f_{ij}} dx_i \wedge dx_j \wedge dx_k.
+\end{aligned}
+\end{equation}
+Let's compare that to the curl of a bivector valued function
+\begin{equation}\label{eqn:formAndCurl:360}
+B = \sum_{i \ne j} f_{ij} \Be_i \wedge \Be_j.
+\end{equation}
+That curl is
+\begin{equation}\label{eqn:formAndCurl:380}
+\begin{aligned}
+\spacegrad \wedge B
+&=
+\lr{ \sum_k \Be_k \PD{x_k}{} } \wedge \lr{ \sum_{i \ne j} f_{ij} \Be_i \wedge \Be_j } \\
+&=
+\sum_{k, i \ne j} \PD{x_k}{f_{ij}} \Be_k \wedge \Be_i \wedge \Be_j \\
+&=
+\sum_{i,j,k} \PD{x_k}{f_{ij}} \Be_i \wedge \Be_j \wedge \Be_k.
+\end{aligned}
+\end{equation}
+Again, we see an exact coorespondence with the exterior derivative \( d \eta \) of a two-form, and the curl \( \spacegrad \wedge B \), of a 2-blade.
+
+The article established a coorespondence between the exterior derivative of a two form over \R{3} to the divergence.  The way we would express this in GA (also for \R{3}) is to write
+\begin{equation}\label{eqn:formAndCurl:400}
+B = I \Bb,
+\end{equation}
+where \( I = \Be_1 \Be_2 \Be_3 \) is the \R{3} pseudoscalar (a ``unit'' trivector.)  Forming the curl of \( B \) we have
+\begin{equation}\label{eqn:formAndCurl:420}
+\begin{aligned}
+\spacegrad \wedge B
+&= \gpgradethree{ \spacegrad B } \\
+&= \gpgradethree{ \spacegrad I \Bb } \\
+&= \gpgradethree{ I (\spacegrad \Bb) } \\
+&= \gpgradethree{ I (\spacegrad \cdot \Bb + \spacegrad \wedge \Bb) } \\
+&= I (\spacegrad \cdot \Bb).
+\end{aligned}
+\end{equation}
+The equivalence relationships that we have developed must then imply that the differential forms representation of this relationship is
+\begin{equation}\label{eqn:formAndCurl:440}
+d B = dx_1 \wedge dx_2 \wedge dx_3 (\spacegrad \cdot \Bb)
+    = dx \wedge dy \wedge dz \lr{ \PD{x}{b_1} + \PD{y}{b_2} + \PD{z}{b_3} },
+\end{equation}
+as defined in the article.
+
+Here is the GA equivalent of Lemma 4.4.10 from the article
+\makelemma{Repeated curl identities.}{lemma:formAndCurl:460}{
+Let \( A \) be a smooth k-blade, then
+\begin{equation*}
+\spacegrad \wedge \lr{ \spacegrad \wedge A } = 0.
+\end{equation*}
+For \R{3}, this result, for a scalar function \( f \), and a vector function \( \Bf \), in terms of the cross product, as
+\begin{equation}\label{eqn:formAndCurl:560}
+\begin{aligned}
+\spacegrad \cross \lr{ \spacegrad f } &= 0 \\
+\spacegrad \cdot \lr{ \spacegrad \cross \Bf } &= 0.
+\end{aligned}
+\end{equation}
+} % lemma
+It shouldn't be suprising that this is the equivalent of \( d^2 A = 0 \) from differential forms.  Let's prove this, first considering the 0-blade case
+\begin{proof}
+\begin{equation}\label{eqn:formAndCurl:480}
+\begin{aligned}
+\spacegrad \wedge \lr{ \spacegrad \wedge A }
+&=
+\spacegrad \wedge \lr{ \spacegrad A } \\
+&=
+\sum_{ij} \Be_i \wedge \Be_j \frac{\partial^2 A}{\partial x_i \partial x_j} \\
+&= 0.
+\end{aligned}
+\end{equation}
+The smooth criteria of for the function \( A \) is assumed to imply that we have equality of mixed partials, and since this is a sum of an antisymmetric term with respect to indexes \( i, j \) (the wedge) and a symmetric term in indexes \( i, j \) (the partials), we have zero overall.
+
+Now consider a k-blade \( A, k > 0 \).  Expanding the gradients, we have
+\begin{equation}\label{eqn:formAndCurl:500}
+\spacegrad \wedge \lr{ \spacegrad \wedge A }
+=
+\sum_{ij} \Be_i \wedge \Be_j \wedge \frac{\partial^2 A}{\partial x_i \partial x_j}.
+\end{equation}
+It may be obvious that this is zero for the same reasons as above (sum of product of symmetric and antisymmetric entities).  We can, however, make it more obvious, at the cost of some hellish indexing, by expressing \( A \) in coordinate form.  Let
+\begin{equation}\label{eqn:formAndCurl:520}
+A = \sum_{i_1, i_2, \cdots, i_k}
+A_{i_1, i_2, \cdots, i_k} \Be_{i_1} \wedge \Be_{i_2} \wedge \cdots \wedge \Be_{i_k},
+\end{equation}
+then
+\begin{equation}\label{eqn:formAndCurl:540}
+\begin{aligned}
+\spacegrad \wedge \lr{ \spacegrad \wedge A }
+&=
+\sum_{i,j,i_1, i_2, \cdots, i_k} \Be_i \wedge \Be_j \wedge \Be_{i_1} \wedge \Be_{i_2} \wedge \cdots \wedge \Be_{i_k}
+\frac{\partial^2 }{\partial x_i \partial x_j}  A_{i_1, i_2, \cdots, i_k}  \\
+&= 0.
+\end{aligned}
+\end{equation}
+Now we clearly have a sum of an antisymmetric term (the wedges), and a symmetric term (assuming smooth \( A \) means that we have equality of mixed partials), so the sum is zero.
+
+Finally, for the \R{3} identities, we have
+\begin{equation}\label{eqn:formAndCurl:580}
+\begin{aligned}
+\spacegrad \cross \lr{ \spacegrad f}
+&=
+-I \lr{ \spacegrad \wedge \lr{ \spacegrad f } }
+&=
+0,
+\end{aligned}
+\end{equation}
+since \( \spacegrad \wedge \lr{ \spacegrad f } = 0 \).  For a vector \( \Bf \), we have
+\begin{equation}\label{eqn:formAndCurl:600}
+\begin{aligned}
+\spacegrad \cdot \lr{ \spacegrad \cross \Bf}
+&=
+\gpgradezero{
+\spacegrad \lr{ \spacegrad \cross \Bf}
+} \\
+&=
+\gpgradezero{
+\spacegrad (-I) \lr{ \spacegrad \wedge \Bf}
+} \\
+&=
+-\gpgradezero{
+I \spacegrad \lr{ \spacegrad \wedge \Bf}
+} \\
+&=
+-
+I \spacegrad \wedge \lr{ \spacegrad \wedge \Bf} \\
+&= 0,
+\end{aligned}
+\end{equation}
+again, because \( \spacegrad \wedge \lr{ \spacegrad \wedge \Bf} = 0 \).
+\end{proof}
+
+We have a couple chain rule identities in the article.  Here is the GA equivalent of that, and its corollaries
+\makelemma{Chain rule identities.}{lemma:formAndCurl:620}{
+Let \( f \) be a scalar function and \( A \) be a k-blade, then
+\begin{equation*}
+\spacegrad \lr{ f A } = \lr{ \spacegrad f } A + f \lr{ \spacegrad A }.
+\end{equation*}
+If the grade k, of \( A \) is greater than zero, so the grade \( k-1 \) and \( k+1 \) components of this are
+\begin{equation*}
+\begin{aligned}
+\spacegrad \cdot \lr{ f A } &= \lr{ \spacegrad f } \cdot A + f \lr{ \spacegrad \cdot A } \\
+\spacegrad \wedge \lr{ f A } &= \lr{ \spacegrad f } \wedge A + f \lr{ \spacegrad \wedge A }.
+\end{aligned}
+\end{equation*}
+For \R{3}, the wedge product relation above can be written in dual form as
+\begin{equation*}
+\spacegrad \cross \lr{ f A } = \lr{ \spacegrad f } \cross A + f \lr{ \spacegrad \cross A }.
+\end{equation*}
+} % lemma
+Proving this lemma is left to the reader.
+
+Next up is another chain rule identity
+\makelemma{Gradient of dot product.}{lemma:formAndCurl:640}{
+If \( \Ba, \Bb \) are vectors, then
+\begin{equation*}
+\spacegrad \cdot \lr{ \Ba \cdot \Bb } =
+\end{equation*}
+For \R{3}, this can be written as
+\begin{equation*}
+\spacegrad \lr{ \Ba \cdot \Bb } =
+\Ba \cross \lr{ \spacegrad \cross \Bb }
++
+\lr{ \spacegrad \cross \Ba } \cross \Bb
++
+\lr{ \Bb \cdot \spacegrad } \Ba
++
+\lr{ \Ba \cdot \spacegrad } \Bb
+\end{equation*}
+} % lemma
+
+We have a couple identities in the article that all have expressions like \( \Ba \cdot \lr{ \Bb \cross \Bc } \), so we want to figure out a natural GA representation of such an expression.  That is
+\makelemma{Dual of triple wedge.}{lemma:formAndCurl:660}{
+If \( \Ba, \Bb, \Bc \) are vectors, then
+\begin{equation*}
+\Ba \cdot \lr{ \Bb \cross \Bc } = -I \lr{ \Ba \wedge \Bb \wedge \Bc }.
+\end{equation*}
+} % lemma
+\begin{proof}
+\begin{equation}\label{eqn:formAndCurl:680}
+\begin{aligned}
+\Ba \cdot \lr{ \Bb \cross \Bc }
+&=
+\gpgradezero{
+\Ba \lr{ \Bb \cross \Bc }
+} \\
+&=
+\gpgradezero{
+\Ba (-I) \lr{ \Bb \wedge \Bc }
+} \\
+&=
+\gpgradezero{
+-I \lr{
+\Ba \cdot \lr{ \Bb \wedge \Bc }
++
+\Ba \wedge \lr{ \Bb \wedge \Bc }
+}
+} \\
+&=
+\gpgradezero{
+-I \lr{ \Ba \wedge \lr{ \Bb \wedge \Bc } }
+} \\
+&=
+-I \lr{ \Ba \wedge \lr{ \Bb \wedge \Bc } }.
+\end{aligned}
+\end{equation}
+\end{proof}
 
 %}
 \EndArticle

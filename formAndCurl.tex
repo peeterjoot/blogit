@@ -34,7 +34,7 @@
 
 \beginArtNoToc
 
-\generatetitle{Geometric calculus equivalents for some vector calculus identities.}
+\generatetitle{Geometric calculus relationships to differential forms, and vector calculus identities.}
 %\chapter{Geometric calculus equivalents for some vector calculus identities.}
 %\label{chap:formAndCurl}
 
@@ -107,8 +107,8 @@ Let \( \omega = f_i dx_i \) be a one-form.  The exterior derivative of \( d \ome
 d\omega = \sum_i d( f_i ) \wedge dx_i.
 \end{equation*}
 } % definition
-\makelemma{}{lemma:formAndCurl:840}{
-Let \( \omega = f_i dx_i \) be a one-form.  The exterior derivative of \( d \omega \) can be expanding into a Jacobian form
+\makelemma{Exterior derivative of a one-form.}{lemma:formAndCurl:840}{
+Let \( \omega = f_i dx_i \) be a one-form.  The exterior derivative \( d \omega \) can be expanding into a Jacobian form
 \begin{equation*}
 d\omega
 =
@@ -145,8 +145,19 @@ d\omega
 \end{aligned}
 \end{equation}
 \end{proof}
-
-Now let's look at the coordinate representation of the curl of a 1-blade (a vector).  If \( \Bf = \sum_i \Be_i f_i \) is a vector, then it's curl is
+\makelemma{Curl of a vector.}{lemma:formAndCurl:850}{
+Let \( \Bf = \sum_i \Be_i f_i \in \mathbb{R}^N \) be a vector.  The curl of \( \Bf \) has a Jacobian structure
+\begin{equation*}
+\spacegrad \wedge \Bf
+=
+\sum_{i < j}
+\lr{ \PD{x_i}{f_j} - \PD{x_j}{f_i} }
+\lr{ \Be_i \wedge \Be_j }
+.
+\end{equation*}
+} % lemma
+\begin{proof}
+The antisymmetry of the wedges of differentials in the exterior derivative and the curl clearly has a one to one correspondence.  Let's show this explicitly by expansion
 \begin{equation}\label{eqn:formAndCurl:240}
 \begin{aligned}
 \spacegrad \wedge \Bf
@@ -168,7 +179,8 @@ Now let's look at the coordinate representation of the curl of a 1-blade (a vect
 \sum_{i < j} \lr{ \Be_i \wedge \Be_j } \lr{ \PD{x_i}{f_j} - \PD{x_j}{f_i} }.
 \end{aligned}
 \end{equation}
-Again, we have a one-to-one correspondence between the curl and the exterior derivative.  If we are translating from differential forms, again, we see that we simply replace any differentials \( dx_i \) with the basis vectors \( \Be_i \).
+\end{proof}
+If we are translating from differential forms, again, we see that we simply replace any differentials \( dx_i \) with the basis vectors \( \Be_i \) (at least for the zero-form and one-form cases, which is all that we have looked at here.)
 
 Note that in differential forms, we often assume that there is an implicit wedge product between any different one form elements, writing
 \begin{equation}\label{eqn:formAndCurl:260}
@@ -189,10 +201,23 @@ However, we have to be more careful in GA when using indexed expressions, since
 \end{equation}
 The dot product portion of the RHS is only zero if \( i \ne j \).
 
-Now let's look at the equivalence between the exterior derivative of a two-form with the curl.  Let's write
-\begin{equation}\label{eqn:formAndCurl:320}
-\eta = \sum_{ij} f_{ij} dx_i \wedge dx_j
-\end{equation}
+Now let's look at the equivalence between the exterior derivative of a two-form with the curl.
+\makedefinition{Exterior derivative of a two-form.}{dfn:formAndCurl:840}{
+Let \( \eta = \sum_{ij} f_{ij} dx_i \wedge dx_j \) be a two-form.  The exterior derivative of \( \eta \) is
+\begin{equation*}
+d\eta =
+\sum_{ij} d( f_{ij} ) \wedge dx_i \wedge dx_j.
+\end{equation*}
+} % definition
+\makelemma{Exterior derivative of a two-form.}{lemma:formAndCurl:860}{
+Let \( \eta = \sum_{ij} f_{ij} dx_i \wedge dx_j \) be a two-form.  The exterior derivative of \( \eta \) can be expanded as
+\begin{equation*}
+d \eta
+=
+\sum_{i,j,k} \PD{x_k}{f_{ij}} dx_i \wedge dx_j \wedge dx_k.
+\end{equation*}
+} % lemma
+\begin{proof}
 The exterior derivative of \( \eta \) is
 \begin{equation}\label{eqn:formAndCurl:340}
 \begin{aligned}
@@ -205,11 +230,17 @@ d \eta
 \sum_{i,j,k} \PD{x_k}{f_{ij}} dx_i \wedge dx_j \wedge dx_k.
 \end{aligned}
 \end{equation}
-Let's compare that to the curl of a bivector valued function
-\begin{equation}\label{eqn:formAndCurl:360}
-B = \sum_{i \ne j} f_{ij} \Be_i \wedge \Be_j.
-\end{equation}
-That curl is
+\end{proof}
+Let's compare that to the curl of a bivector valued function.
+\makelemma{Curl of a 2-blade.}{lemma:formAndCurl:880}{
+Let \( B = \sum_{i \ne j} f_{ij} \Be_i \wedge \Be_j \) be a 2-blade.  The curl of \( B \) is
+\begin{equation*}
+\spacegrad \wedge B
+=
+\sum_{i,j,k} \PD{x_k}{f_{ij}} \Be_i \wedge \Be_j \wedge \Be_k.
+\end{equation*}
+} % lemma
+\begin{proof}
 \begin{equation}\label{eqn:formAndCurl:380}
 \begin{aligned}
 \spacegrad \wedge B
@@ -221,6 +252,7 @@ That curl is
 \sum_{i,j,k} \PD{x_k}{f_{ij}} \Be_i \wedge \Be_j \wedge \Be_k.
 \end{aligned}
 \end{equation}
+\end{proof}
 Again, we see an exact coorespondence with the exterior derivative \( d \eta \) of a two-form, and the curl \( \spacegrad \wedge B \), of a 2-blade.
 
 The article established a coorespondence between the exterior derivative of a two form over \R{3} to the divergence.  The way we would express this in GA (also for \R{3}) is to write
@@ -494,10 +526,70 @@ Now we can cancel some terms, leaving
 After adjustment of the order and sign of the second term, we see that this is the result we wanted.  To show the \R{3} formulation, we have only apply \cref{lemma:formAndCurl:700}.
 %{Triple cross products}
 \end{proof}
+\makelemma{Divergence of a bivector.}{lemma:formAndCurl:870}{
+Let \( \Ba, \Bb \in \mathbb{R}^N \) be vectors.  The divergence of their wedge can be written
+\begin{equation*}
+\spacegrad \cdot \lr{ \Ba \wedge \Bb }
+=
+  \Bb \lr{ \spacegrad \cdot \Ba }
+- \Ba \lr{ \spacegrad \cdot \Bb }
+- \lr{ \Bb \cdot \spacegrad } \Ba
++ \lr{ \Ba \cdot \spacegrad } \Bb.
+\end{equation*}
+For \R{3}, this can also be written in triple cross product form
+\begin{equation*}
+\spacegrad \cdot \lr{ \Ba \wedge \Bb }
+=
+-\spacegrad \cross \lr{ \Ba \cross \Bb }.
+\end{equation*}
+} % lemma
+\begin{proof}
+\begin{equation}\label{eqn:formAndCurl:860}
+\begin{aligned}
+\rspacegrad \cdot \lr{ \Ba \wedge \Bb }
+&=
+\spacegrad' \cdot \lr{ \Ba' \wedge \Bb }
++ \spacegrad' \cdot \lr{ \Ba \wedge \Bb' } \\
+&=
+\lr{ \spacegrad' \cdot \Ba' } \Bb
+- \lr{ \spacegrad' \cdot \Bb } \Ba'
++ \lr{ \spacegrad' \cdot \Ba } \Bb'
+- \lr{ \spacegrad' \cdot \Bb' } \Ba
+\\
+&=
+\lr{ \spacegrad \cdot \Ba } \Bb
+- \lr{ \Bb \cdot \spacegrad } \Ba
++ \lr{ \Ba \cdot \spacegrad } \Bb
+- \lr{ \spacegrad \cdot \Bb } \Ba.
+\end{aligned}
+\end{equation}
+For the \R{3} part of the story, we have
+\begin{equation}\label{eqn:formAndCurl:870}
+\begin{aligned}
+\spacegrad \cross \lr{ \Ba \cross \Bb }
+&=
+\gpgradeone{
+-I \lr{ \spacegrad \wedge \lr{ \Ba \cross \Bb } }
+} \\
+&=
+\gpgradeone{
+-I \spacegrad \lr{ \Ba \cross \Bb }
+} \\
+&=
+\gpgradeone{
+(-I)^2 \spacegrad \lr{ \Ba \wedge \Bb }
+} \\
+&=
+-
+\spacegrad \cdot \lr{ \Ba \wedge \Bb }
+\end{aligned}
+\end{equation}
+\end{proof}
 
-We have a couple identities in the article that all have expressions like \( \Ba \cdot \lr{ \Bb \cross \Bc } \), so we want to figure out a natural GA representation of such an expression.  That is
+
+We have just one identity left in the article to find the GA equivalent of, but will split that into two logical pieces.
 \makelemma{Dual of triple wedge.}{lemma:formAndCurl:660}{
-If \( \Ba, \Bb, \Bc \) are vectors, then
+If \( \Ba, \Bb, \Bc \in \mathbb{R}^3 \) are vectors, then
 \begin{equation*}
 \Ba \cdot \lr{ \Bb \cross \Bc } = -I \lr{ \Ba \wedge \Bb \wedge \Bc }.
 \end{equation*}
@@ -530,6 +622,46 @@ If \( \Ba, \Bb, \Bc \) are vectors, then
 -I \lr{ \Ba \wedge \lr{ \Bb \wedge \Bc } }.
 \end{aligned}
 \end{equation}
+\end{proof}
+\makelemma{Curl of a wedge of gradients (divergence of a gradient cross products.)}{lemma:formAndCurl:890}{
+Let \( f, g, h \) be smooth functions with smooth derivatives.  Then
+\begin{equation*}
+\spacegrad \wedge \lr{ f \lr{ \spacegrad g \wedge \spacegrad h } }
+=
+\spacegrad f
+\wedge
+\spacegrad g
+\wedge
+\spacegrad h.
+\end{equation*}
+For \R{3} this can be written as
+\begin{equation*}
+\spacegrad \cdot \lr{ f \lr{ \spacegrad g \cross \spacegrad h } }
+=
+\spacegrad f
+\cdot
+\lr{
+\spacegrad g
+\cross
+\spacegrad h
+}.
+\end{equation*}
+} % lemma
+\begin{proof}
+The GA identity follows by chain rule and application of \cref{lemma:formAndCurl:460}.
+\begin{equation}\label{eqn:formAndCurl:910}
+\begin{aligned}
+\spacegrad \wedge \lr{ f \lr{ \spacegrad g \wedge \spacegrad h } }
+&=
+\spacegrad f \wedge \lr{ \spacegrad g \wedge \spacegrad h }
++
+f
+\spacegrad \wedge \lr{ \spacegrad g \wedge \spacegrad h } \\
+&=
+\spacegrad f \wedge \spacegrad g \wedge \spacegrad h.
+\end{aligned}
+\end{equation}
+The \R{3} part of the lemma follows from \cref{lemma:formAndCurl:660}.
 \end{proof}
 
 %}

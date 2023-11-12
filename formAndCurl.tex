@@ -101,7 +101,25 @@ Observe, given our generalized wedge product definition above, that the curl of 
 \end{equation}
 This has exactly the structure of the exterior derivative of a one form, as stated in \cref{dfn:formAndCurl:40}, but we have replaced \( dx_i \) with a basis vector \( \Be_i \).
 
-In differental forms, if \( \omega = f_i dx_i \) is a one-form, it's exterior derivative \( d \omega \) is
+\makedefinition{Exterior derivative of a one-form.}{dfn:formAndCurl:820}{
+Let \( \omega = f_i dx_i \) be a one-form.  The exterior derivative of \( d \omega \) is
+\begin{equation*}
+d\omega = \sum_i d( f_i ) \wedge dx_i.
+\end{equation*}
+} % definition
+\makelemma{}{lemma:formAndCurl:840}{
+Let \( \omega = f_i dx_i \) be a one-form.  The exterior derivative of \( d \omega \) can be expanding into a Jacobian form
+\begin{equation*}
+d\omega
+=
+\sum_{i < j} \lr{
+\PD{x_i}{f_j}
+-
+\PD{x_j}{f_i}
+} dx_i \wedge dx_j.
+\end{equation*}
+} % lemma
+\begin{proof}
 \begin{equation}\label{eqn:formAndCurl:220}
 \begin{aligned}
 d\omega
@@ -126,6 +144,7 @@ d\omega
 } dx_i \wedge dx_j.
 \end{aligned}
 \end{equation}
+\end{proof}
 
 Now let's look at the coordinate representation of the curl of a 1-blade (a vector).  If \( \Bf = \sum_i \Be_i f_i \) is a vector, then it's curl is
 \begin{equation}\label{eqn:formAndCurl:240}
@@ -318,7 +337,7 @@ Let \( f \) be a scalar function and \( A \) be a k-blade, then
 \begin{equation*}
 \spacegrad \lr{ f A } = \lr{ \spacegrad f } A + f \lr{ \spacegrad A }.
 \end{equation*}
-If the grade k, of \( A \) is greater than zero, so the grade \( k-1 \) and \( k+1 \) components of this are
+For \( A \) with grade \( k > 0 \), the grade \( k-1 \) and \( k+1 \) components of this product are
 \begin{equation*}
 \begin{aligned}
 \spacegrad \cdot \lr{ f A } &= \lr{ \spacegrad f } \cdot A + f \lr{ \spacegrad \cdot A } \\
@@ -330,26 +349,151 @@ For \R{3}, the wedge product relation above can be written in dual form as
 \spacegrad \cross \lr{ f A } = \lr{ \spacegrad f } \cross A + f \lr{ \spacegrad \cross A }.
 \end{equation*}
 } % lemma
-Proving this lemma is left to the reader.
+Proving this is left to the reader.
+
+We have some chain rule identities left in the article to verify and to find GA equivalents of.  Before doing so, we need a couple miscellaneous identities relating triple corss products to wedge-dots.
+\makelemma{Triple cross products.}{lemma:formAndCurl:700}{
+Let \( \Ba, \Bb, \Bc \) be vectors in \R{3}.  Then
+\begin{equation*}
+\begin{aligned}
+\Ba \cross \lr{ \Bb \cross \Bc } &= - \Ba \cdot \lr{ \Bb \wedge \Bc } \\
+\lr{ \Ba \cross \Bb } \cross \Bc &= - \lr{ \Ba \wedge \Bb } \cdot \Bc.
+\end{aligned}
+\end{equation*}
+} % lemma
+\begin{proof}
+\begin{equation}\label{eqn:formAndCurl:720}
+\begin{aligned}
+\Ba \cross \lr{ \Bb \cross \Bc }
+&=
+\gpgradeone{ -I \lr{ \Ba \wedge \lr{ \Bb \cross \Bc } } } \\
+&=
+\gpgradeone{ -I \lr{ \Ba \lr{ \Bb \cross \Bc } } } \\
+&=
+\gpgradeone{ (-I)^2 \lr{ \Ba \lr{ \Bb \wedge \Bc } } } \\
+&=
+-\Ba \cdot \lr{ \Bb \wedge \Bc },
+\end{aligned}
+\end{equation}
+\begin{equation}\label{eqn:formAndCurl:740}
+\begin{aligned}
+\lr{ \Ba \cross \Bb } \cross \Bc
+&=
+\gpgradeone{ -I \lr{ \Ba \cross \Bb } \wedge \Bc } \\
+&=
+\gpgradeone{ -I \lr{ \Ba \cross \Bb } \Bc } \\
+&=
+\gpgradeone{ (-I)^2 \lr{ \Ba \wedge \Bb } \Bc } \\
+&=
+- \lr{ \Ba \wedge \Bb } \cdot \Bc.
+\end{aligned}
+\end{equation}
+\end{proof}
 
 Next up is another chain rule identity
 \makelemma{Gradient of dot product.}{lemma:formAndCurl:640}{
 If \( \Ba, \Bb \) are vectors, then
 \begin{equation*}
 \spacegrad \cdot \lr{ \Ba \cdot \Bb } =
-\end{equation*}
-For \R{3}, this can be written as
-\begin{equation*}
-\spacegrad \lr{ \Ba \cdot \Bb } =
-\Ba \cross \lr{ \spacegrad \cross \Bb }
-+
-\lr{ \spacegrad \cross \Ba } \cross \Bb
+\lr{ \Ba \cdot \spacegrad } \Bb
 +
 \lr{ \Bb \cdot \spacegrad } \Ba
 +
+\lr{ \spacegrad \wedge \Bb }
+\cdot
+\Ba
++
+\lr{ \spacegrad \wedge \Ba }
+\cdot
+\Bb
+\end{equation*}
+For \R{3}, this can be written as
+\begin{equation*}
+\spacegrad \lr{ \Ba \cdot \Bb }
+=
 \lr{ \Ba \cdot \spacegrad } \Bb
++
+\lr{ \Bb \cdot \spacegrad } \Ba
++
+\Ba \cross \lr{ \spacegrad \cross \Bb }
++
+\Bb \cross \lr{ \spacegrad \cross \Ba }
 \end{equation*}
 } % lemma
+\begin{proof}
+We will use \( \rspacegrad \) to indicate that the gradient operates on everything to the right, \( \lrspacegrad \) to indicate that the gradient operates bidirectionally, and \( \spacegrad' A B' \) to indicate that the gradient's scope is limited to the ticked entity (just on \( B \) in this case.)
+\begin{equation}\label{eqn:formAndCurl:760}
+\begin{aligned}
+\rspacegrad \lr{ \Ba \cdot \Bb }
+&=
+\gpgradeone{
+\rspacegrad \lr{ \Ba \Bb - \Ba \wedge \Bb }
+} \\
+&=
+\gpgradeone{
+\spacegrad' \Ba' \Bb
++
+\spacegrad' \Ba \Bb'
+}
+- \rspacegrad \cdot \lr{ \Ba \wedge \Bb }
+\\
+&=
+\lr{ \spacegrad \cdot \Ba} \Bb
++
+\lr{ \spacegrad \wedge \Ba} \cdot \Bb
++
+\gpgradeone{
+- \Ba \spacegrad \Bb + 2 \lr{ \Ba \cdot \spacegrad } \Bb
+}
+- \spacegrad' \cdot \lr{ \Ba' \wedge \Bb }
+- \spacegrad' \cdot \lr{ \Ba \wedge \Bb' }
+\\
+&=
+\lr{ \spacegrad \cdot \Ba} \Bb
++
+\lr{ \spacegrad \wedge \Ba} \cdot \Bb
+-
+\Ba \lr{ \spacegrad \cdot \Bb }
+-
+\Ba \cdot \lr{ \spacegrad \wedge \Bb }
++ 2 \lr{ \Ba \cdot \spacegrad } \Bb
+- \spacegrad' \cdot \lr{ \Ba' \wedge \Bb }
+- \spacegrad' \cdot \lr{ \Ba \wedge \Bb' }.
+\end{aligned}
+\end{equation}
+We are running out of room, and have not had any cancellation yet, so let's expand those last two terms separately
+\begin{equation}\label{eqn:formAndCurl:780}
+\begin{aligned}
+- \spacegrad' \cdot \lr{ \Ba' \wedge \Bb }
+- \spacegrad' \cdot \lr{ \Ba \wedge \Bb' }
+&=
+- \lr{ \spacegrad' \cdot \Ba' } \Bb
++ \lr{ \spacegrad' \cdot \Bb } \Ba'
+- \lr{ \spacegrad' \cdot \Ba } \Bb'
++ \lr{ \spacegrad' \cdot \Bb' } \Ba
+\\
+&=
+- \lr{ \spacegrad \cdot \Ba } \Bb
++ \lr{ \Bb \cdot \spacegrad } \Ba
+- \lr{ \Ba \cdot \spacegrad } \Bb
++ \lr{ \spacegrad \cdot \Bb } \Ba.
+\end{aligned}
+\end{equation}
+Now we can cancel some terms, leaving
+\begin{equation}\label{eqn:formAndCurl:800}
+\begin{aligned}
+\rspacegrad \lr{ \Ba \cdot \Bb }
+&=
+\lr{ \spacegrad \wedge \Ba} \cdot \Bb
+-
+\Ba \cdot \lr{ \spacegrad \wedge \Bb }
++ \lr{ \Ba \cdot \spacegrad } \Bb
++ \lr{ \Bb \cdot \spacegrad } \Ba.
+\end{aligned}
+\end{equation}
+After adjustment of the order and sign of the second term, we see that this is the result we wanted.  To show the \R{3} formulation, we have only apply \cref{lemma:formAndCurl:700}.
+%{Triple cross products}
+\end{proof}
 
 We have a couple identities in the article that all have expressions like \( \Ba \cdot \lr{ \Bb \cross \Bc } \), so we want to figure out a natural GA representation of such an expression.  That is
 \makelemma{Dual of triple wedge.}{lemma:formAndCurl:660}{

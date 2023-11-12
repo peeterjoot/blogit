@@ -663,7 +663,18 @@ f
 \spacegrad f \wedge \spacegrad g \wedge \spacegrad h.
 \end{aligned}
 \end{equation}
-The \R{3} part of the lemma follows from \cref{lemma:formAndCurl:660}.
+The \R{3} part of the lemma follows from \cref{lemma:formAndCurl:660}, applied twice
+\begin{equation}\label{eqn:formAndCurl:970}
+\begin{aligned}
+\spacegrad \cdot \lr{ (f \spacegrad g) \cross \spacegrad h }
+&=
+-I \lr{ \spacegrad \wedge (f \spacegrad g) \wedge \spacegrad h } \\
+&=
+-I \lr{ \spacegrad f \wedge \spacegrad g \wedge \spacegrad h } \\
+&=
+\spacegrad f \cdot \lr{ \spacegrad g \cross \spacegrad h}.
+\end{aligned}
+\end{equation}
 \end{proof}
 \makelemma{Curl of a bivector.}{lemma:formAndCurl:930}{
 Let \( \Ba, \Bb \) be vectors.  The curl of their wedge is
@@ -690,6 +701,15 @@ The GA case is a trivial chain rule application
 The \R{3} case, is less obvious by inspection, but follows from \cref{lemma:formAndCurl:660}.
 \end{proof}
 \section{Summary.}
+We found that we have an isomorphism between the exterior derivative of differential forms and the curl operation of geometric algebra, as follows
+\begin{equation}\label{eqn:formAndCurl:990}
+\begin{aligned}
+df &\rightleftharpoons \spacegrad \wedge f \\
+dx_i &\rightleftharpoons \Be_i.
+\end{aligned}
+\end{equation}
+We didn't look at how the Hodge dual translates to GA duality (pseudoscalar multiplication.)  The divergence relationship between the exterior derivative of an \R{3} two-form really requires that formalism, and has only been examined in a cursory fashion.
 
+We also translated a number of vector and gradient identities from conventional vector algebra (i.e.: using cross products) and wedge product equivalents of the same.  The GA identities are often simpler, and in some cases, provide nice mechanisms to derive the conventional identities that would be more cumbersome to determine without the GA toolbox.
 %}
 \EndArticle

@@ -38,17 +38,19 @@
 %\chapter{Geometric calculus equivalents for some vector calculus identities.}
 %\label{chap:formAndCurl}
 
+\section{Motivation.}
 I was asked about the geometric algebra equivalents of some of the vector calculus identities from \citep{vboucharMATH215}.  I'll call the specific page of those calculus notes ``the article''.  The article includes identities like
 \begin{equation}\label{eqn:formAndCurl:20}
 \begin{aligned}
 \spacegrad (f g) &= f \spacegrad g + g \spacegrad f \\
 \spacegrad \cross (f \BF) &= f \spacegrad \cross \BF + (\spacegrad f) \cross \BF \\
 \spacegrad \cdot (f \BF) &= f \spacegrad \cdot \BF + (\spacegrad f) \cdot \BF \\
-\spacegrad \cross (\BF \cross \BG) &= (\spacegrad \cdot \BF) \cdot \BG - \BF \cdot (\spacegrad \cross \BG),
+\spacegrad \cdot \lr{ \BF \cross \BG } &= \BG \cdot \lr{ \spacegrad \cross \BF } - \BF \cdot \lr{ \spacegrad \cross \BG },
 \end{aligned}
 \end{equation}
 but the point of these particular lecture notes is the interface between traditional Gibbs vector calculus and differential forms. That's a much bigger topic, and perhaps not what I was actually being asked about.  It is, however, an interesting topic, so let's explore it.
 
+\section{Comparisons.}
 The article identifies the cross product representation of the curl \( \spacegrad \cross \BF \) as the equivalent to the exterior derivative of a one form (which has been mapped to a vector function.) In geometric algebra, this isn't the identification we would use.  Instead we should identify the ``bivector curl'' \( \spacegrad \wedge \BF \) as the logical equivalent of the exterior derivative of that one form, and in general identify \( \spacegrad \wedge A_k \) as the exterior derivative of a k-form (k-blade).  In my notes to follow, the wedge of the gradient with a function, will be called the curl of that function, even if we are operating in \R{3} where the cross product is defined.
 
 The starting place of the article was to define a one form and it's exterior derivative was essentially as follows
@@ -363,7 +365,8 @@ I \spacegrad \wedge \lr{ \spacegrad \wedge \Bf} \\
 again, because \( \spacegrad \wedge \lr{ \spacegrad \wedge \Bf} = 0 \).
 \end{proof}
 
-We have a couple chain rule identities in the article.  Here is the GA equivalent of that, and its corollaries
+\section{Identities.}
+We have a number of chain rule identities in the article.  Here is the GA equivalent of that, and its corollaries
 \makelemma{Chain rule identities.}{lemma:formAndCurl:620}{
 Let \( f \) be a scalar function and \( A \) be a k-blade, then
 \begin{equation*}
@@ -426,7 +429,7 @@ Next up is another chain rule identity
 \makelemma{Gradient of dot product.}{lemma:formAndCurl:640}{
 If \( \Ba, \Bb \) are vectors, then
 \begin{equation*}
-\spacegrad \cdot \lr{ \Ba \cdot \Bb } =
+\spacegrad \lr{ \Ba \cdot \Bb } =
 \lr{ \Ba \cdot \spacegrad } \Bb
 +
 \lr{ \Bb \cdot \spacegrad } \Ba
@@ -669,7 +672,7 @@ Let \( \Ba, \Bb \) be vectors.  The curl of their wedge is
 \end{equation*}
 For \R{3}, this can be expressed as the divergence of a cross product
 \begin{equation*}
-\spacegrad \cdot \lr{ \Ba \cross \Bb } = \Bb \cross \lr{ \spacegrad \cross \Ba } - \Ba \cross \lr{ \spacegrad \cross \Bb }
+\spacegrad \cdot \lr{ \Ba \cross \Bb } = \Bb \cdot \lr{ \spacegrad \cross \Ba } - \Ba \cdot \lr{ \spacegrad \cross \Bb }
 \end{equation*}
 } % lemma
 \begin{proof}
@@ -680,12 +683,13 @@ The GA case is a trivial chain rule application
 &=
 \lr{ \spacegrad' \wedge \Ba'} \wedge \Bb
 +
-\lr{ \spacegrad' \wedge \Ba } \wedge \Bb'
+\lr{ \spacegrad' \wedge \Ba } \wedge \Bb' \\
 &= \Bb \wedge \lr{ \spacegrad \wedge \Ba } - \Ba \wedge \lr{ \spacegrad \wedge \Bb }.
 \end{aligned}
 \end{equation}
 The \R{3} case, is less obvious by inspection, but follows from \cref{lemma:formAndCurl:660}.
 \end{proof}
+\section{Summary.}
 
 %}
 \EndArticle

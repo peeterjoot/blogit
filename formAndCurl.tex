@@ -663,18 +663,38 @@ f
 \spacegrad f \wedge \spacegrad g \wedge \spacegrad h.
 \end{aligned}
 \end{equation}
-The \R{3} part of the lemma follows from \cref{lemma:formAndCurl:660}, applied twice
-\begin{equation}\label{eqn:formAndCurl:970}
+The \R{3} part of the lemma can be shown using \cref{lemma:formAndCurl:660}, or we can compute it directly
+\begin{equation}\label{eqn:formAndCurl:n}
 \begin{aligned}
-\spacegrad \cdot \lr{ (f \spacegrad g) \cross \spacegrad h }
+\spacegrad \cdot \lr{ f \lr{ \spacegrad g \cross \spacegrad h } }
 &=
--I \lr{ \spacegrad \wedge (f \spacegrad g) \wedge \spacegrad h } \\
+\gpgradezero{
+\spacegrad \lr{ f \lr{ \spacegrad g \cross \spacegrad h } }
+} \\
 &=
--I \lr{ \spacegrad f \wedge \spacegrad g \wedge \spacegrad h } \\
+\spacegrad f \cdot \lr{ \lr{ \spacegrad g \cross \spacegrad h } }
++
+f \gpgradezero{
+-I \spacegrad \lr{ \spacegrad g \wedge \spacegrad h }
+} \\
 &=
-\spacegrad f \cdot \lr{ \spacegrad g \cross \spacegrad h}.
+\spacegrad f \cdot \lr{ \lr{ \spacegrad g \cross \spacegrad h } }
+-
+f I \lr{ \spacegrad \wedge \lr{ \spacegrad g \wedge \spacegrad h } }.
 \end{aligned}
 \end{equation}
+The last term is clearly zero, since after our chain rule application, we end up with a \( \spacegrad \wedge \spacegrad \) term on either branch of the chain rule expansion.
+%\begin{equation}\label{eqn:formAndCurl:970}
+%\begin{aligned}
+%\spacegrad \cdot \lr{ f (\spacegrad g \cross \spacegrad h) }
+%&=
+%-I \lr{ \spacegrad \wedge (f (\spacegrad g \wedge \spacegrad h) } \\
+%&=
+%-I \lr{ \spacegrad f \wedge \spacegrad g \wedge \spacegrad h } \\
+%&=
+%\spacegrad f \cdot \lr{ \spacegrad g \cross \spacegrad h}.
+%\end{aligned}
+%\end{equation}
 \end{proof}
 \makelemma{Curl of a bivector.}{lemma:formAndCurl:930}{
 Let \( \Ba, \Bb \) be vectors.  The curl of their wedge is

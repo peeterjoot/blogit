@@ -664,7 +664,7 @@ f
 \end{aligned}
 \end{equation}
 The \R{3} part of the lemma can be shown using \cref{lemma:formAndCurl:660}, or we can compute it directly
-\begin{equation}\label{eqn:formAndCurl:n}
+\begin{equation}\label{eqn:formAndCurl:1010}
 \begin{aligned}
 \spacegrad \cdot \lr{ f \lr{ \spacegrad g \cross \spacegrad h } }
 &=
@@ -732,4 +732,67 @@ We didn't look at how the Hodge dual translates to GA duality (pseudoscalar mult
 
 We also translated a number of vector and gradient identities from conventional vector algebra (i.e.: using cross products) and wedge product equivalents of the same.  The GA identities are often simpler, and in some cases, provide nice mechanisms to derive the conventional identities that would be more cumbersome to determine without the GA toolbox.
 %}
+
+%\section{Revisiting gradient of dot product.}
+%\begin{equation}\label{eqn:formAndCurl:1030}
+%\begin{aligned}
+%\spacegrad \Ba \Bb
+%&=
+%\spacegrad' \Ba' \Bb
+%+
+%\spacegrad' \Ba \Bb'
+%\\
+%&=
+%\spacegrad' \Ba' \Bb
+%-
+%\spacegrad' \Bb' \Ba + 2 \lr{ \spacegrad' \cdot \Bb' } \Ba
+%\\
+%&=
+%\lr{ \spacegrad \cdot \Ba + \spacegrad \wedge \Ba } \Bb
+%- \lr{ \spacegrad \cdot \Bb + \spacegrad \wedge \Bb } \Ba
+%+ 2 \lr{\spacegrad \cdot \Bb} \Ba
+%\\
+%&=
+%\lr{ \spacegrad \cdot \Ba } \Bb + \lr{ \spacegrad \wedge \Ba } \cdot \Bb + \lr{ \spacegrad \wedge \Ba } \wedge \Bb  \\
+%&\quad- \lr{ \spacegrad \cdot \Bb } \Ba - \lr{ \spacegrad \wedge \Bb } \cdot \Ba - \lr{ \spacegrad \wedge \Bb } \wedge \Ba  \\
+%&\quad+ 2 \lr{\spacegrad \cdot \Bb} \Ba.
+%\end{aligned}
+%\end{equation}
+%Then you can form
+%\begin{equation}\label{eqn:formAndCurl:1050}
+%\begin{aligned}
+%-\spacegrad \cdot \lr{ \Ba \wedge \Bb }
+%&=
+%-\spacegrad' \cdot \lr{ \Ba' \wedge \Bb }
+%-\spacegrad' \cdot \lr{ \Ba \wedge \Bb }'
+%\\
+%&=
+%-\lr{ \spacegrad' \cdot \Ba' } \Bb
+%-\lr{ \spacegrad' \cdot \Ba } \Bb'
+%+\lr{ \spacegrad' \cdot \Bb } \Ba'
+%+\lr{ \spacegrad' \cdot \Bb' } \Ba
+%\\
+%&=
+%-\lr{ \spacegrad \cdot \Ba } \Bb
+%-\lr{ \Ba \cdot \spacegrad } \Bb
+%+\lr{ \Bb \cdot \spacegrad } \Ba
+%+\lr{ \spacegrad \cdot \Bb } \Ba,
+%\end{aligned}
+%\end{equation}
+%to find
+%\begin{equation}\label{eqn:formAndCurl:1070}
+%\begin{aligned}
+%\spacegrad \lr{ \Ba \cdot \Bb }
+%&=
+%\gpgradeone{ \spacegrad \lr{ \Ba \Bb - \Ba \wedge \Bb } }
+%\\
+%&=
+%\lr{ \spacegrad \wedge \Ba } \cdot \Bb
+%-\lr{ \spacegrad \wedge \Bb } \cdot \Ba
+%-\lr{ \Ba \cdot \spacegrad } \Bb
+%+\lr{ \Bb \cdot \spacegrad } \Ba.
+%\end{aligned}
+%\end{equation}
+%This is a nicer way to find the result than the messy way that I did it.  Also: the signs are wrong?
+
 \EndArticle

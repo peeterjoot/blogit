@@ -13,6 +13,7 @@
 \input{../latex/peeter_prologue_print2.tex}
 
 \usepackage{amsthm}
+\usepackage{amssymb}
 \usepackage{peeters_layout_exercise}
 \usepackage{peeters_braket}
 \usepackage{peeters_figures}
@@ -32,6 +33,10 @@
 %\end{definition}%
 %}
 
+%\newcommand{\hodge}[0]{\bigstar}
+\newcommand{\hodge}[0]{\star}
+%\newcommand{\hodge}[0]{{*}}
+
 \beginArtNoToc
 
 \generatetitle{Geometric calculus relationships to differential forms, and vector calculus identities.}
@@ -39,7 +44,7 @@
 %\label{chap:formAndCurl}
 
 \section{Motivation.}
-I was asked about the geometric algebra equivalents of some of the vector calculus identities from \citep{vboucharMATH215}.  I'll call the specific page of those calculus notes ``the article''.  The article includes identities like
+I was asked about the geometric algebra equivalents of some of the vector calculus identities from \citep{vboucharMATH215exterior}.  I'll call the specific page of those calculus notes ``the article''.  The article includes identities like
 \begin{equation}\label{eqn:formAndCurl:20}
 \begin{aligned}
 \spacegrad (f g) &= f \spacegrad g + g \spacegrad f \\
@@ -794,5 +799,177 @@ We also translated a number of vector and gradient identities from conventional 
 %\end{aligned}
 %\end{equation}
 %This is a nicer way to find the result than the messy way that I did it.  Also: the signs are wrong?
+\section{Hodge star vs. pseudoscalar multiplication.}
+We find a definition of the hodge star for basic k-forms in \citep{vboucharMATH215hodge}.
+\makedefinition{Hodge star.}{dfn:formAndCurl:1090}{
+Let \( \omega \) be a basic k-form on \R{n}.  The hodge star of \( \omega \), denoted by \( \hodge \omega \) is the unique \( n-k \)-form with the property
+\begin{equation*}
+\omega \wedge \hodge \omega = dx_1 \wedge \cdots \wedge dx_n.
+\end{equation*}
+} % definition
+I find it interesting that this duality definition is completely free of any notion of metric or inner product.  That isn't the case with the hodge star definition from \citep{flanders1989dfa}.  This is certainly an easier definition to understand.
+
+Let's calculate all the duals for the basic forms from \R{3}.  We let \( I = dx_1 \wedge dx_2 \wedge dx_3 \), and then by inspection find all the duals satisfying
+\begin{equation}\label{eqn:formAndCurl:1110}
+\begin{aligned}
+I &= 1 \wedge \hodge 1 \\
+I &= dx \wedge \hodge dx \\
+I &= dy \wedge \hodge dy \\
+I &= dz \wedge \hodge dz \\
+I &= (dx dy) \wedge \hodge (dx dy) \\
+I &= (dy dz) \wedge \hodge (dy dz) \\
+I &= (dz dx) \wedge \hodge (dz dx) \\
+I &= dx dy dz \wedge \hodge (dx dy dz).
+\end{aligned}
+\end{equation}
+Those are
+\begin{equation}\label{eqn:formAndCurl:1130}
+\begin{aligned}
+\hodge 1 &= dx dy dz \\
+\hodge dx &= dy dz \\
+\hodge dy &= dz dx \\
+\hodge dz &= dx dy \\
+\hodge (dx dy) &= dz \\
+\hodge (dy dz) &= dx \\
+\hodge (dz dx) &= dy \\
+\hodge (dx dy dz) &= 1.
+\end{aligned}
+\end{equation}
+
+Now let's compare this to multiplication of the \R{3} basis vectors with the pseudoscalar \( I = \Be_1 \Be_2 \Be_3 \).  We have
+\begin{equation}\label{eqn:formAndCurl:1140}
+\begin{aligned}
+1 I &= I \\
+\Be_1 I &= \Be_{1123} = \Be_{23} \\
+\Be_2 I &= \Be_{2123} = \Be_{31} \\
+\Be_3 I &= \Be_{3123} = \Be_{12} \\
+\Be_{23} I &= \Be_{23123} = - \Be_1 \\
+\Be_{31} I &= \Be_{31123} = - \Be_2 \\
+\Be_{12} I &= \Be_{12123} = - \Be_3 \\
+\Be_{123} I &= \Be_{123123} = -1.
+\end{aligned}
+\end{equation}
+With differential forms, the duals of the duals of all our basic forms recovered the original, that is \( ** \omega = \omega \), but that isn't the case if we use pseudoscalar multiplication to define duality.  We see that to model the Hodge dual, we need to multiply by a grade specific pseudoscalar.
+\makedefinition{Hodge dual of an \R{3} multivector}{dfn:formAndCurl:1160}{
+Let \( M \) be a \R{3} multivector.  The Hodge dual \( \hodge M \) of that multivector is
+\begin{equation*}
+\hodge M
+=
+\gpgrade{M}{0,1} I -
+\gpgrade{M}{2,3} I.
+\end{equation*}
+} % definition
+In particular, if \( A \) is a k-blade in \R{3}, a round trip requires multiplication with different signed unit pseudoscalars.
+
+Let's step back and consider the \R{2} case as well.  This time we let \( i = dx_1 \wedge dx_2 \).  We seek all the duals satisfying
+\begin{equation}\label{eqn:formAndCurl:1180}
+\begin{aligned}
+i &= 1 \wedge \hodge 1 \\
+i &= dx \wedge \hodge dx \\
+i &= dy \wedge \hodge dy \\
+i &= (dx dy) \wedge \hodge (dx dy).
+\end{aligned}
+\end{equation}
+Those duals are
+\begin{equation}\label{eqn:formAndCurl:1200}
+\begin{aligned}
+\hodge 1 &= dx dy \\
+\hodge dx &= dy \\
+\hodge dy &= -dx \\
+\hodge (dx dy) &= 1 \\
+\end{aligned}
+\end{equation}
+
+Now let's compare this to multiplication of the \R{2} basis vectors with the pseudoscalar \( i = \Be_1 \Be_2 \).  We have
+\begin{equation}\label{eqn:formAndCurl:1220}
+\begin{aligned}
+1 i &= i \\
+\Be_1 i &= \Be_{112} = \Be_{2} \\
+\Be_2 i &= \Be_{212} = -\Be_{1} \\
+\Be_{12} i &= \Be_{1212} = -1 \\
+\end{aligned}
+\end{equation}
+\makedefinition{Hodge dual of \R{2} multivector}{dfn:formAndCurl:1240}{
+Let \( M \) be a \R{2} multivector.  The Hodge dual \( \hodge M \) of that multivector is
+\begin{equation*}
+\hodge M
+=
+\gpgrade{M}{0,1} i -
+\gpgrade{M}{2} i.
+\end{equation*}
+} % definition
+
+Neither of these grade specific duality operations are as nice as simply multiplying by a unit pseudoscalar, but if we care about correspondence with the Hodge dual (at least according to the definition in the article), then this is what we need.
+
+Having done that, let's now look at the Hodge dual that produces the divergence operation.
+\makelemma{Divergence relation to the exterior derivative.}{lemma:formAndCurl:1260}{
+Let \( \omega = f dx + g dy + h dz \) be a one-form in \R{3}.  The exterior derivative of the Hodge dual of \( \omega \) is a divergence three-form
+\begin{equation*}
+d(\hodge \omega) = \lr{ \PD{x}{f} + \PD{y}{g} + \PD{z}{h} } dx \wedge dy \wedge dz.
+\end{equation*}
+The GA equivalent of this, for a vector corresponding to this one-form \( \Bf = f \Be_1 + g \Be_2 + h \Be_3 \in \mathbb{R}^3 \), is
+\begin{equation*}
+\spacegrad \wedge (\hodge \Bf) = \lr{\spacegrad \cdot \Bf} I.
+\end{equation*}
+} % lemma
+\begin{proof}
+The dual of the one form is
+\begin{equation}\label{eqn:formAndCurl:1280}
+\hodge \omega =
+f dy \wedge dz
++ g dz \wedge dx
++ h dx \wedge dy,
+\end{equation}
+so the exterior derivative is
+\begin{equation}\label{eqn:formAndCurl:1300}
+\begin{aligned}
+d(\hodge \omega) &=
+\lr{
+\PD{x}{f} dx +
+\PD{y}{f} dy +
+\PD{z}{f} dz
+}
+\wedge dy \wedge dz \\
+&\quad+
+\lr{
+\PD{x}{g} dx +
+\PD{y}{g} dy +
+\PD{z}{g} dz
+}
+\wedge
+dz \wedge dx \\
+&\quad+
+\lr{
+\PD{x}{g} dx +
+\PD{y}{g} dy +
+\PD{z}{g} dz
+}
+\wedge
+dx \wedge dy \\
+&=
+\lr{
+\PD{x}{f} +
+\PD{y}{g} +
+\PD{z}{h}
+}
+dx \wedge dy \wedge dz.
+\end{aligned}
+\end{equation}
+We expect that the GA equivalent of this is \( \spacegrad \wedge (\hodge \Bf) = \lr{ \spacegrad \cdot \Bf} I \).  Let's check that this is the case.  The dual, for a vector, is
+\begin{equation}\label{eqn:formAndCurl:1320}
+\hodge \Bf
+= \Bf I,
+\end{equation}
+so
+\begin{equation}\label{eqn:formAndCurl:1340}
+\begin{aligned}
+\spacegrad \wedge (\hodge \Bf)
+&= \gpgradethree{ \spacegrad (\Bf I) } \\
+&= \gpgradethree{ (\spacegrad \Bf) I } \\
+&= \gpgradethree{ (\spacegrad \cdot \Bf + \spacegrad \wedge \Bf) I } \\
+&= \lr{ \spacegrad \cdot \Bf } I.
+\end{aligned}
+\end{equation}
+\end{proof}
 
 \EndArticle

@@ -284,7 +284,8 @@
 #../latex/bin/lgrep crossQuestion.tex | tee o ; . ./o
 #perl -p -i ../latex/bin/latexRegex.pl crossQuestion.tex
 
-../latex/bin/lgrep formAndCurl.tex | tee o ; . ./o
-perl -p -i ../latex/bin/latexRegex.pl formAndCurl.tex
-../latex/bin/lgrep test.tex | tee o ; . ./o
-perl -p -i ../latex/bin/latexRegex.pl test.tex
+#../latex/bin/lgrep formAndCurl.tex | tee o ; . ./o
+#perl -p -i ../latex/bin/latexRegex.pl formAndCurl.tex
+
+#../latex/bin/lgrep test.tex | tee o ; . ./o
+#perl -p -i ../latex/bin/latexRegex.pl test.tex

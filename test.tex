@@ -1,0 +1,73 @@
+%
+% Copyright © 2023 Peeter Joot.  All Rights Reserved.
+% Licenced as described in the file LICENSE under the root directory of this GIT repository.
+%
+%{
+\input{../latex/blogpost.tex}
+\renewcommand{\basename}{test}
+%\renewcommand{\dirname}{notes/phy1520/}
+\renewcommand{\dirname}{notes/ece1228-electromagnetic-theory/}
+%\newcommand{\dateintitle}{}
+%\newcommand{\keywords}{}
+
+\input{../latex/peeter_prologue_print2.tex}
+
+\usepackage{peeters_layout_exercise}
+\usepackage{peeters_braket}
+\usepackage{peeters_figures}
+\usepackage{siunitx}
+\usepackage{verbatim}
+%\usepackage{mhchem} % \ce{}
+%\usepackage{macros_bm} % \bcM
+%\usepackage{macros_qed} % \qedmarker
+%\usepackage{txfonts} % \ointclockwise
+
+\beginArtNoToc
+
+\generatetitle{XXX}
+%\chapter{XXX}
+%\label{chap:test}
+
+\begin{equation}\label{eqn:test:20}
+\begin{aligned}
+\spacegrad \cdot ( f \Bf )  &= (\spacegrad f ) \cdot \Bf + f ( \spacegrad \cdot \Bf ) \\
+\spacegrad \times ( f \Bf ) &= (\spacegrad f ) \times \Bf + f ( \spacegrad \times \Bf ) \\
+\spacegrad \wedge ( f A ) &= (\spacegrad f ) \wedge A + f ( \spacegrad \wedge A )
+\end{aligned}
+\end{equation}
+
+\section{STA}
+
+\begin{equation*}
+\begin{aligned}
+F &= \BE + I \eta \BH = \BE + I c \BB \\
+\eta &= \sqrt{\mu/\epsilon} \\
+c &= 1/\sqrt{\epsilon\mu} \\
+\lr{ \spacegrad + \inv{c} \PD{t}{} } F &= \eta \lr{ c \rho - \BJ }.
+\end{aligned}
+\end{equation*}
+Now write the \R{3} basis vectors as
+\begin{equation*}
+\Be_i = \gamma_i \gamma_0,
+\end{equation*}
+and multiply through on the left by \( \gamma_0 \)
+\begin{equation*}
+\gamma_0 \lr{ \spacegrad + \inv{c} \PD{t}{} } F = \gamma_0 \eta \lr{ c \rho - \BJ }.
+\end{equation*}
+
+That's the STA form of Maxwell's equations, once you make the following identifications
+\begin{equation*}
+\begin{aligned}
+\gamma_0 \gamma_\mu \gamma_0 &= g^{\nu\mu} \gamma_\nu = \gamma^\mu \\
+\partial_0 &= \inv{c} \PD{t}{} = \PD{x^0}{} \\
+\partial_k &= \PD{x^k}{} = \spacegrad \cdot \Be_k \\
+\grad &= \gamma^\mu \partial_\mu \\
+J^0 &= \eta c \rho = \rho/\epsilon \\
+J^k &= \eta \BJ \cdot \Be_k \\
+J &= J^\mu \gamma_\mu
+\end{aligned}
+\end{equation*}
+
+%}
+\EndArticle
+%\EndNoBibArticle

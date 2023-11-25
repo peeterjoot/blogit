@@ -38,7 +38,7 @@ In this post I mull over some of the associated ideas.
 \section{Conventional equivalents.}
 Before trying to answer the question with all the new ideas of geometric algebra, especially the complexity of our relativistic geometric algebra (the Space Time Algebra, STA for short), let's look at the equivalent ideas from conventional electromagnetism.
 
-Why we pick \( \phi \) and \( \BA \) as our scalar and vector potentials is covered in many books.  For example, see \S 6.4 Vector and Scalar Potentials, in \citep{jackson1975cew}.  The basic idea is that we are looking for representations of the fields that automatically satisify the pair of source free Maxwell's equations
+Why we pick \( \phi \) and \( \BA \) as our scalar and vector potentials is covered in many books.  For example, see \S 6.4 Vector and Scalar Potentials, in \citep{jackson1975cew}.  The basic idea is that we are looking for representations of the fields that automatically satisfy the pair of source free Maxwell's equations
 \begin{equation}\label{eqn:whycurl:40}
 \begin{aligned}
 \spacegrad \cdot \BB &= 0 \\
@@ -82,7 +82,7 @@ We've found a construction for the fields
 \BE &= -\spacegrad \phi - c \partial_0 \BA,
 \end{aligned}
 \end{equation}
-that automatically satisfy the source free maxwell equations.  Now, instead of solving four coupled differential equations in six variables, we can solve two coupled equations in four variables, and have reduced the complexity of our problem considerably.
+that automatically satisfy the source free Maxwell's equations.  Now, instead of solving four coupled differential equations in six variables, we can solve two coupled equations in four variables, and have reduced the complexity of our problem considerably.
 
 The reader may ask whether this is a general solution.  The answer is no, since one also has the freedom to alter the potentials in a specific way, called gauge freedom
 \begin{equation}\label{eqn:whycurl:180}
@@ -145,7 +145,7 @@ It's generally true for any blade \( A \), we have
 \end{equation}
 To show this is the case, expand the LHS in coordinates.  Assuming equality of mixed partials, you'll end up with a sum of a product of indexed quantities, one symmetric and one antisymmetric.  Such a sum is always zero.
 \section{Revisiting the potentials.}
-Having seen that the \cref{eqn:whycurl:60} identites were really curl of curl are zero relationships, let's reexamine the source free Maxwell's equations in a more natural GA formulation.  In particular, we want our magnetic field in it's dual form, we we write instead
+Having seen that the \cref{eqn:whycurl:60} identities were really curl of curl are zero relationships, let's reexamine the source free Maxwell's equations in a more natural GA formulation.  In particular, we want our magnetic field in it's dual form, we we write instead
 \begin{equation}\label{eqn:whycurl:640}
 \begin{aligned}
 0 &= I \spacegrad \cdot \BB \\
@@ -284,7 +284,7 @@ This means that we can effectively just assume that it's true that \( \grad \cdo
 
 Had we not assumed the Lorentz gauge, we do know how to calculate the gauge field transformation so that it is true for the transformed field.  However, performing the computational work to make such a transformation is somewhat pointless, since it does not change \( F \), so we can go ahead and use any old solution to \( \grad^2 A = J \), forming \( F = \grad \wedge A \), as if it was also true that \( \grad \cdot A = 0 \) too.
 
-I consider such an analysis a good additional jusification for the choice to let \( F = \grad \wedge A \), even if that is not neccessarily the most general bivector function \( F(\partial_\mu, A_\nu) \) that we could form.
+I consider such an analysis a good additional justification for the choice to let \( F = \grad \wedge A \), even if that is not necessarily the most general bivector function \( F(\partial_\mu, A_\nu) \) that we could form.
 
 %}
 \EndArticle

@@ -1,0 +1,290 @@
+%
+% Copyright © 2023 Peeter Joot.  All Rights Reserved.
+% Licenced as described in the file LICENSE under the root directory of this GIT repository.
+%
+%{
+\input{../latex/blogpost.tex}
+\renewcommand{\basename}{whycurl}
+%\renewcommand{\dirname}{notes/phy1520/}
+\renewcommand{\dirname}{notes/ece1228-electromagnetic-theory/}
+%\newcommand{\dateintitle}{}
+%\newcommand{\keywords}{}
+
+\input{../latex/peeter_prologue_print2.tex}
+
+\usepackage{peeters_layout_exercise}
+\usepackage{peeters_braket}
+\usepackage{peeters_figures}
+\usepackage{siunitx}
+\usepackage{verbatim}
+%\usepackage{mhchem} % \ce{}
+%\usepackage{macros_bm} % \bcM
+%\usepackage{macros_qed} % \qedmarker
+%\usepackage{txfonts} % \ointclockwise
+
+\beginArtNoToc
+
+\generatetitle{Why is the electromagnetic field expressed as a curl?}
+%\chapter{Why is the electromagnetic field expressed as a curl?}
+%\label{chap:whycurl}
+\section{Motivation.}
+On discord, we've had a \href{https://discord.com/channels/607264339480674324/925683732403335188/1177257395794231306}{chat about why we write the electromagnetic field as \( F = \grad \wedge A \).}  Here \( F \) is the STA electromagnetic field bivector satisfying Maxwell's equation
+
+\begin{equation}\label{eqn:whycurl:20}
+\nabla F = J.
+\end{equation}
+
+In this post I mull over some of the associated ideas.
+\section{Conventional equivalents.}
+Before trying to answer the question with all the new ideas of geometric algebra, especially the complexity of our relativistic geometric algebra (the Space Time Algebra, STA for short), let's look at the equivalent ideas from conventional electromagnetism.
+
+Why we pick \( \phi \) and \( \BA \) as our scalar and vector potentials is covered in many books.  For example, see \S 6.4 Vector and Scalar Potentials, in \citep{jackson1975cew}.  The basic idea is that we are looking for representations of the fields that automatically satisify the pair of source free Maxwell's equations
+\begin{equation}\label{eqn:whycurl:40}
+\begin{aligned}
+\spacegrad \cdot \BB &= 0 \\
+c \partial_0 \BB + \spacegrad \cross \BE &= 0.
+\end{aligned}
+\end{equation}
+Recall that if \( \Bf \) is a vector, and \( \chi \) is a scalar, then
+\begin{equation}\label{eqn:whycurl:60}
+\begin{aligned}
+\spacegrad \cdot \lr{ \spacegrad \cross \Bf } &= 0 \\
+\spacegrad \cross \lr{ \spacegrad \chi } &= 0.
+\end{aligned}
+\end{equation}
+
+From the first curl identity above, since we seek \( \BB \) satisfying \( \spacegrad \cdot \BB = 0 \), our work is done for us, if we pick
+\begin{equation}\label{eqn:whycurl:80}
+\BB = \spacegrad \cross \BA,
+\end{equation}
+for some vector field \( \BA \).  Can you show that the general form of \( \BB \) requires that it must be expressed as a spatial curl?  Perhaps, and perhaps not, but let's see where this takes us.
+
+Having asserted that the magnetic field is a curl, our second source free Maxwell's equation is reduced to
+\begin{equation}\label{eqn:whycurl:100}
+\begin{aligned}
+0 &= c \partial_0 \lr{ \spacegrad \cross \BA } + \spacegrad \cross \BE \\
+&= \spacegrad \cross \lr{ c \partial_0 \BA + \BE }.
+\end{aligned}
+\end{equation}
+Clearly, using our second zero curl identity, should we now assert that
+\begin{equation}\label{eqn:whycurl:120}
+c \partial_0 \BA + \BE = -\spacegrad \phi,
+\end{equation}
+or
+\begin{equation}\label{eqn:whycurl:140}
+\BE = -\spacegrad \phi - c \partial_0 \BA.
+\end{equation}
+
+We've found a construction for the fields
+\begin{equation}\label{eqn:whycurl:160}
+\begin{aligned}
+\BB &= \spacegrad \cross \BA \\
+\BE &= -\spacegrad \phi - c \partial_0 \BA,
+\end{aligned}
+\end{equation}
+that automatically satisfy the source free maxwell equations.  Now, instead of solving four coupled differential equations in six variables, we can solve two coupled equations in four variables, and have reduced the complexity of our problem considerably.
+
+The reader may ask whether this is a general solution.  The answer is no, since one also has the freedom to alter the potentials in a specific way, called gauge freedom
+\begin{equation}\label{eqn:whycurl:180}
+\begin{aligned}
+\BA &\rightarrow \BA + \spacegrad \chi \\
+\phi &\rightarrow \phi - \partial_0 \chi.
+\end{aligned}
+\end{equation}
+This freedom to alter the fields in this specific way is because such transformations do not alter the observable electric and magnetic fields
+\begin{equation}\label{eqn:whycurl:200}
+\begin{aligned}
+\BB
+&= \spacegrad \cross \BA \\
+&\rightarrow \spacegrad \cross \lr{ \BA + \spacegrad \chi } \\
+&= \spacegrad \cross \BA \\
+&= \BB,
+\end{aligned}
+\end{equation}
+\begin{equation}\label{eqn:whycurl:220}
+\begin{aligned}
+\BE &= -\spacegrad \phi - c \partial_0 \BA \\
+&\rightarrow -\spacegrad \lr{ \phi - \partial_0 \chi } - c \partial_0 \lr{ \BA + \spacegrad \chi } \\
+&= -\spacegrad \phi - c \partial_0 \BA \\
+&= \BE.
+\end{aligned}
+\end{equation}
+\section{Those curl identities.}
+We could immediately skip to the equivalent analysis using the STA form of Maxwell's equation, but let's first make note how to translate the curl identities above to their geometric algebra form.  These are both special cases of a more general relationship.  That more general relationship becomes clear if we recast the curls as wedge products.  Let's start with the scalar relationship
+\begin{equation}\label{eqn:whycurl:240}
+\begin{aligned}
+0
+&= \spacegrad \cross \lr{ \spacegrad \chi } \\
+&= -I \spacegrad \wedge \lr{ \spacegrad \chi } \\
+&= \gpgradeone{ -I \spacegrad \wedge \lr{ \spacegrad \chi } } \\
+&= \gpgradeone{ -I \spacegrad \lr{ \spacegrad \chi } } \\
+&= -I \spacegrad \wedge \lr{ \spacegrad \chi } \\
+&= -I \spacegrad \wedge \lr{ \spacegrad \wedge \chi }.
+\end{aligned}
+\end{equation}
+For the vector identity we have
+\begin{equation}\label{eqn:whycurl:260}
+\begin{aligned}
+0
+&= \spacegrad \cdot \lr{ \spacegrad \cross \Bf } \\
+&= \gpgradezero{ \spacegrad \lr{ \spacegrad \cross \Bf } } \\
+&= \gpgradezero{ -I \spacegrad \lr{ \spacegrad \wedge \Bf } } \\
+&= -I \spacegrad \wedge \lr{ \spacegrad \wedge \Bf }.
+\end{aligned}
+\end{equation}
+We see that once cast into a more natural geometric algebra form, both identities have exactly the same structure, a repeated curl operation
+\begin{equation}\label{eqn:whycurl:280}
+\begin{aligned}
+\spacegrad \wedge \spacegrad \wedge \chi &= 0 \\
+\spacegrad \wedge \spacegrad \wedge \Bf &= 0.
+\end{aligned}
+\end{equation}
+It's generally true for any blade \( A \), we have
+\begin{equation}\label{eqn:whycurl:300}
+\spacegrad \wedge \spacegrad \wedge A = 0.
+\end{equation}
+To show this is the case, expand the LHS in coordinates.  Assuming equality of mixed partials, you'll end up with a sum of a product of indexed quantities, one symmetric and one antisymmetric.  Such a sum is always zero.
+\section{Revisiting the potentials.}
+Having seen that the \cref{eqn:whycurl:60} identites were really curl of curl are zero relationships, let's reexamine the source free Maxwell's equations in a more natural GA formulation.  In particular, we want our magnetic field in it's dual form, we we write instead
+\begin{equation}\label{eqn:whycurl:640}
+\begin{aligned}
+0 &= I \spacegrad \cdot \BB \\
+&= \gpgradethree{ I \spacegrad \cdot \BB } \\
+&= \gpgradethree{ I \spacegrad \BB } \\
+&= \spacegrad \wedge \lr{ I \BB }.
+\end{aligned}
+\end{equation}
+The source free Maxwell's equations are now
+\begin{equation}\label{eqn:whycurl:660}
+\begin{aligned}
+\spacegrad \wedge \lr{ I \BB } &= 0 \\
+c \partial_0 (I \BB) + \spacegrad \wedge \BE &= 0.
+\end{aligned}
+\end{equation}
+We now let
+\begin{equation}\label{eqn:whycurl:680}
+I \BB = \spacegrad \wedge \BA,
+\end{equation}
+automatically satisfying Gauss's law for magnetism, leaving us with
+\begin{equation}\label{eqn:whycurl:700}
+\begin{aligned}
+0
+&=
+c \partial_0 \lr{ \spacegrad \wedge \BA } + \spacegrad \wedge \BE \\
+&=
+\spacegrad \wedge \lr{ c \partial_0 \BA + \BE }.
+\end{aligned}
+\end{equation}
+Now we let
+\begin{equation}\label{eqn:whycurl:720}
+c \partial_0 \BA + \BE = - \spacegrad \phi,
+\end{equation}
+or
+\begin{equation}\label{eqn:whycurl:740}
+\BE = - \spacegrad \phi - c \partial_0 \BA.
+\end{equation}
+Our construction of the potentials \( \phi \), \( \BA \) has been explicitly picked to satisfy satisfy \( \spacegrad \wedge \spacegrad \wedge X = 0 \) relationships.
+
+\section{On the nature of \( F \).}
+In the STA form of Maxwell's equation, our field \( F \) is a bivector.  We've seen that any \( F \) defined as the curl of a four-vector potential plus the gradient of a scalar, satisfies the source free Maxwell's equations
+\begin{equation}\label{eqn:whycurl:320}
+F = \grad \wedge \lr{ A + \grad \chi} = \grad \wedge A.
+\end{equation}
+
+Let's look at the coordinate expansion of such a curl
+\begin{equation}\label{eqn:whycurl:340}
+\begin{aligned}
+\grad \wedge F
+&= \gamma^\mu \wedge \gamma^\nu \partial_\mu A_\nu \\
+&=
+\inv{2} \gamma^\mu \wedge \gamma^\nu \partial_\mu A_\nu
++
+\inv{2} \gamma^\nu \wedge \gamma^\mu \partial_\nu A_\mu \\
+&=
+\inv{2} \gamma^\mu \wedge \gamma^\nu \partial_\mu A_\nu
+-
+\inv{2} \gamma^\mu \wedge \gamma^\nu \partial_\nu A_\mu \\
+&=
+\inv{2} \gamma^\mu \wedge \gamma^\nu \lr{ \partial_\mu A_\nu - \partial_\nu A_\mu }.
+\end{aligned}
+\end{equation}
+This antisymmetric difference of partials is our definition of the field in the tensor formulation of Maxwell's equations, where we write
+\begin{equation}\label{eqn:whycurl:360}
+F_{\mu\nu} = \partial_\mu A_\nu - \partial_\nu A_\mu.
+\end{equation}
+Our reason for picking this form for the field is that it satisfies the source free Maxwell's equation (Gauss-Faraday law) in tensor form.  That is
+\begin{equation}\label{eqn:whycurl:380}
+0 = \epsilon^{\alpha\beta\mu\nu} \partial_\beta F_{\mu\nu}.
+\end{equation}
+If you expand the curl of the curl of the vector potential in coordinates, you'll find this relationship, which gives a slightly easier to understand reason for why we pick \( F_{\mu\nu} = \partial_\mu A_\nu - \partial_\nu A_\mu \) as the potential representation of the field.
+
+Because we can alter \( A \) by adding a gradient, let's imagine that we had a slightly more general form for the field component for a given pair of indexes, say
+\begin{equation}\label{eqn:whycurl:400}
+F_{\mu\nu} = a \partial_\mu A_\nu + b \partial_\nu A_\mu,
+\end{equation}
+with \( a, b \) representing undetermined constants for this \( \mu, \nu \) set of indexes.
+
+If that is the case, then we must also have
+\begin{equation}\label{eqn:whycurl:420}
+-F_{\nu\mu} = -\lr{ a \partial_\nu A_\mu + b \partial_\mu A_\nu },
+\end{equation}
+so
+\begin{equation}\label{eqn:whycurl:440}
+a \partial_\mu A_\nu + b \partial_\nu A_\mu
+=
+-\lr{ a \partial_\nu A_\mu + b \partial_\mu A_\nu },
+\end{equation}
+so \( b = -a \).  We are automatically constrained to requiring an antisymmetric sum of partials
+\begin{equation}\label{eqn:whycurl:460}
+F_{\mu\nu} = a \lr{ \partial_\mu A_\nu - \partial_\nu A_\mu },
+\end{equation}
+just by virtue of the bivector nature of \( F \).
+
+\section{Solving the STA Maxwell's equations using potentials.}
+It's worth reminding ourselves how to solve Maxwell's equation from the potential in the STA formulation.  Having chosen \( F = \grad \wedge A \) as our presumed solution, we are left with
+\begin{equation}\label{eqn:whycurl:480}
+\grad \cdot F = J,
+\end{equation}
+or
+\begin{equation}\label{eqn:whycurl:500}
+J = \grad \cdot \lr{ \grad \wedge A },
+\end{equation}
+or
+\begin{equation}\label{eqn:whycurl:540}
+J = \grad^2 A - \grad \lr{ \grad \cdot A }.
+\end{equation}
+We know how to solve a forced wave equation
+\begin{equation}\label{eqn:whycurl:520}
+J = \grad^2 \bar{A},
+\end{equation}
+as we can use the usual advanced and retarded Green's functions for \( \grad^2 \) to find a convolution solution to this forced wave equation of the form \( \bar{A} = \int G(x,x') J(x') \).  We don't know a-priori whether it's true that \( \grad \lr{ \grad \cdot \bar{A} } = 0 \), so we can't say for sure that \( \bar{A} \) is also a solution to \cref{eqn:whycurl:540}.
+
+However, suppose we assume that not only is \( \grad \lr{ \grad \cdot A } = 0 \), but \( \grad \cdot A = 0 \), and that
+\begin{equation}\label{eqn:whycurl:560}
+A = \bar{A} + \grad \chi.
+\end{equation}
+This means that
+\begin{equation}\label{eqn:whycurl:580}
+\begin{aligned}
+0
+&= \grad \cdot A \\
+&= \grad \cdot \lr{ \bar{A} + \grad \chi} \\
+&= \grad \cdot \bar{A} + \grad^2 \chi,
+\end{aligned}
+\end{equation}
+so we require that \( \chi \) is any solution to
+\begin{equation}\label{eqn:whycurl:600}
+\grad^2 \chi = -\grad \cdot \bar{A}.
+\end{equation}
+A second convolution will provide the gauge field \( \chi \).  However, the nice thing is that we don't actually need it, since it will be obliterated when we form the field from the curl
+\begin{equation}\label{eqn:whycurl:620}
+F = \grad \wedge \lr{ \bar{A} + \grad \chi } = \grad \wedge \bar{A}.
+\end{equation}
+This means that we can effectively just assume that it's true that \( \grad \cdot A = 0 \), called making a Lorentz gauge choice for the potential.
+
+Had we not assumed the Lorentz gauge, we do know how to calculate the gauge field transformation so that it is true for the transformed field.  However, performing the computational work to make such a transformation is somewhat pointless, since it does not change \( F \), so we can go ahead and use any old solution to \( \grad^2 A = J \), forming \( F = \grad \wedge A \), as if it was also true that \( \grad \cdot A = 0 \) too.
+
+I consider such an analysis a good additional jusification for the choice to let \( F = \grad \wedge A \), even if that is not neccessarily the most general bivector function \( F(\partial_\mu, A_\nu) \) that we could form.
+
+%}
+\EndArticle

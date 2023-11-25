@@ -38,25 +38,25 @@
 
 \section{STA}
 
-\begin{equation*}
+\begin{equation}\label{eqn:test:40}
 \begin{aligned}
 F &= \BE + I \eta \BH = \BE + I c \BB \\
 \eta &= \sqrt{\mu/\epsilon} \\
 c &= 1/\sqrt{\epsilon\mu} \\
 \lr{ \spacegrad + \inv{c} \PD{t}{} } F &= \eta \lr{ c \rho - \BJ }.
 \end{aligned}
-\end{equation*}
+\end{equation}
 Now write the \R{3} basis vectors as
-\begin{equation*}
+\begin{equation}\label{eqn:test:60}
 \Be_i = \gamma_i \gamma_0,
-\end{equation*}
+\end{equation}
 and multiply through on the left by \( \gamma_0 \)
-\begin{equation*}
+\begin{equation}\label{eqn:test:80}
 \gamma_0 \lr{ \spacegrad + \inv{c} \PD{t}{} } F = \gamma_0 \eta \lr{ c \rho - \BJ }.
-\end{equation*}
+\end{equation}
 
 That's the STA form of Maxwell's equations, once you make the following identifications
-\begin{equation*}
+\begin{equation}\label{eqn:test:100}
 \begin{aligned}
 \gamma_0 \gamma_\mu \gamma_0 &= g^{\nu\mu} \gamma_\nu = \gamma^\mu \\
 \partial_0 &= \inv{c} \PD{t}{} = \PD{x^0}{} \\
@@ -66,7 +66,107 @@ J^0 &= \eta c \rho = \rho/\epsilon \\
 J^k &= \eta \BJ \cdot \Be_k \\
 J &= J^\mu \gamma_\mu
 \end{aligned}
-\end{equation*}
+\end{equation}
+
+Note that if you write \( F = \BE + I c \BB \), where \( \BE = \sum E^k \Be_k, \BB = \sum B^k \Be_k \), then once you identify \( \Be_i = \gamma_i \gamma_0 \), you have
+\begin{equation}\label{eqn:test:120}
+\begin{aligned}
+I &= \Be_1 \Be_2 \Be_3  \\
+&= \gamma_1 \gamma_0 \gamma_2 \gamma_0 \gamma_3 \gamma_0 \\
+&= -\gamma_1 \gamma_0 \gamma_0 \gamma_2 \gamma_3 \gamma_0 \\
+&= -\gamma_1 \gamma_2 \gamma_3 \gamma_0 \\
+&= \gamma_0 \gamma_1 \gamma_2 \gamma_3,
+\end{aligned}
+\end{equation}
+so
+\begin{equation}\label{eqn:test:140}
+\begin{aligned}
+F
+&= \BE + I c \BB \\
+&= \sum_k \lr{ E^k + \gamma_0 \gamma_1 \gamma_2 \gamma_3 c B^k } \gamma_k \gamma_0,
+\end{aligned}
+\end{equation}
+is an STA bivector automatically.
+
+Yes, we can put the gradient on the left.
+
+With $N = A + I K$, we can write $F = \langle \nabla \tilde{N} \rangle {}_2 = \nabla \wedge A + I (\nabla \wedge K)$.
+
+The Lagrangian is unchanged, and we still have $\mathcal{L} = (1/2) F^2 - \langle N (J - I M) \rangle {}_{0,4}$.  Variation of the associated action $S = \int d^4 x \mathcal{L}$, leads directly to Maxwell's equation: $\nabla F = J - I M$.
+
+In conventional electromagnetism, we we use the identities
+\begin{equation}\label{eqn:test:160}
+\begin{aligned}
+\spacegrad \cdot \lr{ \spacegrad \cross \Bf } &= 0 \\
+\spacegrad \cross \lr{ \spacegrad \chi } &= 0.
+\end{aligned}
+\end{equation}
+to pick
+\begin{equation}\label{eqn:test:180}
+\begin{aligned}
+\BB &= \spacegrad \cross \BA \\
+\BE &= -\spacegrad \phi - c \partial_0 \BA,
+\end{aligned}
+\end{equation}
+to pick \( \phi, \BA \) so that, by construction, the source free Maxwell equations are satisfied.
+\begin{equation}\label{eqn:test:200}
+\begin{aligned}
+\spacegrad \cdot \BB &= 0 \\
+c \partial_0 \BB + \spacegrad \cross \BE &= 0.
+\end{aligned}
+\end{equation}
+See Jackson 2nd edition, 6.4 Vector and Scalar Potentials.
+
+Such choices are not unique, as we may alter the potentials with a gauge transformation
+\begin{equation}\label{eqn:test:220}
+\begin{aligned}
+\BA &\rightarrow \BA + \spacegrad \chi \\
+\phi &\rightarrow \phi - \partial_0 \chi,
+\end{aligned}
+\end{equation}
+which does not change the observable fields \( \BE, \BB \).
+
+The GA equivalent of the identities above is
+\begin{equation}\label{eqn:test:240}
+\spacegrad \wedge \spacegrad \wedge K = 0,
+\end{equation}
+for any blade \( K \).
+
+Similarily, in STA, it's true that
+\begin{equation}\label{eqn:test:260}
+\grad \wedge \grad \wedge K = 0,
+\end{equation}
+for any blade \( K \).
+
+Maxwell's equation in STA is
+\begin{equation}\label{eqn:test:280}
+\grad F = J,
+\end{equation}
+which we can split into vector and trivector grades, as
+\begin{equation}\label{eqn:test:300}
+\begin{aligned}
+\grad \cdot F &= J \\
+\grad \wedge F &= 0.
+\end{aligned}
+\end{equation}
+
+Just as we did in conventional electromagnetism, that if we let
+\begin{equation}\label{eqn:test:320}
+F = \grad \wedge A,
+\end{equation}
+we automatically satisify the source free (trivector) grade of Maxwell's equation.
+
+Is this the general solution?  No.  We are also able to make any gauge transformation of this potential
+\begin{equation}\label{eqn:test:340}
+A \rightarrow A + \grad \chi,
+\end{equation}
+which leaves \( F \) unchanged.
+
+\section{On the nature of \( F \).}
+In the STA form of Maxwell's equation, our field \( F \) is a bivector.  We've seen that any \( F \) defined as the curl of a four-vector potential plus the gradient of a scalar, satisfies the source free Maxwell's equations
+\begin{equation}\label{eqn:test:360}
+F = \grad \wedge \lr{ A + \grad \chi} = \grad \wedge A.
+\end{equation}
 
 %}
 \EndArticle

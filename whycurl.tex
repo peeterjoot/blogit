@@ -38,20 +38,30 @@ In this post I mull over some of the associated ideas.
 \section{Conventional equivalents.}
 Before trying to answer the question with all the new ideas of geometric algebra, especially the complexity of our relativistic geometric algebra (the Space Time Algebra, STA for short), let's look at the equivalent ideas from conventional electromagnetism.
 
-Why we pick \( \phi \) and \( \BA \) as our scalar and vector potentials is covered in many books.  For example, see \S 6.4 Vector and Scalar Potentials, in \citep{jackson1975cew}.  The basic idea is that we are looking for representations of the fields that automatically satisfy the pair of source free Maxwell's equations
+Why we pick \( \phi \) and \( \BA \) as our scalar and vector potentials is covered in many books.
+For example, see
+\begin{enumerate}
+\item \S 6.4 Vector and Scalar Potentials, in \citep{jackson1975cew},
+\item \S 18-6 potentials and the wave equation in \citep{feynman1963flpII:MaxwellEquations}, and
+\item \S 10.1 The potential formulation in \citep{griffiths1999introduction}.
+\end{enumerate}
+The basic idea in all of those is that we are looking for representations of the fields that automatically satisfy the pair of source free Maxwell's equations
 \begin{equation}\label{eqn:whycurl:40}
 \begin{aligned}
 \spacegrad \cdot \BB &= 0 \\
-c \partial_0 \BB + \spacegrad \cross \BE &= 0.
+c \partial_0 \BB + \spacegrad \cross \BE &= 0,
 \end{aligned}
 \end{equation}
-Recall that if \( \Bf \) is a vector, and \( \chi \) is a scalar, then
+so that the problem is reduced to solving just the remaining source dependent Maxwell's equations.
+
+The approach used in all of those to use utilize the relations
 \begin{equation}\label{eqn:whycurl:60}
 \begin{aligned}
 \spacegrad \cdot \lr{ \spacegrad \cross \Bf } &= 0 \\
-\spacegrad \cross \lr{ \spacegrad \chi } &= 0.
+\spacegrad \cross \lr{ \spacegrad \chi } &= 0,
 \end{aligned}
 \end{equation}
+where \( \Bf \) is a vector, and \( \chi \) is a scalar.
 
 From the first curl identity above, since we seek \( \BB \) satisfying \( \spacegrad \cdot \BB = 0 \), our work is done for us, if we pick
 \begin{equation}\label{eqn:whycurl:80}
@@ -184,6 +194,26 @@ or
 \BE = - \spacegrad \phi - c \partial_0 \BA.
 \end{equation}
 Our construction of the potentials \( \phi \), \( \BA \) has been explicitly picked to satisfy satisfy \( \spacegrad \wedge \spacegrad \wedge X = 0 \) relationships.
+\section{Potentials if we have magnetic sources.}
+The multivector form of Maxwell's equation is
+\begin{equation}\label{eqn:whycurl:760}
+\lr{ \spacegrad + \partial_0 } F = J_{0,1} + J_{2,3},,
+\end{equation}
+where \( F = \BE + I c \BB \), \( J_{0,1} \) is a multivector with grades \( 0,1 \), including conventional electric charge density and current density contributions, and \( J_{2,3} \) has grades \( 2, 3\) and includes the fictitous magnetic sources that we use in antenna and microwave engineering.
+
+We've found a potential representation for \( F \) for the case where \( J_{2,3} = 0 \).  Now let's consider the \( J_{0,1} = 0 \) case.  In this case, the source free equations are
+\begin{equation}\label{eqn:whycurl:780}
+\gpgrade{ \lr{ \spacegrad + \partial_0 } F }{0,1} = 0.
+\end{equation}
+Expanding that grade selection, we have
+\begin{equation}\label{eqn:whycurl:800}
+\begin{aligned}
+\gpgrade{ \lr{ \spacegrad + \partial_0 } F }{0,1}
+&=
+\gpgrade{ \lr{ \spacegrad + \partial_0 } \lr{ \BE + I c \BB } }{0,1} \\
+&=
+\end{aligned}
+\end{equation}
 
 \section{On the nature of \( F \).}
 In the STA form of Maxwell's equation, our field \( F \) is a bivector.  We've seen that any \( F \) defined as the curl of a four-vector potential plus the gradient of a scalar, satisfies the source free Maxwell's equations

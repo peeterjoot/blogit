@@ -1,0 +1,427 @@
+%
+% Copyright © 2023 Peeter Joot.  All Rights Reserved.
+% Licenced as described in the file LICENSE under the root directory of this GIT repository.
+%
+%{
+\input{../latex/blogpost.tex}
+\renewcommand{\basename}{gapotentials}
+%\renewcommand{\dirname}{notes/phy1520/}
+\renewcommand{\dirname}{notes/ece1228-electromagnetic-theory/}
+%\newcommand{\dateintitle}{}
+%\newcommand{\keywords}{}
+
+\input{../latex/peeter_prologue_print2.tex}
+
+\usepackage{peeters_layout_exercise}
+\usepackage{peeters_braket}
+\usepackage{peeters_figures}
+\usepackage{siunitx}
+\usepackage{verbatim}
+%\usepackage{mhchem} % \ce{}
+%\usepackage{macros_bm} % \bcM
+%\usepackage{macros_qed} % \qedmarker
+%\usepackage{txfonts} % \ointclockwise
+
+\beginArtNoToc
+
+\generatetitle{Potentials in geometric algebra.}
+%\chapter{Potentials in geometric algebra.}
+%\label{chap:gapotentials}
+\section{Conventional formulation.}
+The idea behind introducing the scalar potential \( \phi \) and vector potential \( \BA \) is that we can impose a constraint on the form of our observable fields \( \BE, \BB \), (or \( \BD, \BH \)), that reduces the complexity and coupling of Maxwell's equations.  These potentials are not unique, but the types of allowed variations in those potentials (gauge transformations) do not change the observable fields.
+
+The basic idea is that we are looking for representations of the fields that automatically satisfy the pair of source free Maxwell's equations
+\begin{equation}\label{eqn:gapotentials:40}
+\begin{aligned}
+\spacegrad \cdot \BB &= 0 \\
+c \partial_0 \BB + \spacegrad \cross \BE &= 0,
+\end{aligned}
+\end{equation}
+so that the problem is reduced to solving just the remaining source dependent Maxwell's equations.
+
+The conventional way of constructing these potentials makes use of the identities
+\begin{equation}\label{eqn:gapotentials:60}
+\begin{aligned}
+\spacegrad \cdot \lr{ \spacegrad \cross \Bf } &= 0 \\
+\spacegrad \cross \lr{ \spacegrad \chi } &= 0,
+\end{aligned}
+\end{equation}
+where \( \Bf \) is a vector, and \( \chi \) is a scalar.  This approach is straightforward.  Instead of replicating it, here are a few well known references where such a treatment can be found
+\begin{enumerate}
+\item \S 18-6 potentials and the wave equation in \citep{feynman1963flpII:MaxwellEquations} (available online),
+\item \S 10.1 The potential formulation in \citep{griffiths1999introduction}, and
+\item \S 6.4 Vector and Scalar Potentials, in \citep{jackson1975cew},
+\end{enumerate}
+
+\section{Multivector potentials in geometric algebra.}
+The multivector form of Maxwell's equation is
+\begin{equation}\label{eqn:gapotentials:820}
+\lr{ \spacegrad + \partial_0 } F = J,
+\end{equation}
+where \( \partial_0 = (1/c)\partial/\partial t \), the electromagnetic field \( F = \BE + I c \BB = \BE + I \eta H \) has grades(1,2), and a multivector charge and current density \( J \).  Grades(0,1) of the current are the charge and current densities respectively, and if desired, the grade(2,3) portion of the current has the fictitious magnetic charge and current densities (used in microwave and antenna engineering.)
+
+It's best to consider the case of electric sources, separately from the case of (fictitious) magnetic sources, and then use superposition to construct a potential representation that includes both.
+
+Before doing that we need a couple tools.
+
+...
+
+Now we are ready to figure out the structure of the potentials.
+\subsection{Case I.  No (fictitious) magnetic sources.}
+Without magnetic sources, Maxwell's equation is
+\begin{equation}\label{eqn:gapotentials:840}
+\lr{ \spacegrad + \partial_0 } F = \gpgrade{J}{0,1},
+\end{equation}
+This can be split into two equations, one that has just the sources, and one that is source free
+\begin{equation}\label{eqn:gapotentials:860}
+\gpgrade{ \lr{ \spacegrad + \partial_0 } F }{0,1} = \gpgrade{J}{0,1},
+\end{equation}
+\begin{equation}\label{eqn:gapotentials:880}
+\gpgrade{ \lr{ \spacegrad + \partial_0 } F }{2,3} = 0.
+\end{equation}
+If you are clever, or have the benefit of having worked out the answer already, you can look directly at \cref{eqn:gapotentials:880} and guess the multivector form for the potential.  Hint: you want something closely related to \( F = \lr{ \spacegrad - \partial_0 } A \), where \( A \) has grades(0,1).
+
+If you aren't that clever, or don't have a time machine that let's you look that clever, you'll have to work it out systematically like the rest of us.  We can start by breaking down \( F \) into it's constituent observer dependent fields.  That means that we want to find values for \( \BE, \BH \) that satisfy
+\begin{equation}\label{eqn:gapotentials:900}
+\gpgrade{ \lr{ \spacegrad + \partial_0 } \lr{ \BE + I \eta \BH } }{2,3} = 0.
+\end{equation}
+Expanding the multivector factors gives us
+\begin{equation}\label{eqn:gapotentials:920}
+\begin{aligned}
+\gpgrade{
+\lr{ \spacegrad + \partial_0 } \lr{ \BE + I \eta \BH }
+}{2,3}
+&=
+\gpgradetwo{\spacegrad \BE}
+%+ \partial_0 \BE
++ \gpgradethree{I \eta \spacegrad \BH} + I \eta \partial 0 \BH \\
+&=
+\spacegrad \wedge \BE
++ \spacegrad \wedge \lr{ I \eta \BH }
++ I \eta \partial_0 \BH.
+\end{aligned}
+\end{equation}
+Splitting this into one equation for each grade, leaves us with
+\begin{equation}\label{eqn:gapotentials:940}
+0 = \spacegrad \wedge \BE + I \eta \partial_0 \BH
+\end{equation}
+\begin{equation}\label{eqn:gapotentials:960}
+0 = \spacegrad \wedge \lr{ I \eta \BH }.
+\end{equation}
+Observe that we could have also written \cref{eqn:gapotentials:960} as \( 0 = I \eta \lr{ \spacegrad \cdot \BH } \), which is the starting point of the conventional non-GA approach.
+It's clear that we want to write \( I \eta \BH = I c \BB \) as a (bivector) curl, and let
+\begin{equation}\label{eqn:gapotentials:980}
+I \eta \BH = c \spacegrad \wedge \BA.
+\end{equation}
+It's a bit sneaky to toss that factor of \( c \) in here, but that's done to make the units of \( \BA \) turn out in a way that matches the conventional vector potential.  If it makes you feel better, you can think of this as an undetermined constant multiplicative undetermined factor that will be used to adjust the dimensions of \( \BA \) down the line.
+
+Having made that choice, \cref{eqn:gapotentials:960} is automatically satisfied, and \cref{eqn:gapotentials:940} is reduced to
+\begin{equation}\label{eqn:gapotentials:1000}
+\begin{aligned}
+0
+&= \spacegrad \wedge \BE + I \eta \partial_0 \BH \\
+&= \spacegrad \wedge \BE + \partial_0 \spacegrad \wedge \lr{ c \BA } \\
+&= \spacegrad \wedge \lr{ \BE + c \partial_0 \BA }.
+\end{aligned}
+\end{equation}
+We can now let
+\begin{equation}\label{eqn:gapotentials:1020}
+\BE + \partial_0 c \BA = -\spacegrad \phi.
+\end{equation}
+Again, we had the option of including an arbitrary multiplicative constant, but this time, we managed to find the right switch for our time machine, and look ahead to see that we want that constant to be \( -1 \) in order to have agreement with the conventional result.
+
+We are left with a potential construction for our individual field components
+\begin{equation}\label{eqn:gapotentials:1040}
+\begin{aligned}
+\BE &= -\spacegrad \phi - c \partial_0 \BA \\
+I \eta \BH &= c \spacegrad \wedge \BA,
+\end{aligned}
+\end{equation}
+or
+\begin{equation}\label{eqn:gapotentials:1060}
+F = -\spacegrad \phi - c \partial_0 \BA + c \spacegrad \wedge \BA.
+\end{equation}
+This automatically satisfies the grades of Maxwell's equation that are source free, leaving us to solve just
+\begin{equation}\label{eqn:gapotentials:1080}
+\gpgrade{ \lr{ \spacegrad + \partial_0 } F }{0,1} = \gpgrade{J}{0,1}.
+\end{equation}
+\subsubsection{Multivector potential.}
+It's natural to wonder if there is a more structured form for \( F \) than \cref{eqn:gapotentials:1060}, just as we found a GA structure for Maxwell's equation that eliminated the crazy mix of divs and curls that we had in the original Gibbs representation.  Let's find that structure.  To do so, we can enclose \( F \) in a no-op grade selection operation
+\begin{equation}\label{eqn:gapotentials:1100}
+\begin{aligned}
+F
+&=
+\gpgrade{
+-\spacegrad \phi - c \partial_0 \BA + c \spacegrad \wedge \BA
+}{1,2} \\
+&=
+\gpgrade{
+-\spacegrad \phi - c \partial_0 \BA + c \spacegrad \BA
+}{1,2} \\
+&=
+\gpgrade{
+\spacegrad \lr{ -\phi + c \BA } - c \partial_0 \BA + \lr{ \partial_0 \phi - \partial_0 \phi }
+}{1,2} \\
+&=
+\gpgrade{
+\lr{ \spacegrad - \partial_0 } \lr{ -\phi + c \BA }
+}{1,2}.
+\end{aligned}
+\end{equation}
+
+We can now introduce a multivector potential, and express the remaining non-zero grades of Maxwell's equation in terms of this potential
+\begin{equation}\label{eqn:gapotentials:1120}
+\begin{aligned}
+A &= -\phi + c \BA \\
+F &=
+\gpgrade{
+\lr{ \spacegrad - \partial_0 } A
+}{1,2} \\
+\gpgrade{J}{0,1} &= \gpgrade{ \lr{ \spacegrad + \partial_0 } F }{0,1}.
+\end{aligned}
+\end{equation}
+
+\subsubsection{Lorentz gauge.}
+The grade selection in our representation of \( F \) is a bit annoying, and can be eliminated if we impose additional constraints on the potential.  We can write
+\begin{equation}\label{eqn:gapotentials:1140}
+F =
+\lr{ \spacegrad - \partial_0 } A
+-
+\gpgrade{
+\lr{ \spacegrad - \partial_0 } A
+}{0,3},
+\end{equation}
+and then ask what conditions are required for this grade(0,3) selection to be zero.  In terms of our constituent potentials, that is
+\begin{equation}\label{eqn:gapotentials:1160}
+\begin{aligned}
+0 &=
+\gpgrade{
+\lr{ \spacegrad - \partial_0 } A
+}{0,3} \\
+&=
+\gpgrade{
+\lr{ \spacegrad - \partial_0 } \lr{ -\phi + c \BA }
+}{0,3} \\
+&=
+c \spacegrad \cdot \BA + \partial_0 \phi,
+\end{aligned}
+\end{equation}
+This is the Lorentz gauge condition, recognized a bit more easily if written out in terms of the time partials explicitly
+\begin{equation}\label{eqn:gapotentials:1180}
+\inv{c^2} \PD{t}{\phi} + \spacegrad \cdot \BA = 0.
+\end{equation}
+
+We can now write Maxwell's equations, in the potential formulation, as
+\begin{equation}\label{eqn:gapotentials:1200}
+\begin{aligned}
+A &= -\phi + c \BA \\
+F &= \lr{ \spacegrad - \partial_0 } A \\
+0 &= \inv{c} \gpgrade{ \lr{ \spacegrad - \partial_0 } A }{0,3} = \inv{c^2} \PD{t}{\phi} + \spacegrad \cdot \BA \\
+\gpgrade{J}{0,1} &= \gpgrade{ \lr{ \spacegrad + \partial_0 } F }{0,1} = \lr{ \spacegrad^2 - \partial_{00} } A.
+\end{aligned}
+\end{equation}
+This is quite nice.  We have a one to one decoupled relationship between the potential and the current, and are free to use the well known techniques for solving the wave equation (using convolution and a superposition of advanced and retarded Green's functions for the wave equation operator.)
+\subsubsection{Gauge transformation.}
+There's one more thing that we should look at before moving on to the magnetic sources case, and that's the question of gauge freedom.  We've said that the potentials are not unique, but this non-uniqueness has a very specific form.
+
+Since we've constructed \( F \) with a grade selection as
+\begin{equation}\label{eqn:gapotentials:1220}
+F = \gpgrade{ \lr{ \spacegrad - \partial_0 } A }{1,2},
+\end{equation}
+so it's clear that any transformation
+\begin{equation}\label{eqn:gapotentials:1240}
+A \rightarrow A + \lr{ \spacegrad + \partial_0 } \psi_{0,3},
+\end{equation}
+where \( \psi_{0,3} \) is any multivector with grades(0,3) components, will leave \( F \) invariant.  That is
+\begin{equation}\label{eqn:gapotentials:1260}
+\begin{aligned}
+A &= -\phi + c \BA \\
+&\rightarrow
+-\phi + c \BA + \lr{ \spacegrad + \partial_0 } \psi_{0,3} \\
+&=
+-\phi + c \BA + \lr{ \spacegrad + \partial_0 } \lr{ c \psi + I \bar{\psi} } \\
+&=
+\lr{ -\phi + c \partial_0 \psi }
++ c \lr{ \BA + \spacegrad \psi }
++ I \spacegrad \bar{\psi}
++ I \partial_0 \bar{\psi}.
+\end{aligned}
+\end{equation}
+We see that the contributions of \( \bar{\psi} \) result in grade(2,3) terms, which are not of interest, and we find that a paired transformation of the potentials
+\begin{equation}\label{eqn:gapotentials:1280}
+\begin{aligned}
+\phi &\rightarrow \phi - \PD{t}{\psi} \\
+\BA &\rightarrow \BA + \spacegrad \psi,
+\end{aligned}
+\end{equation}
+called a gauge transformation, leaves the field \( F \) unchanged.  This can be expressed slightly more compactly as
+\begin{equation}\label{eqn:gapotentials:1300}
+A \rightarrow A + \lr{ \spacegrad + \partial_0 } c \psi,
+\end{equation}
+where, once again, the multiplicative constant \( c \) is included so for consistency with the conventional expression \cref{eqn:gapotentials:1280} for potential gauge transformation.
+\subsection{Case II.  With (fictitious) magnetic sources.}
+With magnetic sources, Maxwell's equation is
+\begin{equation}\label{eqn:gapotentials:1500}
+\lr{ \spacegrad + \partial_0 } F = \gpgrade{J}{2,3}.
+\end{equation}
+We put this in dual form
+\begin{equation}\label{eqn:gapotentials:1520}
+\lr{ \spacegrad + \partial_0 } I F = I \gpgrade{J}{2,3},
+\end{equation}
+which now has the sources all with grades (0,1) as we just analyzed.  The dual vector \( I F \), like \( F \), has only grade(1,2) components.
+%We can immediately write the field in terms of a potential
+%\begin{equation}\label{eqn:gapotentials:1320}
+%I F = \gpgrade{ \lr{ \spacegrad - \partial_0 } A }{1,2}.
+%\end{equation}
+%
+%We also want to establish coorespondence with the potential conventions from antenna theory, for example from \citep{balanis2005antenna}.  We can do this two ways, by expanding this abstract field representation, and then matching up the terms, or somewhat more laboriously,
+Expanding the source free Maxwell's equations in terms of \( \BE, \BH \), we have
+\begin{equation}\label{eqn:gapotentials:1340}
+\begin{aligned}
+0
+&= \gpgrade{ \lr{ \spacegrad + \partial_0 } I F}{2,3} \\
+&= \gpgrade{ \lr{ \spacegrad + \partial_0 } \lr{I \BE - \eta \BH } }{2,3} \\
+&= \gpgrade{ I \spacegrad \BE - \eta \spacegrad \BH + I \partial_0 \BE - \eta \partial_0 \BH }{2,3} \\
+&= \spacegrad \wedge \lr{ I \BE } - \eta \spacegrad \wedge \BH + I \partial_0 \BE,
+\end{aligned}
+\end{equation}
+or, by grade
+\begin{equation}\label{eqn:gapotentials:1360}
+0 = \spacegrad \wedge \lr{ I \BE },
+\end{equation}
+\begin{equation}\label{eqn:gapotentials:1361}
+0 = - \eta \spacegrad \wedge \BH + I \partial_0 \BE.
+\end{equation}
+We see that the dual electric field needs to be a curl to satisfy \cref{eqn:gapotentials:1360}
+\begin{equation}\label{eqn:gapotentials:1400}
+I \BE = -\eta \spacegrad \wedge c \BF,
+\end{equation}
+and after substitution into \cref{eqn:gapotentials:1361} we are left with
+\begin{equation}\label{eqn:gapotentials:1540}
+\begin{aligned}
+0
+&= - \eta \spacegrad \wedge \BH + \partial_0 \lr{ - \eta \spacegrad \wedge c \BF } \\
+&= \eta \spacegrad \wedge \lr{ -\BH - \partial_0 c \BF } \\
+\end{aligned}
+\end{equation}
+We set
+\begin{equation}\label{eqn:gapotentials:1420}
+-\BH - \partial_0 c \BF = \spacegrad \phi_m,
+\end{equation}
+Our fields are
+\begin{equation}\label{eqn:gapotentials:1440}
+\begin{aligned}
+\BE &=
+%I \eta \spacegrad \wedge (c \BF) =
+- \inv{\epsilon} \spacegrad \cross \BF \\
+\BH &= -\spacegrad \phi_m - \PD{t}{\BF}.
+\end{aligned}
+\end{equation}
+This has the structure that matches the potential conventions from antenna theory, for example as stated in \citep{balanis2005antenna}.
+\subsubsection{Multivector potential.}
+As with the electrical sources, we expect that we can write this as something like
+\begin{equation}\label{eqn:gapotentials:1460}
+F = \gpgrade{ \lr{ \spacegrad - \partial_0 } I A }{1,2}.
+\end{equation}
+Let's verify that this is the case.
+\begin{equation}\label{eqn:gapotentials:1480}
+\begin{aligned}
+F
+&= I \eta \spacegrad \wedge (c \BF) -I \eta \spacegrad \phi_m - I \eta \partial_0 c \BF \\
+&= \gpgrade{
+I \eta \spacegrad \wedge (c \BF) -I \eta \spacegrad \phi_m - I \eta \partial_0 c \BF }{1,2} \\
+&= \gpgrade{
+I \eta \spacegrad c \BF -I \eta \spacegrad \phi_m - I \eta \partial_0 c \BF }{1,2} \\
+&= \gpgrade{
+I \eta \lr{ \spacegrad \lr{ - \phi_m + c \BF } - \partial_0 c \BF + \partial_0 \phi_m - \partial_0 \phi_m}
+}{1,2} \\
+&= \gpgrade{
+\lr{ \spacegrad - \partial_0 } I \eta \lr{ - \phi_m + c \BF }
+}{1,2}.
+\end{aligned}
+\end{equation}
+\subsubsection{Lorentz gauge.}
+Let's see what constraints we need to write our field in terms of a potential without a grade selection, that is
+\begin{equation}\label{eqn:gapotentials:1560}
+F = \lr{ \spacegrad - \partial_0 } I \eta \lr{ - \phi_m + c \BF }.
+\end{equation}
+We need the grade(0,3) components of this multivector to be zero.  Those components are
+\begin{equation}\label{eqn:gapotentials:1580}
+\begin{aligned}
+0 &=
+\gpgrade{
+\lr{ \spacegrad - \partial_0 } I \eta \lr{ - \phi_m + c \BF }
+}{0,3} \\
+&=
+\gpgrade{
+-\spacegrad I \eta \phi_m
++\spacegrad I \eta c \BF
++ \partial_0 I \eta \phi_m
+- \partial_0 I \eta c \BF
+}{0,3} \\
+&=
+\gpgradethree{ \spacegrad I \eta c \BF }
++ \partial_0 I \eta \phi_m \\
+&=
+I \eta \lr{ c \lr{ \spacegrad \cdot \BF} + \partial_0 \phi_m },
+\end{aligned}
+\end{equation}
+or
+\begin{equation}\label{eqn:gapotentials:1600}
+0 = \inv{c^2} \PD{t}{\phi_m} + \spacegrad \cdot \BF.
+\end{equation}
+This is the Lorentz gauge condition.  With this condition, like \cref{eqn:gapotentials:1200}, we can we can express Maxwell's equation with magnetic sources, as a forced wave equation
+\begin{equation}\label{eqn:gapotentials:1620}
+\begin{aligned}
+A &= I \eta \lr{ -\phi_m + c \BF } \\
+F &= \lr{ \spacegrad - \partial_0 } A \\
+0 &= \inv{c} \gpgrade{ \lr{ \spacegrad - \partial_0 } A }{0,3} = \inv{c^2} \PD{t}{\phi_m} + \spacegrad \cdot \BF \\
+\gpgrade{J}{2,3} &= \gpgrade{ \lr{ \spacegrad + \partial_0 } F }{2,3} = \lr{ \spacegrad^2 - \partial_{00} } A.
+\end{aligned}
+\end{equation}
+\subsubsection{Gauge transformation.}
+Without the Lorentz gauge assumption, our potential representation for the field is
+\begin{equation}\label{eqn:gapotentials:1640}
+\begin{aligned}
+A &= I \eta \lr{ -\phi_m + c \BF } \\
+F &= \gpgrade{ \lr{ \spacegrad - \partial_0 } A }{1,2}.
+\end{aligned}
+\end{equation}
+It's clear that any transformation of the form
+\begin{equation}\label{eqn:gapotentials:1660}
+A \rightarrow A + \lr{ \spacegrad + \partial_0 } \psi_{0,3},
+\end{equation}
+leaves the field unchanged.
+\begin{equation}\label{eqn:gapotentials:1680}
+\begin{aligned}
+A &= I \eta \lr{ -\phi_m + c \BF } \\
+&\rightarrow
+I \eta \lr{ -\phi + c \BF } + \lr{ \spacegrad + \partial_0 } \psi_{0,3} \\
+&=
+I \eta \lr{ -\phi_m + c \BF } + \lr{ \spacegrad + \partial_0 } \lr{ \psi + I \eta c \bar{\psi} } \\
+&=
+I \eta \lr{
+-\phi_m
++ c \partial_0 \bar{\psi}
++ c \BF
++ c \spacegrad \bar{\psi}
+}
++ \lr{ \spacegrad + \partial_0 } \psi.
+\end{aligned}
+\end{equation}
+We can drop the \( \psi \) contributions, since this time we want only grades(2,3) in our potential, and find that the
+desired form of the gauge transformation, for scalar \( \bar{\psi} \), is
+\begin{equation}\label{eqn:gapotentials:1700}
+\begin{aligned}
+\phi_m &\rightarrow \phi_m - \PD{t}{\bar{\psi}} \\
+\BF &\rightarrow \BF + \spacegrad \bar{\psi}.
+\end{aligned}
+\end{equation}
+The multivector form of this is
+\begin{equation}\label{eqn:gapotentials:1720}
+A \rightarrow A + \lr{ \spacegrad + \partial_0 } I \eta c \bar{\psi}.
+\end{equation}
+\subsection{Superposition.}
+
+%}
+\EndArticle

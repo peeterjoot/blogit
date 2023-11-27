@@ -287,8 +287,11 @@
 #../latex/bin/lgrep formAndCurl.tex | tee o ; . ./o
 #perl -p -i ../latex/bin/latexRegex.pl formAndCurl.tex
 
-../latex/bin/lgrep test.tex | tee o ; . ./o
-perl -p -i ../latex/bin/latexRegex.pl test.tex
+#../latex/bin/lgrep test.tex | tee o ; . ./o
+#perl -p -i ../latex/bin/latexRegex.pl test.tex
 
-../latex/bin/lgrep whycurl.tex | tee o ; . ./o
-perl -p -i ../latex/bin/latexRegex.pl whycurl.tex
+#../latex/bin/lgrep whycurl.tex | tee o ; . ./o
+#perl -p -i ../latex/bin/latexRegex.pl whycurl.tex
+
+../latex/bin/lgrep gapotentials.tex | tee o ; . ./o
+perl -p -i ../latex/bin/latexRegex.pl gapotentials.tex

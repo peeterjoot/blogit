@@ -62,9 +62,18 @@ where \( \partial_0 = (1/c)\partial/\partial t \), the electromagnetic field \( 
 
 It's best to consider the case of electric sources, separately from the case of (fictitious) magnetic sources, and then use superposition to construct a potential representation that includes both.
 
-Before doing that we need a couple tools.
-
-...
+We require a tool, that generalizes the \R{3} results of \cref{eqn:gapotentials:60}.
+\makelemma{Curl of curl.}{lemma:gapotentials:1}{
+Let \( A \in \bigwedge^k \) be a blade of grade \( k \).  Then
+\begin{equation*}
+\nabla \wedge \nabla \wedge A = 0.
+\end{equation*}
+} % lemma
+Observe that for scalar \( A \), this reduces to
+\begin{equation}\label{eqn:gapotentials:1740}
+\nabla \wedge \nabla A = 0.
+\end{equation}
+We've recently proved \cref{lemma:gapotentials:1}, so we won't do it again now.
 
 Now we are ready to figure out the structure of the potentials.
 \subsection{Case I.  No (fictitious) magnetic sources.}
@@ -422,6 +431,328 @@ The multivector form of this is
 A \rightarrow A + \lr{ \spacegrad + \partial_0 } I \eta c \bar{\psi}.
 \end{equation}
 \subsection{Superposition.}
+We can now use superposition to construct a potential representation that works for both conventional electric and fictitious magnetic charges and currents.
+
+Without a Lorentz gauge assumption, that is
+\begin{equation}\label{eqn:gapotentials:1760}
+\begin{aligned}
+A &= -\phi + c \BA + I \eta \lr{ -\phi_m + c \BF } \\
+F &= \gpgrade{ \lr{ \spacegrad - \partial_0 } A }{1,2} \\
+J &= \lr{ \spacegrad + \partial_0 } F,
+\end{aligned}
+\end{equation}
+where, given scalar functions \( \psi, \bar{\psi} \), we are free to make gauge transformations of the multivector potential that satisfy
+\begin{equation}\label{eqn:gapotentials:1800}
+A \rightarrow A + \lr{ \spacegrad + \partial_0 } \lr{ c \psi + I \eta c \bar{\psi} },
+\end{equation}
+
+With a Lorentz gauge constraint, we have a wave equation operator acting on \( A \), with the multivector current as a forcing term.
+\begin{equation}\label{eqn:gapotentials:1780}
+\begin{aligned}
+A &= -\phi + c \BA + I \eta \lr{ -\phi_m + c \BF } \\
+0 &= \gpgrade{ \lr{ \spacegrad - \partial_0 } A }{0,3} \\
+F &= \lr{ \spacegrad - \partial_0 } A \\
+J &= \lr{ \spacegrad^2 - \partial_{00} } A.
+\end{aligned}
+\end{equation}
+\subsubsection{Check.}
+It's worth expanding out \cref{eqn:gapotentials:1760} to verify that we got all the dimensional constants write, and compare the results to Maxwell's equations in their Gibbs form.
+
+Let's start with an expansion of \( F \) in terms of the potentials
+\begin{equation}\label{eqn:gapotentials:1820}
+\begin{aligned}
+F &=
+\gpgrade{\lr{ \spacegrad - \partial_0 } A }{1,2} \\
+&= \gpgrade{ \lr{ \spacegrad - \partial_0 } \lr{ -\phi + c \BA + I \eta \lr{ -\phi_m + c \BF } } }{1,2} \\
+&=
+\gpgrade{
+\spacegrad \lr{ -\phi + c \BA + I \eta \lr{ -\phi_m + c \BF } }
+-\partial_0 \lr{ -\phi + c \BA + I \eta \lr{ -\phi_m + c \BF } }
+}{1,2} \\
+&=
+\gpgrade{
+\spacegrad \lr{ -\phi + c \BA + I \eta \lr{ -\phi_m + c \BF } }
+-\partial_0 \lr{ c \BA + I \eta c \BF }
+}{1,2} \\
+&=
+-\spacegrad \phi + c \spacegrad \wedge \BA - I \eta \spacegrad \phi_m + I \eta c \spacegrad \wedge \BF
+-\partial_0 \lr{ c \BA + I \eta c \BF }.
+\end{aligned}
+\end{equation}
+That is
+\begin{equation}\label{eqn:gapotentials:1840}
+\begin{aligned}
+\BE &= -\spacegrad \phi + I \eta c \spacegrad \wedge \BF  -c \partial_0 \BA \\
+I \eta \BH &= c \spacegrad \wedge \BA - I \eta \spacegrad \phi_m - I \eta c \partial_0 \BF,
+\end{aligned}
+\end{equation}
+or
+\begin{equation}\label{eqn:gapotentials:1860}
+\begin{aligned}
+\BE &= - \spacegrad \phi -\partial_t \BA - \inv{\epsilon} \spacegrad \cross \BF \\
+\BH &= - \spacegrad \phi_m - \partial_t \BF + \inv{\mu} \spacegrad \cross \BA.
+\end{aligned}
+\end{equation}
+All is good.  This is exactly the form that we expect.
+
+Let's expand out Maxwell's equation in terms of this potential representation and see what we get.
+
+Let's write the total field without the grade(1,2) selection, by subtracting off any grade(0,3) contributions
+\begin{equation}\label{eqn:gapotentials:1880}
+F = \lr{ \spacegrad - \partial_0 } A - \gpgrade{ \lr{ \spacegrad - \partial_0 } A }{0,3}.
+\end{equation}
+That difference term is
+\begin{equation}\label{eqn:gapotentials:1900}
+\begin{aligned}
+- \gpgrade{ \lr{ \spacegrad - \partial_0 } A }{0,3}
+&=
+- \gpgrade{ \lr{ \spacegrad - \partial_0 } \lr{ -\phi + c \BA - I \eta \phi_m + I \eta c \BF } }{0,3} \\
+&=
+- c \spacegrad \cdot \BA - I \eta c \spacegrad \cdot \BF - \partial_0 \phi - I \eta \partial_0 \phi_m.
+\end{aligned}
+\end{equation}
+The field is nicely split into a multivector term that depends directly on the full multivector potential \( A \), and a difference term that wipes out any scalar and pseudoscalar terms
+\begin{equation}\label{eqn:gapotentials:1920}
+F
+=
+\lr{ \spacegrad - \partial_0 } A
+- \lr{ \partial_0 \phi + c \spacegrad \cdot \BA } - I \eta \lr{ \partial_0 \phi_m + c \spacegrad \cdot \BF }.
+\end{equation}
+
+Maxwell's equations are now reduced to
+\begin{equation}\label{eqn:gapotentials:1940}
+\lr{ \spacegrad^2 - \partial_{00} } A
+-
+\lr{ \spacegrad + \partial_0 }
+\lr{ \partial_0 \phi + c \spacegrad \cdot \BA }
+-
+\lr{ \spacegrad + \partial_0 }
+I \eta \lr{ \partial_0 \phi_m + c \spacegrad \cdot \BF }
+= J.
+\end{equation}
+This splits nicely into a single equation for each grade of \( A, J \) respectively.  We write
+\begin{equation}\label{eqn:gapotentials:1960}
+J = \eta\lr{ c \rho - \BJ } + I \lr{ c \phi_m - \BM },
+\end{equation}
+so
+\begin{equation}\label{eqn:gapotentials:1980}
+\begin{aligned}
+\lr{ \spacegrad^2 - \partial_{00} } (-\phi) - \partial_0 \lr{ \partial_0 \phi + c \spacegrad \cdot \BA } &= \eta c \rho \\
+\lr{ \spacegrad^2 - \partial_{00} } (c \BA) - \spacegrad \lr{ \partial_0 \phi + c \spacegrad \cdot \BA } &= -\eta \BJ \\
+\lr{ \spacegrad^2 - \partial_{00} } (I \eta c \BF) - I \eta \partial_0 \lr{ \partial_0 \phi_m + c \spacegrad \cdot \BF } &= -I \BM \\
+\lr{ \spacegrad^2 - \partial_{00} } (-I \eta \phi_m) - I \eta \spacegrad \lr{ \partial_0 \phi_m + c \spacegrad \cdot \BF } &= I c \rho_m.
+\end{aligned}
+\end{equation}
+If we choose the Lorentz gauge conditions
+\begin{equation}\label{eqn:gapotentials:2000}
+0 = \lr{ \partial_0 \phi + c \spacegrad \cdot \BA } = \lr{ \partial_0 \phi_m + c \spacegrad \cdot \BF },
+\end{equation}
+all of these equations decouple nicely, leaving us with 8 (scalar) equations in 8 unknowns
+\begin{equation}\label{eqn:gapotentials:2020}
+\begin{aligned}
+\lr{ \spacegrad^2 - \partial_{00} } \phi &= -\frac{\rho}{\epsilon} \\
+\lr{ \spacegrad^2 - \partial_{00} } \BA &= -\mu \BJ \\
+\lr{ \spacegrad^2 - \partial_{00} } \BF &= -\epsilon \BM \\
+\lr{ \spacegrad^2 - \partial_{00} } \phi_m &= - \frac{\rho_m}{\mu}.
+\end{aligned}
+\end{equation}
+\section{Potentials in STA (space time algebra).}
+All of this was very convoluted.  Maxwell's equation in STA form is considerably simpler, as is the potential formulation.
+
+\subsection{STA form of Maxwell's equation.}
+We identify
+\begin{equation}\label{eqn:gapotentials:2040}
+\begin{aligned}
+\Be_k &= \gamma_k \gamma_0 \\
+I &= \Be_1 \Be_2 \Be_3 = \gamma_0 \gamma_1 \gamma_2 \gamma_3 \\
+\gamma^\mu \cdot \gamma_\nu &= {\delta^\mu}_\nu.
+\end{aligned}
+\end{equation}
+Our field multivector
+\begin{equation}\label{eqn:gapotentials:2060}
+\begin{aligned}
+F
+&= \BE + I \eta \BH \\
+&= \gamma_{k0} E^k + \eta \gamma_{0123k0} H^k \\
+&= \gamma_{k0} E^k + \eta \gamma_{123k} H^k,
+\end{aligned}
+\end{equation}
+now has a pure bivector representation in STA (since \( k \) will always clobber one of the \( 1,2,3 \) indexes.)  To find the STA representation of Maxwell's equation, we simply multiply both sides of our multivector representation, from the left, by \( \gamma_0 \).
+\begin{equation}\label{eqn:gapotentials:2080}
+\gamma_0 \lr{ \spacegrad + \partial_0 } F = \gamma_0 \lr{ \eta \lr{ c \rho - \BJ } + I \lr{ c \rho_m - \BM } }.
+\end{equation}
+The LHS is just the spacetime gradient of \( F \), which we can see by expanding the product
+\begin{equation}\label{eqn:gapotentials:2100}
+\begin{aligned}
+\gamma_0 \lr{ \spacegrad + \partial_0 }
+&=
+\gamma_0 \lr{ \gamma_{k0} \PD{x^k}{} + \PD{x^0}{} }  \\
+&=
+-\gamma_{k} \PD{x^k}{} + \gamma_0 \PD{x^0}{}.
+\end{aligned}
+\end{equation}
+This is the spacetime gradient
+\begin{equation}\label{eqn:gapotentials:2120}
+\grad \equiv \gamma^k \PD{x^k}{} + \gamma^0 \PD{x^0}{} = \gamma^\mu \partial_\mu.
+\end{equation}
+Our RHS is
+\begin{equation}\label{eqn:gapotentials:2140}
+\begin{aligned}
+\gamma_0 \lr{ \eta \lr{ c \rho - \BJ } + I \lr{ c \rho_m - \BM } }
+&=
+\gamma_0 \frac{\rho}{\epsilon} - \gamma_{0k0} \eta (\BJ \cdot \Be_k)
+- I \lr{ c \rho_m \gamma_0 - \gamma_{0k0} (\BM \cdot \Be_k) } \\
+&=
+\gamma_0 \frac{\rho}{\epsilon} + \gamma_k \eta (\BJ \cdot \Be_k)
+- I \lr{ c \rho_m \gamma_0 + \gamma_{k} (\BM \cdot \Be_k) }.
+\end{aligned}
+\end{equation}
+If we let
+\begin{equation}\label{eqn:gapotentials:2160}
+\begin{aligned}
+J_e^0 &= \frac{\rho}{\epsilon} \\
+J_e^k &= \eta (\BJ \cdot \Be_k) \\
+J_m^0 &= c \rho_m \\
+J_m^k &= (\BM \cdot \Be_k) \\
+J_e &= J_e^\mu \gamma_\mu \\
+J_m &= J_m^\mu \gamma_\mu,
+\end{aligned}
+\end{equation}
+then we are left with
+\begin{equation}\label{eqn:gapotentials:2180}
+\grad F = J_e - I J_m,
+\end{equation}
+or just
+\begin{equation}\label{eqn:gapotentials:2640}
+\grad F = J,
+\end{equation}
+where we now give a different meaning to \( J \) than we had in the multivector formulation.  This \( J \) is now a multivector with grade(1,3) components.
+\subsection{Case I: potential formulation for conventional sources.}
+Much like we did with to find the potential formulation for the multivector form of Maxwell's equation, we use superposition, and tackle the conventional sources, and fictitious magnetic sources separately.
+
+With no fictitious sources, Maxwell's equation is
+\begin{equation}\label{eqn:gapotentials:2200}
+\grad F = J_e,
+\end{equation}
+which we may split into vector and trivector components
+\begin{equation}\label{eqn:gapotentials:2220}
+\begin{aligned}
+\grad \cdot F &= J_e \\
+\grad \wedge F &= 0.
+\end{aligned}
+\end{equation}
+Clearly, the trivector equation can be satified by setting
+\begin{equation}\label{eqn:gapotentials:2240}
+F = \grad \wedge A,
+\end{equation}
+for some vector \( A \).  We may also make gauge transformations of \( A \) of the form
+\begin{equation}\label{eqn:gapotentials:2260}
+A \rightarrow A + \grad \psi,
+\end{equation}
+without changing \( F \), showing that \( A \) is not uniquely determined.  With such a representation, Maxwell's equation is now reduced to
+\begin{equation}\label{eqn:gapotentials:2280}
+\grad \cdot F = J_e,
+\end{equation}
+or
+\begin{equation}\label{eqn:gapotentials:2300}
+\begin{aligned}
+J_e
+&=
+\grad \cdot \lr{ \grad \wedge A } \\
+&=
+\grad^2 A - \grad \lr{ \grad \cdot A }.
+\end{aligned}
+\end{equation}
+Clearly the equivalent of the Lorentz gauge condition is now just
+\begin{equation}\label{eqn:gapotentials:2320}
+\grad \cdot A = 0,
+\end{equation}
+so the Lorentz gauge potential form of Maxwell's equation is just
+\begin{equation}\label{eqn:gapotentials:n}S
+\grad^2 A = J_e.
+\end{equation}
+
+\subsection{Case II: potential formulation for fictitious sources.}
+If we have only fictious sources, Maxwell's equation is
+\begin{equation}\label{eqn:gapotentials:2340}
+\grad F = -I J_m,
+\end{equation}
+or after left multiplication by \( I \) we have
+\begin{equation}\label{eqn:gapotentials:2360}
+\grad I F = J_m.
+\end{equation}
+Let \( G = I F \), for the dual field, which is still a bivector.  As before, we can split Maxwell's equations into vector and trivector compoents
+\begin{equation}\label{eqn:gapotentials:2380}
+\begin{aligned}
+\grad \cdot G &= J_m \\
+\grad \wedge G &= 0.
+\end{aligned}
+\end{equation}
+We may set
+\begin{equation}\label{eqn:gapotentials:2400}
+G = \grad \wedge K,
+\end{equation}
+for vector \( K \).  Maxwell's equation is now reduced to
+\begin{equation}\label{eqn:gapotentials:2420}
+\grad \cdot G = J_m,
+\end{equation}
+or
+\begin{equation}\label{eqn:gapotentials:2440}
+\begin{aligned}
+J_m
+&=
+\grad \cdot \lr{ \grad \wedge K } \\
+&=
+\grad^2 K - \grad \lr{ \grad \cdot K }.
+\end{aligned}
+\end{equation}
+
+As before we may make gauge transformations by adding gradient to our potential
+\begin{equation}\label{eqn:gapotentials:2460}
+K \rightarrow K + \grad \bar{\psi},
+\end{equation}
+which will not change \( G \).  For such sources, the Lorentz gauge condition is \( \grad \cdot K = 0 \).  With the Lorentz gauge, Maxwell's equation is reduced to
+\begin{equation}\label{eqn:gapotentials:2480}
+\grad^2 K = J_m.
+\end{equation}
+\subsection{Superposition.}
+For non-fictious sources, we have
+\begin{equation}\label{eqn:gapotentials:2500}
+F = \grad \wedge A
+\end{equation}
+and for fictious sources, we have
+\begin{equation}\label{eqn:gapotentials:2520}
+I F = G = \grad \wedge K,
+\end{equation}
+or
+\begin{equation}\label{eqn:gapotentials:2540}
+F = -I G = -I \lr{ \grad \wedge K }.
+\end{equation}
+Combining these results, we have
+\begin{equation}\label{eqn:gapotentials:2560}
+\begin{aligned}
+F
+&= \grad \wedge A -I \lr{ \grad \wedge K } \\
+&= \gpgradetwo{ \grad \wedge A -I \lr{ \grad \wedge K } } \\
+&= \gpgradetwo{ \grad A -I \lr{ \grad K } } \\
+&= \gpgradetwo{ \grad \lr{ A + I K } },
+\end{aligned}
+\end{equation}
+or
+\begin{equation}\label{eqn:gapotentials:2580}
+F = \grad \lr{ A + I K } - \gpgrade{ \grad \lr{ A + I K } }{0,4}.
+\end{equation}
+Maxwell's equation is
+\begin{equation}\label{eqn:gapotentials:2600}
+\grad^2 \lr{ A + I K } - \grad \gpgrade{ \grad \lr{ A + I K } }{0,4} = J.
+\end{equation}
+With the Lorentz gauge, this splits nicely into one forced wave equation for each vector potential
+\begin{equation}\label{eqn:gapotentials:2620}
+\begin{aligned}
+\grad^2 A &= J_e \\
+\grad^2 K &= -J_m.
+\end{aligned}
+\end{equation}
 
 %}
 \EndArticle

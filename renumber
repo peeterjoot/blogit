@@ -293,5 +293,8 @@
 #../latex/bin/lgrep whycurl.tex | tee o ; . ./o
 #perl -p -i ../latex/bin/latexRegex.pl whycurl.tex
 
-../latex/bin/lgrep gapotentials.tex | tee o ; . ./o
-perl -p -i ../latex/bin/latexRegex.pl gapotentials.tex
+#../latex/bin/lgrep gapotentials.tex | tee o ; . ./o
+#perl -p -i ../latex/bin/latexRegex.pl gapotentials.tex
+
+../latex/bin/lgrep mvpotentials.tex | tee o ; . ./o
+perl -p -i ../latex/bin/latexRegex.pl mvpotentials.tex

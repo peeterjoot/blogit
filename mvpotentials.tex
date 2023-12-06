@@ -32,7 +32,7 @@
 %\label{chap:mvpotentials}
 
 \section{Motivation.}
-This revisits my last blog post where I covered this content in a meandering fashion.  This is an attempt to reexpress this in a more compact form.  In particular, in a form that is amenable to include in my book.  When I wrote the potential section of my book, I cheated, and didn't try to motivate the results.  My cheat was figuring out the multivector potential representation starting with STA where things are simpler, and then translating it back to a multivector representation, instead of figuring out a reasonable way to motivate things from the foundation already laid.
+This revisits my last blog post where I covered this content in a meandering fashion.  This is an attempt to re-express this in a more compact form.  In particular, in a form that is amenable to include in my book.  When I wrote the potential section of my book, I cheated, and didn't try to motivate the results.  My cheat was figuring out the multivector potential representation starting with STA where things are simpler, and then translating it back to a multivector representation, instead of figuring out a reasonable way to motivate things from the foundation already laid.
 
 %The reason for that was that I was rushing to produce the material fast enough to let my ``supervising'' professor read it, but he failed miserably and read almost nothing of what I produced (basically giving me a great grade, despite being clueless about what he graded.)  Obviously that didn't impress me, and left me with a very dirty impression of academia.  After seeing that, I would not be suprised if much of the writing produced in academia is not actually read by the supervising professors.
 %Ranting aside,
@@ -52,7 +52,7 @@ The conventional way of constructing these potentials makes use of the identitie
 \spacegrad \cross \lr{ \spacegrad \phi } &= 0,
 \end{aligned}
 \end{equation}
-applying those to the source free Maxwell's equations to find representations of \( \BE, \BH \) that automatically satisify those equations.  For that conventional analysis, see \S 18-6 \citep{feynman1963flpII:MaxwellEquations} (available online), or \S 10.1 \citep{griffiths1999introduction}, or \S 6.4 \citep{jackson1975cew}.  We can also find such a potential representation using geometric algebra methods that are cross product free (\cref{problem:mvpotentials:1}.)
+applying those to the source free Maxwell's equations to find representations of \( \BE, \BH \) that automatically satisfy those equations.  For that conventional analysis, see \S 18-6 \citep{feynman1963flpII:MaxwellEquations} (available online), or \S 10.1 \citep{griffiths1999introduction}, or \S 6.4 \citep{jackson1975cew}.  We can also find such a potential representation using geometric algebra methods that are cross product free (\cref{problem:mvpotentials:1}.)
 
 For Maxwell's equations with fictitious magnetic sources, it can be shown that a potential representation of the field
 \begin{equation}\label{eqn:mvpotentials:100}
@@ -64,7 +64,7 @@ For Maxwell's equations with fictitious magnetic sources, it can be shown that a
 satisfies the source-free grades of Maxwell's equation.
 See \citep{balanis2005antenna}, and \citep{pozar2009microwave} for such derivations.  As with the conventional source potentials, we can also apply our geometric algebra toolbox to easily find these results (\cref{problem:mvpotentials:2}.)
 
-In \cref{eqn:mvpotentials:80}, and \cref{eqn:mvpotentials:100} we have a mix of time partials and curls that is reminisent of Maxwell's equation itself.  It's obvious to wonder whether there is a more coherent integrated form for the potential.  This is in fact the case.
+In \cref{eqn:mvpotentials:80}, and \cref{eqn:mvpotentials:100} we have a mix of time partials and curls that is reminiscent of Maxwell's equation itself.  It's obvious to wonder whether there is a more coherent integrated form for the potential.  This is in fact the case.
 \makelemma{Multivector potentials.}{lemma:mvpotentials:1}{
 For Maxwell's equation with electric sources, the total field \( F \) expressed in terms of the potentials of \cref{eqn:mvpotentials:80} can be expressed in multivector potential form
 \begin{equation}\label{eqn:mvpotentials:520}
@@ -121,7 +121,7 @@ In terms of potentials, the Lorentz gauge condition \cref{eqn:mvpotentials:680} 
 \end{proof}
 
 \section{Problems.}
-\makeproblem{Potentials for no-fictious sources.}{problem:mvpotentials:1}{
+\makeproblem{Potentials for no-fictitious sources.}{problem:mvpotentials:1}{
 Starting with Maxwell's equation with only conventional electric sources
 \begin{equation}\label{eqn:mvpotentials:120}
 \lr{ \spacegrad + \inv{c}\PD{t}{} } F = \gpgrade{J}{0,1}.
@@ -195,8 +195,8 @@ We sneakily adjust the sign of the gradient so that the result matches the conve
 } % answer
 %
 %
-\makeproblem{Potentials for fictious sources.}{problem:mvpotentials:2}{
-Starting with Maxwell's equation with only fictious magnetic sources
+\makeproblem{Potentials for fictitious sources.}{problem:mvpotentials:2}{
+Starting with Maxwell's equation with only fictitious magnetic sources
 \begin{equation}\label{eqn:mvpotentials:160}
 \lr{ \spacegrad + \inv{c}\PD{t}{} } F = \gpgrade{J}{2,3},
 \end{equation}
@@ -279,7 +279,7 @@ F
 \end{aligned}
 \end{equation}
 
-For the field for the ficticious source case, we start with \cref{eqn:mvpotentials:100}, and compute the result in the same way, inserting a no-op grade selection to allow us to simplify.  We find
+For the field for the fictitious source case, we start with \cref{eqn:mvpotentials:100}, and compute the result in the same way, inserting a no-op grade selection to allow us to simplify.  We find
 \begin{equation}\label{eqn:mvpotentials:580}
 \begin{aligned}
 F

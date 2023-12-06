@@ -298,3 +298,5 @@
 
 ../latex/bin/lgrep mvpotentials.tex | tee o ; . ./o
 perl -p -i ../latex/bin/latexRegex.pl mvpotentials.tex
+../latex/bin/lgrep dexpquestion.tex | tee o ; . ./o
+perl -p -i ../latex/bin/latexRegex.pl dexpquestion.tex

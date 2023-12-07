@@ -27,30 +27,29 @@
 \generatetitle{XXX}
 %\chapter{XXX}
 %\label{chap:dexpquestion}
-
-% https://discord.com/channels/607264339480674324/785572671085608990/1181712099714535464
+On discord, \href{https://discord.com/channels/607264339480674324/785572671085608990/1181712099714535464}{not a good username} asked a really good question.
 
 Consider a slightly simpler problem.  Let
-\begin{equation*}
+\begin{equation}\label{eqn:dexpquestion:20}
 \begin{aligned}
 i &= \Be_{12} \\
 j &= \Be_{31} e^{i\phi},
 \end{aligned}
-\end{equation*}
+\end{equation}
 where we want to compute
-\begin{equation*}
+\begin{equation}\label{eqn:dexpquestion:40}
 \PD{\phi}{e^{j\theta}}.
-\end{equation*}
+\end{equation}
 One way to do this, only knowing the characteristic power series definition of the exponential is to write
-\begin{equation*}
+\begin{equation}\label{eqn:dexpquestion:60}
 \begin{aligned}
 \PD{\phi}{e^{j\theta}}
 &= \sum_{k = 0}^\infty \PD{\phi}{} \frac{ (j \theta)^k }{k!} \\
 &= \sum_{k = 1}^\infty \PD{\phi}{j^k} \frac{ \theta^k }{k!}.
 \end{aligned}
-\end{equation*}
+\end{equation}
 If you treat \( j \) as a complex number, this then reduces to
-\begin{equation*}
+\begin{equation}\label{eqn:dexpquestion:80}
 \begin{aligned}
 \PD{\phi}{e^{j\theta}}
 &= \sum_{k = 1}^\infty k \PD{\phi}{j} j^{k-1} \frac{ \theta^k }{k!} \\
@@ -59,11 +58,11 @@ If you treat \( j \) as a complex number, this then reduces to
 &=
 \theta \PD{\phi}{j} e^{j\theta}.
 \end{aligned}
-\end{equation*}
+\end{equation}
 But this is wrong.  The problem is that \( \PDi{\phi}{j} \) does not commute with \( j \), so
-\begin{equation*}
+\begin{equation}\label{eqn:dexpquestion:100}
 \PD{\phi}{j^k} = \PD{\phi}{j} j^{k-1} + j \PD{\phi}{j} j^{k-2} + \cdots,
-\end{equation*}
+\end{equation}
 not \( k (\PDi{\phi}{j}) j^{k-1} \).
 
 This is where you have the lack of commutitivity, sneakily hiding in the power series for the exponential, when you attempt to take the derivative.

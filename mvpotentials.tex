@@ -118,8 +118,8 @@ In terms of potentials, the Lorentz gauge condition \cref{eqn:mvpotentials:680} 
 \end{equation}
 } % lemma
 \begin{proof}
+See \cref{problem:mvpotentials:4}.
 \end{proof}
-
 \section{Problems.}
 \makeproblem{Potentials for no-fictitious sources.}{problem:mvpotentials:1}{
 Starting with Maxwell's equation with only conventional electric sources
@@ -134,7 +134,7 @@ Show that this may be split by grade into three equations
 \spacegrad \wedge \lr{ I \eta \BH } &= 0.
 \end{aligned}
 \end{equation}
-Then use the identities \( \spacegrad \wedge \spacegrad \wedge \BA \), for vector \( \BA \) and \( \spacegrad \wedge \spacegrad \phi \), for scalar \( \phi \) to find the potential representation \cref{eqn:mvpotentials:80}.
+Then use the identities \( \spacegrad \wedge \spacegrad \wedge \BA = 0 \), for vector \( \BA \) and \( \spacegrad \wedge \spacegrad \phi = 0 \), for scalar \( \phi \) to find the potential representation \cref{eqn:mvpotentials:80}.
 } % problem
 \makeanswer{problem:mvpotentials:1}{
 Taking grade(0,1) and (2,3) selections of Maxwell's equation, we split our equations into source dependent and source free equations
@@ -208,7 +208,7 @@ show that this may be split by grade into three equations
 \spacegrad \wedge \lr{ I \BE } &= 0.
 \end{aligned}
 \end{equation}
-Then use the identities \( \spacegrad \wedge \spacegrad \wedge \BF \), for vector \( \BF \) and \( \spacegrad \wedge \spacegrad \phi_m \), for scalar \( \phi_m \) to find the potential representation \cref{eqn:mvpotentials:100}.
+Then use the identities \( \spacegrad \wedge \spacegrad \wedge \BF = 0 \), for vector \( \BF \) and \( \spacegrad \wedge \spacegrad \phi_m = 0 \), for scalar \( \phi_m \) to find the potential representation \cref{eqn:mvpotentials:100}.
 } % problem
 \makeanswer{problem:mvpotentials:2}{
 We multiply \cref{eqn:mvpotentials:160} by \( I \) to find
@@ -294,9 +294,50 @@ F
 \end{aligned}
 \end{equation}
 } % answer
+\makeproblem{Fields in terms of potentials.}{problem:mvpotentials:4}{
+Prove \cref{lemma:mvpotentials:2}.
+} % problem
+\makeanswer{problem:mvpotentials:4}{
+Let's expand and then group by grade
+\begin{equation}\label{eqn:mvpotentials:n}
+\begin{aligned}
+\lr{ \spacegrad - \inv{c} \PD{t}{} } A
+&=
+\lr{ \spacegrad - \inv{c} \PD{t}{} } \lr{ -\phi + c \BA + I \eta \lr{ -\phi_m + c \BF }} \\
+&=
+-\spacegrad \phi + c \spacegrad \BA + I \eta \lr{ -\spacegrad \phi_m + c \spacegrad \BF }
+-\inv{c} \PD{t}{\phi} + c \inv{c} \PD{t}{ \BA } + I \eta \lr{ -\inv{c} \PD{t}{\phi_m} + c \inv{c} \PD{t}{\BF} } \\
+&=
+- \spacegrad \phi
++ I \eta c \spacegrad \wedge \BF
+- c \inv{c} \PD{t}{\BA}
+\quad + c \spacegrad \wedge \BA
+-I \eta \spacegrad \phi_m
+- c I \eta \inv{c} \PD{t}{\BF} \\
+&\quad + c \spacegrad \cdot \BA
++\inv{c} \PD{t}{\phi}
+\quad + I \eta \lr{ c \spacegrad \cdot \BF
++ \inv{c} \PD{t}{\phi_m} } \\
+&=
+- \spacegrad \phi
+- \inv{\epsilon} \spacegrad \cross \BF
+- \PD{t}{\BA}
+\quad + I \eta \lr{
+\inv{\mu} \spacegrad \cross \BA
+- \spacegrad \phi_m
+- \PD{t}{\BF}
+} \\
+&\quad + c \spacegrad \cdot \BA
++\inv{c} \PD{t}{\phi}
+\quad + I \eta \lr{ c \spacegrad \cdot \BF
++ \inv{c} \PD{t}{\phi_m} }.
+\end{aligned}
+\end{equation}
+Observing that \( F = \gpgrade{ \lr{ \spacegrad -(1/c) \PDi{t}{} } A }{1,2} = \BE + I \eta \BH \), completes the problem.  If the Lorentz gauge condition is assumed, the scalar and pseudoscalar components above are obliterated, leaving just
+\( F = \lr{ \spacegrad -(1/c) \PDi{t}{} } A \).
+} % answer
 \section{Solutions.}
 \shipoutAnswer
-
 %}
 \EndArticle
 %\EndNoBibArticle

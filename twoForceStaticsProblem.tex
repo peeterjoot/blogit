@@ -150,18 +150,18 @@ f_r \Be_1 e^{i\alpha} + f_s \Be_1 e^{i\beta} + m g \Be_1 = 0.
 The solution for either \( f_r \) or \( f_s \) is now trivial, as we only have to take wedge products with the force direction vectors to solve for the magnitudes.  That is
 \begin{equation}\label{eqn:twoForceStaticsProblem:80}
 \begin{aligned}
-   f_r \lr{ \Be_1 e^{i\alpha} +} \wedge \lr{ \Be_1 e^{i\beta} } + m g \Be_1 \wedge \lr{ \Be_1 e^{i\beta} } &= 0 \\
-   f_s \lr{ \Be_1 e^{i\beta} +} \wedge \lr{ \Be_1 e^{i\alpha} } + m g \Be_1 \wedge \lr{ \Be_1 e^{i\alpha} } &= 0.
+   f_r \lr{ \Be_1 e^{i\alpha} } \wedge \lr{ \Be_1 e^{i\beta} } + m g \Be_1 \wedge \lr{ \Be_1 e^{i\beta} } &= 0 \\
+   f_s \lr{ \Be_1 e^{i\beta} } \wedge \lr{ \Be_1 e^{i\alpha} } + m g \Be_1 \wedge \lr{ \Be_1 e^{i\alpha} } &= 0.
 \end{aligned}
 \end{equation}
 Writing the wedges as grade two selections, and noting that \( e^{i\theta} \Be_1 = \Be_1 e^{-i\theta } \), we have
 \begin{equation}\label{eqn:twoForceStaticsProblem:100}
 \begin{aligned}
-f_r &= - m g \frac{ \gpgradetwo{\Be_1^2 e^{i\beta}} }{ \gpgradetwo{ \Be_1^2 e^{-i\alpha} e^{i\beta} } } = - m g \frac{ \sin\beta }{ \sin\lr{ \beta - \alpha } } \\
-f_s &= - m g \frac{ \gpgradetwo{\Be_1^2 e^{i\alpha}} }{ \gpgradetwo{ \Be_1^2 e^{-i\beta} e^{i\alpha} } } = m g \frac{ \sin\alpha }{ \sin\lr{ \beta - \alpha } }.
+f_r &= - m g \frac{ \gpgradetwo{\Be_1^2 e^{i\beta}} }{ \gpgradetwo{ \Be_1^2 e^{-i\alpha} e^{i\beta} } } = - m g \frac{ i \sin\beta }{ i \sin\lr{ \beta - \alpha } } \\
+f_s &= - m g \frac{ \gpgradetwo{\Be_1^2 e^{i\alpha}} }{ \gpgradetwo{ \Be_1^2 e^{-i\beta} e^{i\alpha} } } = m g \frac{ i \sin\alpha }{ i \sin\lr{ \beta - \alpha } }.
 \end{aligned}
 \end{equation}
-The grade selection a unit pseudoscalar factor in both the denominator and numerator, which cancelled out to give the final scalar result.
+The unit pseudoscalar factor cancels out, leaving us with the final desired scalar result.
 
 \section{As a complex variable problem.}
 Observe that we could have reframed the problem as a multivector problem by left multiplying \cref{eqn:twoForceStaticsProblem:60} by \( \Be_1 \) to find

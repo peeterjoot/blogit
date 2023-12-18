@@ -9,3 +9,4 @@
 13/Nov/2023;formAndCurl.tex;Geometric calculus relationships to differential forms, and vector calculus identities. -- parts of this incorporated into GAEE/vectorcalc.tex
 2/Dec/2023;gapotentials.tex;A systematic exploration of potentials in GA, including both multivector and STA forms of Maxwell's equation.
 6/Dec/2023;mvpotentials.tex;Try to rework gapotential.tex (the multivector parts) for inclusion in GAEE.
+2/Nov/2023;cramersProjection.tex;cramer's rule and least squares.  was blog post.  parts of this incorporated into gaee.

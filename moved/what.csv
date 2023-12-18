@@ -1,0 +1,11 @@
+12/Mar/2022;pauliMatrix.tex;This was my old 'Geometric Algebra equivalants for Pauli Matrices' article -- reextracted to share standalone.
+10/Feb/2023;ellipseCurvilinear.tex;working version for GAelectrodynamics
+10/Feb/2023;ellipticproblem.tex;working version for GAelectrodynamics
+11/Feb/2023;greensIntroProblem.tex;working version for GAelectrodynamics
+12/Feb/2023;twoForceStaticsProblem.tex;two force statics problem.  Incorporated parts into GAelectrodynamics.
+30/Jul/2023;toriodal.tex;Incorporated into GAbook.
+4/Aug/2023;recipq.tex;Q and A (twitter DM) w/ Nicholas that was easier as .tex.  Incorporated into GAEE.
+8/Sep/2023;radialderivatives.tex;a text representation of my radial representation youtube video.  Incorporated into classicalmechanics
+13/Nov/2023;formAndCurl.tex;Geometric calculus relationships to differential forms, and vector calculus identities. -- parts of this incorporated into GAEE/vectorcalc.tex
+2/Dec/2023;gapotentials.tex;A systematic exploration of potentials in GA, including both multivector and STA forms of Maxwell's equation.
+6/Dec/2023;mvpotentials.tex;Try to rework gapotential.tex (the multivector parts) for inclusion in GAEE.

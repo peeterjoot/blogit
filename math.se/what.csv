@@ -1,0 +1,32 @@
+13/Sep/2020;wedge.tex;4D wedge product reduction. probably math.se
+13/Sep/2020;versor_inverse.tex;Inverse of a Versor
+13/Sep/2020;pseudoPlusVector.tex;vector and trivector sum.  looks like math.se post.
+13/Sep/2020;inthepipe.tex;probably math.se post -- about quaterions.
+13/Sep/2020;iinverse.tex;how to invert a bivector given the factors.  probably a math.se or forum post.  why not square it?
+13/Sep/2020;hyperwedge.tex;Review of a paper: hyperwedge.pdf, author unknown.  This was an anonymized reply.
+13/Sep/2020;determinant.tex;seems to be a math.se post about determinants of matrix representations of clifford algebras.
+19/Apr/2021;i4.tex;STA pseudoscalar square, metric invariance.  probably a math.se post.
+14/Sep/2021;identities.tex;probably a math.se post about symmetric and antisymmetric forms of dot and wedge products (vectors and blades.)
+14/Sep/2021;exponentialmultivector.tex;probably math.se post.  Baker-Campbell-Hausdorff theorem application.
+14/Sep/2021;4dwedge.tex;4d wedge question from math.stackexchange.
+3/Jan/2022;spinorinversion.tex;Looks like a math.se post.  Inverting a set of coupled spinor equations.
+3/Jan/2022;vectordotbivector.tex;math.se -- more confusion about dot product identities vectors vs. vectors and non-vectors.
+5/Jan/2022;jordan1inverse.tex;an aborted math.se answer.  I misunderstood the question and realized after writing this up.
+3/Jan/2022;whatiswedge.tex;math.se attempt to answer: I can't understand whether the wedge product is supposed to generate a matrix, a vector, or even an area?
+3/Jan/2022;wedgegeneral.tex;Wedge product expansion in non-Euclidean spaces.  This was a math.se answer -- url in the file.
+26/Feb/2022;bivectorFactor.tex;How to find factors of a bivector.  Think this was a math.se answer.
+21/Mar/2022;formsvsga_mathse.tex;a specialization of formsvsga_mathse.tex specifically for math.se
+22/Mar/2022;formsvsga.tex;math.se answer.  tensor, GA and differential forms representations of Maxwell's equation.
+9/Apr/2022;directionalDerivatives.tex;math.se answer about GA directional derivatives with respect to multivector variables.
+5/Jun/2022;imaginaryQ.tex;math.se answer on grade selection to define dot and wedge products.
+5/Jun/2022;independent.tex;probably math.se answer on linear independence, wedge products, and determinants
+5/Jun/2022;trivectorAntisymmetrization.tex;math.se answer on total antisymmetrization of trivector wedge products
+24/Jun/2022;multivectorDivergence.tex;math.se answer: How do I take the divergence of a multi-vector?  URL is in the tex
+24/Jun/2022;symmetricMV.tex;math.se answer: Symmetric multi-vector.  URL is in the tex.
+16/Jul/2022;gafpInertialTensorQ.tex;math.se answer gafp identity for inertial tensor, missing steps.
+12/Aug/2022;mvWedgeExample.tex;math.se answer for multivector outer product question.
+22/Aug/2022;associativity.tex;math.se question (includes original for reformatting.)  Plus my answer.
+13/Sep/2022;dotsymmetric.tex;math.se question about symmetric form of the dot product.
+10/Jan/2023;wedge_no_metric.tex;https://math.stackexchange.com/a/4615561/359
+2/Nov/2023;dotcircular.tex;answering math.se 'On vector multiplication'
+5/Nov/2023;crossQuestion.tex;answering math.se question on cross product geometric interpretation.

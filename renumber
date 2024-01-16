@@ -296,8 +296,14 @@
 #../latex/bin/lgrep gapotentials.tex | tee o ; . ./o
 #perl -p -i ../latex/bin/latexRegex.pl gapotentials.tex
 
-../latex/bin/lgrep mvpotentials.tex | tee o ; . ./o
-perl -p -i ../latex/bin/latexRegex.pl mvpotentials.tex
+#../latex/bin/lgrep mvpotentials.tex | tee o ; . ./o
+#perl -p -i ../latex/bin/latexRegex.pl mvpotentials.tex
 
-../latex/bin/lgrep dexpquestion.tex | tee o ; . ./o
-perl -p -i ../latex/bin/latexRegex.pl dexpquestion.tex
+#../latex/bin/lgrep dexpquestion.tex | tee o ; . ./o
+#perl -p -i ../latex/bin/latexRegex.pl dexpquestion.tex
+
+#../latex/bin/lgrep gradeq.tex | tee o ; . ./o
+#perl -p -i ../latex/bin/latexRegex.pl gradeq.tex
+
+../latex/bin/lgrep adjoint.tex | tee o ; . ./o
+perl -p -i ../latex/bin/latexRegex.pl adjoint.tex

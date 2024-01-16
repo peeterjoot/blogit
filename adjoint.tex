@@ -1,0 +1,250 @@
+%
+% Copyright © 2024 Peeter Joot.  All Rights Reserved.
+% Licenced as described in the file LICENSE under the root directory of this GIT repository.
+%
+%{
+\input{../latex/blogpost.tex}
+\renewcommand{\basename}{adjoint}
+%\renewcommand{\dirname}{notes/phy1520/}
+\renewcommand{\dirname}{notes/ece1228-electromagnetic-theory/}
+%\newcommand{\dateintitle}{}
+%\newcommand{\keywords}{}
+
+\input{../latex/peeter_prologue_print2.tex}
+
+\usepackage{peeters_layout_exercise}
+\usepackage{peeters_braket}
+\usepackage{peeters_figures}
+\usepackage{siunitx}
+\usepackage{verbatim}
+%\usepackage{mhchem} % \ce{}
+%\usepackage{macros_bm} % \bcM
+%\usepackage{macros_qed} % \qedmarker
+%\usepackage{txfonts} % \ointclockwise
+
+\beginArtNoToc
+
+\generatetitle{Computing the adjoint matrix}
+%\chapter{Computing the adjoint matrix}
+%\label{chap:adjoint}
+
+I started reviewing a book draft that mentions the adjoint in passing, but I've forgotten what I knew about the adjoint (not counting self-adjoint operators, which is different.)  I do recall that adjoint matrices were covered in high school linear algebra (now 30+ years ago!), but never really used after that.
+
+It appears that the basic property of the adjoint \( A \) of a matrix \( M \), when it exists, is
+\begin{equation}\label{eqn:adjoint:20}
+M A = \Abs{M} I,
+\end{equation}
+so it's proportional to the inverse, where the numerical factor is the determinant of that matrix.  Let's try to compute this beastie for 1D, 2D, and 3D cases.
+
+\section{Simplest case: \(1 \times 1\) matrix.}
+For a one by one matrix, say
+\begin{equation}\label{eqn:adjoint:40}
+M =
+\begin{bmatrix}
+m_{11}
+\end{bmatrix},
+\end{equation}
+the determinant is just \( \Abs{M} = m_11 \), so our adjoint is the identity matrix
+\begin{equation}\label{eqn:adjoint:60}
+A =
+\begin{bmatrix}
+1
+\end{bmatrix}.
+\end{equation}
+Not too interesting.  Let's try the 2D case.
+\section{Less trivial case: \(2 \times 2\) matrix.}
+For the 2D case, let's define our matrix as a pair of column vectors
+\begin{equation}\label{eqn:adjoint:80}
+M =
+\begin{bmatrix}
+\Bm_1 & \Bm_2
+\end{bmatrix},
+\end{equation}
+and let's write the adjoint out in full in coordinates as
+\begin{equation}\label{eqn:adjoint:100}
+A =
+\begin{bmatrix}
+a_{11} & a_{12} \\
+a_{21} & a_{22}
+\end{bmatrix}.
+\end{equation}
+We seek solutions to a pair of vector equations
+\begin{equation}\label{eqn:adjoint:120}
+\begin{aligned}
+\Bm_1 a_{11} + \Bm_2 a_{21} &= \Abs{M} \Be_1 \\
+\Bm_1 a_{12} + \Bm_2 a_{22} &= \Abs{M} \Be_2.
+\end{aligned}
+\end{equation}
+We can immediately solve either of these, by taking wedge products, yeilding
+\begin{equation}\label{eqn:adjoint:140}
+\begin{aligned}
+\lr{ \Bm_1 \wedge \Bm_2 } a_{11} + \cancel{ \Bm_2 \wedge \Bm_2 } a_{21} &= \Abs{M} \lr{ \Be_1 \wedge \Bm_2 } \\
+\cancel{ \Bm_1 \wedge \Bm_1 } a_{11} + \lr{ \Bm_1 \wedge \Bm_2 } a_{21} &= \Abs{M} \lr{ \Bm_1 \wedge \Be_1 } \\
+\lr{ \Bm_1 \wedge \Bm_2 } a_{12} + \cancel{ \Bm_2 \wedge \Bm_2 } a_{22} &= \Abs{M} \lr{ \Be_2 \wedge \Bm_2 } \\
+\cancel{ \Bm_1 \wedge \Bm_1 } a_{12} + \lr{ \Bm_1 \wedge \Bm_2 } a_{22} &= \Abs{M} \lr{ \Bm_1 \wedge \Be_2}.
+\end{aligned}
+\end{equation}
+Provided the determinant is non-zero, we can divide both sides by \( \Bm_1 \wedge \Bm_2 = \Abs{M} \Be_{12} \) to find a single determinant for each element in the adjoint
+\begin{equation}\label{eqn:adjoint:160}
+\begin{aligned}
+a_{11} &= \begin{vmatrix} \Be_1 & \Bm_2 \end{vmatrix} \\
+a_{21} &= \begin{vmatrix} \Bm_1 & \Be_1 \end{vmatrix} \\
+a_{12} &= \begin{vmatrix} \Be_2 & \Bm_2 \end{vmatrix} \\
+a_{22} &= \begin{vmatrix} \Bm_1 & \Be_2 \end{vmatrix}
+\end{aligned}
+\end{equation}
+or
+\begin{equation}\label{eqn:adjoint:400}
+A =
+\begin{bmatrix}
+\begin{vmatrix} \Be_1 & \Bm_2 \end{vmatrix} & \begin{vmatrix} \Be_2 & \Bm_2 \end{vmatrix} \\
+& \\
+\begin{vmatrix} \Bm_1 & \Be_1 \end{vmatrix} & \begin{vmatrix} \Bm_1 & \Be_2 \end{vmatrix}
+\end{bmatrix},
+\end{equation}
+or
+\begin{equation}\label{eqn:adjoint:440}
+A_{ij} =
+\epsilon_{ir}
+\begin{vmatrix}
+\Be_j & \Bm_r
+\end{vmatrix},
+\end{equation}
+where \( \epsilon_{ir} \) is the completely antisymmetric tensor, and the Einstein summation convention is in effect (summation implied over any repeated indexes.)
+
+\paragraph{Check:}
+We should verify that expanding these determinants explicitly reproduces the usual representation of the 2D adjoint:
+\begin{equation}\label{eqn:adjoint:420}
+\begin{aligned}
+\begin{vmatrix} \Be_1 & \Bm_2 \end{vmatrix} &= \begin{vmatrix} 1 & m_{12} \\ 0 & m_{22} \end{vmatrix} = m_{22} \\
+\begin{vmatrix} \Bm_1 & \Be_1 \end{vmatrix} &= \begin{vmatrix} m_{11} & 1 \\ m_{21} & 0 \end{vmatrix} = -m_{21} \\
+\begin{vmatrix} \Be_2 & \Bm_2 \end{vmatrix} &= \begin{vmatrix} 0 & m_{12} \\ 1 & m_{22} \end{vmatrix} = -m_{12} \\
+\begin{vmatrix} \Bm_1 & \Be_2 \end{vmatrix} &= \begin{vmatrix} m_{11} & 0 \\ m_{21} & 1 \end{vmatrix} = m_{11},
+\end{aligned}
+\end{equation}
+or
+\begin{equation}\label{eqn:adjoint:180}
+A =
+\begin{bmatrix}
+m_{22} & -m_{12} \\
+-m_{21} & m_{11}
+\end{bmatrix}.
+\end{equation}
+
+Multiplying everything out should give us determinant weighted identity
+\begin{equation}\label{eqn:adjoint:200}
+\begin{aligned}
+M A
+&=
+\begin{bmatrix}
+m_{11} & m_{12} \\
+m_{21} & m_{22}
+\end{bmatrix}
+\begin{bmatrix}
+m_{22} & -m_{12} \\
+-m_{21} & m_{11}
+\end{bmatrix} \\
+&=
+\lr{ m_{11} m_{22} - m_{12} m_{21} }
+\begin{bmatrix}
+1 & 0 \\
+0 & 1
+\end{bmatrix} \\
+&= \Abs{M} I,
+\end{aligned}
+\end{equation}
+as expected.
+\section{3D case: \(3 \times 3\) matrix.}
+For the 3D case, let's also define our matrix as column vectors
+\begin{equation}\label{eqn:adjoint:220}
+M =
+\begin{bmatrix}
+\Bm_1 & \Bm_2 & \Bm_3
+\end{bmatrix},
+\end{equation}
+and let's write the adjoint out in full in coordinates as
+\begin{equation}\label{eqn:adjoint:240}
+A =
+\begin{bmatrix}
+a_{11} & a_{12} & a_{13} \\
+a_{21} & a_{22} & a_{23} \\
+a_{31} & a_{32} & a_{33}
+\end{bmatrix}.
+\end{equation}
+This time, we seek solutions to three vector equations
+\begin{equation}\label{eqn:adjoint:260}
+\begin{aligned}
+\Bm_1 a_{11} + \Bm_2 a_{21} + \Bm_3 a_{31} &= \Abs{M} \Be_1 \\
+\Bm_1 a_{12} + \Bm_2 a_{22} + \Bm_3 a_{32} &= \Abs{M} \Be_2 \\
+\Bm_1 a_{13} + \Bm_2 a_{23} + \Bm_3 a_{33} &= \Abs{M} \Be_3,
+\end{aligned}
+\end{equation}
+and can immediately solve, once again, by taking wedge products, yeilding
+\begin{equation}\label{eqn:adjoint:280}
+\begin{aligned}
+\lr{ \Bm_1 \wedge \Bm_2 \wedge \Bm_3 }a_{11} + \cancel{ \Bm_2 \wedge \Bm_2 \wedge \Bm_3 }a_{21} + \cancel{ \Bm_3 \wedge \Bm_2 \wedge \Bm_3 }a_{31} &= \Abs{M} \Be_1 \wedge \Bm_2 \wedge \Bm_3 \\
+\cancel{ \Bm_1 \wedge \Bm_1 \wedge \Bm_3 }a_{11} + \lr{ \Bm_1 \wedge \Bm_2 \wedge \Bm_3 }a_{21} + \cancel{ \Bm_1 \wedge \Bm_3 \wedge \Bm_3 }a_{31} &= \Abs{M} \Bm_1 \wedge \Be_1 \wedge \Bm_3 \\
+\cancel{ \Bm_1 \wedge \Bm_2 \wedge \Bm_1 }a_{11} + \cancel{ \Bm_1 \wedge \Bm_2 \wedge \Bm_2 }a_{21} + \lr{ \Bm_1 \wedge \Bm_2 \wedge \Bm_3 }a_{31} &= \Abs{M} \Bm_1 \wedge \Bm_2 \wedge \Be_1 \\
+\lr{ \Bm_1 \wedge \Bm_2 \wedge \Bm_3 }a_{12} + \cancel{ \Bm_2 \wedge \Bm_2 \wedge \Bm_3 }a_{22} + \cancel{ \Bm_3 \wedge \Bm_2 \wedge \Bm_3 }a_{32} &= \Abs{M} \Be_2 \wedge \Bm_2 \wedge \Bm_3 \\
+\cancel{ \Bm_1 \wedge \Bm_1 \wedge \Bm_3 }a_{12} + \lr{ \Bm_1 \wedge \Bm_2 \wedge \Bm_3 }a_{22} + \cancel{ \Bm_1 \wedge \Bm_3 \wedge \Bm_3 }a_{32} &= \Abs{M} \Bm_1 \wedge \Be_2 \wedge \Bm_3 \\
+\cancel{ \Bm_1 \wedge \Bm_2 \wedge \Bm_1 }a_{12} + \cancel{ \Bm_1 \wedge \Bm_2 \wedge \Bm_2 }a_{22} + \lr{ \Bm_1 \wedge \Bm_2 \wedge \Bm_3 }a_{32} &= \Abs{M} \Bm_1 \wedge \Bm_2 \wedge \Be_2 \\
+\lr{ \Bm_1 \wedge \Bm_2 \wedge \Bm_3 }a_{13} + \cancel{ \Bm_2 \wedge \Bm_2 \wedge \Bm_3 }a_{23} + \cancel{ \Bm_3 \wedge \Bm_2 \wedge \Bm_3 }a_{33} &= \Abs{M} \Be_3 \wedge \Bm_2 \wedge \Bm_3 \\
+\cancel{ \Bm_1 \wedge \Bm_1 \wedge \Bm_3 }a_{13} + \lr{ \Bm_1 \wedge \Bm_2 \wedge \Bm_3 }a_{23} + \cancel{ \Bm_1 \wedge \Bm_3 \wedge \Bm_3 }a_{33} &= \Abs{M} \Bm_1 \wedge \Be_3 \wedge \Bm_3 \\
+\cancel{ \Bm_1 \wedge \Bm_2 \wedge \Bm_1 }a_{13} + \cancel{ \Bm_1 \wedge \Bm_2 \wedge \Bm_2 }a_{23} + \lr{ \Bm_1 \wedge \Bm_2 \wedge \Bm_3 }a_{33} &= \Abs{M} \Bm_1 \wedge \Bm_2 \wedge \Be_3,
+\end{aligned}
+\end{equation}
+Like before, provided the determinant is non-zero, we can divide both sides by \( \Bm_1 \wedge \Bm_2 \wedge \Bm_3 = \Abs{M} \Be_{123} \) to find a single determinant for each element in the adjoint
+\begin{equation}\label{eqn:adjoint:360}
+\begin{aligned}
+A &=
+\begin{bmatrix}
+\begin{vmatrix} \Be_1 & \Bm_2 & \Bm_3 \end{vmatrix} & \begin{vmatrix} \Be_2 & \Bm_2 & \Bm_3 \end{vmatrix} & \begin{vmatrix} \Be_3 & \Bm_2 & \Bm_3 \end{vmatrix} \\
+& & \\
+\begin{vmatrix} \Bm_1 & \Be_1 & \Bm_3 \end{vmatrix} & \begin{vmatrix} \Bm_1 & \Be_2 & \Bm_3 \end{vmatrix} & \begin{vmatrix} \Bm_1 & \Be_3 & \Bm_3 \end{vmatrix} \\
+& & \\
+\begin{vmatrix} \Bm_1 & \Bm_2 & \Be_1 \end{vmatrix} & \begin{vmatrix} \Bm_1 & \Bm_2 & \Be_2 \end{vmatrix} & \begin{vmatrix} \Bm_1 & \Bm_2 & \Be_3 \end{vmatrix}
+\end{bmatrix} \\
+&=
+\begin{bmatrix}
+\begin{vmatrix} \Be_1 & \Bm_2 & \Bm_3 \end{vmatrix} & \begin{vmatrix} \Be_2 & \Bm_2 & \Bm_3 \end{vmatrix} & \begin{vmatrix} \Be_3 & \Bm_2 & \Bm_3 \end{vmatrix} \\
+& & \\
+\begin{vmatrix} \Be_1 & \Bm_3 & \Bm_1 \end{vmatrix} & \begin{vmatrix} \Be_2 & \Bm_3 & \Bm_1 \end{vmatrix} & \begin{vmatrix} \Be_3 & \Bm_3 & \Bm_1 \end{vmatrix} \\
+& & \\
+\begin{vmatrix} \Be_1 & \Bm_1 & \Bm_2 \end{vmatrix} & \begin{vmatrix} \Be_2 & \Bm_1 & \Bm_2 \end{vmatrix} & \begin{vmatrix} \Be_3 & \Bm_1 & \Bm_2 \end{vmatrix}
+\end{bmatrix},
+\end{aligned}
+\end{equation}
+or
+\begin{equation}\label{eqn:adjoint:380}
+A_{ij} = \frac{\epsilon_{irs}}{2!} \begin{vmatrix} \Be_j & \Bm_r & \Bm_s \end{vmatrix}.
+\end{equation}
+Observe that the inclusion of the \( \Be_j \) column vector in this determinant, means that we really need only compute a \( 2 \times 2 \) determinant for each adjoint matrix element.  That is
+%, but that gets harder to write in abstract index notation.
+\begin{equation}\label{eqn:adjoint:480}
+A_{ij} = \frac{(-1)^j \epsilon_{irs}\epsilon_{jab}}{(2!)^2} 
+\begin{vmatrix} 
+m_{ar} & m_{as} \\
+m_{br} & m_{bs} 
+\end{vmatrix}
+.
+\end{equation}
+This is the usual cofactor reciepe, but written out explicitly for each element, using the antisymmetric tensor to encode the index alternation.
+
+\section{General case: \(n \times n\) matrix.}
+It appears that if we wanted an induction hypotheses for the general \( n > 1 \) case, the \( ij \) element of the adjoint matrix is likely
+\begin{equation}\label{eqn:adjoint:460}
+\begin{aligned}
+A_{ij} &= \frac{\epsilon_{i s_1 s_2 \cdots s_{n-1}}}{(n-1)!} \begin{vmatrix} \Be_j & \Bm_{s_1} & \Bm_{s_2} & \cdots & \Bm_{s_{n-1}} \end{vmatrix} \\
+       &= \frac{(-1)^j \epsilon_{i r_1 r_2 \cdots r_{n-1}} \epsilon_{j s_1 s_2 \cdots s_{n-1}} }{\lr{(n-1)!}^2}
+\begin{vmatrix}
+m_{r_1 s_1} & \cdots & m_{r_1 s_{n-1}}  \\
+\vdots    &        & \vdots  \\
+m_{r_1 s_{n-1}} & \cdots & m_{r_{n-1} s_{n-1}}
+\end{vmatrix}.
+\end{aligned}
+\end{equation}
+I'm not going to try to prove this, inductively or otherwise.
+
+%}
+%\EndArticle
+\EndNoBibArticle

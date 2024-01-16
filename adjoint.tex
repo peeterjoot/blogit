@@ -23,11 +23,9 @@
 %\usepackage{txfonts} % \ointclockwise
 
 \beginArtNoToc
-
 \generatetitle{Computing the adjoint matrix}
 %\chapter{Computing the adjoint matrix}
 %\label{chap:adjoint}
-
 I started reviewing a book draft that mentions the adjoint in passing, but I've forgotten what I knew about the adjoint (not counting self-adjoint operators, which is different.)  I do recall that adjoint matrices were covered in high school linear algebra (now 30+ years ago!), but never really used after that.
 
 It appears that the basic property of the adjoint \( A \) of a matrix \( M \), when it exists, is
@@ -75,7 +73,7 @@ We seek solutions to a pair of vector equations
 \Bm_1 a_{12} + \Bm_2 a_{22} &= \Abs{M} \Be_2.
 \end{aligned}
 \end{equation}
-We can immediately solve either of these, by taking wedge products, yeilding
+We can immediately solve either of these, by taking wedge products, yielding
 \begin{equation}\label{eqn:adjoint:140}
 \begin{aligned}
 \lr{ \Bm_1 \wedge \Bm_2 } a_{11} + \cancel{ \Bm_2 \wedge \Bm_2 } a_{21} &= \Abs{M} \lr{ \Be_1 \wedge \Bm_2 } \\
@@ -179,7 +177,7 @@ This time, we seek solutions to three vector equations
 \Bm_1 a_{13} + \Bm_2 a_{23} + \Bm_3 a_{33} &= \Abs{M} \Be_3,
 \end{aligned}
 \end{equation}
-and can immediately solve, once again, by taking wedge products, yeilding
+and can immediately solve, once again, by taking wedge products, yielding
 \begin{equation}\label{eqn:adjoint:280}
 \begin{aligned}
 \lr{ \Bm_1 \wedge \Bm_2 \wedge \Bm_3 }a_{11} + \cancel{ \Bm_2 \wedge \Bm_2 \wedge \Bm_3 }a_{21} + \cancel{ \Bm_3 \wedge \Bm_2 \wedge \Bm_3 }a_{31} &= \Abs{M} \Be_1 \wedge \Bm_2 \wedge \Bm_3 \\
@@ -228,7 +226,7 @@ m_{br} & m_{bs}
 \end{vmatrix}
 .
 \end{equation}
-This is the usual cofactor reciepe, but written out explicitly for each element, using the antisymmetric tensor to encode the index alternation.
+This looks a lot like the usual minor/cofactor recipe, but written out explicitly for each element, using the antisymmetric tensor to encode the index alternation.  It's worth noting that there may be an error or subtle difference from the usual in my formulation, since wikipedia defines the adjoint as the transpose of the cofactor matrix, see: \citep{enwiki:1182988311}.
 
 \section{General case: \(n \times n\) matrix.}
 It appears that if we wanted an induction hypotheses for the general \( n > 1 \) case, the \( ij \) element of the adjoint matrix is likely
@@ -239,12 +237,10 @@ A_{ij} &= \frac{\epsilon_{i s_1 s_2 \cdots s_{n-1}}}{(n-1)!} \begin{vmatrix} \Be
 \begin{vmatrix}
 m_{r_1 s_1} & \cdots & m_{r_1 s_{n-1}}  \\
 \vdots    &        & \vdots  \\
-m_{r_1 s_{n-1}} & \cdots & m_{r_{n-1} s_{n-1}}
+m_{r_{n-1} s_1} & \cdots & m_{r_{n-1} s_{n-1}}
 \end{vmatrix}.
 \end{aligned}
 \end{equation}
 I'm not going to try to prove this, inductively or otherwise.
-
 %}
-%\EndArticle
-\EndNoBibArticle
+\EndArticle

@@ -34,7 +34,8 @@ M A = \Abs{M} I,
 \end{equation}
 so it's proportional to the inverse, where the numerical factor is the determinant of that matrix.  Let's try to compute this beastie for 1D, 2D, and 3D cases.
 
-\section{Simplest case: \(1 \times 1\) matrix.}
+\section{Round I.}
+\subsection{Simplest case: \(1 \times 1\) matrix.}
 For a one by one matrix, say
 \begin{equation}\label{eqn:adjoint:40}
 M =
@@ -50,7 +51,7 @@ A =
 \end{bmatrix}.
 \end{equation}
 Not too interesting.  Let's try the 2D case.
-\section{Less trivial case: \(2 \times 2\) matrix.}
+\subsection{Less trivial case: \(2 \times 2\) matrix.}
 For the 2D case, let's define our matrix as a pair of column vectors
 \begin{equation}\label{eqn:adjoint:80}
 M =
@@ -152,7 +153,7 @@ m_{22} & -m_{12} \\
 \end{aligned}
 \end{equation}
 as expected.
-\section{3D case: \(3 \times 3\) matrix.}
+\subsection{3D case: \(3 \times 3\) matrix.}
 For the 3D case, let's also define our matrix as column vectors
 \begin{equation}\label{eqn:adjoint:220}
 M =
@@ -219,16 +220,16 @@ A_{ij} = \frac{\epsilon_{irs}}{2!} \begin{vmatrix} \Be_j & \Bm_r & \Bm_s \end{vm
 Observe that the inclusion of the \( \Be_j \) column vector in this determinant, means that we really need only compute a \( 2 \times 2 \) determinant for each adjoint matrix element.  That is
 %, but that gets harder to write in abstract index notation.
 \begin{equation}\label{eqn:adjoint:480}
-A_{ij} = \frac{(-1)^j \epsilon_{irs}\epsilon_{jab}}{(2!)^2} 
-\begin{vmatrix} 
+A_{ij} = \frac{(-1)^j \epsilon_{irs}\epsilon_{jab}}{(2!)^2}
+\begin{vmatrix}
 m_{ar} & m_{as} \\
-m_{br} & m_{bs} 
+m_{br} & m_{bs}
 \end{vmatrix}
 .
 \end{equation}
 This looks a lot like the usual minor/cofactor recipe, but written out explicitly for each element, using the antisymmetric tensor to encode the index alternation.  It's worth noting that there may be an error or subtle difference from the usual in my formulation, since wikipedia defines the adjoint as the transpose of the cofactor matrix, see: \citep{enwiki:1182988311}.
 
-\section{General case: \(n \times n\) matrix.}
+\subsection{General case: \(n \times n\) matrix.}
 It appears that if we wanted an induction hypotheses for the general \( n > 1 \) case, the \( ij \) element of the adjoint matrix is likely
 \begin{equation}\label{eqn:adjoint:460}
 \begin{aligned}
@@ -242,5 +243,189 @@ m_{r_{n-1} s_1} & \cdots & m_{r_{n-1} s_{n-1}}
 \end{aligned}
 \end{equation}
 I'm not going to try to prove this, inductively or otherwise.
+\section{Round II.}
+We found determinant expressions for the matrix elements of the adjoint for 2D and 3D matrices \( M \).  However, we can extract additional structure from each of those results.
+\subsection{2D case.}
+Given a matrix expressed in block matrix form in terms of it's columns
+\begin{equation}\label{eqn:adjoint:500}
+M =
+\begin{bmatrix}
+\Bm_1 & \Bm_2
+\end{bmatrix},
+\end{equation}
+we found that the adjoint \( A \) satisfying \( M A = \Abs{M} I \) had the structure
+\begin{equation}\label{eqn:adjoint:520}
+A =
+\begin{bmatrix}
+\begin{vmatrix} \Be_1 & \Bm_2 \end{vmatrix} & \begin{vmatrix} \Be_2 & \Bm_2 \end{vmatrix} \\
+& \\
+\begin{vmatrix} \Bm_1 & \Be_1 \end{vmatrix} & \begin{vmatrix} \Bm_1 & \Be_2 \end{vmatrix}
+\end{bmatrix}.
+\end{equation}
+We initially had wedge product expressions for each of these matrix elements, and can discover our structure by putting back those wedge products.  Modulo sign, each of these matrix elemens has the form
+\begin{equation}\label{eqn:adjoint:540}
+\begin{aligned}
+\begin{vmatrix} \Be_i & \Bm_j \end{vmatrix}
+&=
+\lr{ \Be_i \wedge \Bm_j } i^{-1} \\
+&=
+\gpgradezero{
+\lr{ \Be_i \wedge \Bm_j } i^{-1}
+} \\
+&=
+\gpgradezero{
+\lr{ \Be_i \Bm_j - \Be_i \cdot \Bm_j } i^{-1}
+} \\
+&=
+\gpgradezero{
+\Be_i \Bm_j i^{-1}
+} \\
+&=
+\Be_i \cdot \lr{ \Bm_j i^{-1} },
+\end{aligned}
+\end{equation}
+where \( i = \Be_{12} \).  The adjoint matrix is
+\begin{equation}\label{eqn:adjoint:560}
+A =
+\begin{bmatrix}
+-\lr{ \Bm_2 i } \cdot \Be_1 & -\lr{ \Bm_2 i } \cdot \Be_2 \\
+\lr{ \Bm_1 i } \cdot \Be_1 & \lr{ \Bm_1 i } \cdot \Be_2 \\
+\end{bmatrix}.
+\end{equation}
+If we use a column vector representation of the vectors \( \Bm_j i^{-1} \), we can write the adjoint in a compact hybrid geometric-algebra matrix form
+\begin{equation}\label{eqn:adjoint:640}
+A =
+\begin{bmatrix}
+-\lr{ \Bm_2 i }^\T \\
+\lr{ \Bm_1 i }^\T
+\end{bmatrix}.
+\end{equation}
+
+\paragraph{Check:}
+Let's see if this works, by multiplying with \( M \)
+\begin{equation}\label{eqn:adjoint:580}
+\begin{aligned}
+A M &=
+\begin{bmatrix}
+-\lr{ \Bm_2 i }^\T \\
+\lr{ \Bm_1 i }^\T
+\end{bmatrix}
+\begin{bmatrix}
+\Bm_1 & \Bm_2
+\end{bmatrix} \\
+&=
+\begin{bmatrix}
+-\lr{ \Bm_2 i }^\T \Bm_1 & -\lr{ \Bm_2 i }^\T \Bm_2 \\
+\lr{ \Bm_1 i }^\T \Bm_1 & \lr{ \Bm_1 i }^\T \Bm_2
+\end{bmatrix}.
+\end{aligned}
+\end{equation}
+Those dot products have the form
+\begin{equation}\label{eqn:adjoint:600}
+\begin{aligned}
+\lr{ \Bm_j i }^\T \Bm_i
+&=
+\lr{ \Bm_j i } \cdot \Bm_i \\
+&=
+\gpgradezero{ \lr{ \Bm_j i } \Bm_i } \\
+&=
+\gpgradezero{ -i \Bm_j \Bm_i } \\
+&=
+-i \lr{ \Bm_j \wedge \Bm_i },
+\end{aligned}
+\end{equation}
+so
+\begin{equation}\label{eqn:adjoint:620}
+\begin{aligned}
+A M &=
+\begin{bmatrix}
+i \lr{ \Bm_2 \wedge \Bm_1 } & 0 \\
+0 & -i \lr { \Bm_1 \wedge \Bm_2 }
+\end{bmatrix} \\
+&=
+\Abs{M} I.
+\end{aligned}
+\end{equation}
+We find the determinant weighted identity that we expected.  Our methods are a bit schizophrenic, switching fluidly between matrix and geometric algebra representations, but provided we are careful enough, this isn't problematic.
+\subsection{3D case.}
+Now, let's look at the 3D case, where we assume a column vector representation of the matrix of interest
+\begin{equation}\label{eqn:adjoint:660}
+M =
+\begin{bmatrix}
+\Bm_1 & \Bm_2 & \Bm_3
+\end{bmatrix},
+\end{equation}
+and try to simplify the expression we found for the adjoint
+\begin{equation}\label{eqn:adjoint:680}
+A =
+\begin{bmatrix}
+\begin{vmatrix} \Be_1 & \Bm_2 & \Bm_3 \end{vmatrix} & \begin{vmatrix} \Be_2 & \Bm_2 & \Bm_3 \end{vmatrix} & \begin{vmatrix} \Be_3 & \Bm_2 & \Bm_3 \end{vmatrix} \\
+& & \\
+\begin{vmatrix} \Be_1 & \Bm_3 & \Bm_1 \end{vmatrix} & \begin{vmatrix} \Be_2 & \Bm_3 & \Bm_1 \end{vmatrix} & \begin{vmatrix} \Be_3 & \Bm_3 & \Bm_1 \end{vmatrix} \\
+& & \\
+\begin{vmatrix} \Be_1 & \Bm_1 & \Bm_2 \end{vmatrix} & \begin{vmatrix} \Be_2 & \Bm_1 & \Bm_2 \end{vmatrix} & \begin{vmatrix} \Be_3 & \Bm_1 & \Bm_2 \end{vmatrix}
+\end{bmatrix}.
+\end{equation}
+As with the 2D case, let's re-express these determinants in wedge product form.  We'll write \( I = \Be_{123} \), and find
+\begin{equation}\label{eqn:adjoint:700}
+\begin{aligned}
+\begin{vmatrix} \Be_i & \Bm_j & \Bm_k \end{vmatrix}
+&=
+\lr{ \Be_i \wedge \Bm_j \wedge \Bm_k } I^{-1} \\
+&=
+\gpgradezero{ \lr{ \Be_i \wedge \Bm_j \wedge \Bm_k } I^{-1} } \\
+&=
+\gpgradezero{ \lr{
+\Be_i \lr{ \Bm_j \wedge \Bm_k }
+\Be_i \cdot \lr{  \Bm_j \wedge \Bm_k }
+} I^{-1} } \\
+&=
+\gpgradezero{
+\Be_i \lr{ \Bm_j \wedge \Bm_k }
+I^{-1} } \\
+&=
+\gpgradezero{
+\Be_i \lr{ \Bm_j \cross \Bm_k } I
+I^{-1} } \\
+&=
+\Be_i \cdot \lr{ \Bm_j \cross \Bm_k }.
+\end{aligned}
+\end{equation}
+We see that we can put the adjoint in block matrix form
+\begin{equation}\label{eqn:adjoint:720}
+A =
+\begin{bmatrix}
+\lr{ \Bm_2 \cross \Bm_3 }^\T \\
+\lr{ \Bm_3 \cross \Bm_1 }^\T \\
+\lr{ \Bm_1 \cross \Bm_2 }^\T \\
+\end{bmatrix}.
+\end{equation}
+
+\paragraph{Check:}
+\begin{equation}\label{eqn:adjoint:740}
+\begin{aligned}
+A M
+&=
+\begin{bmatrix}
+\lr{ \Bm_2 \cross \Bm_3 }^\T \\
+\lr{ \Bm_3 \cross \Bm_1 }^\T \\
+\lr{ \Bm_1 \cross \Bm_2 }^\T \\
+\end{bmatrix}
+\begin{bmatrix}
+\Bm_1 & \Bm_2 & \Bm_3
+\end{bmatrix} \\
+&=
+\begin{bmatrix}
+\lr{ \Bm_2 \cross \Bm_3 }^\T \Bm_1 & \lr{ \Bm_2 \cross \Bm_3 }^\T \Bm_2 & \lr{ \Bm_2 \cross \Bm_3 }^\T \Bm_3 \\
+\lr{ \Bm_3 \cross \Bm_1 }^\T \Bm_1 & \lr{ \Bm_3 \cross \Bm_1 }^\T \Bm_2 & \lr{ \Bm_3 \cross \Bm_1 }^\T \Bm_3 \\
+\lr{ \Bm_1 \cross \Bm_2 }^\T \Bm_1 & \lr{ \Bm_1 \cross \Bm_2 }^\T \Bm_2 & \lr{ \Bm_1 \cross \Bm_2 }^\T \Bm_3
+\end{bmatrix} \\
+&=
+\Abs{M} I.
+\end{aligned}
+\end{equation}
+
+Essentially, we found that the rows of the adjoint matrix are each parallel to the reciprocal frame vectors of the columns of \( M \).  This makes sense, as the reciprocal frame encodes a generalized inverse of sorts.
+
 %}
 \EndArticle

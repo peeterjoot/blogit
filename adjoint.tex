@@ -28,9 +28,9 @@
 %\label{chap:adjoint}
 I started reviewing a book draft that mentions the adjoint in passing, but I've forgotten what I knew about the adjoint (not counting self-adjoint operators, which is different.)  I do recall that adjoint matrices were covered in high school linear algebra (now 30+ years ago!), but never really used after that.
 
-It appears that the basic property of the adjoint \( A \) of a matrix \( M \), when it exists, is
+It appears that the basic property of the adjoint \( \mathrm{adj}\, M \) of a matrix \( M \), when it exists, is
 \begin{equation}\label{eqn:adjoint:20}
-M A = \Abs{M} I,
+M (\mathrm{adj}\, M) = \Abs{M} I,
 \end{equation}
 so it's proportional to the inverse, where the numerical factor is the determinant of that matrix.  Let's try to compute this beastie for 1D, 2D, and 3D cases.
 
@@ -45,7 +45,7 @@ m_{11}
 \end{equation}
 the determinant is just \( \Abs{M} = m_11 \), so our adjoint is the identity matrix
 \begin{equation}\label{eqn:adjoint:60}
-A =
+\mathrm{adj}\, M =
 \begin{bmatrix}
 1
 \end{bmatrix}.
@@ -61,7 +61,7 @@ M =
 \end{equation}
 and let's write the adjoint out in full in coordinates as
 \begin{equation}\label{eqn:adjoint:100}
-A =
+\mathrm{adj}\, M =
 \begin{bmatrix}
 a_{11} & a_{12} \\
 a_{21} & a_{22}
@@ -94,14 +94,14 @@ a_{22} &= \begin{vmatrix} \Bm_1 & \Be_2 \end{vmatrix}
 \end{equation}
 or
 \begin{equation}\label{eqn:adjoint:400}
-A =
+\mathrm{adj}\, M =
 \begin{bmatrix}
 \begin{vmatrix} \Be_1 & \Bm_2 \end{vmatrix} & \begin{vmatrix} \Be_2 & \Bm_2 \end{vmatrix} \\
 & \\
 \begin{vmatrix} \Bm_1 & \Be_1 \end{vmatrix} & \begin{vmatrix} \Bm_1 & \Be_2 \end{vmatrix}
 \end{bmatrix},
 \end{equation}
-or
+or with \( A = \mathrm{adj}\, M \)
 \begin{equation}\label{eqn:adjoint:440}
 A_{ij} =
 \epsilon_{ir}
@@ -123,7 +123,7 @@ We should verify that expanding these determinants explicitly reproduces the usu
 \end{equation}
 or
 \begin{equation}\label{eqn:adjoint:180}
-A =
+\mathrm{adj}\, M =
 \begin{bmatrix}
 m_{22} & -m_{12} \\
 -m_{21} & m_{11}
@@ -133,7 +133,7 @@ m_{22} & -m_{12} \\
 Multiplying everything out should give us determinant weighted identity
 \begin{equation}\label{eqn:adjoint:200}
 \begin{aligned}
-M A
+M (\mathrm{adj}\, M)
 &=
 \begin{bmatrix}
 m_{11} & m_{12} \\
@@ -163,7 +163,7 @@ M =
 \end{equation}
 and let's write the adjoint out in full in coordinates as
 \begin{equation}\label{eqn:adjoint:240}
-A =
+\mathrm{adj}\, M =
 \begin{bmatrix}
 a_{11} & a_{12} & a_{13} \\
 a_{21} & a_{22} & a_{23} \\
@@ -195,7 +195,7 @@ and can immediately solve, once again, by taking wedge products, yielding
 Like before, provided the determinant is non-zero, we can divide both sides by \( \Bm_1 \wedge \Bm_2 \wedge \Bm_3 = \Abs{M} \Be_{123} \) to find a single determinant for each element in the adjoint
 \begin{equation}\label{eqn:adjoint:360}
 \begin{aligned}
-A &=
+\mathrm{adj}\, M &=
 \begin{bmatrix}
 \begin{vmatrix} \Be_1 & \Bm_2 & \Bm_3 \end{vmatrix} & \begin{vmatrix} \Be_2 & \Bm_2 & \Bm_3 \end{vmatrix} & \begin{vmatrix} \Be_3 & \Bm_2 & \Bm_3 \end{vmatrix} \\
 & & \\
@@ -253,9 +253,9 @@ M =
 \Bm_1 & \Bm_2
 \end{bmatrix},
 \end{equation}
-we found that the adjoint \( A \) satisfying \( M A = \Abs{M} I \) had the structure
+we found that the adjoint \( \mathrm{adj}\, M \) satisfying \( M (\mathrm{adj}\, M) = \Abs{M} I \) had the structure
 \begin{equation}\label{eqn:adjoint:520}
-A =
+\mathrm{adj}\, M =
 \begin{bmatrix}
 \begin{vmatrix} \Be_1 & \Bm_2 \end{vmatrix} & \begin{vmatrix} \Be_2 & \Bm_2 \end{vmatrix} \\
 & \\
@@ -286,7 +286,7 @@ We initially had wedge product expressions for each of these matrix elements, an
 \end{equation}
 where \( i = \Be_{12} \).  The adjoint matrix is
 \begin{equation}\label{eqn:adjoint:560}
-A =
+\mathrm{adj}\, M =
 \begin{bmatrix}
 -\lr{ \Bm_2 i } \cdot \Be_1 & -\lr{ \Bm_2 i } \cdot \Be_2 \\
 \lr{ \Bm_1 i } \cdot \Be_1 & \lr{ \Bm_1 i } \cdot \Be_2 \\
@@ -294,18 +294,20 @@ A =
 \end{equation}
 If we use a column vector representation of the vectors \( \Bm_j i^{-1} \), we can write the adjoint in a compact hybrid geometric-algebra matrix form
 \begin{equation}\label{eqn:adjoint:640}
-A =
+\boxed{
+\mathrm{adj}\, M =
 \begin{bmatrix}
 -\lr{ \Bm_2 i }^\T \\
 \lr{ \Bm_1 i }^\T
 \end{bmatrix}.
+}
 \end{equation}
 
 \paragraph{Check:}
 Let's see if this works, by multiplying with \( M \)
 \begin{equation}\label{eqn:adjoint:580}
 \begin{aligned}
-A M &=
+\mathrm{adj}\, M M &=
 \begin{bmatrix}
 -\lr{ \Bm_2 i }^\T \\
 \lr{ \Bm_1 i }^\T
@@ -337,7 +339,7 @@ Those dot products have the form
 so
 \begin{equation}\label{eqn:adjoint:620}
 \begin{aligned}
-A M &=
+\mathrm{adj}\, M M &=
 \begin{bmatrix}
 i \lr{ \Bm_2 \wedge \Bm_1 } & 0 \\
 0 & -i \lr { \Bm_1 \wedge \Bm_2 }
@@ -357,7 +359,7 @@ M =
 \end{equation}
 and try to simplify the expression we found for the adjoint
 \begin{equation}\label{eqn:adjoint:680}
-A =
+\mathrm{adj}\, M =
 \begin{bmatrix}
 \begin{vmatrix} \Be_1 & \Bm_2 & \Bm_3 \end{vmatrix} & \begin{vmatrix} \Be_2 & \Bm_2 & \Bm_3 \end{vmatrix} & \begin{vmatrix} \Be_3 & \Bm_2 & \Bm_3 \end{vmatrix} \\
 & & \\
@@ -393,18 +395,20 @@ I^{-1} } \\
 \end{equation}
 We see that we can put the adjoint in block matrix form
 \begin{equation}\label{eqn:adjoint:720}
-A =
+\boxed{
+\mathrm{adj}\, M =
 \begin{bmatrix}
 \lr{ \Bm_2 \cross \Bm_3 }^\T \\
 \lr{ \Bm_3 \cross \Bm_1 }^\T \\
 \lr{ \Bm_1 \cross \Bm_2 }^\T \\
 \end{bmatrix}.
+}
 \end{equation}
 
 \paragraph{Check:}
 \begin{equation}\label{eqn:adjoint:740}
 \begin{aligned}
-A M
+\mathrm{adj}\, M M
 &=
 \begin{bmatrix}
 \lr{ \Bm_2 \cross \Bm_3 }^\T \\
@@ -426,6 +430,136 @@ A M
 \end{equation}
 
 Essentially, we found that the rows of the adjoint matrix are each parallel to the reciprocal frame vectors of the columns of \( M \).  This makes sense, as the reciprocal frame encodes a generalized inverse of sorts.
+\section{Bivector transformation .}
+The draft of the book I was reading pointed out if a vector transforms as
+\begin{equation}\label{eqn:adjoint:760}
+\Bv \rightarrow M \Bv,
+\end{equation}
+then cross products must transform as
+\begin{equation}\label{eqn:adjoint:780}
+\Ba \cross \Bb \rightarrow \lr{ \textrm{adj}\, M }^\T \lr{ \Ba \cross \Bb }.
+\end{equation}
+Bivectors clearly must transform in the same fashion.  We also noticed that the adjoint is related to the reciprocal frame vectors of the columns of \( M \), but didn't examine the reciprocal frame formulation of the adjoint in any detail.
+
+Before we do that, let's consider a slightly simpler case, the transformation of a pseudoscalar.  That is
+\begin{equation}\label{eqn:adjoint:800}
+\begin{aligned}
+M(\Ba) \wedge M(\Bb) \wedge M(\Bc)
+&\rightarrow
+\sum_{ijk}
+\lr{ \Bm_i a_i } \wedge
+\lr{ \Bm_j a_j } \wedge
+\lr{ \Bm_k a_k } \\
+&=
+\sum_{ijk}
+\lr{ \Bm_i \wedge \Bm_j \wedge \Bm_k } a_i b_j c_k \\
+&=
+\sum_{ijk}
+\lr{ \Bm_1 \wedge \Bm_2 \wedge \Bm_3 } \epsilon_{ijk} a_i b_j c_k \\
+&=
+\Abs{M}
+\sum_{ijk} \epsilon_{ijk} a_i b_j c_k \\
+&=
+\Abs{M} \lr{ \Ba \wedge \Bb \wedge \Bc }.
+\end{aligned}
+\end{equation}
+This is a well known geometric algebra result (called an outermorphism transformation.)
+
+It's somewhat amusing that an outermorphism transformation with two wedged vectors is a bit more complicated to express than the same for three.  Let's see if we can find a coordinate free form for such a transformation.
+\begin{equation}\label{eqn:adjoint:820}
+\begin{aligned}
+M(\Ba) \wedge M(\Bb)
+&=
+\sum_{ij} \lr{ \Bm_i a_i } \wedge \lr{ \Bm_j b_j } \\
+&=
+\sum_{ij} \lr{ \Bm_i \wedge \Bm_j } a_i b_j \\
+&=
+\sum_{i < j} \lr{ \Bm_i \wedge \Bm_j }
+\begin{vmatrix}
+a_i & a_j \\
+b_i & b_j
+\end{vmatrix} \\
+&=
+\sum_{i < j} \lr{ \Bm_i \wedge \Bm_j } \lr{ \lr{ \Ba \wedge \Bb } \cdot \lr{ \Be_j \wedge \Be_i } }.
+\end{aligned}
+\end{equation}
+
+Recall that the reciprocal frame with respect to the basis \( \setlr{ \Bm_1, \Bm_2, \Bm_3 } \), assuming this is a non-degenerate basis, has elements of the form
+\begin{equation}\label{eqn:adjoint:840}
+\begin{aligned}
+\Bm^1 &= \lr{ \Bm_2 \wedge \Bm_3 } \inv{ \Bm_1 \wedge \Bm_2 \wedge \Bm_3 } \\
+\Bm^2 &= \lr{ \Bm_3 \wedge \Bm_1 } \inv{ \Bm_1 \wedge \Bm_2 \wedge \Bm_3 } \\
+\Bm^3 &= \lr{ \Bm_1 \wedge \Bm_2 } \inv{ \Bm_1 \wedge \Bm_2 \wedge \Bm_3 }.
+\end{aligned}
+\end{equation}
+This can be flipped around as
+\begin{equation}\label{eqn:adjoint:860}
+\begin{aligned}
+\Bm_2 \wedge \Bm_3 &= \Bm^1 \Abs{M} I \\
+\Bm_3 \wedge \Bm_1 &= \Bm^2 \Abs{M} I \\
+\Bm_1 \wedge \Bm_2 &= \Bm^3 \Abs{M} I \\
+\end{aligned}
+\end{equation}
+\begin{equation}\label{eqn:adjoint:880}
+\begin{aligned}
+M&(\Ba) \wedge M(\Bb) \\
+&=
+\lr{ \Bm_1 \wedge \Bm_2 } \lr{ \lr{ \Ba \wedge \Bb } \cdot \lr{ \Be_2 \wedge \Be_1 } }
++
+\lr{ \Bm_2 \wedge \Bm_3 } \lr{ \lr{ \Ba \wedge \Bb } \cdot \lr{ \Be_3 \wedge \Be_2 } }
++
+\lr{ \Bm_3 \wedge \Bm_1 } \lr{ \lr{ \Ba \wedge \Bb } \cdot \lr{ \Be_1 \wedge \Be_3 } } \\
+&=
+I \Abs{M} \lr{
+\Bm^3 \lr{ \lr{ \Ba \wedge \Bb } \cdot \lr{ \Be_2 \wedge \Be_1 } }
++
+\Bm^1 \lr{ \lr{ \Ba \wedge \Bb } \cdot \lr{ \Be_3 \wedge \Be_2 } }
++
+\Bm^2 \lr{ \lr{ \Ba \wedge \Bb } \cdot \lr{ \Be_1 \wedge \Be_3 } }
+}
+\end{aligned}
+\end{equation}
+
+Let's see if we can simplify one of these double index quantities
+\begin{equation}\label{eqn:adjoint:900}
+\begin{aligned}
+I \lr{ \lr{ \Ba \wedge \Bb } \cdot \lr{ \Be_2 \wedge \Be_1 } }
+&=
+\gpgradethree{ I \lr{ \lr{ \Ba \wedge \Bb } \cdot \lr{ \Be_2 \wedge \Be_1 } } } \\
+&=
+\gpgradethree{ I \lr{ \Ba \wedge \Bb } \lr{ \Be_2 \wedge \Be_1 } } \\
+&=
+\gpgradethree{ \lr{ \Ba \wedge \Bb } \Be_{12321} } \\
+&=
+\gpgradethree{ \lr{ \Ba \wedge \Bb } \Be_{3} } \\
+&=
+\Ba \wedge \Bb \wedge \Be_3.
+\end{aligned}
+\end{equation}
+We have
+\begin{equation}\label{eqn:adjoint:920}
+M(\Ba) \wedge M(\Bb) = \Abs{M} \lr{
+\lr{ \Ba \wedge \Bb \wedge \Be_1 } \Bm^1
++
+\lr{ \Ba \wedge \Bb \wedge \Be_2 } \Bm^2
++
+\lr{ \Ba \wedge \Bb \wedge \Be_3 } \Bm^3
+}
+\end{equation}
+
+Using summation convention, we can now express the transformation of a bivector \( B \) as just
+\begin{equation}\label{eqn:adjoint:940}
+B \rightarrow \Abs{M} \lr{ B \wedge \Be_i } \Bm^i.
+\end{equation}
+If we are interested in the transformation of a pseudovector \( \Bv \) defined implicitly as the dual of a bivector \( B = I \Bv \), where
+\begin{equation}\label{eqn:adjoint:960}
+B \wedge \Be_i = \gpgradethree{ I \Bv \Be_i } = I \lr{ \Bv \cdot \Be_i }.
+\end{equation}
+This leaves us with a transformation rule
+\begin{equation}\label{eqn:adjoint:980}
+\Bv \rightarrow \lr{ \Bv \cdot \Be_i } \Abs{M} \Bm^i.
+\end{equation}
+As intuited, the determinant weighted reciprocal frame vectors for the columns of the transformation \( M \), are the components of the adjoint.
 
 %}
 \EndArticle

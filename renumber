@@ -307,3 +307,5 @@
 
 ../latex/bin/lgrep adjoint.tex | tee o ; . ./o
 perl -p -i ../latex/bin/latexRegex.pl adjoint.tex
+../latex/bin/lgrep gaproduct_sine.tex | tee o ; . ./o
+perl -p -i ../latex/bin/latexRegex.pl gaproduct_sine.tex

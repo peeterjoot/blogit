@@ -544,7 +544,7 @@ M(\Ba) \wedge M(\Bb) = \Abs{M} \lr{
 \lr{ \Ba \wedge \Bb \wedge \Be_2 } \Bm^2
 +
 \lr{ \Ba \wedge \Bb \wedge \Be_3 } \Bm^3
-}
+}.
 \end{equation}
 
 Using summation convention, we can now express the transformation of a bivector \( B \) as just
@@ -555,11 +555,17 @@ If we are interested in the transformation of a pseudovector \( \Bv \) defined i
 \begin{equation}\label{eqn:adjoint:960}
 B \wedge \Be_i = \gpgradethree{ I \Bv \Be_i } = I \lr{ \Bv \cdot \Be_i }.
 \end{equation}
-This leaves us with a transformation rule
+This leaves us with a transformation rule for cross products equivalent to the adjoint relation \cref{eqn:adjoint:780}
 \begin{equation}\label{eqn:adjoint:980}
-\Bv \rightarrow \lr{ \Bv \cdot \Be_i } \Abs{M} \Bm^i.
+\lr{ \Ba \cross \Bb } \rightarrow \lr{ \Ba \cross \Bb } \cdot \Be_i \Abs{M} \Bm^i.
 \end{equation}
-As intuited, the determinant weighted reciprocal frame vectors for the columns of the transformation \( M \), are the components of the adjoint.
+As intuited, the determinant weighted reciprocal frame vectors for the columns of the transformation \( M \), are the components of the adjoint.  That is
+\begin{equation}\label{eqn:adjoint:1000}
+\lr{ \textrm{adj}\, M }^\T = \Abs{M}
+\begin{bmatrix}
+\Bm^1 & \Bm^2 & \Bm^3
+\end{bmatrix}.
+\end{equation}
 
 %}
 \EndArticle

@@ -1,0 +1,123 @@
+%
+% Copyright © 2024 Peeter Joot.  All Rights Reserved.
+% Licenced as described in the file LICENSE under the root directory of this GIT repository.
+%
+%{
+\input{../latex/blogpost.tex}
+\renewcommand{\basename}{gaproduct_sine}
+%\renewcommand{\dirname}{notes/phy1520/}
+\renewcommand{\dirname}{notes/ece1228-electromagnetic-theory/}
+%\newcommand{\dateintitle}{}
+%\newcommand{\keywords}{}
+
+\input{../latex/peeter_prologue_print2.tex}
+
+\usepackage{peeters_layout_exercise}
+\usepackage{peeters_braket}
+\usepackage{peeters_figures}
+\usepackage{siunitx}
+\usepackage{verbatim}
+%\usepackage{mhchem} % \ce{}
+%\usepackage{macros_bm} % \bcM
+%\usepackage{macros_qed} % \qedmarker
+%\usepackage{txfonts} % \ointclockwise
+
+\beginArtNoToc
+
+\generatetitle{Geometric product square, sines and exponentials}
+%\chapter{Geometric product square, sines and exponentials}
+%\label{chap:gaproduct_sine}
+This is really two questions, first.
+\section{Square.}
+Given
+\begin{equation*}
+\Ba \cdot \Bb = \inv{2} \lr{ \Ba \Bb + \Bb \Ba },
+\end{equation*}
+\begin{equation*}
+\Ba \wedge \Bb = \inv{2} \lr{ \Ba \Bb - \Bb \Ba },
+\end{equation*}
+we have
+\begin{equation*}
+\begin{aligned}
+\lr{ \Ba \cdot \Bb }^2 - \lr{ \Ba \wedge \Bb }^2 
+&=
+\inv{4} \lr{ \Ba \Bb + \Bb \Ba }^2 - \inv{4} \lr{ \Ba \Bb - \Bb \Ba }^2 \\
+&=
+\inv{4} \lr{ 
+\lr{\Ba \Bb}^2
+\lr{\Bb \Ba}^2
++ \Ba \Bb \Bb \Ba
++ \Bb \Ba \Ba \Bb }
+-
+\inv{4} \lr{ 
+\lr{\Ba \Bb}^2
+\lr{\Bb \Ba}^2
+- \Ba \Bb \Bb \Ba
+- \Bb \Ba \Ba \Bb } \\
+&=
+\inv{2} \lr{ 
++ 2 \Ba^2 \Bb^2
+}
+-
+\inv{2} \lr{ 
+- 2 \Ba^2 \Bb^2
+} 
+&= \Ba^2 \Bb^2.
+\end{aligned}
+\end{equation*}
+\section{Trig relations.}
+For the second question, let's express one vector in terms of length and direction, say
+\begin{equation*}
+\Ba = \Norm{\Ba} \acap,
+\end{equation*}
+and then express the second vector as a scaled rotation of that unit vector \( \acap \).  That is
+\begin{equation*}
+\Bb = \Norm{\Bb} \acap e^{i\theta},
+\end{equation*}
+where \( \theta \) is the angle from \( \Ba \) to \( \Bb \), and
+\begin{equation*}
+i = \frac{\Ba \wedge \Bb}{\Norm{\Ba \wedge \Bb}},
+\end{equation*}
+is the unit pseudoscalar for the plane containing \( \Ba, \Bb \), and is oriented ``from'' \( \Ba \) ``to'' \( \Bb \) as sketched below.  Note that the bivector norm, assuming a Euclidean vector space, should be defined as
+\begin{equation*}
+\Norm{\Ba \wedge \Bb} = \sqrt{ -\lr{ \Ba \wedge \Bb}^2 }.
+\end{equation*}
+Also note that we did not need to use half angle sandwiched rotors, since we are rotating both in the plane formed by the span of the two vectors.
+
+FIXME: figure.
+
+You can now expand the product \( \Ba \Bb \) as 
+\begin{equation*}
+\begin{aligned}
+\Ba \Bb 
+&= \Norm{\Ba} \acap \Norm{\Bb} \acap e^{i\theta} \\
+&= \Norm{\Ba} \Norm{ \Bb } \acap \acap e^{i\theta} \\
+&= \Norm{\Ba} \Norm{ \Bb } e^{i\theta} \\
+&= \Norm{\Ba} \Norm{ \Bb } \lr{ \cos\theta + i \sin\theta }.
+\end{aligned}
+\end{equation*}
+Scalar and bivector grade selections show that
+\begin{equation*}
+\Ba \cdot \Bb = \Norm{\Ba} \Norm{ \Bb } \cos\theta,
+\end{equation*}
+and
+\begin{equation*}
+\Ba \wedge \Bb = \Norm{\Ba} \Norm{ \Bb } i \sin\theta.
+\end{equation*}
+In particular, we have
+\begin{equation*}
+\lr{ \Ba \wedge \Bb}^2 = \Norm{\Ba}^2 \Norm{ \Bb }^2 (-1) \sin^2\theta,
+\end{equation*}
+and
+\begin{equation*}
+\Norm{ \Ba \wedge \Bb}^2 = \Norm{\Ba}^2 \Norm{ \Bb }^2 \sin^2\theta,
+\end{equation*}
+or
+\begin{equation*}
+\Norm{ \Ba \wedge \Bb} = \Norm{\Ba} \Norm{ \Bb } \Abs{ \sin\theta },
+\end{equation*}
+which is what you meant to write.
+
+%}
+%\EndArticle
+\EndNoBibArticle

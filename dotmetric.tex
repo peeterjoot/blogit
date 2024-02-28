@@ -1,0 +1,209 @@
+%
+% Copyright © 2024 Peeter Joot.  All Rights Reserved.
+% Licenced as described in the file LICENSE under the root directory of this GIT repository.
+%
+%{
+\input{../latex/blogpost.tex}
+\renewcommand{\basename}{dotmetric}
+%\renewcommand{\dirname}{notes/phy1520/}
+\renewcommand{\dirname}{notes/ece1228-electromagnetic-theory/}
+%\newcommand{\dateintitle}{}
+%\newcommand{\keywords}{}
+\input{../latex/peeter_prologue_print2.tex}
+\usepackage{peeters_layout_exercise}
+\usepackage{peeters_braket}
+\usepackage{peeters_figures}
+\usepackage{siunitx}
+\usepackage{verbatim}
+%\usepackage{mhchem} % \ce{}
+%\usepackage{macros_bm} % \bcM
+%\usepackage{macros_qed} % \qedmarker
+%\usepackage{txfonts} % \ointclockwise
+\beginArtNoToc
+\generatetitle{Quadratic forms, diagonalization, and metric.}
+%\chapter{Quadratic forms, diagonalization, and metric.}
+\label{chap:dotmetric}
+In \href{https://math.stackexchange.com/questions/4871866/what-is-the-relation-of-the-metric-matrix-with-the-signature-of-a-geometric-alge}{What is the relation of the metric matrix with the signature of a Geometric Algebra?} inansnpmaster asks about geometric algebras formed using non-diagonal quadradic forms, such as
+\begin{equation}\label{eqn:dotmetric:20}
+\Bx \cdot \By = \Bx^\T A \By,
+\end{equation}
+where, for example,
+\begin{equation}\label{eqn:dotmetric:40}
+A =
+\begin{bmatrix}
+5 & -3/4 \\
+-3/4 & 5/16
+\end{bmatrix}.
+\end{equation}
+With fractions like that, this quadratic form must be associated with some North-American's wood working shop.  As the matrix is symmetric, it must have an orthogonal diagonalization.  The eigenvalues are
+\begin{equation}\label{eqn:dotmetric:60}
+\begin{aligned}
+\lambda_1 &= \inv{32} \lr{85 + 3 \sqrt{689}} \\
+\lambda_2 &= \inv{32} \lr{85 - 3 \sqrt{689}} \\
+\end{aligned}
+\end{equation}
+with associated eigenvectors
+\begin{equation}\label{eqn:dotmetric:80}
+\begin{aligned}
+\Bp_1 &=
+\begin{bmatrix}
+-\inv{8} \lr{ 25 + \sqrt{689}} \\
+1
+\end{bmatrix} \\
+\Bp_2 &=
+\begin{bmatrix}
+-\inv{8} \lr{ 25 - \sqrt{689}} \\
+1
+\end{bmatrix}
+\end{aligned}.
+\end{equation}
+These eigenvectors can be orthonormalized
+\begin{equation}\label{eqn:dotmetric:180}
+\begin{aligned}
+\Bp_1 &=
+\begin{bmatrix}
+-0.988034 \\
+0.154233
+\end{bmatrix}
+\\
+\Bp_2 &=
+\begin{bmatrix}
+0.154233 \\
+0.988034
+\end{bmatrix}
+\end{aligned},
+\end{equation}
+but it now looks like we have moved to a European (metric based) woodshop.
+
+In general, we may diagonalize a 2x2 symmetric matrix \( A \) if we find the orthonormal eigenvectors \( \setlr{\Bp_1, \Bp_2} \), such that
+\begin{equation}\label{eqn:dotmetric:100}
+A \Bp_i = \lambda_i \Bp_i,
+\end{equation}
+or with
+\begin{equation}\label{eqn:dotmetric:120}
+\begin{aligned}
+P &=
+\begin{bmatrix}
+\Bp_1 & \Bp_2
+%\frac{\Bp_1}{\Norm{\Bp_1}} & \frac{\Bp_2}{\Norm{\Bp_2}}
+%\frac{\Bp_1}{\Norm{\Bp_1}} & \frac{\Bp_2}{\Norm{\Bp_2}}
+\end{bmatrix} \\
+\Sigma &=
+\begin{bmatrix}
+\lambda_1 & 0 \\
+0 & \lambda_2
+\end{bmatrix}
+\end{aligned},
+\end{equation}
+for which the diagonal decomposition of \( A \) is
+\begin{equation}\label{eqn:dotmetric:140}
+A = P \Sigma P^\T.
+\end{equation}
+
+Such a diagonalization simplifies the computation of the quadratic form
+\begin{equation}\label{eqn:dotmetric:160}
+\Bx \cdot \By = \Bx^\T P \Sigma P^\T \By = \lr{ P^\T \Bx }^\T \Sigma \lr{ P^\T \By }.
+\end{equation}
+
+Recall that orthogonal matrix transformations of coordinate vectors \( \Bx \) given by \( P^\T \Bx \), are the coordinates of the same vector in the orthonormal eigenvector basis.  We can see that by writing
+\begin{equation}\label{eqn:dotmetric:200}
+\begin{aligned}
+\Bx
+&= P P^\T \Bx \\
+&=
+\begin{bmatrix}
+\Bp_1 & \Bp_2
+\end{bmatrix}
+\begin{bmatrix}
+\Bp_1^\T \\
+\Bp_2^\T
+\end{bmatrix}
+\Bx \\
+&=
+\begin{bmatrix}
+\Bp_1 & \Bp_2
+\end{bmatrix}
+\begin{bmatrix}
+\Bp_1^\T \Bx \\
+\Bp_2^\T \Bx
+\end{bmatrix} \\
+&=
+\Bp_1 \lr{ \Bp_1^\T \Bx } +
+\Bp_2 \lr{ \Bp_2^\T \Bx }.
+\end{aligned}
+\end{equation}
+We see that \( \Bp_i^\T \Bx \) are the generalized coordinates of the vector \( \Bx \) in the eigenvector frame.  In geometric algebra, we'd typically write that coordinate representation in mixed index notation
+\begin{equation}\label{eqn:dotmetric:220}
+\Bx = \sum_i \Bp_i x^i,
+\end{equation}
+where
+\begin{equation}\label{eqn:dotmetric:240}
+x^i = \Bp_i^\T \Bx,
+\end{equation}
+or
+\begin{equation}\label{eqn:dotmetric:260}
+P^\T \Bx =
+\begin{bmatrix}
+x^1 \\
+x^2
+\end{bmatrix}.
+\end{equation}
+
+This orthonormal eigenvector basis simplifies the quadratic form expansion of the dot product nicely
+\begin{equation}\label{eqn:dotmetric:280}
+\begin{aligned}
+\Bx \cdot \By
+&=
+\begin{bmatrix}
+x^1 & x^2
+\end{bmatrix}
+\begin{bmatrix}
+\lambda_1 & 0 \\
+0 & \lambda_2
+\end{bmatrix}
+\begin{bmatrix}
+y^1 \\
+y^2
+\end{bmatrix} \\
+&=
+\begin{bmatrix}
+x^1 & x^2
+\end{bmatrix}
+\begin{bmatrix}
+\lambda_1 y^1 \\
+\lambda_2 y^2
+\end{bmatrix} \\
+&=
+\sum_i \lambda_i x^i y^i.
+\end{aligned}
+\end{equation}
+Like a conventional dot product, we have a sum of paired products of coordinates, but unlike the conventional Euclidean dot product, we also have
+weighting factors (the eigenvalues.)
+
+In geometric algebra, the eigenvalues of the quadradic form that is used to define the dot product, usually have values \( \pm 1, 0 \), and those are used to describe the signature.  For example, the geometric algebra for a Euclidean space has only 1's, and STA has values \( \pm (1,-1,-1,-1) \) along the diagonal.  PGAs and CGAs bring in other values for the diagonal.
+
+One could define a GA that had other eigenvalues.  Many of the identities are going to be independent of the choice of quadratic form that is used to represent the dot product.  For instance, we still start with the contraction axiom to define the product of a vector with itself
+\begin{equation}\label{eqn:dotmetric:300}
+\Bx^2 = \Bx \cdot \Bx.
+\end{equation}
+An immediate implication of this is
+\begin{equation}\label{eqn:dotmetric:320}
+\lr{ \Ba + \Bb }^2 = \lr{ \Ba + \Bb } \cdot \lr{ \Ba + \Bb }.
+\end{equation}
+Expanding both sides, we have in turn
+\begin{equation}\label{eqn:dotmetric:340}
+\lr{ \Ba + \Bb }^2 = \Ba^2 + \Bb^2 + \Ba \Bb + \Bb \Ba = \Ba \cdot \Ba + \Bb \cdot \Bb + \Ba \Bb + \Bb \Ba,
+\end{equation}
+and
+\begin{equation}\label{eqn:dotmetric:360}
+\lr{ \Ba + \Bb } \cdot \lr{ \Ba + \Bb } = \Ba \cdot \Ba + \Bb \cdot \Bb + \Ba \cdot \Bb + \Bb \cdot \Ba.
+\end{equation}
+Equating the two, we find the usual identity
+\begin{equation}\label{eqn:dotmetric:380}
+\Ba \cdot \Bb = \inv{2} \lr{ \Ba \Bb + \Bb \Ba }.
+\end{equation}
+We see that this representation of the dot product is not only independent of coordinates, but also holds when the dot product for the space has an arbitrary symmetric quadradic form.  When the basis for the space coincides with a set of orthonormal eigenvectors for that quadradic form, the computation of that dot product, given coordinates with respect to that basis, will be particularly simple.
+
+%}
+%\EndArticle
+\EndNoBibArticle

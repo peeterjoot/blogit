@@ -305,7 +305,11 @@
 #../latex/bin/lgrep gradeq.tex | tee o ; . ./o
 #perl -p -i ../latex/bin/latexRegex.pl gradeq.tex
 
-../latex/bin/lgrep adjoint.tex | tee o ; . ./o
-perl -p -i ../latex/bin/latexRegex.pl adjoint.tex
-../latex/bin/lgrep gaproduct_sine.tex | tee o ; . ./o
-perl -p -i ../latex/bin/latexRegex.pl gaproduct_sine.tex
+#../latex/bin/lgrep adjoint.tex | tee o ; . ./o
+#perl -p -i ../latex/bin/latexRegex.pl adjoint.tex
+
+#../latex/bin/lgrep gaproduct_sine.tex | tee o ; . ./o
+#perl -p -i ../latex/bin/latexRegex.pl gaproduct_sine.tex
+
+../latex/bin/lgrep dotmetric.tex | tee o ; . ./o
+perl -p -i ../latex/bin/latexRegex.pl dotmetric.tex

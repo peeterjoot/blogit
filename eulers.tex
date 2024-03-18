@@ -1,0 +1,64 @@
+%
+% Copyright © 2024 Peeter Joot.  All Rights Reserved.
+% Licenced as described in the file LICENSE under the root directory of this GIT repository.
+%
+%{
+\input{../latex/blogpost.tex}
+\renewcommand{\basename}{eulers}
+%\renewcommand{\dirname}{notes/phy1520/}
+\renewcommand{\dirname}{notes/ece1228-electromagnetic-theory/}
+%\newcommand{\dateintitle}{}
+%\newcommand{\keywords}{}
+
+\input{../latex/peeter_prologue_print2.tex}
+
+\usepackage{peeters_layout_exercise}
+\usepackage{peeters_braket}
+\usepackage{peeters_figures}
+\usepackage{siunitx}
+\usepackage{verbatim}
+%\usepackage{mhchem} % \ce{}
+%\usepackage{macros_bm} % \bcM
+%\usepackage{macros_qed} % \qedmarker
+%\usepackage{txfonts} % \ointclockwise
+
+\beginArtNoToc
+
+\generatetitle{XXX}
+%\chapter{XXX}
+%\label{chap:eulers}
+
+I'd start by assuming the Taylor series representation of the exponential
+\begin{equation}\label{eqn:eulers:20}
+\exp(x) = \sum_{k = 0}^\infty \frac{x^k}{k!},
+\end{equation}
+so
+\begin{equation}\label{eqn:eulers:40}
+\begin{aligned}
+\exp(-i a/2)
+&= \sum_{k = 0}^\infty \frac{i^k (-a/2)^k}{k!} \\
+&= \sum_{\mbox{\(k\) even}} \frac{i^k (-a/2)^k}{k!}
++  \sum_{\mbox{\(k\) odd}} \frac{i^k (-a/2)^k}{k!} \\
+&= \sum_{r = 0}^\infty \frac{i^{2r} (-a/2)^{2r}}{(2r)!}
++  \sum_{r = 0}^\infty \frac{i^{2r + 1} (-a/2)^{2r + 1}}{(2r + 1)!} \\
+&= \sum_{r = 0}^\infty \frac{(-1)^{r}(-a/2)^{2r}}{(2r)!}
++ i \sum_{r = 0}^\infty \frac{(-1)^{r} (-a/2)^{2r + 1}}{(2r + 1)!} \\
+\end{aligned}
+\end{equation}
+The even sum has the structure of a cosine, and is in fact a scalar, since $a^{2k} = \Abs{a}^{2k}$.
+The odd sum has the structure of a sine, but it is a vector, but can be expressed as a scalar sum, by noting that
+$a^{2k+1} = \Abs{a}^{2k} a = \Abs{a}^{2k+1} a / \Abs{a}$.
+
+This leaves us with
+\begin{equation}\label{eqn:eulers:60}
+\begin{aligned}
+&= \sum_{r = 0}^\infty \frac{(-1)^{r}(-\Abs{a}/2)^{2r}}{(2r)!}
++ i \frac{a}{\Abs{a}}\sum_{r = 0}^\infty \frac{(-1)^{r} (-\Abs{a}/2)^{2r + 1}}{(2r + 1)!} \\
+&= \cos\lr{-1\Abs{a}/2} + i \frac{a}{\Abs{a}} \sin\lr{ -\Abs{a}/2 } \\
+&= \cos\lr{\Abs{a}/2} - i \frac{a}{\Abs{a}} \sin\lr{ \Abs{a}/2 } \\
+\end{aligned}
+\end{equation}
+
+%}
+\EndArticle
+%\EndNoBibArticle

@@ -313,3 +313,5 @@
 
 ../latex/bin/lgrep dotmetric.tex | tee o ; . ./o
 perl -p -i ../latex/bin/latexRegex.pl dotmetric.tex
+../latex/bin/lgrep eulers.tex | tee o ; . ./o
+perl -p -i ../latex/bin/latexRegex.pl eulers.tex

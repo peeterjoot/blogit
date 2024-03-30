@@ -32,7 +32,7 @@ On \href{https://www.linkedin.com/feed/update/urn:li:activity:717926803927462297
 
 I found one way, but suspect it's not the easiest way to solve the problem.
 
-To start with I've re-sketched the triangle with the areas slightly more to scale in \cref{fig:triangle_area_problem:triangle_area_problemFig1}, where areas $A_1, A_2, A_3, A_5$ are given.  The aim is to find the total area \( \sum A_i \).
+To start with I've re-sketched the triangle with the areas slightly more to scale in \cref{fig:triangle_area_problem:triangle_area_problemFig1}, where areas \( A_1 = 40, A_2 = 30, A_3 = 35, A_4 = 84 \) are given.  The aim is to find the total area \( \sum A_i \).
 \imageFigure{../figures/blogit/triangle_area_problemFig1}{Triangle with given areas.}{fig:triangle_area_problem:triangle_area_problemFig1}{0.3}
 
 If we had the vertex and center locations as vectors, we could easily compute the total area, but we don't.  We also don't know the locations of the edge intersections, but can calculate those, as they satisfy
@@ -59,28 +59,35 @@ s_2 &= \frac{\BA \wedge \BB }{\BC \wedge \lr{ \BB - \BA }} \\
 s_3 &= \frac{\BA \wedge \BC }{\BB \wedge \lr{ \BC - \BA }}.
 \end{aligned}
 \end{equation}
-Introducing bivector (signed-area) unknowns
+Introducing bivector (signed-area) unknowns with scalar coefficients
 \begin{equation}\label{eqn:triangle_area_problem:80}
 \begin{aligned}
-\alpha &= \BA \wedge \BB = \begin{vmatrix} \BA & \BB \end{vmatrix} \Be_{12} \\
-\beta  &= \BB \wedge \BC = \begin{vmatrix} \BB & \BC \end{vmatrix} \Be_{12} \\
-\gamma &= \BC \wedge \BA = \begin{vmatrix} \BC & \BA \end{vmatrix} \Be_{12}.
+X &= \begin{vmatrix} \BA & \BB \end{vmatrix} \\
+Y &= \begin{vmatrix} \BC & \BB \end{vmatrix} \\
+Z &= \begin{vmatrix} \BA & \BC \end{vmatrix},
 \end{aligned}
 \end{equation}
-the intersection parameters are
+\begin{equation}\label{eqn:triangle_area_problem:81}
+\begin{aligned}
+\BA \wedge \BB &= X \Be_{12} \\
+\BC \wedge \BB &= Y \Be_{12} \\
+\BA \wedge \BC &= Z \Be_{12}.
+\end{aligned}
+\end{equation}
+The intersection parameters, after cancelling the pseudoscalar factors, are
 \begin{equation}\label{eqn:triangle_area_problem:100}
 \begin{aligned}
-s_1 &= \frac{\BB \wedge \BC }{\BA \wedge \BC - \BA \wedge \BB } = \frac{\beta}{-\gamma - \alpha} \\
-s_2 &= \frac{\BA \wedge \BB }{\BC \wedge \BB - \BC \wedge \BA } = \frac{\alpha}{-\beta - \gamma} \\
-s_3 &= \frac{\BA \wedge \BC }{\BB \wedge \BC - \BB \wedge \BA } = \frac{-\gamma}{\beta + \alpha},
+s_1 &= \frac{\BB \wedge \BC }{\BA \wedge \BC - \BA \wedge \BB } = \frac{-Y}{Z - X} \\
+s_2 &= \frac{\BA \wedge \BB }{\BC \wedge \BB - \BC \wedge \BA } = \frac{X}{Y + Z} \\
+s_3 &= \frac{\BA \wedge \BC }{\BB \wedge \BC - \BB \wedge \BA } = \frac{Z}{-Y + X},
 \end{aligned}
 \end{equation}
 so the intersection points are
 \begin{equation}\label{eqn:triangle_area_problem:120}
 \begin{aligned}
-\BD &= -\BA \frac{\beta}{\gamma + \alpha} \\
-\BE &= -\BC \frac{\alpha}{\beta + \gamma} \\
-\BF &= -\BB \frac{\gamma}{\beta + \alpha}.
+\BD &= \BA \frac{Y}{X - Z} \\
+\BE &= \BC \frac{X}{Y + Z} \\
+\BF &= \BB \frac{Z}{X - Y}.
 \end{aligned}
 \end{equation}
 
@@ -96,66 +103,77 @@ A_5 &= \inv{2} \Abs{ \lr{\BB - \BC} \wedge \lr{ \BF - \BC } },
 but
 \begin{equation}\label{eqn:triangle_area_problem:160}
 \begin{aligned}
-\BD - \BA &= -\BA \lr{ 1 + \frac{\beta}{\gamma + \alpha} } \\
-\BE - \BC &= -\BC \lr{ 1 + \frac{\alpha}{\beta + \gamma} } \\
-\BF - \BC &= -\BB \frac{\gamma}{\beta + \alpha} - \BC,
+\BD - \BA &= \BA \lr{ -1 + \frac{Y}{X - Z} } \\
+\BE - \BC &= \BC \lr{ -1 + \frac{X}{Y + Z} } \\
+\BF - \BC &= \BB \frac{Z}{X - Y} - \BC,
 \end{aligned}
 \end{equation}
 so
 \begin{equation}\label{eqn:triangle_area_problem:180}
 \begin{aligned}
-A_1 &= \inv{2} \Abs{ \BA \wedge \BC \frac{\beta}{\gamma + \alpha} } = \inv{2} \Abs{ \gamma} \Abs{ \frac{\beta}{\gamma + \alpha} } \\
-A_2 &= \inv{2} \Abs{ \lr{\BC - \BA} \wedge \BA } \Abs{ 1 + \frac{\beta}{\gamma + \alpha} } = \inv{2} \Abs{\gamma} \Abs{ 1 + \frac{\beta}{\gamma + \alpha} } \\
-A_3 &= \inv{2} \Abs{ \lr{\BA - \BC} \wedge \BC } \Abs{ 1 + \frac{\alpha}{\beta + \gamma} } = \inv{2} \Abs{\gamma} \Abs{ 1 + \frac{\alpha}{\beta + \gamma} },
+A_1 &= \inv{2} \Abs{ \BA \wedge \BC \frac{Y}{X - Z} } = \inv{2} \Abs{ Z} \Abs{ \frac{Y}{X - Z} } \\
+A_2 &= \inv{2} \Abs{ \lr{\BC - \BA} \wedge \BA } \Abs{ -1 + \frac{Y}{X - Z} } = \inv{2} \Abs{Z} \Abs{ 1 + \frac{Y}{Z - X} } \\
+A_3 &= \inv{2} \Abs{ \lr{\BA - \BC} \wedge \BC } \Abs{ -1 + \frac{X}{Y + Z} } = \inv{2} \Abs{Z} \Abs{ 1 - \frac{X}{Y + Z} },
 \end{aligned}
 \end{equation}
 and
 \begin{equation}\label{eqn:triangle_area_problem:200}
 \begin{aligned}
 A_5
-&= \inv{2} \Abs{ \lr{\BB - \BC} \wedge \lr{ \BB \frac{\gamma}{\beta + \alpha} + \BC } } \\
-&= \inv{2} \Abs{ \BB \wedge \BC - \BC \wedge \BB \frac{\gamma}{\beta + \alpha} } \\
-&= \inv{2} \Abs{ \beta } \Abs{ 1 + \frac{\gamma}{\beta + \alpha} }.
+&= \inv{2} \Abs{ \lr{\BB - \BC} \wedge \lr{ \BB \frac{Z}{X - Y} - \BC } } \\
+&= \inv{2} \Abs{ -\BB \wedge \BC + \BC \wedge \BB \frac{Z}{X - Y} } \\
+&= \inv{2} \Abs{ Y } \Abs{ 1 + \frac{Z}{Y - X} }.
 \end{aligned}
 \end{equation}
 
-This gives us four equations in two (bivector) unknowns
-\begin{equation}\label{eqn:triangle_area_problem:220}
+This gives us four equations in two (scalar) unknowns
+\begin{equation}\label{eqn:triangle_area_problem:300}
 \begin{aligned}
-4 A_1^2 \lr{ \gamma + \alpha }^2 &= -\gamma^2 \beta^2 \\
-4 A_2^2 \lr{ \gamma + \alpha }^2 &= -\gamma^2 \lr{ \alpha + \beta + \gamma }^2 \\
-4 A_3^2 \lr{ \gamma + \beta }^2  &= -\gamma^2 \lr{ \alpha + \beta + \gamma }^2 \\
-4 A_4^2 \lr{ \alpha + \beta }^2  &= -\beta^2 \lr{ \alpha + \beta + \gamma }^2.
+4 A_1^2 \lr{ X - Z }^2 &= Z^2 Y^2 \\
+4 A_2^2 \lr{ X - Z }^2 &= Z^2 \lr{ X - Y - Z }^2 \\
+4 A_3^2 \lr{ Z + Y }^2  &= Z^2 \lr{ X - Y - Z }^2 \\
+4 A_4^2 \lr{ X - Y }^2  &= Y^2 \lr{ X - Y - Z }^2.
 \end{aligned}
 \end{equation}
-Let's recast this in terms of area determinants, to eliminate the bivector variables in these equations.  To do so, write
-\begin{equation}\label{eqn:triangle_area_problem:240}
+The goal is now to solve this system for \( X \).  We can blindly solve this system (\href{https://github.com/peeterjoot/mathematica/blob/master/blogit/triangle.nb}{for example using Mathematica}), with the numeric values of the original problem, to find:
+\begin{equation}\label{eqn:triangle_area_problem:280}
 \begin{aligned}
-X &= \begin{vmatrix} \BA & \BB \end{vmatrix} \\
-Y &= \begin{vmatrix} \BB & \BC \end{vmatrix} \\
-Z &= \begin{vmatrix} \BC & \BA \end{vmatrix}.
+X &= 630 \\
+Y &= 280 \\
+Z &= 140,
+\end{aligned}
+\end{equation}
+Therefore, the total area is \( \inv{2} \Abs{\BA \wedge \BB } = X/2 = 315 \).
+
+However, there is more geometry that we can use to simplify things.  In particular
+\begin{equation}\label{eqn:triangle_area_problem:320}
+\inv{2} \Abs{ \BA \wedge \BC } = \frac{Z}{2} = A_1 + A_2,
+\end{equation}
+\begin{equation}\label{eqn:triangle_area_problem:340}
+\begin{aligned}
+4 A_1^2 \lr{ X -2 A_1 - 2 A_2 }^2 &= 4 \lr{ A_1 + A_2 }^2 Y^2 \\
+4 A_2^2 \lr{ X -2 A_1 - 2 A_2 }^2 &= 4 \lr{ A_1 + A_2 }^2 \lr{ X - Y -2 A_1 - 2 A_2 }^2 \\
+4 A_3^2 \lr{ 2 A_1 + 2 A_2 + Y }^2  &= 4 \lr{ A_1 + A_2 }^2 \lr{ X - Y -2 A_1 - 2 A_2 }^2 \\
+4 A_4^2 \lr{ X - Y }^2  &= Y^2 \lr{ X - Y -2 A_1 - 2 A_2 }^2.
+\end{aligned}
+\end{equation}
+
+We also know that
+\begin{equation}\label{eqn:triangle_area_problem:360}
+\begin{aligned}
+A_1 + A_2 + A_3 &= \inv{2} \Abs{ \BA \wedge \BE } \\
+&= \inv{2} \Abs{ \BA \wedge \BC } \frac{X}{Y + Z} \\
+&= \inv{2} \frac{Z X}{Y + Z} \\
+&= \frac{\lr{A_1 + A_2} X}{Y + 2 A_1 + 2 A_2 },
 \end{aligned}
 \end{equation}
 so
-\begin{equation}\label{eqn:triangle_area_problem:300}
-\begin{aligned}
-4 A_1^2 \lr{ Z + X }^2 &= Z^2 Y^2 \\
-4 A_2^2 \lr{ Z + X }^2 &= Z^2 \lr{ X + Y + Z }^2 \\
-4 A_3^2 \lr{ Z + Y }^2  &= Z^2 \lr{ X + Y + Z }^2 \\
-4 A_4^2 \lr{ X + Y }^2  &= Y^2 \lr{ X + Y + Z }^2.
-\end{aligned}
+\begin{equation}\label{eqn:triangle_area_problem:380}
+Y = - 2 A_1 - 2 A_2 + \frac{ \lr{A_1 + A_2} X }{ A_1 + A_2 + A_3 }.
 \end{equation}
-The goal is now to solve this system for \( X \).  That solution (\href{https://github.com/peeterjoot/mathematica/blob/master/blogit/triangle.nb}{courtesy of Mathematica}), for the numeric values in the original problem \( A_1 = 40, A_2 = 30, A_3 = 35, A_4 = 84 \), is:
-\begin{equation}\label{eqn:triangle_area_problem:280}
-\begin{aligned}
-X &= \pm 630 \\
-Y &= \mp 280 \\
-Z &= \mp 140,
-\end{aligned}
-\end{equation}
-so the total area is \( 315 \).
+We can substitute this into any of the four equations in \( X, Y \) above, and then just solve a quadratic to find twice the area \( X \).
 
-Now, I'll have to watch the video and see how he solved it.  I'd guess in a considerably simpler way.
+Now, I'll have to watch the video and see how he solved it.
 
 %}
 %\EndArticle

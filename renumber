@@ -311,7 +311,10 @@
 #../latex/bin/lgrep gaproduct_sine.tex | tee o ; . ./o
 #perl -p -i ../latex/bin/latexRegex.pl gaproduct_sine.tex
 
-../latex/bin/lgrep dotmetric.tex | tee o ; . ./o
-perl -p -i ../latex/bin/latexRegex.pl dotmetric.tex
-../latex/bin/lgrep eulers.tex | tee o ; . ./o
-perl -p -i ../latex/bin/latexRegex.pl eulers.tex
+#../latex/bin/lgrep dotmetric.tex | tee o ; . ./o
+#perl -p -i ../latex/bin/latexRegex.pl dotmetric.tex
+#../latex/bin/lgrep eulers.tex | tee o ; . ./o
+#perl -p -i ../latex/bin/latexRegex.pl eulers.tex
+
+../latex/bin/lgrep triangle_area_problem.tex | tee o ; . ./o
+perl -p -i ../latex/bin/latexRegex.pl triangle_area_problem.tex

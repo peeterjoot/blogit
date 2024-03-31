@@ -24,7 +24,7 @@
 
 \beginArtNoToc
 
-\generatetitle{Triangle area problem}
+\generatetitle{Triangle area problem: REVISITED.}
 %\chapter{Triangle area problem}
 %\label{chap:triangle_area_problem}
 
@@ -43,138 +43,138 @@ If we had the vertex and center locations as vectors, we could easily compute th
 \BF &= s_3 \BB = \BA + t_3 \lr{ \BC - \BA }.
 \end{aligned}
 \end{equation}
-Eliminating the \( t_i \) constants by wedging appropriately (or equivalently, using Cramer's rule), we find
+It turns out that the problem is over specified, and we will only need \( \BD, \BE \).  To find those, we may eliminate the \( t_i \)'s by wedging appropriately (or equivalently, using Cramer's rule), to find
 \begin{equation}\label{eqn:triangle_area_problem:40}
 \begin{aligned}
 s_1 \BA \wedge \lr{ \BC - \BB } &= \BB \wedge \lr{ \BC - \BB }  \\
-s_2 \BC \wedge \lr{ \BB - \BA } &= \BA \wedge \lr{ \BB - \BA }  \\
-s_3 \BB \wedge \lr{ \BC - \BA } &= \BA \wedge \lr{ \BC - \BA },
+s_2 \BC \wedge \lr{ \BB - \BA } &= \BA \wedge \lr{ \BB - \BA },
+%  \\
+%s_3 \BB \wedge \lr{ \BC - \BA } &= \BA \wedge \lr{ \BC - \BA },
 \end{aligned}
 \end{equation}
 or
 \begin{equation}\label{eqn:triangle_area_problem:60}
 \begin{aligned}
 s_1 &= \frac{\BB \wedge \BC }{\BA \wedge \lr{ \BC - \BB }} \\
-s_2 &= \frac{\BA \wedge \BB }{\BC \wedge \lr{ \BB - \BA }} \\
-s_3 &= \frac{\BA \wedge \BC }{\BB \wedge \lr{ \BC - \BA }}.
+s_2 &= \frac{\BA \wedge \BB }{\BC \wedge \lr{ \BB - \BA }}.
+% \\
+%s_3 &= \frac{\BA \wedge \BC }{\BB \wedge \lr{ \BC - \BA }}.
 \end{aligned}
 \end{equation}
-Introducing bivector (signed-area) unknowns with scalar coefficients
-\begin{equation}\label{eqn:triangle_area_problem:80}
-\begin{aligned}
-X &= \begin{vmatrix} \BA & \BB \end{vmatrix} \\
-Y &= \begin{vmatrix} \BC & \BB \end{vmatrix} \\
-Z &= \begin{vmatrix} \BA & \BC \end{vmatrix},
-\end{aligned}
-\end{equation}
+Now let's introduce some scalar area variables, each pseudoscalar multiples of bivector area elements, with \( i = \Be_{1} \Be_2 \)
 \begin{equation}\label{eqn:triangle_area_problem:81}
 \begin{aligned}
-\BA \wedge \BB &= X \Be_{12} \\
-\BC \wedge \BB &= Y \Be_{12} \\
-\BA \wedge \BC &= Z \Be_{12}.
+X &= \lr{ \BA \wedge \BB } i^{-1} = \begin{vmatrix} \BA & \BB \end{vmatrix} \\
+Y &= \lr{ \BC \wedge \BB } i^{-1} = \begin{vmatrix} \BC & \BB \end{vmatrix} \\
+Z &= \lr{ \BA \wedge \BC } i^{-1} = \begin{vmatrix} \BA & \BC \end{vmatrix},
 \end{aligned}
 \end{equation}
-The intersection parameters, after cancelling the pseudoscalar factors, are
+Note that the orientation of all of these has been picked to have a positive orientation matching the figure, and that the
+triangle area that we seek for this problem is \( 1/2 \Abs{ \BA \wedge \BB } = X/2 \).
+
+The intersection parameters, after cancelling pseudoscalar factors, are
 \begin{equation}\label{eqn:triangle_area_problem:100}
 \begin{aligned}
 s_1 &= \frac{\BB \wedge \BC }{\BA \wedge \BC - \BA \wedge \BB } = \frac{-Y}{Z - X} \\
-s_2 &= \frac{\BA \wedge \BB }{\BC \wedge \BB - \BC \wedge \BA } = \frac{X}{Y + Z} \\
-s_3 &= \frac{\BA \wedge \BC }{\BB \wedge \BC - \BB \wedge \BA } = \frac{Z}{-Y + X},
+s_2 &= \frac{\BA \wedge \BB }{\BC \wedge \BB - \BC \wedge \BA } = \frac{X}{Y + Z},
+% \\
+%s_3 &= \frac{\BA \wedge \BC }{\BB \wedge \BC - \BB \wedge \BA } = \frac{Z}{-Y + X},
 \end{aligned}
 \end{equation}
 so the intersection points are
 \begin{equation}\label{eqn:triangle_area_problem:120}
 \begin{aligned}
 \BD &= \BA \frac{Y}{X - Z} \\
-\BE &= \BC \frac{X}{Y + Z} \\
-\BF &= \BB \frac{Z}{X - Y}.
+\BE &= \BC \frac{X}{Y + Z}.
+% \\
+%\BF &= \BB \frac{Z}{X - Y}.
 \end{aligned}
 \end{equation}
+Observe that both scalar factors are positive (i.e.: \( X > Z \).)
 
-We may now express the known areas in terms of these unknown vectors
+We may now express all the known areas in terms of our area variables
 \begin{equation}\label{eqn:triangle_area_problem:140}
 \begin{aligned}
-A_1 &= \inv{2} \Abs{ \BD \wedge \BC }                         \\
-A_2 &= \inv{2} \Abs{ \lr{\BC - \BA} \wedge \lr{ \BD - \BA } } \\
-A_3 &= \inv{2} \Abs{ \lr{\BA - \BC} \wedge \lr{ \BE - \BC } } \\
-A_5 &= \inv{2} \Abs{ \lr{\BB - \BC} \wedge \lr{ \BF - \BC } },
+A_1             &= \inv{2} \lr{ \BD \wedge \BC } i^{-1}                        \\
+A_1 + A_2       &= \inv{2} \lr{ \BA \wedge \BC } i^{-1}                        \\
+A_1 + A_2 + A_3 &= \inv{2} \lr{ \BA \wedge \BE } i^{-1}                        \\
+A_2             &= \inv{2} \lr{ \lr{\BA - \BD} \wedge \lr{ \BC - \BD } } i^{-1}\\
+A_3             &= \inv{2} \lr{ \lr{\BA - \BC} \wedge \lr{ \BE - \BC } } i^{-1}\\
+A_5             &= \inv{2} \lr{ \lr{\BB - \BC} \wedge \lr{ \BF - \BC } } i^{-1}.
 \end{aligned}
 \end{equation}
-but
-\begin{equation}\label{eqn:triangle_area_problem:160}
-\begin{aligned}
-\BD - \BA &= \BA \lr{ -1 + \frac{Y}{X - Z} } \\
-\BE - \BC &= \BC \lr{ -1 + \frac{X}{Y + Z} } \\
-\BF - \BC &= \BB \frac{Z}{X - Y} - \BC,
-\end{aligned}
-\end{equation}
-so
+%but
+%\begin{equation}\label{eqn:triangle_area_problem:160}
+%\begin{aligned}
+%\BD - \BA &= \BA \lr{ -1 + \frac{Y}{X - Z} } \\
+%\BE - \BC &= \BC \lr{ -1 + \frac{X}{Y + Z} } \\
+%\BF - \BC &= \BB \frac{Z}{X - Y} - \BC,
+%\end{aligned}
+%\end{equation}
+As mentioned, the problem is over specified, and we can get away with just the first three of these relations to solve for total area.  Eliminating \( \BD, \BE \) from those, gives us
 \begin{equation}\label{eqn:triangle_area_problem:180}
-\begin{aligned}
-A_1 &= \inv{2} \Abs{ \BA \wedge \BC \frac{Y}{X - Z} } = \inv{2} \Abs{ Z} \Abs{ \frac{Y}{X - Z} } \\
-A_2 &= \inv{2} \Abs{ \lr{\BC - \BA} \wedge \BA } \Abs{ -1 + \frac{Y}{X - Z} } = \inv{2} \Abs{Z} \Abs{ 1 + \frac{Y}{Z - X} } \\
-A_3 &= \inv{2} \Abs{ \lr{\BA - \BC} \wedge \BC } \Abs{ -1 + \frac{X}{Y + Z} } = \inv{2} \Abs{Z} \Abs{ 1 - \frac{X}{Y + Z} },
-\end{aligned}
+A_1 = \inv{2} \frac{Y}{X - Z} \lr{ \BA \wedge \BC } i^{-1} = \frac{Z}{2} \lr{ \frac{Y}{X - Z} },
+\end{equation}
+\begin{equation}\label{eqn:triangle_area_problem:460}
+A_1 + A_2 = \inv{2} \lr{ \BA \wedge \BC } i^{-1} = \frac{Z}{2},
+%A_2 &= \inv{2} \Abs{ \lr{\BC - \BA} \wedge \BA } \Abs{ -1 + \frac{Y}{X - Z} } = \inv{2} \Abs{Z} \Abs{ 1 + \frac{Y}{Z - X} } \\
+%A_3 &= \inv{2} \Abs{ \lr{\BA - \BC} \wedge \BC } \Abs{ -1 + \frac{X}{Y + Z} } = \inv{2} \Abs{Z} \Abs{ 1 - \frac{X}{Y + Z} },
 \end{equation}
 and
-\begin{equation}\label{eqn:triangle_area_problem:200}
+\begin{equation}\label{eqn:triangle_area_problem:400}
 \begin{aligned}
-A_5
-&= \inv{2} \Abs{ \lr{\BB - \BC} \wedge \lr{ \BB \frac{Z}{X - Y} - \BC } } \\
-&= \inv{2} \Abs{ -\BB \wedge \BC + \BC \wedge \BB \frac{Z}{X - Y} } \\
-&= \inv{2} \Abs{ Y } \Abs{ 1 + \frac{Z}{Y - X} }.
+A_1 + A_2 + A_3 &= \inv{2} \lr{ \BA \wedge \BE } i^{-1} \\
+&= \inv{2} \lr{ \BA \wedge \BC } \frac{X}{Y + Z} \\
+&= \frac{Z}{2} \frac{X}{Y + Z}.
 \end{aligned}
 \end{equation}
+%and
+%\begin{equation}\label{eqn:triangle_area_problem:200}
+%\begin{aligned}
+%A_5
+%&= \inv{2} \Abs{ \lr{\BB - \BC} \wedge \lr{ \BB \frac{Z}{X - Y} - \BC } } \\
+%&= \inv{2} \Abs{ -\BB \wedge \BC + \BC \wedge \BB \frac{Z}{X - Y} } \\
+%&= \inv{2} \Abs{ Y } \Abs{ 1 + \frac{Z}{Y - X} }.
+%\end{aligned}
+%\end{equation}
 
-This gives us four equations in two (scalar) unknowns
-\begin{equation}\label{eqn:triangle_area_problem:300}
+%This gives us four equations in two (scalar) unknowns
+%\begin{equation}\label{eqn:triangle_area_problem:300}
+%\begin{aligned}
+%4 A_1^2 \lr{ X - Z }^2 &= Z^2 Y^2 \\
+%Z &= 2 A_1 + 2 A_2 \\
+%2 \lr{ A_1 + A_2 + A_3 } \lr{ Y + Z } &= Z X.
+%%4 A_2^2 \lr{ X - Z }^2 &= Z^2 \lr{ X - Y - Z }^2 \\
+%%4 A_3^2 \lr{ Z + Y }^2  &= Z^2 \lr{ X - Y - Z }^2 \\
+%%4 A_4^2 \lr{ X - Y }^2  &= Y^2 \lr{ X - Y - Z }^2.
+%\end{aligned}
+%\end{equation}
+Let's eliminate \( Z \) to start with, leaving
+\begin{equation}\label{eqn:triangle_area_problem:420}
 \begin{aligned}
-4 A_1^2 \lr{ X - Z }^2 &= Z^2 Y^2 \\
-4 A_2^2 \lr{ X - Z }^2 &= Z^2 \lr{ X - Y - Z }^2 \\
-4 A_3^2 \lr{ Z + Y }^2  &= Z^2 \lr{ X - Y - Z }^2 \\
-4 A_4^2 \lr{ X - Y }^2  &= Y^2 \lr{ X - Y - Z }^2.
+A_1 \lr{ X - 2 A_1 - 2 A_2 } &= Y \lr{ A_1 + A_2 } \\
+\lr{ A_1 + A_2 + A_3 } \lr{ Y + 2 A_1 + 2 A_2 } &= \lr{ A_1 + A_2 } X.
 \end{aligned}
 \end{equation}
-The goal is now to solve this system for \( X \).  We can blindly solve this system (\href{https://github.com/peeterjoot/mathematica/blob/master/blogit/triangle.nb}{for example using Mathematica}), with the numeric values of the original problem, to find:
-\begin{equation}\label{eqn:triangle_area_problem:280}
-\begin{aligned}
-X &= 630 \\
-Y &= 280 \\
-Z &= 140,
-\end{aligned}
-\end{equation}
-Therefore, the total area is \( \inv{2} \Abs{\BA \wedge \BB } = X/2 = 315 \).
-
-However, there is more geometry that we can use to simplify things.  In particular
-\begin{equation}\label{eqn:triangle_area_problem:320}
-\inv{2} \Abs{ \BA \wedge \BC } = \frac{Z}{2} = A_1 + A_2,
-\end{equation}
-\begin{equation}\label{eqn:triangle_area_problem:340}
-\begin{aligned}
-4 A_1^2 \lr{ X -2 A_1 - 2 A_2 }^2 &= 4 \lr{ A_1 + A_2 }^2 Y^2 \\
-4 A_2^2 \lr{ X -2 A_1 - 2 A_2 }^2 &= 4 \lr{ A_1 + A_2 }^2 \lr{ X - Y -2 A_1 - 2 A_2 }^2 \\
-4 A_3^2 \lr{ 2 A_1 + 2 A_2 + Y }^2  &= 4 \lr{ A_1 + A_2 }^2 \lr{ X - Y -2 A_1 - 2 A_2 }^2 \\
-4 A_4^2 \lr{ X - Y }^2  &= Y^2 \lr{ X - Y -2 A_1 - 2 A_2 }^2.
-\end{aligned}
-\end{equation}
-
-We also know that
-\begin{equation}\label{eqn:triangle_area_problem:360}
-\begin{aligned}
-A_1 + A_2 + A_3 &= \inv{2} \Abs{ \BA \wedge \BE } \\
-&= \inv{2} \Abs{ \BA \wedge \BC } \frac{X}{Y + Z} \\
-&= \inv{2} \frac{Z X}{Y + Z} \\
-&= \frac{\lr{A_1 + A_2} X}{Y + 2 A_1 + 2 A_2 },
-\end{aligned}
-\end{equation}
-so
+Solving for \( Y \) yields
 \begin{equation}\label{eqn:triangle_area_problem:380}
-Y = - 2 A_1 - 2 A_2 + \frac{ \lr{A_1 + A_2} X }{ A_1 + A_2 + A_3 }.
+Y = - 2 A_1 - 2 A_2 + \frac{ \lr{A_1 + A_2} X }{ A_1 + A_2 + A_3 } = \lr{ A_1 + A_2 } \lr{ -2 + \frac{X}{A_1 + A_2 + A_3 } },
 \end{equation}
-We can substitute this into any of the four equations in \( X, Y \) above, and then just solve a quadratic to find twice the area \( X \).
+and back substution leaves us with a linear equation in \( X \)
+\begin{equation}\label{eqn:triangle_area_problem:480}
+\lr{ A_1 + A_2}^2 \lr{  -2 + \frac{X}{A_1 + A_2 + A_3 } } = A_1 \lr{ X - 2 A_1 - 2 A_2 }.
+\end{equation}
+%which after substitution leaving us a quadratic in \( X \)
+%\begin{equation}\label{eqn:triangle_area_problem:440}
+%A_1^2 \lr{ X - 2 A_1 - 2 A_2 }^2 = \lr{ A_1 + A_2 }^3 \lr{ - 2 + \frac{ X }{ A_1 + A_2 + A_3 } }^2.
+%\end{equation}
+This is easily solved to find
+\begin{equation}\label{eqn:triangle_area_problem:500}
+\frac{X}{2} = \frac{ \lr{ A_1 + A_2} A_2 \lr{ A_1 + A_2 + A_3 } }{A_2 \lr{ A_1 + A_2} - A_1 A_3 }.
+\end{equation}
+Plugging in the numeric values for the problem solves it, giving a total triangular area of \( \inv{2} \lr{\BA \wedge \BB } i^{-1} = X/2 = 315 \).
 
 Now, I'll have to watch the video and see how he solved it.
-
 %}
 %\EndArticle
 \EndNoBibArticle

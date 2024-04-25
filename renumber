@@ -316,5 +316,8 @@
 #../latex/bin/lgrep eulers.tex | tee o ; . ./o
 #perl -p -i ../latex/bin/latexRegex.pl eulers.tex
 
-../latex/bin/lgrep triangle_area_problem.tex | tee o ; . ./o
-perl -p -i ../latex/bin/latexRegex.pl triangle_area_problem.tex
+#../latex/bin/lgrep triangle_area_problem.tex | tee o ; . ./o
+#perl -p -i ../latex/bin/latexRegex.pl triangle_area_problem.tex
+
+#../latex/bin/lgrep spherical.tex | tee o ; . ./o
+#perl -p -i ../latex/bin/latexRegex.pl spherical.tex

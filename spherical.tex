@@ -1,0 +1,64 @@
+%
+% Copyright © 2024 Peeter Joot.  All Rights Reserved.
+% Licenced as described in the file LICENSE under the root directory of this GIT repository.
+%
+%{
+\input{../latex/blogpost.tex}
+\renewcommand{\basename}{spherical}
+%\renewcommand{\dirname}{notes/phy1520/}
+\renewcommand{\dirname}{notes/ece1228-electromagnetic-theory/}
+%\newcommand{\dateintitle}{}
+%\newcommand{\keywords}{}
+
+\input{../latex/peeter_prologue_print2.tex}
+
+\usepackage{peeters_layout_exercise}
+\usepackage{peeters_braket}
+\usepackage{peeters_figures}
+\usepackage{siunitx}
+\usepackage{verbatim}
+%\usepackage{mhchem} % \ce{}
+%\usepackage{macros_bm} % \bcM
+%\usepackage{macros_qed} % \qedmarker
+%\usepackage{txfonts} % \ointclockwise
+
+\beginArtNoToc
+
+\generatetitle{XXX}
+%\chapter{XXX}
+%\label{chap:spherical}
+
+% answering: https://discord.com/channels/607264339480674324/1232470033645436960/1232509219094269973
+Quick back of scrap paper calculation,...
+
+Let \( \Bx = r \rcap \), where \( \rcap = \Be_3 e^{j \theta} \), \( j = \Be_{31} e^{i\phi} \), and \( i = \Be_{12} \).  Then
+\begin{equation}\label{eqn:spherical:20}
+\dot{\Bx} = \rdot \rcap + r \dot{\rcap}.
+\end{equation}
+That radial unit vector's derivative is
+\begin{equation}\label{eqn:spherical:40}
+\begin{aligned}
+\dot{\rcap}
+&= \Be_3 j e^{j\theta} \dot{\theta} + \Be_3 \dot{\phi} \PD{\phi}{} \lr{ \cos\theta + j \sin\theta } \\
+&= \Be_3 j e^{j\theta} \dot{\theta} + \Be_3 \sin\theta \dot{\phi} \PD{\phi}{} \lr{ \Be_{31} e^{i\phi} } \\
+&= \Be_3 j e^{j\theta} \dot{\theta} + \Be_{33112} \sin\theta \dot{\phi} e^{i\phi} \\
+&= \Be_3 j e^{j\theta} \dot{\theta} + \Be_{2} e^{i\phi} \sin\theta \dot{\phi}.
+\end{aligned}
+\end{equation}
+This can be plugged in to find the spherical representation of the velocity
+\begin{equation}\label{eqn:spherical:60}
+\Bv = \rdot \rcap + r \lr{ \Be_3 j e^{j\theta} \dot{\theta} + \Be_{2} e^{i\phi} \sin\theta \dot{\phi} },
+\end{equation}
+which reduces to
+\begin{equation}\label{eqn:spherical:70}
+\Bv = \rdot \rcap + r \dot{\theta} \thetacap + r \sin\theta \dot{\phi} \phicap.
+\end{equation}
+The magnitude of the velocity is
+\begin{equation}\label{eqn:spherical:80}
+\Bv^2 = \rdot^2 + r^2 \dot{\theta}^2 + r^2 \sin^2 \theta \dot{\phi}^2,
+\end{equation}
+which has both radial and non-radial contributions.
+
+%}
+\EndArticle
+%\EndNoBibArticle

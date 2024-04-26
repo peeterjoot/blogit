@@ -1,0 +1,13 @@
+\begin{equation*}
+\lr{ \Bv \wedge \Bu } \cdot \Bw = \Bv \lr{ \Bu \cdot \Bw } - \Bu \lr{ \Bv \cdot \Bw }
+\end{equation*}
+With \( \Bw = 1/\Bu = \Bu/\Bu^2 \), this is
+\begin{equation*}
+\begin{aligned}
+\lr{ \Bv \wedge \Bu } \cdot \inv{\Bu} 
+&= \Bv \lr{ \Bu \cdot \inv{\Bu} } - \Bu \lr{ \Bv \cdot \inv{\Bu} } \\
+&= \Bv - \lr{ \Bv \cdot \Bu } \inv{\Bu}
+\end{aligned}
+\end{equation*}
+
+

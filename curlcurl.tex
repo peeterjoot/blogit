@@ -1,0 +1,119 @@
+%
+% Copyright © 2024 Peeter Joot.  All Rights Reserved.
+% Licenced as described in the file LICENSE under the root directory of this GIT repository.
+%
+%{
+\input{../latex/blogpost.tex}
+\renewcommand{\basename}{curlcurl}
+%\renewcommand{\dirname}{notes/phy1520/}
+\renewcommand{\dirname}{notes/ece1228-electromagnetic-theory/}
+%\newcommand{\dateintitle}{}
+%\newcommand{\keywords}{}
+
+\input{../latex/peeter_prologue_print2.tex}
+
+\usepackage{peeters_layout_exercise}
+\usepackage{peeters_braket}
+\usepackage{peeters_figures}
+\usepackage{siunitx}
+\usepackage{verbatim}
+%\usepackage{mhchem} % \ce{}
+%\usepackage{macros_bm} % \bcM
+%\usepackage{macros_qed} % \qedmarker
+%\usepackage{txfonts} % \ointclockwise
+
+\beginArtNoToc
+
+\generatetitle{XXX}
+%\chapter{XXX}
+%\label{chap:curlcurl}
+
+% https://math.stackexchange.com/questions/4914846/help-with-proof-of-curl-double-product-identity-using-geometric-algebra-most-th/4915224#4915224
+
+You write:
+
+\begin{equation*}
+\spacegrad (\spacegrad\cdot \BF) = \spacegrad\cdot(\spacegrad\cdot \BF) + \spacegrad\wedge(\spacegrad\cdot \BF),
+\end{equation*}
+
+but it appears that you are trying to use the vector identity
+
+\begin{equation*}
+\Ba \Bb = \Ba \cdot \Bb + \Ba \wedge \Bb,
+\end{equation*}
+
+(true for vectors \( \Ba, \Bb \)), but not neccessarily for multivectors.  In your case \( \spacegrad \cdot \BF \) is a scalar, not a vector, so there is not really any meaningful reduction that you can make of \( \spacegrad (\spacegrad\cdot \BF) \).
+
+The essense of the identity you are trying to find is given by the following manipulation
+\begin{equation*}
+\begin{aligned}
+\Ba \cross \lr{ \Ba \cross \Bb }
+&=
+-\lr{ I \Ba } \wedge \lr{ \Ba \cross \Bb }  \\
+&=
+\gpgradeone{
+-\lr{ I \Ba } \wedge \lr{ \Ba \cross \Bb }
+} \\
+&=
+-\gpgradeone{
+I \Ba \lr{ \Ba \cross \Bb }
+} \\
+&=
+-\gpgradeone{
+I \Ba \lr{ -I \Ba \wedge \Bb }
+} \\
+&=
+-\gpgradeone{
+\Ba \lr{ \Ba \wedge \Bb }
+} \\
+&=
+-\gpgradeone{
+\Ba \cdot \lr{ \Ba \wedge \Bb }
++
+\Ba \wedge \lr{ \Ba \wedge \Bb }
+} \\
+&=
+-
+\Ba \cdot \lr{ \Ba \wedge \Bb } \\
+&=
+-\Ba^2 \Bb + \Ba \lr{ \Ba \cdot \Bb }.
+\end{aligned}
+\end{equation*}
+Notes:
+In this case, it's also true that \( \Ba B = \Ba \cdot B + \Ba \wedge B \) for bivector \( B \) and vector \(\Ba \).  Here the dot and wedge products have the following meanings:
+\begin{equation*}
+\begin{aligned}
+\Ba \cdot B &= \gpgradeone{ \Ba B } \\
+\Ba \wedge B &= \gpgradethree{ \Ba B }.
+\end{aligned}
+\end{equation*}
+Also observe that we are free to insert a no-op grade-one selection around any vector without changing the meaning.  That allows us to discard the trivector term of the vector-bivector product.
+We also used the distribution identity
+\begin{equation*}
+\Bx \cdot \lr{ \By \wedge \Bz } = \lr{ \Bx \cdot \By } \Bz - \lr{ \Bx \cdot \Bz } \By.
+\end{equation*}
+
+
+If we summarize what we've done, essentially, we've first observed that
+
+\begin{equation*}
+\Ba \cross \lr{ \Bb \cross \Bc }
+=
+-
+\Ba \cdot \lr{ \Bb \wedge \Bc },
+\end{equation*}
+
+for any vectors \( \Ba, \Bb, \Bc \).  In particular
+
+\begin{equation*}
+\Ba \cross \lr{ \Ba \cross \BF }
+=
+-
+\Ba \cdot \lr{ \Ba \wedge \BF } = -\lr{ \Ba \cdot \Ba } \BF + \Ba \lr{ \Ba \cdot \BF },
+\end{equation*}
+
+This also holds for the case where \( \Ba = \spacegrad \), provided we take care to keep the gradients on the left (or use notational sugar to indicate the scope of their action.)
+
+%}
+\EndArticle
+%\EndNoBibArticle

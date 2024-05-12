@@ -321,3 +321,5 @@
 
 #../latex/bin/lgrep spherical.tex | tee o ; . ./o
 #perl -p -i ../latex/bin/latexRegex.pl spherical.tex
+../latex/bin/lgrep curlcurl.tex | tee o ; . ./o
+perl -p -i ../latex/bin/latexRegex.pl curlcurl.tex

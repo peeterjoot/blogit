@@ -1,0 +1,130 @@
+%
+% Copyright © 2024 Peeter Joot.  All Rights Reserved.
+% Licenced as described in the file LICENSE under the root directory of this GIT repository.
+%
+%{
+\input{../latex/blogpost.tex}
+\renewcommand{\basename}{LeibnizIntegralTheorem}
+%\renewcommand{\dirname}{notes/phy1520/}
+\renewcommand{\dirname}{notes/ece1228-electromagnetic-theory/}
+%\newcommand{\dateintitle}{}
+%\newcommand{\keywords}{}
+
+\input{../latex/peeter_prologue_print2.tex}
+
+\usepackage{peeters_layout_exercise}
+\usepackage{peeters_braket}
+\usepackage{peeters_figures}
+\usepackage{siunitx}
+\usepackage{verbatim}
+%\usepackage{mhchem} % \ce{}
+%\usepackage{macros_bm} % \bcM
+%\usepackage{macros_qed} % \qedmarker
+%\usepackage{txfonts} % \ointclockwise
+
+\beginArtNoToc
+
+\generatetitle{Multivector form of Leibniz integral theorem}
+%\chapter{Multivector form of Leibniz integral theorem}
+%\label{chap:LeibnizIntegralTheorem}
+
+\section{Goal.}
+Here we will explore the multivector form of the Leibniz integral theorem (aka. Feynman's trick in one dimension), as discussed in \citep{enwiki:1223666713}.
+
+Given a boundary \( \Omega(t) \) that varies in time, we seek to evaluate
+\begin{equation}\label{eqn:LeibnizIntegralTheorem:20}
+\ddt{} \int_{\Omega(t)} F d^p \Bx \lrboldpartial G.
+\end{equation}
+Recall that when the bounding volume is fixed, we have
+\begin{equation}\label{eqn:LeibnizIntegralTheorem:40}
+\int_{\Omega} F d^p \Bx \lrboldpartial G = \int_{\partial \Omega} F d^{p-1} \Bx G,
+\end{equation}
+and expect a few terms that are variations of the RHS if we take derivatives.
+
+\section{Simplest case: scalar function, one variable.}
+With
+\begin{equation}\label{eqn:LeibnizIntegralTheorem:60}
+A(t) = \int_{a(t)}^{b(t)} f(u, t) du,
+\end{equation}
+If we can find an antiderivative, such that
+\begin{equation}\label{eqn:LeibnizIntegralTheorem:80}
+\PD{u}{F(u,t)} = f(u, t),
+\end{equation}
+or
+\begin{equation}\label{eqn:LeibnizIntegralTheorem:90}
+F(u, t) = \int f(u, t) du.
+\end{equation}
+The integral is made trivial
+\begin{equation}\label{eqn:LeibnizIntegralTheorem:100}
+\begin{aligned}
+A(t)
+&=
+\int_{a(t)}^{b(t)} f(u, t) du \\
+&=
+\int_{a(t)}^{b(t)} \PD{u}{F(u,t)} du \\
+&= F( b(t), t ) - F( a(t), t ).
+\end{aligned}
+\end{equation}
+Should we attempt to take derivatives, we have a contribution from the first parameter that is entirely dependent on the boundary, and a contribution from the second parameter that is entirely independent of the boundary.  That is
+\begin{equation}\label{eqn:LeibnizIntegralTheorem:120}
+\begin{aligned}
+\ddt{} \int_{a(t)}^{b(t)} f(u, t) du
+&=
+\PD{b}{ F } \PD{t}{b}
+-\PD{a}{ F } \PD{t}{a}
++ \evalrange{\PD{t}{F(u, t)}}{u = a(t)}{b(t)} \\
+&=
+f(b(t), t) b'(t) -
+f(a(t), t) a'(t)
++ \int_{a(t)}^{b(t)} \PD{t}{} f(u, t) du.
+\end{aligned}
+\end{equation}
+In the second step, the antiderivative function \( F \) has been restated in it's original integral form \cref{eqn:LeibnizIntegralTheorem:90}.  We are able to take the derivative into the integral, since we first evaluate that derivative, independent of the boundary, and then evaluate the result at the respective end points of the boundary.
+\section{Next simplest case: Multivector line integral (perfect derivative.)}
+Given an \( N \) dimensional vector space, and a path parameterized by vector \( \Bx = \Bx(u) \).  The line integral special case of the fundamental theorem of calculus is found by evaluating
+\begin{equation}\label{eqn:LeibnizIntegralTheorem:140}
+\int F(u) d\Bx \lrboldpartial G(u),
+\end{equation}
+where \( F, G \) are multivectors, and
+\begin{equation}\label{eqn:LeibnizIntegralTheorem:160}
+\begin{aligned}
+d\Bx &= \PD{u}{\Bx} du = \Bx_u du \\
+\lrboldpartial &= \Bx^u \lroverarrow{\PD{u}{}},
+\end{aligned}
+\end{equation}
+where \( \Bx_u \Bx^u = \Bx_u \cdot \Bx^u = 1 \).
+
+Evaluating the integral, we have
+\begin{equation}\label{eqn:LeibnizIntegralTheorem:180}
+\begin{aligned}
+\int F(u) d\Bx \lrboldpartial G(u)
+&=
+\int F(u) \Bx_u du \Bx^u \lroverarrow{\PD{u}{}} G(u) \\
+&=
+\int du \PD{u}{} \lr{ F(u) G(u) } \\
+&=
+F(u) G(u).
+\end{aligned}
+\end{equation}
+
+If we allow \( F, G, \Bx \) to each have time dependence
+\begin{equation}\label{eqn:LeibnizIntegralTheorem:200}
+\begin{aligned}
+F &= F(u, t) \\
+G &= G(u, t) \\
+\Bx &= \Bx(u, t),
+\end{aligned}
+\end{equation}
+so we have
+\begin{equation}\label{eqn:LeibnizIntegralTheorem:220}
+\ddt{} \int_{u = a(t)}^{b(t)} F(u, t) d\Bx \lrboldpartial G(u, t)
+=
+\evalrange{ \ddt{u} \PD{u}{} \lr{ F(u, t) G(u, t) } }{u = a(t)}{b(t)}
++ \evalrange{\ddt{} \lr{ F(u, t) G(u, t) } }{u = a(t)}{b(t)}
+.
+\end{equation}
+
+
+%}
+\EndArticle
+%\EndNoBibArticle

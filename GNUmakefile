@@ -24,8 +24,9 @@ endif
 #w : wedgegeneral.pdf
 #e : ellipticproblem.pdf
 #g : greensIntroProblem.pdf
-g : gapotentials.pdf
+#g : gapotentials.pdf
 #t : twoForceStaticsProblem.pdf
+l : LeibnizIntegralTheorem.pdf
 
 #$(THISBOOK).pdf :: $(wildcard *.tex)
 #$(GENERATED_PDFS) :: $(JUSTBOOKDEPENDENCIES) $(LOCAL_FILES) $(GENERATED_SOURCES) $(COPIED_FILES) $(LOCAL_COPIED_FILES) Bibliography.bib

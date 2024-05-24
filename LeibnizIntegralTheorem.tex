@@ -123,7 +123,43 @@ so we have
 + \evalrange{\ddt{} \lr{ F(u, t) G(u, t) } }{u = a(t)}{b(t)}
 .
 \end{equation}
-
+\section{General multivector line integral.}
+Now suppose that we have a general multivector line integral
+\begin{equation}\label{eqn:LeibnizIntegralTheorem:240}
+A(t) = \int_{a(t)}^{b(t)} F(u, t) d\Bx G(u, t),
+\end{equation}
+where \( d\Bx = \Bx_u du \), \( \Bx_u = \partial \Bx(u, t)/\partial u \).  Writing out the integrand explicitly, we have
+\begin{equation}\label{eqn:LeibnizIntegralTheorem:260}
+A(t) = \int_{a(t)}^{b(t)} du F(u, t) \Bx_u(u, t) G(u, t).
+\end{equation}
+Following our logic with the first scalar case, let
+\begin{equation}\label{eqn:LeibnizIntegralTheorem:280}
+\PD{u}{B(u, t)} = F(u, t) \Bx_u(u, t) G(u, t).
+\end{equation}
+We can now evaluate the derivative
+\begin{equation}\label{eqn:LeibnizIntegralTheorem:300}
+\ddt{A(t)} = \evalrange{ \ddt{u} \PD{u}{B} }{u = a(t)}{b(t)} + \evalrange{ \PD{t}{}B(u, t) }{u = a(t)}{b(t)}.
+\end{equation}
+Writing \cref{eqn:LeibnizIntegralTheorem:280} in integral form, we have
+\begin{equation}\label{eqn:LeibnizIntegralTheorem:320}
+B(u, t) = \int du F(u, t) \Bx_u(u, t) G(u, t),
+\end{equation}
+so
+\begin{equation}\label{eqn:LeibnizIntegralTheorem:340}
+\begin{aligned}
+\ddt{A(t)}
+&= \evalrange{ \ddt{u} \PD{u}{B} }{u = a(t)}{b(t)} +
+\evalbar{ \PD{t'}{} \int_{a(t)}^{b(t)} du F(u, t') d\Bx_u(u, t') G(u, t') }{t' = t} \\
+&= \evalrange{ \ddt{u} F(u, t) \Bx_u(u, t) G(u, t) }{u = a(t)}{b(t)} +
+\int_{a(t)}^{b(t)} \PD{t}{} F(u, t) d\Bx(u, t) G(u, t),
+\end{aligned}
+\end{equation}
+so
+\begin{equation}\label{eqn:LeibnizIntegralTheorem:360}
+\ddt{} \int_{a(t)}^{b(t)} F(u, t) d\Bx(u, t) G(u, t)
+= \evalrange{ F(u, t) \ddt{\Bx}(u, t) G(u, t) }{u = a(t)}{b(t)} +
+\int_{a(t)}^{b(t)} \PD{t}{} F(u, t) d\Bx(u, t) G(u, t).
+\end{equation}
 
 %}
 \EndArticle

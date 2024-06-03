@@ -161,6 +161,22 @@ so
 \int_{a(t)}^{b(t)} \PD{t}{} F(u, t) d\Bx(u, t) G(u, t).
 \end{equation}
 
+This is perhaps clearer, if just written as:
+\begin{equation}\label{eqn:LeibnizIntegralTheorem:380}
+\ddt{} \int_{a(t)}^{b(t)} F d\Bx G
+= \evalrange{ F \ddt{\Bx} G }{u = a(t)}{b(t)} +
+\int_{a(t)}^{b(t)} \PD{t}{} F d\Bx G.
+\end{equation}
+As a check, it's worth pointing out that we can recover the one dimensional result, writing \( \Bx = u \Be_1 \), \( f = F \Be_1^{-1} \), and \( G = 1 \), for
+\begin{equation}\label{eqn:LeibnizIntegralTheorem:400}
+\ddt{} \int_{a(t)}^{b(t)} f du
+= \evalrange{ f(u) \ddt{u}  }{u = a(t)}{b(t)} +
+\int_{a(t)}^{b(t)} du \PD{t}{f}.
+\end{equation}
+
+\section{Next steps.}
+I've tried a couple times on paper to do surface integral variations of this (allowing the surface to vary with time), and don't think that I've gotten it right.  Will try again (or perhaps just look it up and see what the result is supposed to look like, then see how that translates into the GC formalism.)
+
 %}
 \EndArticle
 %\EndNoBibArticle

@@ -17,6 +17,7 @@
 \usepackage{peeters_figures}
 \usepackage{siunitx}
 \usepackage{verbatim}
+\usepackage{amsthm} % proof
 %\usepackage{mhchem} % \ce{}
 %\usepackage{macros_bm} % \bcM
 %\usepackage{macros_qed} % \qedmarker
@@ -79,6 +80,84 @@ and area integral
 We've derived that line integral result in a different fashion previously, but it's interesting to see a different approach.  Perhaps this approach will lend itself nicely to non-scalar integrands?
 \section{Time derivative of a scalar line integral.}
 It is worthwhile to work through the analysis from the text in question for the (scalar) line integral case in detail.  I'll do so here, but will handle some of the details a bit differently.
+
+\makedefinition{Convective derivative.}{dfn:more_feynmans_trick:1}{
+The convective derivative,
+of \( \phi(t, \Bx(t)) \) is defined as
+\begin{equation*}
+\frac{D \phi}{D t} = \lim_{\Delta t \rightarrow 0} \frac{ \phi(t + \delta t, \Bx + \delta t \Bv) - \phi(t, \Bx)}{\Delta t},
+\end{equation*}
+where \( \Bv = d\Bx/dt \).
+} % definition
+\maketheorem{Convective derivative.}{thm:more_feynmans_trick:1}{
+The convective derivative operator may be written
+\begin{equation*}
+\frac{D}{D t} = \PD{t}{} + \Bv \cdot \spacegrad.
+\end{equation*}
+} % theorem
+\begin{proof}
+Let's write
+\begin{equation}\label{eqn:more_feynmans_trick:140}
+\begin{aligned}
+v_0 &= 1 \\
+u_0 &= t + v_0 h \\
+u_k &= x_k + v_k h, k \in [1,3] \\
+\end{aligned}
+\end{equation}
+%u_\alpha(0) &= \evalbar{u_\alpha}{h = 0}, \alpha \in [0,3]
+The limit, if it exists, must equal the sum of the individual limits
+\begin{equation}\label{eqn:more_feynmans_trick:160}
+\frac{D \phi}{D t} = \sum_{\alpha = 0}^3 \lim_{\Delta t \rightarrow 0} \frac{ \phi(u_\alpha + v_\alpha h) - \phi(t, Bx)}{h},
+\end{equation}
+but that is just a sum of derivitives, which can be evaluated by chain rule
+\begin{equation}\label{eqn:more_feynmans_trick:180}
+\begin{aligned}
+\frac{D \phi}{D t}
+&= \sum_{\alpha = 0}^{3} \evalbar{ \PD{u_\alpha}{\phi(u_\alpha)} \PD{h}{u_\alpha} }{h = 0} \\
+&= \PD{t}{\phi} + \sum_{k = 1}^3 v_k \PD{x_k}{\phi} \\
+&= \lr{ \PD{t}{} + \Bv \cdot \spacegrad } \phi.
+\end{aligned}
+\end{equation}
+\end{proof}
+We will need one additional identity
+\makelemma{Gradient of dot product (one constant vector.)}{lemma:more_feynmans_trick:1}{
+Given vector \( \Bf \) and constant vector \( \Bc \), the gradient of their dot product is given by
+\begin{equation*}
+\spacegrad \lr{ \Bf \cdot \Bc } = \lr{ \Bc \cdot \spacegrad } \Bf + \Bc \cdot \lr{ \spacegrad \wedge \Bf }.
+\end{equation*}
+} % lemma
+We can write this identity using the Hestenes overdot notation, where the dots indicate restriction in scope of the derivative operator
+\begin{equation*}
+\dot{\spacegrad} \lr{ \dot{\Bf} \cdot \Bc } = \lr{ \Bc \cdot \spacegrad } \Bf + \Bc \cdot \lr{ \spacegrad \wedge \Bf }.
+\end{equation*}
+\begin{proof}
+To prove \cref{lemma:more_feynmans_trick:1} we really just need to look up the identity for the gradient of a dot product \citep{pjootGAEE}, which is
+\begin{equation}\label{eqn:more_feynmans_trick:200}
+\spacegrad \lr{ \Bf \cdot \Bc }
+=
+\lr{ \Bf \cdot \spacegrad } \Bc
++
+\lr{ \Bc \cdot \spacegrad } \Bf
++
+\lr{ \spacegrad \wedge \Bc }
+\cdot
+\Bf
++
+\lr{ \spacegrad \wedge \Bf }
+\cdot
+\Bc,
+\end{equation}
+If \( \Bc \) is constant, we are left with
+\begin{equation}\label{eqn:more_feynmans_trick:220}
+\dot{\spacegrad} \lr{ \dot{\Bf} \cdot \Bc }
+=
+\lr{ \Bc \cdot \spacegrad } \Bf
++
+\Bc
+\cdot
+\lr{ \spacegrad \wedge \Bf }.
+\end{equation}
+\end{proof}
 
 %}
 \EndArticle

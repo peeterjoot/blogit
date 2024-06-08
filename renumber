@@ -325,5 +325,8 @@
 #../latex/bin/lgrep curlcurl.tex | tee o ; . ./o
 #perl -p -i ../latex/bin/latexRegex.pl curlcurl.tex
 
-../latex/bin/lgrep LeibnizIntegralTheorem.tex | tee o ; . ./o
-perl -p -i ../latex/bin/latexRegex.pl LeibnizIntegralTheorem.tex
+#../latex/bin/lgrep LeibnizIntegralTheorem.tex | tee o ; . ./o
+#perl -p -i ../latex/bin/latexRegex.pl LeibnizIntegralTheorem.tex
+
+../latex/bin/lgrep more_feynmans_trick.tex | tee o ; . ./o
+perl -p -i ../latex/bin/latexRegex.pl more_feynmans_trick.tex

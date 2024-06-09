@@ -78,9 +78,7 @@ and area integral
 \ddt{} \int_{S(t)} F d^2\Bx G.
 \end{equation}
 We've derived that line integral result in a different fashion previously, but it's interesting to see a different approach.  Perhaps this approach will lend itself nicely to non-scalar integrands?
-\section{Time derivative of a scalar line integral.}
-It is worthwhile to work through the analysis from the text in question for the (scalar) line integral case in detail.  I'll do so here, but will handle some of the details a bit differently.
-
+\section{Prerequisites.}
 \makedefinition{Convective derivative.}{dfn:more_feynmans_trick:1}{
 The convective derivative,
 of \( \phi(t, \Bx(t)) \) is defined as
@@ -160,7 +158,7 @@ The \( \Bb \) constant case is trivial to prove.  We use \( \Ba \cdot \lr{ \Bb \
 \Bb \cdot \lr{ \dot{\spacegrad} \wedge \dot{\Ba} }
 = \lr{ \Bb \cdot \dot{\spacegrad} } \dot{\Ba} - \dot{\spacegrad} \lr{ \dot{\Ba} \cdot \Bb }.  \end{equation}
 Rearrangement proves that \( \Bb \) constant identity.  The more general statement follows from a chain rule evaluation of the gradient, holding each vector constant in turn
-\begin{equation}\label{eqn:more_feynmans_trick:n}
+\begin{equation}\label{eqn:more_feynmans_trick:320}
 \spacegrad \lr{ \Ba \cdot \Bb }
 =
 \dot{\spacegrad} \lr{ \dot{\Ba} \cdot \Bb }
@@ -169,11 +167,23 @@ Rearrangement proves that \( \Bb \) constant identity.  The more general stateme
 \end{equation}
 \end{proof}
 
-We now have our prerequisite tools, and can proceed to evaluate
-\begin{equation}\label{eqn:more_feynmans_trick:220}
-\ddt{} \int_{C(t)} \Bf \cdot d\Bx.
-\end{equation}
-We assume that the path is parameterized by \( \Bx(\lambda) \), so \( d\Bx = \PDi{\lambda}{\Bx} d\lambda \), that the points of our curve \( C(t) \) are moving through space at a velocity \( \Bv(\Bx(\lambda)) \).  We assume that the vector function \( \Bf = \Bf(t, \Bx(\lambda)) \) is a function of both space and time, and indirectly, through the space dependency, a function of the parameter lambda.  We probably also must assume that the curve is continuous (are any other characteristics also required?) with end points \( [\lambda_1, \lambda_2] \).  That is
+\section{Time derivative of a line integral of a vector field.}
+We now have all our tools assembled, and can proceed to evaluate the derivative of the line integral.  We want to show that
+\maketheorem{}{thm:more_feynmans_trick:2a}{
+Given a path parameterized by \( \Bx(\lambda) \), where \( d\Bx = (\PDi{\lambda}{\Bx}) d\lambda \), with points along a \( C(t) \) moving through space at a velocity \( \Bv(\Bx(\lambda)) \), and a vector function \( \Bf = \Bf(t, \Bx(\lambda)) \),
+\begin{equation*}
+\ddt{} \int_{C(t)} \Bf \cdot d\Bx =
+\int_{C(t)} \lr{
+   \PD{t}{\Bf} + \spacegrad \lr{ \Bf \cdot \Bv } + \Bv \cdot \lr{ \spacegrad \wedge \Bf}
+} \cdot d\Bx
+\end{equation*}
+} % theorem
+\begin{proof}
+%It is worthwhile to work through the analysis from the text in question for the (scalar) line integral case in detail.  I'll do so here, but will handle some of the details a bit differently.
+%\begin{equation}\label{eqn:more_feynmans_trick:220}
+%\ddt{} \int_{C(t)} \Bf \cdot d\Bx.
+%\end{equation}
+I'm going to avoid thinking about the rigorous details, like any requirements for curve continuity and smoothness.  We will however, specify that the end points are given by \( [\lambda_1, \lambda_2] \).  Expanding out the parameterization, we seek to evaluate
 \begin{equation}\label{eqn:more_feynmans_trick:240}
 \int_{C(t)} \Bf \cdot d\Bx
 =
@@ -249,7 +259,28 @@ Substitution gives
 } \cdot d\Bx,
 \end{aligned}
 \end{equation}
-where the last simplification utilizes \cref{lemma:more_feynmans_trick:1}.  Since \( \Ba \cdot \lr{ \Bb \wedge \Bc } = -\Ba \cross \lr{ \Bb \cross \Bc } \), we have recovered \cref{eqn:more_feynmans_trick:20}.
+where the last simplification utilizes \cref{lemma:more_feynmans_trick:1}.
+\end{proof}
+
+Since \( \Ba \cdot \lr{ \Bb \wedge \Bc } = -\Ba \cross \lr{ \Bb \cross \Bc } \), observe that we have also recovered \cref{eqn:more_feynmans_trick:20}.
+\section{Time derivative of a line integral of a bivector field.}
+For a bivector line integral, we have
+\maketheorem{}{thm:more_feynmans_trick:2}{
+Given a path parameterized by \( \Bx(\lambda) \), where \( d\Bx = (\PDi{\lambda}{\Bx}) d\lambda \), with points along a \( C(t) \) moving through space at a velocity \( \Bv(\Bx(\lambda)) \), and a bivector function \( B = B(t, \Bx(\lambda)) \),
+\begin{equation*}
+\ddt{} \int_{C(t)} B \cdot d\Bx =
+\int_{C(t)}
+   \PD{t}{B} \cdot d\Bx + \lr{ d\Bx \cdot \spacegrad } \lr{ B \cdot \Bv } + \lr{ \lr{ \Bv \wedge d\Bx } \cdot \spacegrad } \cdot B.
+\end{equation*}
+} % theorem
+\begin{proof}
+Skipping the steps that follow our previous proceedure exactly, we have
+\begin{equation}\label{eqn:more_feynmans_trick:340}
+\ddt{} \int_{C(t)} B \cdot d\Bx =
+\int_{C(t)}
+   \PD{t}{B} \cdot d\Bx + \lr{ \Bv \cdot \spacegrad } B \cdot d\Bx + B \cdot d\Bv
+\end{equation}
+\end{proof}
 
 %}
 \EndArticle

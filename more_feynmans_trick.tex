@@ -119,44 +119,49 @@ but that is just a sum of derivitives, which can be evaluated by chain rule
 \end{aligned}
 \end{equation}
 \end{proof}
+\makedefinition{Hestenes overdot notation.}{dfn:more_feynmans_trick:2}{
+We may use a dot or a tick with a derivative operator, to designate the scope of that operator, allowing it to operate bidirectionally, or in a restricted fashion, holding specific multivector elements constant.  This is called the Hestenes overdot notation.
+
+Illustrating by example, with multivectors \( F, G \), and allowing the gradient to act bidirectionally, we have
+\begin{equation*}
+\begin{aligned}
+F \spacegrad G
+&=
+\dot{F} \dot{\spacegrad} G
++
+F \dot{\spacegrad} \dot{G} \\
+&=
+\sum_i \lr{ \partial_i F } \Be_i G + \sum_i F \Be_i \lr{ \partial_i G }.
+\end{aligned}
+\end{equation*}
+The last step is a precise statement of the meaning of the overdot notation, showing that we hold the position of the vector elements of the gradient constant, while the (scalar) partials are allowed to commute, acting on the designated elements.
+} % definition
 We will need one additional identity
 \makelemma{Gradient of dot product (one constant vector.)}{lemma:more_feynmans_trick:1}{
-Given vector \( \Bf \) and constant vector \( \Bc \), the gradient of their dot product is given by
+Given vectors \( \Ba, \Bb \) the gradient of their dot product is given by
 \begin{equation*}
-\spacegrad \lr{ \Bf \cdot \Bc } = \lr{ \Bc \cdot \spacegrad } \Bf + \Bc \cdot \lr{ \spacegrad \wedge \Bf }.
+\spacegrad \lr{ \Ba \cdot \Bb }
+= \lr{ \Bb \cdot \spacegrad } \Ba + \Bb \cdot \lr{ \spacegrad \wedge \Ba }
++ \lr{ \Ba \cdot \spacegrad } \Bb + \Ba \cdot \lr{ \spacegrad \wedge \Bb }.
+\end{equation*}
+If \( \Bb \) is constant, this reduces to
+\begin{equation*}
+\spacegrad \lr{ \Ba \cdot \Bb }
+=
+\dot{\spacegrad} \lr{ \dot{\Ba} \cdot \Bb }
+= \lr{ \Bb \cdot \spacegrad } \Ba + \Bb \cdot \lr{ \spacegrad \wedge \Ba }.
 \end{equation*}
 } % lemma
-We can write this identity using the Hestenes overdot notation, where the dots indicate restriction in scope of the derivative operator
-\begin{equation*}
-\dot{\spacegrad} \lr{ \dot{\Bf} \cdot \Bc } = \lr{ \Bc \cdot \spacegrad } \Bf + \Bc \cdot \lr{ \spacegrad \wedge \Bf }.
-\end{equation*}
 \begin{proof}
-To prove \cref{lemma:more_feynmans_trick:1} we really just need to look up the identity for the gradient of a dot product \citep{pjootGAEE}, which is
+The \( \Bb \) constant case is trivial to prove.  We use \( \Ba \cdot \lr{ \Bb \wedge \Bc } = \lr{ \Ba \cdot \Bb} \Bc - \Bb \lr{ \Ba \cdot \Bc } \), and simply expand the vector, curl dot product
 \begin{equation}\label{eqn:more_feynmans_trick:200}
-\spacegrad \lr{ \Bf \cdot \Bc }
+\Bb \cdot \lr{ \spacegrad \wedge \Ba }
 =
-\lr{ \Bf \cdot \spacegrad } \Bc
-+
-\lr{ \Bc \cdot \spacegrad } \Bf
-+
-\lr{ \spacegrad \wedge \Bc }
-\cdot
-\Bf
-+
-\lr{ \spacegrad \wedge \Bf }
-\cdot
-\Bc,
-\end{equation}
-If \( \Bc \) is constant, we are left with
-\begin{equation}\label{eqn:more_feynmans_trick:220}
-\dot{\spacegrad} \lr{ \dot{\Bf} \cdot \Bc }
+\Bb \cdot \lr{ \dot{\spacegrad} \wedge \dot{\Ba} }
 =
-\lr{ \Bc \cdot \spacegrad } \Bf
-+
-\Bc
-\cdot
-\lr{ \spacegrad \wedge \Bf }.
+\lr{ \Bb \cdot \dot{\spacegrad} } \dot{\Ba} - \dot{\spacegrad} \lr{ \dot{\Ba} \cdot \Bb }.
 \end{equation}
+Rearrangement proves that \( \Bb \) constant identity.  The more general statement is just a superposition of the \( \Ba \) constant case and the \( \Bb \) constant case, and follows trivially.
 \end{proof}
 
 %}

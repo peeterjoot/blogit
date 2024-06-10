@@ -278,9 +278,70 @@ Skipping the steps that follow our previous proceedure exactly, we have
 \begin{equation}\label{eqn:more_feynmans_trick:340}
 \ddt{} \int_{C(t)} B \cdot d\Bx =
 \int_{C(t)}
-   \PD{t}{B} \cdot d\Bx + \lr{ \Bv \cdot \spacegrad } B \cdot d\Bx + B \cdot d\Bv
+   \PD{t}{B} \cdot d\Bx + \lr{ \Bv \cdot \spacegrad } B \cdot d\Bx + B \cdot d\Bv.
 \end{equation}
+Since
+\begin{equation}\label{eqn:more_feynmans_trick:360}
+\begin{aligned}
+B \cdot d\Bv
+&= B \cdot \PD{\lambda}{\Bv} d\lambda \\
+&= B \cdot \PD{x_i}{\Bv} \PD{\lambda}{x_i} d\lambda \\
+&= B \cdot \lr{ \lr{ d\Bx \cdot \spacegrad } \Bv },
+\end{aligned}
+\end{equation}
+we have
+\begin{equation}\label{eqn:more_feynmans_trick:380}
+\ddt{} \int_{C(t)} B \cdot d\Bx
+=
+\int_{C(t)}
+   \PD{t}{B} \cdot d\Bx + \lr{ \Bv \cdot \spacegrad } B \cdot d\Bx + B \cdot \lr{ \lr{ d\Bx \cdot \spacegrad } \Bv } \\
+\end{equation}
+Let's reduce the two last terms in this integrand
+\begin{equation}\label{eqn:more_feynmans_trick:400}
+\begin{aligned}
+\lr{ \Bv \cdot \spacegrad } B \cdot d\Bx + B \cdot \lr{ \lr{ d\Bx \cdot \spacegrad } \Bv }
+&=
+\lr{ \Bv \cdot \spacegrad } B \cdot d\Bx -
+\lr{ d\Bx \cdot \dot{\spacegrad} } \lr{ \dot{\Bv} \cdot B } \\
+&=
+\lr{ \Bv \cdot \spacegrad } B \cdot d\Bx
+- \lr{ d\Bx \cdot \spacegrad} \lr{ \Bv \cdot B }
++ \lr{ d\Bx \cdot \dot{\spacegrad} } \lr{ \Bv \cdot \dot{B} } \\
+&=
+\lr{ d\Bx \cdot \spacegrad} \lr{ B \cdot \Bv }
++ \lr{ \Bv \cdot \dot{\spacegrad} } \dot{B} \cdot d\Bx
++ \lr{ d\Bx \cdot \dot{\spacegrad} } \lr{ \Bv \cdot \dot{B} } \\
+&=
+\lr{ d\Bx \cdot \spacegrad} \lr{ B \cdot \Bv }
++ \lr{ \Bv \lr{ d\Bx \cdot \spacegrad } - d\Bx \lr{ \Bv \cdot \spacegrad } } \cdot B \\
+&=
+\lr{ d\Bx \cdot \spacegrad} \lr{ B \cdot \Bv }
++ \lr{ \lr{ \Bv \wedge d\Bx } \cdot \spacegrad } \cdot B.
+\end{aligned}
+\end{equation}
+Back substitution finishes the job.
 \end{proof}
+\section{Time derivative of a multivector line integral.}
+\maketheorem{Time derivative of multivector line integral.}{thm:more_feynmans_trick:3}{
+Given a path parameterized by \( \Bx(\lambda) \), where \( d\Bx = (\PDi{\lambda}{\Bx}) d\lambda \), with points along a \( C(t) \) moving through space at a velocity \( \Bv(\Bx(\lambda)) \), and multivector functions \( M = M(t, \Bx(\lambda)), N = N(t, \Bx(\lambda)) \),
+\begin{equation*}
+\ddt{} \int_{C(t)} M d\Bx N =
+\int_{C(t)}
+   \frac{D}{D t} M d\Bx N + M \lr{ d\Bx \cdot \spacegrad } N,
+\end{equation*}
+where the derivative operators act bidirectionally on \( M, N \).
+} % theorem
+Proof is left to the reader, but follows the patterns above.  Written out explicitly for clarity, we have
+\begin{equation}\label{eqn:more_feynmans_trick:420}
+\ddt{} \int_{C(t)} M d\Bx N =
+\int_{C(t)}
+   \PD{t}{M} d\Bx N + M d\Bx \PD{t}{N}
+   + \dot{M} \lr{ \Bv \cdot \dot{\spacegrad} } N
+   + M \lr{ \Bv \cdot \dot{\spacegrad} } \dot{N}
+   + \dot{M} \lr{ d\Bx \cdot \dot{\spacegrad} } N
+   + M \lr{ d\Bx \cdot \dot{\spacegrad} } \dot{N}.
+\end{equation}
+It's not obvious whether there is a nice way to reduce this, as we did for the scalar valued line integral of a vector function, and the vector valued line integral of a bivector function.  In particular, our vector and bivector results had \( \spacegrad \lr{ \Bf \cdot \Bv } \), and \( \spacegrad \lr{ B \cdot \Bv } \) terms respectively, which allows for the boundary term to be evaluated using Stokes' theorem.  Is such a manipulation possible here?
 
 %}
 \EndArticle

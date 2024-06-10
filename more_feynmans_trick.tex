@@ -327,20 +327,21 @@ Given a path parameterized by \( \Bx(\lambda) \), where \( d\Bx = (\PDi{\lambda}
 \begin{equation*}
 \ddt{} \int_{C(t)} M d\Bx N =
 \int_{C(t)}
-   \frac{D}{D t} M d\Bx N + M \lr{ d\Bx \cdot \spacegrad } N,
+   \frac{D}{D t} M d\Bx N + M \lr{ \lr{ d\Bx \cdot \dot{\spacegrad} } \dot{\Bv} } N.
 \end{equation*}
-where the derivative operators act bidirectionally on \( M, N \).
 } % theorem
-Proof is left to the reader, but follows the patterns above.  Written out explicitly for clarity, we have
+It is useful to write this out explicitly for clarity
 \begin{equation}\label{eqn:more_feynmans_trick:420}
 \ddt{} \int_{C(t)} M d\Bx N =
 \int_{C(t)}
    \PD{t}{M} d\Bx N + M d\Bx \PD{t}{N}
    + \dot{M} \lr{ \Bv \cdot \dot{\spacegrad} } N
    + M \lr{ \Bv \cdot \dot{\spacegrad} } \dot{N}
-   + \dot{M} \lr{ d\Bx \cdot \dot{\spacegrad} } N
-   + M \lr{ d\Bx \cdot \dot{\spacegrad} } \dot{N}.
+   + M \lr{ \lr{ d\Bx \cdot \dot{\spacegrad} } \dot{\Bv} } N.
 \end{equation}
+
+Proof is left to the reader, but follows the patterns above.  
+
 It's not obvious whether there is a nice way to reduce this, as we did for the scalar valued line integral of a vector function, and the vector valued line integral of a bivector function.  In particular, our vector and bivector results had \( \spacegrad \lr{ \Bf \cdot \Bv } \), and \( \spacegrad \lr{ B \cdot \Bv } \) terms respectively, which allows for the boundary term to be evaluated using Stokes' theorem.  Is such a manipulation possible here?
 \section{Coming later:  surface integrals!}
 

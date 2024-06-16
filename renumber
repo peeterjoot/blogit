@@ -330,3 +330,5 @@
 
 ../latex/bin/lgrep more_feynmans_trick.tex | tee o ; . ./o
 perl -p -i ../latex/bin/latexRegex.pl more_feynmans_trick.tex
+../latex/bin/lgrep collisionproblem.tex | tee o ; . ./o
+perl -p -i ../latex/bin/latexRegex.pl collisionproblem.tex

@@ -1,0 +1,130 @@
+%
+% Copyright © 2024 Peeter Joot.  All Rights Reserved.
+% Licenced as described in the file LICENSE under the root directory of this GIT repository.
+%
+%{
+\input{../latex/blogpost.tex}
+\renewcommand{\basename}{collisionproblem}
+%\renewcommand{\dirname}{notes/phy1520/}
+\renewcommand{\dirname}{notes/ece1228-electromagnetic-theory/}
+%\newcommand{\dateintitle}{}
+%\newcommand{\keywords}{}
+
+\input{../latex/peeter_prologue_print2.tex}
+
+\usepackage{peeters_layout_exercise}
+\usepackage{peeters_braket}
+\usepackage{peeters_figures}
+\usepackage{siunitx}
+\usepackage{verbatim}
+%\usepackage{mhchem} % \ce{}
+%\usepackage{macros_bm} % \bcM
+%\usepackage{macros_qed} % \qedmarker
+%\usepackage{txfonts} % \ointclockwise
+
+\beginArtNoToc
+
+\generatetitle{A collision problem.}
+%\chapter{A collision problem.}
+%\label{chap:collisionproblem}
+
+Karl's studying for his grade 12 physics final, and I picked out some problems from his text \citep{nelsonphysics12} for him to work on.  Here's one, \cref{fig:collisionProblem:collisionProblemFig1}, that he made a numerical error with.
+\imageFigure{../figures/blogit/collisionProblemFig1}{The collision problem.}{fig:collisionProblem:collisionProblemFig1}{0.3}
+
+I solved this two ways, the first was quick and dirty using Mathematica, so he could check his answer against a number, and then while he was working on it, I also tried it on paper.  I found the specific numeric values annoying to work with, so tackled the slightly more general problem of an object of mass \( m_1 \) colliding with an object of mass \( m_2 \) initially at rest, and determined the final velocities of both.
+
+If we want to solve this, we start with a plain old conservation of energy relationship, with initial potential energy, equal to pre-collision kinetic energy
+\begin{equation}\label{eqn:collisionproblem:20}
+m_1 g h = \inv{2} m_1 v^2,
+\end{equation}
+where for this problem \( h = 3 - 3 \cos(\pi/3) = 1.5 \,\si{m} \), and \( m_1 = 4 \,\si{kg} \).  This gives us big ball's pre-collision velocity
+\begin{equation}\label{eqn:collisionproblem:40}
+v = \sqrt{2 g m_1}.
+\end{equation}
+
+For the collision part of the problem, we have energy and momentum balance equations
+\begin{equation}\label{eqn:collisionproblem:60}
+\begin{aligned}
+\inv{2} m_1 v^2 &= \inv{2} m_1 v_1^2 + \inv{2} m_2 v_2^2 \\
+m_1 v &=  m_1 v_1 +  m_2 v_2.
+\end{aligned}
+\end{equation}
+Clearly, the ratio of masses is more interesting than the masses themselves, so let's write
+\begin{equation}\label{eqn:collisionproblem:80}
+\mu = \frac{m_1}{m_2}.
+\end{equation}
+For the specific problem at hand, this is a value of \( \mu = 2 \), but let's not plug that in now, instead writing
+\begin{equation}\label{eqn:collisionproblem:100}
+\begin{aligned}
+\mu v^2 &= \mu v_1^2 + v_2^2 \\
+\mu \lr{ v - v_1 } &= v_2,
+\end{aligned}
+\end{equation}
+so
+\begin{equation}\label{eqn:collisionproblem:120}
+v^2 = v_1^2 + \mu \lr{ v - v_1 }^2,
+\end{equation}
+or
+\begin{equation}\label{eqn:collisionproblem:140}
+v_1^2 \lr{ 1 + \mu } - 2 \mu v v_1 = v^2 \lr{ 1 - \mu }.
+\end{equation}
+Completing the square gives
+%v_1^2 - 2 \frac{\mu}{1 + \mu} v v_1 = v^2 \frac{ 1 - \mu }{1 + \mu}.
+\begin{equation}\label{eqn:collisionproblem:160}
+\lr{ v_1 - \frac{\mu}{1 + \mu} v  }^2 = \frac{\mu^2}{(1 + \mu)^2} v^2 + v^2 \frac{ 1 - \mu }{1 + \mu},
+\end{equation}
+or
+\begin{equation}\label{eqn:collisionproblem:180}
+\begin{aligned}
+\frac{v_1}{v}
+&= \frac{\mu}{1 + \mu} \pm \inv{1 + \mu} \sqrt{ \mu^2 + 1 - \mu^2 } \\
+&= \frac{\mu \pm 1}{1 + \mu}.
+\end{aligned}
+\end{equation}
+Our second velocity, relative to the initial, is
+\begin{equation}\label{eqn:collisionproblem:200}
+\begin{aligned}
+\frac{v_2}{v}
+&= \mu \lr{ 1 - \frac{v_1}{v} } \\
+&= \mu \lr{ 1 - \frac{\mu \pm 1}{1 + \mu} } \\
+&= \mu \frac{ 1 + \mu - \mu \mp 1 }{1 + \mu} \\
+&= \mu \frac{ 1 \mp 1 }{1 + \mu}.
+\end{aligned}
+\end{equation}
+
+The post collision velocities are
+\begin{equation}\label{eqn:collisionproblem:220}
+\begin{aligned}
+v_1 &= \frac{\mu \pm 1}{1 + \mu} v \\
+v_2 &= \mu v \frac{ 1 \mp 1 }{1 + \mu},
+\end{aligned}
+\end{equation}
+but we see the equations describe one scenario that doesn't make sense physically, because the positive case, describes the first mass teleporting through and past the second mass, and continuing merrily on its way with its initial velocity.  That means that our final solution is
+\begin{equation}\label{eqn:collisionproblem:240}
+\begin{aligned}
+v_1 &= \frac{\mu - 1}{1 + \mu} v \\
+v_2 &= 2 \frac{ \mu }{1 + \mu} v,
+\end{aligned}
+\end{equation}
+For the original problem, that is \( v_1 = 2 v / 3 \) and \( v_2 = 4 v /3 \), where \( v = \sqrt{ 2(9.8) 1.5 } \,\si{m/s} \).
+
+For the post-collision heights part of the question, we have
+\begin{equation}\label{eqn:collisionproblem:n}
+\begin{aligned}
+\inv{2} m_1 \lr{ \frac{2 v}{3} }^2 &= m_1 g h_1 \\
+\inv{2} m_2 \lr{ \frac{4 v}{3} }^2 &= m_2 g h_1,
+\end{aligned}
+\end{equation}
+or
+\begin{equation}\label{eqn:collisionproblem:n}
+\begin{aligned}
+h_1 &= \frac{2}{9} \frac{v^2}{g} = \frac{4}{9} h \\
+h_2 &= \frac{8}{9} \frac{v^2}{g} = \frac{16}{9} h,
+\end{aligned}
+\end{equation}
+where \( h = 1.5 \,\si{m} \).
+
+The original question doesn't ask for the second, or Nth, collision.  That would be a bit more fun to try.
+
+%}
+\EndArticle

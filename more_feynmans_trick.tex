@@ -330,17 +330,25 @@ Given a path parameterized by \( \Bx(\lambda) \), where \( d\Bx = (\PDi{\lambda}
    \frac{D}{D t} M d\Bx N + M \lr{ \lr{ d\Bx \cdot \dot{\spacegrad} } \dot{\Bv} } N.
 \end{equation*}
 } % theorem
-It is useful to write this out explicitly for clarity
+Proof is left to the reader, but follows the patterns above.
+
+It might be tempting to write this identity explicitly using the Hestenes dot notation explicitly, as in
 \begin{equation}\label{eqn:more_feynmans_trick:420}
 \ddt{} \int_{C(t)} M d\Bx N =
 \int_{C(t)}
    \PD{t}{M} d\Bx N + M d\Bx \PD{t}{N}
    + \dot{M} \lr{ \Bv \cdot \dot{\spacegrad} } N
    + M \lr{ \Bv \cdot \dot{\spacegrad} } \dot{N}
-   + M \lr{ \lr{ d\Bx \cdot \dot{\spacegrad} } \dot{\Bv} } N.
+   + M \lr{ \lr{ d\Bx \cdot \dot{\spacegrad} } \dot{\Bv} } N,
 \end{equation}
-
-Proof is left to the reader, but follows the patterns above.  
+but since \( D/Dt\) and \( \Bv \cdot \spacegrad \) are both scalar operators, this can be reduced to
+\begin{equation}\label{eqn:more_feynmans_trick:440}
+\ddt{} \int_{C(t)} M d\Bx N =
+\int_{C(t)}
+   \PD{t}{} M d\Bx N + \lr{ \Bv \cdot \spacegrad } M d\Bx N + M
+   + M \lr{ \lr{ d\Bx \cdot \spacegrad } \Bv } N,
+\end{equation}
+where the braces on the last term are understood to restrict the action of the directed derivative to act only on \( \Bv \).
 
 It's not obvious whether there is a nice way to reduce this, as we did for the scalar valued line integral of a vector function, and the vector valued line integral of a bivector function.  In particular, our vector and bivector results had \( \spacegrad \lr{ \Bf \cdot \Bv } \), and \( \spacegrad \lr{ B \cdot \Bv } \) terms respectively, which allows for the boundary term to be evaluated using Stokes' theorem.  Is such a manipulation possible here?
 \section{Coming later:  surface integrals!}

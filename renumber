@@ -328,9 +328,14 @@
 #../latex/bin/lgrep LeibnizIntegralTheorem.tex | tee o ; . ./o
 #perl -p -i ../latex/bin/latexRegex.pl LeibnizIntegralTheorem.tex
 
-../latex/bin/lgrep more_feynmans_trick.tex | tee o ; . ./o
-perl -p -i ../latex/bin/latexRegex.pl more_feynmans_trick.tex
-../latex/bin/lgrep collisionproblem.tex | tee o ; . ./o
-perl -p -i ../latex/bin/latexRegex.pl collisionproblem.tex
-../latex/bin/lgrep cuberootsimplify.tex | tee o ; . ./o
-perl -p -i ../latex/bin/latexRegex.pl cuberootsimplify.tex
+#../latex/bin/lgrep more_feynmans_trick.tex | tee o ; . ./o
+#perl -p -i ../latex/bin/latexRegex.pl more_feynmans_trick.tex
+
+#../latex/bin/lgrep collisionproblem.tex | tee o ; . ./o
+#perl -p -i ../latex/bin/latexRegex.pl collisionproblem.tex
+
+#../latex/bin/lgrep cuberootsimplify.tex | tee o ; . ./o
+#perl -p -i ../latex/bin/latexRegex.pl cuberootsimplify.tex
+
+../latex/bin/lgrep fibonacci_sinh.tex | tee o ; . ./o
+perl -p -i ../latex/bin/latexRegex.pl fibonacci_sinh.tex

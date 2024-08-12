@@ -1,0 +1,150 @@
+%
+% Copyright © 2024 Peeter Joot.  All Rights Reserved.
+% Licenced as described in the file LICENSE under the root directory of this GIT repository.
+%
+%{
+\input{../latex/blogpost.tex}
+\renewcommand{\basename}{containedArea}
+%\renewcommand{\dirname}{notes/phy1520/}
+\renewcommand{\dirname}{notes/ece1228-electromagnetic-theory/}
+%\newcommand{\dateintitle}{}
+%\newcommand{\keywords}{}
+
+\input{../latex/peeter_prologue_print2.tex}
+
+\usepackage{peeters_layout_exercise}
+\usepackage{peeters_braket}
+\usepackage{peeters_figures}
+\usepackage{siunitx}
+\usepackage{verbatim}
+%\usepackage{mhchem} % \ce{}
+%\usepackage{macros_bm} % \bcM
+%\usepackage{macros_qed} % \qedmarker
+\usepackage{txfonts} % \ointclockwise
+
+\beginArtNoToc
+
+\generatetitle{Area within closed boundary}
+%\chapter{Area within closed boundary}
+%\label{chap:containedArea}
+
+\section{Motivation.}
+I'm on vacation and was reading more of \citep{byron1992mca}.  It was mentioned in passing that the area contained within a closed parameterized curve is given by
+\begin{equation}\label{eqn:containedArea:20}
+A = \inv{2} \int_{t_0}^{t_1} \lr{x y' - y x'} dt,
+\end{equation}
+where \( x = x(t), y = y(t), t \in [t_0, t_1] \).  This has the look of a Stokes theorem coordinate expansion (specifically, the Green's theorem special case of Stokes'), but with somewhat mysterious looking factor of one half out in front.  My aim in this post is to understand the origins of this area relationship, and play with it a bit.  The one half factor makes some sense, because each term in the integrand is roughly (ignoring sign) has the structure of an area integrand \( x y' dt \sim x dy, \, y x' dt \sim y dx \).
+
+The book suggests that the reader verify this for a circular parameterization, so we'll do that here too.
+\section{Circular coordinates.}
+Let's let
+\begin{equation}\label{eqn:containedArea:40}
+\begin{aligned}
+x(t) &= r \cos t \\
+y(t) &= r \sin t,
+\end{aligned}
+\end{equation}
+where \( t \in [0, 2 \pi] \).  Plugging in this, we have
+\begin{equation}\label{eqn:containedArea:60}
+\begin{aligned}
+A
+&= \inv{2} \int_0^{2 \pi} \lr{ r \cos t \lr{ r \cos t } - r \sin t \lr{ - r \sin t } } dt \\
+&= \frac{r^2}{2} \int_0^{2 \pi} \lr{ \cos^2 t + \sin^2 t } dt \\
+&= \frac{2 \pi r^2}{2} \\
+&= \pi r^2.
+\end{aligned}
+\end{equation}
+Okay, all is good.
+\section{Can we discover this relationship using the Jacobian?}
+Graphically, I can imagine that we could find this area relationship, by considering a parameterization of a family of nested closed curves, as depicted in \cref{fig:familyOfnestedClosedCurves:familyOfnestedClosedCurvesFig1}.
+
+\imageFigure{../figures/blogit/familyOfnestedClosedCurvesFig1}{Family of nested closed curves.}{fig:familyOfnestedClosedCurves:familyOfnestedClosedCurvesFig1}{0.3}
+
+For such a parameterization, calculating the area is just a Jacobian evaluation
+\begin{equation}\label{eqn:containedArea:80}
+\begin{aligned}
+A
+&= \iint \frac{\partial(x, y)}{\partial(u,t)} du dt \\
+&= \iint \lr{ \PD{u}{x} \PD{t}{y} - \PD{u}{y} \PD{t}{x} } du dt \\
+&= \iint \lr{ \PD{u}{x} y' - \PD{u}{y} x' } du dt.
+\end{aligned}
+\end{equation}
+Let's try to eliminate the \( u \) derivatives using integration by parts, and see what we get.
+\begin{equation}\label{eqn:containedArea:100}
+\begin{aligned}
+A
+&= \iint \lr{ \PD{u}{x} y' - \PD{u}{y} x' } du dt \\
+&= \iint \frac{d}{du} \lr{ x y' - y x' } du dt - \iint \lr{ x \PD{u}{y'} - y \PD{u}{x'} } du dt \\
+&= \int \lr{ x y' - y x' } dt - \iint \lr{ x \PD{u}{y'} - y \PD{u}{x'} } du dt.
+\end{aligned}
+\end{equation}
+This is interesting, as we find the area equation that we are interested (times two), but we have a strange new area equation.  Essentially, we have found, assuming we trust the claim in the book, that
+\begin{equation}\label{eqn:containedArea:120}
+A = 2 A - \iint \lr{ x \PD{u}{y'} - y \PD{u}{x'} } du dt,
+\end{equation}
+so it seems that the area can also be expressed as
+\begin{equation}\label{eqn:containedArea:140}
+A = \iint \lr{ x \frac{\partial^2 y}{\partial u \partial t} - y \frac{\partial^2 x}{\partial u \partial t} } du dt.
+\end{equation}
+Let's again use the circular parameterization to verify that this works.  I won't try to prove this directly, but instead, we'll use Stokes' theorem to proove the stated result, from which we get this second derivative area formula as a side effect by virtue of our integration by parts expansion above.
+
+For the circular parameterization, we have
+\begin{equation}\label{eqn:containedArea:160}
+\begin{aligned}
+A
+&= \int_{r = 0}^R dr \int_{t = 0}^{2 \pi} dt \lr{ x \frac{\partial^2 y}{\partial r \partial t} - y \frac{\partial^2 x}{\partial r \partial t} } \\
+&= \int_{r = 0}^R dr \int_{t = 0}^{2 \pi} dt \lr{ r \cos t \frac{\partial \sin t}{\partial t} - r \sin t \frac{\partial \cos t}{\partial t} } \\
+&= \int_{r = 0}^R r dr \int_{t = 0}^{2 \pi} dt \lr{ \cos^2 t + \sin^2 t } \\
+&= \frac{R^2}{2} 2 \pi \\
+&= \pi R^2.
+\end{aligned}
+\end{equation}
+This checks out, at least for this one specific circular parameterization.
+\section{Area formula derivation using Stokes' theorem.}
+Recall that the two parameter integration theorem has the form
+\begin{equation}\label{eqn:containedArea:180}
+\iint F d^2 \Bx \lrpartial G = -\ointctrclockwise F d\Bx G.
+\end{equation}
+With \( F = 1, G = \Bf \), Stokes' theorem follows by application of scalar selection
+\begin{equation}\label{eqn:containedArea:200}
+\iint \gpgradezero{ d^2 \Bx \partial \Bf } = -\ointctrclockwise d\Bx \cdot \Bf,
+\end{equation}
+or
+\begin{equation}\label{eqn:containedArea:220}
+\iint d^2 \Bx \cdot \lr{ \partial \wedge \Bf } = -\ointctrclockwise d\Bx \cdot \Bf,
+\end{equation}
+
+Recall that Green's theorem, follows by applying Stokes theorem to a planar parameterization, say \( \Bf = L \Be_1 + M \Be_2 \).  Assuming a rectangular parameterization, the LHS expands to
+\begin{equation}\label{eqn:containedArea:240}
+\begin{aligned}
+\iint d^2 \Bx \cdot \lr{ \partial \wedge \Bf }
+&=
+\iint dx dy \Be_{12}^2
+\begin{vmatrix}
+\partial_1 & \partial_2 \\
+L & M
+\end{vmatrix} \\
+&=
+-\iint dx dy \lr{ \PD{x}{M} - \PD{y}{L} },
+\end{aligned}
+\end{equation}
+so we have
+\begin{equation}\label{eqn:containedArea:260}
+\iint dx dy \lr{ \PD{x}{M} - \PD{y}{L} } = \ointctrclockwise L dx + M dy.
+\end{equation}
+
+If we wish to evaluate an elementary area, we can pick \( L, M \) such that \( \PDi{x}{M} - \PDi{y}{L} = 1 \).  One such selection is
+\begin{equation}\label{eqn:containedArea:280}
+\begin{aligned}
+M &= \frac{x}{2} \\
+L &= -\frac{y}{2},
+\end{aligned}
+\end{equation}
+so
+\begin{equation}\label{eqn:containedArea:300}
+A = \inv{2} \ointctrclockwise -y dx + x dy = \inv{2} \int \lr{ x y' - y x' } dt.
+\end{equation}
+
+%}
+\EndArticle
+%\EndNoBibArticle

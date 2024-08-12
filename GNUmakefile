@@ -29,6 +29,7 @@ endif
 #l : LeibnizIntegralTheorem.pdf
 #m : more_feynmans_trick.pdf
 f : fibonacci_sinh.pdf
+c : containedArea.pdf
 
 #$(THISBOOK).pdf :: $(wildcard *.tex)
 #$(GENERATED_PDFS) :: $(JUSTBOOKDEPENDENCIES) $(LOCAL_FILES) $(GENERATED_SOURCES) $(COPIED_FILES) $(LOCAL_COPIED_FILES) Bibliography.bib

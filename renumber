@@ -337,5 +337,8 @@
 #../latex/bin/lgrep cuberootsimplify.tex | tee o ; . ./o
 #perl -p -i ../latex/bin/latexRegex.pl cuberootsimplify.tex
 
-../latex/bin/lgrep fibonacci_sinh.tex | tee o ; . ./o
-perl -p -i ../latex/bin/latexRegex.pl fibonacci_sinh.tex
+#../latex/bin/lgrep fibonacci_sinh.tex | tee o ; . ./o
+#perl -p -i ../latex/bin/latexRegex.pl fibonacci_sinh.tex
+
+../latex/bin/lgrep containedArea.tex | tee o ; . ./o
+perl -p -i ../latex/bin/latexRegex.pl containedArea.tex

@@ -20,6 +20,7 @@
 %\usepackage{mhchem} % \ce{}
 %\usepackage{macros_bm} % \bcM
 %\usepackage{macros_qed} % \qedmarker
+\usepackage{amsthm} % proof
 \usepackage{txfonts} % \ointclockwise
 
 \beginArtNoToc
@@ -29,15 +30,17 @@
 %\label{chap:containedArea}
 
 \section{Motivation.}
-I'm on vacation and was reading more of \citep{byron1992mca}.  It was mentioned in passing that the area contained within a closed parameterized curve is given by
+On vacation I was reading some more of \citep{byron1992mca}.  It was mentioned in passing that the area contained within a closed parameterized curve is given by
 \begin{equation}\label{eqn:containedArea:20}
 A = \inv{2} \int_{t_0}^{t_1} \lr{x y' - y x'} dt,
 \end{equation}
-where \( x = x(t), y = y(t), t \in [t_0, t_1] \).  This has the look of a Stokes theorem coordinate expansion (specifically, the Green's theorem special case of Stokes'), but with somewhat mysterious looking factor of one half out in front.  My aim in this post is to understand the origins of this area relationship, and play with it a bit.  The one half factor makes some sense, because each term in the integrand is roughly (ignoring sign) has the structure of an area integrand \( x y' dt \sim x dy, \, y x' dt \sim y dx \).
+where \( x = x(t), y = y(t), t \in [t_0, t_1] \).  This has the look of a Stokes theorem coordinate expansion (specifically, the Green's theorem special case of Stokes'), but with somewhat mysterious looking factor of one half out in front.  My aim in this post is to understand the origins of this area relationship, and play with it a bit.
+%.  The one half factor makes some sense, because each term in the integrand is roughly (ignoring sign) has the structure of an area integrand \( x y' dt \sim x dy, \, y x' dt \sim y dx \).
 
+\section{Circular coordinates example.}
 The book suggests that the reader verify this for a circular parameterization, so we'll do that here too.
-\section{Circular coordinates.}
-Let's let
+
+Let
 \begin{equation}\label{eqn:containedArea:40}
 \begin{aligned}
 x(t) &= r \cos t \\
@@ -54,7 +57,44 @@ A
 &= \pi r^2.
 \end{aligned}
 \end{equation}
-Okay, all is good.
+This simple example works out.
+
+\section{Piecewise linear parametrization example.}
+One parameterization of the unit parallelogram depicted in \cref{fig:parallelogram:parallelogramFig2} is
+%\begin{equation}\label{eqn:containedArea:320}
+%\begin{aligned}
+%\Bx &= \Be_1 t, t \in [0,1] \\
+%    &= \Be_1 + \lr{ \Be_1 + \Be_2 } t, t \in [0,1] \\
+%    &= 2 \Be_1 + \Be_2 - \Be_1 t, t \in [0,1] \\
+%    &= \Be_1 + \Be_2 - t \lr{ \Be_1 + \Be_2 }, t \in [0,1],
+%\end{aligned}
+%\end{equation}
+%or
+\begin{equation}\label{eqn:containedArea:340}
+\begin{aligned}
+(x,y) &= (t, 0),\quad t \in [0,1] \\
+      &= (t, t - 1),\quad t \in [1,2] \\
+      &= (4 - t, 1),\quad t \in [2,3] \\
+      &= (4 - t, 4 - t),\quad t \in [3,4]
+\end{aligned}
+\end{equation}
+\imageFigure{../figures/blogit/parallelogramFig2}{Parallelogram with unit area.}{fig:parallelogram:parallelogramFig2}{0.3}
+
+Respective evaluating of \( x y' - y x' \) in each of these regions gives
+\begin{equation}\label{eqn:containedArea:360}
+\begin{aligned}
+(t) (0) - (0)(0) &= 0 \\
+(t) (1) - (t-1)(1) &= 1 \\
+(4-t)(0) - (1)(-1) &= 1 \\
+(4-t)(-1) - (4-t)(-1) &= 0,
+\end{aligned}
+\end{equation}
+and integrating
+\begin{equation}\label{eqn:containedArea:380}
+\inv{2} \int_0^4 \lr{ x y' - y x'} dt = \frac{2}{2} = 1,
+\end{equation}
+as expected.  In this example, the directional derivative is not continuous at the corners of the parallelogram, but that is not a requirement (as it should not be, as the area is well defined despite any corners.)
+
 \section{Can we discover this relationship using the Jacobian?}
 Graphically, I can imagine that we could find this area relationship, by considering a parameterization of a family of nested closed curves, as depicted in \cref{fig:familyOfnestedClosedCurves:familyOfnestedClosedCurvesFig1}.
 
@@ -86,7 +126,7 @@ so it seems that the area can also be expressed as
 \begin{equation}\label{eqn:containedArea:140}
 A = \iint \lr{ x \frac{\partial^2 y}{\partial u \partial t} - y \frac{\partial^2 x}{\partial u \partial t} } du dt.
 \end{equation}
-Let's again use the circular parameterization to verify that this works.  I won't try to prove this directly, but instead, we'll use Stokes' theorem to proove the stated result, from which we get this second derivative area formula as a side effect by virtue of our integration by parts expansion above.
+Let's again use the circular parameterization to verify that this works.  I won't try to prove this directly, but instead, we'll use Stokes' theorem to prove the stated result, from which we get this second derivative area formula as a side effect by virtue of our integration by parts expansion above.
 
 For the circular parameterization, we have
 \begin{equation}\label{eqn:containedArea:160}
@@ -101,23 +141,29 @@ A
 \end{equation}
 This checks out, at least for this one specific circular parameterization.
 \section{Area formula derivation using Stokes' theorem.}
-Recall that the two parameter integration theorem has the form
+\maketheorem{Green's theorem.}{thm:containedArea:400}{
+\begin{equation}\label{eqn:containedArea:260}
+\iint dx dy \lr{ \PD{x}{M} - \PD{y}{L} } = \ointctrclockwise L dx + M dy.
+\end{equation}
+} % theorem
+\begin{proof}
+We start with the general two parameter integration theorem
 \begin{equation}\label{eqn:containedArea:180}
-\iint F d^2 \Bx \lrpartial G = -\ointctrclockwise F d\Bx G.
+\iint F d^2 \Bx \lrpartial G = -\ointctrclockwise F d\Bx G,
 \end{equation}
-With \( F = 1, G = \Bf \), Stokes' theorem follows by application of scalar selection
+set \( F = 1, G = \Bf \), and apply scalar selection
 \begin{equation}\label{eqn:containedArea:200}
-\iint \gpgradezero{ d^2 \Bx \partial \Bf } = -\ointctrclockwise d\Bx \cdot \Bf,
+\iint \gpgradezero{ d^2 \Bx \lrpartial \Bf } = -\ointctrclockwise d\Bx \cdot \Bf,
 \end{equation}
-or
+to find the two parameter form of Stokes' theorem
 \begin{equation}\label{eqn:containedArea:220}
-\iint d^2 \Bx \cdot \lr{ \partial \wedge \Bf } = -\ointctrclockwise d\Bx \cdot \Bf,
+\iint d^2 \Bx \cdot \lr{ \spacegrad \wedge \Bf } = -\ointctrclockwise d\Bx \cdot \Bf,
 \end{equation}
 
-Recall that Green's theorem, follows by applying Stokes theorem to a planar parameterization, say \( \Bf = L \Be_1 + M \Be_2 \).  Assuming a rectangular parameterization, the LHS expands to
+With a planar parameterization, say \( \Bf = L \Be_1 + M \Be_2 \), we have \( d\Bx \cdot \Bf = L dx + M dy \), and for the LHS
 \begin{equation}\label{eqn:containedArea:240}
 \begin{aligned}
-\iint d^2 \Bx \cdot \lr{ \partial \wedge \Bf }
+\iint d^2 \Bx \cdot \lr{ \spacegrad \wedge \Bf }
 &=
 \iint dx dy \Be_{12}^2
 \begin{vmatrix}
@@ -125,14 +171,12 @@ Recall that Green's theorem, follows by applying Stokes theorem to a planar para
 L & M
 \end{vmatrix} \\
 &=
--\iint dx dy \lr{ \PD{x}{M} - \PD{y}{L} },
+-\iint dx dy \lr{ \PD{x}{M} - \PD{y}{L} }.
 \end{aligned}
 \end{equation}
-so we have
-\begin{equation}\label{eqn:containedArea:260}
-\iint dx dy \lr{ \PD{x}{M} - \PD{y}{L} } = \ointctrclockwise L dx + M dy.
-\end{equation}
+\end{proof}
 
+\section{Parameterized area equation.}
 If we wish to evaluate an elementary area, we can pick \( L, M \) such that \( \PDi{x}{M} - \PDi{y}{L} = 1 \).  One such selection is
 \begin{equation}\label{eqn:containedArea:280}
 \begin{aligned}
@@ -144,6 +188,7 @@ so
 \begin{equation}\label{eqn:containedArea:300}
 A = \inv{2} \ointctrclockwise -y dx + x dy = \inv{2} \int \lr{ x y' - y x' } dt.
 \end{equation}
+Clearly, there are other possible choices of \( L, M \) that we could use to find alternate area equations, but this choice seems to be independent of the shape of the region.
 
 %}
 \EndArticle

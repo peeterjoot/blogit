@@ -1,0 +1,104 @@
+%
+% Copyright © 2024 Peeter Joot.  All Rights Reserved.
+% Licenced as described in the file LICENSE under the root directory of this GIT repository.
+%
+%{
+\input{../latex/blogpost.tex}
+\renewcommand{\basename}{rvector}
+%\renewcommand{\dirname}{notes/phy1520/}
+\renewcommand{\dirname}{notes/ece1228-electromagnetic-theory/}
+%\newcommand{\dateintitle}{}
+%\newcommand{\keywords}{}
+
+\input{../latex/peeter_prologue_print2.tex}
+
+\usepackage{peeters_layout_exercise}
+\usepackage{peeters_braket}
+\usepackage{peeters_figures}
+\usepackage{siunitx}
+\usepackage{verbatim}
+%\usepackage{mhchem} % \ce{}
+%\usepackage{macros_bm} % \bcM
+%\usepackage{macros_qed} % \qedmarker
+%\usepackage{txfonts} % \ointclockwise
+
+\beginArtNoToc
+
+\generatetitle{Hestenes r-vector definition}
+%\chapter{Hestenes r-vector definition}
+%\label{chap:rvector}
+
+I don't have the Hestenes STA book, and it's been years since I read some of it at a university library, so I don't know the sequence of arguments that were used in that book.
+
+Here's how I'd approach this.  I'd start with coordinates, which is certainly not what was done in Hestenes.  Let's write
+\begin{equation}\label{eqn:rvector:20}
+\begin{aligned}
+a &= \sum_i a^i e_i \\
+b &= \sum_i b^i e_i,
+\end{aligned}
+\end{equation}
+and then form the product
+\begin{equation}\label{eqn:rvector:40}
+\begin{aligned}
+a b
+&= \lr{ \sum_i a^i e_i } \lr{ \sum_j b^j e_j } \\
+&= \sum_i a^i b^i e_i^2 + \sum_{i < j} \lr{ a^i b^j - a^j b^i } e_i e_j.
+\end{aligned}
+\end{equation}
+Observe that the first term is a scalar (by virtue of the contraction axiom \( x^2 = x \cdot x \)), and the second term has a set of irredicible products of vectors (grade-2, a bivector, or 2-vector.)  The split of a product of two vectors into grade-0 and grade-2 components can be summarized with grade selection notation as
+\begin{equation}\label{eqn:rvector:60}
+a b = \gpgrade{a b}{0} + \gpgradetwo{a b},
+\end{equation}
+where we have seen that
+\begin{equation}\label{eqn:rvector:80}
+\begin{aligned}
+\gpgrade{a b}{0} &= \sum_i a^i b^i e_i^2 \\
+\gpgrade{a b}{2} &= \sum_{i < j} \lr{ a^i b^j - a^j b^i } e_i e_j.
+\end{aligned}
+\end{equation}
+Observe that the grade-0 sum above is symmetric with respect to interchange of \( a, b \), whereas the grade two sum is antisymmetric, that is
+\begin{equation}\label{eqn:rvector:100}
+\begin{aligned}
+\gpgrade{a b}{0} &= \gpgrade{b a}{0} \\
+\gpgrade{a b}{2} &= -\gpgrade{b a}{2}.
+\end{aligned}
+\end{equation}
+Also observe that the the grade-0 term, is in fact the dot product of the two vectors
+\begin{equation}\label{eqn:rvector:120}
+\gpgrade{a b}{0} = \gpgrade{b a}{0} = a \cdot b.
+\end{equation}
+We now introduce shorthand notation for the grade-2 selection of a product of vectors and write
+\begin{equation}\label{eqn:rvector:140}
+a \wedge b \equiv \gpgrade{a b}{2},
+\end{equation}
+where we have seen that \( a \wedge b = -b \wedge a \).
+
+Finally, since
+\begin{equation}\label{eqn:rvector:160}
+\begin{aligned}
+a b &= a \cdot b + a \wedge b \\
+b a &= a \cdot b - a \wedge b,
+\end{aligned}
+\end{equation}
+it's now possible to rearrange for \( a \cdot b \) and \( a \wedge b \), to find
+\begin{equation}\label{eqn:rvector:180}
+\begin{aligned}
+a \cdot b  &= \inv{2} \lr{ a b + b a } \\
+a \wedge b &= \inv{2} \lr{ a b - b a },
+\end{aligned}
+\end{equation}
+expressing the dot and wedge products of two vectors as the symmetric and antisymmetric sums of the products of those vectors.  This form of the wedge product makes it trivial to see that \( a \wedge a = 0 \) and \( a \wedge b = - b \wedge a \).
+
+Now, we want to consider products of a vector with a wedge product of two vectors.  Some thought will show that such a product must split into vector and grade-3 components, which we can write as
+\begin{equation}\label{eqn:rvector:n}
+a \lr{ b \wedge c } = \gpgradeone{ a \lr{ b \wedge c } } + \gpgradethree{ a \lr{ b \wedge c } },
+\end{equation}
+or with \( A_2 = b \wedge c \), as
+\begin{equation}\label{eqn:rvector:n}
+a A_2 = \gpgradeone{ a A_2 } + \gpgradethree{ a A_2 }.
+\end{equation}
+As in the vector-vector case, these grade selections map to symmetric and antisymmetric sums, but we need to determine those mappings.
+
+%}
+%\EndArticle
+\EndNoBibArticle

@@ -342,3 +342,7 @@
 
 #../latex/bin/lgrep containedArea.tex | tee o ; . ./o
 #perl -p -i ../latex/bin/latexRegex.pl containedArea.tex
+../latex/bin/lgrep averagespeedproblem.tex | tee o ; . ./o
+perl -p -i ../latex/bin/latexRegex.pl averagespeedproblem.tex
+../latex/bin/lgrep rvector.tex | tee o ; . ./o
+perl -p -i ../latex/bin/latexRegex.pl rvector.tex

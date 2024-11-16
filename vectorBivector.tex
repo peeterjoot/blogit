@@ -1,0 +1,350 @@
+%
+% Copyright © 2024 Peeter Joot.  All Rights Reserved.
+% Licenced as described in the file LICENSE under the root directory of this GIT repository.
+%
+%{
+\input{../latex/blogpost.tex}
+\renewcommand{\basename}{vectorBivector}
+%\renewcommand{\dirname}{notes/phy1520/}
+\renewcommand{\dirname}{notes/ece1228-electromagnetic-theory/}
+%\newcommand{\dateintitle}{}
+%\newcommand{\keywords}{}
+
+\input{../latex/peeter_prologue_print2.tex}
+
+\usepackage{peeters_layout_exercise}
+\usepackage{peeters_braket}
+\usepackage{peeters_figures}
+\usepackage{siunitx}
+\usepackage{verbatim}
+\usepackage{amsthm} % proof
+%\usepackage{mhchem} % \ce{}
+%\usepackage{macros_bm} % \bcM
+%\usepackage{macros_qed} % \qedmarker
+%\usepackage{txfonts} % \ointclockwise
+
+\beginArtNoToc
+
+\generatetitle{Vector-vector and vector-bivector products in geometric algebra}
+%\chapter{Vector-vector and vector-bivector products in geometric algebra}
+%\label{chap:vectorBivector}
+
+\section{Motivation.}
+I regularly see examples where people are confused about the identities of geometric algebra.  Some texts on the subject present a barrage of identites, and one is left confused about which ones are fundamental, which ones are derived.  People also regularily get confused about identities that apply to vectors, but may not apply to bivectors or multivectors.  I will systemcally examine some of these basic relationships here from first principles.  I will use coordinate representations of vectors here, despite the fact that doing so is considered very rude to do by some geometric algebra practioners.
+
+Let's look at vector-vector products and bivector-vector products without using any identities, and see what we come up with.  We will use the contraction axiom
+\makedefinition{Contraction axiom.}{dfn:vectorBivector:1}{
+Given vector \( \Bx \),
+\begin{equation*}
+\Bx^2 = \Bx \cdot \Bx.
+\end{equation*}
+} % definition
+There are a couple consequences of this that are easy to show.
+\maketheorem{Basis element products.}{thm:vectorBivector:1}{
+Given a standard basis \( \setlr{ \Be_i } \), where \( \Be_i \cdot \Be_j = \delta_{ij} \),
+\begin{equation*}
+\Be_i \Be_i = 1,
+\end{equation*}
+\begin{equation*}
+\Be_i \Be_j = -\Be_j \Be_i, \quad i \ne j.
+\end{equation*}
+} % theorem
+\begin{proof}
+The first obviously follows directly from the contraction axiom.  For the second we may expand the square of \( \Be_i + \Be_j \), where \( i \ne j \), we find that
+\begin{equation}\label{eqn:vectorBivector:21}
+\begin{aligned}
+\lr{ \Be_i + \Be_j }^2 &= \Be_i^2 + \Be_j^2 + \Be_i \Be_j + \Be_j + \Be_i \\
+&= 2 + \Be_i \Be_j + \Be_j + \Be_i
+\end{aligned}
+\end{equation}
+but using the contraction axiom, we also have
+\begin{equation}\label{eqn:vectorBivector:41}
+\begin{aligned}
+\lr{ \Be_i + \Be_j }^2 &= \lr{ \Be_i + \Be_j } \cdot \lr{ \Be_i + \Be_j } \\
+&= 2,
+\end{aligned}
+\end{equation}
+so, comparison shows
+\begin{equation}\label{eqn:vectorBivector:61}
+\Be_i \Be_j + \Be_j + \Be_i = 0.
+\end{equation}
+\end{proof}
+\section{Vector products.}
+With the basics established, we have what we need to understand products of vectors.  Let's start first with a couple examples.
+
+Let \( \By = b \Bx \), where \( b \) is a constant, and \( \Bx \cdot \Bx = a \).  The product \( \Bx \By \) is
+\begin{equation}\label{eqn:vectorBivector:81}
+\begin{aligned}
+\Bx \By
+&= \Bx b \Bx \\
+&= b \Bx^2 \
+&= b \Bx \cdot \Bx \\
+&= b a.
+\end{aligned}
+\end{equation}
+We see that the product of any two colinear vectors is a scalar.
+
+Let \( \Bx = \Be_3, \By = \Be_1 + \Be_2 \).  The product \( \Bx \By \) is
+\begin{equation}\label{eqn:vectorBivector:101}
+\begin{aligned}
+\Bx \By
+&= \Be_3 \lr{ \Be_1 + \Be_2 } \\
+&= \Be_3 \Be_1 + \Be_3 \Be_2.
+\end{aligned}
+\end{equation}
+We see in this case that the product of these perpendicular vectors is a bivector, which is also generally true.
+
+Let \( \Bx = \Be_1, \By = \Be_1 + \Be_2 \).  The product \( \Bx \By \) is
+\begin{equation}\label{eqn:vectorBivector:121}
+\begin{aligned}
+\Bx \By
+&= \Be_1 \lr{ \Be_1 + \Be_2 } \\
+&= \Be_1^2 + \Be_1 \Be_2 \\
+&= 1 + \Be_1 \Be_2.
+\end{aligned}
+\end{equation}
+In this example, where the two vectors were neither colinear, nor perpendicular, their product had both scalar and bivector components.  This is also generally true.
+
+The scalar part of a vector-vector product is actually related to the dot product.  Before showing that we need a bit of notation.
+\makedefinition{Grade selection.}{dfn:vectorBivector:2}{
+Given \( A_i \in \bigwedge^i \), and multivector \( A = \sum_i A_i \), the grade selection operation is designated with angle brackets
+\begin{equation*}
+A_i = \gpgrade{A}{i}.
+\end{equation*}
+Grade-0 selection is given the special shorthand
+\begin{equation*}
+\gpgradezero{A} = \gpgrade{A}{0}.
+\end{equation*}
+} % definition
+
+We may use this grade selection notation to express the dot product of two vectors.
+\maketheorem{Dot product of vectors.}{thm:vectorBivector:5}{
+Given two vectors \( \Bx, \By \), their dot product is
+\begin{equation*}
+\Bx \cdot \By = \gpgradezero{\Bx \By}.
+\end{equation*}
+} % theorem
+\begin{proof}
+Let \( \Bx = \sum_i x_i \Be_i, \By = \sum_j y_j \Be_j \), so that
+\begin{equation}\label{eqn:vectorBivector:141}
+\begin{aligned}
+\gpgradezero{ \Bx \By }
+&= \gpgradezero{ \sum_{ij} x_i y_j \Be_i \Be_j } \\
+&= \gpgradezero{ \sum_{i = j} x_i y_j \Be_i \Be_j + \sum_{i \ne j} x_i y_j \Be_i \Be_j }.
+\end{aligned}
+\end{equation}
+This second sum has only bivector grades, so it's grade-0 selection is empty.  That leaves us with
+\begin{equation}\label{eqn:vectorBivector:161}
+\begin{aligned}
+\gpgradezero{ \Bx \By }
+&= \sum_i \gpgradezero{ x_i y_i \Be_i \Be_i } \\
+&= \sum_i x_i y_i \gpgradezero{ \Be_i^2 } \\
+&= \sum_i x_i y_i.
+\end{aligned}
+\end{equation}
+\end{proof}
+
+Before considering the general case, we want a couple definitions, and one theorem
+\makedefinition{Dot and wedge product of k-vectors.}{dfn:vectorBivector:3}{
+If \( A_m \in \bigwedge^m, B_n \in \bigwedge^n \), then we define the dot and wedge products respectively as the following grade selections
+\begin{equation*}
+A_m \cdot B_n = \gpgrade{A_m B_n}{\Abs{m - n}}
+\end{equation*}
+\begin{equation*}
+A_m \wedge B_n = \gpgrade{A_m B_n}{m + n}.
+\end{equation*}
+} % definition
+
+In particular, for two vectors \( A_1 = \Bx, B_1 = \By \), this definition implies that
+\begin{equation}\label{eqn:vectorBivector:181}
+\begin{aligned}
+\Bx \cdot \By = \gpgrade{ \Bx \By }{\Abs{1 -1}} = \gpgradezero{ \Bx \By },
+\end{aligned}
+\end{equation}
+as we expect.
+
+Armed with suitable definitions, we can now find one of the fundamental identities of geometric algebra.
+\maketheorem{Product of vectors.}{thm:vectorBivector:7}{
+Given two vectors \( \Bx, \By \),
+\begin{equation*}
+\Bx \By = \Bx \cdot \By + \Bx \wedge \By.
+\end{equation*}
+} % theorem
+\begin{proof}
+We saw above that the product of two vectors had the following coordinate expansion
+\begin{equation}\label{eqn:vectorBivector:201}
+\Bx \By = \sum_i x_i y_i + \sum_{i \ne j} x_i y_j \Be_i \Be_j.
+\end{equation}
+This clearly has only scalar and bivector grades, so we may write our product as a sum of grade selections
+\begin{equation}\label{eqn:vectorBivector:221}
+\Bx \By
+= \gpgradezero{ \Bx \By} + \gpgradetwo{ \Bx \By }.
+\end{equation}
+From our definitions of the general k-vector dot and wedge products, this is
+\begin{equation}\label{eqn:vectorBivector:241}
+\Bx \By
+= \Bx \cdot \By + \Bx \wedge \By.
+\end{equation}
+\end{proof}
+
+The theorem above is too abstract at this point, as we have not discovered any of the properties of the wedge product.  Let's do that now.
+\maketheorem{Properties of the wedge product of two vectors.}{thm:vectorBivector:261}{
+Given vectors \( \Bw, \Bx, \By, \Bz \), and scalars \( a, b, c, d \)
+\begin{equation*}
+\Bx \wedge \By = \sum_{i < j}
+\begin{vmatrix}
+x_i & x_j \\
+y_i & y_j \\
+\end{vmatrix}
+\Be_i \Be_j
+\end{equation*}
+\begin{equation*}
+\Bx \wedge \By = - \By \wedge \Bx
+\end{equation*}
+\begin{equation*}
+\lr{ a \Bw + b \Bx } \wedge \lr{ c \By + d \Bz } = a c \lr{ \Bw \wedge \By } + a d \lr{ \Bw \wedge \Bz } + b c \lr{ \Bx \wedge \By } + b d \lr{ \Bx \wedge \Bz }
+\end{equation*}
+\begin{equation*}
+\Bx \wedge \Bx = 0.
+\end{equation*}
+} % theorem
+\begin{proof}
+We came close to the determinant expansion of the wedge product earlier, and just need a bit of index gymnastics to get the rest of the way there
+\begin{equation}\label{eqn:vectorBivector:281}
+\begin{aligned}
+\Bx \wedge \By
+&=
+\sum_{i \ne j} x_i y_j \Be_i \Be_j \\
+&=
+\sum_{i < j} x_i y_j \Be_i \Be_j
++
+\sum_{j < i} x_i y_j \Be_i \Be_j \\
+&=
+\sum_{i < j} x_i y_j \Be_i \Be_j
++
+\sum_{i < j} x_j y_i \Be_j \Be_i \\
+&=
+\sum_{i < j} \lr{ x_i y_j - x_j y_i } \Be_i \Be_j \\
+&=
+\sum_{i < j} \begin{vmatrix}
+x_i & x_j \\
+y_i & y_j \\
+\end{vmatrix}
+\Be_i \Be_j.
+\end{aligned}
+\end{equation}
+
+From this, we see immediately that swapping \( \Bx, \By \) gives
+\begin{equation}\label{eqn:vectorBivector:301}
+\begin{aligned}
+\By \wedge \Bx &=
+\sum_{i < j} \begin{vmatrix}
+y_i & y_j \\
+x_i & x_j \\
+\end{vmatrix}
+\Be_i \Be_j \\
+&=
+-\sum_{i < j} \begin{vmatrix}
+x_i & x_j \\
+y_i & y_j \\
+\end{vmatrix}
+\Be_i \Be_j \\
+&= - \Bx \wedge \By,
+\end{aligned}
+\end{equation}
+which proves the second property.
+
+Proof of the bilinearity property is left to the reader.
+
+When the vectors are equal, we have
+\begin{equation}\label{eqn:vectorBivector:321}
+\begin{aligned}
+\Bx \wedge \Bx = - \Bx \wedge \Bx,.
+\end{aligned}
+\end{equation}
+so \( \Bx \wedge \Bx = 0 \).
+\end{proof}
+
+A special application of the above properties is
+\maketheorem{Wedge product filtering property.}{thm:vectorBivector:9}{
+\begin{equation*}
+\Bx \wedge \lr{ a \Bx + \By } = \Bx \wedge \By.
+\end{equation*}
+} % theorem
+\begin{proof}
+This follows first by application of the linearity property
+\begin{equation}\label{eqn:vectorBivector:341}
+\begin{aligned}
+\Bx \wedge \lr{ a \Bx + \By }
+&= a \lr{ \Bx \wedge \Bx } + \Bx \wedge \By \\
+&= \Bx \wedge \By,
+\end{aligned}
+\end{equation}
+since \( \Bx \wedge \Bx = 0 \).
+\end{proof}
+Wedging a vector with a second, kills any components in the second that are colinear with the first.
+
+This has many applications.  For example, we may solve a simple linear system
+\begin{equation}\label{eqn:vectorBivector:361}
+\begin{aligned}
+a \Bx + b \By &= \Ba \\
+c \Bx + d \By &= \Bb
+\end{aligned}
+\end{equation}
+by wedging with one of the \( \Bx, \By \) vectors, eliminating it.  For example, wedging both equations with \( \Bx \) from the left, we have
+\begin{equation}\label{eqn:vectorBivector:381}
+\begin{aligned}
+a \Bx \wedge \Bx + b \Bx \wedge \By &= \Bx \wedge \Ba \\
+c \Bx \wedge \Bx + d \Bx \wedge \By &= \Bx \wedge \Bb
+\end{aligned},
+\end{equation}
+or
+\begin{equation}\label{eqn:vectorBivector:401}
+\begin{aligned}
+b \Bx \wedge \By &= \Bx \wedge \Ba \\
+d \Bx \wedge \By &= \Bx \wedge \Bb
+\end{aligned},
+\end{equation}
+when the system of equations has a solution, then it must be that all these wedge products are scalar multiples of each other.  That is, \( \Bx \wedge \By \propto \Bx \wedge \Ba \propto \Bx \wedge \Bb \), and we find
+\begin{equation}\label{eqn:vectorBivector:421}
+\begin{aligned}
+b &= \frac{ \Bx \wedge \Ba }{\Bx \wedge \By } \\
+d &= \frac{ \Bx \wedge \Bb }{\Bx \wedge \By }.
+\end{aligned}
+\end{equation}
+For a two dimensional problem, this ratio is easy to evaluate, and is just
+\begin{equation}\label{eqn:vectorBivector:441}
+\begin{aligned}
+b &=
+\frac{
+   \begin{vmatrix}
+   x_1 & x_2 \\
+   a_1 & a_2 \\
+   \end{vmatrix}
+}
+{
+   \begin{vmatrix}
+   x_1 & x_2 \\
+   y_1 & y_2 \\
+   \end{vmatrix}
+} \\
+d &=
+\frac{
+   \begin{vmatrix}
+   x_1 & x_2 \\
+   b_1 & b_2 \\
+   \end{vmatrix}
+}
+{
+   \begin{vmatrix}
+   x_1 & x_2 \\
+   y_1 & y_2 \\
+   \end{vmatrix}
+}
+\end{aligned}.
+\end{equation}
+Observe that this is the Cramer's rule solution for \( b, d \).  We may similarly solve for \( a, c \) by wedging with \( \By \).
+
+%}
+%\EndArticle
+\EndNoBibArticle

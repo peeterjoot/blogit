@@ -342,7 +342,15 @@
 
 #../latex/bin/lgrep containedArea.tex | tee o ; . ./o
 #perl -p -i ../latex/bin/latexRegex.pl containedArea.tex
-../latex/bin/lgrep averagespeedproblem.tex | tee o ; . ./o
-perl -p -i ../latex/bin/latexRegex.pl averagespeedproblem.tex
-../latex/bin/lgrep rvector.tex | tee o ; . ./o
-perl -p -i ../latex/bin/latexRegex.pl rvector.tex
+
+#../latex/bin/lgrep averagespeedproblem.tex | tee o ; . ./o
+#perl -p -i ../latex/bin/latexRegex.pl averagespeedproblem.tex
+
+#../latex/bin/lgrep rvector.tex | tee o ; . ./o
+#perl -p -i ../latex/bin/latexRegex.pl rvector.tex
+
+#../latex/bin/lgrep unitsCurrent.tex | tee o ; . ./o
+#perl -p -i ../latex/bin/latexRegex.pl unitsCurrent.tex
+
+../latex/bin/lgrep vectorBivector.tex | tee o ; . ./o
+perl -p -i ../latex/bin/latexRegex.pl vectorBivector.tex

@@ -265,8 +265,10 @@ When the vectors are equal, we have
 so \( \Bx \wedge \Bx = 0 \).
 \end{proof}
 
-A special application of the above properties is
-\maketheorem{Wedge product filtering property.}{thm:vectorBivector:9}{
+\subsection{Wedge product filtering, and linear solutions.}
+An important application of the wedge product is its filtering property.
+\maketheorem{Wedge product filtering property.}{thm:vectorBivector:99}{
+Given vectors \( \Bx, \By \)
 \begin{equation*}
 \Bx \wedge \lr{ a \Bx + \By } = \Bx \wedge \By.
 \end{equation*}
@@ -343,7 +345,93 @@ d &=
 }
 \end{aligned}.
 \end{equation}
-Observe that this is the Cramer's rule solution for \( b, d \).  We may similarly solve for \( a, c \) by wedging with \( \By \).
+To similarly solve for \( a, c \), one just needs to wedge with \( \By \) instead.
+
+Observe that if we transpose each of these determinants above, which does not change them, then that is the standard form for a Cramer's rule solution for a two dimensional system.
+
+\subsection{Projection and rejection.}
+There is an analogous filtering property of the dot product too that is worth recalling.  This also helps bring a bit of geometry back into the picture.
+\maketheorem{Dot product filtering property.}{thm:vectorBivector:9}{
+Given vectors \( \Bx, \By, \Bz \), where \( \Bx \cdot \Bz = 0 \)
+\begin{equation*}
+\Bx \cdot \lr{ \By + a \Bz } = \Bx \cdot \By.
+\end{equation*}
+} % theorem
+Proof is left to the reader, but only requires the linearity property of the dot product.  While the wedge product filters out components of a vector that are parallel, the dot product filters out components of a vector that are perpendicular.  Using this property, we can formulate projection and rejection operators.
+
+\maketheorem{Projection and rejection.}{dfn:vectorBivector:17}{
+Given vectors \( \Bx, \Bu \), the component of \( \Bx \) in the direction of \( \Bu \) is
+\begin{equation*}
+\ProjOp{\Bu}{\Bx} = \lr{ \Bx \cdot \ucap } \ucap,
+\end{equation*}
+where \( \ucap = \Bu/\Norm{\Bu} \), and the component of \( \Bx \) perpendicular to the direction \( \Bu \) is
+\begin{equation*}
+\Rej{\Bu}{\Bx} = \Bx - \lr{ \Bx \cdot \ucap } \ucap.
+\end{equation*}
+This is illustrated in \cref{fig:projection:projectionFig1}.
+\imageFigure{../figures/blogit/projectionFig1}{Projection and rejection.}{fig:projection:projectionFig1}{0.3}
+} % theorem
+\begin{proof}
+First note that the projection and rejection are perpendicular
+\begin{equation}\label{eqn:vectorBivector:461}
+\begin{aligned}
+\ProjOp{\Bu}{\Bx} \cdot \Rej{\Bu}{\Bx}
+&=
+\lr{ \lr{ \Bx \cdot \ucap } \ucap } \cdot \lr{ \Bx - \lr{ \Bx \cdot \ucap } \ucap } \\
+&=
+\lr{ \Bx \cdot \ucap }^2 - \lr{ \Bx \cdot \ucap }^2 \\
+&= 0.
+\end{aligned}
+\end{equation}
+The vector \( \Rej{\Bu}{\Bx} \) has no component that is colinear with \( \Bu \), as we can see by computing
+\begin{equation}\label{eqn:vectorBivector:481}
+\begin{aligned}
+\Rej{\Bu}{\Bx} \cdot \ucap
+&= \lr{ \Bx - \lr{ \Bx \cdot \ucap } \ucap } \cdot \ucap \\
+&= \Bx \cdot \ucap - \Bx \cdot \ucap \\
+&= 0.
+\end{aligned}
+\end{equation}
+This shows that we have correctly resolved \( \Bx \) into the unique vectors parallel and perpendicular to \( \Bu \).
+\end{proof}
+
+There was no geometric algebra involved here, but we may use GA to formulate an alternative expression for the rejection.
+\maketheorem{Rejection.}{thm:vectorBivector:41}{
+Given vectors \( \Bx, \Bu \), the component of \( \Bx \) perpendicular to the direction \( \Bu \) is
+\begin{equation*}
+\Rej{\Bu}{\Bx} = \lr{ \Bx \wedge \ucap } \ucap = \ucap \lr{ \ucap \wedge \Bx },
+\end{equation*}
+where \( \ucap = \Bu/\Norm{\Bu} \).
+} % theorem
+\begin{proof}
+We use the standard trick of multiplying by a special form of one.  For example, we may expand \( \Bx \) by multiplying it by \( \ucap \ucap = 1 \) on the right
+\begin{equation}\label{eqn:vectorBivector:501}
+\begin{aligned}
+\Bx
+&= \Bx \ucap \ucap \\
+&= \lr{ \Bx \ucap } \ucap \\
+&= \lr{ \Bx \cdot \ucap + \Bx \wedge \ucap } \ucap \\
+&= \lr{ \Bx \cdot \ucap } \ucap + \lr{ \Bx \wedge \ucap } \ucap,
+\end{aligned}
+\end{equation}
+or on the left
+\begin{equation}\label{eqn:vectorBivector:521}
+\begin{aligned}
+\Bx
+&= \ucap \ucap \Bx \\
+&= \ucap \lr{ \ucap \Bx } \\
+&= \ucap \lr{ \ucap \cdot \Bx + \ucap \wedge \Bx } \\
+&= \ucap \lr{ \ucap \cdot \Bx } + \ucap \lr{ \ucap \wedge \Bx }.
+\end{aligned}
+\end{equation}
+The dot product term in each is the projection, and since \( \Bx = \ProjOp{\Bu}{\Bx} + \Rej{\Bu}{\Bx} \), we see that we must have
+\begin{equation}\label{eqn:vectorBivector:541}
+\Rej{\Bu}{\Bx} = \lr{ \Bx \wedge \ucap } \ucap = \ucap \lr{ \ucap \wedge \Bx }.
+\end{equation}
+\end{proof}
+By comparison, we must also have \( \lr{ \Bx \wedge \ucap } \ucap = \Bx - \lr{ \Bx \wedge \ucap } \ucap \), and we will soon find identities that allow us to expand bivector/vector products of that form.
+
+\section{Vector-bivector products.}
 
 %}
 %\EndArticle

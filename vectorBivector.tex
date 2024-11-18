@@ -30,8 +30,10 @@
 %\label{chap:vectorBivector}
 
 \section{Motivation.}
-I regularly see examples where people are confused about the identities of geometric algebra.  Some texts on the subject present a barrage of identites, and one is left confused about which ones are fundamental, which ones are derived.  People also regularily get confused about identities that apply to vectors, but may not apply to bivectors or multivectors.  I will systemcally examine some of these basic relationships here from first principles.  I will use coordinate representations of vectors here, despite the fact that doing so is considered very rude to do by some geometric algebra practioners.
+I regularly see examples where people are confused about the identities of geometric algebra.  Some texts on the subject present a barrage of identites, and one is left confused about which ones are fundamental, which ones are derived.  People also regularily get confused about identities that apply to vectors, but may not apply to bivectors or multivectors.  I will systemcally examine some of these basic relationships here from first principles.  I will use coordinate representations of vectors here, despite the fact that doing so is considered very rude by some geometric algebra practioners.
 
+\section{Vector products.}
+\subsection{Prerequisites.}
 Let's look at vector-vector products and bivector-vector products without using any identities, and see what we come up with.  We will use the contraction axiom
 \makedefinition{Contraction axiom.}{dfn:vectorBivector:1}{
 Given vector \( \Bx \),
@@ -69,7 +71,7 @@ so, comparison shows
 \Be_i \Be_j + \Be_j + \Be_i = 0.
 \end{equation}
 \end{proof}
-\section{Vector products.}
+\subsection{Products.}
 With the basics established, we have what we need to understand products of vectors.  Let's start first with a couple examples.
 
 Let \( \By = b \Bx \), where \( b \) is a constant, and \( \Bx \cdot \Bx = a \).  The product \( \Bx \By \) is
@@ -366,42 +368,10 @@ Given vectors \( \Bx, \Bu \), the component of \( \Bx \) in the direction of \( 
 \end{equation*}
 where \( \ucap = \Bu/\Norm{\Bu} \), and the component of \( \Bx \) perpendicular to the direction \( \Bu \) is
 \begin{equation*}
-\Rej{\Bu}{\Bx} = \Bx - \lr{ \Bx \cdot \ucap } \ucap.
+\Rej{\Bu}{\Bx} = \lr{ \Bx \wedge \ucap } \ucap = \ucap \lr{ \ucap \wedge \Bx } = \Bx - \lr{ \Bx \cdot \ucap } \ucap.
 \end{equation*}
 This is illustrated in \cref{fig:projection:projectionFig1}.
 \imageFigure{../figures/blogit/projectionFig1}{Projection and rejection.}{fig:projection:projectionFig1}{0.3}
-} % theorem
-\begin{proof}
-First note that the projection and rejection are perpendicular
-\begin{equation}\label{eqn:vectorBivector:461}
-\begin{aligned}
-\ProjOp{\Bu}{\Bx} \cdot \Rej{\Bu}{\Bx}
-&=
-\lr{ \lr{ \Bx \cdot \ucap } \ucap } \cdot \lr{ \Bx - \lr{ \Bx \cdot \ucap } \ucap } \\
-&=
-\lr{ \Bx \cdot \ucap }^2 - \lr{ \Bx \cdot \ucap }^2 \\
-&= 0.
-\end{aligned}
-\end{equation}
-The vector \( \Rej{\Bu}{\Bx} \) has no component that is colinear with \( \Bu \), as we can see by computing
-\begin{equation}\label{eqn:vectorBivector:481}
-\begin{aligned}
-\Rej{\Bu}{\Bx} \cdot \ucap
-&= \lr{ \Bx - \lr{ \Bx \cdot \ucap } \ucap } \cdot \ucap \\
-&= \Bx \cdot \ucap - \Bx \cdot \ucap \\
-&= 0.
-\end{aligned}
-\end{equation}
-This shows that we have correctly resolved \( \Bx \) into the unique vectors parallel and perpendicular to \( \Bu \).
-\end{proof}
-
-There was no geometric algebra involved here, but we may use GA to formulate an alternative expression for the rejection.
-\maketheorem{Rejection.}{thm:vectorBivector:41}{
-Given vectors \( \Bx, \Bu \), the component of \( \Bx \) perpendicular to the direction \( \Bu \) is
-\begin{equation*}
-\Rej{\Bu}{\Bx} = \lr{ \Bx \wedge \ucap } \ucap = \ucap \lr{ \ucap \wedge \Bx },
-\end{equation*}
-where \( \ucap = \Bu/\Norm{\Bu} \).
 } % theorem
 \begin{proof}
 We use the standard trick of multiplying by a special form of one.  For example, we may expand \( \Bx \) by multiplying it by \( \ucap \ucap = 1 \) on the right
@@ -424,14 +394,194 @@ or on the left
 &= \ucap \lr{ \ucap \cdot \Bx } + \ucap \lr{ \ucap \wedge \Bx }.
 \end{aligned}
 \end{equation}
-The dot product term in each is the projection, and since \( \Bx = \ProjOp{\Bu}{\Bx} + \Rej{\Bu}{\Bx} \), we see that we must have
+In both expansions, we find that \( \Bx \) has a component \( \lr{ \Bx \cdot \ucap } \ucap \), a vector that is clearly colinear with \( \Bu \).  If we can show that the remainder \( \Bx - \lr{ \Bx \cdot \ucap } \ucap = \lr{ \Bx \wedge \ucap } \ucap = \ucap \lr{ \ucap \wedge \Bx } \) is perpendicular to that, then we are done.  Taking dot products using grade zero selection, we have
 \begin{equation}\label{eqn:vectorBivector:541}
-\Rej{\Bu}{\Bx} = \lr{ \Bx \wedge \ucap } \ucap = \ucap \lr{ \ucap \wedge \Bx }.
+\begin{aligned}
+\lr{ \lr{ \Bx \cdot \ucap } \ucap } \cdot \lr{ \ucap \lr{ \ucap \wedge \Bx } }
+&=
+\gpgradezero{ \lr{ \Bx \cdot \ucap } \ucap \ucap \lr{ \ucap \wedge \Bx } } \\
+&=
+\lr{ \Bx \cdot \ucap } \gpgradezero{ \ucap \wedge \Bx } \\
+&= 0,
+\end{aligned}
+\end{equation}
+since the grade-zero selection of a bivector is zero.
+\end{proof}
+\section{Vector-bivector products.}
+Let's now look at the product of a bivector and a vector.  Some examples to start with will be helpful.
+
+Let \( B = \Be_1 \Be_2 \), \( \Bx = a \Be_1 + b \Be_2 \).  The product \( B \Bx \) is
+\begin{equation}\label{eqn:vectorBivector:561}
+\begin{aligned}
+B \Bx
+&=
+\Be_1 \Be_2 \lr{ a \Be_1 + b \Be_2 } \\
+&=
+-a \Be_2 \Be_1^2 + b \Be_1 \Be_2^2 \\
+&=
+-a \Be_2 + b \Be_1 \\
+\end{aligned}
+\end{equation}
+In this case, with ``coplanar'' bivector and vector, the bivector multiplication rotates the vector.
+
+Let \( B = \Be_1 \Be_2 \), \( \Bx = \Be_3 \).  The product \( B \Bx \) is
+\begin{equation}\label{eqn:vectorBivector:581}
+B \Bx
+= \Be_1 \Be_2 \Be_3.
+\end{equation}
+In this case, when the bivector factors are all perpendicular to the vector, the multiplication yields a trivector.
+
+It's clear that a bivector-vector product, in general, has both a vector and a trivector component, in particular
+\begin{equation}\label{eqn:vectorBivector:601}
+B \Bx = \gpgradeone{ B \Bx } + \gpgradethree{ B \Bx }.
+\end{equation}
+Using the generalized definitions of the dot and wedge product, such a decomposition can be written as
+\begin{equation}\label{eqn:vectorBivector:621}
+B \Bx = B \cdot \Bx + B \wedge \Bx,
+\end{equation}
+however, we have to figure out how to evaluate these dot and wedge products.
+
+\maketheorem{Bivector-vector dot product}{thm:vectorBivector:77}{
+Given a bivector \( \Ba \wedge \Bb \), and vector \( \Bc \), 
+\begin{equation*}
+\lr{ \Ba \wedge \Bb } \cdot \Bc = \lr{ \Bb \cdot \Bc } \Ba - \lr{ \Ba \cdot \Bc } \Bb.
+\end{equation*}
+} % theorem
+\begin{proof}
+Given \( \Bc = \sum_k c_k \Be_k \), and 
+\begin{equation}\label{eqn:vectorBivector:641}
+\Ba \wedge \Bb = \sum_{i < j}
+\begin{vmatrix}
+a_i & a_j \\
+b_i & b_j \\
+\end{vmatrix} \Be_i \Be_j,
+\end{equation}
+the bivector-vector dot product is
+\begin{equation}\label{eqn:vectorBivector:661}
+\lr{ \Ba \wedge \Bb } \cdot \Bc
+=
+\sum_{i < j, k}
+c_k
+\begin{vmatrix}
+a_i & a_j \\
+b_i & b_j \\
+\end{vmatrix}
+\gpgradeone{ 
+\Be_i \Be_j \Be_k }.
+\end{equation}
+
+Of this sum, only the \( k = i \), or \( k = j \) terms will contribute to the vector grade selection.
+%\begin{equation}\label{eqn:vectorBivector:681}
+%\sum_{i < j, k}
+%=
+%\sum_{i < (k = j)} + \sum_{(k = i) < j} + \sum_{i < j < k} + \sum_{i < k < j} + \sum_{k < i < j}.
+%\end{equation}
+That is
+%The first two terms will be the vector grade of the product, and the last three terms will contribute grade three terms.  For the vector part, we have
+\begin{equation}\label{eqn:vectorBivector:701}
+\begin{aligned}
+\lr{ \Ba \wedge \Bb } \cdot \Bc
+&=
+\lr{ \sum_{i < (k = j)} + \sum_{(k = i) < j} }
+c_k
+\begin{vmatrix}
+a_i & a_j \\
+b_i & b_j \\
+\end{vmatrix}
+\Be_i \Be_j \Be_k \\
+&=
+\sum_{i < j}
+c_j
+\begin{vmatrix}
+a_i & a_j \\
+b_i & b_j \\
+\end{vmatrix}
+\Be_i \Be_j \Be_j
+c_i
+\begin{vmatrix}
+a_i & a_j \\
+b_i & b_j \\
+\end{vmatrix}
+\Be_i \Be_j \Be_i
+\\
+&=
+\sum_{i < j}
+\lr{ c_j \Be_i - c_i \Be_j}
+\begin{vmatrix}
+a_i & a_j \\
+b_i & b_j \\
+\end{vmatrix}.
+\end{aligned}
+\end{equation}
+Our brain dead approach has resulted in an ugly mess, but we can simplify it.  We use the standard index gymnastics trick of taking half of double the quantity, to find
+\begin{equation}\label{eqn:vectorBivector:721}
+\begin{aligned}
+\lr{ \Ba \wedge \Bb } \cdot \Bc
+&=
+\inv{2}
+\lr{
+   \sum_{i < j}
+   \lr{ c_j \Be_i - c_i \Be_j }
+   \begin{vmatrix}
+   a_i & a_j \\
+   b_i & b_j \\
+   \end{vmatrix}
+   +
+   \sum_{j < i}
+   \lr{ c_i \Be_j - c_j \Be_i }
+   \begin{vmatrix}
+   a_j & a_i \\
+   b_j & b_i \\
+   \end{vmatrix}
+} \\
+&=
+\inv{2}
+\lr{
+   \sum_{i < j}
+   \lr{ c_j \Be_i - c_i \Be_j }
+   \begin{vmatrix}
+   a_i & a_j \\
+   b_i & b_j \\
+   \end{vmatrix}
+   +
+   \sum_{j < i}
+   \lr{ c_j \Be_i - c_i \Be_j }
+   \begin{vmatrix}
+   a_i & a_j \\
+   b_i & b_j \\
+   \end{vmatrix}
+} \\
+&=
+\inv{2} \sum_{ij}
+   \lr{ c_j \Be_i - c_i \Be_j }
+   \begin{vmatrix}
+   a_i & a_j \\
+   b_i & b_j \\
+   \end{vmatrix}.
+\end{aligned}
+\end{equation}
+In the last step, we are able to add in the \( i = j \) term to sum over all pairs of \( i, j \), because the \( i = j \) factors are zero.  This can now be expanded to find
+\begin{equation}\label{eqn:vectorBivector:741}
+\begin{aligned}
+\lr{ \Ba \wedge \Bb } \cdot \Bc
+&=
+\inv{2} \sum_{ij}
+\lr{
+c_j \Be_i a_i b_j - c_j \Be_i a_j b_i - c_i \Be_j a_i b_j + c_i \Be_j a_j b_i
+} \\
+&=
+\inv{2}
+\lr{
+\lr{ \Bc \cdot \Bb } \Ba
+-\lr{ \Bc \cdot \Ba } \Bb
+-\lr{ \Bc \cdot \Ba } \Bb
++\lr{ \Bc \cdot \Bb } \Ba
+} \\
+&=
+\lr{ \Bc \cdot \Bb } \Ba - \lr{ \Bc \cdot \Ba } \Bb.
+\end{aligned}
 \end{equation}
 \end{proof}
-By comparison, we must also have \( \lr{ \Bx \wedge \ucap } \ucap = \Bx - \lr{ \Bx \wedge \ucap } \ucap \), and we will soon find identities that allow us to expand bivector/vector products of that form.
-
-\section{Vector-bivector products.}
 
 %}
 %\EndArticle

@@ -79,7 +79,7 @@ Let \( \By = b \Bx \), where \( b \) is a constant, and \( \Bx \cdot \Bx = a \).
 \begin{aligned}
 \Bx \By
 &= \Bx b \Bx \\
-&= b \Bx^2 \
+&= b \Bx^2 \\
 &= b \Bx \cdot \Bx \\
 &= b a.
 \end{aligned}
@@ -442,13 +442,13 @@ B \Bx = B \cdot \Bx + B \wedge \Bx,
 however, we have to figure out how to evaluate these dot and wedge products.
 
 \maketheorem{Bivector-vector dot product}{thm:vectorBivector:77}{
-Given a bivector \( \Ba \wedge \Bb \), and vector \( \Bc \), 
+Given a bivector \( \Ba \wedge \Bb \), and vector \( \Bc \),
 \begin{equation*}
 \lr{ \Ba \wedge \Bb } \cdot \Bc = \lr{ \Bb \cdot \Bc } \Ba - \lr{ \Ba \cdot \Bc } \Bb.
 \end{equation*}
 } % theorem
 \begin{proof}
-Given \( \Bc = \sum_k c_k \Be_k \), and 
+Given \( \Bc = \sum_k c_k \Be_k \), and
 \begin{equation}\label{eqn:vectorBivector:641}
 \Ba \wedge \Bb = \sum_{i < j}
 \begin{vmatrix}
@@ -466,7 +466,7 @@ c_k
 a_i & a_j \\
 b_i & b_j \\
 \end{vmatrix}
-\gpgradeone{ 
+\gpgradeone{
 \Be_i \Be_j \Be_k }.
 \end{equation}
 
@@ -581,6 +581,115 @@ c_j \Be_i a_i b_j - c_j \Be_i a_j b_i - c_i \Be_j a_i b_j + c_i \Be_j a_j b_i
 \lr{ \Bc \cdot \Bb } \Ba - \lr{ \Bc \cdot \Ba } \Bb.
 \end{aligned}
 \end{equation}
+\end{proof}
+\maketheorem{Bivector-vector wedge product.}{thm:vectorBivector:37}{
+Given a bivector \( \Ba \wedge \Bb \), and vector \( \Bc \),
+\begin{equation*}
+\Ba \wedge \Bb \wedge \Bc =
+\sum_{i < j < k}
+\begin{vmatrix}
+a_i & a_j & a_k \\
+b_i & b_j & b_k \\
+c_i & c_j & c_k \\
+\end{vmatrix}
+\Be_i \Be_j \Be_k.
+\end{equation*}
+} % theorem
+Repeated wedge products are characterized by complete antisymmetry.
+
+We will prove this for \( \lr{ \Ba \wedge \Bb } \wedge \Bc \), and leave it to the reader to show that we get the same result for \( \Ba \wedge \lr{ \Bb \wedge \Bc } \), showing that such a repeated wedge product is associative.
+
+\begin{proof}
+Using \cref{eqn:vectorBivector:641}, we may write
+\begin{equation}\label{eqn:vectorBivector:761}
+\lr{ \Ba \wedge \Bb } \wedge \Bc
+=
+\sum_{i < j, k}
+c_k
+\begin{vmatrix}
+a_i & a_j \\
+b_i & b_j \\
+\end{vmatrix}
+\gpgradethree{
+\Be_i \Be_j \Be_k }.
+\end{equation}
+This time, only the \( i \ne j \ne k \) terms will contribute to the sum, and we may decompose the summation into three pieces
+\begin{equation}\label{eqn:vectorBivector:781}
+\begin{aligned}
+\lr{ \Ba \wedge \Bb } \wedge \Bc
+&=
+\lr{ \sum_{i < j < k} + \sum_{i < k < j} + \sum_{k < i < j} }
+c_k
+\begin{vmatrix}
+a_i & a_j \\
+b_i & b_j \\
+\end{vmatrix}
+\Be_i \Be_j \Be_k \\
+&=
+\sum_{i < j < k}
+c_k
+\begin{vmatrix}
+a_i & a_j \\
+b_i & b_j \\
+\end{vmatrix}
+\Be_i \Be_j \Be_k
++
+\sum_{i < j < k}
+c_j
+\begin{vmatrix}
+a_i & a_k \\
+b_i & b_k \\
+\end{vmatrix}
+\Be_i \Be_k \Be_j
++
+% k -> i
+% i -> j
+% j -> k
+\sum_{i < j < k}
+c_i
+\begin{vmatrix}
+a_j & a_k \\
+b_j & b_k \\
+\end{vmatrix}
+\Be_j \Be_k \Be_i.
+\end{aligned}
+\end{equation}
+Here we've swapped \( k, j \) indexes in the second sum, and done a cyclic index permutation in the last.  This gives us
+\begin{equation}\label{eqn:vectorBivector:801}
+\begin{aligned}
+\lr{ \Ba \wedge \Bb } \wedge \Bc
+&=
+\sum_{i < j < k}
+\lr{
+c_k
+\begin{vmatrix}
+a_i & a_j \\
+b_i & b_j \\
+\end{vmatrix}
+-
+c_j
+\begin{vmatrix}
+a_i & a_k \\
+b_i & b_k \\
+\end{vmatrix}
++
+c_i
+\begin{vmatrix}
+a_j & a_k \\
+b_j & b_k \\
+\end{vmatrix}
+} \Be_i \Be_j \Be_k \\
+&=
+\sum_{i < j < k}
+\begin{vmatrix}
+c_i & c_j & c_k \\
+a_i & a_j & a_k \\
+b_i & b_j & b_k \\
+\end{vmatrix}
+\Be_i \Be_j \Be_k.
+\end{aligned}
+\end{equation}
+We may perform a cyclic row permutation of the determinant to finish the job.
 \end{proof}
 
 %}

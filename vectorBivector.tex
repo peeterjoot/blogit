@@ -68,7 +68,7 @@ but using the contraction axiom, we also have
 \end{equation}
 so, comparison shows
 \begin{equation}\label{eqn:vectorBivector:61}
-\Be_i \Be_j + \Be_j + \Be_i = 0.
+\Be_i \Be_j + \Be_j \Be_i = 0.
 \end{equation}
 \end{proof}
 \subsection{Products.}
@@ -94,7 +94,7 @@ Let \( \Bx = \Be_3, \By = \Be_1 + \Be_2 \).  The product \( \Bx \By \) is
 &= \Be_3 \Be_1 + \Be_3 \Be_2.
 \end{aligned}
 \end{equation}
-We see in this case that the product of these perpendicular vectors is a bivector, which is also generally true.
+We see in this case that the product of these perpendicular vectors is a bivector.  It is also generally true that products of perpendicular vectors are bivectors.
 
 Let \( \Bx = \Be_1, \By = \Be_1 + \Be_2 \).  The product \( \Bx \By \) is
 \begin{equation}\label{eqn:vectorBivector:121}
@@ -105,7 +105,7 @@ Let \( \Bx = \Be_1, \By = \Be_1 + \Be_2 \).  The product \( \Bx \By \) is
 &= 1 + \Be_1 \Be_2.
 \end{aligned}
 \end{equation}
-In this example, where the two vectors were neither colinear, nor perpendicular, their product had both scalar and bivector components.  This is also generally true.
+In this example, where the two vectors were neither colinear, nor perpendicular, their product had both scalar and bivector components.
 
 The scalar part of a vector-vector product is actually related to the dot product.  Before showing that we need a bit of notation.
 \makedefinition{Grade selection.}{dfn:vectorBivector:2}{
@@ -118,6 +118,24 @@ Grade-0 selection is given the special shorthand
 \gpgradezero{A} = \gpgrade{A}{0}.
 \end{equation*}
 } % definition
+
+As an example, suppose that \( A = 1 + 2 \Be_1 + 3 \Be_3 + 4 \Be_1 \Be_3 + 5 \Be_1 \Be_2 \Be_3 \), for which we have
+\begin{equation}\label{eqn:vectorBivector:821}
+\begin{aligned}
+\gpgradezero{A} &= 1 \\
+\gpgradeone{A} &= 2 \Be_1 + 3 \Be_3 \\
+\gpgradetwo{A} &= 4 \Be_1 \Be_3 \\
+\gpgradethree{A} &= 5 \Be_1 \Be_2 \Be_3.
+\end{aligned}
+\end{equation}
+
+Given a grade-k, vector, application of the grade selection operator for any other grade is zero.  For example, given \( A = \Be_1 \Be_2, B = \Be_1 \Be_2 \Be_3 \), we have
+\begin{equation}\label{eqn:vectorBivector:841}
+\begin{aligned}
+0 &= \gpgradezero{ A } = \gpgradeone{ A } = \gpgradethree{A} \\
+0 &= \gpgradezero{ B } = \gpgradeone{ B } = \gpgradetwo{A} \\
+\end{aligned}
+\end{equation}
 
 We may use this grade selection notation to express the dot product of two vectors.
 \maketheorem{Dot product of vectors.}{thm:vectorBivector:5}{

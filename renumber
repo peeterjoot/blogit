@@ -352,5 +352,8 @@
 #../latex/bin/lgrep unitsCurrent.tex | tee o ; . ./o
 #perl -p -i ../latex/bin/latexRegex.pl unitsCurrent.tex
 
-../latex/bin/lgrep vectorBivector.tex | tee o ; . ./o
-perl -p -i ../latex/bin/latexRegex.pl vectorBivector.tex
+#../latex/bin/lgrep vectorBivector.tex | tee o ; . ./o
+#perl -p -i ../latex/bin/latexRegex.pl vectorBivector.tex
+
+../latex/bin/lgrep logab.tex | tee o ; . ./o
+perl -p -i ../latex/bin/latexRegex.pl logab.tex

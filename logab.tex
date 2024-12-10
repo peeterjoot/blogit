@@ -1,0 +1,76 @@
+%
+% Copyright © 2024 Peeter Joot.  All Rights Reserved.
+% Licenced as described in the file LICENSE under the root directory of this GIT repository.
+%
+%{
+\input{../latex/blogpost.tex}
+\renewcommand{\basename}{logab}
+%\renewcommand{\dirname}{notes/phy1520/}
+\renewcommand{\dirname}{notes/ece1228-electromagnetic-theory/}
+%\newcommand{\dateintitle}{}
+%\newcommand{\keywords}{}
+
+\input{../latex/peeter_prologue_print2.tex}
+
+\usepackage{peeters_layout_exercise}
+\usepackage{peeters_braket}
+\usepackage{peeters_figures}
+\usepackage{siunitx}
+\usepackage{verbatim}
+%\usepackage{mhchem} % \ce{}
+%\usepackage{macros_bm} % \bcM
+%\usepackage{macros_qed} % \qedmarker
+%\usepackage{txfonts} % \ointclockwise
+
+\beginArtNoToc
+
+\generatetitle{A funny looking log identity}
+%\chapter{A funny looking log identity}
+%\label{chap:logab}
+
+On twitter, I saw a \href{https://x.com/AlgebraFact/status/1866217553292300784/photo/1}{funny looking identity}
+
+\begin{equation}\label{eqn:logab:20}
+\log_{ab} x = \frac{ \log_a x \log_b x}{\log_a x + \log_b x}.
+\end{equation}
+
+To verify this, let
+\begin{equation}\label{eqn:logab:40}
+\begin{aligned}
+u &= \log_a x \\
+v &= \log_b x.
+\end{aligned}
+\end{equation}
+
+This means that
+\begin{equation}\label{eqn:logab:60}
+\log_{ab} x = \log_{ab} a^u = \log_{ab} b^v.
+\end{equation}
+
+We may rewrite either of these in terms of \( a b \), for example
+\begin{equation}\label{eqn:logab:80}
+\begin{aligned}
+\log_{ab} x
+&= \log_{ab} b^v \\
+&= v \log_{ab} b \\
+&= v \log_{ab} \frac{ab}{a} \\
+&= v \lr{ 1 - \log_{ab} a },
+\end{aligned}
+\end{equation}
+so
+\begin{equation}\label{eqn:logab:100}
+u \log_{ab} a = v \lr{ 1 - \log_{ab} a },
+\end{equation}
+or
+\begin{equation}\label{eqn:logab:120}
+\lr{ u + v } \log_{ab} a = v,
+\end{equation}
+or
+\begin{equation}\label{eqn:logab:140}
+u \log_{ab} a = \frac{u v}{u + v},
+\end{equation}
+and since \( x = a^u \), our proof is complete.
+
+%}
+%\EndArticle
+\EndNoBibArticle

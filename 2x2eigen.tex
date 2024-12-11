@@ -1,0 +1,76 @@
+%
+% Copyright © 2024 Peeter Joot.  All Rights Reserved.
+% Licenced as described in the file LICENSE under the root directory of this GIT repository.
+%
+%{
+\input{../latex/blogpost.tex}
+\renewcommand{\basename}{2x2eigen}
+\renewcommand{\dirname}{notes/ece1228-electromagnetic-theory/}
+
+\input{../latex/peeter_prologue_print2.tex}
+
+\usepackage{peeters_layout_exercise}
+\usepackage{peeters_braket}
+\usepackage{peeters_figures}
+\usepackage{siunitx}
+\usepackage{verbatim}
+\usepackage{amsthm} % proof
+
+\beginArtNoToc
+
+\generatetitle{Eigenvalues of 2x2 matrix: another identity seen on twitter.}
+%\chapter{Eigenvalues of 2x2 matrix: another identity seen on twitter.}
+%\label{chap:2x2eigen}
+
+Here's another interesting looking twitter math post, \href{https://x.com/AlgebraFact/status/1866818581465329805}{this time about 2x2 matrix eigenvalues}:
+%https://x.com/AlgebraFact/status/1866818581465329805
+%this time about 2x2 matrix eigenvalues
+
+\maketheorem{Eigenvalues of a 2x2 matrix.}{thm:2x2eigen:1}{
+Let \( m \) be the mean of the diagonal elements, and \( p \) be the determinant.  The eigenvalues of the matrix are given by
+\begin{equation*}
+m \pm \sqrt{ m^2 - p }.
+\end{equation*}
+} % theorem
+This is also not hard to verify.
+\begin{proof}
+Let
+\begin{equation}\label{eqn:2x2eigen:20}
+A =
+\begin{bmatrix}
+a & b \\
+c & d
+\end{bmatrix},
+\end{equation}
+where we are looking for \( \lambda \) that satisfies the usual zero determinant condition
+\begin{equation}\label{eqn:2x2eigen:40}
+\begin{aligned}
+0
+&= \Abs{ A - \lambda I } \\
+&=
+\begin{vmatrix}
+a - \lambda & b \\
+c & d - \lambda
+\end{vmatrix} \\
+&=
+\lr{ a - \lambda } \lr{ d - \lambda } - b c \\
+&=
+a d - b c - \lambda \lr{ a + d } + \lambda^2 \\
+&=
+\Det{A} - \lambda \Tr{A} + \lambda^2 \\
+&=
+\lr{ \lambda - \frac{\Tr{A}}{2} }^2 + \Det{A} - \lr{ \frac{\Tr{A}}{2}}^2,
+\end{aligned}
+\end{equation}
+so
+\begin{equation}\label{eqn:2x2eigen:n}
+\lambda = \frac{\Tr{A}}{2} \pm \sqrt{ \lr{ \frac{\Tr{A}}{2}}^2 - \Det{A} }.
+\end{equation}
+substitution of the variables in the problem statement finishes the proof.
+\end{proof}
+
+Clearly the higher dimensional characteristic equation will also have both a trace and determinant dependency as well, but the cross terms will be messier (and nobody wants to solve cubic or higher equations by hand anyways.)
+
+%}
+%\EndArticle
+\EndNoBibArticle

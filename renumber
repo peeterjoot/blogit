@@ -357,3 +357,5 @@
 
 ../latex/bin/lgrep logab.tex | tee o ; . ./o
 perl -p -i ../latex/bin/latexRegex.pl logab.tex
+../latex/bin/lgrep 2x2eigen.tex | tee o ; . ./o
+perl -p -i ../latex/bin/latexRegex.pl 2x2eigen.tex

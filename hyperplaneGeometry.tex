@@ -25,8 +25,8 @@
 
 \beginArtNoToc
 
-\generatetitle{Equation of a hyperplane}
-%\chapter{Equation of a hyperplane}
+\generatetitle{Equation of a hyperplane, and shortest distance between two hyperplanes.}
+%\chapter{Equation of a hyperplane, and shortest distance between two hyperplanes.}
 %\label{chap:hyperplaneGeometry}
 
 \section{Scalar equation for a hyperplane.}
@@ -39,22 +39,23 @@ The equation of a \R{N} hyperplane, with distance \( d \) from the origin, and n
 } % theorem
 
 \begin{proof}
-Let \( \beta = \setlr{ \Bf_1, \cdots \Bf_{N-1} } \) be an orthonormal basis for the hyperplane normal to \( \ncap \), and \( \Bd = d \ncap \) be the vector in that hyperplane, closest to the origin.  Then the hyperplane \( d \) distant from the origin with normal \( \ncap \) has the parametric representation
+Let \( \beta = \setlr{ \fcap_1, \cdots \fcap_{N-1} } \) be an orthonormal basis for the hyperplane normal to \( \ncap \), and \( \Bd = d \ncap \) be the vector in that hyperplane, closest to the origin, as illustrated in \cref{fig:hyperplane:hyperplaneFig1}.  Then the hyperplane \( d \) distant from the origin with normal \( \ncap \) has the parametric representation
+\imageFigure{../figures/blogit/hyperplaneFig1}{\R{3} plane with normal \( \ncap \).}{fig:hyperplane:hyperplaneFig1}{0.4}
 \begin{equation}\label{eqn:hyperplaneGeometry:40}
-\Bx(a_1, \cdots, a_{N-1}) = d \ncap + \sum_{i = 1}^{N-1} a_i \Bf_i.
+\Bx(a_1, \cdots, a_{N-1}) = d \ncap + \sum_{i = 1}^{N-1} a_i \fcap_i.
 \end{equation}
 Equivalently, suppressing the parameterization, with \( \Bx = \Bx(a_1, \cdots, a_{N-1}) \), representing any vector in that hyperplane, by dotting with \( \ncap \), we have
 \begin{equation}\label{eqn:hyperplaneGeometry:60}
 \Bx \cdot \ncap = d \ncap \cdot \ncap,
 \end{equation}
-where all the \( \Bf_i \cdot \ncap \) dot products are zero by construction.  Since \( \ncap \cdot \ncap = 0 \), the proof is complete.
+where all the \( \fcap_i \cdot \ncap \) dot products are zero by construction.  Since \( \ncap \cdot \ncap = 0 \), the proof is complete.
 \end{proof}
 
 Incidentally, observe we can also write the hyperplane equation in dual form, as
 \begin{equation}\label{eqn:hyperplaneGeometry:220}
 \Bx \wedge (\ncap I) = d I,
 \end{equation}
-where \( I \) is an \R{N} pseudoscalar (such as \( I = \ncap \Bf_1 \cdots \Bf_{N-1} \)).
+where \( I \) is an \R{N} pseudoscalar (such as \( I = \ncap \fcap_1 \cdots \fcap_{N-1} \)).
 
 \section{Our previous parallel plane separation problem.}
 
@@ -84,14 +85,17 @@ x - y + 2 z &= -3 \\
 3 x - 3 y + 6 z &= 1.
 \end{aligned}
 \end{equation}
-Had we simply put these equations in their more natural geometrical form, normalizing each to
+The more natural geometrical form for these plane equations is
 \begin{equation}\label{eqn:hyperplaneGeometry:180}
 \begin{aligned}
 \Bx \cdot \ncap &= -\frac{3}{\sqrt{6}} \\
 \Bx \cdot \ncap &= \inv{3 \sqrt{6}},
 \end{aligned}
 \end{equation}
-where \( \ncap = (1,-1,2)/\sqrt{6} \), then we could have found the distance to the planes just by taking the absolute difference of the respective distances to the origin
+where \( \ncap = (1,-1,2)/\sqrt{6} \), as illustrated in \cref{fig:hyperplane:hyperplaneFig2}.
+\imageFigure{../figures/blogit/hyperplaneFig2}{The two planes.}{fig:hyperplane:hyperplaneFig2}{0.4}
+
+Given that representation, we can find the distance between the planes just by taking the absolute difference of the respective distances to the origin
 \begin{equation}\label{eqn:hyperplaneGeometry:200}
 \begin{aligned}
 \Abs{ -\frac{3}{\sqrt{6}} - \inv{3 \sqrt{6}} }

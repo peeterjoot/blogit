@@ -359,3 +359,5 @@
 perl -p -i ../latex/bin/latexRegex.pl logab.tex
 ../latex/bin/lgrep 2x2eigen.tex | tee o ; . ./o
 perl -p -i ../latex/bin/latexRegex.pl 2x2eigen.tex
+../latex/bin/lgrep distanceBetweenPlanes.tex | tee o ; . ./o
+perl -p -i ../latex/bin/latexRegex.pl distanceBetweenPlanes.tex

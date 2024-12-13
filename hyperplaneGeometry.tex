@@ -1,0 +1,106 @@
+%
+% Copyright © 2024 Peeter Joot.  All Rights Reserved.
+% Licenced as described in the file LICENSE under the root directory of this GIT repository.
+%
+%{
+\input{../latex/blogpost.tex}
+\renewcommand{\basename}{hyperplaneGeometry}
+%\renewcommand{\dirname}{notes/phy1520/}
+\renewcommand{\dirname}{notes/ece1228-electromagnetic-theory/}
+%\newcommand{\dateintitle}{}
+%\newcommand{\keywords}{}
+
+\input{../latex/peeter_prologue_print2.tex}
+
+\usepackage{peeters_layout_exercise}
+\usepackage{peeters_braket}
+\usepackage{peeters_figures}
+\usepackage{siunitx}
+\usepackage{verbatim}
+\usepackage{amsthm} % proof
+%\usepackage{mhchem} % \ce{}
+%\usepackage{macros_bm} % \bcM
+%\usepackage{macros_qed} % \qedmarker
+%\usepackage{txfonts} % \ointclockwise
+
+\beginArtNoToc
+
+\generatetitle{Equation of a hyperplane}
+%\chapter{Equation of a hyperplane}
+%\label{chap:hyperplaneGeometry}
+
+\section{Scalar equation for a hyperplane.}
+In our last post, we found, in a round about way, that
+\maketheorem{}{thm:hyperplaneGeometry:20}{
+The equation of a \R{N} hyperplane, with distance \( d \) from the origin, and normal \( \ncap \) is
+\begin{equation*}
+\Bx \cdot \ncap = d.
+\end{equation*}
+} % theorem
+
+\begin{proof}
+Let \( \beta = \setlr{ \Bf_1, \cdots \Bf_{N-1} } \) be an orthonormal basis for the hyperplane normal to \( \ncap \), and \( \Bd = d \ncap \) be the vector in that hyperplane, closest to the origin.  Then the hyperplane \( d \) distant from the origin with normal \( \ncap \) has the parametric representation
+\begin{equation}\label{eqn:hyperplaneGeometry:40}
+\Bx(a_1, \cdots, a_{N-1}) = d \ncap + \sum_{i = 1}^{N-1} a_i \Bf_i.
+\end{equation}
+Equivalently, suppressing the parameterization, with \( \Bx = \Bx(a_1, \cdots, a_{N-1}) \), representing any vector in that hyperplane, by dotting with \( \ncap \), we have
+\begin{equation}\label{eqn:hyperplaneGeometry:60}
+\Bx \cdot \ncap = d \ncap \cdot \ncap,
+\end{equation}
+where all the \( \Bf_i \cdot \ncap \) dot products are zero by construction.  Since \( \ncap \cdot \ncap = 0 \), the proof is complete.
+\end{proof}
+
+Incidentally, observe we can also write the hyperplane equation in dual form, as
+\begin{equation}\label{eqn:hyperplaneGeometry:220}
+\Bx \wedge (\ncap I) = d I,
+\end{equation}
+where \( I \) is an \R{N} pseudoscalar (such as \( I = \ncap \Bf_1 \cdots \Bf_{N-1} \)).
+
+\section{Our previous parallel plane separation problem.}
+
+The standard \R{3} scalar form for an equation of a plane is
+\begin{equation}\label{eqn:hyperplaneGeometry:80}
+a x + b y + c z = d,
+\end{equation}
+where \( d \) looses it's geometrical meaning.  If we form \( \Bn = (a,b,c) \), then we can rewrite this as
+\begin{equation}\label{eqn:hyperplaneGeometry:100}
+\Bx \cdot \Bn = d,
+\end{equation}
+for this representation of an equation of a plane, we see that \( d/\Norm{\Bn} \) is the shortest distance from the origin to the plane.  This means that if we have a pair of parallel plane equations
+\begin{equation}\label{eqn:hyperplaneGeometry:120}
+\begin{aligned}
+\Bx \cdot \Bn &= d_1 \\
+\Bx \cdot \Bn &= d_2,
+\end{aligned}
+\end{equation}
+then the distance between those planes, by inspection, is
+\begin{equation}\label{eqn:hyperplaneGeometry:140}
+\Abs{ \frac{d_2}{\Norm{\Bn}} - \frac{d_1}{\Norm{\Bn}} },
+\end{equation}
+which reduces to just \( \Abs{d_2 - d_1} \) if \( \Bn \) is a unit normal for the plane.  In our previous post, the problem to solve was to find the shortest distance between the parallel planes given by
+\begin{equation}\label{eqn:hyperplaneGeometry:160}
+\begin{aligned}
+x - y + 2 z &= -3 \\
+3 x - 3 y + 6 z &= 1.
+\end{aligned}
+\end{equation}
+Had we simply put these equations in their more natural geometrical form, normalizing each to
+\begin{equation}\label{eqn:hyperplaneGeometry:180}
+\begin{aligned}
+\Bx \cdot \ncap &= -\frac{3}{\sqrt{6}} \\
+\Bx \cdot \ncap &= \inv{3 \sqrt{6}},
+\end{aligned}
+\end{equation}
+where \( \ncap = (1,-1,2)/\sqrt{6} \), then we could have found the distance to the planes just by taking the absolute difference of the respective distances to the origin
+\begin{equation}\label{eqn:hyperplaneGeometry:200}
+\begin{aligned}
+\Abs{ -\frac{3}{\sqrt{6}} - \inv{3 \sqrt{6}} }
+&= \frac{\sqrt{6}}{6} \lr{ 3 + \inv{3} } \\
+&= \frac{10}{18} \sqrt{6} \\
+&= \frac{5}{9} \sqrt{6}.
+\end{aligned}
+\end{equation}
+
+%}
+%\EndArticle
+\EndNoBibArticle

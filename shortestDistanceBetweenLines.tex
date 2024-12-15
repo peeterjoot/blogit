@@ -1,0 +1,302 @@
+%
+% Copyright © 2024 Peeter Joot.  All Rights Reserved.
+% Licenced as described in the file LICENSE under the root directory of this GIT repository.
+%
+%{
+\input{../latex/blogpost.tex}
+\renewcommand{\basename}{shortestDistanceBetweenLines}
+%\renewcommand{\dirname}{notes/phy1520/}
+\renewcommand{\dirname}{notes/ece1228-electromagnetic-theory/}
+%\newcommand{\dateintitle}{}
+%\newcommand{\keywords}{}
+
+\input{../latex/peeter_prologue_print2.tex}
+
+\usepackage{peeters_layout_exercise}
+\usepackage{peeters_braket}
+\usepackage{peeters_figures}
+\usepackage{siunitx}
+\usepackage{verbatim}
+\usepackage{macros_cal} % \LL
+%\usepackage{amsthm} % proof
+%\usepackage{mhchem} % \ce{}
+%\usepackage{macros_bm} % \bcM
+%\usepackage{macros_qed} % \qedmarker
+%\usepackage{txfonts} % \ointclockwise
+
+\beginArtNoToc
+
+\generatetitle{Shortest distance between lines}
+%\chapter{Shortest distance between lines}
+%\label{chap:shortestDistanceBetweenLines}
+
+\section{Motivation.}
+Having just worked one of Karl's problems for the distance between two parallel planes, I recalled that when I was in high school, I had trouble with the intution for the problem of shortest distance between two lines.
+
+In this post, I'll revisit that ancient trouble and finally come to terms with it.
+\section{Distance from origin to a line.}
+Before doing the two lines problem, let's look at a similar simpler problem, the shortest distance from the origin to a line.   The parametric representation of a line going through point \( \Bp \) with (unit) direction vector \( \dcap \) is
+\begin{equation}\label{eqn:shortestDistanceBetweenLines:40}
+L: \Bx(r) = \Bp + r \dcap.
+\end{equation}
+If we want to solve this the dumb but mechanical way, we have only to minimize a length-squared function for the distance to a point on the line
+\begin{equation}\label{eqn:shortestDistanceBetweenLines:60}
+\begin{aligned}
+\LL
+&= \Norm{\Bx}^2 \\
+&= \Bp^2 + r^2 + 2 r \Bp \cdot \dcap.
+\end{aligned}
+\end{equation}
+The minimum will occur where the first derivative is zero
+\begin{equation}\label{eqn:shortestDistanceBetweenLines:80}
+\begin{aligned}
+0
+&= \PD{r}{\LL} \\
+&= 2 r + 2 \Bp \cdot \dcap,
+\end{aligned}
+\end{equation}
+so at the minimum we have
+\begin{equation}\label{eqn:shortestDistanceBetweenLines:100}
+r = -\Bp \cdot \dcap.
+\end{equation}
+This means the vector to the nearest point on the line is
+\begin{equation}\label{eqn:shortestDistanceBetweenLines:120}
+\begin{aligned}
+\Bx
+&= \Bp - \lr{ \Bp \cdot \dcap }\dcap \\
+&= \Bp \dcap^2 - \lr{ \Bp \cdot \dcap}\dcap \\
+&= \lr{ \Bp \wedge \dcap } \dcap,
+\end{aligned}
+\end{equation}
+or for \R{3}
+\begin{equation}\label{eqn:shortestDistanceBetweenLines:140}
+\Bx
+= -\lr{ \Bp \cross \dcap } \cross \dcap.
+\end{equation}
+
+The geometry of the problem is illustrated in \cref{fig:shortestDistanceBetweenLines:shortestDistanceBetweenLinesFig6}.
+\imageFigure{../figures/blogit/shortestDistanceBetweenLinesFig6}{Directed distance from origin to line.}{fig:shortestDistanceBetweenLines:shortestDistanceBetweenLinesFig6}{0.3}
+
+Observe that all the calculation above was superfluous, as observation of the geometry shows that we just wanted the rejection of \( \dcap \) (green) from \( \Bp \) (blue), and could have stated the result directly.
+
+\section{Distance between two lines.}
+Suppose that we have two lines, specified with a point and direction vector for each line, as illustrated in \cref{fig:shortestDistanceBetweenLines:shortestDistanceBetweenLinesFig1}
+\begin{equation}\label{eqn:shortestDistanceBetweenLines:20}
+\begin{aligned}
+L_1&: \Bx(r) = \Bp_1 + r \dcap_1 \\
+L_2&: \Bx(s) = \Bp_2 + s \dcap_2 \\
+\end{aligned}
+\end{equation}
+\imageFigure{../figures/blogit/shortestDistanceBetweenLinesFig1}{Two lines, not intersecting.}{fig:shortestDistanceBetweenLines:shortestDistanceBetweenLinesFig1}{0.3}
+
+The geometry of the problem becomes more clear if we augment this figure, adding a line with the direction \( \dcap_2 \) to \( L_1 \), and adding a line with the direction \( \dcap_1 \) to \( L_2 \), as illustrated in \cref{fig:shortestDistanceBetweenLines:shortestDistanceBetweenLinesFig2}, and then visually extending each of those lines to planes that pass through the respective points.  We can now rotate our viewpoint so that we look at those planes on edge, which shows that the problem to solve is really just the distance between two parallel planes.
+\imageTwoFigures{../figures/blogit/shortestDistanceBetweenLinesFig3}{../figures/blogit/shortestDistanceBetweenLinesFig5}{Augmenting the lines with alternate direction vectors to form planes.}{fig:shortestDistanceBetweenLines:shortestDistanceBetweenLinesFig2}{scale=0.5}
+
+The equations of these planes are just
+\begin{equation}\label{eqn:shortestDistanceBetweenLines:160}
+\begin{aligned}
+P_1&: \Bx(r, s) = \Bp_1 + r \dcap_1 + s \dcap_2 \\
+P_2&: \Bx(t, u) = \Bp_2 + t \dcap_2 + u \dcap_1,
+\end{aligned}
+\end{equation}
+or with
+\begin{equation}\label{eqn:shortestDistanceBetweenLines:180}
+\ncap = \frac{\dcap_1 \cross \dcap_2}{\Norm{\dcap_1 \cross \dcap_2}},
+\end{equation}
+the normal form for these planes are
+\begin{equation}\label{eqn:shortestDistanceBetweenLines:200}
+\begin{aligned}
+P_1&: \Bx \cdot \ncap = \Bp_1 \cdot \ncap \\
+P_2&: \Bx \cdot \ncap = \Bp_2 \cdot \ncap.
+\end{aligned}
+\end{equation}
+Now we can state the distance between the planes trivially, using the results from our previous posts, finding
+\begin{equation}\label{eqn:shortestDistanceBetweenLines:220}
+d = \Abs{ \Bp_2 \cdot \ncap - \Bp_1 \cdot \ncap },
+\end{equation}
+or, encoding the triple product in it's determinant form, the shortest distance between the lines (up to a sign), is
+\begin{equation}\label{eqn:shortestDistanceBetweenLines:240}
+d = \frac{
+\begin{vmatrix}
+\Bp_2 - \Bp_1 & \ncap_1 & \ncap_2
+\end{vmatrix}
+}{
+\Norm{ \ncap_1 \cross \ncap_2 }
+}.
+\end{equation}
+\subsection{As a minimization problem.}
+Trying this as a minimization problem is actually kind of fun, albeit messy.  Doing that calculation will give us the directed shortest distance between the lines.
+We can form any number of vectors \( \Bm \) connecting the two lines
+\begin{equation}\label{eqn:shortestDistanceBetweenLines:260}
+\Bp_1 + s \dcap_1 + \Bm = \Bp_2 + t \dcap_2,
+\end{equation}
+or, with \( \Delta = \Bp_2 - \Bp_1 \), that directed distance is
+\begin{equation}\label{eqn:shortestDistanceBetweenLines:280}
+\Bm = \Delta + t \dcap_2 - s \dcap_1.
+\end{equation}
+We seek to minimize the squared length of this vector
+\begin{equation}\label{eqn:shortestDistanceBetweenLines:300}
+\LL = \Norm{\Bm}^2 = \Delta^2 + \lr{ t \dcap_2 - s \dcap_1 }^2 + 2 \Delta \cdot \lr{ t \dcap_2 - s \dcap_1 }.
+\end{equation}
+The minimization constraints are
+\begin{equation}\label{eqn:shortestDistanceBetweenLines:320}
+\begin{aligned}
+0 &= \PD{s}{\LL} = 2 \lr{ t \dcap_2 - s \dcap_1 } \cdot \lr{ -\dcap_1 } + 2 \Delta \cdot \lr{ - \dcap_1 } \\
+0 &= \PD{t}{\LL} = 2 \lr{ t \dcap_2 - s \dcap_1 } \cdot \lr{  \dcap_2 } + 2 \Delta \cdot \lr{   \dcap_2 }.
+\end{aligned}
+\end{equation}
+With \( \alpha = \dcap_1 \cdot \dcap_2 \), our solution for \( s, t \) is
+\begin{equation}\label{eqn:shortestDistanceBetweenLines:340}
+\begin{bmatrix}
+s \\
+t
+\end{bmatrix}
+=
+{
+\begin{bmatrix}
+1 & -\alpha \\
+-\alpha & 1
+\end{bmatrix}
+}^{-1}
+\begin{bmatrix}
+\Delta \cdot \dcap_1 \\
+-\Delta \cdot \dcap_2 \\
+\end{bmatrix},
+\end{equation}
+so
+\begin{equation}\label{eqn:shortestDistanceBetweenLines:360}
+\begin{aligned}
+t \dcap_2 - s \dcap_1
+&=
+\begin{bmatrix}
+-\dcap_1 & \dcap_2
+\end{bmatrix}
+\begin{bmatrix}
+s \\
+t
+\end{bmatrix} \\
+&=
+\inv{1 - \alpha^2}
+\begin{bmatrix}
+-\dcap_1 & \dcap_2
+\end{bmatrix}
+\begin{bmatrix}
+1 & \alpha \\
+\alpha & 1
+\end{bmatrix}
+\begin{bmatrix}
+\Delta \cdot \dcap_1 \\
+-\Delta \cdot \dcap_2 \\
+\end{bmatrix} \\
+&=
+\inv{1 - \alpha^2}
+\begin{bmatrix}
+-\dcap_1 & \dcap_2
+\end{bmatrix}
+\begin{bmatrix}
+\Delta \cdot \dcap_1 - \alpha \Delta \cdot \dcap_2 \\
+\alpha \Delta \cdot \dcap_1 -\Delta \cdot \dcap_2 \\
+\end{bmatrix} \\
+&=
+\inv{1 - \alpha^2}
+\lr{
+-\lr{ \Delta \cdot \dcap_1} \dcap_1 + \alpha \lr{ \Delta \cdot \dcap_2} \dcap_1
++
+\alpha \lr{ \Delta \cdot \dcap_1} \dcap_2 - \lr{ \Delta \cdot \dcap_2} \dcap_2
+} \\
+&=
+\inv{1 - \alpha^2}
+\lr{
+   \lr{ \Delta \cdot \dcap_1} \lr{
+   -\dcap_1 + \alpha \dcap_2
+   }
++
+   \lr{ \Delta \cdot \dcap_2} \lr{
+   -\dcap_2 + \alpha \dcap_1
+   }
+}.
+\end{aligned}
+\end{equation}
+This might look a bit hopeless to simplify, but note that
+\begin{equation}\label{eqn:shortestDistanceBetweenLines:380}
+\begin{aligned}
+\lr{ \dcap_1 \wedge \dcap_2}^2
+&=
+\lr{ \dcap_1 \wedge \dcap_2} \cdot \lr{ \dcap_1 \wedge \dcap_2}  \\
+&=
+\dcap_1 \cdot \lr{ \dcap_2 \cdot \lr{ \dcap_1 \wedge \dcap_2} } \\
+&=
+\dcap_1 \cdot \lr{ \alpha \dcap_2 - \dcap_1 } \\
+&=
+\alpha^2 - 1,
+\end{aligned}
+\end{equation}
+and
+\begin{equation}\label{eqn:shortestDistanceBetweenLines:400}
+\begin{aligned}
+\dcap_2 \cdot \lr{ \dcap_1 \wedge \dcap_2} &= \alpha \dcap_2 - \dcap_1 \\
+-\dcap_1 \cdot \lr{ \dcap_1 \wedge \dcap_2} &= -\dcap_2 + \alpha \dcap_1.
+\end{aligned}
+\end{equation}
+Let's write \( B = \dcap_1 \wedge \dcap_2 \), and plug in our bivector expressions
+\begin{equation}\label{eqn:shortestDistanceBetweenLines:420}
+\begin{aligned}
+t \dcap_2 - s \dcap_1
+&=
+-\inv{B^2}
+\lr{
+   \lr{ \Delta \cdot \dcap_1} \dcap_2 \cdot B
+   -\lr{ \Delta \cdot \dcap_2} \dcap_1 \cdot B
+} \\
+&=
+-\inv{B^2}
+\lr{
+   \lr{ \Delta \cdot \dcap_1} \dcap_2
+   -\lr{ \Delta \cdot \dcap_2} \dcap_1
+}
+\cdot B \\
+&=
+-\inv{B^2}
+\lr{
+   \Delta \cdot \lr{ \dcap_1 \wedge \dcap_2}
+}
+\cdot B \\
+&=
+-\inv{B^2} \lr{ \Delta \cdot B } \cdot B \\
+&=
+-\inv{B^2} \gpgradeone{ \lr{ \Delta \cdot B } B } \\
+&=
+-\inv{B^2} \gpgradeone{ \lr{ \Delta B - \Delta \wedge B } B } \\
+&=
+-\Delta + \inv{B^2} \lr{ \Delta \wedge B } \cdot B.
+\end{aligned}
+\end{equation}
+The minimum directed distance between the lines is now reduced to just
+\begin{equation}\label{eqn:shortestDistanceBetweenLines:440}
+\begin{aligned}
+\Bm
+&= \Delta + t \dcap_2 - s \dcap_1 \\
+&= \lr{ \Delta \wedge B } \inv{B}.
+\end{aligned}
+\end{equation}
+Again, had we used the geometry effectively, we could have skipped directly to this result.  This is the rejection of the plane \( B \) from \( \Delta \), that is, rejection of both \( \dcap_1, \dcap_2 \) from the difference \( \Bp_2 - \Bp_1 \), leaving just the perpendicular shortest connector between the lines.
+
+If we want the magnitude of this vector, it's just
+\begin{equation}\label{eqn:shortestDistanceBetweenLines:480}
+\begin{aligned}
+\Norm{\Bm}^2
+&=
+\inv{B^4} \lr{ \lr{ \Delta \wedge B } B } \lr{ B \lr{ B \wedge \Delta } } \\
+&=
+\inv{B^2} \lr{ \Delta \wedge B }^2,
+\end{aligned}
+\end{equation}
+or
+\begin{equation}\label{eqn:shortestDistanceBetweenLines:460}
+\Norm{\Bm} = \frac{ \Norm{ \lr{\Bp_2 - \Bp_1} \wedge \dcap_1 \wedge \dcap_2 } }{ \Norm{\dcap_1 \wedge \dcap_2} },
+\end{equation}
+which is equivalent to the triple product result we found above.
+
+%}
+%\EndArticle
+\EndNoBibArticle

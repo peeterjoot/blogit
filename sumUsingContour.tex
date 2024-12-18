@@ -1,0 +1,100 @@
+%
+% Copyright © 2024 Peeter Joot.  All Rights Reserved.
+% Licenced as described in the file LICENSE under the root directory of this GIT repository.
+%
+%{
+\input{../latex/blogpost.tex}
+\renewcommand{\basename}{sumUsingContour}
+%\renewcommand{\dirname}{notes/phy1520/}
+\renewcommand{\dirname}{notes/ece1228-electromagnetic-theory/}
+%\newcommand{\dateintitle}{}
+%\newcommand{\keywords}{}
+
+\input{../latex/peeter_prologue_print2.tex}
+
+\usepackage{peeters_layout_exercise}
+\usepackage{peeters_braket}
+\usepackage{peeters_figures}
+\usepackage{siunitx}
+\usepackage{verbatim}
+%\usepackage{macros_cal} % \LL
+\usepackage{amsthm} % proof
+%\usepackage{mhchem} % \ce{}
+%\usepackage{macros_bm} % \bcM
+%\usepackage{macros_qed} % \qedmarker
+\usepackage{txfonts} % \ointctrclockwiseclockwise
+\DeclareMathOperator{\Res}{Res}
+
+\beginArtNoToc
+
+\generatetitle{Evaluating a sum using a contour integral.}
+%\chapter{Evaluating a sum using a contour integral.}
+%\label{chap:sumUsingContour}
+
+One of my favorite Dover books, \citep{byron1992mca}, is a powerhouse of a reference, and has a huge set of the mathematical tricks and techniques that any engineer or physicist would ever want.
+
+Reading it a bit today while travelling, I encountered the following interesting looking theorem for evaluating sums using contour integrals.
+\maketheorem{}{thm:sumUsingContour:1}{
+Given a meromorphic function \( f(z) \) that shares no poles with \( \cot( \pi z ) \), where \( C \) encloses the zeros of \( \sin( \pi z \), located at \( z = a, a+1, \cdots b \), then
+\begin{equation*}
+\sum_{m=a}^b f(m) = \inv{2 \pi i} \ointctrclockwise_C \pi \cot( \pi z ) f(z) dz -\quad \sum_{\mbox{poles of \( f(z) \) in \( C \)}} \Res\lr{ \pi \cot( \pi z ) f(z) }.
+\end{equation*}
+} % theorem
+
+The enclosing contour may look like \cref{fig:sumUsingContour:sumUsingContourFig2}.
+\imageFigure{../figures/blogit/sumUsingContourFig2}{Sample contour}{fig:sumUsingContour:sumUsingContourFig2}{0.3}
+
+\begin{proof}
+We basically want to evaluate
+\begin{equation}\label{eqn:sumUsingContour:20}
+\ointctrclockwise_C \pi \cot( \pi z ) f(z) dz,
+\end{equation}
+using residues.  To see why this works, observe that \( \cot( \pi z ) \) is periodic, as plotted in \cref{fig:sumUsingContour:sumUsingContourFig1}.
+
+\imageFigure{../figures/blogit/sumUsingContourFig1}{Cotangent.}{fig:sumUsingContour:sumUsingContourFig1}{0.3}
+In particular, if \( z = m + \epsilon \), we have
+\begin{equation}\label{eqn:sumUsingContour:40}
+\begin{aligned}
+\cot(\pi z)
+&= \frac{\cos(\pi(m + \epsilon))}{\sin(\pi(m + \epsilon))} \\
+&= \frac{(-1)^m \cos(\pi \epsilon)}{(-1)^m \sin(\pi \epsilon)} \\
+&= \cot(\pi \epsilon).
+\end{aligned}
+\end{equation}
+The residue of \( \pi \cot(\pi z) \), at \( z = 0 \), or at any other integer point, is
+\begin{equation}\label{eqn:sumUsingContour:60}
+\frac{\pi}{
+\pi z - (\pi z)^3/6 + \cdots
+}
+= 1.
+\end{equation}
+This means that we have
+\begin{equation}\label{eqn:sumUsingContour:80}
+\ointctrclockwise_C \pi \cot( \pi z ) f(z) dz = 2 \pi i \sum_{m = a}^b f(m) + 2 \pi i \quad \sum_{\mbox{poles of \( f(z) \) in \( C \)}} \Res\lr{ \pi \cot( \pi z ) f(z) }.
+\end{equation}
+We just have to rearrange and scale to complete the proof.
+\end{proof}
+
+In the book the sample application was to use this to show that
+\begin{equation}\label{eqn:sumUsingContour:100}
+\coth x - \inv{x} = \sum_{m=1}^\infty \frac{2x}{x^2 + m^2 \pi^2}.
+\end{equation}
+That's then integrated to show that
+\begin{equation}\label{eqn:sumUsingContour:120}
+\frac{\sinh x}{x} = \prod_{m = 1}^\infty \lr{ 1 + \frac{x^2}{m^2 \pi^2} },
+\end{equation}
+or with \( x = i \theta \),
+\begin{equation}\label{eqn:sumUsingContour:140}
+\sin \theta = \theta \prod_{m = 1}^\infty \lr{ 1 - \frac{\theta^2}{m^2 \pi^2} },
+\end{equation}
+and finally equating \( \theta^3 \) terms in this infinite product, we find
+\begin{equation}\label{eqn:sumUsingContour:160}
+\sum_{m = 1}^\infty \inv{m^2} = \frac{\pi^2}{6},
+\end{equation}
+which is \( \zeta(2) \), a specific value of the Riemann zeta function.
+
+All this is done in a couple spectacularly dense pages of calculation, and illustrates the kind of gems in this book.  At about 700 pages, it's got a lot of gems.
+
+%}
+\EndArticle
+%\EndNoBibArticle

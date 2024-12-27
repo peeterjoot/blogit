@@ -357,16 +357,21 @@
 
 #../latex/bin/lgrep logab.tex | tee o ; . ./o
 #perl -p -i ../latex/bin/latexRegex.pl logab.tex
+
 #../latex/bin/lgrep 2x2eigen.tex | tee o ; . ./o
 #perl -p -i ../latex/bin/latexRegex.pl 2x2eigen.tex
+
 #../latex/bin/lgrep distanceBetweenPlanes.tex | tee o ; . ./o
 #perl -p -i ../latex/bin/latexRegex.pl distanceBetweenPlanes.tex
+
 #../latex/bin/lgrep hyperplaneGeometry.tex | tee o ; . ./o
 #perl -p -i ../latex/bin/latexRegex.pl hyperplaneGeometry.tex
 
-../latex/bin/lgrep shortestDistanceBetweenLines.tex | tee o ; . ./o
-perl -p -i ../latex/bin/latexRegex.pl shortestDistanceBetweenLines.tex
-../latex/bin/lgrep sumUsingContour.tex | tee o ; . ./o
-perl -p -i ../latex/bin/latexRegex.pl sumUsingContour.tex
-../latex/bin/lgrep logoversquare.tex | tee o ; . ./o
-perl -p -i ../latex/bin/latexRegex.pl logoversquare.tex
+#../latex/bin/lgrep shortestDistanceBetweenLines.tex | tee o ; . ./o
+#perl -p -i ../latex/bin/latexRegex.pl shortestDistanceBetweenLines.tex
+
+#../latex/bin/lgrep sumUsingContour.tex | tee o ; . ./o
+#perl -p -i ../latex/bin/latexRegex.pl sumUsingContour.tex
+
+#../latex/bin/lgrep logoversquare.tex | tee o ; . ./o
+#perl -p -i ../latex/bin/latexRegex.pl logoversquare.tex

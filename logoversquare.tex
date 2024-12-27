@@ -1,0 +1,89 @@
+%
+% Copyright © 2024 Peeter Joot.  All Rights Reserved.
+% Licenced as described in the file LICENSE under the root directory of this GIT repository.
+%
+%{
+\input{../latex/blogpost.tex}
+\renewcommand{\basename}{logoversquare}
+%\renewcommand{\dirname}{notes/phy1520/}
+\renewcommand{\dirname}{notes/ece1228-electromagnetic-theory/}
+%\newcommand{\dateintitle}{}
+%\newcommand{\keywords}{}
+
+\input{../latex/peeter_prologue_print2.tex}
+
+\usepackage{peeters_layout_exercise}
+\usepackage{peeters_braket}
+\usepackage{peeters_figures}
+\usepackage{siunitx}
+\usepackage{verbatim}
+%\usepackage{macros_cal} % \LL
+%\usepackage{amsthm} % proof
+%\usepackage{mhchem} % \ce{}
+%\usepackage{macros_bm} % \bcM
+%\usepackage{macros_qed} % \qedmarker
+%\usepackage{txfonts} % \ointclockwise
+
+\beginArtNoToc
+
+\generatetitle{XXX}
+%\chapter{XXX}
+%\label{chap:logoversquare}
+
+Goal is to find
+\begin{equation}\label{eqn:logoversquare:20}
+I = \int_0^\infty \frac{\ln x}{x^2 + 6 x + 9} dx.
+\end{equation}
+
+We can start by observing that
+\begin{equation}\label{eqn:logoversquare:40}
+\lr{ \frac{\ln x}{x + 3} }' =
+-\frac{\ln x}{\lr{x+3}^2} + \inv{x\lr{x + 3}},
+\end{equation}
+so the indefinite integral is
+\begin{equation}\label{eqn:logoversquare:60}
+\begin{aligned}
+\int \frac{\ln x}{\lr{x + 3}^2} dx
+&=
+-\frac{\ln x}{x + 3} + \int \inv{x\lr{x + 3}} dx \\
+&=
+-\frac{\ln x}{x + 3} + \inv{3} \int \lr{ \inv{x} - \inv{x+3} } dx \\
+&=
+-\frac{\ln x}{x + 3} + \inv{3} \lr{ \ln x - \ln\lr{x+3} } \\
+&=
+\inv{3} \lr{ \frac{x \ln x}{x+3} - \ln\lr{x+3} },
+\end{aligned}
+\end{equation}
+where we performed a partial fractions expansion.
+
+The limit at infinity can be evaluated using l'Hopitals rule, since
+\begin{equation}\label{eqn:logoversquare:80}
+\inv{3} \lr{ \frac{x \ln x}{x+3} - \ln\lr{x+3} }
+=
+\inv{3} \frac{ x \ln x - \lr{ x + 3} \ln \lr{ x + 3} }{ x+3 },
+\end{equation}
+has the required \(\infty/\infty\) form.  This gives
+\begin{equation}\label{eqn:logoversquare:100}
+\begin{aligned}
+\lim_{x\rightarrow \infty}
+\inv{3} \frac{ x \ln x - \lr{ x + 3} \ln \lr{ x + 3} }{ x+3 }
+&=
+\lim_{x\rightarrow \infty}
+\inv{3} \frac{1 + \ln x - \lr{ 1 + ln\lr{x +3 } }}{1} \\
+&=
+\lim_{x\rightarrow \infty}
+-\inv{3} \ln \lr{ 1 + 3/x } \\
+&= 0.
+\end{aligned}
+\end{equation}
+For the lower limit we have
+\begin{equation}\label{eqn:logoversquare:120}
+\lim_{x\rightarrow 0}
+\inv{3} \lr{ \frac{x \ln x}{x+3} - \ln\lr{x+3} }=
+-\frac{\ln 3}{3},
+\end{equation}
+so we have \( I = (1/3)\ln 3 \).
+
+%}
+%\EndArticle
+\EndNoBibArticle

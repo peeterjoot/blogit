@@ -368,3 +368,5 @@
 perl -p -i ../latex/bin/latexRegex.pl shortestDistanceBetweenLines.tex
 ../latex/bin/lgrep sumUsingContour.tex | tee o ; . ./o
 perl -p -i ../latex/bin/latexRegex.pl sumUsingContour.tex
+../latex/bin/lgrep logoversquare.tex | tee o ; . ./o
+perl -p -i ../latex/bin/latexRegex.pl logoversquare.tex

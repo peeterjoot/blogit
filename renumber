@@ -375,3 +375,5 @@
 
 #../latex/bin/lgrep logoversquare.tex | tee o ; . ./o
 #perl -p -i ../latex/bin/latexRegex.pl logoversquare.tex
+../latex/bin/lgrep hyperbolicIntegral.tex | tee o ; . ./o
+perl -p -i ../latex/bin/latexRegex.pl hyperbolicIntegral.tex

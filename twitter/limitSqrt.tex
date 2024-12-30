@@ -1,0 +1,64 @@
+%
+% Copyright © 2024 Peeter Joot.  All Rights Reserved.
+% Licenced as described in the file LICENSE under the root directory of this GIT repository.
+%
+%{
+\input{../latex/blogpost.tex}
+\renewcommand{\basename}{limitSqrt}
+%\renewcommand{\dirname}{notes/phy1520/}
+\renewcommand{\dirname}{notes/ece1228-electromagnetic-theory/}
+%\newcommand{\dateintitle}{}
+%\newcommand{\keywords}{}
+
+\input{../latex/peeter_prologue_print2.tex}
+
+\usepackage{peeters_layout_exercise}
+\usepackage{peeters_braket}
+\usepackage{peeters_figures}
+\usepackage{siunitx}
+\usepackage{verbatim}
+%\usepackage{macros_cal} % \LL
+%\usepackage{amsthm} % proof
+%\usepackage{mhchem} % \ce{}
+%\usepackage{macros_bm} % \bcM
+%\usepackage{macros_qed} % \qedmarker
+%\usepackage{txfonts} % \ointclockwise
+
+\beginArtNoToc
+
+\generatetitle{XXX}
+%\chapter{XXX}
+%\label{chap:limitSqrt}
+% \citep{sakurai2014modern} pr X.Y
+% \citep{pozar2009microwave}
+% \citep{qftLectureNotes}
+% \citep{doran2003gap}
+% \citep{jackson1975cew}
+% \citep{griffiths1999introduction}
+
+Find
+\begin{equation}\label{eqn:limitSqrt:20}
+\lim_{x \rightarrow \infty} \sqrt{ x^2 + x - 1 } - x.
+\end{equation}
+Factor out \( x \) from the root, and then expand in series
+\begin{equation}\label{eqn:limitSqrt:40}
+\begin{aligned}
+\lim_{x \rightarrow \infty} \sqrt{ x^2 + x - 1 } - x
+&=
+\lim_{x \rightarrow \infty} x \lr{ -1 + \sqrt{ 1 + \inv{x} - \inv{x^2} } } \\
+&=
+\lim_{x \rightarrow \infty} x \lr{ -1 + \sqrt{ 1 + \lr{ \inv{x} - \inv{x^2}} } } \\
+&=
+\lim_{x \rightarrow \infty} x \lr{ -1 + 1 + \inv{2} \inv{1!} \lr{ \inv{x} - \inv{x^2}} + \inv{2}\lr{ \frac{-1}{2} } \inv{2!} \lr{ \inv{x} - \inv{x^2}}^2 + \cdots } \\
+&=
+\lim_{x \rightarrow \infty} \inv{2} \lr{ 1 - \inv{x}} - \frac{x}{4} \lr{ \inv{x} - \inv{x^2}}^2 + \cdots.
+\end{aligned}
+\end{equation}
+All but the \( 1/2 \) term is \( O(1/x^k) \) with \( k > 0 \), so
+\begin{equation}\label{eqn:limitSqrt:60}
+\lim_{x \rightarrow \infty} \sqrt{ x^2 + x - 1 } - x = \inv{2}.
+\end{equation}
+
+%}
+%\EndArticle
+\EndNoBibArticle

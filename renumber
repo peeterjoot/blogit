@@ -260,9 +260,6 @@
 #../latex/bin/lgrep recipq.tex | tee o ; . ./o
 #perl -p -i ../latex/bin/latexRegex.pl recipq.tex
 
-#../latex/bin/lgrep contraction_vs_dot.tex | tee o ; . ./o
-#perl -p -i ../latex/bin/latexRegex.pl contraction_vs_dot.tex
-
 #../latex/bin/lgrep radialderivatives.tex | tee o ; . ./o
 #perl -p -i ../latex/bin/latexRegex.pl radialderivatives.tex
 
@@ -355,11 +352,7 @@
 #../latex/bin/lgrep vectorBivector.tex | tee o ; . ./o
 #perl -p -i ../latex/bin/latexRegex.pl vectorBivector.tex
 
-#../latex/bin/lgrep logab.tex | tee o ; . ./o
-#perl -p -i ../latex/bin/latexRegex.pl logab.tex
 
-#../latex/bin/lgrep 2x2eigen.tex | tee o ; . ./o
-#perl -p -i ../latex/bin/latexRegex.pl 2x2eigen.tex
 
 #../latex/bin/lgrep distanceBetweenPlanes.tex | tee o ; . ./o
 #perl -p -i ../latex/bin/latexRegex.pl distanceBetweenPlanes.tex
@@ -373,7 +366,5 @@
 #../latex/bin/lgrep sumUsingContour.tex | tee o ; . ./o
 #perl -p -i ../latex/bin/latexRegex.pl sumUsingContour.tex
 
-#../latex/bin/lgrep logoversquare.tex | tee o ; . ./o
-#perl -p -i ../latex/bin/latexRegex.pl logoversquare.tex
-../latex/bin/lgrep hyperbolicIntegral.tex | tee o ; . ./o
-perl -p -i ../latex/bin/latexRegex.pl hyperbolicIntegral.tex
+
+

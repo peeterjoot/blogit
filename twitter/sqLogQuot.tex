@@ -1,0 +1,77 @@
+%
+% Copyright © 2025 Peeter Joot.  All Rights Reserved.
+% Licenced as described in the file LICENSE under the root directory of this GIT repository.
+%
+%{
+\input{../latex/blogpost.tex}
+\renewcommand{\basename}{sqLogQuot}
+%\renewcommand{\dirname}{notes/phy1520/}
+\renewcommand{\dirname}{notes/ece1228-electromagnetic-theory/}
+%\newcommand{\dateintitle}{}
+%\newcommand{\keywords}{}
+
+\input{../latex/peeter_prologue_print2.tex}
+
+\usepackage{peeters_layout_exercise}
+\usepackage{peeters_braket}
+\usepackage{peeters_figures}
+\usepackage{siunitx}
+\usepackage{verbatim}
+%\usepackage{macros_cal} % \LL
+%\usepackage{amsthm} % proof
+%\usepackage{mhchem} % \ce{}
+%\usepackage{macros_bm} % \bcM
+%\usepackage{macros_qed} % \qedmarker
+%\usepackage{txfonts} % \ointclockwise
+
+\beginArtNoToc
+
+\generatetitle{XXX}
+%\chapter{XXX}
+%\label{chap:sqLogQuot}
+
+Solve:
+\begin{equation}\label{eqn:sqLogQuot:20}
+I = \int \frac{ \lr{ \ln x - 1 }^2 }{ \lr{ 1 + \ln x }^2 } dx.
+\end{equation}
+To get rid of all the ugly logs to start with, let \( u = 1 + \ln x \).  This means that \( du = dx/x \), and \( x = e^{u-1} \).  Our integral is now reduced to
+\begin{equation}\label{eqn:sqLogQuot:40}
+\begin{aligned}
+I
+&= \int \frac{\lr{u-1}^2}{u^2} e^{u-1} du \\
+&= \inv{e} \int \lr{ 1 - \frac{4}{u} + \frac{4}{u^2} } e^u du.
+\end{aligned}
+\end{equation}
+At first this looks scary, since we don't want to deal with special functions like the exponential integral \( \mathrm{Ei}(x) = -\int_{-\infty}^x \frac{e^u}{u} du \).  Assuming instead that cancelations will work in our favor, let's guess:
+\begin{equation}\label{eqn:sqLogQuot:60}
+I = \inv{e} \lr{ A + \frac{B}{u} } e^u,
+\end{equation}
+which requires
+\begin{equation}\label{eqn:sqLogQuot:80}
+-\frac{B}{u^2} + A + \frac{B}{u} = 1 - \frac{4}{u} + \frac{4}{u^2},
+\end{equation}
+or \( A = 1, B = -4 \).  Back substutition yeilds
+\begin{equation}\label{eqn:sqLogQuot:100}
+\begin{aligned}
+I
+&= \inv{e} \lr{ 1 - \frac{4}{u} } e^u \\
+&= \lr{ 1 - \frac{4}{1 + \ln x} } x.
+\end{aligned}
+\end{equation}
+Let's check:
+\begin{equation}\label{eqn:sqLogQuot:120}
+\begin{aligned}
+I'
+&= 1 - \frac{4}{1 + \ln x} + \frac{4 x \inv{x}}{\lr{ 1 + \ln x}^2} \\
+&=
+\frac{\lr{ 1 + \ln x}^2 + 4 \lr{1 + \ln x} + 4}{\lr{ 1 + \ln x}^2} \\
+&=
+\frac{ 1 + \lr{\ln x}^2 + 2 \ln x - 4 \ln x }{\lr{ 1 + \ln x}^2} \\
+&=
+\frac{\lr{ 1 - \ln x}^2}{\lr{ 1 + \ln x}^2}.
+\end{aligned}
+\end{equation}
+
+%}
+%\EndArticle
+\EndNoBibArticle

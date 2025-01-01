@@ -11,3 +11,7 @@
 #perl -p -i ../latex/bin/latexRegex.pl hyperbolicIntegral.tex
 #../latex/bin/lgrep limitSqrt.tex | tee o ; . ./o
 #perl -p -i ../latex/bin/latexRegex.pl limitSqrt.tex
+../latex/bin/lgrep sqLogQuot.tex | tee o ; . ./o
+perl -p -i ../latex/bin/latexRegex.pl sqLogQuot.tex
+../latex/bin/lgrep sqLogQuot2.tex | tee o ; . ./o
+perl -p -i ../latex/bin/latexRegex.pl sqLogQuot2.tex

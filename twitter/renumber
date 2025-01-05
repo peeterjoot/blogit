@@ -15,3 +15,9 @@
 perl -p -i ../latex/bin/latexRegex.pl sqLogQuot.tex
 ../latex/bin/lgrep sqLogQuot2.tex | tee o ; . ./o
 perl -p -i ../latex/bin/latexRegex.pl sqLogQuot2.tex
+../latex/bin/lgrep branchCutIntegral.tex | tee o ; . ./o
+perl -p -i ../latex/bin/latexRegex.pl branchCutIntegral.tex
+../latex/bin/lgrep partialFractions.tex | tee o ; . ./o
+perl -p -i ../latex/bin/latexRegex.pl partialFractions.tex
+../latex/bin/lgrep oneSeventh.tex | tee o ; . ./o
+perl -p -i ../latex/bin/latexRegex.pl oneSeventh.tex

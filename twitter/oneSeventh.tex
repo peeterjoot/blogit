@@ -1,0 +1,77 @@
+%
+% Copyright © 2025 Peeter Joot.  All Rights Reserved.
+% Licenced as described in the file LICENSE under the root directory of this GIT repository.
+%
+%{
+\input{../latex/blogpost.tex}
+\renewcommand{\basename}{oneSeventh}
+%\renewcommand{\dirname}{notes/phy1520/}
+\renewcommand{\dirname}{notes/ece1228-electromagnetic-theory/}
+%\newcommand{\dateintitle}{}
+%\newcommand{\keywords}{}
+
+\input{../latex/peeter_prologue_print2.tex}
+
+\usepackage{peeters_layout_exercise}
+\usepackage{peeters_braket}
+\usepackage{peeters_figures}
+\usepackage{siunitx}
+\usepackage{verbatim}
+%\usepackage{macros_cal} % \LL
+%\usepackage{amsthm} % proof
+%\usepackage{mhchem} % \ce{}
+%\usepackage{macros_bm} % \bcM
+%\usepackage{macros_qed} % \qedmarker
+%\usepackage{txfonts} % \ointclockwise
+
+\beginArtNoToc
+
+\generatetitle{XXX}
+%\chapter{XXX}
+%\label{chap:oneSeventh}
+% \citep{sakurai2014modern} pr X.Y
+% \citep{pozar2009microwave}
+% \citep{qftLectureNotes}
+% \citep{doran2003gap}
+% \citep{jackson1975cew}
+% \citep{griffiths1999introduction}
+
+Solve
+\begin{equation}\label{eqn:oneSeventh:20}
+I = \int \frac{dx}{\lr{x+4}^{8/7} \lr{ x - 3}^{6/7} }.
+\end{equation}
+Let's try guessing
+\begin{equation}\label{eqn:oneSeventh:40}
+I = \lr{ x + 4 }^a \lr{ x - 3 }^b + C.
+\end{equation}
+where \( a, b \) are probably constant multiples of \( 1/7 \), since \( 8/7 = 1 + 1/7 \) and \( 6/7 = 1 - 1/7 \).
+
+We find
+\begin{equation}\label{eqn:oneSeventh:60}
+\begin{aligned}
+I'
+&= a \lr{ x + 4 }^{a-1} \lr{ x - 3 }^b  + b \lr{ x + 4 }^a \lr{ x - 3 }^{b - 1} \\
+&= \lr{ x + 4 }^{a} \lr{ x - 3 }^b  \lr{ \frac{a}{x + 4} + \frac{b}{x - 3}  } \\
+&= \lr{ x + 4 }^{a-1} \lr{ x - 3 }^{b-1}  \lr{ a \lr{x - 4} + b \lr{x + 4}  } \\
+&= \lr{ x + 4 }^{a-1} \lr{ x - 3 }^{b-1}  \lr{ x \lr{ a + b } + 4 b - 3 a } \\
+\end{aligned}
+\end{equation}
+
+We need \( a, b \) to satisfy the following set of over-specified equations
+\begin{equation}\label{eqn:oneSeventh:80}
+\begin{aligned}
+a - 1 &= -\frac{8}{7} \\
+b - 1 &= -\frac{6}{7} \\
+a + b &= 0 \\
+4 b - 3 a &= 1.
+\end{aligned}
+\end{equation}
+This is solved by \( a = -1/7, b = 1/7 \), so
+\begin{equation}\label{eqn:oneSeventh:100}
+I = \lr{ \frac{ x - 3}{x + 4 }}^{1/7} + C.
+\end{equation}
+It will be interesting to see other solutions, especially one with a more systematic approach, since this guess was too lucky.
+
+%}
+%\EndArticle
+\EndNoBibArticle

@@ -1,0 +1,79 @@
+%
+% Copyright © 2025 Peeter Joot.  All Rights Reserved.
+% Licenced as described in the file LICENSE under the root directory of this GIT repository.
+%
+%{
+\input{../latex/blogpost.tex}
+\renewcommand{\basename}{branchCutIntegral}
+%\renewcommand{\dirname}{notes/phy1520/}
+\renewcommand{\dirname}{notes/ece1228-electromagnetic-theory/}
+%\newcommand{\dateintitle}{}
+%\newcommand{\keywords}{}
+
+\input{../latex/peeter_prologue_print2.tex}
+
+\usepackage{peeters_layout_exercise}
+\usepackage{peeters_braket}
+\usepackage{peeters_figures}
+\usepackage{siunitx}
+\usepackage{verbatim}
+%\usepackage{macros_cal} % \LL
+%\usepackage{amsthm} % proof
+%\usepackage{mhchem} % \ce{}
+%\usepackage{macros_bm} % \bcM
+%\usepackage{macros_qed} % \qedmarker
+%\usepackage{txfonts} % \ointclockwise
+
+\beginArtNoToc
+
+\generatetitle{An integral with branch cut}
+%\chapter{An integral with branch cut}
+%\label{chap:branchCutIntegral}
+
+I'm having trouble figuring out how to show, using an appropriate contour integral, that
+\begin{equation}\label{eqn:branchCutIntegral:20}
+I(a) = \int_0^\infty \frac{x^{2a - 1}}{1 + x^2} dx = \frac{\pi}{2 \sin(a \pi)},
+\end{equation}
+where \( a \in (0, 1) \).  This is one of the many tricky real integral problems from \citep{byron1992mca}.
+
+My old complex variables book \citep{brown1990complex} has a similar example integral, evaluated with the contour of \cref{fig:branchCutContour:branchCutContourFig1}.
+\imageFigure{../figures/blogit/branchCutContourFig1}{Branch cut along positive real axis.}{fig:branchCutContour:branchCutContourFig1}{0.3}
+
+Above and below the branch cut on the positive real axis, the integrand is
+\begin{equation}\label{eqn:branchCutIntegral:40}
+f(x) = \frac{x^{2a-1} e^{i\theta (2a - 1)} }{1 + x^2},
+\end{equation}
+where \( \theta = 0, 2 \pi \) respectively.  This means that we have
+so we have
+\begin{equation}\label{eqn:branchCutIntegral:60}
+\int_\rho^R \frac{x^{2a-1}}{1 + x^2} dx + \int_R^\rho \frac{x^{2a-1} e^{4 \pi i a} }{1 + x^2} dx + \int_{C_R} f(z) dz + \int_{C_\rho} f(z) dz = 2 \pi i \times (\textrm{Enclosed residues}).
+\end{equation}
+It's not too hard to argue that the circular contours go to zero in the respective limits, which leaves
+\begin{equation}\label{eqn:branchCutIntegral:80}
+I(a) = \lim_{\rho \rightarrow 0, R \rightarrow \infty} \int_\rho^R \frac{x^{2a-1}}{1 + x^2} dx = 2 \pi i \frac{\textrm{Enclosed residues.}}{1 - e^{4 \pi i a}}.
+\end{equation}
+
+It's not clear to me whether both poles should be considered included by the contour, but I get the wrong answer both ways.  The respective residues at \( z = \pm i \) are
+\begin{equation}\label{eqn:branchCutIntegral:100}
+\evalbar{ \frac{z^{2a -1}}{z + i}}{z = i} = \frac{i^{2a-1}}{2i} = -\inv{2} i^{2a},
+\end{equation}
+\begin{equation}\label{eqn:branchCutIntegral:120}
+\evalbar{ \frac{z^{2a -1}}{z - i}}{z = -i} = \frac{(-i)^{2a-1}}{-2i} = -\inv{2} (-i)^{2a}.
+\end{equation}
+If I include just the first residue (assuming that \( z = -i \) is excluded by the branch cut), then I get
+\begin{equation}\label{eqn:branchCutIntegral:140}
+I(a) = \frac{\pi}{4\sin(\pi a)} - i \frac{\pi}{4\cos(\pi a)},
+\end{equation}
+and if I include both residues, I get
+\begin{equation}\label{eqn:branchCutIntegral:160}
+I(a) = \frac{\pi e^{-2 \pi i a} }{2\sin(\pi a)}.
+\end{equation}
+In both cases the result is complex, not real, and in neither case do I get the correct answer.  In the first case, the real part matches the answer, but is off by a factor of two.  In the second case, including both residues, the magnitude matches without any factor of two differences, but there's still an unexpected phase factor.
+
+Perhaps the explaination for my trouble is that this contour is entirely inappropriate?  If that's the case, I'd like an explaination of why that is the case, and what contour should be used.
+
+On the other hand, if this contour selection is acceptable, then should I think of \( e^{i\pi/2}, e^{3 i \pi/2} \) the poles (i.e.: include both), or should I think of \( e^{\pm i \pi/2 } \) as the poles (i.e.: where the \( z = -i \) pole is excluded by the branch cut?)  If one of these options is correct, can anybody spot the error that lead to the incorrect answers above?
+
+%}
+\EndArticle
+%\EndNoBibArticle

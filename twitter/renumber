@@ -21,3 +21,5 @@ perl -p -i ../latex/bin/latexRegex.pl branchCutIntegral.tex
 perl -p -i ../latex/bin/latexRegex.pl partialFractions.tex
 ../latex/bin/lgrep oneSeventh.tex | tee o ; . ./o
 perl -p -i ../latex/bin/latexRegex.pl oneSeventh.tex
+../latex/bin/lgrep sincLimit.tex | tee o ; . ./o
+perl -p -i ../latex/bin/latexRegex.pl sincLimit.tex

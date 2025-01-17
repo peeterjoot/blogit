@@ -1,0 +1,58 @@
+%
+% Copyright © 2025 Peeter Joot.  All Rights Reserved.
+% Licenced as described in the file LICENSE under the root directory of this GIT repository.
+%
+%{
+\input{../latex/blogpost.tex}
+\renewcommand{\basename}{gaussianContour}
+%\renewcommand{\dirname}{notes/phy1520/}
+\renewcommand{\dirname}{notes/ece1228-electromagnetic-theory/}
+%\newcommand{\dateintitle}{}
+%\newcommand{\keywords}{}
+
+\input{../latex/peeter_prologue_print2.tex}
+
+\usepackage{peeters_layout_exercise}
+\usepackage{peeters_braket}
+\usepackage{peeters_figures}
+\usepackage{siunitx}
+\usepackage{verbatim}
+%\usepackage{macros_cal} % \LL
+%\usepackage{amsthm} % proof
+%\usepackage{mhchem} % \ce{}
+%\usepackage{macros_bm} % \bcM
+%\usepackage{macros_qed} % \qedmarker
+%\usepackage{txfonts} % \ointclockwise
+
+\beginArtNoToc
+
+\generatetitle{Gaussian evaluation using contour integration}
+%\chapter{Gaussian evaluation using contour integration}
+%\label{chap:gaussianContour}
+
+Find
+\begin{equation}\label{eqn:gaussianContour:20}
+I = \inv{\sqrt{2 \pi}} \int_0^\infty e^{-x^2/8} dx.
+\end{equation}
+Let \( u = x^2/4 \), so that \( du = x dx/2 \), and
+\begin{equation}\label{eqn:gaussianContour:60}
+dx = \frac{2}{x} du = \frac{2}{2 \sqrt{u}} du,
+\end{equation}
+so
+\begin{equation}\label{eqn:gaussianContour:40}
+2 I = \inv{\sqrt{2 \pi}} \int_{-\infty}^\infty \frac{e^{-u^2/2}}{\sqrt{u}} du.
+\end{equation}
+Let's now evaluate
+\begin{equation}\label{eqn:gaussianContour:80}
+2 \sqrt{2 \pi} I = J = \oint_C \frac{e^{-z^2/2}}{\sqrt{z}} dz,
+\end{equation}
+over \( z \in [-R,R] \), with a semicircular hop around the branch point at the origin, and then back around in a radius \( R \) loop from \( R \) to \( -R \), as sketched in FIXME.
+\begin{equation}\label{eqn:gaussianContour:100}
+\begin{aligned}
+J = - \pi i
+\end{aligned}
+\end{equation}
+
+%}
+%\EndArticle
+\EndNoBibArticle

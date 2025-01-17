@@ -1,0 +1,89 @@
+%
+% Copyright © 2025 Peeter Joot.  All Rights Reserved.
+% Licenced as described in the file LICENSE under the root directory of this GIT repository.
+%
+%{
+\input{../latex/blogpost.tex}
+\renewcommand{\basename}{ellipicalIntegral}
+%\renewcommand{\dirname}{notes/phy1520/}
+\renewcommand{\dirname}{notes/ece1228-electromagnetic-theory/}
+%\newcommand{\dateintitle}{}
+%\newcommand{\keywords}{}
+
+\input{../latex/peeter_prologue_print2.tex}
+
+\usepackage{peeters_layout_exercise}
+\usepackage{peeters_braket}
+\usepackage{peeters_figures}
+\usepackage{siunitx}
+\usepackage{verbatim}
+%\usepackage{macros_cal} % \LL
+%\usepackage{amsthm} % proof
+%\usepackage{mhchem} % \ce{}
+%\usepackage{macros_bm} % \bcM
+%\usepackage{macros_qed} % \qedmarker
+%\usepackage{txfonts} % \ointclockwise
+
+\beginArtNoToc
+
+\generatetitle{XXX}
+%\chapter{XXX}
+%\label{chap:ellipicalIntegral}
+Find
+\begin{equation}\label{eqn:ellipicalIntegral:20}
+I = \int_0^\pi \frac{dx}{a^2 \cos^2 x + b^2 \sin^2 x}.
+\end{equation}
+Let's first assume we aren't interested in the \( a^2 = b^2 \), nor either of the \( a = 0, b = 0\) cases.
+We can make a couple simple transformations to start with
+\begin{equation}\label{eqn:ellipicalIntegral:40}
+\begin{aligned}
+\cos^2 x &= \frac{\cos(2x) + 1}{2} \\
+\sin^2 x &= \frac{1 - \cos(2x)}{2},
+\end{aligned}
+\end{equation}
+and then \( u = 2 x \), for \( dx = du/2 \)
+\begin{equation}\label{eqn:ellipicalIntegral:60}
+\begin{aligned}
+I
+&= \int_0^{2\pi} 2 \frac{du/2}{a^2 \lr{ 1 + \cos u } + b^2 \lr{1 - \cos u}} \\
+&= \int_0^{2\pi} \frac{du}{ \lr{ a^2 - b^2 } \cos u + a^2 + b^2 }.
+\end{aligned}
+\end{equation}
+There is probably a simple way to evaluate this integral, but let's try it the fun way, using contour integration.  Let \( z = e^{i u} \), where \( dz = i z du \), or
+\begin{equation}\label{eqn:ellipicalIntegral:80}
+\begin{aligned}
+I
+&= \oint_{\Abs{z} = 1} \frac{dz/(i z)}{ \lr{ a^2 - b^2 } \lr{ z + \inv{z}}/2 + a^2 + b^2 } \\
+&= \frac{2}{i \lr{ a^2 - b^2 }} \oint_{\Abs{z} = 1} \frac{dz}{ z \lr{ z + \inv{z} + 2 \alpha} } \\
+&= \frac{2}{i \lr{ a^2 - b^2 }} \oint_{\Abs{z} = 1} \frac{dz}{ z^2 + 2 \alpha z + 1 } \\
+&= \frac{2}{i \lr{ a^2 - b^2 }} \oint_{\Abs{z} = 1} \frac{dz}{ \lr{ z + \alpha - \sqrt{\alpha^2 - 1}}\lr{ z + \alpha + \sqrt{\alpha^2 - 1}} },
+\end{aligned}
+\end{equation}
+where \( \alpha = \lr{ a^2 + b^2 }/\lr{ a^2 - b^2 } \).
+
+There is a single enclosed pole on the real axis.  For \( a^2 > b^2 \) where \( \alpha > 0 \) that pole is at \( z = -\alpha + \sqrt{ \alpha^2 - 1} \), so the integral is
+\begin{equation}\label{eqn:ellipicalIntegral:100}
+\begin{aligned}
+I
+&= 2 \pi i \frac{2}{i \lr{ a^2 - b^2 }} \evalbar{ \frac{1}{ z + \alpha + \sqrt{\alpha^2 - 1 } }}{z = -\alpha + \sqrt{ \alpha^2 - 1}} \\
+&= \frac{4 \pi}{ a^2 - b^2 } \frac{1}{ 2 \sqrt{\alpha^2 - 1 } } \\
+&= \frac{4 \pi }{ 2 \sqrt{\lr{a^2 + b^2}^2 - \lr{a^2 - b^2} } } \\
+&= \frac{2 \pi }{ \sqrt{4 a^2 b^2 } } \\
+&= \frac{\pi }{ \Abs{ a b } },
+\end{aligned}
+\end{equation}
+and for \( a^2 < b^2 \) where \( \alpha < 0 \), the enclosed pole is at \( z = -\alpha - \sqrt{ \alpha^2 - 1} \), where
+\begin{equation}\label{eqn:ellipicalIntegral:120}
+\begin{aligned}
+I
+&= 2 \pi i \frac{2}{i \lr{ a^2 - b^2 }} \evalbar{ \frac{1}{ z + \alpha - \sqrt{\alpha^2 - 1 } }}{z = -\alpha - \sqrt{ \alpha^2 - 1}} \\
+&= \frac{4 \pi}{ a^2 - b^2 } \frac{1}{ -2 \sqrt{\alpha^2 - 1 } } \\
+&= -\frac{4 \pi }{ 2 \sqrt{\lr{a^2 + b^2}^2 - \lr{a^2 - b^2} } } \\
+&= -\frac{2 \pi }{ \sqrt{4 a^2 b^2 } } \\
+&= -\frac{\pi }{ \Abs{ a b } }.
+\end{aligned}
+\end{equation}
+
+%}
+%\EndArticle
+\EndNoBibArticle

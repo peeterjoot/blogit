@@ -23,3 +23,5 @@ perl -p -i ../latex/bin/latexRegex.pl partialFractions.tex
 perl -p -i ../latex/bin/latexRegex.pl oneSeventh.tex
 ../latex/bin/lgrep sincLimit.tex | tee o ; . ./o
 perl -p -i ../latex/bin/latexRegex.pl sincLimit.tex
+../latex/bin/lgrep ellipicalIntegral.tex | tee o ; . ./o
+perl -p -i ../latex/bin/latexRegex.pl ellipicalIntegral.tex

@@ -370,3 +370,5 @@
 
 ../latex/bin/lgrep gaussianContour.tex | tee o ; . ./o
 perl -p -i ../latex/bin/latexRegex.pl gaussianContour.tex
+../latex/bin/lgrep sumOfSquares.tex | tee o ; . ./o
+perl -p -i ../latex/bin/latexRegex.pl sumOfSquares.tex

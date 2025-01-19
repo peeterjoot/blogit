@@ -25,3 +25,5 @@ perl -p -i ../latex/bin/latexRegex.pl oneSeventh.tex
 perl -p -i ../latex/bin/latexRegex.pl sincLimit.tex
 ../latex/bin/lgrep ellipicalIntegral.tex | tee o ; . ./o
 perl -p -i ../latex/bin/latexRegex.pl ellipicalIntegral.tex
+../latex/bin/lgrep trigProp.tex | tee o ; . ./o
+perl -p -i ../latex/bin/latexRegex.pl trigProp.tex

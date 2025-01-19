@@ -1,0 +1,63 @@
+%
+% Copyright © 2025 Peeter Joot.  All Rights Reserved.
+% Licenced as described in the file LICENSE under the root directory of this GIT repository.
+%
+%{
+\input{../latex/blogpost.tex}
+\renewcommand{\basename}{trigProp}
+%\renewcommand{\dirname}{notes/phy1520/}
+\renewcommand{\dirname}{notes/ece1228-electromagnetic-theory/}
+%\newcommand{\dateintitle}{}
+%\newcommand{\keywords}{}
+
+\input{../latex/peeter_prologue_print2.tex}
+
+\usepackage{peeters_layout_exercise}
+\usepackage{peeters_braket}
+\usepackage{peeters_figures}
+\usepackage{siunitx}
+\usepackage{verbatim}
+%\usepackage{macros_cal} % \LL
+%\usepackage{amsthm} % proof
+%\usepackage{mhchem} % \ce{}
+%\usepackage{macros_bm} % \bcM
+%\usepackage{macros_qed} % \qedmarker
+%\usepackage{txfonts} % \ointclockwise
+
+\beginArtNoToc
+
+\generatetitle{What will be the value of k to satisfy this integral equation}
+%\chapter{What will be the value of k to satisfy this integral equation}
+%\label{chap:trigProp}
+
+Another problem from x/twitter (\citep{CalcInsightsTrigK}):
+
+Find \( k \), where
+\begin{equation}\label{eqn:trigProp:20}
+\int_0^{2 \pi} \sin^4 x dx = k \int_0^{\pi/2} \cos^4 x dx.
+\end{equation}
+I initially misread the integration range in the second integral as \( 2 \pi \), not \( \pi/2 \), in which case the answer is just 1 by inspection.  However, solving the stated problem, is not much more difficult.
+
+Since sine and cosine are equal up to a shift by \( \pi/2 \)
+\begin{equation}\label{eqn:trigProp:40}
+\sin(u + \pi/2) = \frac{e^{i(u + \pi/2)} - e^{-i(u + \pi/2)}}{2i} = \frac{e^{i u} + e^{-i u}}{2} = \cos u,
+\end{equation}
+we can make an \( x = u + \pi/2 \) substitution in the sine integral.  
+
+Observe that \( \cos^4 x = \Abs{\cos x}^4 \), but the area under \( \Abs{\cos x} \) is the same for each \( \pi/2 \) interval.  This is shown in \cref{fig:trigProp:trigPropFig1}.
+\imageFigure{../figures/blogit/trigPropFig1}{Plot of \(\Abs{\cos x}\)}{fig:trigProp:trigPropFig1}{0.3}
+
+Of course, the area under \( \cos^4 x \), will also have the same periodicity, but those regions will be rounded out by the power operation, as shown in
+\cref{fig:trigProp:trigPropFig2}.
+\imageFigure{../figures/blogit/trigPropFig2}{Plot of \( \cos^4 x\).}{fig:trigProp:trigPropFig2}{0.3}
+
+Since the area under \( \cos^4 x \) is the same for each \( \pi/2 \) wide interval, we have
+\begin{equation}\label{eqn:trigProp:60}
+\boxed{
+k = 4.
+}
+\end{equation}
+
+%}
+\EndArticle
+%\EndNoBibArticle

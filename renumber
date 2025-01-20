@@ -372,3 +372,5 @@
 perl -p -i ../latex/bin/latexRegex.pl gaussianContour.tex
 ../latex/bin/lgrep sumOfSquares.tex | tee o ; . ./o
 perl -p -i ../latex/bin/latexRegex.pl sumOfSquares.tex
+../latex/bin/lgrep unitCircleContourIntegrals.tex | tee o ; . ./o
+perl -p -i ../latex/bin/latexRegex.pl unitCircleContourIntegrals.tex

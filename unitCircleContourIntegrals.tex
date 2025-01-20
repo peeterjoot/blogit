@@ -1,0 +1,201 @@
+%
+% Copyright © 2025 Peeter Joot.  All Rights Reserved.
+% Licenced as described in the file LICENSE under the root directory of this GIT repository.
+%
+%{
+\input{../latex/blogpost.tex}
+\renewcommand{\basename}{unitCircleContourIntegrals}
+%\renewcommand{\dirname}{notes/phy1520/}
+\renewcommand{\dirname}{notes/ece1228-electromagnetic-theory/}
+%\newcommand{\dateintitle}{}
+%\newcommand{\keywords}{}
+
+\input{../latex/peeter_prologue_print2.tex}
+
+\usepackage{peeters_layout_exercise}
+\usepackage{peeters_braket}
+\usepackage{peeters_figures}
+\usepackage{siunitx}
+\usepackage{verbatim}
+%\usepackage{macros_cal} % \LL
+%\usepackage{amsthm} % proof
+%\usepackage{mhchem} % \ce{}
+%\usepackage{macros_bm} % \bcM
+%\usepackage{macros_qed} % \qedmarker
+%\usepackage{txfonts} % \ointclockwise
+
+\beginArtNoToc
+
+\generatetitle{Evaluating some real trig integrals with unit circle contours.}
+%\chapter{Evaluating some real trig integrals with unit circle contours.}
+%\label{chap:unitCircleContourIntegrals}
+
+Here are a couple of problems from \citep{byron1992mca}.
+
+\section{A sine integral.}
+This is problem (31(a)).  For \( a > b > 0 \), find
+\begin{equation}\label{eqn:unitCircleContourIntegrals:20}
+I = \int_0^{2 \pi} \frac{d\theta}{a + b \sin\theta}.
+\end{equation}
+We can proceed by making a change of variables \( z = e^{i\theta} \), for which \( dz = i z d\theta \).  Also let \( \alpha = a/b \), so
+\begin{equation}\label{eqn:unitCircleContourIntegrals:40}
+\begin{aligned}
+I
+&= \inv{b} \oint_{\Abs{z} = 1} \frac{-i dz}{z} \inv{\alpha + (1/2i)\lr{z - 1/z}} \\
+&= \frac{2}{b} \oint_{\Abs{z} = 1} \frac{dz}{2 i z \alpha + z^2 - 1} \\
+&= \frac{2}{b} \oint_{\Abs{z} = 1} \frac{dz}{\lr{ z + i \alpha + i\sqrt{\alpha^2 - 1}}\lr{ z + i \alpha - i\sqrt{\alpha^2 - 1}}}.
+\end{aligned}
+\end{equation}
+Clearly the mixed sign factor represents the pole that falls within the unit circle, so we have only one residue to include
+\begin{equation}\label{eqn:unitCircleContourIntegrals:60}
+\begin{aligned}
+I
+&= \frac{2}{b} 2 \pi i \evalbar{ \inv{ z + i \alpha + i\sqrt{\alpha^2 - 1}} }{ z = -i \alpha + i \sqrt{ \alpha^2 - 1 } } \\
+&= \frac{4 \pi i}{b} \inv{ 2 i \sqrt{\alpha^2 - 1}} \\
+&= \frac{2 \pi}{\sqrt{a^2 - b^2}}.
+\end{aligned}
+\end{equation}
+
+\section{Sines and cosines upstairs and downstairs.}
+This is problem (31(b)).  Given \( a > b > 0 \) (again), this time we want to find
+\begin{equation}\label{eqn:unitCircleContourIntegrals:80}
+I = \int_0^{2 \pi} \frac{\sin^2 \theta d\theta}{a + b \cos\theta}.
+\end{equation}
+We'd like to make the same \( z = e^{i \theta} \) substitution, but have to prepare a bit.  We rewrite the sine
+\begin{equation}\label{eqn:unitCircleContourIntegrals:100}
+\begin{aligned}
+\sin^2 \theta
+&= \inv{2} \lr{ 1 - \cos(2\theta) } \\
+&= \inv{2} - \inv{4}\lr{ e^{2 i \theta} + e^{-2 i \theta} },
+\end{aligned}
+\end{equation}
+so, again setting \( \alpha = a/b \), we have
+\begin{equation}\label{eqn:unitCircleContourIntegrals:120}
+\begin{aligned}
+I
+&= \inv{b} \oint_{\Abs{z} = 1} \lr{ \inv{2} - \inv{4}\lr{ z^2 + 1/z^2 } } \frac{-i dz}{z} \inv{\alpha + (1/2)\lr{ z + 1/z} } \\
+&= \frac{-i}{2 b} \oint_{\Abs{z} = 1} \lr{ 2 - z^2 - \inv{z^2} } \frac{dz}{ 2 \alpha z + z^2 + 1 } \\
+&= \frac{-i}{2 b} \oint_{\Abs{z} = 1} dz \frac{ 2 z^2 - z^4 - 1 }{ z^2 \lr{ 2 \alpha z + z^2 + 1} } \\
+&= \frac{-i}{2 b} \oint_{\Abs{z} = 1} dz \frac{ 2 z^2 - z^4 - 1 }{ z^2 \lr{ z + \alpha + \sqrt{ \alpha^2 - 1} }\lr{ z + \alpha - \sqrt{ \alpha^2 - 1} } }.
+\end{aligned}
+\end{equation}
+The enclosed poles are at \( z = 0 \) (a second order pole) and \( z = -\alpha + \sqrt{ \alpha^2 - 1} \), so the integral is
+\begin{equation}\label{eqn:unitCircleContourIntegrals:140}
+\begin{aligned}
+I
+&= \lr{ 2 \pi i } \lr{ \frac{-i}{2 b} } \lr{
+\evalbar{ \lr{ \frac{ 2 z^2 - z^4 - 1 }{ 2 \alpha z + z^2 + 1 } }' }{z = 0}
++
+\evalbar{ \frac{ 2 z^2 - z^4 - 1 }{ z^2 \lr{ z + \alpha + \sqrt{ \alpha^2 - 1} } } }{ z = -\alpha + \sqrt{ \alpha^2 - 1} }
+}
+\end{aligned}
+\end{equation}
+The derivative residue simplifies to
+\begin{equation}\label{eqn:unitCircleContourIntegrals:160}
+\begin{aligned}
+\evalbar{ \lr{ \frac{ 2 z^2 - z^4 - 1 }{ 2 \alpha z + z^2 + 1 } }' }{z = 0}
+&=
+\evalbar{ \frac{ 4 z - 4 z^3 }{2 \alpha z + z^2 + 1} - \frac{ 2 z^2 - z^4 - 1}{\lr{ 2 \alpha z + z^2 + 1 }^2 }\lr{ 2 \alpha + 2 z } }{z = 0} \\
+&= 2 \alpha,
+\end{aligned}
+\end{equation}
+whereas the remaining residue is
+\begin{equation}\label{eqn:unitCircleContourIntegrals:180}
+\evalbar{ -\frac{ \lr{z^2 - 1}^2 }{ z^2 \lr{ 2 \sqrt{ \alpha^2 - 1} } } }{ z = -\alpha + \sqrt{ \alpha^2 - 1} }
+=
+\evalbar{ -\lr{z - \inv{z}}^2 \inv{ 2 \sqrt{ \alpha^2 - 1} } }{ z = -\alpha + \sqrt{ \alpha^2 - 1} },
+\end{equation}
+but
+\begin{equation}\label{eqn:unitCircleContourIntegrals:220}
+\begin{aligned}
+\inv{z}
+&= \inv{ -\alpha + \sqrt{ \alpha^2 - 1 } } \frac{ \lr{ \alpha + \sqrt{ \alpha^2 - 1 }} }{ \lr{ \alpha + \sqrt{ \alpha^2 - 1 } } } \\
+&= \frac{ \alpha + \sqrt{ \alpha^2 - 1 } }{ -\alpha^2 + \lr{ \alpha^2 - 1} } \\
+&= -\lr{ \alpha + \sqrt{ \alpha^2 - 1 } },
+\end{aligned}
+\end{equation}
+and
+\begin{equation}\label{eqn:unitCircleContourIntegrals:240}
+\begin{aligned}
+z - \inv{z}
+&= -\alpha + \sqrt{ \alpha^2 - 1 } + \alpha + \sqrt{ \alpha^2 - 1 }
+&= 2 \sqrt{ \alpha^2 - 1 },
+\end{aligned}
+\end{equation}
+so
+\begin{equation}\label{eqn:unitCircleContourIntegrals:260}
+\begin{aligned}
+\evalbar{ -\frac{ \lr{z^2 - 1}^2 }{ z^2 \lr{ 2 \sqrt{ \alpha^2 - 1} } } }{ z = -\alpha + \sqrt{ \alpha^2 - 1} }
+&= - \frac{ \lr{ 2 \sqrt{ \alpha^2 - 1 } }^2 }{ 2 \sqrt{ \alpha^2 - 1} } \\
+&= - 2 \sqrt{ \alpha^2 - 1 },
+\end{aligned}
+\end{equation}
+for a final answer of
+\begin{equation}\label{eqn:unitCircleContourIntegrals:200}
+\begin{aligned}
+I
+&= \frac{2 \pi}{b} \lr{ \alpha - \sqrt{\alpha^2 - 1} } \\
+&= \frac{2 \pi}{b^2} \lr{ a - \sqrt{a^2 - b^2} }.
+\end{aligned}
+\end{equation}
+
+\section{Another cosine integral.}
+Last problem of this sort (31 (c)), was to find, again with \( a > b > 0 \)
+\begin{equation}\label{eqn:unitCircleContourIntegrals:280}
+I = \int_0^{2 \pi} \frac{ d\theta} {\lr{ a + b \cos \theta }^2 }.
+\end{equation}
+Making our \( z = e^{i \theta} \) substitution, and setting \( \alpha = a/b \), we have
+\begin{equation}\label{eqn:unitCircleContourIntegrals:300}
+\begin{aligned}
+I &= \inv{b^2} \oint_{\Abs{z} = 1} \frac{ -i dz/z} {\lr{ \alpha + (1/2)\lr{ z + 1/z } }^2 } \\
+  &= \frac{-4 i}{b^2} \oint_{\Abs{z} = 1} \frac{ z dz}{\lr{ 2 \alpha z + z^2 + 1 }^2 } \\
+  &= \frac{-4 i}{b^2} \oint_{\Abs{z} = 1} \frac{ z dz}{\lr{ z + \alpha + \sqrt{\alpha^2 - 1} }^2\lr{ z + \alpha - \sqrt{\alpha^2 - 1} }^2}.
+\end{aligned}
+\end{equation}
+Again, only this mixed sign pole will be within the unit circle, so
+\begin{equation}\label{eqn:unitCircleContourIntegrals:320}
+\begin{aligned}
+I
+  &= \lr{\frac{-4 i}{b^2} }\lr{ 2 \pi i }
+\lr{
+\evalbar{ \lr{ \frac{z}{\lr{ z + \alpha + \sqrt{\alpha^2 - 1} }^2} }' }{z = -\alpha + \sqrt{\alpha^2 - 1} }
+}
+\end{aligned}
+\end{equation}
+
+That derivative is
+\begin{equation}\label{eqn:unitCircleContourIntegrals:340}
+\begin{aligned}
+\lr{ \frac{z}{\lr{ z + \alpha + \sqrt{\alpha^2 - 1} }^2} }'
+&=
+\inv{\lr{ z + \alpha + \sqrt{\alpha^2 - 1} }^2} - \frac{2 z}{\lr{ z + \alpha + \sqrt{\alpha^2 - 1} }^3} \\
+&= \frac{z + \alpha + \sqrt{\alpha^2 - 1} - 2 z}{\lr{ z + \alpha + \sqrt{\alpha^2 - 1} }^3} \\
+&= \frac{-z + \alpha + \sqrt{\alpha^2 - 1}}{\lr{ z + \alpha + \sqrt{\alpha^2 - 1} }^3}.
+\end{aligned}
+\end{equation}
+Evaluating it at our pole \( z = -\alpha + \sqrt{\alpha^2 - 1} \), we have
+\begin{equation}\label{eqn:unitCircleContourIntegrals:360}
+\begin{aligned}
+\frac{-z + \alpha + \sqrt{\alpha^2 - 1}}{\lr{ z + \alpha + \sqrt{\alpha^2 - 1} }^3}
+&=
+\frac{ \alpha - \sqrt{\alpha^2 - 1} + \alpha + \sqrt{\alpha^2 - 1}}{\lr{ -\alpha + \sqrt{\alpha^2 - 1} + \alpha + \sqrt{\alpha^2 - 1} }^3} \\
+&= \frac{ 2 \alpha }{\lr{ 2 \sqrt{\alpha^2 - 1} }^3 } \\
+&= \inv{4} \frac{ \alpha }{\lr{ \alpha^2 - 1}^{3/2} },
+\end{aligned}
+\end{equation}
+so
+\begin{equation}\label{eqn:unitCircleContourIntegrals:380}
+\begin{aligned}
+I
+&= \frac{8 \pi}{b^2} \inv{4} \frac{ \alpha }{\lr{ \alpha^2 - 1}^{3/2} } \\
+&= \frac{2 \pi a }{b^3 \lr{ \alpha^2 - 1}^{3/2} },
+\end{aligned}
+\end{equation}
+but \( b^3 = \lr{ b^2}^{3/2} \), for
+\begin{equation}\label{eqn:unitCircleContourIntegrals:400}
+I = \frac{ 2 \pi a }{ \lr{ a^2 - b^2 }^{3/2} }.
+\end{equation}
+
+%}
+\EndArticle
+%\EndNoBibArticle

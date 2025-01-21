@@ -374,3 +374,5 @@
 
 #../latex/bin/lgrep unitCircleContourIntegrals.tex | tee o ; . ./o
 #perl -p -i ../latex/bin/latexRegex.pl unitCircleContourIntegrals.tex
+../latex/bin/lgrep fourPoles.tex | tee o ; . ./o
+perl -p -i ../latex/bin/latexRegex.pl fourPoles.tex

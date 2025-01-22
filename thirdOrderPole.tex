@@ -1,0 +1,93 @@
+%
+% Copyright © 2025 Peeter Joot.  All Rights Reserved.
+% Licenced as described in the file LICENSE under the root directory of this GIT repository.
+%
+%{
+\input{../latex/blogpost.tex}
+\renewcommand{\basename}{thirdOrderPole}
+%\renewcommand{\dirname}{notes/phy1520/}
+\renewcommand{\dirname}{notes/ece1228-electromagnetic-theory/}
+%\newcommand{\dateintitle}{}
+%\newcommand{\keywords}{}
+
+\input{../latex/peeter_prologue_print2.tex}
+
+\usepackage{peeters_layout_exercise}
+\usepackage{peeters_braket}
+\usepackage{peeters_figures}
+\usepackage{siunitx}
+\usepackage{verbatim}
+%\usepackage{macros_cal} % \LL
+%\usepackage{amsthm} % proof
+%\usepackage{mhchem} % \ce{}
+%\usepackage{macros_bm} % \bcM
+%\usepackage{macros_qed} % \qedmarker
+%\usepackage{txfonts} % \ointclockwise
+
+\beginArtNoToc
+
+\generatetitle{A contour integral with a third order pole.}
+%\chapter{A contour integral with a third order pole.}
+%\label{chap:thirdOrderPole}
+
+Here's problem 31(e) from \citep{byron1992mca}.  Find
+\begin{equation}\label{eqn:thirdOrderPole:20}
+I = \int_0^\infty \frac{x^2 dx}{\lr{ a^2 + x^2 }^3 }.
+\end{equation}
+Again, we use the contour \( C \) illustrated in \cref{fig:thirdOrderPole:thirdOrderPoleFig1}
+\imageFigure{../figures/blogit/fourPolesFig1}{Standard above the x-axis, semicircular contour.}{fig:thirdOrderPole:thirdOrderPoleFig1}{0.3}
+
+Along the infinite semicircle, with \( z = R e^{i\theta} \),
+\begin{equation}\label{eqn:thirdOrderPole:40}
+\Abs{ \int \frac{z^2 dz}{\lr{ a^2 + z^2 }^3 } } = O(R^3/R^6),
+\end{equation}
+which tends to zero.  We are left to just evaluate some residues
+\begin{equation}\label{eqn:thirdOrderPole:60}
+\begin{aligned}
+I
+&= \inv{2} \oint \frac{z^2 dz}{ \lr{ a^2 + z^2 }^3 } \\
+&= \inv{2} \oint \frac{z^2 dz}{ \lr{ z - i a }^3 \lr{ z + i a }^3 } \\
+&= \inv{2} \lr{ 2 \pi i } \inv{2!} \evalbar{ \lr{ \frac{z^2}{ \lr{ z + i a }^3 } }'' }{z = i a}
+\end{aligned}
+\end{equation}
+Evaluating the derivatives, we have
+\begin{equation}\label{eqn:thirdOrderPole:80}
+\begin{aligned}
+\lr{ \frac{z^2}{ \lr{ z + i a }^3 } }'
+&= \frac{ 2 z \lr{ z + i a } - 3 z^2 }{ \lr{ z + i a }^4 } \\
+&=
+\frac{ - z^2 + 2 i a z }
+{ \lr{ z + i a }^4 },
+\end{aligned}
+\end{equation}
+and
+\begin{equation}\label{eqn:thirdOrderPole:100}
+\begin{aligned}
+\lr{ \frac{z^2}{ \lr{ z + i a }^3 } }''
+&= \lr{ \frac{ - z^2 + 2 i a z }
+{ \lr{ z + i a }^4 } }' \\
+&= \frac{ \lr{ - 2 z + 2 i a  }\lr{ z + i a} - 4 \lr{ - z^2 + 2 i a z }}{ \lr{ z + i a }^5 },
+\end{aligned}
+\end{equation}
+so
+\begin{equation}\label{eqn:thirdOrderPole:120}
+\begin{aligned}
+\evalbar{ \lr{ \frac{z^2}{ \lr{ z + i a }^3 } }'' }{z = i a}
+&=
+\frac{ \lr{ - 2 i a + 2 i a  }\lr{ 2 i a} - 4 \lr{ a^2 - 2 a^2 }}{ \lr{ 2 i a }^5 } \\
+&=
+\frac{ 4 a^2 }{ \lr{ 2 i a }^5 } \\
+&=
+\inv{8 a^3 i}.
+\end{aligned}
+\end{equation}
+Putting all the pieces together, we have
+\begin{equation}\label{eqn:thirdOrderPole:140}
+\boxed{
+I = \frac{\pi}{16 a^3}.
+}
+\end{equation}
+
+%}
+\EndArticle
+%\EndNoBibArticle

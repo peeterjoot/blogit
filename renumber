@@ -378,3 +378,5 @@
 perl -p -i ../latex/bin/latexRegex.pl fourPoles.tex
 ../latex/bin/lgrep thirdOrderPole.tex | tee o ; . ./o
 perl -p -i ../latex/bin/latexRegex.pl thirdOrderPole.tex
+../latex/bin/lgrep weightedSinc.tex | tee o ; . ./o
+perl -p -i ../latex/bin/latexRegex.pl weightedSinc.tex

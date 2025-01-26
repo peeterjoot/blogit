@@ -26,7 +26,7 @@
 
 \beginArtNoToc
 
-\generatetitle{More residue calculus.}
+\generatetitle{More residue calculus: sinc squared, fractional exponent, log, pie contour.}
 %\chapter{Sinc squared integral}
 %\label{chap:sincSquared}
 
@@ -62,15 +62,15 @@ I
 \end{equation}
 Because we are sneaking around the pole at the origin with a half semicircle, we multiply the residue by \( \pi i \), not \( 2 \pi i \).  This leaves
 \begin{equation}\label{eqn:sincSquared:100}
-\begin{aligned}
-I
-&=
-\Real \frac{\pi i}{2} \evalbar{ (- 2 i) e^{2 i z } }{ z = 0 } \\
-&=
-\pi.
-\end{aligned}
+I = \Real \frac{\pi i}{2} \evalbar{ (- 2 i) e^{2 i z } }{ z = 0 },
 \end{equation}
-This is the expected result.
+or
+\begin{equation}\label{eqn:sincSquared:640}
+\boxed{
+I = \pi.
+}
+\end{equation}
+%This is the expected result.
 
 \section{An fractional exponent integral.}
 Next, let's do 31(h).  Given \( 0 < a < 1 \), we want to evaluate
@@ -95,8 +95,8 @@ Let's now look at
 \begin{equation}\label{eqn:sincSquared:180}
 \begin{aligned}
 K
-&= \int_{-\infty, 0} \frac{ u^{2 a - 1}}{u^2 + 1 } du \\
-&= -\int_{\infty, 0} \frac{ \lr{ - v } ^{2 a - 1}}{v^2 + 1 } dv \\
+&= \int_{-\infty}^0 \frac{ u^{2 a - 1}}{u^2 + 1 } du \\
+&= -\int_{\infty}^0 \frac{ \lr{ - v } ^{2 a - 1}}{v^2 + 1 } dv \\
 &= \lr{-1}^{2 a - 1} J.
 \end{aligned}
 \end{equation}
@@ -155,12 +155,17 @@ so
 \begin{aligned}
 I
 &= \frac{-i \pi b^{2(a-1)} e^{i \pi a}}{ 1 - e^{2 i \pi a } } \\
-&= \frac{-i \pi b^{2(a-1)} }{ e^{-i \pi a} - e^{i \pi a } } \\
-&= \frac{\pi b^{2(a-1)} }{ 2 \sin\lr{ \pi a } }.
+&= \frac{-i \pi b^{2(a-1)} }{ e^{-i \pi a} - e^{i \pi a } },
 \end{aligned}
 \end{equation}
+or
+\begin{equation}\label{eqn:sincSquared:660}
+\boxed{
+I = \frac{\pi b^{2(a-1)} }{ 2 \sin\lr{ \pi a } }.
+}
+\end{equation}
 
-This is the expected result.
+%This is the expected result.
 \section{A log integral over the positive x-axis.}
 Problem 31(i) is
 \begin{equation}\label{eqn:sincSquared:340}
@@ -190,9 +195,14 @@ I
 &= \inv{2} \int_{-\infty}^\infty \frac{\ln x - i \pi/2}{x^2 + b^2} dx \\
 &= \inv{2} \int_{-\infty}^\infty \frac{\ln(-i x)}{x^2 + b^2} dx \\
 &= \inv{2} \oint \frac{\ln(-i z)}{z^2 + b^2} dz \\
-&= (\pi i) \evalbar{ \frac{\ln(-i z)}{z + i b} }{z = i b} \\
-&= \frac{\pi \ln b}{2 b}.
+&= (\pi i) \evalbar{ \frac{\ln(-i z)}{z + i b} }{z = i b},
 \end{aligned}
+\end{equation}
+or
+\begin{equation}\label{eqn:sincSquared:680}
+\boxed{
+I = \frac{\pi \ln b}{2 b}.
+}
 \end{equation}
 
 %We can now extend both integrals to the complex contour, and evaluate the residues.  That gives
@@ -218,7 +228,72 @@ I
 %\begin{equation}\label{eqn:sincSquared:460}
 %I = \frac{\pi \ln b}{2b}.
 %\end{equation}
-This is the expected result.
+%This is the expected result.
+
+\section{A pie contour.}
+Skipping ahead to 31(k), we want to find
+\begin{equation}\label{eqn:sincSquared:500}
+I = \int_0^\infty \frac{dx}{x^3 + a^3}.
+\end{equation}
+Some googling shows that we can evaluate integrals with \( x^n + b^n \) denominators, using a pie shaped contour, with slice sizes of \( 2 \pi /n \),
+as plotted in \cref{fig:pieContour:pieContourFig1}.
+
+\imageFigure{../figures/blogit/pieContourFig1}{Pie shaped contour for cubic integral.}{fig:pieContour:pieContourFig1}{0.3}
+
+Integrating (backwards) along the \( 2 \pi/3 \) slice line, with \( \alpha = e^{\pi i/3} \), and \( z = \alpha^2 u \), we have
+\begin{equation}\label{eqn:sincSquared:520}
+\begin{aligned}
+\int_0^\infty \frac{ \alpha^2 du }{ \alpha^6 u^3 + a^3 }
+&=
+\alpha^2 \int_0^\infty \frac{ du }{ u^3 + a^3 } \\
+&= \alpha^2 I,
+\end{aligned}
+\end{equation}
+so
+\begin{equation}\label{eqn:sincSquared:540}
+I = \inv{ 1 - \alpha^2 } \oint \frac{dz}{z^3 + a^3}.
+\end{equation}
+We can factor the denominator as
+\begin{equation}\label{eqn:sincSquared:560}
+z^3 + a^3 = \lr{ z - \alpha a }\lr{ z + a }\lr{ z - a/\alpha },
+\end{equation}
+where only the \( z = \alpha a \) pole is enclosed.  The residue calculation is
+\begin{equation}\label{eqn:sincSquared:580}
+\begin{aligned}
+I
+&= \frac{ 2 \pi i }{1 - \alpha^2 } \evalbar{ \inv{\lr{z + a}\lr{ z - a/\alpha } } }{z = a\alpha} \\
+&= \frac{ 2 \pi i }{a^2} \inv{ \lr{1 - \alpha^2 } \lr{ \alpha + 1 } \lr{ \alpha - 1/\alpha } } \\
+\end{aligned}
+\end{equation}
+We now want to expand the denominator.  I had trouble simplifying this by hand, and it took me a few tries to get it right:
+\begin{equation}\label{eqn:sincSquared:600}
+\begin{aligned}
+-\lr{1 - \alpha^2 } \lr{ \alpha + 1 } \lr{ \alpha - 1/\alpha }
+&=
+-\frac{\lr{\alpha^2 -1}^2 \lr{ \alpha + 1 }}{\alpha} \\
+&=
+-\lr{ e^{2 \pi i/3} - 1}^2 \lr{ 1 + e^{i\pi/3} } e^{-i\pi/3} \\
+&=
+-\lr{ e^{4 \pi i/3} + 1 - 2 e^{ 2 \pi i /3} } \lr{ 1 + e^{-i\pi/3} } \\
+&=
+-\lr{ e^{4 \pi i/3} + 1 - 2 e^{ 2 \pi i /3} + e^{3 \pi i/3} + e^{-i\pi/3} - 2 e^{ \pi i /3} } \\
+&=
+-\lr{ e^{4 \pi i/3} - 2 e^{ 2 \pi i /3} + e^{-i\pi/3} - 2 e^{ \pi i /3} } \\
+&=
+-\lr{ \inv{2} \lr{ -1 - \sqrt{3} i } - \lr{-1 + \sqrt{3} i} + \inv{2}\lr{ 1 - \sqrt{3} i }  - \lr{ 1 + \sqrt{3} i} } \\
+&=
+-\lr{ -\inv{2} - 1 - \inv{2} - 1 } \sqrt{3} i \\
+&=
+3 \sqrt{3} i.
+\end{aligned}
+\end{equation}
+Putting the pieces together
+\begin{equation}\label{eqn:sincSquared:620}
+\boxed{
+I = \frac{2 \pi}{3 \sqrt{3} a^2}.
+}
+\end{equation}
+%which is the correct answer.
 
 %}
 \EndArticle

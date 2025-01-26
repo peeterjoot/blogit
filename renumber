@@ -374,9 +374,15 @@
 
 #../latex/bin/lgrep unitCircleContourIntegrals.tex | tee o ; . ./o
 #perl -p -i ../latex/bin/latexRegex.pl unitCircleContourIntegrals.tex
-../latex/bin/lgrep fourPoles.tex | tee o ; . ./o
-perl -p -i ../latex/bin/latexRegex.pl fourPoles.tex
-../latex/bin/lgrep thirdOrderPole.tex | tee o ; . ./o
-perl -p -i ../latex/bin/latexRegex.pl thirdOrderPole.tex
-../latex/bin/lgrep weightedSinc.tex | tee o ; . ./o
-perl -p -i ../latex/bin/latexRegex.pl weightedSinc.tex
+
+#../latex/bin/lgrep fourPoles.tex | tee o ; . ./o
+#perl -p -i ../latex/bin/latexRegex.pl fourPoles.tex
+
+#../latex/bin/lgrep thirdOrderPole.tex | tee o ; . ./o
+#perl -p -i ../latex/bin/latexRegex.pl thirdOrderPole.tex
+
+#../latex/bin/lgrep weightedSinc.tex | tee o ; . ./o
+#perl -p -i ../latex/bin/latexRegex.pl weightedSinc.tex
+
+../latex/bin/lgrep sincSquared.tex | tee o ; . ./o
+perl -p -i ../latex/bin/latexRegex.pl sincSquared.tex

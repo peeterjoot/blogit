@@ -26,8 +26,8 @@
 
 \beginArtNoToc
 
-\generatetitle{XXX}
-%\chapter{XXX}
+\generatetitle{A PV integral using contour integration.}
+%\chapter{A PV integral using contour integration.}
 %\label{chap:oscillatorKernel}
 
 Here's the second last real-integral sub-problem from \citep{byron1992mca}, problem 31(j).  Find
@@ -35,58 +35,42 @@ Here's the second last real-integral sub-problem from \citep{byron1992mca}, prob
 I = P \int_{-\infty}^\infty \inv{ \lr{ \omega' - \omega_0 }^2 + a^2 } \inv{ \omega' - \omega } d\omega'.
 \end{equation}
 
-The denominator of this integrand will submit to a partial fraction decomposition of the form:
-\begin{equation}\label{eqn:oscillatorKernel:40}
-\inv{z - \alpha} \inv{z - \beta} \inv{ z - \gamma} = \frac{u}{z-\alpha} + \frac{v}{z - \beta} + \frac{w}{z - \gamma}.
-\end{equation}
-It turns out that for such a fraction, those values of \( u, v, w \) are
-\begin{equation}\label{eqn:oscillatorKernel:60}
-\begin{aligned}
-u &= -\frac{1}{(\alpha-\beta)(\gamma-\alpha)} \\
-v &= -\frac{1}{(\alpha-\beta)(\beta-\gamma)} \\
-w &= -\frac{1}{(\gamma-\alpha)(\beta-\gamma)}.
-\end{aligned}
-\end{equation}
-
-Our poles are sitting at
+Our poles are sitting at \( \omega \), and
 \begin{equation}\label{eqn:oscillatorKernel:80}
-\begin{aligned}
-\alpha, \beta &= \omega_0 \pm i a \\
-\gamma &= \omega,
-\end{aligned}
+\alpha, \beta = \omega_0 \pm i a
 \end{equation}
-so
-\begin{equation}\label{eqn:oscillatorKernel:100}
-\begin{aligned}
-u &= -\frac{1}{(\omega_0 + 2 i a - \omega_0)(\omega - \omega_0 - i a)} \\
-v &= -\frac{1}{(\omega_0 + 2 i a - \omega_0)(\omega_0 - i a - \omega)} \\
-w &= -\frac{1}{(\omega - \omega_0 - i a)(\omega_0 - i a - \omega)}.
-\end{aligned}
-\end{equation}
-
 one of which sits above the x-axis, one below, and one on the line.
-This means that if we compute the usual infinite semicircular contour integral, we have a \( 2 \pi i \) weighted residue above the line and one \( \pi i \) weighted residue for the x-axis pole.  That is, assuming \( \alpha \) is the above the line pole, and \( \gamma \) is the on the line pole,
+
+This means that if we compute the usual infinite semicircular contour integral, we have a \( 2 \pi i \) weighted residue above the line and one \( \pi i \) weighted residue for the x-axis pole.  That is
 \begin{equation}\label{eqn:oscillatorKernel:50}
 \begin{aligned}
-\oint &dz\,
-\inv{z - \alpha} \inv{z - \beta} \inv{ z - \gamma}  \\
-&= 
-\oint dz\, \lr{
-\frac{u}{z-\alpha} + \frac{v}{z - \beta} + \frac{w}{z - \gamma} } \\
+\oint \inv{ \lr{ z - \omega_0 }^2 + a^2 } \inv{ z - \omega } dz
 &=
-\lr{ 2 \pi i } \evalbar{ \lr{ \frac{v}{z - \beta} + \frac{w}{ z - \gamma} } }{ z = \alpha }
+\lr{ 2 \pi i } \evalbar{ \inv{\lr{z - \lr{ \omega_0 - i a } } \lr{ z - \omega } } }{z = \omega_0 + i a }
 +
-\lr{ \pi i } \evalbar{ \lr{ \frac{u}{z - \alpha} + \frac{v}{z - \beta} } }{ z = \gamma } \\
+\lr{ \pi i } \evalbar{ \inv{ \lr{ z - \omega_0 }^2 + a^2 }}{z = \omega } \\
 &=
-\lr{ 2 \pi i } \lr{ \frac{v}{\alpha - \beta} + \frac{w}{ \alpha - \gamma} }
+\lr{ 2 \pi i } \inv{\lr{\omega_0 + i a - \lr{ \omega_0 - i a } } \lr{ \omega_0 + i a - \omega } }
 +
-\lr{ \pi i } \lr{ \frac{u}{\gamma - \alpha} + \frac{v}{\gamma - \beta} } \\
+\lr{ \pi i } \inv{ \lr{ \omega - \omega_0 }^2 + a^2 } \\
 &=
-\lr{ 2 \pi i } \lr{ \frac{v}{ 2 i a} + \frac{w}{ \omega_0 + i a - \omega} }
+\frac{ 2 \pi i }{2 i a} \inv{ \omega_0 + i a - \omega } \frac{ \omega_0 - i a - \omega }{\omega_0 - i a - \omega }
 +
-\lr{ \pi i } \lr{ \frac{u}{\omega  - \omega_0 - i a} + \frac{v}{\omega  - \omega_0 + i a} }
+\lr{ \pi i } \inv{ \lr{ \omega - \omega_0 }^2 + a^2 } \\
+&=
+\frac{ \pi }{ \lr{ \omega - \omega_0 }^2 + a^2 } \lr{ \frac{\omega_0 - \omega}{a} - i + i },
 \end{aligned}
 \end{equation}
+or
+\begin{equation}\label{eqn:oscillatorKernel:100}
+\boxed{
+I =
+\frac{ \pi \lr{ \omega_0 - \omega } }{ a \lr{ \lr{ \omega - \omega_0 }^2 + a^2} }.
+}
+\end{equation}
+
+%While this is the answer stated in the text, Mathematica doesn't seem to be able to solve this one, at least stated niavely.  .  I'm assuming Perhaps the PV aspect of the integral
+%Interestingly, Mathematica doesn't
 
 %}
 \EndArticle

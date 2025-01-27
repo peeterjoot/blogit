@@ -1,0 +1,93 @@
+%
+% Copyright © 2025 Peeter Joot.  All Rights Reserved.
+% Licenced as described in the file LICENSE under the root directory of this GIT repository.
+%
+%{
+\input{../latex/blogpost.tex}
+\renewcommand{\basename}{oscillatorKernel}
+%\renewcommand{\dirname}{notes/phy1520/}
+\renewcommand{\dirname}{notes/ece1228-electromagnetic-theory/}
+%\newcommand{\dateintitle}{}
+%\newcommand{\keywords}{}
+
+\input{../latex/peeter_prologue_print2.tex}
+
+\usepackage{peeters_layout_exercise}
+\usepackage{peeters_braket}
+\usepackage{peeters_figures}
+\usepackage{siunitx}
+\usepackage{verbatim}
+%\usepackage{macros_cal} % \LL
+%\usepackage{amsthm} % proof
+%\usepackage{mhchem} % \ce{}
+%\usepackage{macros_bm} % \bcM
+%\usepackage{macros_qed} % \qedmarker
+%\usepackage{txfonts} % \ointclockwise
+
+\beginArtNoToc
+
+\generatetitle{XXX}
+%\chapter{XXX}
+%\label{chap:oscillatorKernel}
+
+Here's the second last real-integral sub-problem from \citep{byron1992mca}, problem 31(j).  Find
+\begin{equation}\label{eqn:oscillatorKernel:20}
+I = P \int_{-\infty}^\infty \inv{ \lr{ \omega' - \omega_0 }^2 + a^2 } \inv{ \omega' - \omega } d\omega'.
+\end{equation}
+
+The denominator of this integrand will submit to a partial fraction decomposition of the form:
+\begin{equation}\label{eqn:oscillatorKernel:40}
+\inv{z - \alpha} \inv{z - \beta} \inv{ z - \gamma} = \frac{u}{z-\alpha} + \frac{v}{z - \beta} + \frac{w}{z - \gamma}.
+\end{equation}
+It turns out that for such a fraction, those values of \( u, v, w \) are
+\begin{equation}\label{eqn:oscillatorKernel:60}
+\begin{aligned}
+u &= -\frac{1}{(\alpha-\beta)(\gamma-\alpha)} \\
+v &= -\frac{1}{(\alpha-\beta)(\beta-\gamma)} \\
+w &= -\frac{1}{(\gamma-\alpha)(\beta-\gamma)}.
+\end{aligned}
+\end{equation}
+
+Our poles are sitting at
+\begin{equation}\label{eqn:oscillatorKernel:80}
+\begin{aligned}
+\alpha, \beta &= \omega_0 \pm i a \\
+\gamma &= \omega,
+\end{aligned}
+\end{equation}
+so
+\begin{equation}\label{eqn:oscillatorKernel:100}
+\begin{aligned}
+u &= -\frac{1}{(\omega_0 + 2 i a - \omega_0)(\omega - \omega_0 - i a)} \\
+v &= -\frac{1}{(\omega_0 + 2 i a - \omega_0)(\omega_0 - i a - \omega)} \\
+w &= -\frac{1}{(\omega - \omega_0 - i a)(\omega_0 - i a - \omega)}.
+\end{aligned}
+\end{equation}
+
+one of which sits above the x-axis, one below, and one on the line.
+This means that if we compute the usual infinite semicircular contour integral, we have a \( 2 \pi i \) weighted residue above the line and one \( \pi i \) weighted residue for the x-axis pole.  That is, assuming \( \alpha \) is the above the line pole, and \( \gamma \) is the on the line pole,
+\begin{equation}\label{eqn:oscillatorKernel:50}
+\begin{aligned}
+\oint &dz\,
+\inv{z - \alpha} \inv{z - \beta} \inv{ z - \gamma}  \\
+&= 
+\oint dz\, \lr{
+\frac{u}{z-\alpha} + \frac{v}{z - \beta} + \frac{w}{z - \gamma} } \\
+&=
+\lr{ 2 \pi i } \evalbar{ \lr{ \frac{v}{z - \beta} + \frac{w}{ z - \gamma} } }{ z = \alpha }
++
+\lr{ \pi i } \evalbar{ \lr{ \frac{u}{z - \alpha} + \frac{v}{z - \beta} } }{ z = \gamma } \\
+&=
+\lr{ 2 \pi i } \lr{ \frac{v}{\alpha - \beta} + \frac{w}{ \alpha - \gamma} }
++
+\lr{ \pi i } \lr{ \frac{u}{\gamma - \alpha} + \frac{v}{\gamma - \beta} } \\
+&=
+\lr{ 2 \pi i } \lr{ \frac{v}{ 2 i a} + \frac{w}{ \omega_0 + i a - \omega} }
++
+\lr{ \pi i } \lr{ \frac{u}{\omega  - \omega_0 - i a} + \frac{v}{\omega  - \omega_0 + i a} }
+\end{aligned}
+\end{equation}
+
+%}
+\EndArticle
+%\EndNoBibArticle

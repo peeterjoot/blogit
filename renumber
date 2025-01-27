@@ -384,5 +384,8 @@
 #../latex/bin/lgrep weightedSinc.tex | tee o ; . ./o
 #perl -p -i ../latex/bin/latexRegex.pl weightedSinc.tex
 
-../latex/bin/lgrep sincSquared.tex | tee o ; . ./o
-perl -p -i ../latex/bin/latexRegex.pl sincSquared.tex
+#../latex/bin/lgrep sincSquared.tex | tee o ; . ./o
+#perl -p -i ../latex/bin/latexRegex.pl sincSquared.tex
+
+../latex/bin/lgrep oscillatorKernel.tex | tee o ; . ./o
+perl -p -i ../latex/bin/latexRegex.pl oscillatorKernel.tex

@@ -69,8 +69,8 @@ I =
 }
 \end{equation}
 
-%While this is the answer stated in the text, Mathematica doesn't seem to be able to solve this one, at least stated niavely.  .  I'm assuming Perhaps the PV aspect of the integral
-%Interestingly, Mathematica doesn't
+Interestingly, Mathematica doesn't seem to be able to solve this integral, even setting PrincipleValue to True.  The solution ends up with a bogus seeming \( \Imag\left(\omega_0-\omega \right) = \Real(a) \) restriction, and as far as I can tell, the Mathematica result is also zero after simplification that it fails to do. Mathematica can solve this if we explicitly state the PV condition as a limit, as shown in \cref{fig:MathematicaAttempt:MathematicaAttemptFig1}.
+\imageFigure{../figures/blogit/MathematicaAttemptFig1}{Coercing Mathematica to evaluate this.}{fig:MathematicaAttempt:MathematicaAttemptFig1}{0.3}
 
 %}
 \EndArticle

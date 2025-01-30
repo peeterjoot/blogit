@@ -53,7 +53,7 @@ The joke solution has strong hints that Fourier transform methods were part of t
 \begin{equation}\label{eqn:greensDropWithResistance:60}
 \begin{aligned}
 \hatF(\omega) = \calF(f(t)) &= \int_{-\infty}^\infty f(t) e^{-i\omega t} dt \\
-f(t) = \calF^-1(\hatF(\omega)) &= \inv{2\pi} \int_{-\infty}^\infty \hatF(\omega) e^{i\omega t} d\omega.
+f(t) = \calF^{-1}(\hatF(\omega)) &= \inv{2\pi} \int_{-\infty}^\infty \hatF(\omega) e^{i\omega t} d\omega.
 \end{aligned}
 \end{equation}
 However, if we are using Fourier transforms, why bother with Green's functions?  Instead, we can just solve for the system response using Fourier transforms.  When looking for the system response, we usually pose the problem with more generality.  For example, instead of the specific theta-weighted constant gravitational forcing function above, we seek to find the solution of
@@ -102,7 +102,7 @@ G(\tau) = -\inv{2\pi} \int_{-\infty}^\infty \frac{ e^{i\omega \tau} }{\omega\lr{
 
 We've been fast and loose above, swapping order of integration without proper justification, and have assumed that all Fourier transforms and inverse transforms exist.  Given all those assumptions, we now have a general solution for the system, requiring only the convolution of our driving force \( F(t) \) with the system response function \( G(t) \).  The only caveat is that we have to be able to perform the integral for the system response function, and that integral does not exist.
 
-There are lots of integrals that do not strictly exist when playing the fast and loose physicist game with Fourier transforms.  One such example can be found by looking at any transform pair.  For example, given \( f(t) = \calF^-1(\hatF(\omega)) \), we have
+There are lots of integrals that do not strictly exist when playing the fast and loose physicist game with Fourier transforms.  One such example can be found by looking at any transform pair.  For example, given \( f(t) = \calF^{-1}(\hatF(\omega)) \), we have
 \begin{equation}\label{eqn:greensDropWithResistance:240}
 \begin{aligned}
 f(t)

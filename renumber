@@ -398,3 +398,5 @@
 
 ../latex/bin/lgrep ringAndDiskField.tex | tee o ; . ./o
 perl -p -i ../latex/bin/latexRegex.pl ringAndDiskField.tex
+../latex/bin/lgrep pascals.tex | tee o ; . ./o
+perl -p -i ../latex/bin/latexRegex.pl pascals.tex

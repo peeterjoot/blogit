@@ -30,13 +30,15 @@
 %\chapter{XXX}
 %\label{chap:junk}
 
+\section{}
 \begin{equation*}
 \int f(x)\, dx\, g(x)
 \end{equation*}
 
+\section{}
 \begin{equation*}
 \begin{aligned}
-i \sqrt{ i \sqrt{ i^{22} }} 
+i \sqrt{ i \sqrt{ i^{22} }}
 &=
 i \sqrt{ i \sqrt{ \lr{i^4}^5 i^2 }} \\
 &=
@@ -52,8 +54,73 @@ i^2 \\
 \end{aligned}
 \end{equation*}
 
+\section{}
 \begin{equation*}
 6! = \lr{3 \cdot 2 } \cdot 5! = 3! 5!
+\end{equation*}
+
+\section{}
+That first one works if \( a \) and \( b \) are orthogonal vectors (using the vector product from geometric algebra.)
+
+An example, using a Pauli matrix representation of two such orthogonal vectors
+\begin{equation*}
+\begin{aligned}
+a &= \sigma_x = \PauliX \\
+b &= \sigma_z = \PauliZ.
+\end{aligned}
+\end{equation*}
+
+In general, however, if \( a \cdot b \ne 0 \),
+\begin{equation*}
+\lr{ a + b }^2 = a^2 + 2 a \cdot b + b^2.
+\end{equation*}
+Observe that if \( a, b \in \bbR^1 \) (isomorphic to \( \bbR \)), then they cannot ever be orthogonal, so this reduces to the familiar
+\begin{equation*}
+\lr{ a + b }^2 = a^2 + 2 a b + b^2.
+\end{equation*}
+
+
+\section{}
+Problem: Find the inverse of
+\begin{equation}\label{eqn:junk:20}
+y = \frac{10^x - 10^{-x}}{10^x + 10^{-x}} + 1.
+\end{equation}
+
+First rewrite the exponents
+\begin{equation}\label{eqn:junk:40}
+10^x = e^{\ln 10^x} = e^{x \ln 10},
+\end{equation}
+so
+\begin{equation}\label{eqn:junk:60}
+\begin{aligned}
+y - 1
+&= \frac{e^{x \ln 10} - e^{-x \ln 10}}{e^{x \ln 10} + e^{-x \ln 10}} \\
+&= \frac{\sinh\lr{ x \ln 10}}{\cosh\lr{ x \ln 10 }} \\
+&= \tanh\lr{ x \ln 10}.
+\end{aligned}
+\end{equation}
+We can now invert to find
+\begin{equation}\label{eqn:junk:80}
+\boxed{
+x = \frac{\tanh^{-1}\lr{ y - 1 }}{\ln 10}.
+}
+\end{equation}
+\section{}
+Here's a fun and easy way to compute the radial and tangential components of velocity and acceleration in circular coordinates, using a complex (polar) representation of the position vector.  First take derivatives
+\begin{equation*}
+\begin{aligned}
+z &= r e^{i\theta} \\
+z' &= r' e^{i\theta} + i r e^{i\theta} \theta' \\
+z'' &= r'' e^{i\theta} + 2 i r' e^{i\theta} \theta' - r e^{i\theta} \lr{\theta'}^2 + i r e^{i\theta} \theta'',
+\end{aligned}
+\end{equation*}
+Next identify \( \rcap = e^{i\theta} \) and \( \thetacap = i e^{i\theta} \), \( \omega = \theta' \), and \( \alpha = \theta'' \) to find
+\begin{equation*}
+\begin{aligned}
+\Bx &= r \rcap \\
+\Bv &= r' \rcap + r \omega \thetacap \\
+\Ba &= \lr{ r'' - r \omega^2 } \rcap + \lr{ 2 r' \omega + r \alpha } \thetacap.
+\end{aligned}
 \end{equation*}
 
 %}

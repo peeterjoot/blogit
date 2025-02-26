@@ -1,0 +1,150 @@
+%
+% Copyright © 2025 Peeter Joot.  All Rights Reserved.
+% Licenced as described in the file LICENSE under the root directory of this GIT repository.
+%
+%{
+\input{../latex/blogpost.tex}
+\renewcommand{\basename}{cramers23}
+%\renewcommand{\dirname}{notes/phy1520/}
+\renewcommand{\dirname}{notes/ece1228-electromagnetic-theory/}
+%\newcommand{\dateintitle}{}
+%\newcommand{\keywords}{}
+
+\input{../latex/peeter_prologue_print2.tex}
+
+\usepackage{peeters_layout_exercise}
+\usepackage{peeters_braket}
+\usepackage{peeters_figures}
+\usepackage{siunitx}
+\usepackage{verbatim}
+%\usepackage{macros_cal} % \LL
+%\usepackage{amsthm} % proof
+%\usepackage{mhchem} % \ce{}
+%\usepackage{macros_bm} % \bcM
+%\usepackage{macros_qed} % \qedmarker
+%\usepackage{txfonts} % \ointclockwise
+
+\beginArtNoToc
+
+\generatetitle{XXX}
+%\chapter{XXX}
+%\label{chap:cramers23}
+
+You can derive Cramer's rule for the 2-variable and 3-variable cases using the cross product. Write
+\begin{equation}\label{eqn:cramers23:20}
+\begin{aligned}
+\Ba &= a_1 \Be_1 + a_2 \Be_2 \\
+\Bb &= b_1 \Be_1 + b_2 \Be_2 \\
+\Bd &= d_1 \Be_1 + d_2 \Be_2,
+\end{aligned}
+\end{equation}
+so the linear system is
+\begin{equation}\label{eqn:cramers23:40}
+\Ba x + \Bb y = \Bd.
+\end{equation}
+Crossing with \( \Ba \) and \( \Bb \) from the left and right respectively, gives
+\begin{equation}\label{eqn:cramers23:60}
+\begin{aligned}
+\cancel{\lr{\Ba \cross \Ba}} x + \lr{\Ba \cross \Bb} y &= \Ba \cross \Bd \\
+\lr{\Ba \cross \Bb} x + \cancel{\lr{\Bb \cross \Bb}} y &= \Bd \cross \Bb.
+\end{aligned}
+\end{equation}
+Dotting with \( \zcap = \Be_3 \), we have
+\begin{equation}\label{eqn:cramers23:80}
+\begin{aligned}
+\Be_3 \cdot \lr{ \Ba \cross \Bb } y &= \Be_3 \cdot \lr{ \Ba \cross \Bd } \\
+\Be_3 \cdot \lr{ \Ba \cross \Bb } x &= \Be_3 \cdot \lr{ \Bd \cross \Bb }.
+\end{aligned}
+\end{equation}
+Knowing that we can write this triple scalar product as a determinant, we are left with
+\begin{equation}\label{eqn:cramers23:100}
+\begin{aligned}
+\begin{vmatrix}
+0   & 0   & 1 \\
+a_1 & a_2 & 0 \\
+b_1 & b_2 & 0 \\
+\end{vmatrix}
+y
+&=
+\begin{vmatrix}
+0   & 0   & 1 \\
+a_1 & a_2 & 0 \\
+d_1 & d_2 & 0 \\
+\end{vmatrix} \\
+\begin{vmatrix}
+0   & 0   & 1 \\
+a_1 & a_2 & 0 \\
+b_1 & b_2 & 0 \\
+\end{vmatrix}
+x
+&=
+\begin{vmatrix}
+0   & 0   & 1 \\
+d_1 & d_2 & 0 \\
+b_1 & b_2 & 0 \\
+\end{vmatrix}.
+\end{aligned}
+\end{equation}
+Partially expanding those determinants along the first row, gives
+\begin{equation}\label{eqn:cramers23:120}
+\begin{aligned}
+\begin{vmatrix}
+a_1 & a_2 \\
+b_1 & b_2 \\
+\end{vmatrix}
+y
+&=
+\begin{vmatrix}
+a_1 & a_2 \\
+d_1 & d_2 \\
+\end{vmatrix} \\
+\begin{vmatrix}
+a_1 & a_2 \\
+b_1 & b_2 \\
+\end{vmatrix}
+x
+&=
+\begin{vmatrix}
+d_1 & d_2 \\
+b_1 & b_2 \\
+\end{vmatrix}.
+\end{aligned}
+\end{equation}
+After transposition of the remaining determinants (which doesn't change them), we have Cramer's rule.
+\section{}
+Similarly, for the 3-variable case, write
+\begin{equation}\label{eqn:cramers23:160}
+\begin{aligned}
+\Ba &= a_1 \Be_1 + a_2 \Be_2 + a_3 \Be_3 \\
+\Bb &= b_1 \Be_1 + b_2 \Be_2 + b_3 \Be_3 \\
+\Bc &= c_1 \Be_1 + c_2 \Be_2 + c_3 \Be_3 \\
+\Bd &= d_1 \Be_1 + d_2 \Be_2 + d_3 \Be_3 ,
+\end{aligned}
+\end{equation}
+so the linear system is
+\begin{equation}\label{eqn:cramers23:180}
+\Ba x + \Bb y + \Bc z = \Bd.
+\end{equation}
+Illustrating by example, let's cross this with \( \Ba \) to eliminate one of the variables
+\begin{equation}\label{eqn:cramers23:200}
+\cancel{\lr{\Ba \cross \Ba}} x + \lr{\Ba \cross \Bb} y + \lr{ \Ba \cross \Bc } z = \Ba \cross \Bd.
+\end{equation}
+We can now dot with \( \Bb, \Bc \) respectively, to eliminate the other variables, to find
+\begin{equation}\label{eqn:cramers23:220}
+\begin{aligned}
+\cancel{ \Bb \cdot \lr{\Ba \cross \Bb} } y + \Bb \cdot \lr{ \Ba \cross \Bc } z &= \Bb \cdot \lr{ \Ba \cross \Bd } \\
+\Bc \cdot \lr{\Ba \cross \Bb} y + \cancel{ \Bc \cdot \lr{ \Ba \cross \Bc } } z &= \Bc \cdot \lr{ \Ba \cross \Bd }.
+\end{aligned}
+\end{equation}
+This gives
+\begin{equation}\label{eqn:cramers23:140}
+\begin{aligned}
+z &= \frac{\Bb \cdot \lr{ \Ba \cross \Bd }}{\Bb \cdot \lr{ \Ba \cross \Bc } } \\
+y &= \frac{\Bc \cdot \lr{\Ba \cross \Bb}}{\Bb \cdot \lr{ \Ba \cross \Bc } },
+\end{aligned}
+\end{equation}
+The triple products can be written out as determinants, and shuffled slightly to put them in the expected form for Cramer's rule.  The solution for \( x \) follows in the same way.
+
+%}
+%\EndArticle
+\EndNoBibArticle

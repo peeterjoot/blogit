@@ -1,0 +1,81 @@
+%
+% Copyright © 2025 Peeter Joot.  All Rights Reserved.
+% Licenced as described in the file LICENSE under the root directory of this GIT repository.
+%
+%{
+\input{../latex/blogpost.tex}
+\renewcommand{\basename}{oly}
+%\renewcommand{\dirname}{notes/phy1520/}
+\renewcommand{\dirname}{notes/ece1228-electromagnetic-theory/}
+%\newcommand{\dateintitle}{}
+%\newcommand{\keywords}{}
+
+\input{../latex/peeter_prologue_print2.tex}
+
+\usepackage{peeters_layout_exercise}
+\usepackage{peeters_braket}
+\usepackage{peeters_figures}
+\usepackage{siunitx}
+\usepackage{verbatim}
+%\usepackage{macros_cal} % \LL
+%\usepackage{amsthm} % proof
+%\usepackage{mhchem} % \ce{}
+%\usepackage{macros_bm} % \bcM
+%\usepackage{macros_qed} % \qedmarker
+%\usepackage{txfonts} % \ointclockwise
+
+\beginArtNoToc
+
+\generatetitle{XXX}
+%\chapter{XXX}
+%\label{chap:oly}
+
+Problem: Solve:
+\begin{equation}\label{eqn:oly:20}
+x + \lr{ 82 - \lr{ x + 1 }^4 }^{1/4} = 1.
+\end{equation}
+
+Let's assume that we want real values of
+\begin{equation}\label{eqn:oly:40}
+82 - \lr{ x + 1 }^4 > 0.
+\end{equation}
+Rearrange and take the fourth power, to find
+\begin{equation}\label{eqn:oly:60}
+\lr{ 1 - x }^4 = 82 - \lr{ x + 1 }^4,
+\end{equation}
+or
+\begin{equation}\label{eqn:oly:80}
+\lr{ x - 1 }^4 + \lr{ x + 1 }^4 = 82.
+\end{equation}
+Expanding the powers, we have cancelation of every other term, leaving
+\begin{equation}\label{eqn:oly:100}
+x^4 + 6 x^2 + 1 = 41,
+\end{equation}
+or
+\begin{equation}\label{eqn:oly:120}
+\lr{x^2 + 3}^2 = 7^2,
+\end{equation}
+or
+\begin{equation}\label{eqn:oly:140}
+x^2 = \pm 7 - 3 = 4, -10.
+\end{equation}
+The real values of \( x \) are \( \pm 2 \).  We have to try these to check for inconsistencies, and find
+\begin{equation}\label{eqn:oly:160}
+82 - \lr{ 2 + 1 }^4 = 1,
+\end{equation}
+which would require \( x + 1 = 1 \), inconsistent with \( x = 2 \).  However
+\begin{equation}\label{eqn:oly:180}
+\end{equation}
+\begin{equation}\label{eqn:oly:200}
+82 - \lr{ -2 + 1 }^4 = 81 = 3^4,
+\end{equation}
+which means that \( x + 3 = 1 \), as desired.
+
+Our solution is
+\begin{equation}\label{eqn:oly:220}
+\boxed{x = -2}.
+\end{equation}
+
+%}
+%\EndArticle
+\EndNoBibArticle

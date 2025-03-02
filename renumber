@@ -404,3 +404,6 @@ perl -p -i ../latex/bin/latexRegex.pl junk.tex
 
 #../latex/bin/lgrep cramers23.tex | tee o ; . ./o
 #perl -p -i ../latex/bin/latexRegex.pl cramers23.tex
+
+#../latex/bin/lgrep oly.tex | tee o ; . ./o
+#perl -p -i ../latex/bin/latexRegex.pl oly.tex

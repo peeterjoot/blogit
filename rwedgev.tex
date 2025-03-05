@@ -1,0 +1,90 @@
+%
+% Copyright © 2025 Peeter Joot.  All Rights Reserved.
+% Licenced as described in the file LICENSE under the root directory of this GIT repository.
+%
+%{
+\input{../latex/blogpost.tex}
+\renewcommand{\basename}{rwedgev}
+%\renewcommand{\dirname}{notes/phy1520/}
+\renewcommand{\dirname}{notes/ece1228-electromagnetic-theory/}
+%\newcommand{\dateintitle}{}
+%\newcommand{\keywords}{}
+
+\input{../latex/peeter_prologue_print2.tex}
+
+\usepackage{peeters_layout_exercise}
+\usepackage{peeters_braket}
+\usepackage{peeters_figures}
+\usepackage{siunitx}
+\usepackage{verbatim}
+%\usepackage{macros_cal} % \LL
+%\usepackage{amsthm} % proof
+%\usepackage{mhchem} % \ce{}
+%\usepackage{macros_bm} % \bcM
+%\usepackage{macros_qed} % \qedmarker
+%\usepackage{txfonts} % \ointclockwise
+
+\beginArtNoToc
+
+\generatetitle{XXX}
+%\chapter{XXX}
+%\label{chap:rwedgev}
+
+Given constant velocity \( \Bv \), and a vector following a trajectory in that direction from some initial point \( \Br_0 \)
+\begin{equation}\label{eqn:rwedgev:20}
+\Br(t) = \Br_0 + \Bv t,
+\end{equation}
+we have
+\begin{equation}\label{eqn:rwedgev:40}
+\Br(t) \wedge \Bv = \Br_0 \wedge \Bv,
+\end{equation}
+which is a constant.  This means that the derivative of \( \Br \wedge \Bv \) should be zero, which we can check:
+\begin{equation}\label{eqn:rwedgev:60}
+\begin{aligned}
+\ddt{} \lr{ \Br(t) \wedge \Bv }
+&=
+\ddt{\Br} \wedge \Bv + \Br \wedge \ddt{\Bv}.
+\end{aligned}
+\end{equation}
+The first term is equal to \( \Bv \wedge \Bv = 0 \), and the second term is zero because \( \Bv \) is constant.
+
+\chapter{Circular coordinates.}
+
+With \( i = \Be_1 \Be_2 \)
+\begin{equation}\label{eqn:rwedgev:80}
+\Br = r \Be_1 e^{i \theta} = r \rcap,
+\end{equation}
+where \( \rcap = \Be_1 e^{i \theta} \).
+The velocity is
+\begin{equation}\label{eqn:rwedgev:120}
+\begin{aligned}
+\Bv
+&= \dot{r} \Be_1 e^{i \theta} + r \Be_2 e^{i\theta} \omega \\
+&= \dot{r} \rcap + r \omega \thetacap,
+\end{aligned}
+\end{equation}
+where \( \thetacap = \Be_2 e^{i\theta} \), and \( \omega = d\theta/dt \).
+
+This time we have
+\begin{equation}\label{eqn:rwedgev:140}
+\begin{aligned}
+\Br \wedge \Bv &= r^2 \omega \rcap \wedge \thetacap \\
+&= r^2 \omega i.
+\end{aligned}
+\end{equation}
+
+BTW, if it's not obvious that \( \rcap \wedge \thetacap = i \), you can show it easily using a grade selection representation of the wedge product
+\begin{equation}\label{eqn:rwedgev:160}
+\begin{aligned}
+\rcap \wedge \thetacap
+&= \gpgradetwo{ \Be_1 e^{i \theta} \Be_2 e^{i\theta} } \\
+&= \gpgradetwo{ \Be_1 e^{i \theta} e^{-i\theta} \Be_2} \\
+&= \gpgradetwo{ \Be_1 \Be_2} \\
+&= \Be_1 \Be_2 \\
+&= i.
+\end{aligned}
+\end{equation}
+
+%}
+%\EndArticle
+\EndNoBibArticle

@@ -1,0 +1,137 @@
+%
+% Copyright © 2025 Peeter Joot.  All Rights Reserved.
+% Licenced as described in the file LICENSE under the root directory of this GIT repository.
+%
+%{
+\input{../latex/blogpost.tex}
+\renewcommand{\basename}{impedance}
+%\renewcommand{\dirname}{notes/phy1520/}
+\renewcommand{\dirname}{notes/ece1228-electromagnetic-theory/}
+%\newcommand{\dateintitle}{}
+%\newcommand{\keywords}{}
+
+\input{../latex/peeter_prologue_print2.tex}
+
+\usepackage{peeters_layout_exercise}
+\usepackage{peeters_braket}
+\usepackage{peeters_figures}
+\usepackage{siunitx}
+\usepackage{verbatim}
+%\usepackage{macros_cal} % \LL
+%\usepackage{amsthm} % proof
+%\usepackage{mhchem} % \ce{}
+%\usepackage{macros_bm} % \bcM
+%\usepackage{macros_qed} % \qedmarker
+%\usepackage{txfonts} % \ointclockwise
+
+\beginArtNoToc
+
+\generatetitle{Impedance refresher.}
+%\chapter{Impedance}
+%\label{chap:impedance}
+
+Karl is taking his circuits course right now, which means that I get a chance to field some questions.  I don't get an excuse to think about this stuff any more.  It's fun material, since most of the ideas are all really simple, and you can figure out everything from first principles.
+
+Karl just started sinusodial circuits, which I think is a bit exciting.  They are such a nice special case, as complex calculations are all effectively reduced to \( V = I R \) style computations.
+
+\section{Solving LRC circuits for general time dependent sources.}
+To contrast the simple case of sinusoidal sources, let's consider what we have to do in order to solve a general case RLC circuit.  The simple basic RC circuit sketched in \cref{fig:rcCircuit:rcCircuitFig1} provides a good illustrative example, even though it does not include any inductance.
+\imageFigure{../figures/blogit/rcCircuitFig1}{Basic RC circuit.}{fig:rcCircuit:rcCircuitFig1}{0.3}
+
+With \( v \) as the voltage at the capacitor, the equations that describe the circuit are
+\begin{equation}\label{eqn:impedance:20}
+\begin{aligned}
+v_s - v &= i R \\
+i &= C \frac{dv}{dt}.
+\end{aligned}
+\end{equation}
+
+We can combine these into one equation for \( v \).  Letting \( \tau = RC \), that is
+\begin{equation}\label{eqn:impedance:40}
+v + \tau \frac{dv}{dt} = v_s.
+\end{equation}
+Here \( v_s = v_s(t) \) can be an arbitrary function of time.  This is a simple enough differential equation, and can probably be solved in various ways (integrating factors, Fourier transforms, Laplace transforms, ...)
+
+For illustration purposes, let's tackle this little equation with Fourier transforms, a method logically equivalent to the computation of the Green's function for the system.
+
+Let's use a symmetric representation of the Fourier transform
+\begin{equation}\label{eqn:impedance:60}
+\begin{aligned}
+F(\omega) &= \inv{\sqrt{2 \pi}} \int_{-\infty}^\infty e^{-j\omega t} f(t) dt \\
+f(t)      &= \inv{\sqrt{2 \pi}} \int_{-\infty}^\infty e^{j\omega t} F(\omega) d\omega \\
+\end{aligned}
+\end{equation}
+Recall that the Fourier transform of the derivative is just a \( j \omega \) scaled frequency domain function, which we show with integration by parts
+\begin{equation}\label{eqn:impedance:80}
+\begin{aligned}
+\inv{\sqrt{2 \pi}} \int_{-\infty}^\infty e^{-j\omega t} \frac{df}{dt} dt
+&= \inv{\sqrt{2 \pi}} \int_{-\infty}^\infty \lr{ \frac{d}{dt} \lr{ f(t) e^{-j \omega t} } - f(t) \frac{d}{dt}\lr{ e^{-j\omega t}} } dt \\
+&= j \omega F(\omega).
+\end{aligned}
+\end{equation}
+That means that the frequency domain equivalent of our system is
+\begin{equation}\label{eqn:impedance:100}
+V + j \omega \tau V = V_s,
+\end{equation}
+or
+\begin{equation}\label{eqn:impedance:120}
+V(\omega) = \frac{V_s(\omega)}{1 + j \omega \tau}.
+\end{equation}
+Inverse transformation yields
+\begin{equation}\label{eqn:impedance:140}
+\begin{aligned}
+v(t)
+&= \inv{\sqrt{2 \pi}} \int_{-\infty}^\infty e^{j\omega t} \frac{V_s(\omega)}{1 + j \omega \tau} d\omega \\
+&= \inv{2 \pi} \iint_{-\infty}^\infty e^{j\omega t} \frac{1}{1 + j \omega \tau} d\omega e^{-j\omega t'} v_s(t') dt' \\
+&= \int_{-\infty}^\infty dt' v_s(t') \inv{2\pi} \int_{-\infty}^\infty \frac{e^{j\omega(t-t')}}{1 + j \omega \tau} d\omega,
+\end{aligned}
+\end{equation}
+or with
+\begin{equation}\label{eqn:impedance:160}
+G(u) = \inv{2\pi} \int_{-\infty}^\infty \frac{e^{j\omega u}}{1 + j \omega \tau} d\omega,
+\end{equation}
+\begin{equation}\label{eqn:impedance:180}
+v(t) = \int_{-\infty}^\infty v_s(t') G(t - t') dt'.
+\end{equation}
+We just need to evaluate the Green's function \( G(u) \) to proceed, which we can do with standard contour integration, first writing:
+
+\begin{equation}\label{eqn:impedance:200}
+\begin{aligned}
+G(u)
+&= \inv{2\pi j \tau} \int_{-\infty}^\infty \frac{e^{j\omega u}}{\inv{j\tau} + \omega} d\omega \\
+&= \inv{2\pi j \tau} \oint \frac{e^{j z u}}{\inv{j\tau} + z} dz.
+\end{aligned}
+\end{equation}
+This has a single pole at \( z = j/\tau \).  We need an infinite semicircular contour in the lower half plane for \( u < 0 \), and can use the upper half plane infinite semicircular contour (surrounding the pole) for \( u > 0 \).  That gives
+\begin{equation}\label{eqn:impedance:220}
+\begin{aligned}
+G(u)
+&= \Theta(u) \frac{2 \pi j}{2\pi j \tau} \evalbar{e^{j z u}}{z = j/\tau} \\
+&= \frac{\Theta(u)}{\tau} e^{- u/\tau}.
+\end{aligned}
+\end{equation}
+
+The solution to the problem, for any Fourier integrable source \( v_s(t) \), is
+\begin{equation}\label{eqn:impedance:240}
+v(t) = \int_{-\infty}^t v_s(t') \frac{e^{- \lr{t - t'}/\tau}}{\tau} dt'.
+\end{equation}
+
+As a check, let's evaluate this convolution integral for a step source \( v_s(t) = V \Theta(t) \), to find
+\begin{equation}\label{eqn:impedance:260}
+\begin{aligned}
+v(t) 
+&= \frac{V e^{-t/tau}}{\tau} \int_0^t e^{t'/\tau} dt' \\
+&= V e^{-t/tau} \evalrange{e^{t'/\tau} }{0}{t} \\
+&= V e^{-t/tau} \lr{ e^{t/\tau} - 1 } \\
+&= V \lr{ 1 - e^{-t/\tau} }.
+\end{aligned}
+\end{equation}
+This is the damped time domain response that we remember for an RC circuit.  In Karl's first year engineering notes, this was presented as a given (without the step factor), and he had to verify that it worked by differentiation for \( t > 0 \).
+
+Solving this exactly, even for arbitrary sources, as we've done above, is not strictly hard, if you have all the required tools.  But the first year engineering student doesn't have all those tools to start with.  This is where the beauty of the phasor techniques for sinusodal sources comes in.  Let's now see how that works.
+
+\section{Phasor approach.}
+
+%}
+%\EndArticle
+\EndNoBibArticle

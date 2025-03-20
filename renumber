@@ -409,3 +409,7 @@ perl -p -i ../latex/bin/latexRegex.pl junk.tex
 #perl -p -i ../latex/bin/latexRegex.pl oly.tex
 ../latex/bin/lgrep rwedgev.tex | tee o ; . ./o
 perl -p -i ../latex/bin/latexRegex.pl rwedgev.tex
+../latex/bin/lgrep cos4.tex | tee o ; . ./o
+perl -p -i ../latex/bin/latexRegex.pl cos4.tex
+../latex/bin/lgrep impedance.tex | tee o ; . ./o
+perl -p -i ../latex/bin/latexRegex.pl impedance.tex

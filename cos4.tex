@@ -1,0 +1,83 @@
+%
+% Copyright © 2025 Peeter Joot.  All Rights Reserved.
+% Licenced as described in the file LICENSE under the root directory of this GIT repository.
+%
+%{
+\input{../latex/blogpost.tex}
+\renewcommand{\basename}{cos4}
+%\renewcommand{\dirname}{notes/phy1520/}
+\renewcommand{\dirname}{notes/ece1228-electromagnetic-theory/}
+%\newcommand{\dateintitle}{}
+%\newcommand{\keywords}{}
+
+\input{../latex/peeter_prologue_print2.tex}
+
+\usepackage{peeters_layout_exercise}
+\usepackage{peeters_braket}
+\usepackage{peeters_figures}
+\usepackage{siunitx}
+\usepackage{verbatim}
+%\usepackage{macros_cal} % \LL
+%\usepackage{amsthm} % proof
+%\usepackage{mhchem} % \ce{}
+%\usepackage{macros_bm} % \bcM
+%\usepackage{macros_qed} % \qedmarker
+%\usepackage{txfonts} % \ointclockwise
+
+\beginArtNoToc
+
+\generatetitle{XXX}
+%\chapter{XXX}
+%\label{chap:cos4}
+
+Find:
+\begin{equation}\label{eqn:cos4:20}
+I = \int_0^{\pi/4} \frac{\cos\lr{4x}}{\cos^4 x} dx.
+\end{equation}
+
+First reduce the \( \cos 4 x \)
+\begin{equation}\label{eqn:cos4:40}
+\begin{aligned}
+\cos \lr{ 4 x }
+&= \Real\lr{ \cos x + i \sin x }^4 \\
+&= \Real\lr{ \cos^4 x + 4 i \cos^3 x \sin x + 6 i^2 \cos^2 x \sin^2 x + 4 i^3 \cos x \sin^3 x + i^4 \sin^4 x } \\
+&= \cos^4 x - 6 \cos^2 \sin^2 x + \sin^4 x \\
+&= \cos^4 x - 6 \cos^2 \lr{ 1 - \cos^2 x } + \lr{ 1 - \cos^2 x }^2 \\
+&= 8 \cos^4 x - 8 \cos^2 + 1.
+\end{aligned}
+\end{equation}
+
+We can now rewrite the integral as
+\begin{equation}\label{eqn:cos4:60}
+I = 8 \frac{\pi}{4} - 8 \int_0^{\pi/4} \frac{dx}{\cos^2 x} + \int_0^{\pi/4} \frac{dx}{\cos^4 x}.
+\end{equation}
+
+With a bit of trial and error, we find
+\begin{equation}\label{eqn:cos4:80}
+\begin{aligned}
+\lr{\tan x}' &= \frac{1}{\cos^2 x} \\
+\lr{\tan^3 x}' &= \frac{3}{\cos^4 x} - \frac{3}{\cos^2 x},
+\end{aligned}
+\end{equation}
+so
+%\begin{equation}\label{eqn:cos4:100}
+%\frac{1}{\cos^4 x} = \frac{1}{\cos^2 x} + \inv{3} \lr{\tan^3 x}',
+%\end{equation}
+%and
+\begin{equation}\label{eqn:cos4:120}
+\begin{aligned}
+-\frac{8}{\cos^2 x} + \frac{1}{\cos^4 x}
+&= -\frac{7}{\cos^2 x} + \inv{3} \lr{\tan^3 x}' \\
+&= -7 \lr{ \tan x}' + \inv{3} \lr{\tan^3 x}' \\
+\end{aligned}
+\end{equation}
+We are left with
+\begin{equation}\label{eqn:cos4:140}
+\boxed{
+I = 2 \pi -7 + \inv{3} = 2 \pi - \frac{20}{3}.
+}
+\end{equation}
+
+%}
+%\EndArticle
+\EndNoBibArticle

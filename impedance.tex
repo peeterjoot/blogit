@@ -208,7 +208,7 @@ If the circuit has an inductive load, then the system equation is
 \begin{equation}\label{eqn:impedance:580}
 v_s(t) = L \frac{di}{dt}.
 \end{equation}
-Again, we can write \( v_s(t) = \Real \lr{ V e^{j\omega t} } \), and assume that \( i = \Real{ I e^{j\omega t} } \).  We then require
+Again, we can write \( v_s(t) = \Real \lr{ V e^{j\omega t} } \), and assume that \( i = \Real \lr{ I e^{j\omega t} } \).  We then require
 \begin{equation}\label{eqn:impedance:600}
 V e^{j \omega t} = L \frac{d}{dt} \lr{ I e^{j \omega t} },
 \end{equation}
@@ -258,7 +258,7 @@ V
 &= \frac{V_s}{ R \lr{ j \omega C + \inv{ j \omega L } } + 1 }.
 \end{aligned}
 \end{equation}
-The complicated time response for this system is reduced to a trivial voltage divider calculation.  Imagine how messy it would be to try to solve this sytem using the Green's function methods that we used above!
+The complicated time response for this system is reduced to a trivial voltage divider calculation.  We see that it was kind of pointless to run an inductor and capacitor in parallel, as they are both purely reactive (imaginary).  That's a detail that I didn't remember, since it's been decades since I did any practical circuits applications.  However, the point is, by using a complex exponential source representation, these types of systems are reduced from systems of coupled differential equations to simple linear systems.  Imagine how messy it would be to try to solve this system using the Green's function methods that we used above!
 
 %}
 %\EndArticle

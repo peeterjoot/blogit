@@ -68,7 +68,7 @@ Now we just have to figure out how to sum
 \begin{equation}\label{eqn:weightedGeometric:120}
 G_n = \sum_{k = 0}^n k r^k = \sum_{k = 1}^n k r^k.
 \end{equation}
-This looks suspicously like the derivative of a geometric series.  Let's evaluate such a derivative, as a function of r:
+This looks suspiciously like the derivative of a geometric series.  Let's evaluate such a derivative, as a function of r:
 \begin{equation}\label{eqn:weightedGeometric:140}
 \begin{aligned}
 \frac{d T_n(r)}{dr}
@@ -97,6 +97,8 @@ This means that our sum is
 S_n = a \frac{r^{n+1} - 1}{r - 1} + b \frac{r}{\lr{r -1}^2} \lr{ (n+1)r^n(r-1) - \lr{r^{n+1} - 1} }.
 \end{equation}
 Putting back \( r = 1/(1+i) \), and subsequent simplification, gives the Mathematica result.  It's not pretty, but at least we can do it if we want to.
+
+Shout out to Grok that pointed out the derivative trick for the second series.  I'd forgotten that one.
 
 %}
 %\EndArticle

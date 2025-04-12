@@ -30,8 +30,10 @@
   \end{wrapfigure}%
 }
 % for manually adjusting spaces before or after \sideFigure
+% \figspace = Space after a figure (1.5 baselineskip)
 \newcommand{\figspace}{\vspace{1.5\baselineskip}}
-\newcommand{\sectionspace}{\vspace{4\baselineskip}}
+% \sectionspace = Space between sections (3 baselineskip)
+\newcommand{\sectionspace}{\vspace{3\baselineskip}}
 
 % This command is a shortcut meant to do a balanced set of ( ) braces (using \left and \right makes them resize themselves bigger automatically)
 \newcommand{\lr}[1]{\left(#1\right)}
@@ -40,21 +42,28 @@
 % \inv{x} = 1/x.
 \newcommand{\inv}[1]{\frac{1}{#1}}
 
+% DeclareMathOperator{\Real}{Re} below is equivalent to \operatorname{Re} which puts Re in a mathrm font and adjusts spacing around it like built-in operators like \sin, \cos, ...
 \DeclareMathOperator{\Real}{Re}
 \DeclareMathOperator{\Arg}{Arg}
 \DeclareMathOperator{\Imag}{Im}
 \DeclareMathOperator{\conj}{conj}
 \DeclareMathOperator{\atan2}{atan2}
 
+% \phasor{X} = Bold phasor notation for X (e.g., \phasor{V} for voltage phasor)
 \newcommand{\phasor}[1]{\mathbf{#1}}
+% \thev = Thevenin subscript (Th)
 \newcommand{\thev}[0]{\mathrm{Th}}
+% \load = Load subscript (Load)
 \newcommand{\load}[0]{\mathrm{Load}}
 
 \begin{document}
-\section*{Circuits Cheatsheet}
+\begin{center}
+\Large \textbf{Circuits Cheatsheet}
+\end{center}
+% DC Circuit Analysis
 \subsection*{Current Division}
 \begin{minipage}{\textwidth}
-For a DC current source, such as the one illustrated in \cref{fig:currentSource:currentSourceFig1}, we have
+For a DC current source with parallel resistors, such as the one illustrated in \cref{fig:currentSource:currentSourceFig1}, we have
 \end{minipage}
 \sideFigure{../figures/blogit/currentSourceFig1}{Current Source}{fig:currentSource:currentSourceFig1}{0.3}
 \figspace
@@ -68,7 +77,7 @@ I_2 = I_s \frac{R_1}{R_1 + R_2}.
 \sectionspace
 \subsection*{Voltage Division}
 \begin{minipage}{\textwidth}
-For a DC voltage source illustrated in \cref{fig:voltageSource:voltageSourceFig2}, we have
+For a DC voltage source with series resistors, such as the one illustrated in \cref{fig:voltageSource:voltageSourceFig2}, we have
 \end{minipage}
 \sideFigure{../figures/blogit/voltageSourceFig2}{Voltage Source}{fig:voltageSource:voltageSourceFig2}{0.3}
 \figspace
@@ -78,6 +87,12 @@ V = V_2 \frac{R_2}{R_1 + R_2}.
 \WFclear
 \figspace
 \sectionspace
+\subsection*{Ohm's Law and Power}
+\begin{itemize}
+\item Ohm's Law: \( V = I R \).
+\item Power: \( P = V I = I^2 R = \frac{V^2}{R} \).
+\end{itemize}
+% Linear Algebra for Circuit Analysis
 \subsection*{Cramer's Rule}
 The solution of
 \begin{equation}\label{eqn:karlCircuitsCheatSheet:380}
@@ -121,8 +136,48 @@ y = \frac{
    \end{vmatrix}
 }.
 \end{equation}
+\subsection*{Matrix inverse}
+\Cref{eqn:karlCircuitsCheatSheet:380} may also be solved directly with less hassle than Cramer's rule (when you aren't specifically asked to use Cramer's)
+\begin{equation}\label{eqn:karlCircuitsCheatSheet:420}
+\begin{bmatrix}
+x \\
+y
+\end{bmatrix}
+=
+\inv{a d - b c}
+\begin{bmatrix}
+d  & -b \\
+-c & a
+\end{bmatrix}
+\begin{bmatrix}
+e \\
+f
+\end{bmatrix}.
+\end{equation}
+
+Note that this works because
+\begin{equation}\label{eqn:karlCircuitsCheatSheet:440}
+\begin{bmatrix}
+a & b \\
+c & d
+\end{bmatrix}
+\begin{bmatrix}
+d  & -b \\
+-c & a
+\end{bmatrix}
+=
+\begin{bmatrix}
+a d - b c & 0         \\
+0         & a d - b c
+\end{bmatrix}.
+\end{equation}
+
 \subsection*{RLC Circuit equations}
+The following apply to time-domain analysis; see Phasors for frequency domain.
 \begin{equation}\label{eqn:karlCircuitsCheatSheet:120}
+v_R = i_R R
+\end{equation}
+\begin{equation}\label{eqn:karlCircuitsCheatSheet:130}
 v_L = L \frac{di_L}{dt}
 \end{equation}
 \begin{equation}\label{eqn:karlCircuitsCheatSheet:140}
@@ -142,9 +197,9 @@ The polar form of a complex number (i.e.: of a phasor) is
 \begin{equation}\label{eqn:karlCircuitsCheatSheet:180}
 z = r \angle \phi,
 \end{equation}
-where \( r = \sqrt{a^2 + b^2} \), and \( \phi = \Arg z = \atan2\lr{\frac{b}{a}} \), where
+where \( r = \sqrt{a^2 + b^2} \), and \( \phi = \Arg z = \atan2\lr{\frac{b}{a}} \), where (essentially)
 \begin{equation*}
-\atan2\lr{b, a} = \tan^{-1}\lr{ \frac{b}{a} },
+\atan2(b, a) = \tan^{-1}\lr{ \frac{b}{a} },
 \end{equation*}
 but also correctly accounts for the quadrant that the point \(\lr{a,b}\) is in (since arctan needs correction by \( \pm \pi \) in some quadrants.)
 
@@ -159,48 +214,52 @@ FIXME: add a figure.
 Observe that
 \begin{equation}\label{eqn:karlCircuitsCheatSheet:220}
 \begin{aligned}
-\sqrt{z} &= \sqrt{r} e^{j\phi/2} = \sqrt{r} \angle \frac{\phi}{2} \\
-\inv{z} &= \inv{r} e^{-j\phi} = \inv{r} \angle -\phi \\
-\conj{z} &= a - j b = r e^{-j\phi} = r \angle -\phi.
+\sqrt{z} &= \sqrt{r} e^{j\phi/2}   = \sqrt{r} \angle \frac{\phi}{2} \\
+\inv{z}  &= \inv{r} e^{-j\phi}     = \inv{r} \angle -\phi \\
+\conj z &= a - j b = r e^{-j\phi} = r \angle -\phi.
 \end{aligned}
 \end{equation}
 
 Given two complex numbers \( z_1 = r_1 e^{j\phi_1}, z_2 = r_2 e^{j\phi_2} \), then their products and ratios are
 \begin{equation}\label{eqn:karlCircuitsCheatSheet:240}
 \begin{aligned}
-z_1 z_2 &= r_1 r_2 e^{j \lr{\phi_1 + \phi_2 } } = r_1 r_2 \angle \lr{ \phi_1 + \phi_2 } \\
+z_1 z_2         &= r_1 r_2 e^{j \lr{\phi_1 + \phi_2 } }         = r_1 r_2 \angle \lr{ \phi_1 + \phi_2 } \\
 \frac{z_1}{z_2} &= \frac{r_1}{r_2} e^{j \lr{\phi_1 - \phi_2 } } = \frac{r_1}{r_2} \angle \lr{ \phi_1 - \phi_2 }.
 \end{aligned}
 \end{equation}
 
 Let's applying the phasor notation to voltages and currents.  For example, given a time dependent cosinusoidal voltage with constant magnitude \( V \), we have the following equivalences
 
-Phasors simplify AC circuit analysis by converting differential equations to algebraic ones in the frequency domain.  For a time-dependent cosinusoidal voltage with constant magnitude \( V \), we have
+% AC Circuit Analysis with Phasors
+\subsection*{Phasors}
+Phasors simplify AC circuit analysis by converting differential equations to algebraic ones in the frequency domain. For a time-dependent cosinusoidal voltage with constant magnitude \( V \), we have
 \begin{equation}\label{eqn:karlCircuitsCheatSheet:260}
 \begin{aligned}
-v(t) &= V \cos\lr{ \omega t + \phi } = \Real \lr{ V e^{j \lr{\omega t + \phi} } } \\
+v(t)       &= V \cos\lr{ \omega t + \phi } = \Real \lr{ V e^{j \lr{\omega t + \phi} } } \\
 \phasor{V} &= V e^{j \phi} = V \angle \phi = V e^{j \phi} \\
-v(t) &= \Real \lr{ \phasor{V} e^{j \omega t} },
+v(t)       &= \Real \lr{ \phasor{V} e^{j \omega t} },
 \end{aligned}
 \end{equation}
-where the phasor, assumed to be a sinusoidal signal at a fixed angular frequency \( \omega \), has been written \( \phasor{V} \).  Bold has been used here for the phasor, which works nice in print, but there are other common conventions, including \(\underline{\phasor{V}}\) or \(\overline{\phasor{V}}\).
+where the phasor has been written \( \phasor{V} \).  This representation applies to
+sinusoidal signals at a fixed angular frequency \( \omega \), in radians per second, often related to frequency ( f ) by \( \omega = 2 \pi f \).
+Bold has been used here for the phasor, which works nice in print, but there are other common conventions, including \(\underline{\phasor{V}}\) or \(\overline{\phasor{V}}\).
 
 Similarly, given a sinusoidal time dependent voltage
 \begin{equation}\label{eqn:karlCircuitsCheatSheet:320}
 \begin{aligned}
-v(t) &= V \sin\lr{ \omega t + \phi } = \Real \lr{ -j V e^{j\lr{ \omega t + \phi } } } \\
-\phasor{V} &= V \angle \lr{ \phi - \SI{90}{\degree}} = V e^{j \lr{ \phi - \SI{90}{\degree}} },
+v(t)       &= V \sin\lr{ \omega t + \phi }            = \Real \lr{ -j V e^{j\lr{ \omega t + \phi } } } \\
+\phasor{V} &= V \angle \lr{ \phi - \SI{90}{\degree}}  = V e^{j \lr{ \phi - \SI{90}{\degree}} },
 \end{aligned}
 \end{equation}
 since
-\begin{equation}\label{eqn:karlCircuitsCheatSheet:n}
+\begin{equation}\label{eqn:karlCircuitsCheatSheet:400}
 -j = e^{-j \pi/2} = \angle \SI{-90}{\degree}.
 \end{equation}
 Once again \( v(t) = \Real \lr{ \phasor{V} e^{j \omega t} } \).
 
 \subsection*{Impedance of RLC Elements}
 For a resistor, inductor, and capacitor in the frequency domain:
-\begin{equation}
+\begin{equation}\label{eqn:karlCircuitsCheatSheet:460}
 \begin{aligned}
 Z_R &= R \\
 Z_L &= j \omega L \\
@@ -209,10 +268,14 @@ Z_C &= \frac{1}{j \omega C} = -j \frac{1}{\omega C}.
 \end{equation}
 
 \subsection*{Kirchhoff's Laws}
-\begin{itemize}
-\item KCL: The sum of currents entering a node equals the sum of currents leaving: \(\sum I_{\text{in}} = \sum I_{\text{out}}\).
-\item KVL: The sum of voltage drops around a closed loop is zero: \(\sum V = 0\).
-\end{itemize}
+KCL: The sum of currents entering a node equals the sum of currents leaving:
+\begin{equation}\label{eqn:karlCircuitsCheatSheet:480}
+\sum I_{\text{in}} = \sum I_{\text{out}}
+\end{equation}
+KVL: The sum of voltage drops around a closed loop is zero:
+\begin{equation}\label{eqn:karlCircuitsCheatSheet:500}
+\sum V = 0.
+\end{equation}
 
 \subsection*{Impedance and Maximum Power Transfer}
 The Thevenin equivalent impedance of a circuit is

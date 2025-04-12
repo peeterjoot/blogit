@@ -1,19 +1,10 @@
-%{ % for vim brace matching if unbalanced.
-%\PassOptionsToPackage{square,numbers}{natbib}
+%{ % Ignore this.  It's a trick for brace matching in an editor called vim that Peeter uses.
 \documentclass[letterpaper]{scrartcl}
 \usepackage[margin=1in,top=0.5in]{geometry}
-
-%\usepackage[svgnames]{xcolor}
 \usepackage{amsmath}
 \usepackage{caption}
-%\usepackage{exercise}
 \usepackage{graphicx}
-%\usepackage{ifthen}
-%\usepackage{parameters}
 \usepackage{siunitx}
-%\usepackage{stackengine}
-%\usepackage{subfig}
-%\usepackage{verbatim}
 \usepackage{wrapfig}
 \usepackage[english]{cleveref}
 
@@ -28,6 +19,7 @@
   \end{figure}%
 }
 
+% for a figure off to the left or to the right (default is left), with a caption and label
 % \sideFigure{path}{caption}{label}{width}[side]
 \newcommand{\sideFigure}[5][l]{%
   \begin{wrapfigure}{#1}{#5\textwidth}%
@@ -37,17 +29,26 @@
     \label{#4}%
   \end{wrapfigure}%
 }
+% for manually adjusting spaces before or after \sideFigure
+\newcommand{\figspace}{\vspace{1.5\baselineskip}}
+\newcommand{\sectionspace}{\vspace{4\baselineskip}}
 
+% This command is a shortcut meant to do a balanced set of ( ) braces (using \left and \right makes them resize themselves bigger automatically)
 \newcommand{\lr}[1]{\left(#1\right)}
+
+% This command is a shortcut:
+% \inv{x} = 1/x.
 \newcommand{\inv}[1]{\frac{1}{#1}}
 
 \DeclareMathOperator{\Real}{Re}
 \DeclareMathOperator{\Arg}{Arg}
 \DeclareMathOperator{\Imag}{Im}
+\DeclareMathOperator{\conj}{conj}
+\DeclareMathOperator{\atan2}{atan2}
 
-\newcommand{\BV}[0]{\mathbf{V}}
-\newcommand{\thev}[0]{{\mathrm{Th}}}
-%\newcommand{\degree}[0]{\circ}
+\newcommand{\phasor}[1]{\mathbf{#1}}
+\newcommand{\thev}[0]{\mathrm{Th}}
+\newcommand{\load}[0]{\mathrm{Load}}
 
 \begin{document}
 \section*{Circuits Cheatsheet}
@@ -56,29 +57,31 @@
 For a DC current source, such as the one illustrated in \cref{fig:currentSource:currentSourceFig1}, we have
 \end{minipage}
 \sideFigure{../figures/blogit/currentSourceFig1}{Current Source}{fig:currentSource:currentSourceFig1}{0.3}
-\vspace{1.5\baselineskip}
+\figspace
 \begin{equation}\label{eqn:karlCircuitsCheatSheet:20}
 I_1 = I_s \frac{R_2}{R_1 + R_2}
 \end{equation}
 \begin{equation}\label{eqn:karlCircuitsCheatSheet:40}
-I_2 = I_s \frac{R_1}{R_1 + R_2}
+I_2 = I_s \frac{R_1}{R_1 + R_2}.
 \end{equation}
 \WFclear
-\vspace{3\baselineskip}
+\sectionspace
 \subsection*{Voltage Division}
 \begin{minipage}{\textwidth}
 For a DC voltage source illustrated in \cref{fig:voltageSource:voltageSourceFig2}, we have
 \end{minipage}
 \sideFigure{../figures/blogit/voltageSourceFig2}{Voltage Source}{fig:voltageSource:voltageSourceFig2}{0.3}
-\vspace{2.5\baselineskip}
+\figspace
 \begin{equation}\label{eqn:karlCircuitsCheatSheet:60}
-V = V_2 \frac{R_2}{R_1 + R_2}
+V = V_2 \frac{R_2}{R_1 + R_2}.
 \end{equation}
 \WFclear
-\vspace{4\baselineskip}
+\figspace
+\sectionspace
 \subsection*{Cramer's Rule}
 The solution of
-\(\begin{bmatrix}
+\begin{equation}\label{eqn:karlCircuitsCheatSheet:380}
+\begin{bmatrix}
 a & b \\
 c & d
 \end{bmatrix}
@@ -90,7 +93,8 @@ y
 \begin{bmatrix}
 e \\
 f
-\end{bmatrix}\)
+\end{bmatrix},
+\end{equation}
 is given by
 \begin{equation}\label{eqn:karlCircuitsCheatSheet:100}
 x = \frac{
@@ -124,6 +128,9 @@ v_L = L \frac{di_L}{dt}
 \begin{equation}\label{eqn:karlCircuitsCheatSheet:140}
 i_C = C \frac{dv_C}{dt}.
 \end{equation}
+
+FIXME: add figures.
+
 \subsection*{Complex numbers}
 The rectangular form of a complex number (or phasor) is
 \begin{equation}\label{eqn:karlCircuitsCheatSheet:160}
@@ -135,7 +142,11 @@ The polar form of a complex number (i.e.: of a phasor) is
 \begin{equation}\label{eqn:karlCircuitsCheatSheet:180}
 z = r \angle \phi,
 \end{equation}
-where \( r = \sqrt{a^2 + b^2} \), and \( \phi = \tan^{-1}\lr{\frac{b}{a}} \).
+where \( r = \sqrt{a^2 + b^2} \), and \( \phi = \Arg z = \atan2\lr{\frac{b}{a}} \), where
+\begin{equation*}
+\atan2\lr{b, a} = \tan^{-1}\lr{ \frac{b}{a} },
+\end{equation*}
+but also correctly accounts for the quadrant that the point \(\lr{a,b}\) is in (since arctan needs correction by \( \pm \pi \) in some quadrants.)
 
 The exponential form of a complex number is
 \begin{equation}\label{eqn:karlCircuitsCheatSheet:200}
@@ -143,12 +154,14 @@ z = r e^{j\phi} = r \lr{ \cos\phi + j \sin\phi }.
 \end{equation}
 This can be related to the rectangular form by noting that \( a = r \cos\phi \) and \( b = r \sin \phi \).
 
+FIXME: add a figure.
+
 Observe that
 \begin{equation}\label{eqn:karlCircuitsCheatSheet:220}
 \begin{aligned}
 \sqrt{z} &= \sqrt{r} e^{j\phi/2} = \sqrt{r} \angle \frac{\phi}{2} \\
 \inv{z} &= \inv{r} e^{-j\phi} = \inv{r} \angle -\phi \\
-a - j b &= r e^{-j\phi} = r \angle -\phi.
+\conj{z} &= a - j b = r e^{-j\phi} = r \angle -\phi.
 \end{aligned}
 \end{equation}
 
@@ -156,43 +169,65 @@ Given two complex numbers \( z_1 = r_1 e^{j\phi_1}, z_2 = r_2 e^{j\phi_2} \), th
 \begin{equation}\label{eqn:karlCircuitsCheatSheet:240}
 \begin{aligned}
 z_1 z_2 &= r_1 r_2 e^{j \lr{\phi_1 + \phi_2 } } = r_1 r_2 \angle \lr{ \phi_1 + \phi_2 } \\
-\frac{z_1}{z_2} &= \frac{r_1}{r_2} e^{j \lr{\phi_1 - \phi_2 } } = \frac{r_1}{r_2} \angle \lr{ \phi_1 - \phi_2 } \\
+\frac{z_1}{z_2} &= \frac{r_1}{r_2} e^{j \lr{\phi_1 - \phi_2 } } = \frac{r_1}{r_2} \angle \lr{ \phi_1 - \phi_2 }.
 \end{aligned}
 \end{equation}
 
 Let's applying the phasor notation to voltages and currents.  For example, given a time dependent cosinusoidal voltage with constant magnitude \( V \), we have the following equivalences
+
+Phasors simplify AC circuit analysis by converting differential equations to algebraic ones in the frequency domain.  For a time-dependent cosinusoidal voltage with constant magnitude \( V \), we have
 \begin{equation}\label{eqn:karlCircuitsCheatSheet:260}
 \begin{aligned}
 v(t) &= V \cos\lr{ \omega t + \phi } = \Real \lr{ V e^{j \lr{\omega t + \phi} } } \\
-\BV &= V e^{j \phi} = V \angle \phi = V e^{j \phi} \\
-v(t) &= \Real \lr{ \BV e^{j \omega t} },
+\phasor{V} &= V e^{j \phi} = V \angle \phi = V e^{j \phi} \\
+v(t) &= \Real \lr{ \phasor{V} e^{j \omega t} },
 \end{aligned}
 \end{equation}
-where the phasor has been written \( \BV \).  Various notations are used for phasors, including overlines and underlines, or even over-arrows like vectors.
+where the phasor, assumed to be a sinusoidal signal at a fixed angular frequency \( \omega \), has been written \( \phasor{V} \).  Bold has been used here for the phasor, which works nice in print, but there are other common conventions, including \(\underline{\phasor{V}}\) or \(\overline{\phasor{V}}\).
 
 Similarly, given a sinusoidal time dependent voltage
 \begin{equation}\label{eqn:karlCircuitsCheatSheet:320}
 \begin{aligned}
 v(t) &= V \sin\lr{ \omega t + \phi } = \Real \lr{ -j V e^{j\lr{ \omega t + \phi } } } \\
-\BV &= V \angle \lr{ \phi - \SI{90}{\degree}} = V e^{j \lr{ \phi - \SI{90}{\degree}} },
+\phasor{V} &= V \angle \lr{ \phi - \SI{90}{\degree}} = V e^{j \lr{ \phi - \SI{90}{\degree}} },
 \end{aligned}
 \end{equation}
-since \( -j = \angle \SI{-90}{\degree} \).  Once again \( v(t) = \Real \lr{ \BV e^{j \omega t} } \).
+since
+\begin{equation}\label{eqn:karlCircuitsCheatSheet:n}
+-j = e^{-j \pi/2} = \angle \SI{-90}{\degree}.
+\end{equation}
+Once again \( v(t) = \Real \lr{ \phasor{V} e^{j \omega t} } \).
 
-\subsection*{Impedance}
-If
+\subsection*{Impedance of RLC Elements}
+For a resistor, inductor, and capacitor in the frequency domain:
+\begin{equation}
+\begin{aligned}
+Z_R &= R \\
+Z_L &= j \omega L \\
+Z_C &= \frac{1}{j \omega C} = -j \frac{1}{\omega C}.
+\end{aligned}
+\end{equation}
+
+\subsection*{Kirchhoff's Laws}
+\begin{itemize}
+\item KCL: The sum of currents entering a node equals the sum of currents leaving: \(\sum I_{\text{in}} = \sum I_{\text{out}}\).
+\item KVL: The sum of voltage drops around a closed loop is zero: \(\sum V = 0\).
+\end{itemize}
+
+\subsection*{Impedance and Maximum Power Transfer}
+The Thevenin equivalent impedance of a circuit is
 \begin{equation}\label{eqn:karlCircuitsCheatSheet:340}
 Z_\thev = R_\thev + j X_\thev,
 \end{equation}
-then
+where \( R_\thev \) is the resistance and \( X_\thev \) is the reactance (positive for inductive, negative for capacitive). For maximum power transfer to a load, the load impedance should be the conjugate:
 \begin{equation}\label{eqn:karlCircuitsCheatSheet:360}
-Z_{\mathrm{L}} = R_\thev - j X_\thev.
+Z_\load = \conj{Z_\thev} = R_\thev - j X_\thev.
 \end{equation}
-KARL: what is this?
 
-\subsection*{Karl's Reminder To Self}
+\subsection*{Supermesh and Supernodes}
+Use supermesh analysis for circuits with current sources between nodes, and supernode analysis for circuits with voltage sources between nodes.
 
-REMEMBER SUPERMESH AND SUPERNODES.
+FIXME: add a brief description or example of how to apply supermesh/supernode techniques, as they’re key for solving complex circuits.
 
 \end{document}
-%} % for vim brace matching if unbalanced.
+%} % Ignore this.  It's a trick for brace matching in an editor called vim that Peeter uses.

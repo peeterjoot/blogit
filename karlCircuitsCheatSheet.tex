@@ -56,9 +56,18 @@
 % \load = Load subscript (Load)
 \newcommand{\load}[0]{\mathrm{Load}}
 
+% \Max = Maximum subscript (max)
+\newcommand{\Max}[0]{\mathrm{max}}
+% \Avg = Average subscript (avg)
+\newcommand{\Avg}[0]{\mathrm{avg}}
+% \rms = RMS subscript (rms)
+\newcommand{\rms}[0]{\mathrm{rms}}
+% \Abs{x} = Absolute value of x with automatic sizing
+\newcommand{\Abs}[1]{{\left\lvert{#1}\right\rvert}}
+
 \begin{document}
 \begin{center}
-\Large \textbf{Circuits Cheatsheet}
+\Large \textbf{Circuits Review Cheatsheet}
 \end{center}
 % DC Circuit Analysis
 \subsection*{Current Division}
@@ -207,7 +216,7 @@ The polar form of a complex number (i.e.: of a phasor) is
 \begin{equation}\label{eqn:karlCircuitsCheatSheet:180}
 z = r \angle \theta,
 \end{equation}
-where \( r = \sqrt{a^2 + b^2} \), and \( \theta = \Arg z = \atan2\lr{b, a} \).  
+where \( r = \sqrt{a^2 + b^2} \), and \( \theta = \Arg z = \atan2\lr{b, a} \).
 
 The exponential form of a complex number is
 \begin{equation}\label{eqn:karlCircuitsCheatSheet:200}
@@ -218,7 +227,7 @@ z = r e^{j\theta} = r \lr{ \cos\theta + j \sin\theta }.
 %\sectionspace
 
 The polar and rectangular forms of a complex number can be related by noting that
-\begin{equation}\label{eqn:karlCircuitsCheatSheet:n}
+\begin{equation}\label{eqn:karlCircuitsCheatSheet:520}
 \begin{aligned}
 a &= r \cos\theta \\
 b &= r \sin \theta.
@@ -226,7 +235,7 @@ b &= r \sin \theta.
 \end{equation}
 
 Note that the \( \atan2 \) function, as used above, is what you get when you use the Arg feature of your calculator, it is like \( \tan^{-1}\lr{ {b}/{a} } \), but
-corrects for the quadrant that the point \(\lr{a,b}\) is in (since arctan needs correction by \( \pm \pi \) in some quadrants.)  
+corrects for the quadrant that the point \(\lr{a,b}\) is in (since arctan needs correction by \( \pm \pi \) in some quadrants.)
 
 Observe that
 \begin{equation}\label{eqn:karlCircuitsCheatSheet:220}
@@ -258,7 +267,7 @@ v(t)       &= \Real \lr{ \phasor{V} e^{j \omega t} },
 \end{aligned}
 \end{equation}
 where the phasor has been written \( \phasor{V} \).  This representation applies to
-sinusoidal signals at a fixed angular frequency \( \omega \), in radians per second, often related to frequency ( f ) by \( \omega = 2 \pi f \).
+sinusoidal signals at a fixed angular frequency \( \omega \), in radians per second, often related to frequency \(f\) by \( \omega = 2 \pi f \).
 Bold has been used here for the phasor, which works nice in print, but there are other common conventions, including \(\underline{\phasor{V}}\) or \(\overline{\phasor{V}}\).
 
 Similarly, given a sinusoidal time dependent voltage
@@ -272,7 +281,9 @@ since
 \begin{equation}\label{eqn:karlCircuitsCheatSheet:400}
 -j = e^{-j \pi/2} = \angle \SI{-90}{\degree}.
 \end{equation}
-Once again \( v(t) = \Real \lr{ \phasor{V} e^{j \omega t} } \).  You can use the same sort of representation for circuit currents.
+Once again \( v(t) = \Real \lr{ \phasor{V} e^{j \omega t} } \).
+
+For a sinusoidal current \( i(t) = I \cos(\omega t + \phi) \), the phasor is \( \phasor{I} = I e^{j \phi} = I \angle \phi \), and \( i(t) = \Real \lr{ \phasor{I} e^{j \omega t} } \).
 
 \subsection*{Impedance of RLC Elements}
 For resistors, inductors, and capacitors in the frequency domain:
@@ -305,9 +316,120 @@ Z_\load = \conj{Z_\thev} = R_\thev - j X_\thev.
 \end{equation}
 
 \subsection*{Supermesh and Supernodes}
-Use supermesh analysis for circuits with current sources between nodes, and supernode analysis for circuits with voltage sources between nodes.
+Use supermesh analysis for circuits with current sources between nodes, and supernode analysis for circuits with voltage sources between nodes. For a supermesh, exclude the branch with the current source and write a KVL equation around the resulting loop. For a supernode, treat the nodes connected by the voltage source as a single node and apply KCL.
 
-FIXME: add a brief description or example of how to apply supermesh/supernode techniques, as they’re key for solving complex circuits.
+\subsection*{Maximum Load Power}
+\begin{equation}\label{eqn:karlCircuitsCheatSheet:540}
+\begin{aligned}
+R_\load &= R_\thev \\
+Z_\thev + Z_\load &= 2 R_\thev
+\end{aligned}
+\end{equation}
+\begin{equation}\label{eqn:karlCircuitsCheatSheet:560}
+\begin{aligned}
+P_\Max
+&= I_\load^2 R_\load \\
+&= \lr{ \frac{ \Abs{V_\thev} }{ Z_\thev + Z_\load } }^2 R_\load \\
+&= \lr{ \frac{ \Abs{V_\thev} }{ 2 R_\thev} }^2 R_\thev \\
+&= \frac{ \Abs{V_\thev}^2 }{ 4 R_\thev }.
+\end{aligned}
+\end{equation}
+
+\subsection*{Average Power}
+Given
+\begin{equation}\label{eqn:karlCircuitsCheatSheet:580}
+\begin{aligned}
+V(t) &= V_\Max \cos\lr{ \omega t + \theta_V } \\
+I(t) &= I_\Max \cos\lr{ \omega t + \theta_I },
+\end{aligned}
+\end{equation}
+The average power is
+\begin{equation}\label{eqn:karlCircuitsCheatSheet:600}
+\begin{aligned}
+P_\Avg
+&= \inv{T} \int_0^T P(t) dt \\
+&= \inv{2 T} \int_0^T I_\Max V_\Max \lr{ \cos\lr{\theta_V - \theta_I} + \cos\lr{ 2 \omega t + \theta_V + \theta_I } } dt \\
+&= \inv{2 T} I_\Max V_\Max \cos\lr{\theta_V - \theta_I} T,
+\end{aligned}
+\end{equation}
+or
+\begin{equation}\label{eqn:karlCircuitsCheatSheet:620}
+P_\Avg = \inv{2} I_\Max V_\Max \cos\lr{\theta_V - \theta_I}.
+\end{equation}
+\subsection*{Effective or RMS Value}
+\begin{equation}\label{eqn:karlCircuitsCheatSheet:640}
+\begin{aligned}
+I_\rms &= \frac{I_\Max}{\sqrt{2}} \\
+V_\rms &= \frac{V_\Max}{\sqrt{2}},
+\end{aligned}
+\end{equation}
+so
+\begin{equation}\label{eqn:karlCircuitsCheatSheet:660}
+P_\Avg = I_\rms V_\rms \cos\lr{\theta_V - \theta_I}.
+\end{equation}
+
+\subsection*{Apparent Power and Power Factor}
+\begin{equation}\label{eqn:karlCircuitsCheatSheet:680}
+\begin{aligned}
+S
+&= I_\rms V_\rms \angle \lr{\theta_V - \theta_I} \\
+&= I_\rms V_\rms e^{j \lr{\theta_V - \theta_I}} \\
+&= I_\rms V_\rms \lr{ \cos \lr{\theta_V - \theta_I} +j \sin \lr{\theta_V - \theta_I} }.
+\end{aligned}
+\end{equation}
+The apparent power is
+\begin{equation}\label{eqn:karlCircuitsCheatSheet:700}
+\Abs{S} = I_\rms V_\rms,
+\end{equation}
+so
+\begin{equation}\label{eqn:karlCircuitsCheatSheet:720}
+P_\Avg = \Abs{S} \cos \lr{\theta_V - \theta_I},
+\end{equation}
+where
+\begin{equation}\label{eqn:karlCircuitsCheatSheet:740}
+P_f = \frac{P_\Avg}{\Abs{S}} = \cos \lr{\theta_V - \theta_I},
+\end{equation}
+is called the power factor.
+
+\subsection*{Complex Power}
+\begin{minipage}{\textwidth}
+Complex power can be written in rectangular form as \( S = P + j Q \), as illustrated in \cref{fig:cheatSheat:cheatSheatFig5}, where
+\end{minipage}
+\sideFigure{../figures/blogit/cheatSheatFig5}{Power Triangle}{fig:cheatSheat:cheatSheatFig5}{0.3}
+\figspace
+\begin{equation}\label{eqn:karlCircuitsCheatSheet:820}
+\begin{aligned}
+P       &= \Real(S) = \Abs{S} \cos\lr{ \theta_V - \theta_I } \\
+Q       &= \Imag(S) = \Abs{S} \sin\lr{ \theta_V - \theta_I } \\
+\Abs{S} &= \sqrt{ P^2 + Q^2 },
+\end{aligned}
+\end{equation}
+and
+\begin{equation}\label{eqn:karlCircuitsCheatSheet:800}
+\frac{P}{\Abs{S}} = \cos\lr{ \theta_V - \theta_I }.
+\end{equation}
+\begin{equation}\label{eqn:karlCircuitsCheatSheet:840}
+\boxed{\textrm{Real Power} = P_\Avg}.
+\end{equation}
+
+\WFclear
+\figspace
+\sectionspace
+
+\subsection*{Maximum Average Power}
+\begin{equation}\label{eqn:karlCircuitsCheatSheet:760}
+\begin{aligned}
+\Max P_\Avg
+&= \frac{\Abs{V_\thev}^2}{8 R_\thev } \\
+&= \inv{2} I_\load^2 R_\load.
+\end{aligned}
+\end{equation}
+
+\subsection*{Impedence}
+With \( \phasor{V} = V \angle \theta_V \),
+\begin{equation}\label{eqn:karlCircuitsCheatSheet:780}
+Z = \frac{V}{I} = \frac{V_\rms}{I_\rms} \angle \lr{ \theta_V - \theta_I }
+\end{equation}
 
 \end{document}
 %} % Ignore this.  It's a trick for brace matching in an editor called vim that Peeter uses.

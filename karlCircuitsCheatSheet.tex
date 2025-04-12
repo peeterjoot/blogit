@@ -1,22 +1,23 @@
-\PassOptionsToPackage{square,numbers}{natbib}
-%\documentclass[letterpaper]{scrreprt}
-\documentclass[letterpaper,oneside]{scrreprt}
-\usepackage[margin=1in]{geometry}
-\usepackage[svgnames]{xcolor}
+%{ % for vim brace matching if unbalanced.
+%\PassOptionsToPackage{square,numbers}{natbib}
+\documentclass[letterpaper]{scrartcl}
+\usepackage[margin=1in,top=0.5in]{geometry}
+
+%\usepackage[svgnames]{xcolor}
 \usepackage{amsmath}
 \usepackage{caption}
-\usepackage{exercise}
+%\usepackage{exercise}
 \usepackage{graphicx}
-\usepackage{ifthen}
-\usepackage{parameters}
+%\usepackage{ifthen}
+%\usepackage{parameters}
 \usepackage{siunitx}
-\usepackage{stackengine}
-\usepackage{subfig}
-\usepackage{verbatim}
+%\usepackage{stackengine}
+%\usepackage{subfig}
+%\usepackage{verbatim}
 \usepackage{wrapfig}
-%\usepackage{peeters_macros}
 \usepackage[english]{cleveref}
 
+% for a centered figure with caption (not used here)
 % \simpleFigure{path}{caption}{label}{width}
 \newcommand{\simpleFigure}[4]{%
   \begin{figure}[htp]%
@@ -37,31 +38,161 @@
   \end{wrapfigure}%
 }
 
+\newcommand{\lr}[1]{\left(#1\right)}
+\newcommand{\inv}[1]{\frac{1}{#1}}
+
+\DeclareMathOperator{\Real}{Re}
+\DeclareMathOperator{\Arg}{Arg}
+\DeclareMathOperator{\Imag}{Im}
+
+\newcommand{\BV}[0]{\mathbf{V}}
+\newcommand{\thev}[0]{{\mathrm{Th}}}
+%\newcommand{\degree}[0]{\circ}
+
 \begin{document}
-\chapter{Circuits Cheatsheet.}
-\paragraph{Current Division}
+\section*{Circuits Cheatsheet}
+\subsection*{Current Division}
 \begin{minipage}{\textwidth}
 For a DC current source, such as the one illustrated in \cref{fig:currentSource:currentSourceFig1}, we have
 \end{minipage}
 \sideFigure{../figures/blogit/currentSourceFig1}{Current Source}{fig:currentSource:currentSourceFig1}{0.3}
-\vspace{2\baselineskip}
+\vspace{1.5\baselineskip}
 \begin{equation}\label{eqn:karlCircuitsCheatSheet:20}
 I_1 = I_s \frac{R_2}{R_1 + R_2}
 \end{equation}
 \begin{equation}\label{eqn:karlCircuitsCheatSheet:40}
-I_2 = I_s \frac{R_1}{R_1 + R_2}.
+I_2 = I_s \frac{R_1}{R_1 + R_2}
 \end{equation}
 \WFclear
-\vspace{4\baselineskip}
-\paragraph{Voltage Division}
+\vspace{3\baselineskip}
+\subsection*{Voltage Division}
 \begin{minipage}{\textwidth}
 For a DC voltage source illustrated in \cref{fig:voltageSource:voltageSourceFig2}, we have
 \end{minipage}
 \sideFigure{../figures/blogit/voltageSourceFig2}{Voltage Source}{fig:voltageSource:voltageSourceFig2}{0.3}
-\vspace{2\baselineskip}
+\vspace{2.5\baselineskip}
 \begin{equation}\label{eqn:karlCircuitsCheatSheet:60}
-V = V_2 \frac{ R_2 }{R_1 + R_2}.
+V = V_2 \frac{R_2}{R_1 + R_2}
 \end{equation}
 \WFclear
+\vspace{4\baselineskip}
+\subsection*{Cramer's Rule}
+The solution of
+\(\begin{bmatrix}
+a & b \\
+c & d
+\end{bmatrix}
+\begin{bmatrix}
+x \\
+y
+\end{bmatrix}
+=
+\begin{bmatrix}
+e \\
+f
+\end{bmatrix}\)
+is given by
+\begin{equation}\label{eqn:karlCircuitsCheatSheet:100}
+x = \frac{
+   \begin{vmatrix}
+   e & b \\
+   f & d
+   \end{vmatrix}
+}{
+   \begin{vmatrix}
+   a & b \\
+   c & d
+   \end{vmatrix}
+},
+\qquad
+y = \frac{
+   \begin{vmatrix}
+   a & e \\
+   c & f
+   \end{vmatrix}
+}{
+   \begin{vmatrix}
+   a & b \\
+   c & d
+   \end{vmatrix}
+}.
+\end{equation}
+\subsection*{RLC Circuit equations}
+\begin{equation}\label{eqn:karlCircuitsCheatSheet:120}
+v_L = L \frac{di_L}{dt}
+\end{equation}
+\begin{equation}\label{eqn:karlCircuitsCheatSheet:140}
+i_C = C \frac{dv_C}{dt}.
+\end{equation}
+\subsection*{Complex numbers}
+The rectangular form of a complex number (or phasor) is
+\begin{equation}\label{eqn:karlCircuitsCheatSheet:160}
+z = a + j b,
+\end{equation}
+where \( a \) is the real part, and \( j b \) is the imaginary part.
+
+The polar form of a complex number (i.e.: of a phasor) is
+\begin{equation}\label{eqn:karlCircuitsCheatSheet:180}
+z = r \angle \phi,
+\end{equation}
+where \( r = \sqrt{a^2 + b^2} \), and \( \phi = \tan^{-1}\lr{\frac{b}{a}} \).
+
+The exponential form of a complex number is
+\begin{equation}\label{eqn:karlCircuitsCheatSheet:200}
+z = r e^{j\phi} = r \lr{ \cos\phi + j \sin\phi }.
+\end{equation}
+This can be related to the rectangular form by noting that \( a = r \cos\phi \) and \( b = r \sin \phi \).
+
+Observe that
+\begin{equation}\label{eqn:karlCircuitsCheatSheet:220}
+\begin{aligned}
+\sqrt{z} &= \sqrt{r} e^{j\phi/2} = \sqrt{r} \angle \frac{\phi}{2} \\
+\inv{z} &= \inv{r} e^{-j\phi} = \inv{r} \angle -\phi \\
+a - j b &= r e^{-j\phi} = r \angle -\phi.
+\end{aligned}
+\end{equation}
+
+Given two complex numbers \( z_1 = r_1 e^{j\phi_1}, z_2 = r_2 e^{j\phi_2} \), then their products and ratios are
+\begin{equation}\label{eqn:karlCircuitsCheatSheet:240}
+\begin{aligned}
+z_1 z_2 &= r_1 r_2 e^{j \lr{\phi_1 + \phi_2 } } = r_1 r_2 \angle \lr{ \phi_1 + \phi_2 } \\
+\frac{z_1}{z_2} &= \frac{r_1}{r_2} e^{j \lr{\phi_1 - \phi_2 } } = \frac{r_1}{r_2} \angle \lr{ \phi_1 - \phi_2 } \\
+\end{aligned}
+\end{equation}
+
+Let's applying the phasor notation to voltages and currents.  For example, given a time dependent cosinusoidal voltage with constant magnitude \( V \), we have the following equivalences
+\begin{equation}\label{eqn:karlCircuitsCheatSheet:260}
+\begin{aligned}
+v(t) &= V \cos\lr{ \omega t + \phi } = \Real \lr{ V e^{j \lr{\omega t + \phi} } } \\
+\BV &= V e^{j \phi} = V \angle \phi = V e^{j \phi} \\
+v(t) &= \Real \lr{ \BV e^{j \omega t} },
+\end{aligned}
+\end{equation}
+where the phasor has been written \( \BV \).  Various notations are used for phasors, including overlines and underlines, or even over-arrows like vectors.
+
+Similarly, given a sinusoidal time dependent voltage
+\begin{equation}\label{eqn:karlCircuitsCheatSheet:320}
+\begin{aligned}
+v(t) &= V \sin\lr{ \omega t + \phi } = \Real \lr{ -j V e^{j\lr{ \omega t + \phi } } } \\
+\BV &= V \angle \lr{ \phi - \SI{90}{\degree}} = V e^{j \lr{ \phi - \SI{90}{\degree}} },
+\end{aligned}
+\end{equation}
+since \( -j = \angle \SI{-90}{\degree} \).  Once again \( v(t) = \Real \lr{ \BV e^{j \omega t} } \).
+
+\subsection*{Impedance}
+If
+\begin{equation}\label{eqn:karlCircuitsCheatSheet:340}
+Z_\thev = R_\thev + j X_\thev,
+\end{equation}
+then
+\begin{equation}\label{eqn:karlCircuitsCheatSheet:360}
+Z_{\mathrm{L}} = R_\thev - j X_\thev.
+\end{equation}
+KARL: what is this?
+
+\subsection*{Karl's Reminder To Self}
+
+REMEMBER SUPERMESH AND SUPERNODES.
 
 \end{document}
+%} % for vim brace matching if unbalanced.

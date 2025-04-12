@@ -1,46 +1,67 @@
-\newcommand{\authorname}{Karl Heaysman}
 \PassOptionsToPackage{square,numbers}{natbib}
-\documentclass[letterpaper]{scrreprt}
-\usepackage{parameters}
-\usepackage[left=2cm,right=2cm]{geometry}
+%\documentclass[letterpaper]{scrreprt}
+\documentclass[letterpaper,oneside]{scrreprt}
+\usepackage[margin=1in]{geometry}
 \usepackage[svgnames]{xcolor}
-\usepackage{natbib}
-\usepackage[
-colorlinks=true,
-bookmarks=false,
-pdfauthor={\authorname},
-backref
-]{hyperref}
-\usepackage{peeters_macros}
-\usepackage[english]{cleveref}
-\crefname{Exercise}{exercise}{exercises}
-\Crefname{Exercise}{Exercise}{Exercises}
-\crefname{theorem}{theorem}{theorems}
-\Crefname{theorem}{Theorem}{Theorems}
-\crefname{lemma}{lemma}{lemmas}
-\Crefname{lemma}{Lemma}{Lemmas}
-\usepackage{tikz}
-\RequirePackage{titlesec}
-\RequirePackage{ifthen}
-\makeatletter
-\let\insertdate\@date
-\makeatother
-\titleformat{\chapter}[display]
-{\bfseries\Large}
-{\color{DarkSlateGrey}\filleft \authorname
-}
-{4ex}
-{\color{DarkOliveGreen}{\titlerule}\color{Maroon}
-\vspace{2ex}
-\filright}
-[\vspace{2ex}
-\color{DarkOliveGreen}\titlerule
-]
+\usepackage{amsmath}
+\usepackage{caption}
+\usepackage{exercise}
+\usepackage{graphicx}
+\usepackage{ifthen}
+\usepackage{parameters}
 \usepackage{siunitx}
+\usepackage{stackengine}
+\usepackage{subfig}
 \usepackage{verbatim}
+\usepackage{wrapfig}
+%\usepackage{peeters_macros}
+\usepackage[english]{cleveref}
+
+% \simpleFigure{path}{caption}{label}{width}
+\newcommand{\simpleFigure}[4]{%
+  \begin{figure}[htp]%
+    \centering%
+    \includegraphics[width=#4\textwidth]{#1}%
+    \caption{#2}%
+    \label{#3}%
+  \end{figure}%
+}
+
+% \sideFigure{path}{caption}{label}{width}[side]
+\newcommand{\sideFigure}[5][l]{%
+  \begin{wrapfigure}{#1}{#5\textwidth}%
+    \centering%
+    \includegraphics[width=#5\textwidth]{#2}%
+    \caption{#3}%
+    \label{#4}%
+  \end{wrapfigure}%
+}
 
 \begin{document}
-\chapter{Karl's Circuits Cheatsheet, fancy edition.}
-
+\chapter{Circuits Cheatsheet.}
+\paragraph{Current Division}
+\begin{minipage}{\textwidth}
+For a DC current source, such as the one illustrated in \cref{fig:currentSource:currentSourceFig1}, we have
+\end{minipage}
+\sideFigure{../figures/blogit/currentSourceFig1}{Current Source}{fig:currentSource:currentSourceFig1}{0.3}
+\vspace{2\baselineskip}
+\begin{equation}\label{eqn:karlCircuitsCheatSheet:20}
+I_1 = I_s \frac{R_2}{R_1 + R_2}
+\end{equation}
+\begin{equation}\label{eqn:karlCircuitsCheatSheet:40}
+I_2 = I_s \frac{R_1}{R_1 + R_2}.
+\end{equation}
+\WFclear
+\vspace{4\baselineskip}
+\paragraph{Voltage Division}
+\begin{minipage}{\textwidth}
+For a DC voltage source illustrated in \cref{fig:voltageSource:voltageSourceFig2}, we have
+\end{minipage}
+\sideFigure{../figures/blogit/voltageSourceFig2}{Voltage Source}{fig:voltageSource:voltageSourceFig2}{0.3}
+\vspace{2\baselineskip}
+\begin{equation}\label{eqn:karlCircuitsCheatSheet:60}
+V = V_2 \frac{ R_2 }{R_1 + R_2}.
+\end{equation}
+\WFclear
 
 \end{document}

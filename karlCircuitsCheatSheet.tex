@@ -1,0 +1,46 @@
+\newcommand{\authorname}{Karl Heaysman}
+\PassOptionsToPackage{square,numbers}{natbib}
+\documentclass[letterpaper]{scrreprt}
+\usepackage{parameters}
+\usepackage[left=2cm,right=2cm]{geometry}
+\usepackage[svgnames]{xcolor}
+\usepackage{natbib}
+\usepackage[
+colorlinks=true,
+bookmarks=false,
+pdfauthor={\authorname},
+backref
+]{hyperref}
+\usepackage{peeters_macros}
+\usepackage[english]{cleveref}
+\crefname{Exercise}{exercise}{exercises}
+\Crefname{Exercise}{Exercise}{Exercises}
+\crefname{theorem}{theorem}{theorems}
+\Crefname{theorem}{Theorem}{Theorems}
+\crefname{lemma}{lemma}{lemmas}
+\Crefname{lemma}{Lemma}{Lemmas}
+\usepackage{tikz}
+\RequirePackage{titlesec}
+\RequirePackage{ifthen}
+\makeatletter
+\let\insertdate\@date
+\makeatother
+\titleformat{\chapter}[display]
+{\bfseries\Large}
+{\color{DarkSlateGrey}\filleft \authorname
+}
+{4ex}
+{\color{DarkOliveGreen}{\titlerule}\color{Maroon}
+\vspace{2ex}
+\filright}
+[\vspace{2ex}
+\color{DarkOliveGreen}\titlerule
+]
+\usepackage{siunitx}
+\usepackage{verbatim}
+
+\begin{document}
+\chapter{Karl's Circuits Cheatsheet, fancy edition.}
+
+
+\end{document}

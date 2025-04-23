@@ -425,3 +425,6 @@
 
 ../latex/bin/lgrep karlCircuitsCheatSheet.tex | tee o ; . ./o
 perl -p -i ../latex/bin/latexRegex.pl karlCircuitsCheatSheet.tex
+
+#../latex/bin/lgrep float32.tex | tee o ; . ./o
+#perl -p -i ../latex/bin/latexRegex.pl float32.tex

@@ -423,8 +423,14 @@
 #../latex/bin/lgrep writing.tex | tee o ; . ./o
 #perl -p -i ../latex/bin/latexRegex.pl writing.tex
 
-../latex/bin/lgrep karlCircuitsCheatSheet.tex | tee o ; . ./o
-perl -p -i ../latex/bin/latexRegex.pl karlCircuitsCheatSheet.tex
-
 #../latex/bin/lgrep float32.tex | tee o ; . ./o
 #perl -p -i ../latex/bin/latexRegex.pl float32.tex
+
+#../latex/bin/lgrep generalizedGaussian.tex | tee o ; . ./o
+#perl -p -i ../latex/bin/latexRegex.pl generalizedGaussian.tex
+
+#../latex/bin/lgrep karlCircuitsCheatSheet.tex | tee o ; . ./o
+#perl -p -i ../latex/bin/latexRegex.pl karlCircuitsCheatSheet.tex
+
+#../latex/bin/lgrep pytorch.tex | tee o ; . ./o
+#perl -p -i ../latex/bin/latexRegex.pl pytorch.tex

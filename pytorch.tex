@@ -1,0 +1,116 @@
+%
+% Copyright © 2025 Peeter Joot.  All Rights Reserved.
+% Licenced as described in the file LICENSE under the root directory of this GIT repository.
+%
+%{
+\input{../latex/blogpost.tex}
+\renewcommand{\basename}{pytorch}
+%\renewcommand{\dirname}{notes/phy1520/}
+\renewcommand{\dirname}{notes/ece1228-electromagnetic-theory/}
+%\newcommand{\dateintitle}{}
+%\newcommand{\keywords}{}
+
+\input{../latex/peeter_prologue_print2.tex}
+
+\usepackage{peeters_layout_exercise}
+\usepackage{peeters_braket}
+\usepackage{peeters_figures}
+\usepackage{siunitx}
+\usepackage{verbatim}
+%\usepackage{macros_cal} % \LL
+%\usepackage{amsthm} % proof
+%\usepackage{mhchem} % \ce{}
+%\usepackage{macros_bm} % \bcM
+%\usepackage{macros_qed} % \qedmarker
+%\usepackage{txfonts} % \ointclockwise
+
+\beginArtNoToc
+
+\generatetitle{A first pytorch program to build a simple pattern recognizer.}
+%\chapter{A first pytorch program to build a simple pattern recognizer.}
+%\label{chap:pytorch}
+
+Recall that the Fibonacci series is defined by a recurrence relationship where the next term is the sum of the previous two terms
+\begin{equation}\label{eqn:pytorch:10}
+F_k = F_{k-1} + F_{k-2}.
+\end{equation}
+Two specific values are required to start things off, and the usual two such starting values are \( 0, 1 \), or \( 1, 1 \).
+
+I liked the idea of using something deterministic for training data, and asked Claude to build me a simple NN that used Fibonacci like sequences
+\begin{equation}\label{eqn:pytorch:20}
+F_k = \alpha F_{k-1} + \beta F_{k-2},
+\end{equation}
+as training data, using \( a = F_0, b = F_1 \).  It turns out that choices of \( \alpha, \beta \) greater than one make the neural network training blow up, as the values increase quickly, getting out of control.  It was possible to work around that in the NN training, but renormalizing the input data using a log transformation, and then re-exponentiating it afterwards.  However, I decided that such series were less interesting than those closer to the Fibonacci series itself, and disabled that log renormalization by default (a command line option --logtx is available to force that, required for both training and inferrence, if used.)
+
+\section{Neural Network Architecture}
+
+There are a couple building blocks that the network uses.
+
+\begin{itemize}
+\item \(\mathrm{ReLU} \) (Rectified Linear Unit) is an activation function in PyTorch
+\begin{equation*}
+\textrm{ReLU}(x) = \max(0, x).
+\end{equation*}
+If input is positive, then the output is the input, but if the input is negative or zero, the output is zero.
+\item \( \mathrm{Dropout} \).
+Dropout is a regularization technique that randomly sets some neurons to zero during training to prevent overfitting.
+
+During training, for each neuron:
+\begin{equation*}
+y_i = 
+\begin{cases}
+0 & \text{with probability } p \\
+\frac{x_i}{1-p} & \text{with probability } 1-p
+\end{cases}
+\end{equation*}
+where \( p \) is the dropout probability, \( x_i \) is the input to the neuron, and \( y_i \) is the output.
+
+With the 10\% dropout probability, this means that some inputs are zeroed randomly, with whatever is left increased slightly (approximately 1.1x).
+\end{itemize}
+
+The model is a feedforward neural network with the following structure:
+
+\paragraph{Input Layer}
+\begin{itemize}
+\item \textbf{Input}: $\mathbf{x} = [f_{k-2}, f_{k-1}] \in \mathbb{R}^2$
+\item \textbf{Output}: $f_k \in \mathbb{R}$
+\end{itemize}
+
+\paragraph{Hidden Layers}
+The network has 3 hidden layers with ReLU activations:
+
+\begin{equation*}
+\mathbf{h}_1 = \textrm{ReLU}(\mathbf{W}_1 \mathbf{x} + \mathbf{b}_1)
+\end{equation*}
+\begin{equation*}
+\mathbf{h}_1' = \textrm{Dropout}(\mathbf{h}_1, p=0.1)
+\end{equation*}
+
+\begin{equation*}
+\mathbf{h}_2 = \textrm{ReLU}(\mathbf{W}_2 \mathbf{h}_1' + \mathbf{b}_2)
+\end{equation*}
+\begin{equation*}
+\mathbf{h}_2' = \textrm{Dropout}(\mathbf{h}_2, p=0.1)
+\end{equation*}
+
+\begin{equation*}
+\mathbf{h}_3 = \textrm{ReLU}(\mathbf{W}_3 \mathbf{h}_2' + \mathbf{b}_3)
+\end{equation*}
+
+\paragraph{Output Layer}
+\begin{equation*}
+\hat{f}_k = \mathbf{W}_4 \mathbf{h}_3 + \mathbf{b}_4
+\end{equation*}
+
+Where:
+\begin{itemize}
+\item $\mathbf{W}_1 \in \mathbb{R}^{32 \times 2}$, $\mathbf{b}_1 \in \mathbb{R}^{32}$
+\item $\mathbf{W}_2, \mathbf{W}_3 \in \mathbb{R}^{32 \times 32}$, $\mathbf{b}_2, \mathbf{b}_3 \in \mathbb{R}^{32}$
+\item $\mathbf{W}_4 \in \mathbb{R}^{1 \times 32}$, $\mathbf{b}_4 \in \mathbb{R}^{1}$
+\end{itemize}
+
+\section{Training.}
+
+%}
+%\EndArticle
+\EndNoBibArticle

@@ -1,0 +1,112 @@
+%
+% Copyright © 2025 Peeter Joot.  All Rights Reserved.
+% Licenced as described in the file LICENSE under the root directory of this GIT repository.
+%
+%{
+\input{../latex/blogpost.tex}
+\renewcommand{\basename}{generalizedGaussian}
+%\renewcommand{\dirname}{notes/phy1520/}
+\renewcommand{\dirname}{notes/ece1228-electromagnetic-theory/}
+%\newcommand{\dateintitle}{}
+%\newcommand{\keywords}{}
+
+\input{../latex/peeter_prologue_print2.tex}
+
+\usepackage{peeters_layout_exercise}
+\usepackage{peeters_braket}
+\usepackage{peeters_figures}
+\usepackage{siunitx}
+\usepackage{verbatim}
+%\usepackage{macros_cal} % \LL
+%\usepackage{amsthm} % proof
+%\usepackage{mhchem} % \ce{}
+%\usepackage{macros_bm} % \bcM
+%\usepackage{macros_qed} % \qedmarker
+%\usepackage{txfonts} % \ointclockwise
+
+\beginArtNoToc
+
+\generatetitle{Generalized Gaussian}
+%\chapter{Generalized Gaussian}
+%\label{chap:generalizedGaussian}
+
+Here's another problem from \citep{byron1992mca}.  The point is to show that
+\begin{equation}\label{eqn:generalizedGaussian:20}
+G(x,x',\tau) = \inv{2\pi} \int_{-\infty}^\infty e^{i k\lr{ x - x' } } e^{-k^2 \tau} dk,
+\end{equation}
+has the value
+\begin{equation}\label{eqn:generalizedGaussian:40}
+G(x,x',\tau) = \inv{\sqrt{4 \pi \tau} } e^{-\lr{ x - x'}^2/4 \tau },
+\end{equation}
+not just for real \(\tau\), but also for purely imaginary \(\tau\).
+
+\section{Real case.}
+The authors claim the real case is easy, but I don't think the real case is that trivial.  The trivial part is basically just completing the square.  Writing \( x - x ' = \Delta x \), that is
+\begin{equation}\label{eqn:generalizedGaussian:60}
+\begin{aligned}
+-k^2 \tau + i k\lr{ x - x' }
+&=
+-\tau \lr{ k^2 - i k \Delta x/\tau } \\
+&=
+-\tau \lr{ \lr{ k - i \Delta x/2\tau }^2 - \lr{ - i \Delta x/2\tau }^2 } \\
+&=
+-\tau \lr{ \lr{ k - i \Delta x/2\tau }^2 + \lr{ \Delta x/2\tau }^2 }.
+\end{aligned}
+\end{equation}
+So we have
+\begin{equation}\label{eqn:generalizedGaussian:80}
+G(x,x',\tau) = \inv{2\pi} e^{-(\Delta x/2)^2/\tau} \int_{-\infty}^\infty e^{-\tau \lr{ k - i \Delta x/2\tau }^2 } dk.
+\end{equation}
+Let's call the integral factor part of this \( I \)
+\begin{equation}\label{eqn:generalizedGaussian:100}
+I = \int_{-\infty}^\infty e^{-\tau \lr{ k - i \Delta x/2\tau }^2 } dk.
+\end{equation}
+However, making a change of variables makes this an integral over a complex path
+\begin{equation}\label{eqn:generalizedGaussian:120}
+I = \int_{-\infty - i \Delta x/2\tau }^{\infty - i \Delta x/2\tau} e^{-\tau k^2 } dk.
+\end{equation}
+If you are lazy you could say that \( \pm \infty \) adjusted by a constant, even if that constant is imaginary, leaves the integration limits unchanged.  That's clearly true if the constant is real, but I don't think it's that obvious if the constant is imaginary.
+
+To answer that question more exactly, let's consider the integral
+\begin{equation}\label{eqn:generalizedGaussian:140}
+0 = I + J + K + L = \oint e^{-\tau z^2} dz,
+\end{equation}
+where the path is illustrated in \cref{fig:RectangularContour:RectangularContourFig1}.
+\imageFigure{../figures/blogit/RectangularContourFig1}{Contour for the Gaussian.}{fig:RectangularContour:RectangularContourFig1}{0.2}
+Since there are no enclosed poles, we have
+\begin{equation}\label{eqn:generalizedGaussian:160}
+I = \int_{-\infty}^\infty e^{-\tau k^2 } dk + K + L,
+\end{equation}
+where
+\begin{equation}\label{eqn:generalizedGaussian:180}
+\begin{aligned}
+K &= \int_{- i \Delta x/2\tau}^0 e^{-\tau z^2} dz \\
+L &= \int_0^{- i \Delta x/2\tau} e^{-\tau z^2} dz.
+\end{aligned}
+\end{equation}
+We see now that we see perfect cancellation of \( K \) and \( L \), which justifies the change of variables, and the corresponding integration limits.
+
+We can use the usual trick to evaluate \( I^2 \), to find
+\begin{equation}\label{eqn:generalizedGaussian:200}
+\begin{aligned}
+I^2
+&=
+\int_{-\infty}^\infty e^{-\tau k^2 } dk
+\int_{-\infty}^\infty e^{-\tau m^2 } dm \\
+&=
+2 \pi \int_0^\infty r e^{-\tau r^2} r dr \\
+&=
+2 \pi \evalrange{ - \frac{e^{-\tau r^2}}{-2 \tau} }{0}{\infty} \\
+&=
+\frac{\pi}{\tau}.
+\end{aligned}
+\end{equation}
+
+So, for real values of \( \tau \) we have
+\begin{equation}\label{eqn:generalizedGaussian:220}
+G(x,x',\tau) = \inv{2\pi} \sqrt{\frac{\pi}{\tau}}e^{-(\Delta x/2)^2/\tau},
+\end{equation}
+as expected.
+
+%}
+\EndArticle

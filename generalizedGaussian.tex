@@ -108,5 +108,104 @@ G(x,x',\tau) = \inv{2\pi} \sqrt{\frac{\pi}{\tau}}e^{-(\Delta x/2)^2/\tau},
 \end{equation}
 as expected.
 
+\section{Imaginary case.}
+For the imaginary case, let \( \tau = i \alpha \).  Let's recomplete the square from scratch with this substitution
+\begin{equation}\label{eqn:generalizedGaussian:240}
+\begin{aligned}
+-k^2 i \alpha + i k \Delta x
+&=
+- i \alpha \lr{ k^2 - \frac{i k \Delta x}{i \alpha} } \\
+&=
+- i \alpha \lr{ k^2 - \frac{k \Delta x}{\alpha} } \\
+&=
+- i \alpha \lr{ \lr{ k - \frac{\Delta x}{2 \alpha} }^2 - \lr{ \frac{\Delta x}{2 \alpha} }^2 }.
+\end{aligned}
+\end{equation}
+So we have
+\begin{equation}\label{eqn:generalizedGaussian:260}
+\begin{aligned}
+G(x,x',\tau)
+&= \inv{2\pi} e^{i \alpha(\Delta x/2\alpha)^2} \int_{-\infty}^\infty e^{- i \alpha \lr{ k - \frac{\Delta x}{2 \alpha } }^2 } dk \\
+&= \inv{\sqrt{\pi^2 \alpha}} e^{- (\Delta x)^2/4\tau} \int_0^\infty e^{- i m^2 } dm.
+\end{aligned}
+\end{equation}
+This time we can make a \( m = \sqrt{\alpha} \lr{k - \frac{\Delta x}{2 \alpha }} \) change of variables, but don't have to worry about imaginary displacements of the integration limits.
+
+The task is now reduced to the evaluation of an imaginary Gaussian like integral, and we are given the hint integrate \( e^{-z^2} \) over a pie shaped contour \cref{fig:PieContour:PieContourFig2}.
+\imageFigure{../figures/blogit/PieContourFig2}{Pie shaped integration contour.}{fig:PieContour:PieContourFig2}{0.2}
+
+Over \( I \) we set \( z = x, x \in [0, R] \), over \( J \), we set \( z = R e^{i\theta}, \theta \in [0, \pi/4] \), and on \( K \) we set \( z = u e^{i\pi/4}, u \in [R, 0] \).  Since there are no enclosed poles we have
+\begin{equation}\label{eqn:generalizedGaussian:280}
+\begin{aligned}
+0 &= I + J + K \\
+  &= \int_0^R e^{- x^2} dx + \int_0^{\pi/4} e^{-R^2 e^{2 i \theta} } i R e^{i\theta} d\theta - \int_0^R e^{-i u^2 } e^{i \pi/4} du.
+\end{aligned}
+\end{equation}
+In the limit we have
+\begin{equation}\label{eqn:generalizedGaussian:300}
+\begin{aligned}
+\int_0^\infty e^{-i u^2 } du
+&= e^{-i\pi/4} \int_0^\infty e^{- x^2} dx + L \\
+&= e^{-i\pi/4} \sqrt{\pi}/2 + L,
+\end{aligned}
+\end{equation}
+where
+\begin{equation}\label{eqn:generalizedGaussian:320}
+L = \lim_{R\rightarrow \infty} e^{-i\pi/4} \int_0^{\pi/4} e^{-R^2 e^{2 i \theta} } i R e^{i\theta} d\theta.
+\end{equation}
+We hope that this is zero in the limit, but showing this requires a bit of care around the \( \pi/4 \) endpoint.  We start with
+\begin{equation}\label{eqn:generalizedGaussian:340}
+\begin{aligned}
+\Abs{L}
+&\le \lim_{R\rightarrow \infty} \int_0^{\pi/4} R e^{-R^2 \cos\lr{2 \theta} } d\theta \\
+&= \lim_{R\rightarrow \infty} \inv{2} \int_{\pi/4 - \epsilon/2}^{\pi/4} R e^{-R^2 \cos\lr{2 \theta} } (2 d\theta),
+\end{aligned}
+\end{equation}
+Now we make a change of variables
+\begin{equation}\label{eqn:generalizedGaussian:360}
+t = \frac{\pi}{2} - 2 \theta.
+\end{equation}
+At the limits we have
+\begin{equation}\label{eqn:generalizedGaussian:380}
+\begin{aligned}
+t(\pi/4 - \epsilon/2) &= \epsilon \\
+t(\pi/4) &= 0.
+\end{aligned}
+\end{equation}
+Also,
+\begin{equation}\label{eqn:generalizedGaussian:400}
+\begin{aligned}
+\cos\lr{ 2 \theta }
+&= \Real \lr{ e^{2 i \theta} } \\
+&= \Real \lr{ e^{i \lr{\pi/2 - t} } } \\
+&= \Real \lr{ i e^{-i t } } \\
+&= \sin t,
+\end{aligned}
+\end{equation}
+so
+\begin{equation}\label{eqn:generalizedGaussian:420}
+\Abs{L} \le \lim_{R\rightarrow \infty} \inv{2} \int_0^\epsilon R e^{-R^2 \sin t} dt.
+\end{equation}
+Since we have forced \( t \) small, we can use the small angle approximation for the sine
+\begin{equation}\label{eqn:generalizedGaussian:440}
+\begin{aligned}
+\int_0^\epsilon R e^{-R^2 \sin t} dt
+&\approx
+\int_0^\epsilon R e^{-R^2 t} dt \\
+&= \evalrange{ \inv{-2 R} e^{-R^2 t} }{0}{\epsilon} \\
+&= \frac{ 1 - e^{-R^2 \epsilon }}{2 R}.
+\end{aligned}
+\end{equation}
+The numerator goes to zero for either \( \epsilon \rightarrow 0 \), or \( R \rightarrow \infty \), and the denominator to infinity, so we have the desired zero in the limit.  This means that
+\begin{equation}\label{eqn:generalizedGaussian:n}
+\begin{aligned}
+G(x,x',\tau)
+&= \frac{e^{-i\pi/4}}{\sqrt{4 \pi \alpha}} e^{- (\Delta x)^2/4\tau} \\
+&= \frac{1}{\sqrt{4 \pi i \alpha}} e^{- (\Delta x)^2/4\tau} \\
+&= \frac{1}{\sqrt{4 \pi \tau}} e^{- (\Delta x)^2/4\tau},
+\end{aligned}
+\end{equation}
+as expected.
+
 %}
 \EndArticle

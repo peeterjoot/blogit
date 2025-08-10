@@ -197,7 +197,7 @@ Since we have forced \( t \) small, we can use the small angle approximation for
 \end{aligned}
 \end{equation}
 The numerator goes to zero for either \( \epsilon \rightarrow 0 \), or \( R \rightarrow \infty \), and the denominator to infinity, so we have the desired zero in the limit.  This means that
-\begin{equation}\label{eqn:generalizedGaussian:n}
+\begin{equation}\label{eqn:generalizedGaussian:460}
 \begin{aligned}
 G(x,x',\tau)
 &= \frac{e^{-i\pi/4}}{\sqrt{4 \pi \alpha}} e^{- (\Delta x)^2/4\tau} \\
@@ -206,6 +206,16 @@ G(x,x',\tau)
 \end{aligned}
 \end{equation}
 as expected.
+
+A fun application, also noted in the problem, is that we can decompose the imaginary integral
+\begin{equation}\label{eqn:generalizedGaussian:480}
+\int_{-\infty}^\infty e^{-i u^2} du = \sqrt{\pi} e^{-i\pi/4},
+\end{equation}
+into real and imaginary parts, to find
+\begin{equation}\label{eqn:generalizedGaussian:500}
+\int_{-\infty}^\infty \cos u^2 du = \int_{-\infty}^\infty \sin u^2 du = \sqrt{\frac{\pi}{2}}.
+\end{equation}
+Despite being real valued integrals, it it not at all obvious how one would go about finding those without these contour integration tricks.
 
 %}
 \EndArticle

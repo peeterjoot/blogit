@@ -31,6 +31,7 @@
 %\label{chap:transverseField}
 I found a sign error in my book, and am going to rederive all the results for myself here in a standalone fashion to do a second verification of the signs.
 
+\subsection{Setup}
 Suppose that a field is propagating in a medium along the z-axis.  We may represent that field as the real part of
 \begin{equation}\label{eqn:transverseField:20}
 F = F(x,y) e^{j(\omega t - k z)}.
@@ -59,6 +60,7 @@ By subtraction, we also have
 F_t = \inv{2} \lr{ F - \Be_3 F \Be_3 }.
 \end{equation}
 
+\subsection{Relating the transverse and propagation direction fields}
 The multivector form of Maxwell's equation, for source free conditions, is
 \begin{equation}\label{eqn:transverseField:120}
 0 = \lr{ \spacegrad + \inv{c} \partial_t } F.
@@ -99,15 +101,16 @@ or
 
 Provided \( \omega^2 \ne k^2 c^2 \), this can be inverted, meaning that \( F_t \) fully specifies \( F_z \) if known, as well as the opposite.
 
-That inversion is
-\begin{equation}\label{eqn:transverseField:260}
-\begin{aligned}
-F_z &= j \frac{ \frac{\omega}{c} + k \Be_3 }{ \lr{\frac{\omega}{c}}^2 - k^2 } \spacegrad_t F_t \\
-F_t &= j \frac{ \frac{\omega}{c} + k \Be_3 }{ \lr{\frac{\omega}{c}}^2 - k^2 } \spacegrad_t F_z.
-\end{aligned}
+That inversion provides the propagation direction field in terms of the transverse
+\begin{equation}\label{eqn:transverseField:260a}
+F_z = j \frac{ \frac{\omega}{c} + k \Be_3 }{ \omega^2 \mu \epsilon - k^2 } \spacegrad_t F_t,
 \end{equation}
-
-Let's expand the latter.  First note that
+and the transverse field in terms of the propagation direction field
+\begin{equation}\label{eqn:transverseField:260b}
+F_t = j \frac{ \frac{\omega}{c} + k \Be_3 }{ \omega^2 \mu \epsilon - k^2 } \spacegrad_t F_z.
+\end{equation}
+\subsection{Transverse field in terms of propagation}
+Let's expand \cref{eqn:transverseField:260b} in terms of component electric and magnetic fields.  First note that
 \begin{equation}\label{eqn:transverseField:280}
 \begin{aligned}
 \spacegrad_t F_z
@@ -117,7 +120,7 @@ Let's expand the latter.  First note that
 \end{equation}
 so
 \begin{equation}\label{eqn:transverseField:300}
-F_t = -j \frac{ \frac{\omega}{c} \Be_3 + k }{ \lr{\frac{\omega}{c}}^2 - k^2 } \spacegrad_t \lr{ E_z + I \eta H_z }.
+F_t = -j \frac{ \frac{\omega}{c} \Be_3 + k }{ \omega^2 \mu \epsilon - k^2 } \spacegrad_t \lr{ E_z + I \eta H_z }.
 \end{equation}
 This may now be split into electric and magnetic field components, but first note that the multivector operator
 \begin{equation}\label{eqn:transverseField:320}
@@ -153,17 +156,98 @@ and for the magnetic field component
 This means that
 \begin{equation}\label{eqn:transverseField:380}
 \begin{aligned}
-\BE_t &= \frac{j}{\lr{\frac{\omega}{c}}^2 - k^2 } \lr{ -k \spacegrad_t E_z + \frac{\eta \omega}{c} \Be_3 \cross \spacegrad_t H_z } \\
-\eta I \BH_t &= -\frac{j}{\lr{\frac{\omega}{c}}^2 - k^2 } \lr{ \frac{\omega}{c} \Be_3 \wedge \spacegrad_t E_z + I \eta k \spacegrad_t H_z }
+\BE_t &= \frac{j}{\omega^2 \mu \epsilon - k^2 } \lr{ -k \spacegrad_t E_z + \frac{\eta \omega}{c} \Be_3 \cross \spacegrad_t H_z } \\
+\eta I \BH_t &= -\frac{j}{\omega^2 \mu \epsilon - k^2 } \lr{ \frac{\omega}{c} \Be_3 \wedge \spacegrad_t E_z + I \eta k \spacegrad_t H_z }
 \end{aligned}
 \end{equation}
 
-Cancelling out the \( \eta I \) factors in the magnetic field component, and substutiting \( \eta/c = \mu, 1/(c\eta) = \epsilon \), leaves us with
+Cancelling out the \( \eta I \) factors in the magnetic field component, and substituting \( \eta/c = \mu, 1/(c\eta) = \epsilon \), leaves us with
 \begin{equation}\label{eqn:transverseField:400}
 \begin{aligned}
-\BE_t &= \frac{j}{\lr{\frac{\omega}{c}}^2 - k^2 } \lr{ -k \spacegrad_t E_z + \mu \omega \Be_3 \cross \spacegrad_t H_z } \\
-\BH_t &= -\frac{j}{\lr{\frac{\omega}{c}}^2 - k^2 } \lr{ \epsilon \omega \Be_3 \cross \spacegrad_t E_z + k \spacegrad_t H_z }.
+\BE_t &= \frac{j}{\omega^2 \mu \epsilon - k^2 } \lr{ -k \spacegrad_t E_z + \mu \omega \Be_3 \cross \spacegrad_t H_z } \\
+\BH_t &= -\frac{j}{\omega^2 \mu \epsilon - k^2 } \lr{ \epsilon \omega \Be_3 \cross \spacegrad_t E_z + k \spacegrad_t H_z }.
 \end{aligned}
+\end{equation}
+\subsection{Propagation field in terms of transverse.}
+Now let's invert \cref{eqn:transverseField:260a}.  We seek the grade selections
+\begin{equation}\label{eqn:transverseField:420}
+\gpgrade{ \lr{ \frac{\omega}{c} + k \Be_3 } \spacegrad_t F_t }{1,2}
+\end{equation}
+
+Performing each of these four grade selections in turn, for the \( \spacegrad_t F_t \) products we have
+\begin{equation}\label{eqn:transverseField:440}
+\begin{aligned}
+\gpgradeone{ \spacegrad_t F_t }
+&=
+\gpgradeone{ \spacegrad_t \lr{ \BE_t + I \eta \BH_t } } \\
+&=
+\eta \gpgradeone{ I \spacegrad_t \BH_t } \\
+&=
+\eta I \lr{ \spacegrad_t \wedge \BH_t } \\
+&=
+-\eta \lr{ \spacegrad_t \cross \BH_t }.
+\end{aligned}
+\end{equation}
+Because \( \spacegrad_t \BE_t \) has only grade 0,2 components, the grade-one selection was zero, leaving us with only \( \BH_t \) dependence.
+
+For the grade two selection of the same, we have
+\begin{equation}\label{eqn:transverseField:460}
+\begin{aligned}
+\gpgradetwo{ \spacegrad_t F_t }
+&=
+\gpgradetwo{ \spacegrad_t \lr{ \BE_t + I \eta \BH_t } } \\
+&=
+\spacegrad_t \wedge \BE_t  \\
+&=
+I \lr{ \spacegrad_t \cross \BE_t }.
+\end{aligned}
+\end{equation}
+This time we note that the vector-bivector product \( \spacegrad_t (I \BH_t) \) has only grade 1,3 components, and is killed by the grade-2 selection.
+
+For the \( \Be_3 \spacegrad_t F_t \) products, we have
+\begin{equation}\label{eqn:transverseField:480}
+\begin{aligned}
+\gpgradeone{ \Be_3 \spacegrad_t F_t }
+&=
+\gpgradeone{ \Be_3 \spacegrad_t \lr{ \BE_t + I \eta \BH_t } } \\
+&=
+\gpgradeone{ \lr{ \Be_3 \cdot \spacegrad_t + \Be_3 \wedge \spacegrad_t } \BE_t }
++
+\eta \gpgradeone{ I \Be_3 \lr{ \spacegrad_t \cdot \BH_t + \spacegrad_t \wedge \BH_t } } \\
+&=
+\gpgradeone{ I \lr{ \Be_3 \cross \spacegrad_t } \BE_t } \\
+&=
+-\lr{ \Be_3 \cross \spacegrad_t } \cross \BE_t.
+\end{aligned}
+\end{equation}
+Observe that we've made use of \( \Be_3 \cdot \spacegrad_t = 0 \), regardless of what it operates on.  For the \( \BH_t \) dependence, we had a bivector-scalar product \( (I \Be_3) (\spacegrad_t \cdot \BH_t) \), and a bivector-bivector product \( (I \Be_3) (\spacegrad_t \wedge \BH_t) \), neither of which have any vector components.
+
+Finally
+\begin{equation}\label{eqn:transverseField:500}
+\begin{aligned}
+\gpgradetwo{ \Be_3 \spacegrad_t F_t }
+&=
+\eta \gpgradetwo{ I \Be_3 \spacegrad_t \BH_t } \\
+&=
+-\eta \gpgradetwo{ \lr{\Be_3 \cross \spacegrad_t} \BH_t } \\
+&=
+-\eta I \lr{\Be_3 \cross \spacegrad_t} \cross \BH_t.
+\end{aligned}
+\end{equation}
+Here we've discarded the \( \BE_t \) dependent terms, since the bivector-vector product \( \lr{ \Be_3 \wedge \spacegrad_t } \BE_t \) has only grades 1,3, and we seek grade 2 only.
+
+Putting all the pieces together, noting that \( \eta/c = \mu \) and \( 1/(c \eta) = \epsilon \), we have
+we have
+%\gpgradeone{ \spacegrad_t F_t } = -\eta \lr{ \spacegrad_t \cross \BH_t },
+%\gpgradeone{ \Be_3 \spacegrad_t F_t } = -\lr{ \Be_3 \cross \spacegrad_t } \cross \BE_t,
+\begin{equation}\label{eqn:transverseField:520}
+\BE_z = -\frac{j}{\omega^2 \mu \epsilon - k^2 } \lr{ \omega \mu \lr{ \spacegrad_t \cross \BH_t } + k \lr{ \Be_3 \cross \spacegrad_t } \cross \BE_t },
+\end{equation}
+and
+%\gpgradetwo{ \spacegrad_t F_t } = I \lr{ \spacegrad_t \cross \BE_t },
+%\gpgradetwo{ \Be_3 \spacegrad_t F_t } = -\eta I \lr{\Be_3 \cross \spacegrad_t} \cross \BH_t \\
+\begin{equation}\label{eqn:transverseField:540}
+\BH_z = \frac{j}{\omega^2 \mu \epsilon - k^2 } \lr{ \omega \epsilon \lr{ \spacegrad_t \cross \BE_t } - k \lr{\Be_3 \cross \spacegrad_t} \cross \BH_t }.
 \end{equation}
 
 %}

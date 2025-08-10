@@ -31,9 +31,10 @@ endif
 #f : fibonacci_sinh.pdf
 #c : containedArea.pdf
 #r : rvector.pdf
-v : vectorBivector.pdf
-s : shortestDistanceBetweenLines.pdf
-b : branchCutIntegral.pdf
+#v : vectorBivector.pdf
+#s : shortestDistanceBetweenLines.pdf
+#b : branchCutIntegral.pdf
+t : transverseField.pdf
 
 #$(THISBOOK).pdf :: $(wildcard *.tex)
 #$(GENERATED_PDFS) :: $(JUSTBOOKDEPENDENCIES) $(LOCAL_FILES) $(GENERATED_SOURCES) $(COPIED_FILES) $(LOCAL_COPIED_FILES) Bibliography.bib

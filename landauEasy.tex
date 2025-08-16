@@ -1,0 +1,87 @@
+%
+% Copyright © 2025 Peeter Joot.  All Rights Reserved.
+% Licenced as described in the file LICENSE under the root directory of this GIT repository.
+%
+%{
+\input{../latex/blogpost.tex}
+\renewcommand{\basename}{landauEasy}
+%\renewcommand{\dirname}{notes/phy1520/}
+\renewcommand{\dirname}{notes/ece1228-electromagnetic-theory/}
+%\newcommand{\dateintitle}{}
+%\newcommand{\keywords}{}
+
+\input{../latex/peeter_prologue_print2.tex}
+
+\usepackage{peeters_layout_exercise}
+\usepackage{peeters_braket}
+\usepackage{peeters_figures}
+\usepackage{siunitx}
+\usepackage{verbatim}
+\usepackage{macros_cal} % \LL
+%\usepackage{amsthm} % proof
+%\usepackage{mhchem} % \ce{}
+%\usepackage{macros_bm} % \bcM
+%\usepackage{macros_qed} % \qedmarker
+%\usepackage{txfonts} % \ointclockwise
+
+\beginArtNoToc
+
+\generatetitle{XXX}
+%\chapter{XXX}
+%\label{chap:landauEasy}
+
+\makeoproblem{Lorentz power and force relationship.}{problem:freespace:LorentzPower}{\S 17 \citep{landau1980classical}}{
+Using the relativistic definitions of momentum and energy
+\begin{equation*}
+\begin{aligned}
+	\Bp(\Bx, t) &= \frac{m \Bv}{\sqrt{1-\Bv^2/c^2}} \\
+	\calE(\Bx, t) &= \frac{m c^2}{\sqrt{1-\Bv^2/c^2}},
+\end{aligned}
+\end{equation*}
+show that \( d\calE/dt = \Bv \cdot d\Bp/dt \), and use this to derive
+\cref{eqn:freespace:220} from \cref{eqn:freespace:200}.
+} % problem
+\makeanswer{problem:freespace:LorentzPower}{
+We use the usual notation
+\begin{equation}\label{eqn:landauEasy:20}
+\gamma = \lr{1 - \Bv^2/c^2}^{-1/2},
+\end{equation}
+so the derivative of the (relativistic) energy of a charged particle is
+\begin{equation}\label{eqn:landauEasy:40}
+\ddt{\calE} = m c^2 \ddt{\gamma}
+\end{equation}
+The derivative of the (relativistic) momentum of that charged particle is
+\begin{equation}\label{eqn:landauEasy:60}
+\ddt{\Bp} = m \gamma \ddt{\Bv} + m \Bv \ddt{\gamma},
+\end{equation}
+so
+\begin{equation}\label{eqn:landauEasy:80}
+\Bv \cdot \ddt{\Bp} = m \gamma \Bv \cdot \ddt{\Bv} + m \Bv^2 \ddt{\gamma}.
+\end{equation}
+We may related the first term to the \(\gamma\) derivative, since
+\begin{equation}\label{eqn:landauEasy:100}
+\ddt{\gamma} = \lr{ -\inv{2} } \frac{\gamma}{1 - \Bv^2/c^2} \lr{-\frac{2}{c^2} } \Bv \cdot \ddt{\Bv},
+\end{equation}
+or
+\begin{equation}\label{eqn:landauEasy:120}
+\lr{ c^2 - \Bv^2 } \ddt{\gamma} = \gamma \Bv \cdot \ddt{\Bv},
+\end{equation}
+so
+\begin{equation}\label{eqn:landauEasy:140}
+\begin{aligned}
+\Bv \cdot \ddt{\Bp}
+&= m \lr{ \lr{ c^2 - \Bv^2 } \ddt{\gamma} } + m \Bv^2 \ddt{\gamma} \\
+&= m c^2 \ddt{\gamma} \\
+&= \ddt{\calE}.
+\end{aligned}
+\end{equation}
+From the Lorentz force, we have
+\begin{equation}\label{eqn:landauEasy:160}
+v \cdot \ddt{\Bp} = q \Bv \cdot \BE + q \Bv \cdot \lr{ \Bv \cross \BB } = q \Bv \cdot \BE,
+\end{equation}
+as expected.
+} % answer
+
+%}
+%\EndArticle
+\EndNoBibArticle

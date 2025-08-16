@@ -435,5 +435,8 @@
 #../latex/bin/lgrep generalizedGaussian.tex | tee o ; . ./o
 #perl -p -i ../latex/bin/latexRegex.pl generalizedGaussian.tex
 
-../latex/bin/lgrep transverseField.tex | tee o ; . ./o
-perl -p -i ../latex/bin/latexRegex.pl transverseField.tex
+#../latex/bin/lgrep transverseField.tex | tee o ; . ./o
+#perl -p -i ../latex/bin/latexRegex.pl transverseField.tex
+
+../latex/bin/lgrep landauEasy.tex | tee o ; . ./o
+perl -p -i ../latex/bin/latexRegex.pl landauEasy.tex

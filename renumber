@@ -438,5 +438,8 @@
 #../latex/bin/lgrep transverseField.tex | tee o ; . ./o
 #perl -p -i ../latex/bin/latexRegex.pl transverseField.tex
 
-../latex/bin/lgrep landauEasy.tex | tee o ; . ./o
-perl -p -i ../latex/bin/latexRegex.pl landauEasy.tex
+#../latex/bin/lgrep landauEasy.tex | tee o ; . ./o
+#perl -p -i ../latex/bin/latexRegex.pl landauEasy.tex
+
+../latex/bin/lgrep zeroOneIntegral.tex | tee o ; . ./o
+perl -p -i ../latex/bin/latexRegex.pl zeroOneIntegral.tex

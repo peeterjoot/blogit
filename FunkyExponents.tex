@@ -1,0 +1,69 @@
+%
+% Copyright © 2025 Peeter Joot.  All Rights Reserved.
+% Licenced as described in the file LICENSE under the root directory of this GIT repository.
+%
+%{
+\input{../latex/blogpost.tex}
+\renewcommand{\basename}{FunkyExponents}
+%\renewcommand{\dirname}{notes/phy1520/}
+\renewcommand{\dirname}{notes/ece1228-electromagnetic-theory/}
+%\newcommand{\dateintitle}{}
+%\newcommand{\keywords}{}
+
+\input{../latex/peeter_prologue_print2.tex}
+
+\usepackage{peeters_layout_exercise}
+\usepackage{peeters_braket}
+\usepackage{peeters_figures}
+\usepackage{siunitx}
+\usepackage{verbatim}
+%\usepackage{macros_cal} % \LL
+%\usepackage{amsthm} % proof
+%\usepackage{mhchem} % \ce{}
+%\usepackage{macros_bm} % \bcM
+%\usepackage{macros_qed} % \qedmarker
+%\usepackage{txfonts} % \ointclockwise
+
+\beginArtNoToc
+
+\generatetitle{Some fun exponents}
+%\chapter{Some fun exponents}
+%\label{chap:FunkyExponents}
+I saw a twitter post (but forgot to save the link) with a guy looking confused, captioned something like:
+\begin{equation}\label{eqn:FunkyExponents:20}
+\Abs{e^{i \pi}} = \Abs{\pi^{e i}} = \Abs{ i^{\pi e}} = 1.
+\end{equation}
+
+If this is true, then the arguments of each of the absolutes are complex numbers on the unit circle.  I suspect I'd seen that before, but forgot, so naturally, I had to verify for myself.
+
+First, for \( \pi^{e i} \), we have
+\begin{equation}\label{eqn:FunkyExponents:40}
+\begin{aligned}
+\pi^{e i}
+&= \lr{ e^{\ln \pi} }^{e i} \\
+&= \cos\lr{ e \ln \pi} + i \sin\lr{ e \ln \pi},
+\end{aligned}
+\end{equation}
+and for \( i^{\pi e} \), we have
+\begin{equation}\label{eqn:FunkyExponents:60}
+\begin{aligned}
+i^{\pi e}
+&= \lr{ e^{i \pi/2}}^{\pi e} \\
+&= \lr{ e^{i e \pi^2/2}}^{\pi e} \\
+&= \cos \lr{ e \pi^2/2} + i \sin \lr{ e \pi^2/2}.
+\end{aligned}
+\end{equation}
+
+Sure enough, this is true.  As it happens, two of these special values are nearly equal, because
+\begin{equation}\label{eqn:FunkyExponents:80}
+\begin{aligned}
+e^{\pi} &= 23.1407 \\
+\pi^e &= 22.4592,
+\end{aligned}
+\end{equation}
+so \( e^{\pi i} \approx \pi^{e i} \).  We can see this visually if we plot the three points, as done in \cref{fig:FunkyExponents:FunkyExponentsFig1}.
+\imageFigure{../figures/blogit/FunkyExponentsFig1}{The three points.}{fig:FunkyExponents:FunkyExponentsFig1}{0.3}
+
+%}
+%\EndArticle
+\EndNoBibArticle

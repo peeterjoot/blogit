@@ -443,3 +443,5 @@
 
 ../latex/bin/lgrep zeroOneIntegral.tex | tee o ; . ./o
 perl -p -i ../latex/bin/latexRegex.pl zeroOneIntegral.tex
+../latex/bin/lgrep FunkyExponents.tex | tee o ; . ./o
+perl -p -i ../latex/bin/latexRegex.pl FunkyExponents.tex

@@ -441,7 +441,11 @@
 #../latex/bin/lgrep landauEasy.tex | tee o ; . ./o
 #perl -p -i ../latex/bin/latexRegex.pl landauEasy.tex
 
-../latex/bin/lgrep zeroOneIntegral.tex | tee o ; . ./o
-perl -p -i ../latex/bin/latexRegex.pl zeroOneIntegral.tex
-../latex/bin/lgrep FunkyExponents.tex | tee o ; . ./o
-perl -p -i ../latex/bin/latexRegex.pl FunkyExponents.tex
+#../latex/bin/lgrep zeroOneIntegral.tex | tee o ; . ./o
+#perl -p -i ../latex/bin/latexRegex.pl zeroOneIntegral.tex
+
+#../latex/bin/lgrep FunkyExponents.tex | tee o ; . ./o
+#perl -p -i ../latex/bin/latexRegex.pl FunkyExponents.tex
+
+../latex/bin/lgrep selfEnergyIntegral.tex | tee o ; . ./o
+perl -p -i ../latex/bin/latexRegex.pl selfEnergyIntegral.tex

@@ -1,0 +1,153 @@
+%
+% Copyright © 2025 Peeter Joot.  All Rights Reserved.
+% Licenced as described in the file LICENSE under the root directory of this GIT repository.
+%
+%{
+\input{../latex/blogpost.tex}
+\renewcommand{\basename}{selfEnergyIntegral}
+%\renewcommand{\dirname}{notes/phy1520/}
+\renewcommand{\dirname}{notes/ece1228-electromagnetic-theory/}
+%\newcommand{\dateintitle}{}
+%\newcommand{\keywords}{}
+
+\input{../latex/peeter_prologue_print2.tex}
+
+\usepackage{peeters_layout_exercise}
+\usepackage{peeters_braket}
+\usepackage{peeters_figures}
+\usepackage{siunitx}
+\usepackage{verbatim}
+%\usepackage{macros_cal} % \LL
+%\usepackage{amsthm} % proof
+%\usepackage{mhchem} % \ce{}
+%\usepackage{macros_bm} % \bcM
+%\usepackage{macros_qed} % \qedmarker
+%\usepackage{txfonts} % \ointclockwise
+
+\beginArtNoToc
+
+\generatetitle{An ``easy'' integral from Jackson's electrodynamics}
+%\chapter{An ``easy'' integral from Jackson's electrodynamics}
+%\label{chap:selfEnergyIntegral}
+Once again, I was reading my Jackson \citep{jackson1975cew}, which characteristically had the statement ``the [...] integral \textit{can easily be shown} to have the value \( 4 \pi \)'', in a discussion of electrostatic energy and self energy.
+
+The integral is
+\begin{equation}\label{eqn:selfEnergyIntegral:20}
+I = \int \frac{\Brho}{\rho^3} \cdot \frac{\Brho + \Bn}{\Norm{\Brho + \Bn}^3} d^3 \rho.
+\end{equation}
+
+This is something that I once figured out once before (see \citep{pjootECE1228} appendix C).  However, trying to do it a second time around, I think that I found the ``easy'' way.
+
+As Jackson hints, the starting point is
+\begin{equation}\label{eqn:selfEnergyIntegral:40}
+\frac{\Bx}{\Norm{\Bx}^3}
+=
+-\spacegrad \inv{\Norm{\Bx}},
+\end{equation}
+but we don't have to apply it to both the vector terms, as I did in my initial attempt (which results in a Laplacian to reduce.)  Inserting this and applying chain rule, we find
+\begin{equation}\label{eqn:selfEnergyIntegral:60}
+\begin{aligned}
+I
+&= -\int \frac{\Brho}{\rho^3} \cdot \spacegrad_\Brho \inv{\Norm{\Brho + \Bn}} d^3 \rho \\
+&=
+-\int
+\spacegrad_\Brho \cdot \lr{
+\frac{\Brho}{\rho^3} \cdot
+\inv{\Norm{\Brho + \Bn}}
+}
+d^3 \rho
++
+\int
+\lr{
+\spacegrad_\Brho \cdot
+\frac{\Brho}{\rho^3}
+}
+\inv{\Norm{\Brho + \Bn}}
+d^3 \rho
+\\
+\end{aligned}
+\end{equation}
+
+The first integral can be evaluated using an infinite spherical shell
+\begin{equation}\label{eqn:selfEnergyIntegral:80}
+\begin{aligned}
+I_1
+&= -\int
+\spacegrad_\Brho \cdot \lr{
+\frac{\Brho}{\rho^3} \cdot
+\inv{\Norm{\Brho + \Bn}}
+}
+d^3 \rho \\
+&=
+\lim_{\rho \rightarrow \infty}
+-\frac{\Brho}{\rho} \cdot \lr{
+\frac{\Brho}{\rho^3} \cdot
+\inv{\Norm{\Brho + \Bn}}
+} 4 \pi \rho^2 \\
+&=
+\lim_{\rho \rightarrow \infty}
+\frac{-4 \pi}{\Norm{\Brho + \Bn}} \\
+&=
+0.
+\end{aligned}
+\end{equation}
+
+The divergence term in the second integral, provided \( \Bx \ne 0 \), has the form
+\begin{equation}\label{eqn:selfEnergyIntegral:100}
+\begin{aligned}
+\spacegrad \cdot \frac{\Bx}{\Norm{\Bx}^3}
+&=
+\inv{\Norm{\Bx}^3} \spacegrad \cdot \Bx
++
+\lr{ \Bx \cdot \spacegrad } \inv{\Norm{\Bx}^3} \\
+&=
+\frac{3}{\Norm{\Bx}^3}
++
+2 \frac{x_k x_j}{\Norm{\Bx}^5} \lr{-\frac{3}{2}} \partial_k x_j \\
+&=
+\frac{3}{\Norm{\Bx}^3}
+- \frac{3}{\Norm{\Bx}^3}
+\end{aligned}
+\end{equation}
+However, in a neighbourhood of the origin, this actually has a delta function structure.  We can see that from Gauss's law, where we have
+\begin{equation}\label{eqn:selfEnergyIntegral:120}
+\spacegrad \cdot \BE = \frac{\rho}{\epsilon_0}.
+\end{equation}
+If we plug in the integral representation of \( \BE \) on the LHS, we have
+\begin{equation}\label{eqn:selfEnergyIntegral:140}
+\begin{aligned}
+\spacegrad \cdot \BE
+&=
+\spacegrad \cdot \int \frac{\rho(\Bx')}{4 \pi \epsilon_0} \frac{\Bx - \Bx'}{\Norm{\Bx - \Bx'}^3} d^3 x \\
+&=
+\int \frac{\rho(\Bx')}{4 \pi \epsilon_0} \spacegrad \cdot \frac{\Bx - \Bx'}{\Norm{\Bx - \Bx'}^3} d^3 x \\
+&=
+-\int \frac{\rho(\Bx')}{4 \pi \epsilon_0} \spacegrad' \cdot \frac{\Bx - \Bx'}{\Norm{\Bx - \Bx'}^3} d^3 x.
+\end{aligned}
+\end{equation}
+Comparing the LHS and RHS, we must have
+\begin{equation}\label{eqn:selfEnergyIntegral:160}
+\spacegrad' \cdot \frac{\Bx' - \Bx}{\Norm{\Bx' - \Bx}^3} = 4 \pi \delta^3\lr{\Bx' - \Bx}.
+\end{equation}
+
+We can now substitute that into the second integral to find
+\begin{equation}\label{eqn:selfEnergyIntegral:n}
+\begin{aligned}
+I_2 &= 
+\int
+\lr{
+\spacegrad_\Brho \cdot
+\frac{\Brho}{\rho^3}
+}
+\inv{\Norm{\Brho + \Bn}}
+d^3 \rho \\
+&=
+\frac{4 \pi}{\Norm{\Bn}} \\
+&=
+4 \pi.
+\end{aligned}
+\end{equation}
+
+Sure enough, the integral has a \( 4 \pi \) value.  But was that easy?  \href{https://youtu.be/mm-4PltMB2A?t=93}{I think Hitler would disagree.}
+%}
+\EndArticle

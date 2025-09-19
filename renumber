@@ -447,5 +447,10 @@
 #../latex/bin/lgrep FunkyExponents.tex | tee o ; . ./o
 #perl -p -i ../latex/bin/latexRegex.pl FunkyExponents.tex
 
-../latex/bin/lgrep selfEnergyIntegral.tex | tee o ; . ./o
-perl -p -i ../latex/bin/latexRegex.pl selfEnergyIntegral.tex
+#../latex/bin/lgrep selfEnergyIntegral.tex | tee o ; . ./o
+#perl -p -i ../latex/bin/latexRegex.pl selfEnergyIntegral.tex
+
+../latex/bin/lgrep deltaFunctions.tex | tee o ; . ./o
+perl -p -i ../latex/bin/latexRegex.pl deltaFunctions.tex
+../latex/bin/lgrep helmholtzGreens.tex | tee o ; . ./o
+perl -p -i ../latex/bin/latexRegex.pl helmholtzGreens.tex

@@ -1,0 +1,199 @@
+%
+% Copyright © 2025 Peeter Joot.  All Rights Reserved.
+% Licenced as described in the file LICENSE under the root directory of this GIT repository.
+%
+%{
+\input{../latex/blogpost.tex}
+\renewcommand{\basename}{helmholtzGreens}
+%\renewcommand{\dirname}{notes/phy1520/}
+\renewcommand{\dirname}{notes/ece1228-electromagnetic-theory/}
+%\newcommand{\dateintitle}{}
+%\newcommand{\keywords}{}
+
+\input{../latex/peeter_prologue_print2.tex}
+
+\usepackage{peeters_layout_exercise}
+\usepackage{peeters_braket}
+\usepackage{peeters_figures}
+\usepackage{siunitx}
+\usepackage{verbatim}
+%\usepackage{macros_cal} % \LL
+%\usepackage{amsthm} % proof
+%\usepackage{mhchem} % \ce{}
+%\usepackage{macros_bm} % \bcM
+%\usepackage{macros_qed} % \qedmarker
+%\usepackage{txfonts} % \ointclockwise
+
+\beginArtNoToc
+
+\generatetitle{Green's functions for the Helmholtz operator in various dimensions}
+%\chapter{Green's functions for the Helmholtz operator in various dimensions}
+%\label{chap:helmholtzGreens}
+My favorite book on mathematical physics derives the Green's function for the 3D Helmholtz operator.  I tried to derive the 2D Green's function the same way and had trouble.  Here I'll try again, starting with the easy 1D and 3D cases, and then see if I can do the trickier 2D case again.
+
+\section{Motivation}
+We seek a solution to non-homogeneous Helmholtz equation
+\begin{equation}\label{eqn:helmholtzGreens:20}
+0 = \lr{ \spacegrad^2 + k^2 } U(\Bx) - V(\Bx).
+\end{equation}
+
+This is a problem that can be solved using Fourier transform techniques.  Following \citep{byron1992mca}, let's write our transform pair in the symmetrical form:
+\begin{equation}\label{eqn:helmholtzGreens:40}
+\begin{aligned}
+F(\Bx) &= \lr{\inv{\sqrt{2 \pi}}}^N \int \hat{F}(\Bp) e^{j \Bp \cdot \Bx} d\Bp \\
+\hat{F}(\Bp) &= \lr{\inv{\sqrt{2 \pi}}}^N \int F(\Bx) e^{-j \Bp \cdot \Bx} d\Bx.
+\end{aligned}
+\end{equation}
+
+Expressing \(U(\Bx), V(\Bx)\), in terms of their Fourier transforms, \cref{eqn:helmholtzGreens:20} becomes
+\begin{equation}\label{eqn:helmholtzGreens:80}
+\begin{aligned}
+0 &=
+\lr{ \spacegrad^2 + k^2 }
+\lr{\inv{\sqrt{2 \pi}}}^N
+\int \hat{U}(\Bp) e^{j \Bp \cdot \Bx} d\Bp
+-
+\lr{\inv{\sqrt{2 \pi}}}^N
+\int \hat{V}(\Bp) e^{j \Bp \cdot \Bx} d\Bp \\
+&=
+\lr{\inv{\sqrt{2 \pi}}}^N
+\int \lr{ \hat{U}(\Bp) \lr{ -\Bp^2 + k^2 } - \hat{V}(\Bp) } e^{j \Bp \cdot \Bx} d\Bp,
+\end{aligned}
+\end{equation}
+which requires
+\begin{equation}\label{eqn:helmholtzGreens:100}
+\hat{U}(\Bp) = \frac{\hat{V}(\Bp) }{k^2 - \Bp^2}.
+\end{equation}
+
+We can now inverse transform to find \( U(\Bx) \), which gives
+\begin{equation}\label{eqn:helmholtzGreens:120}
+\begin{aligned}
+U(\Bx) &=
+\lr{\inv{\sqrt{2 \pi}}}^N \int \hat{U}(\Bp) e^{j \Bp \cdot \Bx} d\Bp \\
+&=
+\lr{\inv{\sqrt{2 \pi}}}^N \int
+\frac{\hat{V}(\Bp) }{k^2 - \Bp^2} e^{j \Bp \cdot \Bx} d\Bp \\
+&=
+\lr{\inv{2 \pi}}^N \int
+\inv{k^2 - \Bp^2} e^{j \Bp \cdot \Bx} d\Bp \int V(\Bx') e^{-j \Bp \cdot \Bx'} d\Bx' \\
+&=
+\int V(\Bx') d\Bx'
+\lr{\inv{2 \pi}}^N
+\int
+\inv{k^2 - \Bp^2} e^{j \Bp \cdot \lr{\Bx - \Bx'}}
+d\Bp
+.
+\end{aligned}
+\end{equation}
+
+The general solution is given by
+\begin{equation}\label{eqn:helmholtzGreens:140}
+U(\Bx) = \int G(\Bx, \Bx') V(\Bx') d\Bx',
+\end{equation}
+where \( G(\Bx, \Bx') \) is called the Green's function, and has the form
+\begin{equation}\label{eqn:helmholtzGreens:160}
+G(\Bx, \Bx') = \lr{\inv{2 \pi}}^N
+\int
+\inv{k^2 - \Bp^2} e^{j \Bp \cdot \lr{\Bx - \Bx'}}
+d\Bp.
+\end{equation}
+
+Equivalently, if we presume that a solution of the form \cref{eqn:helmholtzGreens:140} can be found, and operate on that with the Helmholtz operator \( \spacegrad^2 + k^2 \), we find
+\begin{equation}\label{eqn:helmholtzGreens:60}
+\lr{ \spacegrad^2 + k^2 } U(\Bx) = \int \lr{ \spacegrad^2 + k^2 } G(\Bx, \Bx') V(\Bx') d\Bx' = V(\Bx),
+\end{equation}
+which requires that our Green's function \( G(\Bx, \Bx') \) has the functional form
+\begin{equation}\label{eqn:helmholtzGreens:180}
+\lr{ \spacegrad^2 + k^2 } G(\Bx, \Bx') = \delta(\Bx - \Bx').
+\end{equation}
+\section{Evaluating the Green's function in 1D}
+For the one dimensional case, we want to evaluate
+\begin{equation}\label{eqn:helmholtzGreens:200}
+G(u) = -\inv{2 \pi} \int \inv{p^2 - k^2} e^{j p u} dp,
+\end{equation}
+an integral which is unfortunately non-convergent.  Since we are dealing with delta functions, it is not suprising that we have convergence problems.  The technique used in the book is to displace the pole slightly by a small imaginary amount, and then take the limit.
+
+That is
+\begin{equation}\label{eqn:helmholtzGreens:220}
+G(u) = \lim_{\epsilon \rightarrow 0} G_\epsilon(u),
+\end{equation}
+where
+\begin{equation}\label{eqn:helmholtzGreens:240}
+\begin{aligned}
+G_\epsilon(u)
+&= -\inv{2 \pi} \int_{-\infty}^\infty \inv{p^2 - \lr{k + j \epsilon}^2} e^{j p u} dp \\
+&= -\inv{2 \pi} \int_{-\infty}^\infty \frac{e^{j p u}}{\lr{ p - k -j \epsilon}\lr{p + k + j \epsilon}} dp.
+\end{aligned}
+\end{equation}
+For \( u > 0 \) we can use an upper half plane infinite semicircular contour integral, as illustrated in \cref{fig:greensHelmholtz:greensHelmholtzFig1}, where we
+let \( R \rightarrow \infty \).
+\imageFigure{../figures/blogit/greensHelmholtzFig1}{Contour for \( u > 0 \).}{fig:greensHelmholtz:greensHelmholtzFig1}{0.2}
+
+The residue calculation for that contour gives
+\begin{equation}\label{eqn:helmholtzGreens:260}
+\begin{aligned}
+G_\epsilon(u)
+&= -\frac{2 \pi j}{2 \pi} \evalbar{\frac{e^{j p u}}{p + k + j \epsilon} }{p = k + j \epsilon} \\
+&= -j \frac{e^{j \lr{k + j \epsilon} u}}{2\lr{k + j \epsilon}} \\
+&= -j \frac{e^{j k u} e^{-\epsilon u}}{2\lr{k + j \epsilon}} \\
+&\rightarrow -\frac{j}{2k} e^{j k u}.
+\end{aligned}
+\end{equation}
+
+For \( u < 0 \) we can use a lower half plane infinite semicircular contour, as illustrated in \cref{fig:greensHelmholtz:greensHelmholtzFig2}.
+\imageFigure{../figures/blogit/greensHelmholtzFig2}{Contour for \( u < 0 \).}{fig:greensHelmholtz:greensHelmholtzFig2}{0.3}
+For this contour, we find
+\begin{equation}\label{eqn:helmholtzGreens:280}
+\begin{aligned}
+G_\epsilon(u)
+&= -\frac{2 \pi j}{2 \pi} \evalbar{\frac{e^{j p u}}{p - k - j \epsilon} }{p = -k - j \epsilon} \\
+&= j \frac{e^{-j \lr{k + j \epsilon} u}}{2\lr{k + j \epsilon}} \\
+&= j \frac{e^{-j k u} e^{\epsilon u}}{2\lr{k + j \epsilon}} \\
+&\rightarrow \frac{j}{2k} e^{-j k u} \\
+&= \frac{j}{2k} e^{j k \Abs{u}}.
+\end{aligned}
+\end{equation}
+We find that our Green's function is
+\begin{equation}\label{eqn:helmholtzGreens:300}
+\boxed{
+G(u) = \frac{j \sgn(u)}{2k} e^{j k \Abs{u}}.
+}
+\end{equation}
+
+Let's plug this into the convolution integral to see the form of the general solution
+\begin{equation}\label{eqn:helmholtzGreens:320}
+U(x) = \frac{j}{2k} \int_{-\infty}^\infty \sgn(x - x') e^{j k \Abs{x - x'}} V(x') dx'.
+\end{equation}
+We want to break this integral into two regions
+\begin{equation}\label{eqn:helmholtzGreens:340}
+\int_{-\infty}^\infty = \int_{-\infty}^x + \int_x^\infty,
+\end{equation}
+separating the integral into regions where \( x > x' \) and \( x < x' \) respectively.  That is
+\begin{equation}\label{eqn:helmholtzGreens:360}
+U(x) =
+\frac{j}{2k} \int_{-\infty}^x e^{j k \lr{x - x'}} V(x') dx'
+-\frac{j}{2k} \int_x^\infty e^{-j k \lr{x - x'}} V(x') dx'.
+\end{equation}
+This isn't the most general solution, as we can also add any solution to the homogeneous Helmholtz equation.  That is
+\begin{equation}\label{eqn:helmholtzGreens:400}
+U(x) = A e^{j k x} + B e^{-j k x} + \frac{j}{2k} \int_{-\infty}^x e^{j k \lr{x - x'}} V(x') dx'
+-\frac{j}{2k} \int_x^\infty e^{-j k \lr{x - x'}} V(x') dx'.
+\end{equation}
+
+The real and imaginary parts of this equation must also be independent solutions.  For example, taking the real parts, we find the following general solution
+\begin{equation}\label{eqn:helmholtzGreens:380}
+U(x) =
+A' \cos\lr{ k x } +
+B' \sin\lr{ k x }
+-\inv{2} \int_{-\infty}^x \frac{\sin\lr{k \lr{x - x'}}}{k} V(x') dx'
++\inv{2} \int_x^\infty \frac{\sin\lr{k \lr{x - x'}}}{k} V(x') dx'.
+\end{equation}
+
+We've assumed that we are interested in the boundary at infinity.  Should we wish to impose different boundary constraints, we form
+\begin{equation}\label{eqn:helmholtzGreens:420}
+G(u) = A e^{ j k u} + B e^{-j k u} + \frac{j \sgn(u)}{2k} e^{j k \Abs{u}},
+\end{equation}
+but must then use the boundary value constraints to determine the desired form of the Green's function.
+
+%}
+\EndArticle

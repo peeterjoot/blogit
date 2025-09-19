@@ -29,9 +29,9 @@
 \generatetitle{Green's functions for the Helmholtz (wave equation) operator in various dimensions}
 %\chapter{Green's functions for the Helmholtz (wave equation) operator in various dimensions}
 %\label{chap:helmholtzGreens}
-My favorite book on mathematical physics derives the Green's function for the 3D Helmholtz (wave equation) operator.  I tried to derive the 2D Green's function the same way and had trouble.  Here I'll try again, starting with the easy 1D and 3D cases, and then see if I can do the trickier 2D case again.
+My favorite book on mathematical physics derives the Green's function for the 3D Helmholtz (wave equation) operator.  I tried to derive the 2D Green's function the same way and had trouble.  In this series of blog posts, I'll attempt that again, but will start with the easier 1D and 3D cases.  Presuming that I don't hit any conceptual troubles trying both of those from first principles, I'll attempt the seemingly trickier 2D case again.
 
-\section{Motivation}
+\section{Motivation and background.}
 We seek a solution to non-homogeneous Helmholtz equation
 \begin{equation}\label{eqn:helmholtzGreens:20}
 0 = \lr{ \spacegrad^2 + k^2 } U(\Bx) - V(\Bx).
@@ -106,12 +106,12 @@ which requires that our Green's function \( G(\Bx, \Bx') \) has the functional f
 \begin{equation}\label{eqn:helmholtzGreens:180}
 \lr{ \spacegrad^2 + k^2 } G(\Bx, \Bx') = \delta(\Bx - \Bx').
 \end{equation}
-\section{Evaluating the Green's function in 1D}
+\section{Evaluating the Green's function in 1D.}
 For the one dimensional case, we want to evaluate
 \begin{equation}\label{eqn:helmholtzGreens:200}
 G(u) = -\inv{2 \pi} \int \inv{p^2 - k^2} e^{j p u} dp,
 \end{equation}
-an integral which is unfortunately non-convergent.  Since we are dealing with delta functions, it is not suprising that we have convergence problems.  The technique used in the book is to displace the pole slightly by a small imaginary amount, and then take the limit.
+an integral which is unfortunately non-convergent.  Since we are dealing with delta functions, it is not surprising that we have convergence problems.  The technique used in the book is to displace the pole slightly by a small imaginary amount, and then take the limit.
 
 That is
 \begin{equation}\label{eqn:helmholtzGreens:220}
@@ -156,13 +156,13 @@ G_\epsilon(u)
 We find that our Green's function is
 \begin{equation}\label{eqn:helmholtzGreens:300}
 \boxed{
-G(u) = \frac{j \sgn(u)}{2k} e^{j k \Abs{u}}.
+G(u) = \frac{-j \sgn(u)}{2k} e^{j k \Abs{u}}.
 }
 \end{equation}
 
 Let's plug this into the convolution integral to see the form of the general solution
 \begin{equation}\label{eqn:helmholtzGreens:320}
-U(x) = \frac{j}{2k} \int_{-\infty}^\infty \sgn(x - x') e^{j k \Abs{x - x'}} V(x') dx'.
+U(x) = -\frac{j}{2k} \int_{-\infty}^\infty \sgn(x - x') e^{j k \Abs{x - x'}} V(x') dx'.
 \end{equation}
 We want to break this integral into two regions
 \begin{equation}\label{eqn:helmholtzGreens:340}
@@ -171,13 +171,13 @@ We want to break this integral into two regions
 separating the integral into regions where \( x > x' \) and \( x < x' \) respectively.  That is
 \begin{equation}\label{eqn:helmholtzGreens:360}
 U(x) =
-\frac{j}{2k} \int_{-\infty}^x e^{j k \lr{x - x'}} V(x') dx'
--\frac{j}{2k} \int_x^\infty e^{-j k \lr{x - x'}} V(x') dx'.
+-\frac{j}{2k} \int_{-\infty}^x e^{j k \lr{x - x'}} V(x') dx'
++\frac{j}{2k} \int_x^\infty e^{-j k \lr{x - x'}} V(x') dx'.
 \end{equation}
 This isn't the most general solution, as we can also add any solution to the homogeneous Helmholtz equation.  That is
 \begin{equation}\label{eqn:helmholtzGreens:400}
-U(x) = A e^{j k x} + B e^{-j k x} + \frac{j}{2k} \int_{-\infty}^x e^{j k \lr{x - x'}} V(x') dx'
--\frac{j}{2k} \int_x^\infty e^{-j k \lr{x - x'}} V(x') dx'.
+U(x) = A e^{j k x} + B e^{-j k x} - \frac{j}{2k} \int_{-\infty}^x e^{j k \lr{x - x'}} V(x') dx'
++\frac{j}{2k} \int_x^\infty e^{-j k \lr{x - x'}} V(x') dx'.
 \end{equation}
 
 The real and imaginary parts of this equation must also be independent solutions.  For example, taking the real parts, we find the following general solution
@@ -185,12 +185,12 @@ The real and imaginary parts of this equation must also be independent solutions
 U(x) =
 A' \cos\lr{ k x } +
 B' \sin\lr{ k x }
--\inv{2} \int_{-\infty}^x \frac{\sin\lr{k \lr{x - x'}}}{k} V(x') dx'
-+\inv{2} \int_x^\infty \frac{\sin\lr{k \lr{x - x'}}}{k} V(x') dx'.
++\inv{2} \int_{-\infty}^x \frac{\sin\lr{k \lr{x - x'}}}{k} V(x') dx'
+-\inv{2} \int_x^\infty \frac{\sin\lr{k \lr{x - x'}}}{k} V(x') dx'.
 \end{equation}
 
 \subsection{A strictly causal solution.}
-It is interesting that the specific solution above has equal causal and acausal contributions.  Such a solution (outside of QFT) is generally undesirable.  We can construct a specific solution that is either causal or acasual by picking just one of the integrals above, instead of averaging.  For example, let
+It is interesting that the specific solution above has equal causal and acausal contributions.  Such a solution (outside of QFT) is generally undesirable.  We can construct a specific solution that is either causal or acausal by picking just one of the integrals above, instead of averaging.  For example, let
 \begin{equation}\label{eqn:helmholtzGreens:440}
 f(x) = \int_{-\infty}^x \frac{\sin\lr{k \lr{x - x'}}}{k} V(x') dx'.
 \end{equation}
@@ -224,12 +224,24 @@ or
 \end{equation}
 This verifies that \cref{eqn:helmholtzGreens:440} is also a specific solution to the wave equation, as expected and desired.
 
+It appears that the general solution is likely of the following form
+\begin{equation}\label{eqn:helmholtzGreens:380b}
+U(x) =
+A' \cos\lr{ k x } +
+B' \sin\lr{ k x }
++\alpha \int_{-\infty}^x \frac{\sin\lr{k \lr{x - x'}}}{k} V(x') dx'
+-(1-\alpha)\int_x^\infty \frac{\sin\lr{k \lr{x - x'}}}{k} V(x') dx',
+\end{equation}
+with \( \alpha \in [0,1] \).
+
+It's pretty cool that we can completely solve the 1D forced wave equation, for any forcing function, from first principles.  Yes, I took liberties that would make a mathematician cringe, but we are telling a story, and leaving the footnotes to somebody else.
+
 \subsection{More specific boundary constraints.}
 Just as we have the freedom to add any homogeneous solution to our specific convolution based solution, we may do so for the Green's function itself.  Our process above, implicitly assumes that we are interested in infinite boundary value constraints.  Should we wish to impose different boundary constraints, we can form
 \begin{equation}\label{eqn:helmholtzGreens:420}
-G(u) = A e^{ j k u} + B e^{-j k u} + \frac{j \sgn(u)}{2k} e^{j k \Abs{u}},
+G(u) = A e^{ j k u} + B e^{-j k u} - \frac{j \sgn(u)}{2k} e^{j k \Abs{u}},
 \end{equation}
-but must then use the boundary value constraints to determine the desired form of the Green's function, using the two degrees of freedom to do so.
+but must then use the boundary value constraints to determine the desired form of the Green's function, using the two degrees of freedom to do so.  That's also an interesting topic, and would be good to also visit in a followup post.
 
 %}
 \EndArticle

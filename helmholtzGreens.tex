@@ -26,10 +26,10 @@
 
 \beginArtNoToc
 
-\generatetitle{Green's functions for the Helmholtz operator in various dimensions}
-%\chapter{Green's functions for the Helmholtz operator in various dimensions}
+\generatetitle{Green's functions for the Helmholtz (wave equation) operator in various dimensions}
+%\chapter{Green's functions for the Helmholtz (wave equation) operator in various dimensions}
 %\label{chap:helmholtzGreens}
-My favorite book on mathematical physics derives the Green's function for the 3D Helmholtz operator.  I tried to derive the 2D Green's function the same way and had trouble.  Here I'll try again, starting with the easy 1D and 3D cases, and then see if I can do the trickier 2D case again.
+My favorite book on mathematical physics derives the Green's function for the 3D Helmholtz (wave equation) operator.  I tried to derive the 2D Green's function the same way and had trouble.  Here I'll try again, starting with the easy 1D and 3D cases, and then see if I can do the trickier 2D case again.
 
 \section{Motivation}
 We seek a solution to non-homogeneous Helmholtz equation
@@ -189,11 +189,47 @@ B' \sin\lr{ k x }
 +\inv{2} \int_x^\infty \frac{\sin\lr{k \lr{x - x'}}}{k} V(x') dx'.
 \end{equation}
 
-We've assumed that we are interested in the boundary at infinity.  Should we wish to impose different boundary constraints, we form
+\subsection{A strictly causal solution.}
+It is interesting that the specific solution above has equal causal and acausal contributions.  Such a solution (outside of QFT) is generally undesirable.  We can construct a specific solution that is either causal or acasual by picking just one of the integrals above, instead of averaging.  For example, let
+\begin{equation}\label{eqn:helmholtzGreens:440}
+f(x) = \int_{-\infty}^x \frac{\sin\lr{k \lr{x - x'}}}{k} V(x') dx'.
+\end{equation}
+We can verify that this is a specific solution to our equation using the identity
+\begin{equation}\label{eqn:helmholtzGreens:460}
+\frac{d}{dx} \int_a^x g(x, x') dx'
+=
+\evalrange{g(x, x') }{a}{x} + \int_a^x \frac{\partial g(x,x')}{dx} dx'.
+\end{equation}
+Taking the first derivative of \( f(x) \), we find
+\begin{equation}\label{eqn:helmholtzGreens:480}
+\begin{aligned}
+\frac{df}{dx}
+&= \evalrange{ \frac{\sin\lr{k \lr{x - x'}}}{k} V(x') }{-\infty}{x} + k \int_{-\infty}^x \frac{\cos\lr{k \lr{x - x'}}}{k} V(x') dx' \\
+&= \frac{\sin\lr{k \lr{x + \infty}}}{k} V(-\infty) + k \int_{-\infty}^x \frac{\cos\lr{k \lr{x - x'}}}{k} V(x') dx' \\
+&= k \int_{-\infty}^x \frac{\cos\lr{k \lr{x - x'}}}{k} V(x') dx',
+\end{aligned}
+\end{equation}
+where we have assumed that our forcing function \( V(x) \) is zero at \( -\infty \).  Taking the second derivative, we have
+\begin{equation}\label{eqn:helmholtzGreens:500}
+\begin{aligned}
+\frac{d^2f}{dx^2}
+&=
+\evalrange{ k \frac{\cos\lr{k \lr{x - x'}}}{k} V(x') }{-\infty}{x} - k^2 \int_{-\infty}^x \frac{\sin\lr{k \lr{x - x'}}}{k} V(x') dx' \\
+&= V(x) - k^2 f(x),
+\end{aligned}
+\end{equation}
+or
+\begin{equation}\label{eqn:helmholtzGreens:520}
+\frac{d^2}{dx^2} f(x) + k^2 f(x) = V(x).
+\end{equation}
+This verifies that \cref{eqn:helmholtzGreens:440} is also a specific solution to the wave equation, as expected and desired.
+
+\subsection{More specific boundary constraints.}
+Just as we have the freedom to add any homogeneous solution to our specific convolution based solution, we may do so for the Green's function itself.  Our process above, implicitly assumes that we are interested in infinite boundary value constraints.  Should we wish to impose different boundary constraints, we can form
 \begin{equation}\label{eqn:helmholtzGreens:420}
 G(u) = A e^{ j k u} + B e^{-j k u} + \frac{j \sgn(u)}{2k} e^{j k \Abs{u}},
 \end{equation}
-but must then use the boundary value constraints to determine the desired form of the Green's function.
+but must then use the boundary value constraints to determine the desired form of the Green's function, using the two degrees of freedom to do so.
 
 %}
 \EndArticle

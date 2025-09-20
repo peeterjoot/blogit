@@ -198,23 +198,22 @@ We can verify that this is a specific solution to our equation using the identit
 \begin{equation}\label{eqn:helmholtzGreens:460}
 \frac{d}{dx} \int_a^x g(x, x') dx'
 =
-\evalrange{g(x, x') }{a}{x} + \int_a^x \frac{\partial g(x,x')}{dx} dx'.
+\evalbar{g(x, x') }{x' = x} + \int_a^x \frac{\partial g(x,x')}{dx} dx'.
 \end{equation}
 Taking the first derivative of \( f(x) \), we find
 \begin{equation}\label{eqn:helmholtzGreens:480}
 \begin{aligned}
 \frac{df}{dx}
-&= \evalrange{ \frac{\sin\lr{k \lr{x - x'}}}{k} V(x') }{-\infty}{x} + k \int_{-\infty}^x \frac{\cos\lr{k \lr{x - x'}}}{k} V(x') dx' \\
-&= \frac{\sin\lr{k \lr{x + \infty}}}{k} V(-\infty) + k \int_{-\infty}^x \frac{\cos\lr{k \lr{x - x'}}}{k} V(x') dx' \\
+&= \evalbar{ \frac{\sin\lr{k \lr{x - x'}}}{k} V(x') }{x' = x} + k \int_{-\infty}^x \frac{\cos\lr{k \lr{x - x'}}}{k} V(x') dx' \\
 &= k \int_{-\infty}^x \frac{\cos\lr{k \lr{x - x'}}}{k} V(x') dx',
 \end{aligned}
 \end{equation}
-where we have assumed that our forcing function \( V(x) \) is zero at \( -\infty \).  Taking the second derivative, we have
+where we have, somewhat lazily, treated the infinite limit as a constant.  Effectively, this requires that the forcing function \( V(x) \) is zero at \( -\infty \).  Taking the second derivative, we have
 \begin{equation}\label{eqn:helmholtzGreens:500}
 \begin{aligned}
 \frac{d^2f}{dx^2}
 &=
-\evalrange{ k \frac{\cos\lr{k \lr{x - x'}}}{k} V(x') }{-\infty}{x} - k^2 \int_{-\infty}^x \frac{\sin\lr{k \lr{x - x'}}}{k} V(x') dx' \\
+\evalbar{ k \frac{\cos\lr{k \lr{x - x'}}}{k} V(x') }{x' = x} - k^2 \int_{-\infty}^x \frac{\sin\lr{k \lr{x - x'}}}{k} V(x') dx' \\
 &= V(x) - k^2 f(x),
 \end{aligned}
 \end{equation}
@@ -242,6 +241,67 @@ Just as we have the freedom to add any homogeneous solution to our specific conv
 G(u) = A e^{ j k u} + B e^{-j k u} - \frac{j \sgn(u)}{2k} e^{j k \Abs{u}},
 \end{equation}
 but must then use the boundary value constraints to determine the desired form of the Green's function, using the two degrees of freedom to do so.  That's also an interesting topic, and would be good to also visit in a followup post.
+\section{3D Green's function.}
+The 3D Green's function that we wish to try to evaluate is
+\begin{equation}\label{eqn:helmholtzGreens:540}
+G(\Br) = -\inv{(2 \pi)^3} \int \frac{e^{j \Bp \cdot \Br}}{\Bp^2 - k^2} d^3 p.
+\end{equation}
+We will have to displace the pole again, but we will get to that in a bit.  First let's make a spherical change of variables to evaluate the integral, with
+\begin{equation}\label{eqn:helmholtzGreens:560}
+\begin{aligned}
+\Bp &= p \lr{ \sin\alpha \cos\phi, \sin\alpha \sin\phi, \cos\alpha } \\
+\Br &= \Abs{\Br} \Be_3.
+\end{aligned}
+\end{equation}
+This gives
+\begin{equation}\label{eqn:helmholtzGreens:580}
+G(\Br)
+= -\inv{(2 \pi)^3} \int_0^\infty p^2 dp \int_0^\pi \sin\alpha d\alpha \int_0^{2 \pi} d\phi \frac{e^{j p \Abs{\Br} \cos\alpha}}{p^2 - k^2}.
+\end{equation}
+Let \( t = \cos\alpha \), to find
+\begin{equation}\label{eqn:helmholtzGreens:600}
+\begin{aligned}
+G(\Br)
+&= -\inv{(2 \pi)^2} \int_0^\infty p^2 dp \int_1^{-1} (-dt) \frac{e^{j p \Abs{\Br} t}}{p^2 - k^2} \\
+&= \inv{(2 \pi)^2} \int_0^\infty p^2 dp \evalrange{\frac{e^{j p \Abs{\Br} t}}{\lr{p^2 - k^2} j p \Abs{\Br}}}{1}{-1} \\
+&= \inv{j (2 \pi)^2 \Abs{\Br}} \int_0^\infty p dp \frac{e^{-j p \Abs{\Br}} - e^{j p \Abs{\Br}} }{p^2 - k^2} \\
+&= -\inv{j (2 \pi)^2 \Abs{\Br}} \int_{-\infty}^\infty p dp \frac{e^{j p \Abs{\Br}} }{p^2 - k^2} \\
+&\sim -\inv{j (2 \pi)^2 \Abs{\Br}} \int_{-\infty}^\infty p dp \frac{e^{j p \Abs{\Br}} }{p^2 - \lr{k + j \epsilon}^2}.
+\end{aligned}
+\end{equation}
+In the last step, we've displaced the pole so that we can evaluate it using an infinite upper half plane semicircular contour, as illustrated in \cref{fig:greensHelmholtz:greensHelmholtzFig1a}.
+\imageTwoFigures{../figures/blogit/greensHelmholtzFig1a}{../figures/blogit/greensHelmholtzFig1b}
+{Contours for 3D Green's function evaluation}{fig:greensHelmholtz:greensHelmholtzFig1a}{scale=0.7}
+%\cref{fig:greensHelmholtz:greensHelmholtzFig1b}.
+Which pole we choose depends on the sign we pick for the ``small'' pole displacement \( \epsilon \).  For the \( \epsilon > 0 \) case, we find
+\begin{equation}\label{eqn:helmholtzGreens:620}
+\begin{aligned}
+G(\Br)
+&= -\inv{j (2 \pi)^2 \Abs{\Br}} \int_{-\infty}^\infty p dp \frac{e^{j p \Abs{\Br}} }{\lr{p - (k + j \epsilon)}\lr{p - (-k - j \epsilon)}} \\
+&= -\frac{2 \pi j}{j (2 \pi)^2 \Abs{\Br}} \evalbar{\frac{p e^{j p \Abs{\Br}} }{p + k + j \epsilon}}{p = k + j \epsilon} \\
+&= -\frac{1}{2 \pi \Abs{\Br}} (k + j \epsilon) \frac{e^{j (k + j \epsilon) \Abs{\Br}} }{2 (k + j \epsilon)} \\
+&= -\frac{1}{4 \pi \Abs{\Br}} e^{j k \Abs{\Br}} e^{-\epsilon \Abs{\Br}}  \\
+&\rightarrow -\frac{e^{j k \Abs{\Br}} }{4 \pi \Abs{\Br}}.
+\end{aligned}
+\end{equation}
+whereas for \( \epsilon < 0 \), we have
+\begin{equation}\label{eqn:helmholtzGreens:640}
+\begin{aligned}
+G(\Br)
+&= -\inv{j (2 \pi)^2 \Abs{\Br}} \int_{-\infty}^\infty p dp \frac{e^{j p \Abs{\Br}} }{\lr{p - (k + j \epsilon)}\lr{p - (-k - j \epsilon)}} \\
+&= -\frac{2 \pi j}{j (2 \pi)^2 \Abs{\Br}} \evalbar{\frac{p e^{j p \Abs{\Br}} }{p - k - j \epsilon}}{p = -k - j \epsilon} \\
+&= -\frac{1}{2 \pi \Abs{\Br}} (-k - j \epsilon) \frac{e^{j (-k - j \epsilon) \Abs{\Br}} }{2 (-k - j \epsilon)} \\
+&= -\frac{1}{4 \pi \Abs{\Br}} e^{-j k \Abs{\Br}} e^{\epsilon \Abs{\Br}}  \\
+&\rightarrow -\frac{e^{-j k \Abs{\Br}} }{4 \pi \Abs{\Br}}.
+\end{aligned}
+\end{equation}
+
+The Green's function has the structure of either an outgoing or incoming spherical wave, with inverse radial amplitude:
+\begin{equation}\label{eqn:helmholtzGreens:660}
+\boxed{
+G(\Bx, \Bx') = -\frac{e^{\pm j k \Abs{\Br}} }{4 \pi \Abs{\Br}}.
+}
+\end{equation}
 
 %}
 \EndArticle

@@ -302,6 +302,77 @@ The Green's function has the structure of either an outgoing or incoming spheric
 G(\Bx, \Bx') = -\frac{e^{\pm j k \Abs{\Br}} }{4 \pi \Abs{\Br}}.
 }
 \end{equation}
+\section{2D Green's function.}
+Okay, now let's do the 2D Green's function evaluation.  Our starting place is
+\begin{equation}\label{eqn:helmholtzGreens:680}
+G(\Br) = -\inv{(2 \pi)^2} \int \frac{e^{j \Bp \cdot \Br}}{\Bp^2 - k^2} d^2 p.
+\end{equation}
+With a change of variables to polar coordinates, letting
+\begin{equation}\label{eqn:helmholtzGreens:700}
+\begin{aligned}
+\Bp &= p \lr{ \cos\phi, \sin\phi } \\
+\Br &= \Abs{\Br} \Be_2,
+\end{aligned}
+\end{equation}
+we can make the integral explicit
+\begin{equation}\label{eqn:helmholtzGreens:720}
+G(\Br) = -\inv{(2 \pi)^2} \int_0^\infty \frac{p dp}{p^2 - k^2} \int_0^{2 \pi} d\phi e^{j p \Abs{\Br} \sin\phi}.
+\end{equation}
+Unlike the 3D case, where the angular dependence could be trivially evaluated, we are no longer so lucky.  What on earth can we do with the \( \phi \) integral?  Just like \href{https://youtu.be/mm-4PltMB2A}{Hilter's lament about ``undoable integrals in Jackson''}, we are faced with the same enemy. As it turns out, due to the cylindrical symmetry of the problem, we are also staring down the gun of Bessel functions.  Both Mathematica and Grok point out that we can evaluate integrals of this form, like so:
+\begin{equation}\label{eqn:helmholtzGreens:740}
+\int_0^{2 \pi} d\phi e^{j a \sin\phi} = 2 \pi J_0(a).
+\end{equation}
+
+From \citep{byron1992mca} we have two representations of \( J_n \), a series representation and integral representation
+\begin{equation}\label{eqn:helmholtzGreens:760}
+J_n(z) = \sum_{m=0}^\infty \frac{(-1)^m (z/2)^{2m + n}}{(n + m)!m!} = \inv{\pi} \int_0^\pi \cos(n \theta - z \sin\theta) d\theta.
+\end{equation}
+
+In particular, this means that
+\begin{equation}\label{eqn:helmholtzGreens:800}
+J_0(z) = \sum_{m=0}^\infty \frac{(-1)^m (z/2)^{2m}}{(m!)^2} = J_0(z) = \inv{\pi} \int_0^\pi \cos(z \sin\theta) d\theta.
+\end{equation}
+This is a damped sine like function, as illustrated in \cref{fig:j0:j0Fig4}.
+\imageFigure{../figures/blogit/j0Fig4}{Bessel function of zeroth order.}{fig:j0:j0Fig4}{0.3}
+
+In \S 6.9, both of these are derived from a generating function representation of the Bessel functions, and one of the intermediate steps in that construction has
+\begin{equation}\label{eqn:helmholtzGreens:840}
+J_n(z) = \inv{2\pi} \int_{-\pi}^\pi e^{-j(n\theta - z \sin\theta)} d\theta,
+\end{equation}
+where the \( [-\pi, \pi] \) range was the result of a contour integration using a unit circle parameterization, which could have also used \( [0, 2 \pi] \).  That means, sure enough, that we have
+\begin{equation}\label{eqn:helmholtzGreens:860}
+J_0(z) = \inv{2\pi} \int_{0}^{2\pi} e^{j z \sin\theta} d\theta,
+\end{equation}
+as claimed by both Grok and Mathematica.
+
+This means that the evaluation of the Green's function is now reduced to the limit of one final integral
+\begin{equation}\label{eqn:helmholtzGreens:880}
+G(\Br) = -\inv{2 \pi} \int_0^\infty \frac{p J_0(p \Abs{\Br} ) dp}{p^2 - \lr{k + j \epsilon}^2},
+\end{equation}
+where we've also displaced the problematic pole by a small imaginary amount as before.  Grok incorrectly claimed that this was an even integral, and then argued that the end result is a Hankel function (that may be the case, but it's reasoning to get there was clearly wrong.) Mathematica, on the other hand, can evaluate this integral
+\begin{equation}\label{eqn:helmholtzGreens:900}
+G(\Br) = -\inv{2 \pi} K_0\lr{\frac{\Abs{\Br}}{\sqrt{\frac{1}{(\epsilon - j k)^2}}}}, \epsilon \neq 0.
+\end{equation}
+It's not clear to me why Mathematica writes the argument as 1 over a reciprocal root.  Perhaps that has something to do with the branch cut that Mathematica uses for it's square root function?  If I plug in representative numeric values, it simplifies in the expected way, as illustrated in \cref{fig:MathematicaWeirdArgument:MathematicaWeirdArgumentFig5}.
+\imageFigure{../figures/blogit/MathematicaWeirdArgumentFig5}{Mathematica weird Bessel argument.}{fig:MathematicaWeirdArgument:MathematicaWeirdArgumentFig5}{0.1}
+
+The take away appears to be that the limiting form of the 2D Green's function, for \( k > 0 \), is
+\begin{equation}\label{eqn:helmholtzGreens:920}
+G(\Bx, \Bx') = -\inv{2 \pi} K_0\lr{-j k \Abs{\Bx - \Bx'} }.
+\end{equation}
+A peek at \citep{abramowitz1964handbook} shows that \( K_0 \) can be expressed in terms of a Hankel function of the first kind (order 0) \( H_0^{(1)}(z) = J_0(z) + j Y_0(z) \), plotted in \cref{fig:hankelPlot:hankelPlotFig6}.
+\imageFigure{../figures/blogit/hankelPlotFig6}{Hankel function of the first kind (order 0).}{fig:hankelPlot:hankelPlotFig6}{0.3}
+
+For real positive \( \alpha \), we have
+\begin{equation}\label{eqn:helmholtzGreens:940}
+K_0(-j \alpha) = \frac{j\pi}{2} H_0^{(1)}(\alpha),
+\end{equation}
+so
+\begin{equation}\label{eqn:helmholtzGreens:960}
+\boxed{
+G(\Bx, \Bx') = -\frac{j}{4} H_0^{(1)}(k \Abs{\Bx - \Bx'}).
+}
+\end{equation}
 
 %}
 \EndArticle

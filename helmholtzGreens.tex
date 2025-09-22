@@ -373,6 +373,34 @@ so
 G(\Bx, \Bx') = -\frac{j}{4} H_0^{(1)}(k \Abs{\Bx - \Bx'}).
 }
 \end{equation}
+\section{A trilogy in four parts.  The 2D Laplacian Green's function.}
+I was questioning the correctness of the 1D and 2D Helmholtz Green's functions derived above, since they are both seemingly malformed for \( k \rightarrow 0 \).
+
+Let's try to carefully expand the 2D Green's function in the neighbourhood of \( k = 0 \) to validate that result, and as a side effect, obtain the Green's function for the 2D Laplacian.
+
+In \citep{abramowitz1964handbook}, \S 9.1.7, 9.1.8, we have for \( z \rightarrow 0 \)
+\begin{equation}\label{eqn:helmholtzGreens:980}
+\begin{aligned}
+J_\nu(z) &\sim \lr{\frac{z}{2}}^\nu/\Gamma(\nu+1) \\
+Y_0(z) &\sim \frac{2}{\pi} \ln z,
+\end{aligned}
+\end{equation}
+so for \( k \ll r \)
+\begin{equation}\label{eqn:helmholtzGreens:1000}
+H_0^{(1)}(k r) \sim 1 + \frac{2j}{\pi} \ln\lr{k r},
+\end{equation}
+and
+\begin{equation}\label{eqn:helmholtzGreens:1020}
+\begin{aligned}
+G(\Br)
+&\sim -\frac{j}{4} \lr{ 1 + \frac{j}{2 \pi} \ln\lr{k r} } \\
+&= -\frac{j}{4} + \frac{1}{2 \pi} \ln k + \frac{1}{2 \pi} \ln r.
+\end{aligned}
+\end{equation}
+Here is where we have to get sneaky.  Since we seek a Green's function for the Laplacian operator, we are free to add any solution \( f(x,y) \) that satisfies \( \spacegrad^2 f = 0 \).  Constants are clearly in that homogeneous solution space, so we may adjust this expansion of the Green's function, throwing away the leading constant imaginary term, and treating \( k \) as a small constant, the \( \ln k \) term.  That leaves us with
+\begin{equation}\label{eqn:helmholtzGreens:1040}
+G(\Bx, \Bx') = \frac{1}{2 \pi} \ln \Abs{\Bx - \Bx'}.
+\end{equation}
 
 %}
 \EndArticle

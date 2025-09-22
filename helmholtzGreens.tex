@@ -398,9 +398,106 @@ G(\Br)
 \end{aligned}
 \end{equation}
 Here is where we have to get sneaky.  Since we seek a Green's function for the Laplacian operator, we are free to add any solution \( f(x,y) \) that satisfies \( \spacegrad^2 f = 0 \).  Constants are clearly in that homogeneous solution space, so we may adjust this expansion of the Green's function, throwing away the leading constant imaginary term, and treating \( k \) as a small constant, the \( \ln k \) term.  That leaves us with
-\begin{equation}\label{eqn:helmholtzGreens:1040}
+\begin{equation}\label{eqn:helmholtzGreens:1040}\boxed{
 G(\Bx, \Bx') = \frac{1}{2 \pi} \ln \Abs{\Bx - \Bx'}.
+}
 \end{equation}
+
+\subsection{Verifying the Laplacian Green's function.}
+Let's try to verify that this Green's function is correct, since we've had lots of opportunities to screw up signs.  We want to evaluate the Laplacian of the convolution and if all goes well, it should be \( V(\Bx) \).  That is
+\begin{equation}\label{eqn:helmholtzGreens:1060}
+\begin{aligned}
+\spacegrad^2 \int G(\Bx, \Bx') V(\Bx') d^2 \Bx'
+&= \inv{2 \pi} \int \spacegrad^2 \ln \Abs{\Bx - \Bx'} V(\Bx') d^2 \Bx' \\
+&= \inv{2 \pi}
+\int V(\Bx') \lr{\spacegrad'}^2 \ln \Abs{\Bx - \Bx'} d^2 \Bx' \\
+\end{aligned}
+\end{equation}
+We can verify that \( \lr{\spacegrad'}^2 \ln \Abs{\Bx - \Bx'} \) is zero whenever \( \Abs{\Bx - \Bx'} \ne 0 \).  A nice way of doing that is in polar coordinates.  Write
+\begin{equation}\label{eqn:helmholtzGreens:1160}
+\begin{aligned}
+\Br &= \Bx' - \Bx \\
+r &= \Abs{r} \\
+\end{aligned}
+\end{equation}
+and recall that
+\begin{equation}\label{eqn:helmholtzGreens:1180}
+\spacegrad^2 f = \inv{r} \PD{r}{} \lr{ r \PD{r}{f} } + \frac{\partial^2 f}{\partial \theta^2},
+\end{equation}
+but \( r \PD{r}{\ln r} = 1 \), and \( \ln r \) has no angular dependence.  That means that
+\begin{equation}\label{eqn:helmholtzGreens:1200}
+\spacegrad^2 \int G(\Bx, \Bx') V(\Bx') d^2 \Bx'
+= \inv{2 \pi} \int_{\Abs{\Bx - \Bx'} < \epsilon} V(\Bx') \lr{\spacegrad'}^2 \ln \Abs{\Bx - \Bx'} d^2 \Bx',
+\end{equation}
+where we let \( \epsilon \rightarrow 0 \).  Such a region is illustrated in \cref{fig:neighborhoodOfX:neighborhoodOfXFig7}.
+\imageFigure{../figures/blogit/neighborhoodOfXFig7}{Neighborhood \( \Abs{\Bx - \Bx'} < \epsilon \)}{fig:neighborhoodOfX:neighborhoodOfXFig7}{0.3}
+
+We can now apply Green's theorem, which for 2D is
+\begin{equation}\label{eqn:helmholtzGreens:1080}
+\int_A \lr{ u \spacegrad^2 v - v \spacegrad^2 u } dA = \int_{\partial A} \lr{ u \spacegrad v - v \spacegrad u } \cdot \ncap dS,
+\end{equation}
+or
+\begin{equation}\label{eqn:helmholtzGreens:1090}
+\int_A v \spacegrad^2 u \, dA = \int_A u \spacegrad^2 v \, dA -\int_{\partial A} \lr{ u \spacegrad v - v \spacegrad u } \cdot \ncap dS,
+\end{equation}
+With
+\begin{equation}\label{eqn:helmholtzGreens:1161}
+\begin{aligned}
+\rcap &= \Br/r = \ncap \\
+u &= \ln r \\
+v &= V(\Bx') \\
+dA &= r dr d\theta \\
+dS &= r d\theta,
+\end{aligned}
+\end{equation}
+we have
+\begin{equation}\label{eqn:helmholtzGreens:1100}
+\begin{aligned}
+\int V(\Bx') \lr{ \lr{\spacegrad'}^2 \ln \Abs{\Bx - \Bx'} } d^2 \Bx'
+&=
+\int_{r=0}^\epsilon r dr d\theta \ln r \lr{ \spacegrad'}^2 V(\Bx') \\
+&\quad-
+    \int_{\theta = 0}^{2 \pi}
+\epsilon d\theta
+\evalbar{
+\lr{
+    \ln \epsilon \spacegrad' V(\Bx') - V(\Bx') \spacegrad' \ln r
+}
+\cdot \rcap
+}
+{r = \epsilon}
+\end{aligned}
+\end{equation}
+We have \( r \ln r \), or \( \epsilon \ln \epsilon \) dependence in two of the integrand terms, and with \( r < \epsilon \), and \( \epsilon \ln \epsilon \rightarrow 0 \), in the limit, we are left with
+\begin{equation}\label{eqn:helmholtzGreens:1120}
+\begin{aligned}
+\int V(\Bx') \lr{\spacegrad'}^2 \ln \Abs{\Bx - \Bx'} d^2 \Bx'
+&=
+\int_{\theta = 0}^{2 \pi} \epsilon \evalbar{ d\theta V(\Bx') \lr{ \spacegrad' \ln r } \cdot \rcap }{r = \epsilon} \\
+&=
+\int_{\theta = 0}^{2 \pi}
+\epsilon
+\evalbar{
+d\theta V(\Bx') \lr{ \lr{ \rcap \partial_r + \frac{\thetacap}{r^2} \partial_\theta } \ln r } \cdot \rcap
+}{r = \epsilon}
+\\
+&=
+\int_{\theta = 0}^{2 \pi}
+\epsilon
+\evalbar{
+d\theta V(\Bx') \frac{\rcap}{r} \cdot \rcap
+}{r = \epsilon}
+\\
+&=
+\int_{\theta = 0}^{2 \pi} d\theta V(\Bx + \epsilon \rcap).
+\end{aligned}
+\end{equation}
+
+In the limit we are left with just \( 2 \pi V(\Bx) \), so
+\begin{equation}\label{eqn:helmholtzGreens:1140}
+\spacegrad^2 \int G(\Bx, \Bx') V(\Bx') d^2 \Bx' = V(\Bx),
+\end{equation}
+as desired.
 
 %}
 \EndArticle

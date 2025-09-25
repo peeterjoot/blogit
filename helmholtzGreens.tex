@@ -156,7 +156,7 @@ G_\epsilon(u)
 We find that our Green's function is
 \begin{equation}\label{eqn:helmholtzGreens:300}
 \boxed{
-G(u) = \frac{-j \sgn(u)}{2k} e^{j k \Abs{u}}.
+G(u) = -\frac{j \sgn(u)}{2k} e^{j k \Abs{u}}.
 }
 \end{equation}
 
@@ -403,8 +403,8 @@ G(\Bx, \Bx') = \frac{1}{2 \pi} \ln \Abs{\Bx - \Bx'}.
 }
 \end{equation}
 
-\subsection{Verifying the Laplacian Green's function.}
-Let's try to verify that this Green's function is correct, since we've had lots of opportunities to screw up signs.  We want to evaluate the Laplacian of the convolution and if all goes well, it should be \( V(\Bx) \).  That is
+\subsection{Verifying the 2D Laplacian Green's function.}
+Let's try to verify that this Green's function is correct, since we've had lots of opportunities to screw up signs (and more!)  We want to evaluate the Laplacian of the convolution and if all goes well, it should be \( V(\Bx) \).  That is
 \begin{equation}\label{eqn:helmholtzGreens:1060}
 \begin{aligned}
 \spacegrad^2 \int G(\Bx, \Bx') V(\Bx') d^2 \Bx'
@@ -498,6 +498,253 @@ In the limit we are left with just \( 2 \pi V(\Bx) \), so
 \spacegrad^2 \int G(\Bx, \Bx') V(\Bx') d^2 \Bx' = V(\Bx),
 \end{equation}
 as desired.
+
+\section{Revisiting the 1D Helmholtz Green's function.}
+\subsection{Confirming an error in the derived 1D Helmholtz Green's function.}
+The discontinuity in the derived 1D Helmholtz Green's function is somewhat surprising.  Let's try to verify that this works or find what does.  The first thing to check is that
+\begin{equation}\label{eqn:helmholtzGreens:1220}
+\lr{ \spacegrad^2 + k^2} G(x,x') = 0,
+\end{equation}
+at locations where \( x \ne x' \).  Since we are avoiding the origin (where the annoying sign function kicks in), means that we want to evaluate:
+\begin{equation}\label{eqn:helmholtzGreens:1240}
+\lr{ k^2 + \frac{d^2}{dx^2} } e^{j k \Abs{x - x'}},
+\end{equation}
+and expect that this will be zero.  Let's make a change of variables \( r = x' - x \), and evaluate
+\begin{equation}\label{eqn:helmholtzGreens:1260}
+\lr{ k^2 + \frac{d^2}{dr^2} } e^{j k \Abs{r}},
+\end{equation}
+assuming that we are omitting a neighbourhood around \( r = 0 \) where the absolute value causes trouble.  For \( r > 0 \)
+\begin{equation}\label{eqn:helmholtzGreens:1280}
+\begin{aligned}
+\frac{d}{dr} e^{j k \Abs{r}}
+&= \frac{d}{dr} e^{j k r} \\
+&= j k e^{j k r},
+\end{aligned}
+\end{equation}
+and
+\begin{equation}\label{eqn:helmholtzGreens:1300}
+\begin{aligned}
+\frac{d^2}{dr^2} e^{j k \Abs{r}}
+&= \frac{d}{dr} j k e^{j k r} \\
+&= (j k)^2 e^{j k r}.
+\end{aligned}
+\end{equation}
+Similarly, for \( r < 0 \), we have
+\begin{equation}\label{eqn:helmholtzGreens:1320}
+\frac{d^2}{dr^2} e^{j k \Abs{r}} = (-jk)^2 e^{j k \Abs{r}}.
+\end{equation}
+In both cases, provided we are in a neighbourhood that omits \( r \ne 0 \), we have
+\begin{equation}\label{eqn:helmholtzGreens:1340}
+\lr{ k^2 + \frac{d^2}{dr^2} } e^{j k \Abs{r}} = 0,
+\end{equation}
+as desired.
+
+The takeaway is that we have
+\begin{equation}\label{eqn:helmholtzGreens:1360}
+\begin{aligned}
+\lr{ \spacegrad^2 + k^2 }\int_{-\infty}^\infty G(x, x') V(x') dx'
+&=
+\int_{\Abs{x' - x} \le \epsilon} V(x') \lr{ \frac{d^2}{d{x'}^2} + k^2 } G(x, x') dx' \\
+&=
+\int_{-\epsilon}^\epsilon V(x + r) \lr{ \frac{d^2}{dr^2} + k^2 } G(r = x' - x) dr \\
+\end{aligned}
+\end{equation}
+for some arbitrarily small value of \( \epsilon \).  Observe that after bringing the operator into the integral, we also made a change of variables, first to \( x' \) for the Laplacian, and then to \( r = x' - x \).
+
+We'd like the 1D equivalent of Green's theorem to reduce this, so let's work that out first.
+\begin{equation}\label{eqn:helmholtzGreens:1380}
+\begin{aligned}
+\int dx\, v \frac{d^2 u}{dx^2} - \int dx\, u \frac{d^2 v}{dx^2}
+&=
+\int dx\,
+\lr{
+    \frac{d}{dx} \lr{
+        v \frac{du}{dx}
+    }
+- \frac{dv}{dx} \frac{du}{dx}
+}
+-
+\int dx\,
+\lr{
+    \frac{d}{dx} \lr{
+        u \frac{dv}{dx}
+    }
+    -
+    \frac{du}{dx} \frac{dv}{dx}
+}
+\\
+&=
+\int dx\,
+    \frac{d}{dx}
+    \lr{
+        v \frac{du}{dx}
+    }
+-
+\int dx\,
+    \frac{d}{dx} \lr{
+        u \frac{dv}{dx}
+    }
+\\
+&=
+v \frac{du}{dx}
+-
+u \frac{dv}{dx},
+\end{aligned}
+\end{equation}
+so
+\begin{equation}\label{eqn:helmholtzGreens:1400}
+\boxed{
+    \int_a^b dx\, v \frac{d^2 u}{dx^2}
+    =
+    \int_a^b dx\, u \frac{d^2 v}{dx^2}
+    +
+    \evalrange{v \frac{du}{dx}}{a}{b}
+    -
+    \evalrange{u \frac{dv}{dx}}{a}{b}.
+}
+\end{equation}
+
+Let's try applying that to the function \( G(r) = e^{j k \Abs{r} } \), and see what happens.  That is
+\begin{equation}\label{eqn:helmholtzGreens:1420}
+\begin{aligned}
+\lr{ \spacegrad^2 + k^2 }\int_{\Abs{x'- x} \le \epsilon} e^{j k \Abs{x - x'}} V(x') dx'
+&=
+\int_{-\epsilon}^\epsilon e^{j k \Abs{r}} \lr{ k^2 + \frac{d^2}{dr^2} } V(x + r) dr \\
+&\quad +
+\evalrange{ V(x + r) \frac{d}{dr} e^{j k \Abs{r}} }{-\epsilon}{\epsilon}
+-
+\evalrange{ e^{j k \Abs{r}} \frac{d}{dr} V(x+r) }{-\epsilon}{\epsilon}.
+\end{aligned}
+\end{equation}
+If we can assume that \( V \) and it's first and second derivatives are all continuous over this small interval, then the first integral is approximately
+\begin{equation}\label{eqn:helmholtzGreens:1440}
+\begin{aligned}
+\int_{-\epsilon}^\epsilon e^{j k \Abs{r}} \lr{ k^2 + \frac{d^2}{dr^2} } V(x + r) dr
+&\sim
+\lr{ \lr{ k^2 + \frac{d^2}{dr^2} } V(x + r) }
+\int_{-\epsilon}^\epsilon e^{j k \Abs{r}} dr \\
+&=
+\frac{2 j}{k} \lr{ 1 - e^{ j k \epsilon} }
+\lr{ \lr{ k^2 + \frac{d^2}{dr^2} } V(x + r) } \\
+&\rightarrow 0.
+\end{aligned}
+\end{equation}
+Similarly, with \( dV/dr \) continuity condition, that last term is also zero.  We are left, for \( \epsilon \) sufficiently small, we are left with
+\begin{equation}\label{eqn:helmholtzGreens:1460}
+\lr{ \spacegrad^2 + k^2 }\int_{\Abs{x'- x} \le \epsilon} e^{j k \Abs{x - x'}} V(x') dx'
+=
+V(x) \evalrange{ \frac{d}{dr} e^{j k \Abs{r}} }{-\epsilon}{\epsilon}.
+\end{equation}
+but this is an extremely problematic derivative around the origin.  The core problem is evaluating
+\begin{equation}\label{eqn:helmholtzGreens:1480}
+\frac{d}{dr} e^{j k \Abs{r}} = j k e^{j k \Abs{r} } \frac{d\Abs{r}}{dr}.
+\end{equation}
+In conventional mathematics, we'd have to say that this is undefined at the origin.  In physics, on the other hand, where we play fast and loose with the mathematics, we express the absolute value in terms of Heavyside theta functions
+\begin{equation}\label{eqn:helmholtzGreens:1500}
+\Abs{r} = r \Theta(r) - r \Theta(-r).
+\end{equation}
+We may now take derivatives
+\begin{equation}\label{eqn:helmholtzGreens:1520}
+\begin{aligned}
+\Abs{r}'
+&= \Theta(r) - \Theta(-r) + r \delta(r) + r \delta(-r) \\
+&= \sgn(r) + 2 r \delta(r).
+\end{aligned}
+\end{equation}
+Evaluating \( e^{j k \Abs{r} } \Abs{r}' \) over the \( [-\epsilon, \epsilon] \) range, we have
+\begin{equation}\label{eqn:helmholtzGreens:1540}
+\begin{aligned}
+\evalrange{
+e^{j k \Abs{r} } \Abs{r}'
+}{-\epsilon}{\epsilon}
+&=
+e^{j k \epsilon} \lr{ \evalrange{ \sgn(r) + 2 r \delta(r) }{-\epsilon}{\epsilon} } \\
+&=
+e^{j k \epsilon} \lr{ 2 + 2 \epsilon \delta(\epsilon) }.
+\end{aligned}
+\end{equation}
+Again, playing fast and loose, we evaluate this range before taking the limit, where \( \delta(\epsilon) = 0 \) for \( \epsilon > 0 \).  We are left with
+\begin{equation}\label{eqn:helmholtzGreens:1560}
+\lim_{\epsilon \rightarrow 0} \lr{ \spacegrad^2 + k^2 }\int_{\Abs{x'- x} \le \epsilon} e^{j k \Abs{x - x'}} V(x') dx'
+=
+2 j k V(x),
+\end{equation}
+provided \( V \) and its first and second derivatives are continuous.
+
+Under those constraints, the implication is that one valid Green's function for the 1D Helmholtz operator is
+\begin{equation}\label{eqn:helmholtzGreens:1580}
+G(r) = -\frac{j}{2k} e^{j k \Abs{r} }.
+\end{equation}
+The \( \sgn(r) \) scale factor that was part of the Green's function that we derived using contour integration does not appear to be required.
+
+What happens if we retain the sign function factor?  Doing so, we have
+\begin{equation}\label{eqn:helmholtzGreens:1600}
+\begin{aligned}
+\lr{ \spacegrad^2 + k^2 }\int_{\Abs{x'- x} \le \epsilon} \sgn(x - x') e^{j k \Abs{x - x'}} V(x') dx'
+&=
+-\int_{-\epsilon}^\epsilon \sgn(r) e^{j k \Abs{r}} \lr{ k^2 + \frac{d^2}{dr^2} } V(x + r) dr \\
+&\quad
+-
+\evalrange{ V(x + r) \frac{d}{dr} \sgn(r) e^{j k \Abs{r}} }{-\epsilon}{\epsilon}
++
+\evalrange{ \sgn(r) e^{j k \Abs{r}} \frac{d}{dr} V(x+r) }{-\epsilon}{\epsilon}.
+\end{aligned}
+\end{equation}
+This time, we note that
+\begin{equation}\label{eqn:helmholtzGreens:1620}
+\int_{-\epsilon}^\epsilon \sgn(r) e^{j k \Abs{r}} dr = 0, \quad \forall \epsilon \ne 0,
+\end{equation}
+even without evaluating the limit.  However, we have problems with the other two terms.  The last term doesn't zero out as desired, instead
+\begin{equation}\label{eqn:helmholtzGreens:1640}
+\evalrange{ \sgn(r) e^{j k \Abs{r}} \frac{d}{dr} V(x+r) }{-\epsilon}{\epsilon} \rightarrow 2 V'(x).
+\end{equation}
+To evaluate the \( V(x) \) factor, we write
+\begin{equation}\label{eqn:helmholtzGreens:1660}
+\sgn(r) = \Theta(r) - \Theta(-r),
+\end{equation}
+so
+\begin{equation}\label{eqn:helmholtzGreens:1680}
+\begin{aligned}
+\sgn(r)'
+&= \delta(r) + \delta(-r) \\
+&= 2 \delta(r).
+\end{aligned}
+\end{equation}
+That means that
+\begin{equation}\label{eqn:helmholtzGreens:1700}
+\begin{aligned}
+\frac{d}{dr} \lr{ \sgn(r) e^{j k \Abs{r}} }
+&=
+2 \delta(r) e^{j k \Abs{r}} + j k \sgn(r) e^{j k \Abs{r}} \lr{ \sgn(r) + 2 r \delta(r) } \\
+&=
+e^{j k \Abs{r}} \lr{ 2 \delta(r) + j k \lr{ 1 + 2 r \sgn(r) \delta(r)} } \\
+&=
+j k e^{j k \Abs{r}},
+\end{aligned}
+\end{equation}
+for \( r \ne 0 \), so
+\begin{equation}\label{eqn:helmholtzGreens:1760}
+-
+\evalrange{ V(x + r) \frac{d}{dr} \sgn(r) e^{j k \Abs{r}} }{-\epsilon}{\epsilon}
+\rightarrow V(x) j k \lr{ e^{j k \epsilon} - e^{j k \epsilon} } = 0.
+\end{equation}
+
+All in, we are left with
+\begin{equation}\label{eqn:helmholtzGreens:1720}
+\lim_{\epsilon \rightarrow 0} \lr{ \spacegrad^2 + k^2 }\int_{\Abs{x'- x} \le \epsilon} \frac{(-j)}{2k} \sgn(x - x') e^{j k \Abs{x - x'}} V(x') dx'
+= -\frac{j}{k} V'(x),
+\end{equation}
+but for a Green's function, we expected just \( V(x) \).
+
+It seems that the sign factor in the contour integration result \cref{eqn:helmholtzGreens:300} is definitively wrong.  Instead, we want just
+\begin{equation}\label{eqn:helmholtzGreens:1740}
+\boxed{
+G(u) = -\frac{j}{2k} e^{j k \Abs{u}}.
+}
+\end{equation}
+
+Unfortunately, I don't see any errors in the original contour integration, so I'm at a loss where things went wrong.
+\subsection{1D Laplacian Green's function.}
 
 %}
 \EndArticle

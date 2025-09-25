@@ -42,9 +42,10 @@ G\lr{ \Bx, \Bx' } = \frac{\rcap}{4 \pi}.
 \end{equation}
 \item Gradient operator, \( \LL = \spacegrad \)
 %FIXME.
-\item Laplacian operator, \( \LL = \spacegrad^2 \), in 2D and 3D respectively
+\item Laplacian operator, \( \LL = \spacegrad^2 \), in 1D, 2D and 3D respectively
 \begin{equation}\label{eqn:deltaFunctions:20}
 \begin{aligned}
+G\lr{ \Bx, \Bx' } &= \frac{r}{2} \\
 G\lr{ \Bx, \Bx' } &= \frac{1}{2 \pi} \ln r \\
 G\lr{ \Bx, \Bx' } &= -\frac{1}{4 \pi r}.
 \end{aligned}
@@ -52,17 +53,16 @@ G\lr{ \Bx, \Bx' } &= -\frac{1}{4 \pi r}.
 \item Second order Helmholtz operator, \( \LL = \spacegrad^2 + k^2 \) for 1D, 2D and 3D respectively
 \begin{equation}\label{eqn:deltaFunctions:60}
 \begin{aligned}
-G\lr{ \Bx, \Bx' } &= -\frac{j \sgn\lr{ \Be_1 \cdot \lr{\Bx - \Bx'}}}{2k} e^{j k r} \\
+G\lr{ \Bx, \Bx' } &= -\frac{j}{2k} e^{j k r} \\
 G(\Bx, \Bx') &= -\frac{j}{4} H_0^{(1)}(k r) \\
 G\lr{ \Bx, \Bx' } &= -\frac{1}{4 \pi} \frac{e^{\pm j k r }}{r}.
 \end{aligned}
 \end{equation}
-FIXME.  Grok says the \( \sgn \) is wrong.  Review derivation.
 
-\item First order Helmholtz operator, \( \LL = \spacegrad + j k \), in 1D, 2D and 3D respectively
+\item First order Helmholtz operator, \( \LL = \spacegrad + j k \), in 2D and 3D respectively
 \begin{equation}\label{eqn:deltaFunctions:80}
 \begin{aligned}
-G\lr{ \Bx, \Bx' } &= \inv{2} \lr{ \Be_1 - 1 } \sgn\lr{ \Be_1 \cdot \lr{\Bx - \Bx'}} e^{j k r} \\
+%G\lr{ \Bx, \Bx' } &= \inv{2} \lr{ \Be_1 - 1 } \sgn\lr{ \Be_1 \cdot \lr{\Bx - \Bx'}} e^{j k r} \\
 G\lr{ \Bx, \Bx' } &= \frac{k}{4} \lr{ j \rcap H_1^{(1)}(k r) - H_0^{(1)}(k r) } \\
 G\lr{ \Bx, \Bx' } &= \frac{e^{-j k r}}{4 \pi r} \lr{ jk \lr{ 1 + \rcap } + \frac{\rcap}{r} }.
 \end{aligned}

@@ -747,6 +747,7 @@ Unfortunately, I don't see any errors in the original contour integration, so I'
 \subsection{1D Laplacian Green's function.}
 Having blundered our way to what appears to be the correct Green's function for the 1D Helmholtz operator, let's further validate that by deriving the Green's function for the 1D Laplacian.  We should also be able to verify that it has the correct delta function semantics.
 
+\subsubsection{The 1D Laplacian Green's function.}
 Expanding the Helmholtz Green's function in series around \( k \Abs{r} \) we have
 \begin{equation}\label{eqn:helmholtzGreens:1780}
 \begin{aligned}
@@ -766,6 +767,7 @@ G(r) = \frac{\Abs{r}}{2}.
 }
 \end{equation}
 
+\subsubsection{Observing the delta-function semantics of our Laplacian Green's function through convolution.}
 We can now attempt to validate that this has the desired delta function semantics, operating on the convolution with the Laplacian.  We are interested in evaluating
 \begin{equation}\label{eqn:helmholtzGreens:1840}
 \spacegrad^2 \int \frac{\Abs{x - x'}}{2} V(x') dx' = \int V(x + r) \frac{d^2}{dr^2} \frac{\Abs{r}}{2} dr.
@@ -830,6 +832,37 @@ In the limit we have
 \end{equation}
 
 If the test (or driving) function is continuous at \( x' = x \), then this is exactly the delta-function semantics that we expect of a Green's function.  It's interesting that this check provides us with precise semantics for the Green's function for discontinuous functions too.
+\subsubsection{Extracting the delta-function semantics of the Laplacian Green's function directly.}
+There's a more direct, but less satisfying way to do this same computation.  We can compute \( d^2 G(r)/dr^2 \).  We need the trick
+\begin{equation}\label{eqn:helmholtzGreens:1940}
+\Abs{r} = r \Theta(r) - r \Theta(-r),
+\end{equation}
+and the identification \(\Theta'(r) = \delta(r) \).  We find
+\begin{equation}\label{eqn:helmholtzGreens:1960}
+\begin{aligned}
+\Abs{r}'
+&= \Theta(r) - \Theta(-r) + r \delta(r) - r (-1) \delta(-r) \\
+&= \Theta(r) - \Theta(-r) + 2 r \delta(r).
+\end{aligned}
+\end{equation}
+To give \( r \delta(r) \) meaning, we can apply it to a test function
+\begin{equation}\label{eqn:helmholtzGreens:1980}
+\int r \delta(r) f(r) dr = \evalbar{ r f(r) }{r = 0} = 0,
+\end{equation}
+so
+\begin{equation}\label{eqn:helmholtzGreens:2000}
+\Abs{r}' = \Theta(r) - \Theta(-r).
+\end{equation}
+Now we can take second derivatives
+\begin{equation}\label{eqn:helmholtzGreens:2020}
+\Abs{r}'' = \delta(r) + \delta(-r) = 2 \delta(r).
+\end{equation}
+This means that
+\begin{equation}\label{eqn:helmholtzGreens:2040}
+\boxed{
+\frac{d^2}{dr^2} \frac{\Abs{r}}{2} = \delta(r).
+}
+\end{equation}
 
 %}
 \EndArticle

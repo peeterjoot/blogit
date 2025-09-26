@@ -109,54 +109,54 @@ which requires that our Green's function \( G(\Bx, \Bx') \) has the functional f
 \section{Evaluating the Green's function in 1D.}
 For the one dimensional case, we want to evaluate
 \begin{equation}\label{eqn:helmholtzGreens:200}
-G(u) = -\inv{2 \pi} \int \inv{p^2 - k^2} e^{j p u} dp,
+G(r) = -\inv{2 \pi} \int \inv{p^2 - k^2} e^{j p r} dp,
 \end{equation}
 an integral which is unfortunately non-convergent.  Since we are dealing with delta functions, it is not surprising that we have convergence problems.  The technique used in the book is to displace the pole slightly by a small imaginary amount, and then take the limit.
 
 That is
 \begin{equation}\label{eqn:helmholtzGreens:220}
-G(u) = \lim_{\epsilon \rightarrow 0} G_\epsilon(u),
+G(r) = \lim_{\epsilon \rightarrow 0} G_\epsilon(r),
 \end{equation}
 where
 \begin{equation}\label{eqn:helmholtzGreens:240}
 \begin{aligned}
-G_\epsilon(u)
-&= -\inv{2 \pi} \int_{-\infty}^\infty \inv{p^2 - \lr{k + j \epsilon}^2} e^{j p u} dp \\
-&= -\inv{2 \pi} \int_{-\infty}^\infty \frac{e^{j p u}}{\lr{ p - k -j \epsilon}\lr{p + k + j \epsilon}} dp.
+G_\epsilon(r)
+&= -\inv{2 \pi} \int_{-\infty}^\infty \inv{p^2 - \lr{k + j \epsilon}^2} e^{j p r} dp \\
+&= -\inv{2 \pi} \int_{-\infty}^\infty \frac{e^{j p r}}{\lr{ p - k -j \epsilon}\lr{p + k + j \epsilon}} dp.
 \end{aligned}
 \end{equation}
-For \( u > 0 \) we can use an upper half plane infinite semicircular contour integral, as illustrated in \cref{fig:greensHelmholtz:greensHelmholtzFig1}, where we
+For \( r > 0 \) we can use an upper half plane infinite semicircular contour integral, as illustrated in \cref{fig:greensHelmholtz:greensHelmholtzFig1}, where we
 let \( R \rightarrow \infty \).
-\imageFigure{../figures/blogit/greensHelmholtzFig1}{Contour for \( u > 0 \).}{fig:greensHelmholtz:greensHelmholtzFig1}{0.2}
+\imageFigure{../figures/blogit/greensHelmholtzFig1}{Contour for \( r > 0 \).}{fig:greensHelmholtz:greensHelmholtzFig1}{0.2}
 
 The residue calculation for that contour gives
 \begin{equation}\label{eqn:helmholtzGreens:260}
 \begin{aligned}
-G_\epsilon(u)
-&= -\frac{2 \pi j}{2 \pi} \evalbar{\frac{e^{j p u}}{p + k + j \epsilon} }{p = k + j \epsilon} \\
-&= -j \frac{e^{j \lr{k + j \epsilon} u}}{2\lr{k + j \epsilon}} \\
-&= -j \frac{e^{j k u} e^{-\epsilon u}}{2\lr{k + j \epsilon}} \\
-&\rightarrow -\frac{j}{2k} e^{j k u}.
+G_\epsilon(r)
+&= -\frac{2 \pi j}{2 \pi} \evalbar{\frac{e^{j p r}}{p + k + j \epsilon} }{p = k + j \epsilon} \\
+&= -j \frac{e^{j \lr{k + j \epsilon} r}}{2\lr{k + j \epsilon}} \\
+&= -j \frac{e^{j k r} e^{-\epsilon r}}{2\lr{k + j \epsilon}} \\
+&\rightarrow -\frac{j}{2k} e^{j k r}.
 \end{aligned}
 \end{equation}
 
-For \( u < 0 \) we can use a lower half plane infinite semicircular contour, as illustrated in \cref{fig:greensHelmholtz:greensHelmholtzFig2}.
-\imageFigure{../figures/blogit/greensHelmholtzFig2}{Contour for \( u < 0 \).}{fig:greensHelmholtz:greensHelmholtzFig2}{0.3}
+For \( r < 0 \) we can use a lower half plane infinite semicircular contour, as illustrated in \cref{fig:greensHelmholtz:greensHelmholtzFig2}.
+\imageFigure{../figures/blogit/greensHelmholtzFig2}{Contour for \( r < 0 \).}{fig:greensHelmholtz:greensHelmholtzFig2}{0.3}
 For this contour, we find
 \begin{equation}\label{eqn:helmholtzGreens:280}
 \begin{aligned}
-G_\epsilon(u)
-&= -\frac{2 \pi j}{2 \pi} \evalbar{\frac{e^{j p u}}{p - k - j \epsilon} }{p = -k - j \epsilon} \\
-&= j \frac{e^{-j \lr{k + j \epsilon} u}}{2\lr{k + j \epsilon}} \\
-&= j \frac{e^{-j k u} e^{\epsilon u}}{2\lr{k + j \epsilon}} \\
-&\rightarrow \frac{j}{2k} e^{-j k u} \\
-&= \frac{j}{2k} e^{j k \Abs{u}}.
+G_\epsilon(r)
+&= -\frac{2 \pi j}{2 \pi} \evalbar{\frac{e^{j p r}}{p - k - j \epsilon} }{p = -k - j \epsilon} \\
+&= j \frac{e^{-j \lr{k + j \epsilon} r}}{2\lr{k + j \epsilon}} \\
+&= j \frac{e^{-j k r} e^{\epsilon r}}{2\lr{k + j \epsilon}} \\
+&\rightarrow \frac{j}{2k} e^{-j k r} \\
+&= \frac{j}{2k} e^{j k \Abs{r}}.
 \end{aligned}
 \end{equation}
 We find that our Green's function is
 \begin{equation}\label{eqn:helmholtzGreens:300}
 \boxed{
-G(u) = -\frac{j \sgn(u)}{2k} e^{j k \Abs{u}}.
+G(r) = -\frac{j \sgn(r)}{2k} e^{j k \Abs{r}}.
 }
 \end{equation}
 
@@ -238,7 +238,7 @@ It's pretty cool that we can completely solve the 1D forced wave equation, for a
 \subsection{More specific boundary constraints.}
 Just as we have the freedom to add any homogeneous solution to our specific convolution based solution, we may do so for the Green's function itself.  Our process above, implicitly assumes that we are interested in infinite boundary value constraints.  Should we wish to impose different boundary constraints, we can form
 \begin{equation}\label{eqn:helmholtzGreens:420}
-G(u) = A e^{ j k u} + B e^{-j k u} - \frac{j \sgn(u)}{2k} e^{j k \Abs{u}},
+G(r) = A e^{ j k r} + B e^{-j k r} - \frac{j \sgn(r)}{2k} e^{j k \Abs{r}},
 \end{equation}
 but must then use the boundary value constraints to determine the desired form of the Green's function, using the two degrees of freedom to do so.  That's also an interesting topic, and would be good to also visit in a followup post.
 \section{3D Green's function.}
@@ -739,12 +739,97 @@ but for a Green's function, we expected just \( V(x) \).
 It seems that the sign factor in the contour integration result \cref{eqn:helmholtzGreens:300} is definitively wrong.  Instead, we want just
 \begin{equation}\label{eqn:helmholtzGreens:1740}
 \boxed{
-G(u) = -\frac{j}{2k} e^{j k \Abs{u}}.
+G(r) = -\frac{j}{2k} e^{j k \Abs{r}}.
 }
 \end{equation}
 
 Unfortunately, I don't see any errors in the original contour integration, so I'm at a loss where things went wrong.
 \subsection{1D Laplacian Green's function.}
+Having blundered our way to what appears to be the correct Green's function for the 1D Helmholtz operator, let's further validate that by deriving the Green's function for the 1D Laplacian.  We should also be able to verify that it has the correct delta function semantics.
+
+Expanding the Helmholtz Green's function in series around \( k \Abs{r} \) we have
+\begin{equation}\label{eqn:helmholtzGreens:1780}
+\begin{aligned}
+G(r)
+&= -\frac{j}{2k} \lr{ 1 + j k \Abs{r} + O((k \Abs{r})^2) } \\
+&= -\frac{j}{2} \lr{ \inv{k} + j \Abs{r} + \inv{k} O((k \Abs{r})^2) } \\
+\end{aligned}
+\end{equation}
+This means that to first order in \( k \), we have
+\begin{equation}\label{eqn:helmholtzGreens:1800}
+G(r) + \frac{j}{2k} = \frac{\Abs{r}}{2}.
+\end{equation}
+As before, we are free to add constant terms to the Green's function for the Laplacian, and we conclude that the 1D Green's function for the Laplacian is
+\begin{equation}\label{eqn:helmholtzGreens:1820}
+\boxed{
+G(r) = \frac{\Abs{r}}{2}.
+}
+\end{equation}
+
+We can now attempt to validate that this has the desired delta function semantics, operating on the convolution with the Laplacian.  We are interested in evaluating
+\begin{equation}\label{eqn:helmholtzGreens:1840}
+\spacegrad^2 \int \frac{\Abs{x - x'}}{2} V(x') dx' = \int V(x + r) \frac{d^2}{dr^2} \frac{\Abs{r}}{2} dr.
+\end{equation}
+If all goes well, this should evaluate to \( V(x) \), indicating that \( \spacegrad^2 \Abs{x - x'}/2 = \delta(x - x') \).  As a first step, we expect \( \spacegrad^2 G = 0 \), for \( x \ne x' \).  Consider first \( r > 0 \), where
+\begin{equation}\label{eqn:helmholtzGreens:1860}
+\frac{d}{dr} \Abs{r}
+=
+\frac{d}{dr} r
+= 1,
+\end{equation}
+and for \( r < 0 \) where
+\begin{equation}\label{eqn:helmholtzGreens:1880}
+\frac{d}{dr} \Abs{r}
+=
+\frac{d}{dr} (-r)
+= -1.
+\end{equation}
+This means that, away from the origin \( d\Abs{r}/dr = \sgn(r) \), and \( d^2 \Abs{r}/dr^2 = 0\).  We can conclude that, for some non-zero positive epsilon that we will eventually let approach zero, we have
+\begin{equation}\label{eqn:helmholtzGreens:1900}
+\begin{aligned}
+\spacegrad^2 \int \frac{\Abs{x - x'}}{2} V(x') dx'
+&= \int_{-\epsilon}^\epsilon V(x + r) \frac{d^2}{dr^2} \frac{\Abs{r}}{2} dr \\
+&= \int_{-\epsilon}^\epsilon \lr{
+    \frac{d}{dr} \lr{ V(x + r) \frac{d}{dr} \frac{\Abs{r}}{2} }
+    - \frac{dV(x + r)}{dr} \frac{d}{dr} \frac{\Abs{r}}{2}
+}
+dr \\
+&=
+\evalrange{ V(x + r) \frac{d}{dr} \frac{\Abs{r}}{2} }{-\epsilon}{\epsilon}
+- \int_{-\epsilon}^\epsilon
+\lr{
+\frac{d}{dr} \lr{ \frac{dV(x + r)}{dr} \frac{\Abs{r}}{2} }
+-
+\frac{d^2V(x + r)}{dr^2} \frac{\Abs{r}}{2}
+} dr \\
+&=
+\evalrange{ V(x + r) \frac{d}{dr} \frac{\Abs{r}}{2} }{-\epsilon}{\epsilon}
+-\evalrange{ \frac{dV(x + r)}{dr} \frac{\Abs{r}}{2} }{-\epsilon}{\epsilon}
++
+\int_{-\epsilon}^\epsilon \frac{d^2V(x + r)}{dr^2} \frac{\Abs{r}}{2} dr \\
+&=
+\inv{2} \lr{ V(x + \epsilon) + V(x - \epsilon) } \\
+&-\quad \frac{\epsilon}{2}\lr{
+    \frac{dV(x + \epsilon)}{dr}
+    -
+    \frac{dV(x - \epsilon)}{dr}
+} \\
+&+
+\frac{\epsilon^2}{2} \lr{
+    \frac{d^2V(x + \epsilon)}{dr^2}
+    +
+    \frac{d^2V(x + \epsilon)}{dr^2}
+}.
+\end{aligned}
+\end{equation}
+In the limit we have
+\begin{equation}\label{eqn:helmholtzGreens:1920}
+\boxed{
+\spacegrad^2 \int G(x, x') V(x') dx' = \inv{2} \lr{ V(x^+) + V(x^-) }.
+}
+\end{equation}
+
+If the test (or driving) function is continuous at \( x' = x \), then this is exactly the delta-function semantics that we expect of a Green's function.  It's interesting that this check provides us with precise semantics for the Green's function for discontinuous functions too.
 
 %}
 \EndArticle

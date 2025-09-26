@@ -36,12 +36,18 @@ Here are the Green's function representations for a few linear differential oper
 
 Let \( \Br = \Bx - \Bx' \), \( r = \Norm{\Br} \), \( \rcap = \Br/r \), and \( \tau = t - t' \), then
 \begin{enumerate}
-\item Divergence operator, \( \LL \Bf = \spacegrad \cdot \Bf \)
+\item Divergence operator (3D), \( \LL \Bf = \spacegrad \cdot \Bf \)
 \begin{equation}\label{eqn:deltaFunctions:40}
 G\lr{ \Bx, \Bx' } = \frac{\rcap}{4 \pi}.
 \end{equation}
-\item Gradient operator, \( \LL = \spacegrad \)
-%FIXME.
+\item Gradient operator, \( \LL = \spacegrad \), in 1D, 2D and 3D respectively
+\begin{equation}\label{eqn:deltaFunctions:25}
+\begin{aligned}
+G\lr{ \Bx, \Bx' } &= \frac{\rcap}{2} \\
+G\lr{ \Bx, \Bx' } &= \frac{1}{2 \pi} \frac{\rcap}{r} \\
+G\lr{ \Bx, \Bx' } &= \inv{4 \pi} \frac{\rcap}{r^2}.
+\end{aligned}
+\end{equation}
 \item Laplacian operator, \( \LL = \spacegrad^2 \), in 1D, 2D and 3D respectively
 \begin{equation}\label{eqn:deltaFunctions:20}
 \begin{aligned}
@@ -59,16 +65,16 @@ G\lr{ \Bx, \Bx' } &= -\frac{1}{4 \pi} \frac{e^{\pm j k r }}{r}.
 \end{aligned}
 \end{equation}
 
-\item First order Helmholtz operator, \( \LL = \spacegrad + j k \), in 2D and 3D respectively
+\item First order Helmholtz operator, \( \LL = \spacegrad + j k \), in 1D, 2D and 3D respectively
 \begin{equation}\label{eqn:deltaFunctions:80}
 \begin{aligned}
-%G\lr{ \Bx, \Bx' } &= \inv{2} \lr{ \Be_1 - 1 } \sgn\lr{ \Be_1 \cdot \lr{\Bx - \Bx'}} e^{j k r} \\
+G\lr{ \Bx, \Bx' } &= \frac{j}{2} \lr{ \rcap - 1 } e^{j k r} \\
 G\lr{ \Bx, \Bx' } &= \frac{k}{4} \lr{ j \rcap H_1^{(1)}(k r) - H_0^{(1)}(k r) } \\
 G\lr{ \Bx, \Bx' } &= \frac{e^{-j k r}}{4 \pi r} \lr{ jk \lr{ 1 + \rcap } + \frac{\rcap}{r} }.
 \end{aligned}
 \end{equation}
 This is also the Green's function for a left acting operator \( G(\Bx, \Bx') \lr{ - \lspacegrad + j k } = \delta(\Bx - \Bx') \).
-\item Spacetime gradient, \( \LL = \spacegrad + (1/c) \partial_t \), satisfying \( \LL G(\Bx - \Bx', t - t') = \delta(\Bx - \Bx') \delta(t - t') \)
+\item Spacetime gradient (3+1 D), \( \LL = \spacegrad + (1/c) \partial_t \), satisfying \( \LL G(\Bx - \Bx', t - t') = \delta(\Bx - \Bx') \delta(t - t') \)
 \begin{equation}\label{eqn:deltaFunctions:100}
 G( \Br, \tau ) = \inv{4 \pi} \lr{ \frac{\rcap}{r^2} + \inv{c r} \lr{ 1 + \rcap } } \delta\lr{\tau - \frac{r}{c} } \frac{d}{dt'}.
 \end{equation}

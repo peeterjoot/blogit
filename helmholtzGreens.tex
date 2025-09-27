@@ -26,22 +26,22 @@
 
 \beginArtNoToc
 
-\generatetitle{Green's functions for the Helmholtz (wave equation) operator in various dimensions}
+\generatetitle{Green's functions for the Helmholtz (wave equation) operator, and Laplacian, in low dimensions}
 %\chapter{Green's functions for the Helmholtz (wave equation) operator in various dimensions}
 %\label{chap:helmholtzGreens}
-My favorite book on mathematical physics derives the Green's function for the 3D Helmholtz (wave equation) operator.  I tried to derive the 2D Green's function the same way and had trouble.  In this series of blog posts, I'll attempt that again, but will start with the easier 1D and 3D cases.  Presuming that I don't hit any conceptual troubles trying both of those from first principles, I'll attempt the seemingly trickier 2D case again.
+My favorite book on mathematical physics derives the Green's function for the 3D Helmholtz (wave equation) operator.  My initial attempts to do a similar derivation for the 2D Green's function gave me trouble (trouble that was resolved by enlisting the help of Bessel functions.)  Here I'll derive the 1D, 2D and 3D Green's functions for the Helmholtz equation, and for 1D and 2D also derive the Green's functions for the Laplacian (which doesn't follow so obviously from the Helmholtz Green's functions as it does in the 3D case.)
 
 \section{Motivation and background.}
 We seek a solution to non-homogeneous Helmholtz equation
 \begin{equation}\label{eqn:helmholtzGreens:20}
-0 = \lr{ \spacegrad^2 + k^2 } U(\Bx) - V(\Bx).
+\lr{ \spacegrad^2 + k^2 } U(\Bx) = V(\Bx).
 \end{equation}
 
 This is a problem that can be solved using Fourier transform techniques.  Following \citep{byron1992mca}, let's write our transform pair in the symmetrical form:
 \begin{equation}\label{eqn:helmholtzGreens:40}
 \begin{aligned}
-F(\Bx) &= \lr{\inv{\sqrt{2 \pi}}}^N \int \hat{F}(\Bp) e^{j \Bp \cdot \Bx} d\Bp \\
-\hat{F}(\Bp) &= \lr{\inv{\sqrt{2 \pi}}}^N \int F(\Bx) e^{-j \Bp \cdot \Bx} d\Bx.
+F(x) &= \frac{1}{\sqrt{2 \pi}} \int \hat{F}(p) e^{j p x} dp \\
+\hat{F}(p) &= \frac{1}{\sqrt{2 \pi}} \int F(x) e^{-j p x} dx.
 \end{aligned}
 \end{equation}
 
@@ -106,7 +106,9 @@ which requires that our Green's function \( G(\Bx, \Bx') \) has the functional f
 \begin{equation}\label{eqn:helmholtzGreens:180}
 \lr{ \spacegrad^2 + k^2 } G(\Bx, \Bx') = \delta(\Bx - \Bx').
 \end{equation}
-\section{Evaluating the Green's function in 1D.}
+
+\section{Helmholtz Green's function in 1D.}
+\subsection{Evaluating the integral.}
 For the one dimensional case, we want to evaluate
 \begin{equation}\label{eqn:helmholtzGreens:200}
 G(r) = -\inv{2 \pi} \int \inv{p^2 - k^2} e^{j p r} dp,
@@ -125,15 +127,15 @@ G_\epsilon(r)
 &= -\inv{2 \pi} \int_{-\infty}^\infty \frac{e^{j p r}}{\lr{ p - k -j \epsilon}\lr{p + k + j \epsilon}} dp.
 \end{aligned}
 \end{equation}
-For \( r > 0 \) we can use an upper half plane infinite semicircular contour integral, as illustrated in \cref{fig:greensHelmholtz:greensHelmholtzFig1}, where we
+For \( r > 0 \) we can use an upper half plane infinite semicircular contour integral, as illustrated in \cref{fig:greensHelmholtz:greensHelmholtzFig1a}, where we
 let \( R \rightarrow \infty \).
-\imageFigure{../figures/blogit/greensHelmholtzFig1}{Contour for \( r > 0 \).}{fig:greensHelmholtz:greensHelmholtzFig1}{0.2}
+\imageFigure{../figures/blogit/greensHelmholtzFig1a}{Contour for \( r > 0 \).}{fig:greensHelmholtz:greensHelmholtzFig1a}{0.2}
 
 The residue calculation for that contour gives
 \begin{equation}\label{eqn:helmholtzGreens:260}
 \begin{aligned}
 G_\epsilon(r)
-&= -\frac{2 \pi j}{2 \pi} \evalbar{\frac{e^{j p r}}{p + k + j \epsilon} }{p = k + j \epsilon} \\
+&= -\frac{(+2 \pi j)}{2 \pi} \evalbar{\frac{e^{j p r}}{p + k + j \epsilon} }{p = k + j \epsilon} \\
 &= -j \frac{e^{j \lr{k + j \epsilon} r}}{2\lr{k + j \epsilon}} \\
 &= -j \frac{e^{j k r} e^{-\epsilon r}}{2\lr{k + j \epsilon}} \\
 &\rightarrow -\frac{j}{2k} e^{j k r}.
@@ -146,55 +148,55 @@ For this contour, we find
 \begin{equation}\label{eqn:helmholtzGreens:280}
 \begin{aligned}
 G_\epsilon(r)
-&= -\frac{2 \pi j}{2 \pi} \evalbar{\frac{e^{j p r}}{p - k - j \epsilon} }{p = -k - j \epsilon} \\
-&= j \frac{e^{-j \lr{k + j \epsilon} r}}{2\lr{k + j \epsilon}} \\
-&= j \frac{e^{-j k r} e^{\epsilon r}}{2\lr{k + j \epsilon}} \\
-&\rightarrow \frac{j}{2k} e^{-j k r} \\
-&= \frac{j}{2k} e^{j k \Abs{r}}.
+&= -\frac{2 \pi j}{(-2 \pi)} \evalbar{\frac{e^{j p r}}{p - k - j \epsilon} }{p = -k - j \epsilon} \\
+&= -j \frac{e^{-j \lr{k + j \epsilon} r}}{2\lr{k + j \epsilon}} \\
+&= -j \frac{e^{-j k r} e^{\epsilon r}}{2\lr{k + j \epsilon}} \\
+&\rightarrow -\frac{j}{2k} e^{-j k r}.
+%\\
+%&= -\frac{j}{2k} e^{j k \Abs{r}}.
 \end{aligned}
 \end{equation}
-We find that our Green's function is
+Combining both results, our Green's function, after a positive pole displacment \( \epsilon > 0 \), is
 \begin{equation}\label{eqn:helmholtzGreens:300}
+G(r) = \frac{1}{2 j k} e^{j k \Abs{r}}.
+\end{equation}
+
+Similarly, should we pick \( \epsilon < 0 \), the same sort of calculation yields an incoming wave solution
+\begin{equation}\label{eqn:helmholtzGreens:2240}
+G(r) = -\frac{1}{2 j k} e^{-j k \Abs{r}}.
+\end{equation}
+
+Allowing for either, we have Green's functions for both the incoming and outgoing wave cases
+\begin{equation}\label{eqn:helmholtzGreens:2260}
 \boxed{
-G(r) = -\frac{j \sgn(r)}{2k} e^{j k \Abs{r}}.
+G_{\pm}(x - x') = \pm \frac{1}{2 j k} e^{ \pm j k \Abs{x - x'}}.
 }
 \end{equation}
 
-Let's plug this into the convolution integral to see the form of the general solution
-\begin{equation}\label{eqn:helmholtzGreens:320}
-U(x) = -\frac{j}{2k} \int_{-\infty}^\infty \sgn(x - x') e^{j k \Abs{x - x'}} V(x') dx'.
+With two Green's functions, we can also make a linear combination.  Specifically
+\begin{equation}\label{eqn:helmholtzGreens:2280}
+\begin{aligned}
+G(r)
+&= \inv{2}\lr{ G_{+}(r) + G_{-}(r) } \\
+&= \inv{4 j k}\lr{ e^{ j k \Abs{r}} - e^{ - j k \Abs{r}} } \\
+&= \inv{2 k} \sin\lr{ k \Abs{r} }
+\end{aligned}
 \end{equation}
-We want to break this integral into two regions
-\begin{equation}\label{eqn:helmholtzGreens:340}
-\int_{-\infty}^\infty = \int_{-\infty}^x + \int_x^\infty,
-\end{equation}
-separating the integral into regions where \( x > x' \) and \( x < x' \) respectively.  That is
-\begin{equation}\label{eqn:helmholtzGreens:360}
-U(x) =
--\frac{j}{2k} \int_{-\infty}^x e^{j k \lr{x - x'}} V(x') dx'
-+\frac{j}{2k} \int_x^\infty e^{-j k \lr{x - x'}} V(x') dx'.
-\end{equation}
-This isn't the most general solution, as we can also add any solution to the homogeneous Helmholtz equation.  That is
+
+Let's plug this into the convolution integral, also adding solutions to the homogeneous Helmholtz equation, to find the general solution
 \begin{equation}\label{eqn:helmholtzGreens:400}
-U(x) = A e^{j k x} + B e^{-j k x} - \frac{j}{2k} \int_{-\infty}^x e^{j k \lr{x - x'}} V(x') dx'
-+\frac{j}{2k} \int_x^\infty e^{-j k \lr{x - x'}} V(x') dx'.
+U(x) = A e^{j k x} + B e^{-j k x}
++ \inv{2k} \int_{-\infty}^0 \sin( k\Abs{r} ) V(x + r) dr
++ \inv{2k} \int_{0}^\infty \sin( k\Abs{r} ) V(x + r) dr.
 \end{equation}
+Here the convolution kernel has been split a causal part, where the past values of \( V \) contribute, and the acausal parts, where ``future'' values of \( V \) contribute.
 
-The real and imaginary parts of this equation must also be independent solutions.  For example, taking the real parts, we find the following general solution
-\begin{equation}\label{eqn:helmholtzGreens:380}
-U(x) =
-A' \cos\lr{ k x } +
-B' \sin\lr{ k x }
-+\inv{2} \int_{-\infty}^x \frac{\sin\lr{k \lr{x - x'}}}{k} V(x') dx'
--\inv{2} \int_x^\infty \frac{\sin\lr{k \lr{x - x'}}}{k} V(x') dx'.
-\end{equation}
-
-\subsection{A strictly causal solution.}
-It is interesting that the specific solution above has equal causal and acausal contributions.  Such a solution (outside of QFT) is generally undesirable.  We can construct a specific solution that is either causal or acausal by picking just one of the integrals above, instead of averaging.  For example, let
+\subsubsection{A strictly causal solution.}
+It is interesting that the specific solution above has equal causal and acausal contributions.  Such a solution (outside of QFT) is generally undesirable.  Suppose that instead of this average of causal and acausal contributions, we try just the causal part (times two).  Will this be a solution?
 \begin{equation}\label{eqn:helmholtzGreens:440}
 f(x) = \int_{-\infty}^x \frac{\sin\lr{k \lr{x - x'}}}{k} V(x') dx'.
 \end{equation}
-We can verify that this is a specific solution to our equation using the identity
+Let's test if this is a specific solution.  We start with the identity
 \begin{equation}\label{eqn:helmholtzGreens:460}
 \frac{d}{dx} \int_a^x g(x, x') dx'
 =
@@ -229,279 +231,21 @@ U(x) =
 A' \cos\lr{ k x } +
 B' \sin\lr{ k x }
 +\alpha \int_{-\infty}^x \frac{\sin\lr{k \lr{x - x'}}}{k} V(x') dx'
--(1-\alpha)\int_x^\infty \frac{\sin\lr{k \lr{x - x'}}}{k} V(x') dx',
++(1-\alpha)\int_x^\infty \frac{\sin\lr{k \lr{x - x'}}}{k} V(x') dx',
 \end{equation}
 with \( \alpha \in [0,1] \).
 
 It's pretty cool that we can completely solve the 1D forced wave equation, for any forcing function, from first principles.  Yes, I took liberties that would make a mathematician cringe, but we are telling a story, and leaving the footnotes to somebody else.
 
-\subsection{More specific boundary constraints.}
-Just as we have the freedom to add any homogeneous solution to our specific convolution based solution, we may do so for the Green's function itself.  Our process above, implicitly assumes that we are interested in infinite boundary value constraints.  Should we wish to impose different boundary constraints, we can form
-\begin{equation}\label{eqn:helmholtzGreens:420}
-G(r) = A e^{ j k r} + B e^{-j k r} - \frac{j \sgn(r)}{2k} e^{j k \Abs{r}},
-\end{equation}
-but must then use the boundary value constraints to determine the desired form of the Green's function, using the two degrees of freedom to do so.  That's also an interesting topic, and would be good to also visit in a followup post.
-\section{3D Green's function.}
-The 3D Green's function that we wish to try to evaluate is
-\begin{equation}\label{eqn:helmholtzGreens:540}
-G(\Br) = -\inv{(2 \pi)^3} \int \frac{e^{j \Bp \cdot \Br}}{\Bp^2 - k^2} d^3 p.
-\end{equation}
-We will have to displace the pole again, but we will get to that in a bit.  First let's make a spherical change of variables to evaluate the integral, with
-\begin{equation}\label{eqn:helmholtzGreens:560}
-\begin{aligned}
-\Bp &= p \lr{ \sin\alpha \cos\phi, \sin\alpha \sin\phi, \cos\alpha } \\
-\Br &= \Abs{\Br} \Be_3.
-\end{aligned}
-\end{equation}
-This gives
-\begin{equation}\label{eqn:helmholtzGreens:580}
-G(\Br)
-= -\inv{(2 \pi)^3} \int_0^\infty p^2 dp \int_0^\pi \sin\alpha d\alpha \int_0^{2 \pi} d\phi \frac{e^{j p \Abs{\Br} \cos\alpha}}{p^2 - k^2}.
-\end{equation}
-Let \( t = \cos\alpha \), to find
-\begin{equation}\label{eqn:helmholtzGreens:600}
-\begin{aligned}
-G(\Br)
-&= -\inv{(2 \pi)^2} \int_0^\infty p^2 dp \int_1^{-1} (-dt) \frac{e^{j p \Abs{\Br} t}}{p^2 - k^2} \\
-&= \inv{(2 \pi)^2} \int_0^\infty p^2 dp \evalrange{\frac{e^{j p \Abs{\Br} t}}{\lr{p^2 - k^2} j p \Abs{\Br}}}{1}{-1} \\
-&= \inv{j (2 \pi)^2 \Abs{\Br}} \int_0^\infty p dp \frac{e^{-j p \Abs{\Br}} - e^{j p \Abs{\Br}} }{p^2 - k^2} \\
-&= -\inv{j (2 \pi)^2 \Abs{\Br}} \int_{-\infty}^\infty p dp \frac{e^{j p \Abs{\Br}} }{p^2 - k^2} \\
-&\sim -\inv{j (2 \pi)^2 \Abs{\Br}} \int_{-\infty}^\infty p dp \frac{e^{j p \Abs{\Br}} }{p^2 - \lr{k + j \epsilon}^2}.
-\end{aligned}
-\end{equation}
-In the last step, we've displaced the pole so that we can evaluate it using an infinite upper half plane semicircular contour, as illustrated in \cref{fig:greensHelmholtz:greensHelmholtzFig1a}.
-\imageTwoFigures{../figures/blogit/greensHelmholtzFig1a}{../figures/blogit/greensHelmholtzFig1b}
-{Contours for 3D Green's function evaluation}{fig:greensHelmholtz:greensHelmholtzFig1a}{scale=0.7}
-%\cref{fig:greensHelmholtz:greensHelmholtzFig1b}.
-Which pole we choose depends on the sign we pick for the ``small'' pole displacement \( \epsilon \).  For the \( \epsilon > 0 \) case, we find
-\begin{equation}\label{eqn:helmholtzGreens:620}
-\begin{aligned}
-G(\Br)
-&= -\inv{j (2 \pi)^2 \Abs{\Br}} \int_{-\infty}^\infty p dp \frac{e^{j p \Abs{\Br}} }{\lr{p - (k + j \epsilon)}\lr{p - (-k - j \epsilon)}} \\
-&= -\frac{2 \pi j}{j (2 \pi)^2 \Abs{\Br}} \evalbar{\frac{p e^{j p \Abs{\Br}} }{p + k + j \epsilon}}{p = k + j \epsilon} \\
-&= -\frac{1}{2 \pi \Abs{\Br}} (k + j \epsilon) \frac{e^{j (k + j \epsilon) \Abs{\Br}} }{2 (k + j \epsilon)} \\
-&= -\frac{1}{4 \pi \Abs{\Br}} e^{j k \Abs{\Br}} e^{-\epsilon \Abs{\Br}}  \\
-&\rightarrow -\frac{e^{j k \Abs{\Br}} }{4 \pi \Abs{\Br}}.
-\end{aligned}
-\end{equation}
-whereas for \( \epsilon < 0 \), we have
-\begin{equation}\label{eqn:helmholtzGreens:640}
-\begin{aligned}
-G(\Br)
-&= -\inv{j (2 \pi)^2 \Abs{\Br}} \int_{-\infty}^\infty p dp \frac{e^{j p \Abs{\Br}} }{\lr{p - (k + j \epsilon)}\lr{p - (-k - j \epsilon)}} \\
-&= -\frac{2 \pi j}{j (2 \pi)^2 \Abs{\Br}} \evalbar{\frac{p e^{j p \Abs{\Br}} }{p - k - j \epsilon}}{p = -k - j \epsilon} \\
-&= -\frac{1}{2 \pi \Abs{\Br}} (-k - j \epsilon) \frac{e^{j (-k - j \epsilon) \Abs{\Br}} }{2 (-k - j \epsilon)} \\
-&= -\frac{1}{4 \pi \Abs{\Br}} e^{-j k \Abs{\Br}} e^{\epsilon \Abs{\Br}}  \\
-&\rightarrow -\frac{e^{-j k \Abs{\Br}} }{4 \pi \Abs{\Br}}.
-\end{aligned}
-\end{equation}
+%\subsubsection{More specific boundary constraints.}
+%Just as we have the freedom to add any homogeneous solution to our specific convolution based solution, we may do so for the Green's function itself.  Our process above, implicitly assumes that we are interested in infinite boundary value constraints.  Should we wish to impose different boundary constraints, we can form
+%\begin{equation}\label{eqn:helmholtzGreens:420}
+%G(r) = A e^{ j k r} + B e^{-j k r} - \frac{j \sgn(r)}{2k} e^{j k \Abs{r}},
+%\end{equation}
+%but must then use the boundary value constraints to determine the desired form of the Green's function, using the two degrees of freedom to do so.  That's also an interesting topic, and would be good to also visit in a followup post.
 
-The Green's function has the structure of either an outgoing or incoming spherical wave, with inverse radial amplitude:
-\begin{equation}\label{eqn:helmholtzGreens:660}
-\boxed{
-G(\Bx, \Bx') = -\frac{e^{\pm j k \Abs{\Br}} }{4 \pi \Abs{\Br}}.
-}
-\end{equation}
-\section{2D Green's function.}
-Okay, now let's do the 2D Green's function evaluation.  Our starting place is
-\begin{equation}\label{eqn:helmholtzGreens:680}
-G(\Br) = -\inv{(2 \pi)^2} \int \frac{e^{j \Bp \cdot \Br}}{\Bp^2 - k^2} d^2 p.
-\end{equation}
-With a change of variables to polar coordinates, letting
-\begin{equation}\label{eqn:helmholtzGreens:700}
-\begin{aligned}
-\Bp &= p \lr{ \cos\phi, \sin\phi } \\
-\Br &= \Abs{\Br} \Be_2,
-\end{aligned}
-\end{equation}
-we can make the integral explicit
-\begin{equation}\label{eqn:helmholtzGreens:720}
-G(\Br) = -\inv{(2 \pi)^2} \int_0^\infty \frac{p dp}{p^2 - k^2} \int_0^{2 \pi} d\phi e^{j p \Abs{\Br} \sin\phi}.
-\end{equation}
-Unlike the 3D case, where the angular dependence could be trivially evaluated, we are no longer so lucky.  What on earth can we do with the \( \phi \) integral?  Just like \href{https://youtu.be/mm-4PltMB2A}{Hilter's lament about ``undoable integrals in Jackson''}, we are faced with the same enemy. As it turns out, due to the cylindrical symmetry of the problem, we are also staring down the gun of Bessel functions.  Both Mathematica and Grok point out that we can evaluate integrals of this form, like so:
-\begin{equation}\label{eqn:helmholtzGreens:740}
-\int_0^{2 \pi} d\phi e^{j a \sin\phi} = 2 \pi J_0(a).
-\end{equation}
-
-From \citep{byron1992mca} we have two representations of \( J_n \), a series representation and integral representation
-\begin{equation}\label{eqn:helmholtzGreens:760}
-J_n(z) = \sum_{m=0}^\infty \frac{(-1)^m (z/2)^{2m + n}}{(n + m)!m!} = \inv{\pi} \int_0^\pi \cos(n \theta - z \sin\theta) d\theta.
-\end{equation}
-
-In particular, this means that
-\begin{equation}\label{eqn:helmholtzGreens:800}
-J_0(z) = \sum_{m=0}^\infty \frac{(-1)^m (z/2)^{2m}}{(m!)^2} = J_0(z) = \inv{\pi} \int_0^\pi \cos(z \sin\theta) d\theta.
-\end{equation}
-This is a damped sine like function, as illustrated in \cref{fig:j0:j0Fig4}.
-\imageFigure{../figures/blogit/j0Fig4}{Bessel function of zeroth order.}{fig:j0:j0Fig4}{0.3}
-
-In \S 6.9, both of these are derived from a generating function representation of the Bessel functions, and one of the intermediate steps in that construction has
-\begin{equation}\label{eqn:helmholtzGreens:840}
-J_n(z) = \inv{2\pi} \int_{-\pi}^\pi e^{-j(n\theta - z \sin\theta)} d\theta,
-\end{equation}
-where the \( [-\pi, \pi] \) range was the result of a contour integration using a unit circle parameterization, which could have also used \( [0, 2 \pi] \).  That means, sure enough, that we have
-\begin{equation}\label{eqn:helmholtzGreens:860}
-J_0(z) = \inv{2\pi} \int_{0}^{2\pi} e^{j z \sin\theta} d\theta,
-\end{equation}
-as claimed by both Grok and Mathematica.
-
-This means that the evaluation of the Green's function is now reduced to the limit of one final integral
-\begin{equation}\label{eqn:helmholtzGreens:880}
-G(\Br) = -\inv{2 \pi} \int_0^\infty \frac{p J_0(p \Abs{\Br} ) dp}{p^2 - \lr{k + j \epsilon}^2},
-\end{equation}
-where we've also displaced the problematic pole by a small imaginary amount as before.  Grok incorrectly claimed that this was an even integral, and then argued that the end result is a Hankel function (that may be the case, but it's reasoning to get there was clearly wrong.) Mathematica, on the other hand, can evaluate this integral
-\begin{equation}\label{eqn:helmholtzGreens:900}
-G(\Br) = -\inv{2 \pi} K_0\lr{\frac{\Abs{\Br}}{\sqrt{\frac{1}{(\epsilon - j k)^2}}}}, \epsilon \neq 0.
-\end{equation}
-It's not clear to me why Mathematica writes the argument as 1 over a reciprocal root.  Perhaps that has something to do with the branch cut that Mathematica uses for it's square root function?  If I plug in representative numeric values, it simplifies in the expected way, as illustrated in \cref{fig:MathematicaWeirdArgument:MathematicaWeirdArgumentFig5}.
-\imageFigure{../figures/blogit/MathematicaWeirdArgumentFig5}{Mathematica weird Bessel argument.}{fig:MathematicaWeirdArgument:MathematicaWeirdArgumentFig5}{0.1}
-
-The take away appears to be that the limiting form of the 2D Green's function, for \( k > 0 \), is
-\begin{equation}\label{eqn:helmholtzGreens:920}
-G(\Bx, \Bx') = -\inv{2 \pi} K_0\lr{-j k \Abs{\Bx - \Bx'} }.
-\end{equation}
-A peek at \citep{abramowitz1964handbook} shows that \( K_0 \) can be expressed in terms of a Hankel function of the first kind (order 0) \( H_0^{(1)}(z) = J_0(z) + j Y_0(z) \), plotted in \cref{fig:hankelPlot:hankelPlotFig6}.
-\imageFigure{../figures/blogit/hankelPlotFig6}{Hankel function of the first kind (order 0).}{fig:hankelPlot:hankelPlotFig6}{0.3}
-
-For real positive \( \alpha \), we have
-\begin{equation}\label{eqn:helmholtzGreens:940}
-K_0(-j \alpha) = \frac{j\pi}{2} H_0^{(1)}(\alpha),
-\end{equation}
-so
-\begin{equation}\label{eqn:helmholtzGreens:960}
-\boxed{
-G(\Bx, \Bx') = -\frac{j}{4} H_0^{(1)}(k \Abs{\Bx - \Bx'}).
-}
-\end{equation}
-\section{A trilogy in four parts.  The 2D Laplacian Green's function.}
-I was questioning the correctness of the 1D and 2D Helmholtz Green's functions derived above, since they are both seemingly malformed for \( k \rightarrow 0 \).
-
-Let's try to carefully expand the 2D Green's function in the neighbourhood of \( k = 0 \) to validate that result, and as a side effect, obtain the Green's function for the 2D Laplacian.
-
-In \citep{abramowitz1964handbook}, \S 9.1.7, 9.1.8, we have for \( z \rightarrow 0 \)
-\begin{equation}\label{eqn:helmholtzGreens:980}
-\begin{aligned}
-J_\nu(z) &\sim \lr{\frac{z}{2}}^\nu/\Gamma(\nu+1) \\
-Y_0(z) &\sim \frac{2}{\pi} \ln z,
-\end{aligned}
-\end{equation}
-so for \( k \ll r \)
-\begin{equation}\label{eqn:helmholtzGreens:1000}
-H_0^{(1)}(k r) \sim 1 + \frac{2j}{\pi} \ln\lr{k r},
-\end{equation}
-and
-\begin{equation}\label{eqn:helmholtzGreens:1020}
-\begin{aligned}
-G(\Br)
-&\sim -\frac{j}{4} \lr{ 1 + \frac{j}{2 \pi} \ln\lr{k r} } \\
-&= -\frac{j}{4} + \frac{1}{2 \pi} \ln k + \frac{1}{2 \pi} \ln r.
-\end{aligned}
-\end{equation}
-Here is where we have to get sneaky.  Since we seek a Green's function for the Laplacian operator, we are free to add any solution \( f(x,y) \) that satisfies \( \spacegrad^2 f = 0 \).  Constants are clearly in that homogeneous solution space, so we may adjust this expansion of the Green's function, throwing away the leading constant imaginary term, and treating \( k \) as a small constant, the \( \ln k \) term.  That leaves us with
-\begin{equation}\label{eqn:helmholtzGreens:1040}\boxed{
-G(\Bx, \Bx') = \frac{1}{2 \pi} \ln \Abs{\Bx - \Bx'}.
-}
-\end{equation}
-
-\subsection{Verifying the 2D Laplacian Green's function.}
-Let's try to verify that this Green's function is correct, since we've had lots of opportunities to screw up signs (and more!)  We want to evaluate the Laplacian of the convolution and if all goes well, it should be \( V(\Bx) \).  That is
-\begin{equation}\label{eqn:helmholtzGreens:1060}
-\begin{aligned}
-\spacegrad^2 \int G(\Bx, \Bx') V(\Bx') d^2 \Bx'
-&= \inv{2 \pi} \int \spacegrad^2 \ln \Abs{\Bx - \Bx'} V(\Bx') d^2 \Bx' \\
-&= \inv{2 \pi}
-\int V(\Bx') \lr{\spacegrad'}^2 \ln \Abs{\Bx - \Bx'} d^2 \Bx' \\
-\end{aligned}
-\end{equation}
-We can verify that \( \lr{\spacegrad'}^2 \ln \Abs{\Bx - \Bx'} \) is zero whenever \( \Abs{\Bx - \Bx'} \ne 0 \).  A nice way of doing that is in polar coordinates.  Write
-\begin{equation}\label{eqn:helmholtzGreens:1160}
-\begin{aligned}
-\Br &= \Bx' - \Bx \\
-r &= \Abs{r} \\
-\end{aligned}
-\end{equation}
-and recall that
-\begin{equation}\label{eqn:helmholtzGreens:1180}
-\spacegrad^2 f = \inv{r} \PD{r}{} \lr{ r \PD{r}{f} } + \frac{\partial^2 f}{\partial \theta^2},
-\end{equation}
-but \( r \PD{r}{\ln r} = 1 \), and \( \ln r \) has no angular dependence.  That means that
-\begin{equation}\label{eqn:helmholtzGreens:1200}
-\spacegrad^2 \int G(\Bx, \Bx') V(\Bx') d^2 \Bx'
-= \inv{2 \pi} \int_{\Abs{\Bx - \Bx'} < \epsilon} V(\Bx') \lr{\spacegrad'}^2 \ln \Abs{\Bx - \Bx'} d^2 \Bx',
-\end{equation}
-where we let \( \epsilon \rightarrow 0 \).  Such a region is illustrated in \cref{fig:neighborhoodOfX:neighborhoodOfXFig7}.
-\imageFigure{../figures/blogit/neighborhoodOfXFig7}{Neighborhood \( \Abs{\Bx - \Bx'} < \epsilon \)}{fig:neighborhoodOfX:neighborhoodOfXFig7}{0.3}
-
-We can now apply Green's theorem, which for 2D is
-\begin{equation}\label{eqn:helmholtzGreens:1080}
-\int_A \lr{ u \spacegrad^2 v - v \spacegrad^2 u } dA = \int_{\partial A} \lr{ u \spacegrad v - v \spacegrad u } \cdot \ncap dS,
-\end{equation}
-or
-\begin{equation}\label{eqn:helmholtzGreens:1090}
-\int_A v \spacegrad^2 u \, dA = \int_A u \spacegrad^2 v \, dA -\int_{\partial A} \lr{ u \spacegrad v - v \spacegrad u } \cdot \ncap dS,
-\end{equation}
-With
-\begin{equation}\label{eqn:helmholtzGreens:1161}
-\begin{aligned}
-\rcap &= \Br/r = \ncap \\
-u &= \ln r \\
-v &= V(\Bx') \\
-dA &= r dr d\theta \\
-dS &= r d\theta,
-\end{aligned}
-\end{equation}
-we have
-\begin{equation}\label{eqn:helmholtzGreens:1100}
-\begin{aligned}
-\int V(\Bx') \lr{ \lr{\spacegrad'}^2 \ln \Abs{\Bx - \Bx'} } d^2 \Bx'
-&=
-\int_{r=0}^\epsilon r dr d\theta \ln r \lr{ \spacegrad'}^2 V(\Bx') \\
-&\quad-
-    \int_{\theta = 0}^{2 \pi}
-\epsilon d\theta
-\evalbar{
-\lr{
-    \ln \epsilon \spacegrad' V(\Bx') - V(\Bx') \spacegrad' \ln r
-}
-\cdot \rcap
-}
-{r = \epsilon}
-\end{aligned}
-\end{equation}
-We have \( r \ln r \), or \( \epsilon \ln \epsilon \) dependence in two of the integrand terms, and with \( r < \epsilon \), and \( \epsilon \ln \epsilon \rightarrow 0 \), in the limit, we are left with
-\begin{equation}\label{eqn:helmholtzGreens:1120}
-\begin{aligned}
-\int V(\Bx') \lr{\spacegrad'}^2 \ln \Abs{\Bx - \Bx'} d^2 \Bx'
-&=
-\int_{\theta = 0}^{2 \pi} \epsilon \evalbar{ d\theta V(\Bx') \lr{ \spacegrad' \ln r } \cdot \rcap }{r = \epsilon} \\
-&=
-\int_{\theta = 0}^{2 \pi}
-\epsilon
-\evalbar{
-d\theta V(\Bx') \lr{ \lr{ \rcap \partial_r + \frac{\thetacap}{r^2} \partial_\theta } \ln r } \cdot \rcap
-}{r = \epsilon}
-\\
-&=
-\int_{\theta = 0}^{2 \pi}
-\epsilon
-\evalbar{
-d\theta V(\Bx') \frac{\rcap}{r} \cdot \rcap
-}{r = \epsilon}
-\\
-&=
-\int_{\theta = 0}^{2 \pi} d\theta V(\Bx + \epsilon \rcap).
-\end{aligned}
-\end{equation}
-
-In the limit we are left with just \( 2 \pi V(\Bx) \), so
-\begin{equation}\label{eqn:helmholtzGreens:1140}
-\spacegrad^2 \int G(\Bx, \Bx') V(\Bx') d^2 \Bx' = V(\Bx),
-\end{equation}
-as desired.
-
-\section{Revisiting the 1D Helmholtz Green's function.}
-\subsection{Confirming an error in the derived 1D Helmholtz Green's function.}
-The discontinuity in the derived 1D Helmholtz Green's function is somewhat surprising.  Let's try to verify that this works or find what does.  The first thing to check is that
+\subsection{Revisiting the 1D Helmholtz Green's function.}
+Let's try to verify that this works.  The first thing to check is that
 \begin{equation}\label{eqn:helmholtzGreens:1220}
 \lr{ \spacegrad^2 + k^2} G(x,x') = 0,
 \end{equation}
@@ -743,11 +487,77 @@ G(r) = -\frac{j}{2k} e^{j k \Abs{r}}.
 }
 \end{equation}
 
-Unfortunately, I don't see any errors in the original contour integration, so I'm at a loss where things went wrong.
-\subsection{1D Laplacian Green's function.}
+\subsection{A better check of the 1D Helmholtz Green's function.}
+We used a complicated limiting argument to validate the 1D Helmholtz operator Green's function.
+
+Here is a more direct check, using the Heaviside theta function to express the absolute value.
+
+The goal is to show that
+\begin{equation}\label{eqn:helmholtzGreens:2060}
+\lr{ \spacegrad^2 + k^2 } G(x, x') = \delta(x - x'),
+\end{equation}
+where
+\begin{equation}\label{eqn:helmholtzGreens:2080}
+G(x, x') = \frac{e^{j k \Abs{x - x'}}}{2 j k}.
+\end{equation}
+Let's start with an \( r = x - x' \) change of variables, for which
+\begin{equation}\label{eqn:helmholtzGreens:2100}
+\frac{d}{dx} = \frac{dr}{dx} \frac{d}{dr} = \frac{d}{dr}.
+\end{equation}
+This means that
+\begin{equation}\label{eqn:helmholtzGreens:2120}
+\spacegrad^2 e^{j k \Abs{x - x'}} = \frac{d^2}{dr^2} e{j k \Abs{r}}
+\end{equation}
+
+Starting with the first derivative we have
+\begin{equation}\label{eqn:helmholtzGreens:2140}
+\begin{aligned}
+\frac{d}{dr} e^{j k \Abs{r} }
+&=
+j k e^{j k \Abs{r} } \frac{d\Abs{r}}{dr} \\
+&=
+j k e^{j k \Abs{r} } \frac{d}{dr} \lr{ r \Theta(r) - r \Theta(-r) } \\
+&=
+j k e^{j k \Abs{r} } \lr{ \Theta(r) - \Theta(-r) + 2 r \delta(r) } \\
+&=
+j k e^{j k \Abs{r} } \lr{ \Theta(r) - \Theta(-r) } \\
+&=
+j k e^{j k \Abs{r} } \sgn(r).
+\end{aligned}
+\end{equation}
+Using that Heaviside representation of the sign function we have \( sgn(r)' = 2 \delta(r) \), so
+\begin{equation}\label{eqn:helmholtzGreens:2160}
+\frac{d^2}{dr^2} e{j k \Abs{r}}
+=
+\lr{ j k \sgn(r) }^2 e^{j k \Abs{r} } + 2 j k e^{j k \Abs{r} } \delta(r).
+\end{equation}
+We can identify \( e^{j k \Abs{r} } \delta(r) = \delta(r) \), just as we identified \( r \delta(r) = 0 \), by application to a test function.  That is
+\begin{equation}\label{eqn:helmholtzGreens:2180}
+\begin{aligned}
+\int e^{j k \Abs{r} } \delta(r) f(r) dr
+&=
+\evalbar{e^{j k \Abs{r} } f(r)}{r = 0} \\
+&=
+f(0) \\
+&=
+\int \delta(r) f(r) dr.
+\end{aligned}
+\end{equation}
+With that identification
+\begin{equation}\label{eqn:helmholtzGreens:2200}
+\spacegrad^2 e^{j k \Abs{r} } = -k^2 e^{j k \Abs{r} } + 2 j k \delta(r),
+\end{equation}
+or
+\begin{equation}\label{eqn:helmholtzGreens:2220}
+\boxed{
+\lr{ \spacegrad^2 + k^2 } \frac{e^{j k \Abs{x - x'} }}{2 j k} = \delta(x - x').
+}
+\end{equation}
+
+\section{1D Laplacian Green's function.}
 Having blundered our way to what appears to be the correct Green's function for the 1D Helmholtz operator, let's further validate that by deriving the Green's function for the 1D Laplacian.  We should also be able to verify that it has the correct delta function semantics.
 
-\subsubsection{The 1D Laplacian Green's function.}
+\subsection{Expansion in series and taking the limit.}
 Expanding the Helmholtz Green's function in series around \( k \Abs{r} \) we have
 \begin{equation}\label{eqn:helmholtzGreens:1780}
 \begin{aligned}
@@ -767,7 +577,7 @@ G(r) = \frac{\Abs{r}}{2}.
 }
 \end{equation}
 
-\subsubsection{Observing the delta-function semantics of our Laplacian Green's function through convolution.}
+\subsection{Observing the delta-function semantics of our Laplacian Green's function through convolution.}
 We can now attempt to validate that this has the desired delta function semantics, operating on the convolution with the Laplacian.  We are interested in evaluating
 \begin{equation}\label{eqn:helmholtzGreens:1840}
 \spacegrad^2 \int \frac{\Abs{x - x'}}{2} V(x') dx' = \int V(x + r) \frac{d^2}{dr^2} \frac{\Abs{r}}{2} dr.
@@ -832,7 +642,7 @@ In the limit we have
 \end{equation}
 
 If the test (or driving) function is continuous at \( x' = x \), then this is exactly the delta-function semantics that we expect of a Green's function.  It's interesting that this check provides us with precise semantics for the Green's function for discontinuous functions too.
-\subsubsection{Extracting the delta-function semantics of the Laplacian Green's function directly.}
+\subsection{Extracting the delta-function semantics of the Laplacian Green's function directly.}
 There's a more direct, but less satisfying way to do this same computation.  We can compute \( d^2 G(r)/dr^2 \).  We need the trick
 \begin{equation}\label{eqn:helmholtzGreens:1940}
 \Abs{r} = r \Theta(r) - r \Theta(-r),
@@ -861,6 +671,267 @@ This means that
 \begin{equation}\label{eqn:helmholtzGreens:2040}
 \boxed{
 \frac{d^2}{dr^2} \frac{\Abs{r}}{2} = \delta(r).
+}
+\end{equation}
+
+\section{2D Green's function.}
+\subsection{Evaluating the integral.}
+Okay, now let's do the 2D Green's function evaluation.  Our starting place is
+\begin{equation}\label{eqn:helmholtzGreens:680}
+G(\Br) = -\inv{(2 \pi)^2} \int \frac{e^{j \Bp \cdot \Br}}{\Bp^2 - k^2} d^2 p.
+\end{equation}
+With a change of variables to polar coordinates, letting
+\begin{equation}\label{eqn:helmholtzGreens:700}
+\begin{aligned}
+\Bp &= p \lr{ \cos\phi, \sin\phi } \\
+\Br &= \Abs{\Br} \Be_2,
+\end{aligned}
+\end{equation}
+we can make the integral explicit
+\begin{equation}\label{eqn:helmholtzGreens:720}
+G(\Br) = -\inv{(2 \pi)^2} \int_0^\infty \frac{p dp}{p^2 - k^2} \int_0^{2 \pi} d\phi e^{j p \Abs{\Br} \sin\phi}.
+\end{equation}
+Unlike the 3D case, where the angular dependence could be trivially evaluated, we are no longer so lucky.  What on earth can we do with the \( \phi \) integral?  Just like \href{https://youtu.be/mm-4PltMB2A}{Hilter's lament about ``undoable integrals in Jackson''}, we are faced with the same enemy. As it turns out, due to the cylindrical symmetry of the problem, we are also staring down the gun of Bessel functions.  Both Mathematica and Grok point out that we can evaluate integrals of this form, like so:
+\begin{equation}\label{eqn:helmholtzGreens:740}
+\int_0^{2 \pi} d\phi e^{j a \sin\phi} = 2 \pi J_0(a).
+\end{equation}
+
+From \citep{byron1992mca} we have two representations of \( J_n \), a series representation and integral representation
+\begin{equation}\label{eqn:helmholtzGreens:760}
+J_n(z) = \sum_{m=0}^\infty \frac{(-1)^m (z/2)^{2m + n}}{(n + m)!m!} = \inv{\pi} \int_0^\pi \cos(n \theta - z \sin\theta) d\theta.
+\end{equation}
+
+In particular, this means that
+\begin{equation}\label{eqn:helmholtzGreens:800}
+J_0(z) = \sum_{m=0}^\infty \frac{(-1)^m (z/2)^{2m}}{(m!)^2} = J_0(z) = \inv{\pi} \int_0^\pi \cos(z \sin\theta) d\theta.
+\end{equation}
+This is a damped sine like function, as illustrated in \cref{fig:j0:j0Fig4}.
+\imageFigure{../figures/blogit/j0Fig4}{Bessel function of zeroth order.}{fig:j0:j0Fig4}{0.3}
+
+In \S 6.9, both of these are derived from a generating function representation of the Bessel functions, and one of the intermediate steps in that construction has
+\begin{equation}\label{eqn:helmholtzGreens:840}
+J_n(z) = \inv{2\pi} \int_{-\pi}^\pi e^{-j(n\theta - z \sin\theta)} d\theta,
+\end{equation}
+where the \( [-\pi, \pi] \) range was the result of a contour integration using a unit circle parameterization, which could have also used \( [0, 2 \pi] \).  That means, sure enough, that we have
+\begin{equation}\label{eqn:helmholtzGreens:860}
+J_0(z) = \inv{2\pi} \int_{0}^{2\pi} e^{j z \sin\theta} d\theta,
+\end{equation}
+as claimed by both Grok and Mathematica.
+
+This means that the evaluation of the Green's function is now reduced to the limit of one final integral
+\begin{equation}\label{eqn:helmholtzGreens:880}
+G(\Br) = -\inv{2 \pi} \int_0^\infty \frac{p J_0(p \Abs{\Br} ) dp}{p^2 - \lr{k + j \epsilon}^2},
+\end{equation}
+where we've also displaced the problematic pole by a small imaginary amount as before.  Grok incorrectly claimed that this was an even integral, and then argued that the end result is a Hankel function (that may be the case, but it's reasoning to get there was clearly wrong.) Mathematica, on the other hand, can evaluate this integral
+\begin{equation}\label{eqn:helmholtzGreens:900}
+G(\Br) = -\inv{2 \pi} K_0\lr{\frac{\Abs{\Br}}{\sqrt{\frac{1}{(\epsilon - j k)^2}}}}, \epsilon \neq 0.
+\end{equation}
+It's not clear to me why Mathematica writes the argument as 1 over a reciprocal root.  Perhaps that has something to do with the branch cut that Mathematica uses for it's square root function?  If I plug in representative numeric values, it simplifies in the expected way, as illustrated in \cref{fig:MathematicaWeirdArgument:MathematicaWeirdArgumentFig5}.
+\imageFigure{../figures/blogit/MathematicaWeirdArgumentFig5}{Mathematica weird Bessel argument.}{fig:MathematicaWeirdArgument:MathematicaWeirdArgumentFig5}{0.1}
+
+The take away appears to be that the limiting form of the 2D Green's function, for \( k > 0 \), is
+\begin{equation}\label{eqn:helmholtzGreens:920}
+G(\Bx, \Bx') = -\inv{2 \pi} K_0\lr{-j k \Abs{\Bx - \Bx'} }.
+\end{equation}
+A peek at \citep{abramowitz1964handbook} shows that \( K_0 \) can be expressed in terms of a Hankel function of the first kind (order 0) \( H_0^{(1)}(z) = J_0(z) + j Y_0(z) \), plotted in \cref{fig:hankelPlot:hankelPlotFig6}.
+\imageFigure{../figures/blogit/hankelPlotFig6}{Hankel function of the first kind (order 0).}{fig:hankelPlot:hankelPlotFig6}{0.3}
+
+For real positive \( \alpha \), we have
+\begin{equation}\label{eqn:helmholtzGreens:940}
+K_0(-j \alpha) = \frac{j\pi}{2} H_0^{(1)}(\alpha),
+\end{equation}
+so
+\begin{equation}\label{eqn:helmholtzGreens:960}
+\boxed{
+G(\Bx, \Bx') = -\frac{j}{4} H_0^{(1)}(k \Abs{\Bx - \Bx'}).
+}
+\end{equation}
+
+\subsection{Verifying the 2D Laplacian Green's function.}
+Let's try to verify that this Green's function is correct, since we've had lots of opportunities to screw up signs (and more!)  We want to evaluate the Laplacian of the convolution and if all goes well, it should be \( V(\Bx) \).  That is
+\begin{equation}\label{eqn:helmholtzGreens:1060}
+\begin{aligned}
+\spacegrad^2 \int G(\Bx, \Bx') V(\Bx') d^2 \Bx'
+&= \inv{2 \pi} \int \spacegrad^2 \ln \Abs{\Bx - \Bx'} V(\Bx') d^2 \Bx' \\
+&= \inv{2 \pi}
+\int V(\Bx') \lr{\spacegrad'}^2 \ln \Abs{\Bx - \Bx'} d^2 \Bx' \\
+\end{aligned}
+\end{equation}
+We can verify that \( \lr{\spacegrad'}^2 \ln \Abs{\Bx - \Bx'} \) is zero whenever \( \Abs{\Bx - \Bx'} \ne 0 \).  A nice way of doing that is in polar coordinates.  Write
+\begin{equation}\label{eqn:helmholtzGreens:1160}
+\begin{aligned}
+\Br &= \Bx' - \Bx \\
+r &= \Abs{r} \\
+\end{aligned}
+\end{equation}
+and recall that
+\begin{equation}\label{eqn:helmholtzGreens:1180}
+\spacegrad^2 f = \inv{r} \PD{r}{} \lr{ r \PD{r}{f} } + \frac{\partial^2 f}{\partial \theta^2},
+\end{equation}
+but \( r \PD{r}{\ln r} = 1 \), and \( \ln r \) has no angular dependence.  That means that
+\begin{equation}\label{eqn:helmholtzGreens:1200}
+\spacegrad^2 \int G(\Bx, \Bx') V(\Bx') d^2 \Bx'
+= \inv{2 \pi} \int_{\Abs{\Bx - \Bx'} < \epsilon} V(\Bx') \lr{\spacegrad'}^2 \ln \Abs{\Bx - \Bx'} d^2 \Bx',
+\end{equation}
+where we let \( \epsilon \rightarrow 0 \).  Such a region is illustrated in \cref{fig:neighborhoodOfX:neighborhoodOfXFig7}.
+\imageFigure{../figures/blogit/neighborhoodOfXFig7}{Neighborhood \( \Abs{\Bx - \Bx'} < \epsilon \)}{fig:neighborhoodOfX:neighborhoodOfXFig7}{0.3}
+
+We can now apply Green's theorem, which for 2D is
+\begin{equation}\label{eqn:helmholtzGreens:1080}
+\int_A \lr{ u \spacegrad^2 v - v \spacegrad^2 u } dA = \int_{\partial A} \lr{ u \spacegrad v - v \spacegrad u } \cdot \ncap dS,
+\end{equation}
+or
+\begin{equation}\label{eqn:helmholtzGreens:1090}
+\int_A v \spacegrad^2 u \, dA = \int_A u \spacegrad^2 v \, dA -\int_{\partial A} \lr{ u \spacegrad v - v \spacegrad u } \cdot \ncap dS,
+\end{equation}
+With
+\begin{equation}\label{eqn:helmholtzGreens:1161}
+\begin{aligned}
+\rcap &= \Br/r = \ncap \\
+u &= \ln r \\
+v &= V(\Bx') \\
+dA &= r dr d\theta \\
+dS &= r d\theta,
+\end{aligned}
+\end{equation}
+we have
+\begin{equation}\label{eqn:helmholtzGreens:1100}
+\begin{aligned}
+\int V(\Bx') \lr{ \lr{\spacegrad'}^2 \ln \Abs{\Bx - \Bx'} } d^2 \Bx'
+&=
+\int_{r=0}^\epsilon r dr d\theta \ln r \lr{ \spacegrad'}^2 V(\Bx') \\
+&\quad-
+    \int_{\theta = 0}^{2 \pi}
+\epsilon d\theta
+\evalbar{
+\lr{
+    \ln \epsilon \spacegrad' V(\Bx') - V(\Bx') \spacegrad' \ln r
+}
+\cdot \rcap
+}
+{r = \epsilon}
+\end{aligned}
+\end{equation}
+We have \( r \ln r \), or \( \epsilon \ln \epsilon \) dependence in two of the integrand terms, and with \( r < \epsilon \), and \( \epsilon \ln \epsilon \rightarrow 0 \), in the limit, we are left with
+\begin{equation}\label{eqn:helmholtzGreens:1120}
+\begin{aligned}
+\int V(\Bx') \lr{\spacegrad'}^2 \ln \Abs{\Bx - \Bx'} d^2 \Bx'
+&=
+\int_{\theta = 0}^{2 \pi} \epsilon \evalbar{ d\theta V(\Bx') \lr{ \spacegrad' \ln r } \cdot \rcap }{r = \epsilon} \\
+&=
+\int_{\theta = 0}^{2 \pi}
+\epsilon
+\evalbar{
+d\theta V(\Bx') \lr{ \lr{ \rcap \partial_r + \frac{\thetacap}{r^2} \partial_\theta } \ln r } \cdot \rcap
+}{r = \epsilon}
+\\
+&=
+\int_{\theta = 0}^{2 \pi}
+\epsilon
+\evalbar{
+d\theta V(\Bx') \frac{\rcap}{r} \cdot \rcap
+}{r = \epsilon}
+\\
+&=
+\int_{\theta = 0}^{2 \pi} d\theta V(\Bx + \epsilon \rcap).
+\end{aligned}
+\end{equation}
+
+In the limit we are left with just \( 2 \pi V(\Bx) \), so
+\begin{equation}\label{eqn:helmholtzGreens:1140}
+\spacegrad^2 \int G(\Bx, \Bx') V(\Bx') d^2 \Bx' = V(\Bx),
+\end{equation}
+as desired.
+
+\section{The 2D Laplacian Green's function.}
+Like the 1D Helmholtz Green's function, the 2D Green's function has the appearance of being malformed for \( k \rightarrow 0 \).
+
+Let's try to carefully expand the 2D Green's function in the neighbourhood of \( k = 0 \).  This will serve as an indirect and partial validation of that result, and as a side effect provide us with the Green's function for the 2D Laplacian.
+
+In \citep{abramowitz1964handbook}, \S 9.1.7, 9.1.8, we have for \( z \rightarrow 0 \)
+\begin{equation}\label{eqn:helmholtzGreens:980}
+\begin{aligned}
+J_\nu(z) &\sim \lr{\frac{z}{2}}^\nu/\Gamma(\nu+1) \\
+Y_0(z) &\sim \frac{2}{\pi} \ln z,
+\end{aligned}
+\end{equation}
+so for \( k \ll r \)
+\begin{equation}\label{eqn:helmholtzGreens:1000}
+H_0^{(1)}(k r) \sim 1 + \frac{2j}{\pi} \ln\lr{k r},
+\end{equation}
+and
+\begin{equation}\label{eqn:helmholtzGreens:1020}
+\begin{aligned}
+G(\Br)
+&\sim -\frac{j}{4} \lr{ 1 + \frac{j}{2 \pi} \ln\lr{k r} } \\
+&= -\frac{j}{4} + \frac{1}{2 \pi} \ln k + \frac{1}{2 \pi} \ln r.
+\end{aligned}
+\end{equation}
+Here is where we have to get sneaky.  Since we seek a Green's function for the Laplacian operator, we are free to add any solution \( f(x,y) \) that satisfies \( \spacegrad^2 f = 0 \).  Constants are clearly in that homogeneous solution space, so we may adjust this expansion of the Green's function, throwing away the leading constant imaginary term, and treating \( k \) as a small constant, the \( \ln k \) term.  That leaves us with
+\begin{equation}\label{eqn:helmholtzGreens:1040}\boxed{
+G(\Bx, \Bx') = \frac{1}{2 \pi} \ln \Abs{\Bx - \Bx'}.
+}
+\end{equation}
+
+\section{3D Green's function.}
+The 3D Green's function that we wish to try to evaluate is
+\begin{equation}\label{eqn:helmholtzGreens:540}
+G(\Br) = -\inv{(2 \pi)^3} \int \frac{e^{j \Bp \cdot \Br}}{\Bp^2 - k^2} d^3 p.
+\end{equation}
+We will have to displace the pole again, but we will get to that in a bit.  First let's make a spherical change of variables to evaluate the integral, with
+\begin{equation}\label{eqn:helmholtzGreens:560}
+\begin{aligned}
+\Bp &= p \lr{ \sin\alpha \cos\phi, \sin\alpha \sin\phi, \cos\alpha } \\
+\Br &= \Abs{\Br} \Be_3.
+\end{aligned}
+\end{equation}
+This gives
+\begin{equation}\label{eqn:helmholtzGreens:580}
+G(\Br)
+= -\inv{(2 \pi)^3} \int_0^\infty p^2 dp \int_0^\pi \sin\alpha d\alpha \int_0^{2 \pi} d\phi \frac{e^{j p \Abs{\Br} \cos\alpha}}{p^2 - k^2}.
+\end{equation}
+Let \( t = \cos\alpha \), to find
+\begin{equation}\label{eqn:helmholtzGreens:600}
+\begin{aligned}
+G(\Br)
+&= -\inv{(2 \pi)^2} \int_0^\infty p^2 dp \int_1^{-1} (-dt) \frac{e^{j p \Abs{\Br} t}}{p^2 - k^2} \\
+&= \inv{(2 \pi)^2} \int_0^\infty p^2 dp \evalrange{\frac{e^{j p \Abs{\Br} t}}{\lr{p^2 - k^2} j p \Abs{\Br}}}{1}{-1} \\
+&= \inv{j (2 \pi)^2 \Abs{\Br}} \int_0^\infty p dp \frac{e^{-j p \Abs{\Br}} - e^{j p \Abs{\Br}} }{p^2 - k^2} \\
+&= -\inv{j (2 \pi)^2 \Abs{\Br}} \int_{-\infty}^\infty p dp \frac{e^{j p \Abs{\Br}} }{p^2 - k^2} \\
+&\sim -\inv{j (2 \pi)^2 \Abs{\Br}} \int_{-\infty}^\infty p dp \frac{e^{j p \Abs{\Br}} }{p^2 - \lr{k + j \epsilon}^2}.
+\end{aligned}
+\end{equation}
+In the last step, we've displaced the pole so that we can evaluate it using an infinite upper half plane semicircular contour, as illustrated in \cref{fig:greensHelmholtz:greensHelmholtzFig1ab}.
+\imageTwoFigures{../figures/blogit/greensHelmholtzFig1a}{../figures/blogit/greensHelmholtzFig1b}
+{Contours for 3D Green's function evaluation}{fig:greensHelmholtz:greensHelmholtzFig1ab}{scale=0.7}
+%\cref{fig:greensHelmholtz:greensHelmholtzFig1b}.
+Which pole we choose depends on the sign we pick for the ``small'' pole displacement \( \epsilon \).  For the \( \epsilon > 0 \) case, we find
+\begin{equation}\label{eqn:helmholtzGreens:620}
+\begin{aligned}
+G(\Br)
+&= -\inv{j (2 \pi)^2 \Abs{\Br}} \int_{-\infty}^\infty p dp \frac{e^{j p \Abs{\Br}} }{\lr{p - (k + j \epsilon)}\lr{p - (-k - j \epsilon)}} \\
+&= -\frac{2 \pi j}{j (2 \pi)^2 \Abs{\Br}} \evalbar{\frac{p e^{j p \Abs{\Br}} }{p + k + j \epsilon}}{p = k + j \epsilon} \\
+&= -\frac{1}{2 \pi \Abs{\Br}} (k + j \epsilon) \frac{e^{j (k + j \epsilon) \Abs{\Br}} }{2 (k + j \epsilon)} \\
+&= -\frac{1}{4 \pi \Abs{\Br}} e^{j k \Abs{\Br}} e^{-\epsilon \Abs{\Br}}  \\
+&\rightarrow -\frac{e^{j k \Abs{\Br}} }{4 \pi \Abs{\Br}}.
+\end{aligned}
+\end{equation}
+whereas for \( \epsilon < 0 \), we have
+\begin{equation}\label{eqn:helmholtzGreens:640}
+\begin{aligned}
+G(\Br)
+&= -\inv{j (2 \pi)^2 \Abs{\Br}} \int_{-\infty}^\infty p dp \frac{e^{j p \Abs{\Br}} }{\lr{p - (k + j \epsilon)}\lr{p - (-k - j \epsilon)}} \\
+&= -\frac{2 \pi j}{j (2 \pi)^2 \Abs{\Br}} \evalbar{\frac{p e^{j p \Abs{\Br}} }{p - k - j \epsilon}}{p = -k - j \epsilon} \\
+&= -\frac{1}{2 \pi \Abs{\Br}} (-k - j \epsilon) \frac{e^{j (-k - j \epsilon) \Abs{\Br}} }{2 (-k - j \epsilon)} \\
+&= -\frac{1}{4 \pi \Abs{\Br}} e^{-j k \Abs{\Br}} e^{\epsilon \Abs{\Br}}  \\
+&\rightarrow -\frac{e^{-j k \Abs{\Br}} }{4 \pi \Abs{\Br}}.
+\end{aligned}
+\end{equation}
+
+The Green's function has the structure of either an outgoing or incoming spherical wave, with inverse radial amplitude:
+\begin{equation}\label{eqn:helmholtzGreens:660}
+\boxed{
+G(\Bx, \Bx') = -\frac{e^{\pm j k \Abs{\Br}} }{4 \pi \Abs{\Br}}.
 }
 \end{equation}
 

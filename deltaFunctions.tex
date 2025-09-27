@@ -59,20 +59,23 @@ G\lr{ \Bx, \Bx' } &= -\frac{1}{4 \pi r}.
 \item Second order Helmholtz operator, \( \LL = \spacegrad^2 + k^2 \) for 1D, 2D and 3D respectively
 \begin{equation}\label{eqn:deltaFunctions:60}
 \begin{aligned}
-G\lr{ \Bx, \Bx' } &= -\frac{j}{2k} e^{j k r} \\
-G(\Bx, \Bx') &= -\frac{j}{4} H_0^{(1)}(k r) \\
+G\lr{ \Bx, \Bx' } &= \pm \frac{1}{2 j k} e^{\pm j k r} \\
+G(\Bx, \Bx') &= \frac{1}{4 j} H_0^{(1)}(k r), \quad \frac{1}{4 j} H_0^{(2)}(k r) \\
 G\lr{ \Bx, \Bx' } &= -\frac{1}{4 \pi} \frac{e^{\pm j k r }}{r}.
 \end{aligned}
 \end{equation}
+FIXME: verify the incoming 2D solution myself (Grok derived.)
 
 \item First order Helmholtz operator, \( \LL = \spacegrad + j k \), in 1D, 2D and 3D respectively
 \begin{equation}\label{eqn:deltaFunctions:80}
 \begin{aligned}
-G\lr{ \Bx, \Bx' } &= \frac{j}{2} \lr{ \rcap - 1 } e^{j k r} \\
+G\lr{ \Bx, \Bx' } &= \frac{j}{2} \lr{ \rcap \mp 1 } e^{\pm j k r} \\
 G\lr{ \Bx, \Bx' } &= \frac{k}{4} \lr{ j \rcap H_1^{(1)}(k r) - H_0^{(1)}(k r) } \\
 G\lr{ \Bx, \Bx' } &= \frac{e^{-j k r}}{4 \pi r} \lr{ jk \lr{ 1 + \rcap } + \frac{\rcap}{r} }.
 \end{aligned}
 \end{equation}
+FIXME: Derive the incoming wave solutions for 2D and 3D cases.
+
 This is also the Green's function for a left acting operator \( G(\Bx, \Bx') \lr{ - \lspacegrad + j k } = \delta(\Bx - \Bx') \).
 \item Spacetime gradient (3+1 D), \( \LL = \spacegrad + (1/c) \partial_t \), satisfying \( \LL G(\Bx - \Bx', t - t') = \delta(\Bx - \Bx') \delta(t - t') \)
 \begin{equation}\label{eqn:deltaFunctions:100}

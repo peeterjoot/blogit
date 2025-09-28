@@ -29,7 +29,7 @@
 \generatetitle{Green's functions for the Helmholtz (wave equation) operator, and Laplacian, in low dimensions}
 %\chapter{Green's functions for the Helmholtz (wave equation) operator in various dimensions}
 %\label{chap:helmholtzGreens}
-The great mathematical physics book \citep{byron1992mca} derives the Green's function for the 3D Helmholtz (wave equation) operator.  It turns out that unless you are are intimate with Bessel functions, the 2D generalization of that result is difficult.
+The great mathematical physics book \citep{byron1992mca} derives the Green's function for the 3D Helmholtz (wave equation in the frequency domain) operator.  It turns out that unless you are are intimate with Bessel functions, the 2D generalization of that result is difficult.
 
 Here I'll walk through a derivation of the Green's function for the 1D Helmholtz equation, and follow that by using it to find the Green's function for the 1D Laplacian.  Then, we will confront the demonic Bessel functions required for the 2D Helmholtz operator Green's function, and it's Laplacian Green's function limit.  Finally, for completeness sake, we will finish with our own derivation of the 3D result.
 
@@ -132,7 +132,7 @@ G_\epsilon(r)
 \end{equation}
 Our contours, for \( \epsilon > 0 \), are illustrated in \cref{fig:greensHelmholtz:greensHelmholtzFig1ab}.
 \imageTwoFigures{../figures/blogit/greensHelmholtzFig1a}{../figures/blogit/greensHelmholtzFig2}{Contours for 3D Green's function evaluation}{fig:greensHelmholtz:greensHelmholtzFig1ab}{scale=0.7}
-For \( r > 0 \) we can use an upper half plane infinite semicircular contour integral, with \( R \rightarrow \infty \).
+For \( r > 0 \) we can use an upper half plane infinite semicircular contour integral, since Jordan's lemma tells us that the integral over the semicircular contour tends to zero as \( R \rightarrow \infty \) .
 %\imageFigure{../figures/blogit/greensHelmholtzFig1a}{Contour for \( r > 0 \).}{fig:greensHelmholtz:greensHelmholtzFig1a}{0.2}
 The residue calculation for this contour gives
 \begin{equation}\label{eqn:helmholtzGreens:260}
@@ -327,7 +327,7 @@ j k e^{j k \Abs{r} } \sgn(r).
 \end{equation}
 and
 \begin{equation}\label{eqn:helmholtzGreens:2160}
-\frac{d^2}{dr^2} e{j k \Abs{r}}
+\frac{d^2}{dr^2} e^{j k \Abs{r}}
 =
 \lr{ j k \sgn(r) }^2 e^{j k \Abs{r} } + 2 j k e^{j k \Abs{r} } \delta(r).
 \end{equation}
@@ -519,10 +519,25 @@ or
 Taking limits and dividing through by \( 2 j k \) proves the result.
 
 \section{1D Laplacian Green's function.}
-Having blundered our way to what appears to be the correct Green's function for the 1D Helmholtz operator, let's further validate that by deriving the Green's function for the 1D Laplacian.  We should also be able to verify that it has the correct delta function semantics.
+Let's further validate the Helmholtz Green's function by deriving the Green's function for the 1D Laplacian.  We should also be able to verify that it has the correct delta function semantics.
 
 \subsection{Expansion in series and taking the limit.}
-Expanding the Helmholtz Green's function in series around \( k \Abs{r} \) we have
+The easiest way to take this limit is to expand the sine form of the Green's function around \( k = 0 \)
+\begin{equation}\label{eqn:helmholtzGreens:2540}
+\begin{aligned}
+\frac{\sin\lr{ k \Abs{r} } }{2k}
+&= \inv{2k} \lr{ k \Abs{r} + O((k \Abs{r})^3) } \\
+&= \frac{\Abs{r}}{2} +  O(k^2),
+\end{aligned}
+\end{equation}
+so, in the \( k \rightarrow 0 \) limit, the Laplacian Green's function is
+\begin{equation}\label{eqn:helmholtzGreens:1820}
+\boxed{
+G(r) = \frac{\Abs{r}}{2}.
+}
+\end{equation}
+
+An interesting aside.  We ought to be able to also find the Laplacian limit using the exponential form of the Helmholtz Green's function as a starting point, but it's not at all obvious how that works.  Here is the trick, first expanding the Green's function in series about \( k \Abs{r} \) as above.
 \begin{equation}\label{eqn:helmholtzGreens:1780}
 \begin{aligned}
 G(r)
@@ -534,15 +549,9 @@ This means that to first order in \( k \), we have
 \begin{equation}\label{eqn:helmholtzGreens:1800}
 G(r) + \frac{j}{2k} = \frac{\Abs{r}}{2}.
 \end{equation}
-As before, we are free to add constant terms to the Green's function for the Laplacian, and we conclude that the 1D Green's function for the Laplacian is
-\begin{equation}\label{eqn:helmholtzGreens:1820}
-\boxed{
-G(r) = \frac{\Abs{r}}{2}.
-}
-\end{equation}
+The trick to taking this limit is to note that we are free to add constant terms to the Green's function for the Laplacian, and then discard the \( 1/k \) term before taking the limit, treating \( k \) as a constant.
 
-Alternatively, we may use the real sine form of the Green's function, which has a nice expansion around \( k = 0 \), and arrive at the same result.
-
+\subsection{Verifying the Green's function.}
 Observe that
 \begin{equation}\label{eqn:helmholtzGreens:2520}
 \frac{d^2}{dr^2} \frac{\Abs{r}}{2} =
@@ -633,7 +642,7 @@ we can make the integral explicit
 \begin{equation}\label{eqn:helmholtzGreens:720}
 G(\Br) = -\inv{(2 \pi)^2} \int_0^\infty \frac{p dp}{p^2 - k^2} \int_0^{2 \pi} d\phi e^{j p \Abs{\Br} \sin\phi}.
 \end{equation}
-Unlike the 3D case, where the angular dependence could be trivially evaluated, we are no longer so lucky.  What on earth can we do with the \( \phi \) integral?  Just like \href{https://youtu.be/mm-4PltMB2A}{Hilter's lament about ``undoable integrals in Jackson''}, we are faced with the same enemy. As it turns out, due to the cylindrical symmetry of the problem, we are also staring down the gun of Bessel functions.  Both Mathematica and Grok point out that we can evaluate integrals of this form, like so:
+Unlike the 3D case, where the angular dependence could be trivially evaluated, we are no longer so lucky.  What on earth can we do with the \( \phi \) integral?  Just like Hilter's lament about ``undoable integrals in Jackson'' \citep{hilterLearnsJackson}, we are faced with the same enemy.  As it turns out, due to the cylindrical symmetry of the problem, we are also staring down the gun of Bessel functions.  Both Mathematica and Grok point out that we can evaluate integrals of this form, like so:
 \begin{equation}\label{eqn:helmholtzGreens:740}
 \int_0^{2 \pi} d\phi e^{j a \sin\phi} = 2 \pi J_0(a).
 \end{equation}
@@ -664,17 +673,21 @@ This means that the evaluation of the Green's function is now reduced to the lim
 \begin{equation}\label{eqn:helmholtzGreens:880}
 G(\Br) = -\inv{2 \pi} \int_0^\infty \frac{p J_0(p \Abs{\Br} ) dp}{p^2 - \lr{k + j \epsilon}^2},
 \end{equation}
-where we've also displaced the problematic pole by a small imaginary amount as before.  Grok incorrectly claimed that this was an even integral, and then argued that the end result is a Hankel function (that may be the case, but it's reasoning to get there was clearly wrong.) Mathematica, on the other hand, can evaluate this integral
-\begin{equation}\label{eqn:helmholtzGreens:900}
-G(\Br) = -\inv{2 \pi} K_0\lr{\frac{\Abs{\Br}}{\sqrt{\frac{1}{(\epsilon - j k)^2}}}}, \epsilon \neq 0.
-\end{equation}
-It's not clear to me why Mathematica writes the argument as 1 over a reciprocal root.  Perhaps that has something to do with the branch cut that Mathematica uses for it's square root function?  If I plug in representative numeric values, it simplifies in the expected way, as illustrated in \cref{fig:MathematicaWeirdArgument:MathematicaWeirdArgumentFig5}.
-\imageFigure{../figures/blogit/MathematicaWeirdArgumentFig5}{Mathematica weird Bessel argument.}{fig:MathematicaWeirdArgument:MathematicaWeirdArgumentFig5}{0.1}
+where we've also displaced the problematic pole by a small imaginary amount as before.  Grok incorrectly claimed that this was an even integral, and then argued that the end result is a Hankel function (that may be the case, but it's reasoning to get there was clearly wrong.) Mathematica, on the other hand, can evaluate this integral, as shown in \cref{fig:HelmholtzGreens2DMathematica:HelmholtzGreens2DMathematicaFig9}.
 
-The take away appears to be that the limiting form of the 2D Green's function, for \( k > 0 \), is
+\imageFigure{../figures/blogit/HelmholtzGreens2DMathematicaFig9}{Mathematica evaluation of the 2D Green's function}{fig:HelmholtzGreens2DMathematica:HelmholtzGreens2DMathematicaFig9}{0.4}
+
+%\begin{equation}\label{eqn:helmholtzGreens:900}
+%G(\Br) = -\inv{2 \pi} K_0\lr{\frac{\Abs{\Br}}{\sqrt{\frac{1}{(\epsilon - j k)^2}}}}, \epsilon \neq 0.
+%\end{equation}
+%It's not clear to me why Mathematica writes the argument as 1 over a reciprocal root.  Perhaps that has something to do with the branch cut that Mathematica uses for it's square root function?  If I plug in representative numeric values, it simplifies in the expected way, as illustrated in \cref{fig:MathematicaWeirdArgument:MathematicaWeirdArgumentFig5}.
+%\imageFigure{../figures/blogit/MathematicaWeirdArgumentFig5}{Mathematica weird Bessel argument.}{fig:MathematicaWeirdArgument:MathematicaWeirdArgumentFig5}{0.1}
+
+The limiting form of the 2D Green's function, is
 \begin{equation}\label{eqn:helmholtzGreens:920}
-G(\Bx, \Bx') = -\inv{2 \pi} K_0\lr{-j k \Abs{\Bx - \Bx'} }.
+G(\Bx, \Bx') = -\inv{2 \pi} K_0\lr{\mp j k \Abs{\Bx - \Bx'} },
 \end{equation}
+with the negative sign coming from the \( \epsilon > 0 \) case, and positive for \( \epsilon < 0 \).
 A peek at \citep{abramowitz1964handbook} shows that \( K_0 \) can be expressed in terms of a Hankel function of the first kind (order 0) \( H_0^{(1)}(z) = J_0(z) + j Y_0(z) \), plotted in \cref{fig:hankelPlot:hankelPlotFig6}.
 \imageFigure{../figures/blogit/hankelPlotFig6}{Hankel function of the first kind (order 0).}{fig:hankelPlot:hankelPlotFig6}{0.3}
 
@@ -685,7 +698,7 @@ K_0(-j \alpha) = \frac{j\pi}{2} H_0^{(1)}(\alpha),
 so
 \begin{equation}\label{eqn:helmholtzGreens:960}
 \boxed{
-G(\Bx, \Bx') = -\frac{j}{4} H_0^{(1)}(k \Abs{\Bx - \Bx'}).
+G(\Bx, \Bx') = -\frac{j}{4} H_0^{(1)}(\pm k \Abs{\Bx - \Bx'}).
 }
 \end{equation}
 

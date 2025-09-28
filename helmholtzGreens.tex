@@ -29,15 +29,17 @@
 \generatetitle{Green's functions for the Helmholtz (wave equation) operator, and Laplacian, in low dimensions}
 %\chapter{Green's functions for the Helmholtz (wave equation) operator in various dimensions}
 %\label{chap:helmholtzGreens}
-My favorite book on mathematical physics derives the Green's function for the 3D Helmholtz (wave equation) operator.  My initial attempts to do a similar derivation for the 2D Green's function gave me trouble (trouble that was resolved by enlisting the help of Bessel functions.)  Here I'll derive the 1D, 2D and 3D Green's functions for the Helmholtz equation, and for 1D and 2D also derive the Green's functions for the Laplacian (which doesn't follow so obviously from the Helmholtz Green's functions as it does in the 3D case.)
+The great mathematical physics book \citep{byron1992mca} derives the Green's function for the 3D Helmholtz (wave equation) operator.  It turns out that unless you are are intimate with Bessel functions, the 2D generalization of that result is difficult.
 
-\section{Motivation and background.}
+Here I'll walk through a derivation of the Green's function for the 1D Helmholtz equation, and follow that by using it to find the Green's function for the 1D Laplacian.  Then, we will confront the demonic Bessel functions required for the 2D Helmholtz operator Green's function, and it's Laplacian Green's function limit.  Finally, for completeness sake, we will finish with our own derivation of the 3D result.
+
+\section{Motivation and context.}
 We seek a solution to non-homogeneous Helmholtz equation
 \begin{equation}\label{eqn:helmholtzGreens:20}
 \lr{ \spacegrad^2 + k^2 } U(\Bx) = V(\Bx).
 \end{equation}
 
-This is a problem that can be solved using Fourier transform techniques.  Following \citep{byron1992mca}, let's write our transform pair in the symmetrical form:
+This is a problem that can be solved using Fourier transform techniques.  Let's write our transform pair in the symmetrical form:
 \begin{equation}\label{eqn:helmholtzGreens:40}
 \begin{aligned}
 F(x) &= \frac{1}{\sqrt{2 \pi}} \int \hat{F}(p) e^{j p x} dp \\
@@ -106,6 +108,7 @@ which requires that our Green's function \( G(\Bx, \Bx') \) has the functional f
 \begin{equation}\label{eqn:helmholtzGreens:180}
 \lr{ \spacegrad^2 + k^2 } G(\Bx, \Bx') = \delta(\Bx - \Bx').
 \end{equation}
+If we can find a function, \( G(\Bx, \Bx') \), by any means, that has this delta function behaviour, then we solve the problem.
 
 \section{Helmholtz Green's function in 1D.}
 \subsection{Evaluating the integral.}
@@ -127,11 +130,11 @@ G_\epsilon(r)
 &= -\inv{2 \pi} \int_{-\infty}^\infty \frac{e^{j p r}}{\lr{ p - k -j \epsilon}\lr{p + k + j \epsilon}} dp.
 \end{aligned}
 \end{equation}
-For \( r > 0 \) we can use an upper half plane infinite semicircular contour integral, as illustrated in \cref{fig:greensHelmholtz:greensHelmholtzFig1a}, where we
-let \( R \rightarrow \infty \).
-\imageFigure{../figures/blogit/greensHelmholtzFig1a}{Contour for \( r > 0 \).}{fig:greensHelmholtz:greensHelmholtzFig1a}{0.2}
-
-The residue calculation for that contour gives
+Our contours, for \( \epsilon > 0 \), are illustrated in \cref{fig:greensHelmholtz:greensHelmholtzFig1ab}.
+\imageTwoFigures{../figures/blogit/greensHelmholtzFig1a}{../figures/blogit/greensHelmholtzFig2}{Contours for 3D Green's function evaluation}{fig:greensHelmholtz:greensHelmholtzFig1ab}{scale=0.7}
+For \( r > 0 \) we can use an upper half plane infinite semicircular contour integral, with \( R \rightarrow \infty \).
+%\imageFigure{../figures/blogit/greensHelmholtzFig1a}{Contour for \( r > 0 \).}{fig:greensHelmholtz:greensHelmholtzFig1a}{0.2}
+The residue calculation for this contour gives
 \begin{equation}\label{eqn:helmholtzGreens:260}
 \begin{aligned}
 G_\epsilon(r)
@@ -142,8 +145,8 @@ G_\epsilon(r)
 \end{aligned}
 \end{equation}
 
-For \( r < 0 \) we can use a lower half plane infinite semicircular contour, as illustrated in \cref{fig:greensHelmholtz:greensHelmholtzFig2}.
-\imageFigure{../figures/blogit/greensHelmholtzFig2}{Contour for \( r < 0 \).}{fig:greensHelmholtz:greensHelmholtzFig2}{0.3}
+For \( r < 0 \) we use the lower half plane infinite semicircular contour
+%\imageFigure{../figures/blogit/greensHelmholtzFig2}{Contour for \( r < 0 \).}{fig:greensHelmholtz:greensHelmholtzFig2}{0.3}
 For this contour, we find
 \begin{equation}\label{eqn:helmholtzGreens:280}
 \begin{aligned}
@@ -182,21 +185,35 @@ G(r)
 &= \inv{2 k} \sin\lr{ k \Abs{r} }
 \end{aligned}
 \end{equation}
+This real valued Green's function is plotted in \cref{fig:plotOfOneDimG:plotOfOneDimGFig8}.
+\imageFigure{../figures/blogit/plotOfOneDimGFig8}{Green's function for 1D Helmholtz operator.}{fig:plotOfOneDimG:plotOfOneDimGFig8}{0.3}
 
-Let's plug this into the convolution integral, also adding solutions to the homogeneous Helmholtz equation, to find the general solution
+The convolution is now fully specified, providing a specific solution to the non-homogeneous equation
 \begin{equation}\label{eqn:helmholtzGreens:400}
-U(x) = A e^{j k x} + B e^{-j k x}
-+ \inv{2k} \int_{-\infty}^0 \sin( k\Abs{r} ) V(x + r) dr
-+ \inv{2k} \int_{0}^\infty \sin( k\Abs{r} ) V(x + r) dr.
+U(x) = \inv{2k} \int_{-\infty}^\infty \sin( k\Abs{r} ) V(x + r) dr.
 \end{equation}
-Here the convolution kernel has been split a causal part, where the past values of \( V \) contribute, and the acausal parts, where ``future'' values of \( V \) contribute.
+The general solution may also include any solutions to the homogeneous Helmholtz equation
+\begin{equation}\label{eqn:helmholtzGreens:2300}
+U(x) = A e^{j k x} + B e^{-j k x} + \inv{2k} \int_{-\infty}^\infty \sin( k\Abs{r} ) V(x + r) dr.
+\end{equation}
 
 \subsubsection{A strictly causal solution.}
-It is interesting that the specific solution above has equal causal and acausal contributions.  Such a solution (outside of QFT) is generally undesirable.  Suppose that instead of this average of causal and acausal contributions, we try just the causal part (times two).  Will this be a solution?
+We can split the convolution kernel a ``causal'' part, where only the spatiallly-``past'' values of \( V \) contribute, and an ``acausal'' part
+\begin{equation}\label{eqn:helmholtzGreens:2320}
+U(x) =
+\inv{2k} \int_{-\infty}^0 \sin( k\Abs{r} ) V(x + r) dr
++
+\inv{2k} \int_{0}^\infty \sin( k\Abs{r} ) V(x + r) dr.
+\end{equation}
+In a sense, we are averaging causal and acausal portions of the convolution.
+
+Suppose that we form a convolution with a built in cut-off, so that values of \( V(x'), x' > x \) do not contribute to \( U(x) \).  That is
 \begin{equation}\label{eqn:helmholtzGreens:440}
 f(x) = \int_{-\infty}^x \frac{\sin\lr{k \lr{x - x'}}}{k} V(x') dx'.
 \end{equation}
-Let's test if this is a specific solution.  We start with the identity
+Here the one-half factor has been dropped, since we are no longer performing a QFT like average of causal and acausal terms.
+
+Intuition suggests this should be a solution to the Helmholtz equation, but let's test that guess.  We start with the identity
 \begin{equation}\label{eqn:helmholtzGreens:460}
 \frac{d}{dx} \int_a^x g(x, x') dx'
 =
@@ -244,16 +261,112 @@ It's pretty cool that we can completely solve the 1D forced wave equation, for a
 %\end{equation}
 %but must then use the boundary value constraints to determine the desired form of the Green's function, using the two degrees of freedom to do so.  That's also an interesting topic, and would be good to also visit in a followup post.
 
-\subsection{Revisiting the 1D Helmholtz Green's function.}
-Let's try to verify that this works.  The first thing to check is that
+\subsection{Verification of the 1D Helmholtz Green's function.}
+
+Let's show that the outgoing Green's function has the desired delta function semanitics.  That is
+\begin{equation}\label{eqn:helmholtzGreens:2060}
+\lr{ \spacegrad^2 + k^2 } G(x, x') = \delta(x - x'),
+\end{equation}
+where
+\begin{equation}\label{eqn:helmholtzGreens:2080}
+G(x, x') = \frac{e^{j k \Abs{x - x'}}}{2 j k}.
+\end{equation}
+Making a \( r = x - x' \) change of variables gives
+\begin{equation}\label{eqn:helmholtzGreens:2120}
+\spacegrad^2 e^{j k \Abs{x - x'}} = \frac{d^2}{dr^2} e^{j k \Abs{r}}
+\end{equation}
+
+The function \( \Abs{r} \) formally has no derivative at the origin, but we may use the physics trick, rewriting the absolute in terms of the Heaviside theta function
+\begin{equation}\label{eqn:helmholtzGreens:2340}
+\Abs{r} = r \Theta(r) - r \Theta(-r).
+\end{equation}
+We then use the delta function identification for the derivative
+\begin{equation}\label{eqn:helmholtzGreens:2360}
+\Theta'(r) = \delta(r).
+\end{equation}
+In particular
+\begin{equation}\label{eqn:helmholtzGreens:2380}
+\begin{aligned}
+\frac{d}{dr} \Abs{r}
+&= \Theta(r) - \Theta(-r) + r \delta(r) - (-1)\delta(-r) \\
+&= \Theta(r) - \Theta(-r) + 2 r \delta(r),
+\end{aligned}
+\end{equation}
+using the symmetric property of the delta function \( \delta(-r) = \delta(r) \).  The delta function contribution to this derivative is actually zero, as seen when we operate with \( r \delta(r) \) against a test function
+\begin{equation}\label{eqn:helmholtzGreens:2400}
+\begin{aligned}
+\int r \delta(r) f(r) dr
+&=
+\evalbar{r f(r)}{r = 0} \\
+&= 0.
+\end{aligned}
+\end{equation}
+We've now found that
+\begin{equation}\label{eqn:helmholtzGreens:2420}
+\frac{d}{dr} \Abs{r} =  \Theta(r) - \Theta(-r) = \sgn(r),
+\end{equation}
+the sign function.  The derivative of the sign function is
+\begin{equation}\label{eqn:helmholtzGreens:2440}
+\begin{aligned}
+\sgn'(r)
+&= \lr{  \Theta(r) - \Theta(-r) }' \\
+&= \delta(r) -(-1)\delta(-r) \\
+&= 2 \delta(r).
+\end{aligned}
+\end{equation}
+
+The derivatives are
+\begin{equation}\label{eqn:helmholtzGreens:2140}
+\begin{aligned}
+\frac{d}{dr} e^{j k \Abs{r} }
+&=
+j k e^{j k \Abs{r} } \frac{d\Abs{r}}{dr} \\
+&=
+j k e^{j k \Abs{r} } \sgn(r).
+\end{aligned}
+\end{equation}
+and
+\begin{equation}\label{eqn:helmholtzGreens:2160}
+\frac{d^2}{dr^2} e{j k \Abs{r}}
+=
+\lr{ j k \sgn(r) }^2 e^{j k \Abs{r} } + 2 j k e^{j k \Abs{r} } \delta(r).
+\end{equation}
+
+We can identify \( e^{j k \Abs{r} } \delta(r) = \delta(r) \), just as we identified \( r \delta(r) = 0 \), by application to a test function.  That is
+\begin{equation}\label{eqn:helmholtzGreens:2180}
+\begin{aligned}
+\int e^{j k \Abs{r} } \delta(r) f(r) dr
+&=
+\evalbar{e^{j k \Abs{r} } f(r)}{r = 0} \\
+&=
+f(0) \\
+&=
+\int \delta(r) f(r) dr.
+\end{aligned}
+\end{equation}
+With that identification
+\begin{equation}\label{eqn:helmholtzGreens:2200}
+\spacegrad^2 e^{j k \Abs{r} } = -k^2 e^{j k \Abs{r} } + 2 j k \delta(r),
+\end{equation}
+or
+\begin{equation}\label{eqn:helmholtzGreens:2220}
+\boxed{
+\lr{ \spacegrad^2 + k^2 } \frac{e^{j k \Abs{x - x'} }}{2 j k} = \delta(x - x').
+}
+\end{equation}
+
+\subsection{Verifying the Green's function with convolution.}
+Avoiding the physics tricks, we may use a limiting argument to validate our Green's function.
+
+We first want to show that at points \( x' \ne x \) the Helmholtz operator applied to the Green's function is zero:
 \begin{equation}\label{eqn:helmholtzGreens:1220}
 \lr{ \spacegrad^2 + k^2} G(x,x') = 0,
 \end{equation}
-at locations where \( x \ne x' \).  Since we are avoiding the origin (where the annoying sign function kicks in), means that we want to evaluate:
+Since we are avoiding the origin
 \begin{equation}\label{eqn:helmholtzGreens:1240}
-\lr{ k^2 + \frac{d^2}{dx^2} } e^{j k \Abs{x - x'}},
+\lr{ k^2 + \frac{d^2}{dx^2} } e^{j k \Abs{x - x'}}.
 \end{equation}
-and expect that this will be zero.  Let's make a change of variables \( r = x' - x \), and evaluate
+We expect that this will be zero.  Making a change of variables \( r = x' - x \), we want to evaluate
 \begin{equation}\label{eqn:helmholtzGreens:1260}
 \lr{ k^2 + \frac{d^2}{dr^2} } e^{j k \Abs{r}},
 \end{equation}
@@ -290,7 +403,7 @@ The takeaway is that we have
 &=
 \int_{\Abs{x' - x} \le \epsilon} V(x') \lr{ \frac{d^2}{d{x'}^2} + k^2 } G(x, x') dx' \\
 &=
-\int_{-\epsilon}^\epsilon V(x + r) \lr{ \frac{d^2}{dr^2} + k^2 } G(r = x' - x) dr \\
+\int_{-\epsilon}^\epsilon V(x + r) \lr{ \frac{d^2}{dr^2} + k^2 } G(r) dr \\
 \end{aligned}
 \end{equation}
 for some arbitrarily small value of \( \epsilon \).  Observe that after bringing the operator into the integral, we also made a change of variables, first to \( x' \) for the Laplacian, and then to \( r = x' - x \).
@@ -348,7 +461,7 @@ so
 }
 \end{equation}
 
-Let's try applying that to the function \( G(r) = e^{j k \Abs{r} } \), and see what happens.  That is
+This gives us
 \begin{equation}\label{eqn:helmholtzGreens:1420}
 \begin{aligned}
 \lr{ \spacegrad^2 + k^2 }\int_{\Abs{x'- x} \le \epsilon} e^{j k \Abs{x - x'}} V(x') dx'
@@ -377,182 +490,33 @@ Similarly, with \( dV/dr \) continuity condition, that last term is also zero.  
 \begin{equation}\label{eqn:helmholtzGreens:1460}
 \lr{ \spacegrad^2 + k^2 }\int_{\Abs{x'- x} \le \epsilon} e^{j k \Abs{x - x'}} V(x') dx'
 =
-V(x) \evalrange{ \frac{d}{dr} e^{j k \Abs{r}} }{-\epsilon}{\epsilon}.
+V(x)
+\evalrange{ \frac{d}{dr} e^{j k \Abs{r}} }{-\epsilon}{\epsilon}.
 \end{equation}
-but this is an extremely problematic derivative around the origin.  The core problem is evaluating
-\begin{equation}\label{eqn:helmholtzGreens:1480}
-\frac{d}{dr} e^{j k \Abs{r}} = j k e^{j k \Abs{r} } \frac{d\Abs{r}}{dr}.
-\end{equation}
-In conventional mathematics, we'd have to say that this is undefined at the origin.  In physics, on the other hand, where we play fast and loose with the mathematics, we express the absolute value in terms of Heavyside theta functions
-\begin{equation}\label{eqn:helmholtzGreens:1500}
-\Abs{r} = r \Theta(r) - r \Theta(-r).
-\end{equation}
-We may now take derivatives
-\begin{equation}\label{eqn:helmholtzGreens:1520}
-\begin{aligned}
-\Abs{r}'
-&= \Theta(r) - \Theta(-r) + r \delta(r) + r \delta(-r) \\
-&= \sgn(r) + 2 r \delta(r).
-\end{aligned}
-\end{equation}
-Evaluating \( e^{j k \Abs{r} } \Abs{r}' \) over the \( [-\epsilon, \epsilon] \) range, we have
-\begin{equation}\label{eqn:helmholtzGreens:1540}
-\begin{aligned}
-\evalrange{
-e^{j k \Abs{r} } \Abs{r}'
-}{-\epsilon}{\epsilon}
-&=
-e^{j k \epsilon} \lr{ \evalrange{ \sgn(r) + 2 r \delta(r) }{-\epsilon}{\epsilon} } \\
-&=
-e^{j k \epsilon} \lr{ 2 + 2 \epsilon \delta(\epsilon) }.
-\end{aligned}
-\end{equation}
-Again, playing fast and loose, we evaluate this range before taking the limit, where \( \delta(\epsilon) = 0 \) for \( \epsilon > 0 \).  We are left with
-\begin{equation}\label{eqn:helmholtzGreens:1560}
-\lim_{\epsilon \rightarrow 0} \lr{ \spacegrad^2 + k^2 }\int_{\Abs{x'- x} \le \epsilon} e^{j k \Abs{x - x'}} V(x') dx'
+Because we are evaluating this derivative only at points \( r = \pm \epsilon \ne 0 \), that derivative is
+\begin{equation}\label{eqn:helmholtzGreens:2460}
+\frac{d}{dr} e^{j k \Abs{r}}
 =
-2 j k V(x),
+j k e^{j k \Abs{r}} \sgn(r),
 \end{equation}
-provided \( V \) and its first and second derivatives are continuous.
-
-Under those constraints, the implication is that one valid Green's function for the 1D Helmholtz operator is
-\begin{equation}\label{eqn:helmholtzGreens:1580}
-G(r) = -\frac{j}{2k} e^{j k \Abs{r} }.
-\end{equation}
-The \( \sgn(r) \) scale factor that was part of the Green's function that we derived using contour integration does not appear to be required.
-
-What happens if we retain the sign function factor?  Doing so, we have
-\begin{equation}\label{eqn:helmholtzGreens:1600}
+leaving us with
+\begin{equation}\label{eqn:helmholtzGreens:2480}
 \begin{aligned}
-\lr{ \spacegrad^2 + k^2 }\int_{\Abs{x'- x} \le \epsilon} \sgn(x - x') e^{j k \Abs{x - x'}} V(x') dx'
+\evalrange{ \frac{d}{dr} e^{j k \Abs{r}} }{-\epsilon}{\epsilon}
 &=
--\int_{-\epsilon}^\epsilon \sgn(r) e^{j k \Abs{r}} \lr{ k^2 + \frac{d^2}{dr^2} } V(x + r) dr \\
-&\quad
--
-\evalrange{ V(x + r) \frac{d}{dr} \sgn(r) e^{j k \Abs{r}} }{-\epsilon}{\epsilon}
-+
-\evalrange{ \sgn(r) e^{j k \Abs{r}} \frac{d}{dr} V(x+r) }{-\epsilon}{\epsilon}.
+j k e^{j k \Abs{\epsilon}} \sgn(\epsilon) - j k e^{j k \Abs{-\epsilon}} \sgn(-\epsilon) \\
+&=
+j k e^{j k \Abs{\epsilon}} \lr{ 1 - (-1) } \\
+2 j k e^{j k \Abs{\epsilon}}.
 \end{aligned}
-\end{equation}
-This time, we note that
-\begin{equation}\label{eqn:helmholtzGreens:1620}
-\int_{-\epsilon}^\epsilon \sgn(r) e^{j k \Abs{r}} dr = 0, \quad \forall \epsilon \ne 0,
-\end{equation}
-even without evaluating the limit.  However, we have problems with the other two terms.  The last term doesn't zero out as desired, instead
-\begin{equation}\label{eqn:helmholtzGreens:1640}
-\evalrange{ \sgn(r) e^{j k \Abs{r}} \frac{d}{dr} V(x+r) }{-\epsilon}{\epsilon} \rightarrow 2 V'(x).
-\end{equation}
-To evaluate the \( V(x) \) factor, we write
-\begin{equation}\label{eqn:helmholtzGreens:1660}
-\sgn(r) = \Theta(r) - \Theta(-r),
-\end{equation}
-so
-\begin{equation}\label{eqn:helmholtzGreens:1680}
-\begin{aligned}
-\sgn(r)'
-&= \delta(r) + \delta(-r) \\
-&= 2 \delta(r).
-\end{aligned}
-\end{equation}
-That means that
-\begin{equation}\label{eqn:helmholtzGreens:1700}
-\begin{aligned}
-\frac{d}{dr} \lr{ \sgn(r) e^{j k \Abs{r}} }
-&=
-2 \delta(r) e^{j k \Abs{r}} + j k \sgn(r) e^{j k \Abs{r}} \lr{ \sgn(r) + 2 r \delta(r) } \\
-&=
-e^{j k \Abs{r}} \lr{ 2 \delta(r) + j k \lr{ 1 + 2 r \sgn(r) \delta(r)} } \\
-&=
-j k e^{j k \Abs{r}},
-\end{aligned}
-\end{equation}
-for \( r \ne 0 \), so
-\begin{equation}\label{eqn:helmholtzGreens:1760}
--
-\evalrange{ V(x + r) \frac{d}{dr} \sgn(r) e^{j k \Abs{r}} }{-\epsilon}{\epsilon}
-\rightarrow V(x) j k \lr{ e^{j k \epsilon} - e^{j k \epsilon} } = 0.
-\end{equation}
-
-All in, we are left with
-\begin{equation}\label{eqn:helmholtzGreens:1720}
-\lim_{\epsilon \rightarrow 0} \lr{ \spacegrad^2 + k^2 }\int_{\Abs{x'- x} \le \epsilon} \frac{(-j)}{2k} \sgn(x - x') e^{j k \Abs{x - x'}} V(x') dx'
-= -\frac{j}{k} V'(x),
-\end{equation}
-but for a Green's function, we expected just \( V(x) \).
-
-It seems that the sign factor in the contour integration result \cref{eqn:helmholtzGreens:300} is definitively wrong.  Instead, we want just
-\begin{equation}\label{eqn:helmholtzGreens:1740}
-\boxed{
-G(r) = -\frac{j}{2k} e^{j k \Abs{r}}.
-}
-\end{equation}
-
-\subsection{A better check of the 1D Helmholtz Green's function.}
-We used a complicated limiting argument to validate the 1D Helmholtz operator Green's function.
-
-Here is a more direct check, using the Heaviside theta function to express the absolute value.
-
-The goal is to show that
-\begin{equation}\label{eqn:helmholtzGreens:2060}
-\lr{ \spacegrad^2 + k^2 } G(x, x') = \delta(x - x'),
-\end{equation}
-where
-\begin{equation}\label{eqn:helmholtzGreens:2080}
-G(x, x') = \frac{e^{j k \Abs{x - x'}}}{2 j k}.
-\end{equation}
-Let's start with an \( r = x - x' \) change of variables, for which
-\begin{equation}\label{eqn:helmholtzGreens:2100}
-\frac{d}{dx} = \frac{dr}{dx} \frac{d}{dr} = \frac{d}{dr}.
-\end{equation}
-This means that
-\begin{equation}\label{eqn:helmholtzGreens:2120}
-\spacegrad^2 e^{j k \Abs{x - x'}} = \frac{d^2}{dr^2} e{j k \Abs{r}}
-\end{equation}
-
-Starting with the first derivative we have
-\begin{equation}\label{eqn:helmholtzGreens:2140}
-\begin{aligned}
-\frac{d}{dr} e^{j k \Abs{r} }
-&=
-j k e^{j k \Abs{r} } \frac{d\Abs{r}}{dr} \\
-&=
-j k e^{j k \Abs{r} } \frac{d}{dr} \lr{ r \Theta(r) - r \Theta(-r) } \\
-&=
-j k e^{j k \Abs{r} } \lr{ \Theta(r) - \Theta(-r) + 2 r \delta(r) } \\
-&=
-j k e^{j k \Abs{r} } \lr{ \Theta(r) - \Theta(-r) } \\
-&=
-j k e^{j k \Abs{r} } \sgn(r).
-\end{aligned}
-\end{equation}
-Using that Heaviside representation of the sign function we have \( sgn(r)' = 2 \delta(r) \), so
-\begin{equation}\label{eqn:helmholtzGreens:2160}
-\frac{d^2}{dr^2} e{j k \Abs{r}}
-=
-\lr{ j k \sgn(r) }^2 e^{j k \Abs{r} } + 2 j k e^{j k \Abs{r} } \delta(r).
-\end{equation}
-We can identify \( e^{j k \Abs{r} } \delta(r) = \delta(r) \), just as we identified \( r \delta(r) = 0 \), by application to a test function.  That is
-\begin{equation}\label{eqn:helmholtzGreens:2180}
-\begin{aligned}
-\int e^{j k \Abs{r} } \delta(r) f(r) dr
-&=
-\evalbar{e^{j k \Abs{r} } f(r)}{r = 0} \\
-&=
-f(0) \\
-&=
-\int \delta(r) f(r) dr.
-\end{aligned}
-\end{equation}
-With that identification
-\begin{equation}\label{eqn:helmholtzGreens:2200}
-\spacegrad^2 e^{j k \Abs{r} } = -k^2 e^{j k \Abs{r} } + 2 j k \delta(r),
 \end{equation}
 or
-\begin{equation}\label{eqn:helmholtzGreens:2220}
-\boxed{
-\lr{ \spacegrad^2 + k^2 } \frac{e^{j k \Abs{x - x'} }}{2 j k} = \delta(x - x').
-}
+\begin{equation}\label{eqn:helmholtzGreens:2500}
+\lr{ \spacegrad^2 + k^2 }\int_{-\infty}^\infty e^{j k \Abs{x - x'} } V(x') dx'
+=
+2 j k e^{j k \Abs{\epsilon}} V(x).
 \end{equation}
+Taking limits and dividing through by \( 2 j k \) proves the result.
 
 \section{1D Laplacian Green's function.}
 Having blundered our way to what appears to be the correct Green's function for the 1D Helmholtz operator, let's further validate that by deriving the Green's function for the 1D Laplacian.  We should also be able to verify that it has the correct delta function semantics.
@@ -577,8 +541,18 @@ G(r) = \frac{\Abs{r}}{2}.
 }
 \end{equation}
 
-\subsection{Observing the delta-function semantics of our Laplacian Green's function through convolution.}
-We can now attempt to validate that this has the desired delta function semantics, operating on the convolution with the Laplacian.  We are interested in evaluating
+Alternatively, we may use the real sine form of the Green's function, which has a nice expansion around \( k = 0 \), and arrive at the same result.
+
+Observe that
+\begin{equation}\label{eqn:helmholtzGreens:2520}
+\frac{d^2}{dr^2} \frac{\Abs{r}}{2} =
+\frac{d}{dr} \frac{\sgn{r}}{2} =
+\delta(r),
+\end{equation}
+which verifies that this is a valid Green's function for the 1D Laplacian.
+
+\subsection{Verifying the Green's function with convolution.}
+We can also operate on the convolution with the Laplacian, to verify correctness.  We are interested in evaluating
 \begin{equation}\label{eqn:helmholtzGreens:1840}
 \spacegrad^2 \int \frac{\Abs{x - x'}}{2} V(x') dx' = \int V(x + r) \frac{d^2}{dr^2} \frac{\Abs{r}}{2} dr.
 \end{equation}
@@ -642,38 +616,6 @@ In the limit we have
 \end{equation}
 
 If the test (or driving) function is continuous at \( x' = x \), then this is exactly the delta-function semantics that we expect of a Green's function.  It's interesting that this check provides us with precise semantics for the Green's function for discontinuous functions too.
-\subsection{Extracting the delta-function semantics of the Laplacian Green's function directly.}
-There's a more direct, but less satisfying way to do this same computation.  We can compute \( d^2 G(r)/dr^2 \).  We need the trick
-\begin{equation}\label{eqn:helmholtzGreens:1940}
-\Abs{r} = r \Theta(r) - r \Theta(-r),
-\end{equation}
-and the identification \(\Theta'(r) = \delta(r) \).  We find
-\begin{equation}\label{eqn:helmholtzGreens:1960}
-\begin{aligned}
-\Abs{r}'
-&= \Theta(r) - \Theta(-r) + r \delta(r) - r (-1) \delta(-r) \\
-&= \Theta(r) - \Theta(-r) + 2 r \delta(r).
-\end{aligned}
-\end{equation}
-To give \( r \delta(r) \) meaning, we can apply it to a test function
-\begin{equation}\label{eqn:helmholtzGreens:1980}
-\int r \delta(r) f(r) dr = \evalbar{ r f(r) }{r = 0} = 0,
-\end{equation}
-so
-\begin{equation}\label{eqn:helmholtzGreens:2000}
-\Abs{r}' = \Theta(r) - \Theta(-r).
-\end{equation}
-Now we can take second derivatives
-\begin{equation}\label{eqn:helmholtzGreens:2020}
-\Abs{r}'' = \delta(r) + \delta(-r) = 2 \delta(r).
-\end{equation}
-This means that
-\begin{equation}\label{eqn:helmholtzGreens:2040}
-\boxed{
-\frac{d^2}{dr^2} \frac{\Abs{r}}{2} = \delta(r).
-}
-\end{equation}
-
 \section{2D Green's function.}
 \subsection{Evaluating the integral.}
 Okay, now let's do the 2D Green's function evaluation.  Our starting place is
@@ -902,8 +844,7 @@ G(\Br)
 \end{aligned}
 \end{equation}
 In the last step, we've displaced the pole so that we can evaluate it using an infinite upper half plane semicircular contour, as illustrated in \cref{fig:greensHelmholtz:greensHelmholtzFig1ab}.
-\imageTwoFigures{../figures/blogit/greensHelmholtzFig1a}{../figures/blogit/greensHelmholtzFig1b}
-{Contours for 3D Green's function evaluation}{fig:greensHelmholtz:greensHelmholtzFig1ab}{scale=0.7}
+%\imageTwoFigures{../figures/blogit/greensHelmholtzFig1a}{../figures/blogit/greensHelmholtzFig1b}{Contours for 3D Green's function evaluation}{fig:greensHelmholtz:greensHelmholtzFig1ab}{scale=0.7}
 %\cref{fig:greensHelmholtz:greensHelmholtzFig1b}.
 Which pole we choose depends on the sign we pick for the ``small'' pole displacement \( \epsilon \).  For the \( \epsilon > 0 \) case, we find
 \begin{equation}\label{eqn:helmholtzGreens:620}

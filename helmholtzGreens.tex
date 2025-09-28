@@ -159,7 +159,7 @@ G_\epsilon(r)
 %&= -\frac{j}{2k} e^{j k \Abs{r}}.
 \end{aligned}
 \end{equation}
-Combining both results, our Green's function, after a positive pole displacment \( \epsilon > 0 \), is
+Combining both results, our Green's function, after a positive pole displacement \( \epsilon > 0 \), is
 \begin{equation}\label{eqn:helmholtzGreens:300}
 G(r) = \frac{1}{2 j k} e^{j k \Abs{r}}.
 \end{equation}
@@ -198,7 +198,7 @@ U(x) = A e^{j k x} + B e^{-j k x} + \inv{2k} \int_{-\infty}^\infty \sin( k\Abs{r
 \end{equation}
 
 \subsubsection{A strictly causal solution.}
-We can split the convolution kernel a ``causal'' part, where only the spatiallly-``past'' values of \( V \) contribute, and an ``acausal'' part
+We can split the convolution kernel a ``causal'' part, where only the spatially-``past'' values of \( V \) contribute, and an ``acausal'' part
 \begin{equation}\label{eqn:helmholtzGreens:2320}
 U(x) =
 \inv{2k} \int_{-\infty}^0 \sin( k\Abs{r} ) V(x + r) dr
@@ -263,7 +263,7 @@ It's pretty cool that we can completely solve the 1D forced wave equation, for a
 
 \subsection{Verification of the 1D Helmholtz Green's function.}
 
-Let's show that the outgoing Green's function has the desired delta function semanitics.  That is
+Let's show that the outgoing Green's function has the desired delta function semantics.  That is
 \begin{equation}\label{eqn:helmholtzGreens:2060}
 \lr{ \spacegrad^2 + k^2 } G(x, x') = \delta(x - x'),
 \end{equation}
@@ -546,7 +546,7 @@ Alternatively, we may use the real sine form of the Green's function, which has 
 Observe that
 \begin{equation}\label{eqn:helmholtzGreens:2520}
 \frac{d^2}{dr^2} \frac{\Abs{r}}{2} =
-\frac{d}{dr} \frac{\sgn{r}}{2} =
+\frac{d}{dr} \frac{\sgn(r)}{2} =
 \delta(r),
 \end{equation}
 which verifies that this is a valid Green's function for the 1D Laplacian.

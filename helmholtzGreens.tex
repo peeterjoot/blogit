@@ -676,6 +676,7 @@ G(\Br) = -\inv{2 \pi} \int_0^\infty \frac{p J_0(p \Abs{\Br} ) dp}{p^2 - \lr{k + 
 where we've also displaced the problematic pole by a small imaginary amount as before.  Grok incorrectly claimed that this was an even integral, and then argued that the end result is a Hankel function (that may be the case, but it's reasoning to get there was clearly wrong.) Mathematica, on the other hand, can evaluate this integral, as shown in \cref{fig:HelmholtzGreens2DMathematica:HelmholtzGreens2DMathematicaFig9}.
 
 \imageFigure{../figures/blogit/HelmholtzGreens2DMathematicaFig9}{Mathematica evaluation of the 2D Green's function}{fig:HelmholtzGreens2DMathematica:HelmholtzGreens2DMathematicaFig9}{0.4}
+% helmholtzGreens2D.nb
 
 %\begin{equation}\label{eqn:helmholtzGreens:900}
 %G(\Br) = -\inv{2 \pi} K_0\lr{\frac{\Abs{\Br}}{\sqrt{\frac{1}{(\epsilon - j k)^2}}}}, \epsilon \neq 0.
@@ -699,6 +700,37 @@ so
 \begin{equation}\label{eqn:helmholtzGreens:960}
 \boxed{
 G(\Bx, \Bx') = -\frac{j}{4} H_0^{(1)}(\pm k \Abs{\Bx - \Bx'}).
+}
+\end{equation}
+
+\section{The 2D Laplacian Green's function.}
+Like the exponential form of the 1D Helmholtz Green's function, the 2D Green's function has the appearance of being malformed for \( k \rightarrow 0 \).
+
+\subsection{An asymptotic expansion of The 2D Helmholtz Green's function.}
+Let's try to carefully expand the Helmholtz 2D Green's function in the neighbourhood of \( k = 0 \), which will provide us with the Green's function for the 2D Laplacian.
+
+In \citep{abramowitz1964handbook}, \S 9.1.7, 9.1.8, we have for \( z \rightarrow 0 \)
+\begin{equation}\label{eqn:helmholtzGreens:980}
+\begin{aligned}
+J_\nu(z) &\sim \lr{\frac{z}{2}}^\nu/\Gamma(\nu+1) \\
+Y_0(z) &\sim \frac{2}{\pi} \ln z,
+\end{aligned}
+\end{equation}
+so for \( k \ll r \)
+\begin{equation}\label{eqn:helmholtzGreens:1000}
+H_0^{(1)}(k r) \sim 1 + \frac{2j}{\pi} \ln\lr{k r},
+\end{equation}
+and
+\begin{equation}\label{eqn:helmholtzGreens:1020}
+\begin{aligned}
+G(\Br)
+&\sim -\frac{j}{4} \lr{ 1 + \frac{j}{2 \pi} \ln\lr{k r} } \\
+&= -\frac{j}{4} + \frac{1}{2 \pi} \ln k + \frac{1}{2 \pi} \ln r.
+\end{aligned}
+\end{equation}
+Here is where we have to get sneaky.  Since we seek a Green's function for the Laplacian operator, we are free to add any solution \( f(x,y) \) that satisfies \( \spacegrad^2 f = 0 \).  Constants are clearly in that homogeneous solution space, so we may adjust this expansion of the Green's function, throwing away the leading constant imaginary term, and treating \( k \) as a small constant, the \( \ln k \) term.  That leaves us with
+\begin{equation}\label{eqn:helmholtzGreens:1040}\boxed{
+G(\Bx, \Bx') = \frac{1}{2 \pi} \ln \Abs{\Bx - \Bx'}.
 }
 \end{equation}
 
@@ -797,36 +829,6 @@ In the limit we are left with just \( 2 \pi V(\Bx) \), so
 \spacegrad^2 \int G(\Bx, \Bx') V(\Bx') d^2 \Bx' = V(\Bx),
 \end{equation}
 as desired.
-
-\section{The 2D Laplacian Green's function.}
-Like the 1D Helmholtz Green's function, the 2D Green's function has the appearance of being malformed for \( k \rightarrow 0 \).
-
-Let's try to carefully expand the 2D Green's function in the neighbourhood of \( k = 0 \).  This will serve as an indirect and partial validation of that result, and as a side effect provide us with the Green's function for the 2D Laplacian.
-
-In \citep{abramowitz1964handbook}, \S 9.1.7, 9.1.8, we have for \( z \rightarrow 0 \)
-\begin{equation}\label{eqn:helmholtzGreens:980}
-\begin{aligned}
-J_\nu(z) &\sim \lr{\frac{z}{2}}^\nu/\Gamma(\nu+1) \\
-Y_0(z) &\sim \frac{2}{\pi} \ln z,
-\end{aligned}
-\end{equation}
-so for \( k \ll r \)
-\begin{equation}\label{eqn:helmholtzGreens:1000}
-H_0^{(1)}(k r) \sim 1 + \frac{2j}{\pi} \ln\lr{k r},
-\end{equation}
-and
-\begin{equation}\label{eqn:helmholtzGreens:1020}
-\begin{aligned}
-G(\Br)
-&\sim -\frac{j}{4} \lr{ 1 + \frac{j}{2 \pi} \ln\lr{k r} } \\
-&= -\frac{j}{4} + \frac{1}{2 \pi} \ln k + \frac{1}{2 \pi} \ln r.
-\end{aligned}
-\end{equation}
-Here is where we have to get sneaky.  Since we seek a Green's function for the Laplacian operator, we are free to add any solution \( f(x,y) \) that satisfies \( \spacegrad^2 f = 0 \).  Constants are clearly in that homogeneous solution space, so we may adjust this expansion of the Green's function, throwing away the leading constant imaginary term, and treating \( k \) as a small constant, the \( \ln k \) term.  That leaves us with
-\begin{equation}\label{eqn:helmholtzGreens:1040}\boxed{
-G(\Bx, \Bx') = \frac{1}{2 \pi} \ln \Abs{\Bx - \Bx'}.
-}
-\end{equation}
 
 \section{3D Green's function.}
 The 3D Green's function that we wish to try to evaluate is

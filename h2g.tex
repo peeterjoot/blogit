@@ -1,0 +1,82 @@
+%
+% Copyright © 2025 Peeter Joot.  All Rights Reserved.
+% Licenced as described in the file LICENSE under the root directory of this GIT repository.
+%
+%{
+\input{../latex/blogpost.tex}
+\renewcommand{\basename}{h2g}
+%\renewcommand{\dirname}{notes/phy1520/}
+\renewcommand{\dirname}{notes/ece1228-electromagnetic-theory/}
+%\newcommand{\dateintitle}{}
+%\newcommand{\keywords}{}
+
+\input{../latex/peeter_prologue_print2.tex}
+
+\usepackage{peeters_layout_exercise}
+\usepackage{peeters_braket}
+\usepackage{peeters_figures}
+\usepackage{siunitx}
+\usepackage{verbatim}
+%\usepackage{macros_cal} % \LL
+%\usepackage{amsthm} % proof
+%\usepackage{mhchem} % \ce{}
+%\usepackage{macros_bm} % \bcM
+%\usepackage{macros_qed} % \qedmarker
+%\usepackage{txfonts} % \ointclockwise
+
+\beginArtNoToc
+
+\generatetitle{XXX}
+%\chapter{XXX}
+%\label{chap:h2g}
+
+The goal is to integrate
+\begin{equation}\label{eqn:h2g:20}
+I_\epsilon(r)
+= -\inv{2 \pi} \int_0^{2\pi} d\theta \int_0^\infty dp \frac{p e^{j p r \cos\theta}}{p^2 - \lr{k + j\epsilon}^2}
+\end{equation}
+
+ChatGPT suggests evaluating the \( p \) integral first using contour integration.  That is
+\begin{equation}\label{eqn:h2g:40}
+\begin{aligned}
+I(\theta)
+&= -\inv{2 \pi} \int_0^\infty dp \frac{p e^{j p r \cos\theta}}{p^2 - \lr{k + j\epsilon}^2} \\
+&=
+-\inv{4 \pi} \int_0^\infty dp
+\lr{ \inv{p - \lr{k + j\epsilon}} + \inv{p + \lr{k + j\epsilon}} } e^{j p r \cos\theta}.
+\end{aligned}
+\end{equation}
+Changing variables \( p \rightarrow -p \) in the second integral yields
+\begin{equation}\label{eqn:h2g:60}
+\begin{aligned}
+-\inv{4 \pi} \int_0^\infty dp
+\lr{ \inv{p + \lr{k + j\epsilon}} } e^{j p r \cos\theta}
+&=
++\inv{4 \pi} \int_0^{-\infty} dp
+\inv{-p + \lr{k + j\epsilon}}
+e^{-j p r \cos\theta} \\
+&=
+\inv{4 \pi} \int_{-\infty}^0 dp
+\inv{p - \lr{k + j\epsilon}}
+e^{-j p r \cos\theta},
+\end{aligned}
+\end{equation}
+so
+\begin{equation}\label{eqn:h2g:80}
+\begin{aligned}
+I(\theta)
+&=
+-\inv{4 \pi} \int_0^\infty dp
+\frac{e^{j p r \cos\theta}}{p - \lr{k + j\epsilon}}
++
+\inv{4 \pi} \int_{-\infty}^0 dp
+\frac{e^{-j p r \cos\theta}}{p - \lr{k + j\epsilon}} \\
+&=
+-\inv{4 \pi} \int_{-\infty}^\infty dp
+\frac{\sgn(p) e^{j \Abs{p} r \cos\theta}}{p - \lr{k + j\epsilon}}.
+\end{aligned}
+\end{equation}
+
+%}
+%\EndArticle
+\EndNoBibArticle

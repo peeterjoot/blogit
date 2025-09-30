@@ -1,0 +1,142 @@
+%
+% Copyright © 2025 Peeter Joot.  All Rights Reserved.
+% Licenced as described in the file LICENSE under the root directory of this GIT repository.
+%
+%{
+\input{../latex/blogpost.tex}
+\renewcommand{\basename}{helmholtzHomogeneous2D}
+%\renewcommand{\dirname}{notes/phy1520/}
+\renewcommand{\dirname}{notes/ece1228-electromagnetic-theory/}
+%\newcommand{\dateintitle}{}
+%\newcommand{\keywords}{}
+
+\input{../latex/peeter_prologue_print2.tex}
+
+\usepackage{peeters_layout_exercise}
+\usepackage{peeters_braket}
+\usepackage{peeters_figures}
+\usepackage{siunitx}
+\usepackage{verbatim}
+%\usepackage{macros_cal} % \LL
+%\usepackage{amsthm} % proof
+%\usepackage{mhchem} % \ce{}
+%\usepackage{macros_bm} % \bcM
+%\usepackage{macros_qed} % \qedmarker
+%\usepackage{txfonts} % \ointclockwise
+
+\beginArtNoToc
+
+\generatetitle{Solving the homogeneous Helmholtz equation}
+%\chapter{Solving the homogeneous Helmholtz equation}
+%\label{chap:helmholtzHomogeneous2D}
+
+Attempting to find the Green's functions for the 2D Helmholtz operator required Bessel and Hankle functions.  It therefore seems likely that Bessel functions will show up if we attempt to find radially symmetric solutions to the homogeneous 2D Helmholtz equation
+\begin{equation}\label{eqn:helmholtzHomogeneous2D:20}
+\lr{ \spacegrad^2 + k^2 } f(\Bx) = 0.
+\end{equation}
+Let's look for solutions to this equation, first looking for radially symmetric solutions and then the more general case.
+\section{Laplacian in polar coordinates.}
+We could look up the 2D Laplacian, but it's more fun to derive it.  We can use a parameterization
+\begin{equation}\label{eqn:helmholtzHomogeneous2D:40}
+\Bx = r \Be_1 e^{i\theta},
+\end{equation}
+where \( i = \Be_1 \Be_2 \).
+\begin{equation}\label{eqn:helmholtzHomogeneous2D:60}
+\begin{aligned}
+\Bx_r &= \PD{r}{\Bx} = \Be_1 e^{i\theta} = \rcap \\
+\Bx_\theta &= \PD{\theta}{\Bx} = r \Be_2 e^{i\theta} = r \thetacap.
+\end{aligned}
+\end{equation}
+Since \( \Bx_r \) and \( \Bx_\theta \) are perpendicular, the gradient is just
+\begin{equation}\label{eqn:helmholtzHomogeneous2D:80}
+\begin{aligned}
+\spacegrad
+&= \inv{\Bx_r} \partial_r + \inv{\Bx_\theta} \partial_\theta \\
+&= \rcap \PD{r}{} + \frac{\thetacap}{r} \PD{\theta}{}.
+\end{aligned}
+\end{equation}
+Now that we have the gradient, we can compute the Laplacian easily
+\begin{equation}\label{eqn:helmholtzHomogeneous2D:100}
+\begin{aligned}
+\spacegrad^2 f
+&= \spacegrad \cdot \spacegrad f \\
+&= \lr{ \rcap \partial_r + \frac{\thetacap}{r} \partial_\theta } \cdot \lr{ \rcap f_r + \frac{\thetacap}{r} f_\theta } \\
+&=
+\rcap \cdot \lr{
+    \rcap f_{rr} + \cancel{\thetacap} \partial_r \lr{ \inv{r} f_\theta }
+}
++
+\frac{\thetacap}{r} \cdot \lr{
+    (\partial_\theta \rcap) f_r
+    + \cancel{(\partial_\theta \thetacap)} \frac{f_\theta}{r}
+    + \cancel{\rcap} f_{r\theta} + \frac{\thetacap}{r} f_{\theta \theta}
+}
+\\
+&=
+f_{rr} + \frac{f_r}{r} + \frac{f_{\theta \theta}}{r^2},
+\end{aligned}
+\end{equation}
+so
+\begin{equation}\label{eqn:helmholtzHomogeneous2D:120}
+\boxed{
+\spacegrad^2 = \frac{\partial^2}{\partial r^2} + \inv{r} \PD{r}{} + \inv{r^2} \frac{\partial^2}{\partial \theta^2}.
+}
+\end{equation}
+\section{Helmholtz equation with radial symmetry.}
+Given a function \( f(\Bx) = f(r) \), the Helmholtz equation is
+\begin{equation}\label{eqn:helmholtzHomogeneous2D:140}
+\begin{aligned}
+0
+&= \lr{ \spacegrad^2 + k^2 } f \\
+&= f'' + \inv{r} f' + k^2 f,
+\end{aligned}
+\end{equation}
+With \( z = k r \) we have
+\begin{equation}\label{eqn:helmholtzHomogeneous2D:160}
+\frac{d}{dr} = k \frac{d}{dz},
+\end{equation}
+so
+\begin{equation}\label{eqn:helmholtzHomogeneous2D:180}
+\begin{aligned}
+0
+&=
+k^2 f'' + \frac{k}{z} k f' + k^2 f \\
+&= \frac{k^2}{z^2} \lr{ z^2 f'' + z f' + \lr{z^2 - 0^2} f }
+\end{aligned}
+\end{equation}
+
+But
+\begin{equation}\label{eqn:helmholtzHomogeneous2D:200}
+0 = z^2 f'' + z f' + \lr{z^2 - 0^2} f,
+\end{equation}
+is the Bessel equation of order 0.
+
+The radially symmetric solutions of the Helmholtz equation, for \( r \ne 0 \) are
+\begin{equation}\label{eqn:helmholtzHomogeneous2D:220}
+f = A J_0(k r) + B Y_0(kr),
+\end{equation}
+or in terms of Hankle functions
+\begin{equation}\label{eqn:helmholtzHomogeneous2D:240}
+f = C H_0^{1}(k r) + D H_0^{2}(k r),
+\end{equation}
+where
+\begin{equation}\label{eqn:helmholtzHomogeneous2D:260}
+\begin{aligned}
+H_0^{1}(z) &= J_0(z) + i Y_0(z) \\
+H_0^{2}(z) &= J_0(z) - i Y_0(z).
+\end{aligned}
+\end{equation}
+In particular, if \( f \) is any such homogenous solution, \( \spacegrad^2 f + k^2 f = 0 \), for \( r \ne 0 \).
+
+\section{Finding the 2D Helmholtz Green's function without Mathematica.}
+We know that \( Y_0(z), H_0^{1}(z), H_0^{2}(z) \) are all singular at \( z = 0 \), so, if we were clever enough (and didn't already know the answer), we could guess that one or some combination of these is the Green's function for the Helmholtz operator.
+
+So, let's pretend that we don't already know the answer and test to see if some scalar multiple of \( H_0^{(1)}(k r) \) is the Green's function
+\begin{equation}\label{eqn:helmholtzHomogeneous2D:n}
+G(r) = -\inv{2 \pi} \int_0^\infty \frac{p J_0(p \Abs{r} ) dp}{p^2 - \lr{k + j \epsilon}^2},
+\end{equation}
+
+If we can do this (and prove uniqueness), then we implicitly solve the tricky Green's function integral, without having to cowardly succumb to the powers of Mathematica to do so.
+
+%}
+\EndNoBibArticle

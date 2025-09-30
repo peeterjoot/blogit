@@ -66,14 +66,16 @@ G\lr{ \Bx, \Bx' } &= -\frac{1}{4 \pi} \frac{e^{\pm j k r }}{r}.
 \end{equation}
 
 \item First order Helmholtz operator, \( \LL = \spacegrad + j k \), in 1D, 2D and 3D respectively
+% \spacegrad r = \rcap
+% H_0^{(1)}' = -H_1^{(1)}
+% G = (\spacegrad -j k)G_H, G_H from :60 above
 \begin{equation}\label{eqn:deltaFunctions:80}
 \begin{aligned}
 G\lr{ \Bx, \Bx' } &= \frac{j}{2} \lr{ \rcap \mp 1 } e^{\pm j k r} \\
-G\lr{ \Bx, \Bx' } &= \frac{k}{4} \lr{ j \rcap H_1^{(1)}(k r) - H_0^{(1)}(k r) } \\
-G\lr{ \Bx, \Bx' } &= \frac{e^{-j k r}}{4 \pi r} \lr{ jk \lr{ 1 + \rcap } + \frac{\rcap}{r} }.
+G\lr{ \Bx, \Bx' } &= \frac{k}{4} \lr{ \pm j \rcap H_1^{(1)}(\pm k r) - H_0^{(1)}(\pm k r) } \\
+G\lr{ \Bx, \Bx' } &= \frac{e^{\pm j k r}}{4 \pi r} \lr{ jk \lr{ 1 \mp \rcap } + \frac{\rcap}{r} }.
 \end{aligned}
 \end{equation}
-FIXME: Derive the incoming wave solutions for 2D and 3D cases.
 
 This is also the Green's function for a left acting operator \( G(\Bx, \Bx') \lr{ - \lspacegrad + j k } = \delta(\Bx - \Bx') \).
 \item Spacetime gradient (3+1 D), \( \LL = \spacegrad + (1/c) \partial_t \), satisfying \( \LL G(\Bx - \Bx', t - t') = \delta(\Bx - \Bx') \delta(t - t') \)

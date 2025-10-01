@@ -1,0 +1,143 @@
+%
+% Copyright © 2025 Peeter Joot.  All Rights Reserved.
+% Licenced as described in the file LICENSE under the root directory of this GIT repository.
+%
+%{
+\input{../latex/blogpost.tex}
+\renewcommand{\basename}{waveEquationGreens}
+%\renewcommand{\dirname}{notes/phy1520/}
+\renewcommand{\dirname}{notes/ece1228-electromagnetic-theory/}
+%\newcommand{\dateintitle}{}
+%\newcommand{\keywords}{}
+
+\input{../latex/peeter_prologue_print2.tex}
+
+\usepackage{peeters_layout_exercise}
+\usepackage{peeters_braket}
+\usepackage{peeters_figures}
+\usepackage{siunitx}
+\usepackage{verbatim}
+%\usepackage{macros_cal} % \LL
+%\usepackage{amsthm} % proof
+%\usepackage{mhchem} % \ce{}
+%\usepackage{macros_bm} % \bcM
+%\usepackage{macros_qed} % \qedmarker
+%\usepackage{txfonts} % \ointclockwise
+
+\beginArtNoToc
+
+\generatetitle{Green's function for the wave equation}
+%\chapter{Green's function for the wave equation}
+%\label{chap:waveEquationGreens}
+The Green's function(s) \( G(\Br, \tau) \) for the 3D wave equation
+\begin{equation}\label{eqn:waveEquationGreens:40}
+\lr{ \spacegrad^2 - \inv{c^2}\frac{\partial^2}{\partial t^2} } G(\Br, \tau) = \delta(\Br) \delta(\tau),
+\end{equation}
+where
+\begin{equation}\label{eqn:waveEquationGreens:20}
+\begin{aligned}
+\Br &= \Bx - \Bx' \\
+r &= \Abs{\Br} \\
+\tau &= t - t',
+\end{aligned}
+\end{equation}
+is
+\begin{equation}\label{eqn:waveEquationGreens:60}
+G(\Bx, t - t') = -\inv{4 \pi r} \delta( \pm \tau - r/c ).
+\end{equation}
+Here the positive case is for the retarded solution, and negative for the advancing solution.  This can be found derived in many places, such as \citep{schwinger1998classical}, \citep{jackson1975cew}, \citep{byron1992mca}.
+
+I wasn't familiar with the 1D and 2D Green's functions for the wave equation.  Grok says they are, respectively
+\begin{equation}\label{eqn:waveEquationGreens:80}
+\begin{aligned}
+G(\Br, \tau) &= -\frac{c}{2} \Theta( \pm \tau - r/c ) \\
+G(\Br, \tau) &= -\inv{2 \pi \sqrt{ \tau^2 - r^2/c^2 } } \Theta( \pm \tau - r/c ).
+\end{aligned}
+\end{equation}
+I'm not going to try to derive these myself, at least for the time being.  Instead, let's verify that they work, starting with the 1D case (and just the retarded 1D case to keep things simple.)
+\section{1D Green's function verification.}
+We will use the Heaviside theta representation of the absolute value.
+\begin{equation}\label{eqn:waveEquationGreens:100}
+\Abs{x} = x \Theta(x) - x \Theta(-x).
+\end{equation}
+Recall that this a sign function derivative
+\begin{equation}\label{eqn:waveEquationGreens:120}
+\begin{aligned}
+\Abs{x}'
+&= \Theta(x) - \Theta(-x) + x \delta(x) + x \delta(-x) \\
+&= \Theta(x) - \Theta(-x) + 2 x \delta(x) \\
+&= \Theta(x) - \Theta(-x) \\
+&= \sgn(x),
+\end{aligned}
+\end{equation}
+where \( x \delta(x) \) is zero in a distributional sense (zero if applied to a test function.)
+\begin{equation}\label{eqn:waveEquationGreens:140}
+\begin{aligned}
+\sgn(x)'
+&= \Theta(x)' - \Theta(-x)' \\
+&= \delta(x) + \delta(-x) \\
+&= 2 \delta(x).
+\end{aligned}
+\end{equation}
+
+Now let's evaluate the \( x \) partials.
+\begin{equation}\label{eqn:waveEquationGreens:160}
+\begin{aligned}
+\PD{x}{} \Theta(\tau - r/c)
+&=
+-\inv{c} \delta\lr{ \tau - r/c } \PD{x}{} \Abs{x - x'} \\
+&=
+-\inv{c} \delta\lr{ \tau - r/c } \sgn(x - x').
+\end{aligned}
+\end{equation}
+The second derivative is
+\begin{equation}\label{eqn:waveEquationGreens:180}
+\begin{aligned}
+\frac{\partial^2}{\partial x^2} \Theta(\tau - r/c)
+&=
+-\inv{c}
+\lr{
+    -\inv{c} \delta'\lr{ \tau - r/c } (\sgn(x - x'))^2
+    +
+    \delta\lr{ \tau - r/c } 2 \delta(x - x')
+} \\
+&=
+\inv{c^2} \delta'\lr{ \tau - r/c } - \frac{2}{c} \delta\lr{ \tau} \delta(x - x').
+\end{aligned}
+\end{equation}
+The transformation above from \( \delta\lr{ \tau - r/c } \rightarrow \delta(\tau) \) is because the spatial delta function \( \delta(x - x') \) is zero unless \( x = x' \), and \( r = 0 \) at that point.
+
+The time derivatives are easier to compute
+\begin{equation}\label{eqn:waveEquationGreens:200}
+\begin{aligned}
+\frac{\partial^2}{\partial t^2} \Theta(\tau - r/c)
+&=
+\PD{t}{} \delta(\tau - r/c) \\
+&=
+\delta'(\tau - r/c).
+\end{aligned}
+\end{equation}
+
+Putting the pieces together, we have
+\begin{equation}\label{eqn:waveEquationGreens:220}
+\begin{aligned}
+\lr{ \spacegrad^2 - \inv{c^2}\frac{\partial^2}{\partial t^2} } \Theta(\tau - r/c)
+&=
+\inv{c^2} \delta'\lr{ \tau - r/c } - \frac{2}{c} \delta\lr{ \tau} \delta(x - x')
++ \inv{c^2} \delta'(\tau - r/c)
+\\
+&=
+- \frac{2}{c} \delta\lr{ \tau} \delta(x - x').
+\end{aligned}
+\end{equation}
+Dividing through by \( -2/c \) gives us
+\begin{equation}\label{eqn:waveEquationGreens:240}
+\lr{ \spacegrad^2 - \inv{c^2}\frac{\partial^2}{\partial t^2} } G(\Bx - \Bx', t - t') = \delta\lr{t - t'} \delta\lr{\Bx - \Bx'},
+\end{equation}
+as desired.  It's easy to see that the advanced Green's function has the same behaviour, since the two time partials will bring down a factor of \( (\pm 1)^2 = 1 \) in general, which does not change anything above.
+\section{2D Green's function verification.}
+Now let's try to verify Grok's claim for the 2D Green's function.
+
+%}
+\EndArticle
+%\EndNoBibArticle

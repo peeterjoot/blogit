@@ -461,3 +461,5 @@ perl -p -i ../latex/bin/latexRegex.pl deltaFunctions.tex
 
 #../latex/bin/lgrep helmholtzHomogeneous2D.tex | tee o ; . ./o
 #perl -p -i ../latex/bin/latexRegex.pl helmholtzHomogeneous2D.tex
+../latex/bin/lgrep waveEquationGreens.tex | tee o ; . ./o
+perl -p -i ../latex/bin/latexRegex.pl waveEquationGreens.tex

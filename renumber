@@ -450,8 +450,8 @@
 #../latex/bin/lgrep selfEnergyIntegral.tex | tee o ; . ./o
 #perl -p -i ../latex/bin/latexRegex.pl selfEnergyIntegral.tex
 
-#../latex/bin/lgrep deltaFunctions.tex | tee o ; . ./o
-#perl -p -i ../latex/bin/latexRegex.pl deltaFunctions.tex
+../latex/bin/lgrep deltaFunctions.tex | tee o ; . ./o
+perl -p -i ../latex/bin/latexRegex.pl deltaFunctions.tex
 
 #../latex/bin/lgrep helmholtzGreens.tex | tee o ; . ./o
 #perl -p -i ../latex/bin/latexRegex.pl helmholtzGreens.tex
@@ -459,5 +459,5 @@
 #../latex/bin/lgrep h2g.tex | tee o ; . ./o
 #perl -p -i ../latex/bin/latexRegex.pl h2g.tex
 
-../latex/bin/lgrep helmholtzHomogeneous2D.tex | tee o ; . ./o
-perl -p -i ../latex/bin/latexRegex.pl helmholtzHomogeneous2D.tex
+#../latex/bin/lgrep helmholtzHomogeneous2D.tex | tee o ; . ./o
+#perl -p -i ../latex/bin/latexRegex.pl helmholtzHomogeneous2D.tex

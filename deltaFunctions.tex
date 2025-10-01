@@ -82,6 +82,16 @@ This is also the Green's function for a left acting operator \( G(\Bx, \Bx') \lr
 \begin{equation}\label{eqn:deltaFunctions:100}
 G( \Br, \tau ) = \inv{4 \pi} \lr{ \frac{\rcap}{r^2} + \inv{c r} \lr{ 1 + \rcap } } \delta\lr{\tau - \frac{r}{c} } \frac{d}{dt'}.
 \end{equation}
+FIXME: calculate this for both the retarded and advanced Green's functions, and also the 1D and 2D results.
+\item Wave equation, \( \spacegrad^2 - (1/c^2) \partial_{tt} \)
+\begin{equation}\label{eqn:deltaFunctions:140}
+\begin{aligned}
+G(\Br, \tau) &= -\frac{c}{2} \Theta( \pm \tau - r/c ) \\
+G(\Br, \tau) &= -\inv{2 \pi \sqrt{ \tau^2 - r^2/c^2 } } \Theta( \pm \tau - r/c ) \\
+G(\Br, \tau) &= -\inv{4 \pi r} \delta( \pm \tau - r/c ),
+\end{aligned}
+\end{equation}
+The positive sign is for the retarded solution, and the negative for advancing.
 \end{enumerate}
 
 %}

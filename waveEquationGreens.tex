@@ -43,9 +43,9 @@ r &= \Abs{\Br} \\
 \end{equation}
 is
 \begin{equation}\label{eqn:waveEquationGreens:60}
-G(\Bx, t - t') = -\inv{4 \pi r} \delta( \pm \tau - r/c ).
+G(\Br, \tau) = -\inv{4 \pi r} \delta( \pm \tau - r/c ).
 \end{equation}
-Here the positive case is for the retarded solution, and negative for the advancing solution.  This can be found derived in many places, such as \citep{schwinger1998classical}, \citep{jackson1975cew}, \citep{byron1992mca}.
+Here the positive case is the retarded solution, and negative the advanced solution.  The derivation of these Green's functions can be found derived in many places, including \citep{byron1992mca}, \citep{jackson1975cew}, and \citep{schwinger1998classical}
 
 I wasn't familiar with the 1D and 2D Green's functions for the wave equation.  Grok says they are, respectively
 \begin{equation}\label{eqn:waveEquationGreens:80}
@@ -54,13 +54,13 @@ G(\Br, \tau) &= -\frac{c}{2} \Theta( \pm \tau - r/c ) \\
 G(\Br, \tau) &= -\inv{2 \pi \sqrt{ \tau^2 - r^2/c^2 } } \Theta( \pm \tau - r/c ).
 \end{aligned}
 \end{equation}
-I'm not going to try to derive these myself, at least for the time being.  Instead, let's verify that they work, starting with the 1D case (and just the retarded 1D case to keep things simple.)
+I'm not going to try to derive these myself, at least for the time being.  Instead, let's verify that they work, starting with the retarded 1D case.
 \section{1D Green's function verification.}
 We will use the Heaviside theta representation of the absolute value.
 \begin{equation}\label{eqn:waveEquationGreens:100}
 \Abs{x} = x \Theta(x) - x \Theta(-x).
 \end{equation}
-Recall that this a sign function derivative
+Recall that the derivative of the absolute value function is a sign function
 \begin{equation}\label{eqn:waveEquationGreens:120}
 \begin{aligned}
 \Abs{x}'
@@ -124,7 +124,7 @@ Putting the pieces together, we have
 \lr{ \spacegrad^2 - \inv{c^2}\frac{\partial^2}{\partial t^2} } \Theta(\tau - r/c)
 &=
 \inv{c^2} \delta'\lr{ \tau - r/c } - \frac{2}{c} \delta\lr{ \tau} \delta(x - x')
-+ \inv{c^2} \delta'(\tau - r/c)
+- \inv{c^2} \delta'(\tau - r/c)
 \\
 &=
 - \frac{2}{c} \delta\lr{ \tau} \delta(x - x').
@@ -134,9 +134,255 @@ Dividing through by \( -2/c \) gives us
 \begin{equation}\label{eqn:waveEquationGreens:240}
 \lr{ \spacegrad^2 - \inv{c^2}\frac{\partial^2}{\partial t^2} } G(\Bx - \Bx', t - t') = \delta\lr{t - t'} \delta\lr{\Bx - \Bx'},
 \end{equation}
-as desired.  It's easy to see that the advanced Green's function has the same behaviour, since the two time partials will bring down a factor of \( (\pm 1)^2 = 1 \) in general, which does not change anything above.
+as desired.  The \( \delta \) derivative terms can be given meaning, but they conveniently cancel out, so we don't have to think about that this time.
+
+It's easy to see that the advanced Green's function has the same behaviour, since the two time partials will bring down a factor of \( (\pm 1)^2 = 1 \) in general, which does not change anything above.
 \section{2D Green's function verification.}
-Now let's try to verify Grok's claim for the 2D Green's function.
+Now let's try to verify Grok's claim for the 2D Green's function, starting with a few helpful side calculations.
+
+\begin{equation}\label{eqn:waveEquationGreens:260}
+\begin{aligned}
+\spacegrad \Abs{r}
+&= \Be_m \partial_m \sqrt{ \sum_n \lr{x_n - x_n'}^2 } \\
+&= \inv{2} 2 \frac{\Bx - \Bx'}{\Abs{\Bx - \Bx'}} \\
+&= \rcap
+\end{aligned}
+\end{equation}
+
+\begin{equation}\label{eqn:waveEquationGreens:280}
+\begin{aligned}
+\spacegrad \lr{ \tau^2 - r^2/c^2 }^{-1/2}
+&=
+-\inv{2} \lr{ \tau^2 - r^2/c^2 }^{-3/2} \lr{-\frac{2}{c^2}} \spacegrad r \\
+&=
+-\inv{2} \lr{ \tau^2 - r^2/c^2 }^{-3/2} \lr{-\frac{2}{c^2}} \rcap \\
+&=
+\inv{c^2} \lr{ \tau^2 - r^2/c^2 }^{-3/2} \rcap.
+\end{aligned}
+\end{equation}
+
+\begin{equation}\label{eqn:waveEquationGreens:300}
+\begin{aligned}
+\spacegrad \lr{ \tau^2 - r^2/c^2 }^{-3/2}
+&=
+-\frac{3}{2} \lr{ \tau^2 - r^2/c^2 }^{-5/2} \lr{-\frac{2}{c^2}} \spacegrad r \\
+&=
+-\frac{3}{2} \lr{ \tau^2 - r^2/c^2 }^{-5/2} \lr{-\frac{2}{c^2}} \rcap \\
+&=
+\frac{3}{c^2} \lr{ \tau^2 - r^2/c^2 }^{-5/2} \rcap.
+\end{aligned}
+\end{equation}
+
+\begin{equation}\label{eqn:waveEquationGreens:320}
+\begin{aligned}
+\spacegrad \Theta\lr{ \pm \tau - r/c }
+&=
+-\inv{c} \delta\lr{ \pm \tau - r/c } \spacegrad r \\
+&=
+-\inv{c} \delta\lr{ \pm \tau - r/c } \rcap.
+\end{aligned}
+\end{equation}
+
+\begin{equation}\label{eqn:waveEquationGreens:340}
+\begin{aligned}
+\spacegrad \delta\lr{ \pm \tau - r/c }
+&=
+-\inv{c} \delta'\lr{ \pm \tau - r/c } \spacegrad r \\
+&=
+-\inv{c} \delta'\lr{ \pm \tau - r/c } \rcap.
+\end{aligned}
+\end{equation}
+
+\begin{equation}\label{eqn:waveEquationGreens:360}
+\begin{aligned}
+\spacegrad \cdot \rcap
+&=
+\spacegrad \cdot \frac{\Bx - \Bx'}{r} \\
+&=
+\inv{r} \spacegrad \cdot \lr{\Bx - \Bx'} + \lr{\Bx - \Bx'} \cdot \spacegrad \inv{r} \\
+&=
+\frac{2}{r} + \lr{\Bx - \Bx'} \cdot \lr{ -\inv{r^2} \rcap } \\
+&=
+\frac{2}{r} - \inv{r} \\
+&=
+\frac{1}{r}.
+\end{aligned}
+\end{equation}
+
+Now for our real computations, starting the gradient
+\begin{equation}\label{eqn:waveEquationGreens:380}
+\begin{aligned}
+\spacegrad \frac{\Theta(\pm \tau - r/c)}{\sqrt{\tau^2 - r^2/c^2}}
+&=
+\lr{ \tau^2 - r^2/c^2 }^{-1/2} \spacegrad \Theta(\pm \tau - r/c)
++
+\Theta(\pm \tau - r/c) \spacegrad \lr{\tau^2 - r^2/c^2}^{-1/2} \\
+&=
+\lr{ \tau^2 - r^2/c^2 }^{-1/2} \lr{ -\inv{c} \delta\lr{ \pm \tau - r/c } \rcap }
++
+\Theta(\pm \tau - r/c) \lr{ \inv{c^2} \lr{ \tau^2 - r^2/c^2 }^{-3/2} \rcap } \\
+&=
+- \frac{\rcap}{c} \lr{ \tau^2 - r^2/c^2 }^{-1/2} \delta\lr{ \pm \tau - r/c }
++ \frac{\rcap}{c^2} \lr{ \tau^2 - r^2/c^2 }^{-3/2} \Theta(\pm \tau - r/c).
+\end{aligned}
+\end{equation}
+
+Now for the Laplacian
+\begin{equation}\label{eqn:waveEquationGreens:400}
+\begin{aligned}
+\spacegrad^2 \frac{\Theta(\pm \tau - r/c)}{\sqrt{\tau^2 - r^2/c^2}}
+&=
+\spacegrad \cdot \lr{
+- \frac{\rcap}{c} \lr{ \tau^2 - r^2/c^2 }^{-1/2} \delta\lr{ \pm \tau - r/c }
++ \frac{\rcap}{c^2} \lr{ \tau^2 - r^2/c^2 }^{-3/2} \Theta(\pm \tau - r/c)
+} \\
+&=
+- \frac{1}{c r} \lr{ \tau^2 - r^2/c^2 }^{-1/2} \delta\lr{ \pm \tau - r/c }
++ \frac{1}{c^2 r} \lr{ \tau^2 - r^2/c^2 }^{-3/2} \Theta(\pm \tau - r/c)
+\\
+&+\quad
+\rcap \cdot \spacegrad \lr{
+- \frac{1}{c} \lr{ \tau^2 - r^2/c^2 }^{-1/2} \delta\lr{ \pm \tau - r/c }
++ \frac{1}{c^2} \lr{ \tau^2 - r^2/c^2 }^{-3/2} \Theta(\pm \tau - r/c)
+}.
+\end{aligned}
+\end{equation}
+Clearly, this is going to get messier before it gets simpler.  Let's expand those pairs of directional derivatives separately
+
+\begin{equation}\label{eqn:waveEquationGreens:420}
+\begin{aligned}
+\rcap \cdot &\spacegrad \lr{
+- \frac{1}{c} \lr{ \tau^2 - r^2/c^2 }^{-1/2} \delta\lr{ \pm \tau - r/c }
+} \\
+&=
+-\inv{c}
+\delta\lr{ \pm \tau - r/c }
+\rcap \cdot \spacegrad
+\lr{ \tau^2 - r^2/c^2 }^{-1/2}
+-\inv{c}
+\lr{ \tau^2 - r^2/c^2 }^{-1/2}
+\delta\lr{ \pm \tau - r/c } \\
+&=
+-\inv{c^3} \delta\lr{ \pm \tau - r/c } \lr{ \tau^2 - r^2/c^2 }^{-3/2}
++\inv{c^2} \lr{ \tau^2 - r^2/c^2 }^{-1/2} \delta'\lr{ \pm \tau - r/c },
+\end{aligned}
+\end{equation}
+and
+\begin{equation}\label{eqn:waveEquationGreens:440}
+\begin{aligned}
+\rcap \cdot &\spacegrad \lr{
+ \frac{1}{c^2} \lr{ \tau^2 - r^2/c^2 }^{-3/2} \Theta(\pm \tau - r/c)
+} \\
+&=
+\inv{c^2}
+\lr{ \tau^2 - r^2/c^2 }^{-3/2}
+\rcap \cdot \spacegrad
+\Theta(\pm \tau - r/c)
++
+\inv{c^2}
+\Theta(\pm \tau - r/c)
+\rcap \cdot \spacegrad
+\lr{ \tau^2 - r^2/c^2 }^{-3/2} \\
+&=
+- \inv{c^3} \lr{ \tau^2 - r^2/c^2 }^{-3/2} \delta\lr{ \pm \tau - r/c }
++ \frac{3}{c^4} \Theta(\pm \tau - r/c) \lr{ \tau^2 - r^2/c^2 }^{-5/2}
+\end{aligned}
+\end{equation}
+
+Now, let's compute the time partials.  For the first order we have
+\begin{equation}\label{eqn:waveEquationGreens:460}
+\partial_t \frac{\Theta(\pm \tau - r/c)}{\sqrt{\tau^2 - r^2/c^2}}
+=
+\pm \lr{ \tau^2 - r^2/c^2 }^{-1/2} \delta(\pm \tau - r/c)
+- \tau \lr{ \tau^2 - r^2/c^2 }^{-3/2} \Theta(\pm \tau - r/c),
+\end{equation}
+For the second order (scaled), we have
+\begin{equation}\label{eqn:waveEquationGreens:480}
+\begin{aligned}
+-\inv{c^2} &\partial_{tt}  \frac{\Theta(\pm \tau - r/c)}{\sqrt{\tau^2 - r^2/c^2}} \\
+&=
+-\inv{c^2} \partial_t \lr{
+    \pm \lr{ \tau^2 - r^2/c^2 }^{-1/2} \delta(\pm \tau - r/c)
+    - \tau \lr{ \tau^2 - r^2/c^2 }^{-3/2} \Theta(\pm \tau - r/c)
+} \\
+&=
+-\inv{c^2} \lr{
+    \pm \lr{ \partial_t \lr{ \tau^2 - r^2/c^2 }^{-1/2} } \delta(\pm \tau - r/c)
+    - \tau \lr{ \partial_t \lr{ \tau^2 - r^2/c^2 }^{-3/2} } \Theta(\pm \tau - r/c)
+} \\
+&\quad
+-\inv{c^2} \lr{
+    \pm \lr{ \tau^2 - r^2/c^2 }^{-1/2} \partial_t \delta(\pm \tau - r/c)
+    - \tau \lr{ \tau^2 - r^2/c^2 }^{-3/2} \partial_t \Theta(\pm \tau - r/c)
+} \\
+&=
+-\inv{c^2} \lr{
+    \pm \lr{ - \tau \lr{ \tau^2 - r^2/c^2 }^{-1/2} } \delta(\pm \tau - r/c)
+    - \tau \lr{ -3 \tau \lr{ \tau^2 - r^2/c^2 }^{-3/2} } \Theta(\pm \tau - r/c)
+} \\
+&\quad
+-\inv{c^2} \lr{
+    + \lr{ \tau^2 - r^2/c^2 }^{-1/2} \delta'(\pm \tau - r/c)
+    \mp \tau \lr{ \tau^2 - r^2/c^2 }^{-3/2} \delta(\pm \tau - r/c)
+} \\
+&=
+\pm \frac{\tau}{c^2} \lr{ \tau^2 - r^2/c^2 }^{-1/2} \delta(\pm \tau - r/c)
+-\frac{3 \tau}{c^2} \lr{ \tau^2 - r^2/c^2 }^{-3/2} \Theta(\pm \tau - r/c) \\
+&\quad
+-\inv{c^2} \lr{ \tau^2 - r^2/c^2 }^{-1/2} \delta'(\pm \tau - r/c)
+\pm \frac{\tau}{c^2} \lr{ \tau^2 - r^2/c^2 }^{-3/2} \delta(\pm \tau - r/c)
+\end{aligned}
+\end{equation}
+
+Putting all the pieces together, the \( \delta' \) terms cancel, leaving
+\begin{equation}\label{eqn:waveEquationGreens:500}
+\begin{aligned}
+\lr{ \spacegrad^2 -\inv{c^2} \partial_{tt} } &\frac{\Theta(\pm \tau - r/c)}{\sqrt{\tau^2 - r^2/c^2}} \\
+&=
+%\inv{c^2} \lr{ \tau^2 - r^2/c^2 }^{-1/2} \delta'\lr{ \pm \tau - r/c }
+%-\inv{c^2} \lr{ \tau^2 - r^2/c^2 }^{-1/2} \delta'(\pm \tau - r/c)
+-      \frac{1}{c r} \lr{ \tau^2 - r^2/c^2 }^{-1/2} \delta(\pm \tau - r/c)
+\pm \frac{\tau}{c^2} \lr{ \tau^2 - r^2/c^2 }^{-1/2} \delta(\pm \tau - r/c) \\
+&
++ \frac{1}{c^2 r}    \lr{ \tau^2 - r^2/c^2 }^{-3/2} \Theta(\pm \tau - r/c)
+- \frac{3 \tau}{c^2} \lr{ \tau^2 - r^2/c^2 }^{-3/2} \Theta(\pm \tau - r/c) \\
+&
+- \frac{2}{c^3}      \lr{ \tau^2 - r^2/c^2 }^{-3/2} \delta(\pm \tau - r/c)
+\pm \frac{\tau}{c^2} \lr{ \tau^2 - r^2/c^2 }^{-3/2} \delta(\pm \tau - r/c) \\
+&
++ \frac{3}{c^4} \lr{ \tau^2 - r^2/c^2 }^{-5/2} \Theta(\pm \tau - r/c) \\
+&=
+-      \frac{1}{c r} \lr{ \tau^2 - r^2/c^2 }^{-1/2} \delta(\pm \tau - r/c)
+\pm \frac{\tau}{c^2} \lr{ \tau^2 - r^2/c^2 }^{-1/2} \delta(\pm \tau - r/c) \\
+&
++ \frac{1}{c^2 r}    \lr{ \tau^2 - r^2/c^2 }^{-3/2} \Theta(\pm \tau - r/c)
+- \frac{3 \tau}{c^2} \lr{ \tau^2 - r^2/c^2 }^{-3/2} \Theta(\pm \tau - r/c) \\
+&
+- \frac{2}{c^3}      \lr{ \tau^2 - r^2/c^2 }^{-3/2} \delta(\pm \tau - r/c)
+\pm \frac{\tau}{c^2} \lr{ \tau^2 - r^2/c^2 }^{-3/2} \delta(\pm \tau - r/c) \\
+&
++ \frac{3}{c^4} \lr{ \tau^2 - r^2/c^2 }^{-5/2} \Theta(\pm \tau - r/c) \\
+&=
+\lr{ - \frac{1}{c r} \pm \frac{\tau}{c^2} } \lr{ \tau^2 - r^2/c^2 }^{-1/2} \delta(\pm \tau - r/c) \\
+&
++ \lr{ \frac{1}{c^2 r} - \frac{3 \tau}{c^2} } \lr{ \tau^2 - r^2/c^2 }^{-3/2} \Theta(\pm \tau - r/c) \\
+&
++ \lr{ - \frac{2}{c^3} \pm \frac{\tau}{c^2} } \lr{ \tau^2 - r^2/c^2 }^{-3/2} \delta(\pm \tau - r/c) \\
+&
++ \frac{3}{c^4} \lr{ \tau^2 - r^2/c^2 }^{-5/2} \Theta(\pm \tau - r/c) \\
+&=
+\lr{
+    - \frac{1}{c r} \pm \frac{\tau}{c^2} 
+    + \lr{ - \frac{2}{c^3} \pm \frac{\tau}{c^2} } \lr{ \tau^2 - r^2/c^2 }
+} \lr{ \tau^2 - r^2/c^2 }^{-1/2} \delta(\pm \tau - r/c) \\
+&
++ \lr{
+    \frac{1}{c^2 r} - \frac{3 \tau}{c^2} 
+    + \frac{3}{c^4} \lr{ \tau^2 - r^2/c^2 } 
+}
+\lr{ \tau^2 - r^2/c^2 }^{-3/2} \Theta(\pm \tau - r/c) \\
+\end{aligned}
+\end{equation}
 
 %}
 \EndArticle

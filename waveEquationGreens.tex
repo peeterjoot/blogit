@@ -54,7 +54,8 @@ G(\Br, \tau) &= -\frac{c}{2} \Theta( \pm \tau - r/c ) \\
 G(\Br, \tau) &= -\inv{2 \pi \sqrt{ \tau^2 - r^2/c^2 } } \Theta( \pm \tau - r/c ).
 \end{aligned}
 \end{equation}
-I'm not going to try to derive these myself, at least for the time being.  Instead, let's verify that they work, starting with the retarded 1D case.
+At least for the time being, I thought that I'll attempt to verify these, instead of deriving them.  For the 1D case, this turns out to be fairly straightforward.  Perhaps unexpectedly, that isn't true for the 2D case, and I'll have to revisit that case in other ways.  In this post, I'll show the verification of the 1D Green's function, and my partial attempt to verify the 2D case.
+
 \section{1D Green's function verification.}
 We will use the Heaviside theta representation of the absolute value.
 \begin{equation}\label{eqn:waveEquationGreens:100}
@@ -143,7 +144,7 @@ Now let's try to verify Grok's claim for the 2D Green's function, starting with 
 \begin{equation}\label{eqn:waveEquationGreens:260}
 \begin{aligned}
 \spacegrad \Abs{r}
-&= \Be_m \partial_m \sqrt{ \sum_n \lr{x_n - x_n'}^2 } \\
+&= \sum_m \Be_m \partial_m \sqrt{ \sum_n \lr{x_n - x_n'}^2 } \\
 &= \inv{2} 2 \frac{\Bx - \Bx'}{\Abs{\Bx - \Bx'}} \\
 &= \rcap
 \end{aligned}
@@ -157,7 +158,7 @@ Now let's try to verify Grok's claim for the 2D Green's function, starting with 
 &=
 -\inv{2} \lr{ \tau^2 - r^2/c^2 }^{-3/2} \lr{-\frac{2 r}{c^2}} \rcap \\
 &=
-\frac{r}{c^2} \lr{ \tau^2 - r^2/c^2 }^{-3/2} \rcap.
+\frac{r}{c^2} \lr{ \tau^2 - r^2/c^2 }^{-3/2} \rcap
 \end{aligned}
 \end{equation}
 
@@ -169,7 +170,7 @@ Now let's try to verify Grok's claim for the 2D Green's function, starting with 
 &=
 -\frac{3}{2} \lr{ \tau^2 - r^2/c^2 }^{-5/2} \lr{-\frac{2 r}{c^2}} \rcap \\
 &=
-\frac{3 r}{c^2} \lr{ \tau^2 - r^2/c^2 }^{-5/2} \rcap.
+\frac{3 r}{c^2} \lr{ \tau^2 - r^2/c^2 }^{-5/2} \rcap
 \end{aligned}
 \end{equation}
 
@@ -179,7 +180,7 @@ Now let's try to verify Grok's claim for the 2D Green's function, starting with 
 &=
 -\inv{c} \delta\lr{ \pm \tau - r/c } \spacegrad r \\
 &=
--\inv{c} \delta\lr{ \pm \tau - r/c } \rcap.
+-\inv{c} \delta\lr{ \pm \tau - r/c } \rcap
 \end{aligned}
 \end{equation}
 
@@ -189,7 +190,7 @@ Now let's try to verify Grok's claim for the 2D Green's function, starting with 
 &=
 -\inv{c} \delta'\lr{ \pm \tau - r/c } \spacegrad r \\
 &=
--\inv{c} \delta'\lr{ \pm \tau - r/c } \rcap.
+-\inv{c} \delta'\lr{ \pm \tau - r/c } \rcap
 \end{aligned}
 \end{equation}
 
@@ -205,10 +206,10 @@ Now let's try to verify Grok's claim for the 2D Green's function, starting with 
 &=
 \frac{2}{r} - \inv{r} \\
 &=
-\frac{1}{r},
+\frac{1}{r}.
 \end{aligned}
 \end{equation}
-or, in summary, with \( X = \tau^2 - r^2/c^2 \)
+In summary, with \( X = \tau^2 - r^2/c^2 \)
 \begin{equation}\label{eqn:waveEquationGreens:540}
 \begin{aligned}
 \spacegrad \Abs{r} &= \rcap \\
@@ -220,7 +221,7 @@ or, in summary, with \( X = \tau^2 - r^2/c^2 \)
 \end{aligned}
 \end{equation}
 
-We want a couple helper Laplacians too
+We will want a couple helper Laplacian operations, including
 \begin{equation}\label{eqn:waveEquationGreens:580}
 \begin{aligned}
 \spacegrad^2 X^{-1/2}
@@ -236,7 +237,7 @@ We want a couple helper Laplacians too
 + \frac{r}{c^2} \lr{ \inv{c^2} 3 r X^{-5/2} } \\
 &=
   \frac{2}{c^2} X^{-3/2}
-+ \frac{3 r^2}{c^4} X^{-5/2} \\
++ \frac{3 r^2}{c^4} X^{-5/2}.
 \end{aligned}
 \end{equation}
 
@@ -259,11 +260,11 @@ The Laplacian of the step is
 }
 &=
 -\inv{r c} \delta
-+\inv{c^2} \delta'
++\inv{c^2} \delta'.
 \end{aligned}
 \end{equation}
 
-We are now ready to compute the Laplacian of \( \Theta X^{-1/2} \).  Let's precompute the chain rule for that, so that the rest of the job is just algebra
+We are now ready to compute the Laplacian of \( \Theta X^{-1/2} \).  Let's expand the chain rule for that, so that the rest of the job is just algebra
 \begin{equation}\label{eqn:waveEquationGreens:620}
 \begin{aligned}
 \spacegrad^2 \lr{ f g }
@@ -324,7 +325,7 @@ A couple of the time partials can be computed by inspection
 \begin{equation}\label{eqn:waveEquationGreens:700}
 \begin{aligned}
 \partial_t \Theta &= \pm \delta \\
-\partial_{tt} \Theta &= \lr{\pm 1}^2 \delta' \\
+\partial_{tt} \Theta &= \lr{\pm 1}^2 \delta',
 \end{aligned}
 \end{equation}
 and for the rest, we have
@@ -417,7 +418,18 @@ This is a very problematic expression.  The delta function is zero everywhere bu
 0.
 \end{aligned}
 \end{equation}
-So, we've computed something that has a \( 0 \times \infty / 0 \) structure at \( \pm \tau = r/c \).  The question is whether or not that's exactly the infinity that we'd have for \( \delta(x - x') \delta(y - y') \delta(t - t') \) at that point?  Attempting to describe this physically, I think that we'd say that we have discovered that a constant velocity wave of this form has to propagate on the ``light cone''.  Is there a better representation of the 2D Green's function than this one?  I think it's time to look up some more advanced handling of Green's function to get a better handle on this.  I'd guess that there's a Green's function for the 2D wave equation related to Bessel functions, like that of the 2D Helmholtz operator.
+So, we've computed something that has a \( 0 \times \infty / 0 \) structure at \( \pm \tau = r/c \).  Presumably, this has the infinite value \( \delta(x - x') \delta(y - y') \delta(t - t') \) at that point.
+
+I think that the root problem here is that the derivatives of \( \lr{ \tau^2 - r^2/c^2 }^{-1/2} \) are not defined where \( \tau = \pm r/c \), so we have a zero result for any region of spacetime where that is not the case, but can't say much about it at other points without additional work.
+
+Attempting to describe this physically, I think that we'd say that we have discovered that a constant velocity wave of this form has to propagate on the ``light cone''.  We see something like that for the 3D Green's function too, which is explicitly zero off the light cone, not just after application of the wave equation operator.
+
+\paragraph{Followup:}
+
+\begin{enumerate}
+\item Is there a better representation of the 2D Green's function than this one?  I think it's time to look up some more advanced handling of Green's function to get a better handle on this.  I'd guess that there's a Green's function for the 2D wave equation related to Bessel functions, like that of the 2D Helmholtz operator.
+\item It should also be possible to perform a limiting convolution verification, in the neighbourhood of the light cone, and then look at the limit of that convolution.  I'd expect that to be better behaved, as it should avoid the singularity itself.
+\end{enumerate}
 
 %}
 \EndArticle

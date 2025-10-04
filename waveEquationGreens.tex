@@ -137,7 +137,7 @@ Dividing through by \( -2/c \) gives us
 as desired.  The \( \delta \) derivative terms can be given meaning, but they conveniently cancel out, so we don't have to think about that this time.
 
 It's easy to see that the advanced Green's function has the same behaviour, since the two time partials will bring down a factor of \( (\pm 1)^2 = 1 \) in general, which does not change anything above.
-\section{2D Green's function verification.}
+\section{Attempted verification of the claimed 2D Green's function.}
 Now let's try to verify Grok's claim for the 2D Green's function, starting with a few helpful side calculations.
 
 \begin{equation}\label{eqn:waveEquationGreens:260}
@@ -320,6 +320,104 @@ f \partial_{tt} g
 + 2 \lr{ \partial_t f } \lr{ \partial_t g }.
 \end{aligned}
 \end{equation}
+A couple of the time partials can be computed by inspection
+\begin{equation}\label{eqn:waveEquationGreens:700}
+\begin{aligned}
+\partial_t \Theta &= \pm \delta \\
+\partial_{tt} \Theta &= \lr{\pm 1}^2 \delta' \\
+\end{aligned}
+\end{equation}
+and for the rest, we have
+\begin{equation}\label{eqn:waveEquationGreens:720}
+\begin{aligned}
+\partial_t X^{-1/2}
+&=
+-\inv{2} X^{-3/2} \partial_t X \\
+&=
+-\inv{2} X^{-3/2} 2 \tau \\
+&=
+-\tau X^{-3/2},
+\end{aligned}
+\end{equation}
+and
+\begin{equation}\label{eqn:waveEquationGreens:740}
+\begin{aligned}
+\partial_{tt} X^{-1/2}
+&=
+- X^{-3/2}
+- \tau \partial_t X^{-3/2}  \\
+&=
+- X^{-3/2}
++ 3 \tau^2 X^{-5/2}.
+\end{aligned}
+\end{equation}
+Assembling the pieces, we have
+\begin{equation}\label{eqn:waveEquationGreens:760}
+\begin{aligned}
+\partial_{tt} \lr{ \Theta X^{-1/2} }
+&=
+\lr{
+    - X^{-3/2}
+    + 3 \tau^2 X^{-5/2}
+} \Theta
++
+\delta' X^{-1/2}
++ 2 \lr{  \pm \delta } \lr{ -\tau X^{-3/2} } \\
+&=
+ \delta' X^{-1/2}
++ \lr{ -\lr{ \tau^2 - r^2/c^2 } + 3 \tau^2 } X^{-5/2} \Theta
+\mp 2 \tau X^{-3/2} \delta \\
+&=
+ \delta' X^{-1/2}
++ \lr{ 2 \tau^2 + r^2/c^2 } X^{-5/2} \Theta
+\mp 2 \tau X^{-3/2} \delta.
+\end{aligned}
+\end{equation}
+
+The wave equation operation on \( \Theta X^{-1/2} \) is
+\begin{equation}\label{eqn:waveEquationGreens:780}
+\begin{aligned}
+\lr{ \spacegrad^2 - (1/c^2) \partial_{tt} } \Theta X^{-1/2}
+&=
+  \inv{c^2} \lr{ 2 \tau^2 + \frac{r^2}{c^2} } X^{-5/2} \Theta
+- \inv{r c} \lr{  \tau^2 + \frac{r^2}{c^2} } X^{-3/2} \delta \\
+&- \inv{c^2} \lr{ 2 \tau^2 + r^2/c^2 } X^{-5/2} \Theta
+\pm \frac{2}{c^2} \tau X^{-3/2} \delta \\
+&=
+- \inv{r c} \lr{  \tau^2 + \frac{r^2}{c^2} } X^{-3/2} \delta
+\pm \frac{2}{c^2} \tau X^{-3/2} \delta \\
+&=
+\inv{c^2} \lr{
+    - \frac{c \tau^2}{r}
+    - \frac{r}{c}
+    \pm 2 \tau
+}
+X^{-3/2} \delta.
+\end{aligned}
+\end{equation}
+
+So, after all that we have
+\begin{equation}\label{eqn:waveEquationGreens:800}
+\lr{ \spacegrad^2 - (1/c^2) \partial_{tt} } G =
+-\inv{2 \pi c^2} \lr{
+    - \frac{c \tau^2}{r}
+    - \frac{r}{c}
+    \pm 2 \tau
+}
+\frac{\delta(\pm \tau - r/c)}{\lr{\tau^2 - r^2/c^2}^{3/2}}.
+\end{equation}
+
+This is a very problematic expression.  The delta function is zero everywhere but \( \pm \tau = r/c \), but the denominator blows up at \( \pm \tau = r/c \), and the leading factor is also zero at that point:
+\begin{equation}\label{eqn:waveEquationGreens:820}
+\begin{aligned}
+\evalbar{ \lr{ -\frac{c}{r} \tau^2 - \frac{r}{c} \pm 2 \tau }}{\pm \tau = r/c}
+&=
+-\frac{c}{r} \lr{ \frac{r}{c} }^2 - \frac{r}{c} + 2 \frac{r}{c} \\
+&=
+0.
+\end{aligned}
+\end{equation}
+So, we've computed something that has a \( 0 \times \infty / 0 \) structure at \( \pm \tau = r/c \).  The question is whether or not that's exactly the infinity that we'd have for \( \delta(x - x') \delta(y - y') \delta(t - t') \) at that point?  Attempting to describe this physically, I think that we'd say that we have discovered that a constant velocity wave of this form has to propagate on the ``light cone''.  Is there a better representation of the 2D Green's function than this one?  I think it's time to look up some more advanced handling of Green's function to get a better handle on this.  I'd guess that there's a Green's function for the 2D wave equation related to Bessel functions, like that of the 2D Helmholtz operator.
 
 %}
 \EndArticle

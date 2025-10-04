@@ -212,14 +212,58 @@ or, in summary, with \( X = \tau^2 - r^2/c^2 \)
 \begin{equation}\label{eqn:waveEquationGreens:540}
 \begin{aligned}
 \spacegrad \Abs{r} &= \rcap \\
-\spacegrad X^{-1/2} &= \frac{r \rcap}{c^2 X^{3/2}} \\
-\spacegrad X^{-3/2} &= \frac{3 r \rcap}{c^2 X^{5/2}} \\
-\spacegrad \Theta &= -\frac{\delta \rcap}{c} \\
-\spacegrad \delta &= -\frac{\rcap \delta'}{c} \\
+\spacegrad X^{-1/2} &= \inv{c^2} r \rcap X^{-3/2} \\
+\spacegrad X^{-3/2} &= \inv{c^2} 3 r \rcap X^{-5/2} \\
+\spacegrad \Theta &= - \inv{c} \delta \rcap \\
+\spacegrad \delta &= - \inv{c} \rcap \delta' \\
 \spacegrad \cdot \rcap &= \frac{1}{r}.
 \end{aligned}
 \end{equation}
 
+We want a couple helper Laplacians too
+\begin{equation}\label{eqn:waveEquationGreens:580}
+\begin{aligned}
+\spacegrad^2 X^{-1/2}
+&=
+\spacegrad \cdot \lr{ \inv{c^2} r \rcap X^{-3/2} } \\
+&=
+  \inv{c^2} \lr{ \spacegrad \cdot \rcap} \lr{ r X^{-3/2} }
++ \inv{c^2} \lr{ \rcap \cdot \spacegrad r } X^{-3/2}
++ \frac{r}{c^2} \lr{ \rcap \cdot \spacegrad  X^{-3/2} } \\
+&=
+  \inv{c^2} X^{-3/2}
++ \inv{c^2} X^{-3/2}
++ \frac{r}{c^2} \lr{ \inv{c^2} 3 r X^{-5/2} } \\
+&=
+  \frac{2}{c^2} X^{-3/2}
++ \frac{3 r^2}{c^4} X^{-5/2} \\
+\end{aligned}
+\end{equation}
+
+The Laplacian of the step is
+\begin{equation}\label{eqn:waveEquationGreens:n}
+\begin{aligned}
+\spacegrad^2 \Theta
+&=
+\spacegrad \cdot \lr{ - \inv{c} \delta \rcap } \\
+&=
+-\inv{c} 
+\lr{ \spacegrad \cdot \rcap } \delta
+-\inv{c} 
+\rcap \cdot \spacegrad \delta \\
+&=
+-\inv{r c} \delta
+-\inv{c} 
+\rcap \cdot \lr{
+- \inv{c} \rcap \delta' 
+}
+&=
+-\inv{r c} \delta
++\inv{c^2} \delta'
+\end{aligned}
+\end{equation}
+
+XX
 Now for our real computations.
 \begin{equation}\label{eqn:waveEquationGreens:560}
 \begin{aligned}
@@ -232,7 +276,7 @@ X^{-1/2} \spacegrad \Theta + \Theta \spacegrad X^{-1/2} \\
 \end{aligned}
 \end{equation}
 and
-\begin{equation}\label{eqn:waveEquationGreens:n}
+\begin{equation}\label{eqn:waveEquationGreens:600}
 \begin{aligned}
 \spacegrad^2 \frac{\Theta}{X^{1/2}}
 &=
@@ -244,7 +288,7 @@ and
 \lr{ \spacegrad \cdot \rcap } \lr{
     - X^{-1/2} \frac{1}{c} \delta
     + X^{-3/2} \frac{r}{c^2} \Theta
-} 
+}
 +
 \rcap \cdot \spacegrad \lr{
     - X^{-1/2} \frac{1}{c} \delta
@@ -274,7 +318,7 @@ and
   X^{-1/2} \frac{1}{c^2} \delta'
 - X^{-1/2} \frac{1}{r c} \delta
 - X^{-3/2} \frac{2 r}{c^3} \delta
-+ X^{-3/2} \frac{2}{c^2} \Theta 
++ X^{-3/2} \frac{2}{c^2} \Theta
 + X^{-5/2} \frac{3 r^2}{c^4} \Theta \\
 &=
   X^{-1/2} \frac{1}{c^2} \delta'
@@ -497,6 +541,7 @@ and
 %%%\lr{ \tau^2 - r^2/c^2 }^{-3/2} \Theta(\pm \tau - r/c) \\
 %%%\end{aligned}
 %%%\end{equation}
+XX
 
 %}
 \EndArticle

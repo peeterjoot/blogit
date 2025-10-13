@@ -431,5 +431,109 @@ Attempting to describe this physically, I think that we'd say that we have disco
 \item It should also be possible to perform a limiting convolution verification, in the neighbourhood of the light cone, and then look at the limit of that convolution.  I'd expect that to be better behaved, as it should avoid the singularity itself.
 \end{enumerate}
 
+\section{2nd attempted verification of the claimed 2D Green's function.}
+Let's try verifying the Green's function using a convolution
+\begin{equation}\label{eqn:waveEquationGreens:840}
+I(\Bx) = \lr{ \spacegrad^2 - \inv{c^2} \partial_{tt} } -\inv{2 \pi} \int \frac{\Theta(\pm (t - t') - \Abs{\Bx - \Bx'}/c)}{\lr{(t - t')^2 - \Abs{\Bx - \Bx'}/c^2}^{1/2}} d^2 \Bx' dt'
+\end{equation}
+\section{Deriving the 1D Green's function.}
+\subsection{Setup.}
+Let's try solving the forced wave equation
+\begin{equation}\label{eqn:waveEquationGreens:860}
+\lr{ \spacegrad^2 - \inv{c^2}\frac{\partial^2}{\partial t^2} } f(x,t) = g(x,t),
+\end{equation}
+using Fourier transform pairs
+\begin{equation}\label{eqn:waveEquationGreens:880}
+\begin{aligned}
+F(\Bx, t) &= \inv{\lr{\sqrt{2 \pi}}^{N+1}} \int e^{j \Bk \cdot \Bx + j \omega t} \hatF(\Bk, \omega) d^N \Bk d\omega \\
+\hatF(\Bk, \omega) &= \inv{\lr{\sqrt{2 \pi}}^{N+1}} \int e^{-j \Bk \cdot \Bx - j \omega t} F(\Bx, t) d^N \Bx dt.
+\end{aligned}
+\end{equation}
+We can now transform \cref{eqn:waveEquationGreens:860}, expressing \(f, g\) in terms of their transforms
+\begin{equation}\label{eqn:waveEquationGreens:900}
+\lr{ \lr{ j \Bk}^2 - \lr{ j \omega }^2/c^2 } \hatf = \hatg,
+\end{equation}
+or
+\begin{equation}\label{eqn:waveEquationGreens:920}
+\hatf = \frac{\hatg}{(\omega/c)^2 - \Bk^2},
+\end{equation}
+or
+\begin{equation}\label{eqn:waveEquationGreens:940}
+\begin{aligned}
+f(\Bx, t)
+&= \inv{\lr{\sqrt{2 \pi}}^{N+1}} \int e^{j \Bk \cdot \Bx + j \omega t} \frac{\hatg(\Bk, \omega)}{(\omega/c)^2 - \Bk^2} d^N \Bk d\omega \\
+&= \inv{\lr{2 \pi}^{N+1}} \int e^{j \Bk \cdot \Bx + j \omega t} \frac{g(\Bx', t')}{(\omega/c)^2 - \Bk^2} d^N \Bk d\omega e^{-j \Bk \cdot \Bx' - j \omega t'} d^N \Bx' dt' \\
+&=
+\int d^N \Bx' dt' g(\Bx', t') G(\Bx, \Bx', t, t'),
+\end{aligned}
+\end{equation}
+where
+\begin{equation}\label{eqn:waveEquationGreens:960}
+G(\Bx, \Bx', t, t')
+=
+\inv{\lr{2 \pi}^{N+1}} \int d^N \Bk d\omega \frac{e^{j \Bk \cdot (\Bx-\Bx') + j \omega (t- t')}}{(\omega/c)^2 - \Bk^2}.
+\end{equation}
+\subsection{Evaluating the 1D Green's function}
+For the 1D case we have
+\begin{equation}\label{eqn:waveEquationGreens:980}
+G(\Bx, \Bx', t, t')
+=
+\inv{\lr{2 \pi}^2} \int dk d\omega \frac{e^{j k (x-x') + j \omega (t- t')}}{(\omega/c)^2 - k^2}
+\end{equation}
+Let's write \( u = x - x' \), and \( \tau = t - t' \), and displace the poles by an imaginary offset \( j \epsilon \)
+\begin{equation}\label{eqn:waveEquationGreens:1000}
+G_\epsilon(u, \tau)
+=
+-\inv{\lr{2 \pi}^2} \int dk d\omega \frac{e^{j k u + j \omega \tau }}{\lr{ k - \lr{ \omega/c + j \epsilon}}\lr{ k + \lr{ \omega/c + j \epsilon }}}.
+\end{equation}
+
+Let's start by assuming that \( \epsilon > 0 \).  When \( u > 0 \), we can use a upper half plane contour in the k-plane, enclosing \( \omega/c + j \epsilon \), to find
+\begin{equation}\label{eqn:waveEquationGreens:1020}
+\begin{aligned}
+G_\epsilon(u, \tau)
+&=
+-\frac{2 \pi j}{\lr{2 \pi}^2} \int d\omega \evalbar{\frac{e^{j k u + j \omega \tau }}{k + \lr{ \omega/c + j \epsilon }}}{k = \omega/c + j \epsilon} \\
+&=
+\frac{1}{4 \pi j} \int d\omega \frac{e^{j \omega (\tau + u/c)}}{\omega/c + j \epsilon }.
+\end{aligned}
+\end{equation}
+However, for \( u < 0 \) we need the lower half plane contour that encloses \( -\omega/c - j \epsilon \).  Our residue calculation is
+\begin{equation}\label{eqn:waveEquationGreens:1040}
+\begin{aligned}
+G_\epsilon(u, \tau)
+&=
+-\frac{-2 \pi j}{\lr{2 \pi}^2} \int d\omega \evalbar{\frac{e^{j k u + j \omega \tau }}{k - \lr{ \omega/c + j \epsilon }}}{k = -\omega/c - j \epsilon} \\
+&=
+\frac{1}{4 \pi j} \int d\omega \frac{e^{j \omega (\tau - u/c)}}{\omega/c + j \epsilon }.
+\end{aligned}
+\end{equation}
+Merging the two cases, we have
+\begin{equation}\label{eqn:waveEquationGreens:1060}
+\begin{aligned}
+G_\epsilon(u, \tau)
+&=
+\frac{1}{4 \pi j} \int d\omega \frac{e^{j \omega (\tau + \Abs{u}/c)}}{\omega/c + j \epsilon } \\
+&=
+\frac{c}{4 \pi j} \int d\omega \frac{e^{j \omega (\tau + \Abs{u}/c)}}{\omega + j \epsilon c } \\
+\end{aligned}
+\end{equation}
+This can be integrated in the \(\omega\)-plane, with the pole at \( -j \epsilon c \).  For \( \tau + \Abs{u}/c > 0 \), we need an upper half plane infinite semicircular contour, but have no enclosed pole.  For \( \tau + \Abs{u}/c < 0 \), we have
+\begin{equation}\label{eqn:waveEquationGreens:1080}
+\begin{aligned}
+G_\epsilon(u, \tau)
+&=
+\frac{c (-2 \pi j)}{4 \pi j} \evalbar{ e^{j \omega (\tau + \Abs{u}/c)}}{\omega = -j \epsilon c} \\
+&=
+-\frac{c}{2},
+\end{aligned}
+\end{equation}
+(in the limit.)
+Putting both pieces together, we have found the advanced Green's function for the 1D wave equation
+\begin{equation}\label{eqn:waveEquationGreens:1100}
+\boxed{
+G(u, \tau) = -\frac{c}{2} \Theta(-\tau - \Abs{u}/c).
+}
+\end{equation}
+
 %}
 \EndArticle

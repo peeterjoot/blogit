@@ -436,7 +436,8 @@ Let's try verifying the Green's function using a convolution
 \begin{equation}\label{eqn:waveEquationGreens:840}
 I(\Bx) = \lr{ \spacegrad^2 - \inv{c^2} \partial_{tt} } -\inv{2 \pi} \int \frac{\Theta(\pm (t - t') - \Abs{\Bx - \Bx'}/c)}{\lr{(t - t')^2 - \Abs{\Bx - \Bx'}/c^2}^{1/2}} d^2 \Bx' dt'
 \end{equation}
-\section{Deriving the 1D Green's function.}
+\section{Deriving the Green's functions.}
+Having had trouble verifying the 2D Green's function, let's try deriving them ourselves.
 \subsection{Setup.}
 Let's try solving the forced wave equation
 \begin{equation}\label{eqn:waveEquationGreens:860}
@@ -534,6 +535,89 @@ Putting both pieces together, we have found the advanced Green's function for th
 G(u, \tau) = -\frac{c}{2} \Theta(-\tau - \Abs{u}/c).
 }
 \end{equation}
+
+Having found the advanced solution with a positive pole displacement, it is reasonable to assume that we will get the retarded solution, with a negative pole displacement \( \epsilon < 0 \).  This time, the upper half plane infinite semicircular contour encloses the \( -\omega/c -j \epsilon \) pole, and the lower half plane contour encloses the \( \omega/c + j \epsilon \) pole.  This gives, us, for \( u > 0 \)
+\begin{equation}\label{eqn:waveEquationGreens:1120}
+\begin{aligned}
+G_\epsilon(u, \tau)
+&=
+-\frac{2 \pi j}{\lr{2 \pi}^2} \int d\omega \evalbar{\frac{e^{j k u + j \omega \tau }}{k - \lr{ \omega/c + j \epsilon }}}{k = -\omega/c - j \epsilon} \\
+&=
+-\frac{1}{4 \pi j} \int d\omega \frac{e^{j \omega (\tau - u/c)}}{\omega/c + j \epsilon } \\
+&=
+-\frac{c}{4 \pi j} \int d\omega \frac{e^{j \omega (\tau - u/c)}}{\omega - (-j \epsilon c) } \\
+&=
+-\frac{2 \pi j c}{4 \pi j} \evalbar{e^{j \omega (\tau - u/c)}}{\omega = -j \epsilon c } \Theta(\tau - u/c) \\
+&=
+-\frac{c}{2} \Theta(\tau - u/c),
+\end{aligned}
+\end{equation}
+and for \( u < 0 \)
+\begin{equation}\label{eqn:waveEquationGreens:1140}
+\begin{aligned}
+G_\epsilon(u, \tau)
+&=
+-\frac{-2 \pi j}{\lr{2 \pi}^2} \int d\omega \evalbar{\frac{e^{j k u + j \omega \tau }}{k + \lr{ \omega/c + j \epsilon }}}{k = \omega/c + j \epsilon} \\
+&=
+\frac{1}{4 \pi j} \int d\omega \frac{e^{j \omega (\tau + u/c)}}{\omega/c + j \epsilon } \\
+&=
+\frac{c}{4 \pi j} \int d\omega \frac{e^{j \omega (\tau + u/c)}}{\omega - (-j \epsilon c) } \\
+&=
+-\frac{-2 \pi j c}{4 \pi j} \evalbar{e^{j \omega (\tau + u/c)}}{\omega = -j \epsilon c } \Theta(\tau + u/c) \\
+&=
+-\frac{c}{2} \Theta(\tau + u/c).
+\end{aligned}
+\end{equation}
+Combining the two cases, we've found the retarded solution
+\begin{equation}\label{eqn:waveEquationGreens:1160}
+\boxed{
+G(u, \tau) = -\frac{c}{2} \Theta(\tau - \Abs{u}/c).
+}
+\end{equation}
+This matches Grok's claim (which we also verified.)
+
+\subsection{The convolution integrals.}
+Let's write out the convolution integrals for fun.  They are
+\begin{equation}\label{eqn:waveEquationGreens:1180}
+f(x,t) = -\frac{c}{2}
+\int_{-\infty}^\infty dt'
+\int_{-\infty}^\infty dx'
+\Theta(\pm(t - t') - \Abs{x - x'}/c) g(x', t').
+\end{equation}
+
+For the retarded case, we need only evaluate the step over the region
+\begin{equation}\label{eqn:waveEquationGreens:1220}
+t - t' - \Abs{x - x'}/c > 0,
+\end{equation}
+or
+\begin{equation}\label{eqn:waveEquationGreens:1240}
+t - \Abs{x - x'}/c > t'.
+\end{equation}
+For the advanced case, we want the restriction
+\begin{equation}\label{eqn:waveEquationGreens:1260}
+-t + t' - \Abs{x - x'}/c > 0,
+\end{equation}
+or
+\begin{equation}\label{eqn:waveEquationGreens:1280}
+t' > t + \Abs{x - x'}/c,
+\end{equation}
+so the retarded convolution is
+\begin{equation}\label{eqn:waveEquationGreens:1300}
+f(x,t) = -\frac{c}{2}
+\int_{-\infty}^\infty dx'
+\int_{-\infty}^{t - \Abs{x - x'}/c} dt'
+g(x', t'),
+\end{equation}
+and the advanced convolution is
+\begin{equation}\label{eqn:waveEquationGreens:1320}
+f(x,t) = -\frac{c}{2}
+\int_{-\infty}^\infty dx'
+\int_{t + \Abs{x - x'}/c}^\infty dt'
+g(x', t').
+\end{equation}
+
+\section{TODO.}
+Next up will be an attempt to find the 2D Green's function, and then for good measure, we should try to find the 3D case ourselves.
 
 %}
 \EndArticle

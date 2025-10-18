@@ -1,0 +1,127 @@
+%
+% Copyright © 2025 Peeter Joot.  All Rights Reserved.
+% Licenced as described in the file LICENSE under the root directory of this GIT repository.
+%
+%{
+\input{../latex/blogpost.tex}
+\renewcommand{\basename}{RLCbandwidth}
+%\renewcommand{\dirname}{notes/phy1520/}
+\renewcommand{\dirname}{notes/ece1228-electromagnetic-theory/}
+%\newcommand{\dateintitle}{}
+%\newcommand{\keywords}{}
+
+\input{../latex/peeter_prologue_print2.tex}
+
+\usepackage{peeters_layout_exercise}
+\usepackage{peeters_braket}
+\usepackage{peeters_figures}
+\usepackage{siunitx}
+\usepackage{verbatim}
+%\usepackage{macros_cal} % \LL
+%\usepackage{amsthm} % proof
+%\usepackage{mhchem} % \ce{}
+%\usepackage{macros_bm} % \bcM
+%\usepackage{macros_qed} % \qedmarker
+%\usepackage{txfonts} % \ointclockwise
+
+\beginArtNoToc
+
+\generatetitle{Bandwidth of some bandpass filters}
+%\chapter{Bandwidth of some bandpass filters}
+%\label{chap:RLCbandwidth}
+
+Karl had a couple of fun filter problems that he chatted with me about.  I didn't remember how do find the bandwidth, nor the resonant frequency of such a circuit, and after he solved the problems, I tried them for myself.
+
+The circuits, \cref{fig:bandpass:bandpassFig1_2}, were RC and RL respectively, and both ended up having the same transfer function.
+%\imageFigure{../figures/blogit/bandpassFig1}{An RC bandpass filter.}{fig:bandpass:bandpassFig1}{0.3}
+%\imageFigure{../figures/blogit/bandpassFig2}{An RL bandpass filter.}{fig:bandpass:bandpassFig2}{0.3}
+\imageTwoFigures{../figures/blogit/bandpassFig1}{../figures/blogit/bandpassFig2}{RC and RL bandpass filters.}{fig:bandpass:bandpassFig1_2}{scale=0.2}
+
+For my attempt to solve these circuits, I used the loop current method that Karl recently taught me.  Perhaps I once knew that method, but if I had, I'd forgotten.  This loop method can be nicer than a standard nodal analysis, since it can automatically eliminate some current variables.  Here's the equations for the RC circuit
+\begin{equation}\label{eqn:RLCbandwidth:20}
+\begin{aligned}
+V_a - V_s &= I_1 (1) \\
+V_a &= (I_1 - I_2) \inv{s} \\
+V_o - V_a &= I_2 \inv{s} \\
+V_o &= I_2 (1).
+\end{aligned}
+\end{equation}
+The equations for the RL circuit are
+\begin{equation}\label{eqn:RLCbandwidth:40}
+\begin{aligned}
+V_a - V_s &= I_1 s \\
+V_a &= (I_1 - I_2) (1) \\
+V_o - V_a &= I_2 (1) \\
+V_o &= I_2 s.
+\end{aligned}
+\end{equation}
+The transfer functions for both is
+\begin{equation}\label{eqn:RLCbandwidth:60}
+H(s) = \frac{V_o}{V_s} = \frac{1}{1/s + 3 + s}.
+\end{equation}
+A plot of \( \Abs{H(j\omega)} \) can be found in \cref{fig:transferFunction:transferFunctionFig4}, and peaks at \( \omega = 1 \).
+\imageFigure{../figures/blogit/transferFunctionFig4}{Transfer function.}{fig:transferFunction:transferFunctionFig4}{0.3}
+
+Observe that the denominator of this transfer function looks just like a series RLC impedance.  For example, for the circuit of \cref{fig:RLCcircuit:RLCcircuitFig3}, we have
+\begin{equation}\label{eqn:RLCbandwidth:80}
+\frac{I}{V} = \inv{Z} = \inv{ R + L s + \inv{s C} }.
+\end{equation}
+\imageFigure{../figures/blogit/RLCcircuitFig3}{RLC circuit.}{fig:RLCcircuit:RLCcircuitFig3}{0.3}
+Written out in the frequency domain, that impedance is
+\begin{equation}\label{eqn:RLCbandwidth:100}
+Z(\omega) = R + j \lr{ \omega L - \inv{\omega C} }.
+\end{equation}
+Max power transfer through this circuit will be for the specific frequency where the impedance is purely real.  In this case, that is the frequency \(\omega_0\) that satisfies
+\begin{equation}\label{eqn:RLCbandwidth:120}
+\omega_0^2 = \inv{L C}.
+\end{equation}
+Karl's textbook didn't define bandwidth in any general sense, but did do so for an RLC circuit of this form, stating that the bandwidth was \( \omega_2 - \omega_1 \) where these are the frequencies of the half (average) power points.
+
+We need to remind ourselves what the formula for average power is
+\begin{equation}\label{eqn:RLCbandwidth:140}
+\begin{aligned}
+P
+&= \inv{T} \int_0^T v(t) i(t) dt \\
+&= \inv{T} \int_0^T \Real \lr{ V e^{j\omega t} } \Real \lr{ I e^{j\omega t} } dt \\
+&= \inv{4 T} \int_0^T
+\lr{ V e^{j \omega t} + \bar{V} e^{-j\omega t} }
+\lr{ I e^{j \omega t} + \bar{I} e^{-j\omega t} } dt \\
+&= \inv{4} \lr{ V \bar{I} + \bar{V} I } \\
+&= \inv{2} \Real \lr{ V \bar{I} } \\
+&= \inv{2} \Real \lr{ I Z \bar{I} } \\
+&= \inv{2} \Abs{I}^2 R \\
+&= \inv{2} \Abs{V}^2 \frac{R}{\Abs{Z}^2}.
+\end{aligned}
+\end{equation}
+The maximum average power is for purely real impedance
+\begin{equation}\label{eqn:RLCbandwidth:160}
+P = \inv{2 R} \Abs{V}^2,
+\end{equation}
+so the half power points are when \( \Abs{Z} = \sqrt{2} R \).  For the RLC circuit that is when
+\begin{equation}\label{eqn:RLCbandwidth:180}
+\Abs{R + j \lr{ \omega L - \inv{\omega C} }}^2 = 2 R^2,
+\end{equation}
+or
+\begin{equation}\label{eqn:RLCbandwidth:200}
+R^2 = \lr{ \omega L - \inv{\omega C} }^2.
+\end{equation}
+We seek solutions for
+\begin{equation}\label{eqn:RLCbandwidth:220}
+\begin{aligned}
+R &= \omega L - \inv{\omega C} \\
+-R &= \omega L - \inv{\omega C}.
+\end{aligned}
+\end{equation}
+We find the same solutions for either, both leading to
+\begin{equation}\label{eqn:RLCbandwidth:240}
+B = \Abs{\omega_2 - \omega_1} = \frac{R}{L}.
+\end{equation}
+This is the (half-power) bandwidth for the RLC circuit.  We may now re-express the transfer functions for the filters in terms of the resonant frequency and bandwidth
+\begin{equation}\label{eqn:RLCbandwidth:260}
+H(s) = \frac{s}{\omega_0^2 + B s + s^2},
+\end{equation}
+and see by inspection that \( \omega_0 = 1 \) for our circuit (also seen in the plot) and \( B = 3 \,\si{rad/s} \).
+
+%}
+%\EndArticle
+\EndNoBibArticle

@@ -615,9 +615,182 @@ f(x,t) = -\frac{c}{2}
 \int_{t + \Abs{x - x'}/c}^\infty dt'
 g(x', t').
 \end{equation}
+\subsection{2D Green's function derivation.}
+While it was difficult to attempt to verify the 2D Green's function, it actually turns out to be fairly easy to derive it, provided we pick an alternate pole displacement to make our lives easier.
 
-\section{TODO.}
-Next up will be an attempt to find the 2D Green's function, and then for good measure, we should try to find the 3D case ourselves.
+With \( \Br = \Bx - \Bx' \), and \( \tau = t - t' \), and \( \epsilon > 0 \), we can form
+\begin{equation}\label{eqn:waveEquationGreens:1340}
+G_\epsilon(\Br, \tau) = \frac{c^2}{\lr{2 \pi}^3} \int d^2 \Bk d\omega \frac{ e^{j \Bk \cdot \Br + j \omega \tau}}{\lr{\omega -j \epsilon}^2 - \Bk^2 c^2 }
+\end{equation}
+This pole displacement has the nice property that both poles live in the upper half plane, so for \( \tau > 0 \), we have
+\begin{equation}\label{eqn:waveEquationGreens:1360}
+\begin{aligned}
+G_\epsilon(\Br, \tau)
+&= \frac{c^2}{\lr{2 \pi}^3} \int d^2 \Bk d\omega \frac{ e^{j \Bk \cdot \Br + j \omega \tau}}{
+\lr{\omega -\lr{ \Abs{\Bk} c - j \epsilon}}
+\lr{\omega -\lr{ -\Abs{\Bk} c - j \epsilon}}
+} \\
+&=
+\Theta(\tau) \frac{c^2 j}{\lr{2 \pi}^2} \int d^2 \Bk e^{j \Bk \cdot \Br}
+\lr{
+    \evalbar{
+    \frac{e^{ j \omega \tau}}{ \lr{\omega -\lr{ -\Abs{\Bk} c - j \epsilon}} }
+    }
+    {\omega = \Abs{\Bk} c - j \epsilon}
++
+    \evalbar{
+    \frac{e^{ j \omega \tau}}{ \lr{\omega -\lr{ \Abs{\Bk} c - j \epsilon}} }
+    }
+    {\omega = -\Abs{\Bk} c - j \epsilon}
+}
+\\
+&=
+\Theta(\tau) \frac{c^2 j}{\lr{2 \pi}^2} \int d^2 \Bk e^{j \Bk \cdot \Br} e^{ -j \epsilon \tau }
+\lr{
+    \frac{e^{ j \Abs{\Bk} c \tau}}{ 2 \Abs{\Bk} c }
++
+    \frac{e^{ -j \Abs{\Bk} c \tau}}{ -2 \Abs{\Bk} c }
+} \\
+&=
+\Theta(\tau) \frac{j^2 c}{\lr{2 \pi}^2} \int_{k=0}^\infty k dk \int_{\phi=0}^{2 \pi} d\phi e^{j k\Abs{\Br} \cos\phi } e^{ -j \epsilon \tau } \frac{\sin\lr{ k c \tau }}{k}.
+\end{aligned}
+\end{equation}
+We've now successfully removed the singularity, and can evaluate the \(\epsilon \rightarrow 0 \) limit.  We may also evaluate the \( \phi \) integral, remembering that
+\begin{equation}\label{eqn:waveEquationGreens:1380}
+\int_0^{2 \pi} e^{j \Abs{a} \cos\phi} d\phi = 2 \pi J_0(\Abs{a}),
+\end{equation}
+to find
+\begin{equation}\label{eqn:waveEquationGreens:1400}
+G(\Br, \tau) = -\Theta(\tau) \frac{c}{2 \pi} \int_{k=0}^\infty dk J_0(k\Abs{\Br}) \sin\lr{ k c \tau }.
+\end{equation}
+This integral yields easily to Mathematica, and we find
+\begin{equation}\label{eqn:waveEquationGreens:1420}
+G(\Br, \tau) = -\Theta(\tau) \frac{c}{2 \pi} \frac{\Theta(c \tau - \Abs{\Br})}{\sqrt{(c\tau)^2 - \Br^2}}.
+\end{equation}
+However, since \( \Theta(c \tau - \Abs{\Br}) = 1 \) only for \( \tau > \Abs{\Br}/c \), the \( \Theta(\tau) \) factor is redundant, and we find
+\begin{equation}\label{eqn:waveEquationGreens:1440}
+\boxed{
+G(\Br, \tau) = - \frac{1}{2 \pi} \frac{\Theta(c \tau - \Abs{\Br})}{\sqrt{\tau^2 - \Br^2/c^2}},
+}
+\end{equation}
+which matches the retarded Green's function claimed by Grok.
+
+Repeating this analysis for \( \tau < 0, \epsilon < 0 \), we find
+\begin{equation}\label{eqn:waveEquationGreens:1460}
+G(\Br, \tau) = -\Theta(-\tau) \frac{c}{2 \pi} \frac{\Theta(-c \tau - \Abs{\Br})}{\sqrt{(c\tau)^2 - \Br^2}},
+\end{equation}
+which we also see matches the Grok result for the advanced Green's function.  Both of these computations can be trivially performed in Mathematica following the same steps (taking all the fun from the story.)  The advanced integral evaluation is shown in \cref{fig:2dGreensAdvanced:2dGreensAdvancedFig1} as an example.
+\imageFigure{../figures/blogit/2dGreensAdvancedFig1}{Advanced 2D Green's function for wave equation operator.}{fig:2dGreensAdvanced:2dGreensAdvancedFig1}{0.5}
+\subsection{3D Green's function derivation.}
+For the sake of completeness, now let's evaluate the Green's function for the 3D wave equation operator.  Again with \( \Br = \Bx - \Bx', \tau = t - t' \) we want the \( \epsilon \rightarrow 0 \) limit of
+\begin{equation}\label{eqn:waveEquationGreens:1480}
+G_\epsilon(\Br, \tau)
+=
+\inv{\lr{2 \pi}^4} \int d^3 \Bk d\omega \frac{e^{j \Bk \cdot \Br + j \omega \tau}}{(\omega/c - j \epsilon/c)^2 - \Bk^2}.
+\end{equation}
+For \(\epsilon > 0 \) this will presumably give us the retarded solution, with advanced for \( \epsilon < 0 \).  We are using the nice pole displacement that leaves both poles on the same side of the upper or lower half plane, depending on the sign of \( \epsilon \).
+
+Evaluating the \( \omega \) integral first with an upper half plane contour, we have
+\begin{equation}\label{eqn:waveEquationGreens:1500}
+\begin{aligned}
+G_\epsilon(\Br, \tau)
+&=
+\frac{c^2}{\lr{2 \pi}^4} \int d^3 \Bk e^{j \Bk \cdot \Br}
+\frac{e^{j \omega \tau}}{
+  \lr{\omega - \lr{ j \epsilon - \Abs{\Bk} c}}
+  \lr{\omega - \lr{ j \epsilon + \Abs{\Bk} c}}
+} \\
+&=
+\frac{j c^2}{\lr{2 \pi}^3} \Theta(\tau) \int d^3 \Bk e^{j \Bk \cdot \Br}
+\lr{
+\evalbar{\frac{e^{j \omega \tau}}{\omega - \lr{ j \epsilon - \Abs{\Bk} c}}}{\omega = j \epsilon + \Abs{\Bk} c}
++
+\evalbar{\frac{e^{j \omega \tau}}{\omega - \lr{ j \epsilon + \Abs{\Bk} c}}}{\omega = j \epsilon - \Abs{\Bk} c}
+} \\
+&=
+\frac{j c^2}{\lr{2 \pi}^3} \Theta(\tau) e^{-\epsilon \tau} \int d^3 \Bk e^{j \Bk \cdot \Br}
+\lr{
+    \frac{e^{j \Abs{\Bk} c \tau}}{2 \Abs{\Bk} c}
+    -
+    \frac{e^{-j \Abs{\Bk} c \tau}}{2 \Abs{\Bk} c}
+} \\
+&=
+-\frac{c}{\lr{2 \pi}^3} \Theta(\tau) e^{-\epsilon \tau} \int \frac{d^3 \Bk}{\Abs{\Bk}} e^{j \Bk \cdot \Br}
+\sin\lr{ \Abs{\Bk} c \tau }.
+\end{aligned}
+\end{equation}
+We can evaluate the \( \epsilon \rightarrow 0 \) limit, and switch to spherical coordinates in k-space.  Let \( \Br = r \Be_3 \)
+\begin{equation}\label{eqn:waveEquationGreens:1520}
+G(\Br, \tau)
+=
+-\frac{c}{\lr{2 \pi}^3} \Theta(\tau)
+\int_{k = 0}^\infty \frac{k^2 dk}{k}
+\int_{\phi = 0}^{2 \pi} d\phi
+\int_{\theta = 0}^{\pi} \sin\theta d\theta
+e^{j k r \cos\theta} \sin\lr{ k c \tau }.
+\end{equation}
+With \( u = \cos\theta \), this gives
+\begin{equation}\label{eqn:waveEquationGreens:1540}
+\begin{aligned}
+G(\Br, \tau)
+&=
+\frac{c}{\lr{2 \pi}^2} \Theta(\tau)
+\int_{k = 0}^\infty k dk \sin\lr{ k c \tau }
+\int_{u = -1}^{1} du
+e^{j k r u} \\
+&=
+\frac{c}{\lr{2 \pi}^2} \Theta(\tau)
+\int_{k = 0}^\infty k dk \sin\lr{ k c \tau }
+\lr{ \frac{e^{-j k r }}{j k r} - \frac{e^{j k r }}{j k r} } \\
+&=
+-\frac{c}{2 \pi^2 r} \Theta(\tau) \int_{k = 0}^\infty dk \sin\lr{ k c \tau } \sin\lr{ k r} \\
+&=
+-\frac{c}{4 \pi^2 r} \Theta(\tau) \int_{k = 0}^\infty dk
+\lr{
+    \cos\lr{ k( c \tau - r ) }
+    -
+    \cos\lr{ k( c \tau + r ) }
+} \\
+&=
+-\frac{c}{8 \pi^2 r} \Theta(\tau) \int_{k = -\infty}^\infty dk
+\lr{
+    \cos\lr{ k( c \tau - r ) }
+    -
+    \cos\lr{ k( c \tau + r ) }
+} \\
+&=
+-\frac{c}{8 \pi^2 r} \Theta(\tau) \int_{-\infty}^\infty dk
+\lr{
+        e^{ j k( c \tau - r ) } - e^{ j k( c \tau + r ) }
+} \\
+&=
+-\frac{c}{4 \pi r} \Theta(\tau)
+\lr{
+    \delta( c \tau - r )
+    -
+    \delta( c \tau + r )
+} \\
+&=
+-\frac{1}{4 \pi r} \Theta(\tau)
+\lr{
+    \delta( \tau - r/c )
+    -
+    \delta( \tau + r/c )
+}.
+\end{aligned}
+\end{equation}
+Observe that the second delta function only has a value when \( \tau = -r/c \), but \( \Theta(-r/c) = 0 \).  Similarly, the first delta function only has a value for \( \tau = r/c \ge 0 \), where the Heaviside step function is unity.  That means we can simplify this to just
+\begin{equation}\label{eqn:waveEquationGreens:1560}
+\boxed{
+G(\Br, \tau) = -\frac{1}{4 \pi \Abs{\Br}} \delta( \tau - \Abs{\Br}/c ),
+}
+\end{equation}
+as expected.
+
+Again, sort of sadly, we can skip all the fun and evaluate most of this in Mathematica.  It needs only minor hand-holding to extract the delta function semantics.  The retarded derivation is shown in \cref{fig:waveEquation3DGreensDerivationMathematica:waveEquation3DGreensDerivationMathematicaFig1}, and the advanced derivation in \cref{fig:waveEquation3DGreensDerivationMathematica:waveEquation3DGreensDerivationMathematicaFig2}.
+
+\imageFigure{../figures/blogit/waveEquation3DGreensDerivationMathematicaFig1}{Retarded 3D Green's function for the wave equation.}{fig:waveEquation3DGreensDerivationMathematica:waveEquation3DGreensDerivationMathematicaFig1}{0.5}
+\imageFigure{../figures/blogit/waveEquation3DGreensDerivationMathematicaFig2}{Advanced 3D Green's function for the wave equation.}{fig:waveEquation3DGreensDerivationMathematica:waveEquation3DGreensDerivationMathematicaFig2}{0.5}
 
 %}
 \EndArticle

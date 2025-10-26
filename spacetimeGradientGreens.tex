@@ -1,0 +1,193 @@
+%
+% Copyright © 2025 Peeter Joot.  All Rights Reserved.
+% Licenced as described in the file LICENSE under the root directory of this GIT repository.
+%
+%{
+\input{../latex/blogpost.tex}
+\renewcommand{\basename}{spacetimeGradientGreens}
+%\renewcommand{\dirname}{notes/phy1520/}
+\renewcommand{\dirname}{notes/ece1228-electromagnetic-theory/}
+%\newcommand{\dateintitle}{}
+%\newcommand{\keywords}{}
+
+\input{../latex/peeter_prologue_print2.tex}
+
+\usepackage{peeters_layout_exercise}
+\usepackage{peeters_braket}
+\usepackage{peeters_figures}
+\usepackage{siunitx}
+\usepackage{verbatim}
+%\usepackage{macros_cal} % \LL
+\usepackage{amsthm} % proof
+%\usepackage{mhchem} % \ce{}
+%\usepackage{macros_bm} % \bcM
+%\usepackage{macros_qed} % \qedmarker
+%\usepackage{txfonts} % \ointclockwise
+\usepackage{peeters_layout_exercise} % \makelemma
+
+\beginArtNoToc
+
+\generatetitle{Green's function for the spacetime gradient}
+%\chapter{Green's function for the spacetime gradient}
+%\label{chap:spacetimeGradientGreens}
+
+\section{Motivation}
+I've been assembling a table of all the Green's functions that can be used in electrodynamics.  There's one set of those Green's functions left to fill in, the Green's functions for the spacetime gradient:
+\begin{equation}\label{eqn:spacetimeGradientGreens:20}
+\lr{\spacegrad + \inv{c}\PD{t}{}} G(\Bx, \Bx', t, t') = \delta(\Bx - \Bx')\delta(t - t').
+\end{equation}
+I'd like to compute the retarded and advanced Green's function for this operator for the 1D, 2D and 3D cases.
+
+In \citep{pjootGAEE} I use the retarded time Green's function for the spacetime gradient to derive the Jefimenkos equations\footnote{Those equations are the retarded time solutions of Maxwell's equations.  In \citep{griffiths1999introduction}, Griffiths derives them by first solving for the potential functions that solve the 2nd order scalar wave equation problem, and then computing all the derivatives.}  However, in retrospect my handling of that material is sloppy.  I didn't derive the retarded wave equation Green's function myself, instead lazily pointing to other authors that did.  When I use that retarded wave equation Green's function to derive the spacetime gradient's Green's function, I don't even state it clearly.  Instead I use intermediate results of that would be derivation, and even worse, all of that is scattered roughshod across both chapter II and III, as well as the appendix.
+\section{The idea.}
+Suppose that we know the Green's functions for the wave equation
+\begin{equation}\label{eqn:spacetimeGradientGreens:40}
+\lr{\spacegrad^2 - \inv{c^2}\frac{\partial^2}{\partial t^2}} G_r(\Bx, \Bx', t, t') = \delta(\Bx - \Bx')\delta(t - t').
+\end{equation}
+\begin{equation}\label{eqn:spacetimeGradientGreens:60}
+\lr{\spacegrad + \inv{c}\frac{\partial}{\partial t}} \lr{\spacegrad - \inv{c}\frac{\partial}{\partial t}} G_r(\Bx, \Bx', t, t') = \delta(\Bx - \Bx')\delta(t - t').
+\end{equation}
+This means that the Green's function for the spacetime gradient, a multivector valued entity, satisfying \cref{eqn:spacetimeGradientGreens:20}, is
+\begin{equation}\label{eqn:spacetimeGradientGreens:80}
+G(\Bx, \Bx', t, t') = \lr{\spacegrad - \inv{c}\frac{\partial}{\partial t}} G_r(\Bx, \Bx', t, t').
+\end{equation}
+So if we have a Green's function for the wave equation, it's just a matter of taking derivatives to figure out the Green's function for the spacetime gradient.
+
+Why do we care?  Recall that the multivector form of Maxwell's equations is just
+\begin{equation}\label{eqn:spacetimeGradientGreens:100}
+\lr{\spacegrad + \inv{c}\frac{\partial}{\partial t}} F = J,
+\end{equation}
+so, if we know the Green's function for this non-homogeneous problem, we may simply invert this equation for \( F \) with a convolution.  This is how we can obtain the Jefimenkos equations in one fell swoop.
+
+Now let's evaluate these derivatives.
+\section{3D case.}
+\subsection{Retarded case.}
+I'm going to start with the 3D retarded case, since I know the answer for that, and at least nominally, have all the composite parts of that derivation at hand.  Then we can move on and compute the same for the advanced case, and then the 2D and 1D variants for fun.  It's not clear to me that we necessarily care about the 1D and 2D cases, but I can imagine that there are circumstances where weird geometries force 1D and 2D solutions, so my intuition is that these are physically relevant, even if exactly how that is the case isn't obvious.
+
+Recall that the 3D retarded Green's function for the wave equation was found to be
+\begin{equation}\label{eqn:spacetimeGradientGreens:120}
+G_r = -\inv{4 \pi r} \delta\lr{ t - t' - r/c },
+\end{equation}
+where \( \Br = \Bx - \Bx', r = \Abs{\Br} \).
+\makelemma{Gradient of \(\Abs{\Bx - \Bx'} \).}{lemma:spacetimeGradientGreens:1}{
+The gradient of the scalar \( r = \Abs{\Bx - \Bx'} \) is
+\begin{equation*}
+\spacegrad \Abs{\Bx - \Bx'} = \frac{\Br}{r}.
+\end{equation*}
+This will be written as \( \spacegrad r = \rcap \), with \( \rcap = \Br/r \).
+} % lemma
+\begin{proof}
+\begin{equation}\label{eqn:spacetimeGradientGreens:140}
+\begin{aligned}
+\spacegrad \Abs{\Bx - \Bx'}
+&=
+\sum_m \Be_m \partial_m \sqrt{ \sum_n (x_n - x_n')^2 } \\
+&=
+\sum_m \Be_m \inv{2} 2 \frac{x_m - x_m'}{r} \\
+&=
+\sum_m \Be_m \inv{2} 2 \frac{x_m - x_m'}{r} \\
+&= \frac{\Br}{r}.
+\end{aligned}
+\end{equation}
+\end{proof}
+This means, suppressing the arguments of the delta function, that
+\begin{equation}\label{eqn:spacetimeGradientGreens:160}
+\begin{aligned}
+\lr{ \spacegrad -(1/c) \partial_t } G_r
+&= -\inv{4 \pi} \lr{
+    (\spacegrad r) \frac{\partial_r \delta}{r} + (\spacegrad r) \lr{ -\frac{1}{r^2}}\delta
+    - \inv{c r} \partial_t \delta
+    } \\
+&= -\inv{4 \pi} \lr{ \frac{\rcap}{r} \partial_r \delta -\frac{\rcap}{r^2} \delta - \inv{c r} \partial_t \delta} \\
+&= -\inv{4 \pi r} \lr{ \rcap \partial_r \delta - \frac{\rcap}{r} \delta - \inv{c} \partial_t \delta} \\
+\end{aligned}
+\end{equation}
+
+\makelemma{Derivatives of the delta function.}{lemma:spacetimeGradientGreens:180}{
+The derivative of the delta function (with respect to a non-integration variable parameter \( u \)) is
+\begin{equation*}
+\frac{d}{du} \delta( a u + b - t' ) = a \delta( a u + b - t' ) \frac{d}{dt'},
+\end{equation*}
+where \( t' \) is the integration parameter for the delta function.
+} % lemma
+Observe that this is different than the usual identity
+\begin{equation}\label{eqn:spacetimeGradientGreens:200}
+\frac{d}{dt'} \delta(t') = -\delta(t') \frac{d}{dt'}.
+\end{equation}
+%which we find by computing the convolution of \( \delta' \) with a test function, and then integrating by parts.
+\begin{proof}
+As usual, we figure out the meaning of these delta function derivatives by their action on a test function in a convolution.
+\begin{equation}\label{eqn:spacetimeGradientGreens:220}
+\int_{-\infty}^\infty \frac{d}{du} \delta( a u + b - t' ) f(t') dt'.
+\end{equation}
+
+Let's start with a change of variables \( z = a u + b - t' \), for which we find
+\begin{equation}\label{eqn:spacetimeGradientGreens:240}
+\begin{aligned}
+t' &= a u + b - z \\
+dz &= - dt' \\
+\frac{d}{du} &= \frac{dz}{du} \frac{d}{dz} = a \frac{d}{dz}.
+\end{aligned}
+\end{equation}
+
+Substitution back into \cref{eqn:spacetimeGradientGreens:220} gives
+\begin{equation}\label{eqn:spacetimeGradientGreens:260}
+\begin{aligned}
+\int_{-\infty}^\infty \frac{d}{du} \delta( a u + b - t' ) f(t') dt'
+&=
+a \int_{\infty}^{-\infty} \lr{ \frac{d}{dz} \delta( z ) } f( a u + b - z ) (-dz) \\
+&=
+a \int_{-\infty}^{\infty} \lr{ \frac{d}{dz} \delta( z ) } f( a u + b - z ) dz \\
+&=
+\evalrange{a \delta(z) f( a u + b - z)}{-\infty}{\infty} \\
+&\qquad -
+a \int_{-\infty}^{\infty} \delta( z )  \frac{d}{dz} f( a u + b - z ) dz \\
+&=
+- \evalbar{ a \frac{d}{dz} f( a u + b - z ) }{z = 0} \\
+&=
+- \evalbar{ a \frac{d}{d(au + b - t')} f( t' ) }{t' = a u + b} \\
+&=
++ \evalbar{ a \frac{d}{d(t' -(au + b))} f( t' ) }{t' = a u + b} \\
+&=
+\evalbar{ a \frac{dt'}{d(t' - (a u + b))} \frac{d}{dt'} f( t' ) }{t' = a u + b} \\
+&=
+\evalbar{ a \frac{d}{dt'} f( t' ) }{t' = a u + b} \\
+&=
+\int_{-\infty}^\infty a \delta(a u + b - t') \frac{df(t')}{dt'} dt'.
+\end{aligned}
+\end{equation}
+\end{proof}
+In particular, this means that
+\begin{equation}\label{eqn:spacetimeGradientGreens:280}
+\begin{aligned}
+\partial_r \delta(t - t' - r/c) &= -\frac{1}{c} \delta(t - t' - r/c) \PD{t'}{} \\
+\partial_t \delta(t - t' - r/c) &= \delta(t - t' - r/c) \PD{t'}{} \\
+\end{aligned}
+\end{equation}
+
+Application to \cref{eqn:spacetimeGradientGreens:160} gives
+\begin{equation}\label{eqn:spacetimeGradientGreens:300}
+\begin{aligned}
+\lr{ \spacegrad -(1/c) \partial_t } G_r
+&=
+\inv{4 \pi r} \delta(t - t' - r/c)
+\lr{
+    \frac{\rcap}{r}
+    +
+    \lr{ \rcap + 1} \inv{c} \PD{t'}{}
+} \\
+\end{aligned}
+\end{equation}
+With \( t_r = t - r/c \), \cref{eqn:spacetimeGradientGreens:80} is found to be
+\begin{equation}\label{eqn:spacetimeGradientGreens:320}
+G(\Bx, \Bx', t, t') = \inv{4 \pi r} \delta(t_r - t')
+\lr{
+   \frac{\rcap}{r}
+   +
+   \lr{ \rcap + 1} \inv{c} \PD{t_r}{}
+}
+\end{equation}
+\subsection{Advanced case.}
+
+%}
+\EndArticle

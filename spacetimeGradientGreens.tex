@@ -188,6 +188,128 @@ G(\Bx, \Bx', t, t') = \inv{4 \pi r} \delta(t_r - t')
 }
 \end{equation}
 \subsection{Advanced case.}
+The advanced Green's function for the wave equation is
+\begin{equation}\label{eqn:spacetimeGradientGreens:340}
+G_a(\Bx, \Bx', t, t') = -\inv{4 \pi r} \delta\lr{ t' - t - r/c },
+\end{equation}
+so with \( t_a = t + r/c \), we must evaluate the delta function derivatives
+\begin{equation}\label{eqn:spacetimeGradientGreens:360}
+\begin{aligned}
+\partial_r \delta\lr{ t' - t - r/c } &= -\inv{c} \delta\lr{ t' - t_a } \frac{d}{dt_a} \\
+\partial_t \delta\lr{ t' - t - r/c } &= - \delta\lr{ t' - t_a } \frac{d}{dt_a}.
+\end{aligned}
+\end{equation}
+So the Green's function for the space time gradient is
+\begin{equation}\label{eqn:spacetimeGradientGreens:380}
+\begin{aligned}
+G(\Bx, \Bx', t, t')
+&= -\inv{4 \pi r} \lr{ \rcap \partial_r \delta - \frac{\rcap}{r} \delta - \inv{c} \partial_t \delta} \\
+&= \inv{4 \pi r} \delta\lr{t' - t_a} \lr{ \frac{\rcap}{r} + \lr{ \rcap - 1} \inv{c} \frac{d}{d t_a}}.
+\end{aligned}
+\end{equation}
+\subsection{Application: Maxwell's equation.}
+Let's use this to solve Maxwell's equation.  Finding a specific solution is now trivial.  The retarded solution is
+\begin{equation}\label{eqn:spacetimeGradientGreens:400}
+\begin{aligned}
+F(\Bx, t)
+&= \int dV' dt' \gpgrade{
+G(\Bx, \Bx', t, t') J(\Bx', t')
+}{1,2} \\
+&= \inv{ 4 \pi } \int d^3 \Bx' dt'
+\delta(t_r - t')
+\gpgrade{
+    \inv{r}
+    \lr{
+           \frac{\rcap}{r}
+              +
+                 \lr{ \rcap + 1} \inv{c} \PD{t_r}{}
+    }
+    J(\Bx', t')
+}{1,2} \\
+&= \inv{ 4 \pi } \int d^3 \Bx'
+\gpgrade{
+    \inv{r}
+    \lr{
+           \frac{\rcap}{r} J(\Bx', t_r)
+              +
+                 \lr{ \rcap + 1} \inv{c} J'(\Bx', t_r)
+    }
+}{1,2},
+\end{aligned}
+\end{equation}
+where \( J'(\Bx', t_r) = \PDi{t_r}{J(\Bx', t_r)} \).
+
+In this form, with the multivector charge and current density \( J \), this looks unfamiliar.  Let's plug in:
+\begin{equation}\label{eqn:spacetimeGradientGreens:420}
+J = \eta \lr{ c \rho - \BJ } + I \lr{ c \rho_\txtm - \BM }.
+\end{equation}
+Note that
+\begin{equation}\label{eqn:spacetimeGradientGreens:440}
+\begin{aligned}
+\gpgrade{\rcap J}{1}
+&=
+\gpgrade{
+\rcap \eta \lr{ c \rho - \BJ } + \rcap I \lr{ c \rho_\txtm - \BM }
+}{1} \\
+&=
+\eta c \rho \rcap
+- I \rcap \wedge \BM \\
+&=
+\frac{\rho}{\epsilon} \rcap
++ \rcap \cross \BM,
+\end{aligned}
+\end{equation}
+and
+\begin{equation}\label{eqn:spacetimeGradientGreens:460}
+\begin{aligned}
+\gpgrade{\rcap J}{2}
+&=
+\gpgrade{
+\rcap \eta \lr{ c \rho - \BJ } + \rcap I \lr{ c \rho_\txtm - \BM }
+}{2} \\
+&=
+I \lr{
+    - \eta \rcap \cross \BJ
+    +  \rcap c \rho_\txtm
+} \\
+&=
+I \eta \lr{
+    \BJ \cross \rcap
+    +  \rcap \frac{\rho_\txtm}{\mu}
+}
+\end{aligned}
+\end{equation}
+Selecting the vector and bivector components of the field \( F = \BE + I \eta \BH \), we have
+\begin{equation}\label{eqn:spacetimeGradientGreens:480}
+\BE(\Bx, t)
+=
+\inv{4 \pi \epsilon}
+\int d^3 \Bx'
+\lr{
+    \frac{\rho}{r^2} \rcap
+    + \frac{\rho'}{c r} \rcap
+    + \epsilon \frac{\rcap}{r^2} \cross \BM
+    + \frac{\epsilon \rcap}{c r} \cross \BM'
+    - \frac{1}{c^2 r} \BJ'
+}
+\end{equation}
+and
+\begin{equation}\label{eqn:spacetimeGradientGreens:500}
+\BH(\Bx, t)
+=
+\inv{4 \pi \mu}
+\int d^3 \Bx'
+\lr{
+      \frac{\rho_\txtm}{r^2} \rcap
+    + \frac{\rho_\txtm}{c r} \rcap
+    + \mu \BJ \cross \frac{\rcap}{r^2}
+    + \mu \BJ' \cross \frac{\rcap}{c r}
+    - \inv{c^2 r} \BM'
+}.
+\end{equation}
+If we zero the fictitious sources, setting \( \rho_\txtm = 0, \BM = 0 \), these are the Jefimenko's equations, where all times and time derivatives are with respect to the retarded time \( t_r = r - \Abs{\Bx - \Bx'}/c \).
+
+Having computed the advanced Green's function, we can also write out the advanced time equivalent of Jefimenko's equations.
 
 %}
 \EndArticle

@@ -38,7 +38,9 @@ I've been assembling a table of all the Green's functions that can be used in el
 \end{equation}
 I'd like to compute the retarded and advanced Green's function for this operator for the 1D, 2D and 3D cases.
 
-In \citep{pjootGAEE} I use the retarded time Green's function for the spacetime gradient to derive the Jefimenkos equations\footnote{Those equations are the retarded time solutions of Maxwell's equations.  In \citep{griffiths1999introduction}, Griffiths derives them by first solving for the potential functions that solve the 2nd order scalar wave equation problem, and then computing all the derivatives.}  However, in retrospect my handling of that material is sloppy.  I didn't derive the retarded wave equation Green's function myself, instead lazily pointing to other authors that did.  When I use that retarded wave equation Green's function to derive the spacetime gradient's Green's function, I don't even state it clearly.  Instead I use intermediate results of that would be derivation, and even worse, all of that is scattered roughshod across both chapter II and III, as well as the appendix.
+In \citep{pjootGAEE} I use the retarded time Green's function for the spacetime gradient to derive the Jefimenkos equations.  However, in retrospect my handling of that material is sloppy.  The starting point is the retarded wave equation Green's function, but I didn't even derive it, instead just lazily pointing to other authors that did.
+I don't actually ever state the spacetime gradient Green's function, instead just using a sequence of intermediate results of that would be derivation.  Even worse, all of that is scattered roughshod across both chapter II and III, as well as the appendix.
+
 \section{The idea.}
 Suppose that we know the Green's functions for the wave equation
 \begin{equation}\label{eqn:spacetimeGradientGreens:40}
@@ -62,7 +64,7 @@ so, if we know the Green's function for this non-homogeneous problem, we may sim
 Now let's evaluate these derivatives.
 \section{3D case.}
 \subsection{Retarded case.}
-I'm going to start with the 3D retarded case, since I know the answer for that, and at least nominally, have all the composite parts of that derivation at hand.  Then we can move on and compute the same for the advanced case, and then the 2D and 1D variants for fun.  It's not clear to me that we necessarily care about the 1D and 2D cases, but I can imagine that there are circumstances where weird geometries force 1D and 2D solutions, so my intuition is that these are physically relevant, even if exactly how that is the case isn't obvious.
+I'm going to start with the 3D retarded case, since I know the answer for that, and at least nominally, have all the composite parts of that derivation at hand.  Then we can move on and compute the same for the advanced case, and then the 2D and 1D variants for fun.  It's not clear to me that we necessarily care about the 1D and 2D cases. I can imagine that there are circumstances where weird geometries or constraints force 1D and 2D solutions, but perhaps the 1D and 2D solutions will be academic and not practical.
 
 Recall that the 3D retarded Green's function for the wave equation was found to be
 \begin{equation}\label{eqn:spacetimeGradientGreens:120}
@@ -226,7 +228,8 @@ G(\Bx, \Bx', t, t') J(\Bx', t')
     }
     J(\Bx', t')
 }{1,2} \\
-&= \inv{ 4 \pi } \int d^3 \Bx'
+&=
+\inv{ 4 \pi } \int d^3 \Bx'
 \gpgrade{
     \inv{r}
     \lr{
@@ -238,12 +241,28 @@ G(\Bx, \Bx', t, t') J(\Bx', t')
 \end{aligned}
 \end{equation}
 where \( J'(\Bx', t_r) = \PDi{t_r}{J(\Bx', t_r)} \).
-
-In this form, with the multivector charge and current density \( J \), this looks unfamiliar.  Let's plug in:
-\begin{equation}\label{eqn:spacetimeGradientGreens:420}
-J = \eta \lr{ c \rho - \BJ } + I \lr{ c \rho_\txtm - \BM }.
+Similarily, the advanced solution is
+\begin{equation}\label{eqn:spacetimeGradientGreens:520}
+F(\Bx, t) =
+\inv{ 4 \pi } \int d^3 \Bx'
+\gpgrade{
+    \inv{r}
+    \lr{
+           \frac{\rcap}{r} J(\Bx', t_a)
+              +
+                 \lr{ \rcap - 1} \inv{c} J'(\Bx', t_a)
+    }
+}{1,2},
 \end{equation}
-Note that
+where derivatives are with respect to \( t_a \).  In general, we are free to form a superposition of both the retarded and advanced solutions, as well as any solution of the homogeneous equation for charge and current free space \( \lr{ \spacegrad + (1/c) \partial_t } F = 0 \).
+
+There's a lot of abstraction baked into these solutions.  One is the multivector charge and current density \( J \)
+\begin{equation}\label{eqn:spacetimeGradientGreens:420}
+J = \eta \lr{ c \rho - \BJ } + I \lr{ c \rho_\txtm - \BM },
+\end{equation}
+where \( \rho_\txtm, \BM \) are the fictitious magnetic sources that are used in engineering antenna and microwave circuit theory.  We can ignore those if we choose.  We also have the abstraction of the multivector field \( F = \BE + I \eta \BH = \BE + I c \BB \) itself on LHS.
+
+Let's unpack this solution into it's constituent electric and magnetic field components, to see if the result looks more familiar.  First note that
 \begin{equation}\label{eqn:spacetimeGradientGreens:440}
 \begin{aligned}
 \gpgrade{\rcap J}{1}
@@ -290,7 +309,7 @@ Selecting the vector and bivector components of the field \( F = \BE + I \eta \B
     + \frac{\rho'}{c r} \rcap
     + \epsilon \frac{\rcap}{r^2} \cross \BM
     + \frac{\epsilon \rcap}{c r} \cross \BM'
-    - \frac{1}{c^2 r} \BJ'
+    \mp \frac{1}{c^2 r} \BJ'
 }
 \end{equation}
 and
@@ -304,12 +323,77 @@ and
     + \frac{\rho_\txtm}{c r} \rcap
     + \mu \BJ \cross \frac{\rcap}{r^2}
     + \mu \BJ' \cross \frac{\rcap}{c r}
-    - \inv{c^2 r} \BM'
+    \mp \inv{c^2 r} \BM'
+},
+\end{equation}
+where the negative sign is for the retarded solution, with times and derivatives with respect to the retarded time \( t_r = t - \Abs{\Bx - \Bx'}/c \), and the positive case for the advanced solutions where times are evaluated at the advanced time \( t_a = t + \Abs{\Bx - \Bx'}/c \).
+For the retarded case, if we zero the fictitious sources, setting \( \rho_\txtm = 0, \BM = 0 \), these are Jefimenko's equations, as seen in \citep{griffiths1999introduction}.  Griffiths derives them by first solving for the potential functions that solve the 2nd order scalar wave equation problem, and then computing all the derivatives.
+\section{1D case.}
+The Green's function for the 1D spacetime gradient is easy to compute
+\begin{equation}\label{eqn:spacetimeGradientGreens:540}
+\begin{aligned}
+G
+&= -\frac{c}{2} \lr{ \spacegrad - \inv{c} \partial_t } \Theta(\pm (t - t') - r/c) \\
+&=
+-\frac{c}{2} \lr{
+    -\inv{c} \rcap - \inv{c} (\pm 1)
+}
+\delta(\pm (t - t') - r/c)  \\
+&=
+\inv{2} \lr{ \rcap \pm 1 } \delta(\pm (t - t') - r/c).
+\end{aligned}
+\end{equation}
+\section{2D case.}
+The Green's function for the 2D spacetime gradient is
+\begin{equation}\label{eqn:spacetimeGradientGreens:560}
+G = -\inv{2 \pi}
+\lr{ \spacegrad - \inv{c} \partial_t }
+\frac{\Theta(\pm (t - t') - r/c) }{
+  \sqrt{\lr{ \tau^2 - r^2/c^2 }}
 }.
 \end{equation}
-If we zero the fictitious sources, setting \( \rho_\txtm = 0, \BM = 0 \), these are the Jefimenko's equations, where all times and time derivatives are with respect to the retarded time \( t_r = r - \Abs{\Bx - \Bx'}/c \).
 
-Having computed the advanced Green's function, we can also write out the advanced time equivalent of Jefimenko's equations.
+The derivatives of the step are
+\begin{equation}\label{eqn:spacetimeGradientGreens:580}
+\begin{aligned}
+\lr{ \spacegrad - \inv{c} \partial_t } \Theta(\pm (t - t') - r/c)
+&=
+\lr{
+    -\inv{c} \rcap -\inv{c} (\pm 1)
+}
+\delta(\pm (t - t') - r/c) \\
+&=
+-\inv{c} \lr{ \rcap \pm 1 }
+\delta(\pm \tau - r/c).
+\end{aligned}
+\end{equation}
+and the derivatives of the denominator is
+\begin{equation}\label{eqn:spacetimeGradientGreens:600}
+\begin{aligned}
+\lr{ \spacegrad - \inv{c} \partial_t }
+\lr{(t - t')^2 - r^2/c^2}^{-1/2}
+&=
+-\inv{2}(2) \lr{ -\inv{c^2} r \rcap -\inv{c} (t - t') }
+\lr{(t - t')^2 - r^2/c^2}^{-3/2} \\
+&=
+\inv{c^2} \lr{ \Br + c \tau }
+\lr{\tau^2 - r^2/c^2}^{-3/2}.
+\end{aligned}
+\end{equation}
+so
+\begin{equation}\label{eqn:spacetimeGradientGreens:620}
+G(r, \tau) =
+\frac{
+    \lr{\tau^2 - r^2/c^2}^{-3/2}
+    }{2 \pi c^2}
+\lr{
+    c \lr{ \rcap \pm 1 }
+    \lr{\tau^2 - r^2/c^2}
+    \delta(\pm \tau - r/c)
+    -\lr{ \Br + c \tau }
+    \Theta(\pm \tau - r/c)
+}.
+\end{equation}
 
 %}
 \EndArticle

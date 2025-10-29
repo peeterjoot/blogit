@@ -2,36 +2,36 @@
 % Copyright © 2025 Peeter Joot.  All Rights Reserved.
 % Licenced as described in the file LICENSE under the root directory of this GIT repository.
 %
-%{
-\input{../latex/blogpost.tex}
-\renewcommand{\basename}{spacetimeGradientGreens}
-%\renewcommand{\dirname}{notes/phy1520/}
-\renewcommand{\dirname}{notes/ece1228-electromagnetic-theory/}
-%\newcommand{\dateintitle}{}
-%\newcommand{\keywords}{}
-
-\input{../latex/peeter_prologue_print2.tex}
-
-\usepackage{peeters_layout_exercise}
-\usepackage{peeters_braket}
-\usepackage{peeters_figures}
-\usepackage{siunitx}
-\usepackage{verbatim}
-%\usepackage{macros_cal} % \LL
-\usepackage{amsthm} % proof
-%\usepackage{mhchem} % \ce{}
-%\usepackage{macros_bm} % \bcM
-%\usepackage{macros_qed} % \qedmarker
-%\usepackage{txfonts} % \ointclockwise
-\usepackage{peeters_layout_exercise} % \makelemma
-
-\beginArtNoToc
-
-\generatetitle{Green's function for the spacetime gradient}
-%\chapter{Green's function for the spacetime gradient}
-%\label{chap:spacetimeGradientGreens}
-
-\section{Motivation}
+%%%{
+%%\input{../latex/blogpost.tex}
+%%\renewcommand{\basename}{spacetimeGradientGreens}
+%%%\renewcommand{\dirname}{notes/phy1520/}
+%%\renewcommand{\dirname}{notes/ece1228-electromagnetic-theory/}
+%%%\newcommand{\dateintitle}{}
+%%%\newcommand{\keywords}{}
+%%
+%%\input{../latex/peeter_prologue_print2.tex}
+%%
+%%\usepackage{peeters_layout_exercise}
+%%\usepackage{peeters_braket}
+%%\usepackage{peeters_figures}
+%%\usepackage{siunitx}
+%%\usepackage{verbatim}
+%%%\usepackage{macros_cal} % \LL
+%%\usepackage{amsthm} % proof
+%%%\usepackage{mhchem} % \ce{}
+%%%\usepackage{macros_bm} % \bcM
+%%%\usepackage{macros_qed} % \qedmarker
+%%%\usepackage{txfonts} % \ointclockwise
+%%\usepackage{peeters_layout_exercise} % \makelemma
+%%
+%%\beginArtNoToc
+%%
+%%\generatetitle{Green's function for the spacetime gradient}
+%%%\chapter{Green's function for the spacetime gradient}
+%%%\label{chap:spacetimeGradientGreens}
+%%
+\subsection{Motivation}
 I've been assembling a table of all the Green's functions that can be used in electrodynamics.  There's one set of those Green's functions left to fill in, the Green's functions for the spacetime gradient:
 \begin{equation}\label{eqn:spacetimeGradientGreens:20}
 \lr{\spacegrad + \inv{c}\PD{t}{}} G(\Bx, \Bx', t, t') = \delta(\Bx - \Bx')\delta(t - t').
@@ -41,7 +41,7 @@ I'd like to compute the retarded and advanced Green's function for this operator
 In \citep{pjootGAEE} I use the retarded time Green's function for the spacetime gradient to derive the Jefimenkos equations.  However, in retrospect my handling of that material is sloppy.  The starting point is the retarded wave equation Green's function, but I didn't even derive it, instead just lazily pointing to other authors that did.
 I don't actually ever state the spacetime gradient Green's function, instead just using a sequence of intermediate results of that would be derivation.  Even worse, all of that is scattered roughshod across both chapter II and III, as well as the appendix.
 
-\section{The idea.}
+\subsection{The idea.}
 Suppose that we know the Green's functions for the wave equation
 \begin{equation}\label{eqn:spacetimeGradientGreens:40}
 \lr{\spacegrad^2 - \inv{c^2}\frac{\partial^2}{\partial t^2}} G_r(\Bx, \Bx', t, t') = \delta(\Bx - \Bx')\delta(t - t').
@@ -62,8 +62,8 @@ Why do we care?  Recall that the multivector form of Maxwell's equations is just
 so, if we know the Green's function for this non-homogeneous problem, we may simply invert this equation for \( F \) with a convolution.  This is how we can obtain the Jefimenkos equations in one fell swoop.
 
 Now let's evaluate these derivatives.
-\section{3D case.}
-\subsection{Retarded case.}
+\subsection{3D case.}
+\subsubsection{Retarded case.}
 I'm going to start with the 3D retarded case, since I know the answer for that, and at least nominally, have all the composite parts of that derivation at hand.  Then we can move on and compute the same for the advanced case, and then the 2D and 1D variants for fun.  It's not clear to me that we necessarily care about the 1D and 2D cases. I can imagine that there are circumstances where weird geometries or constraints force 1D and 2D solutions, but perhaps the 1D and 2D solutions will be academic and not practical.
 
 Recall that the 3D retarded Green's function for the wave equation was found to be
@@ -189,7 +189,7 @@ G(\Bx, \Bx', t, t') = \inv{4 \pi r} \delta(t_r - t')
    \lr{ \rcap + 1} \inv{c} \PD{t_r}{}
 }
 \end{equation}
-\subsection{Advanced case.}
+\subsubsection{Advanced case.}
 The advanced Green's function for the wave equation is
 \begin{equation}\label{eqn:spacetimeGradientGreens:340}
 G_a(\Bx, \Bx', t, t') = -\inv{4 \pi r} \delta\lr{ t' - t - r/c },
@@ -209,7 +209,7 @@ G(\Bx, \Bx', t, t')
 &= \inv{4 \pi r} \delta\lr{t' - t_a} \lr{ \frac{\rcap}{r} + \lr{ \rcap - 1} \inv{c} \frac{d}{d t_a}}.
 \end{aligned}
 \end{equation}
-\subsection{Application: Maxwell's equation.}
+\subsubsection{Application: Maxwell's equation.}
 Let's use this to solve Maxwell's equation.  Finding a specific solution is now trivial.  The retarded solution is
 \begin{equation}\label{eqn:spacetimeGradientGreens:400}
 \begin{aligned}
@@ -241,7 +241,7 @@ G(\Bx, \Bx', t, t') J(\Bx', t')
 \end{aligned}
 \end{equation}
 where \( J'(\Bx', t_r) = \PDi{t_r}{J(\Bx', t_r)} \).
-Similarily, the advanced solution is
+Similarly, the advanced solution is
 \begin{equation}\label{eqn:spacetimeGradientGreens:520}
 F(\Bx, t) =
 \inv{ 4 \pi } \int d^3 \Bx'
@@ -328,7 +328,7 @@ and
 \end{equation}
 where the negative sign is for the retarded solution, with times and derivatives with respect to the retarded time \( t_r = t - \Abs{\Bx - \Bx'}/c \), and the positive case for the advanced solutions where times are evaluated at the advanced time \( t_a = t + \Abs{\Bx - \Bx'}/c \).
 For the retarded case, if we zero the fictitious sources, setting \( \rho_\txtm = 0, \BM = 0 \), these are Jefimenko's equations, as seen in \citep{griffiths1999introduction}.  Griffiths derives them by first solving for the potential functions that solve the 2nd order scalar wave equation problem, and then computing all the derivatives.
-\section{1D case.}
+\subsection{1D case.}
 The Green's function for the 1D spacetime gradient is easy to compute
 \begin{equation}\label{eqn:spacetimeGradientGreens:540}
 \begin{aligned}
@@ -343,7 +343,7 @@ G
 \inv{2} \lr{ \rcap \pm 1 } \delta(\pm (t - t') - r/c).
 \end{aligned}
 \end{equation}
-\section{2D case.}
+\subsection{2D case.}
 The Green's function for the 2D spacetime gradient is
 \begin{equation}\label{eqn:spacetimeGradientGreens:560}
 G = -\inv{2 \pi}
@@ -394,6 +394,5 @@ G(r, \tau) =
     \Theta(\pm \tau - r/c)
 }.
 \end{equation}
-
 %}
-\EndArticle
+%%\EndArticle

@@ -3,39 +3,39 @@
 % Licenced as described in the file LICENSE under the root directory of this GIT repository.
 %
 %{
-\input{../latex/blogpost.tex}
-\renewcommand{\basename}{helmholtzHomogeneous2D}
-%\renewcommand{\dirname}{notes/phy1520/}
-\renewcommand{\dirname}{notes/ece1228-electromagnetic-theory/}
-%\newcommand{\dateintitle}{}
-%\newcommand{\keywords}{}
-
-\input{../latex/peeter_prologue_print2.tex}
-
-\usepackage{peeters_layout_exercise}
-\usepackage{peeters_braket}
-\usepackage{peeters_figures}
-\usepackage{siunitx}
-\usepackage{verbatim}
-%\usepackage{macros_cal} % \LL
-%\usepackage{amsthm} % proof
-%\usepackage{mhchem} % \ce{}
-%\usepackage{macros_bm} % \bcM
-%\usepackage{macros_qed} % \qedmarker
-%\usepackage{txfonts} % \ointclockwise
-
-\beginArtNoToc
-
-\generatetitle{Solving the homogeneous Helmholtz equation}
-%\chapter{Solving the homogeneous Helmholtz equation}
-%\label{chap:helmholtzHomogeneous2D}
-
+%%\input{../latex/blogpost.tex}
+%%\renewcommand{\basename}{helmholtzHomogeneous2D}
+%%%\renewcommand{\dirname}{notes/phy1520/}
+%%\renewcommand{\dirname}{notes/ece1228-electromagnetic-theory/}
+%%%\newcommand{\dateintitle}{}
+%%%\newcommand{\keywords}{}
+%%
+%%\input{../latex/peeter_prologue_print2.tex}
+%%
+%%\usepackage{peeters_layout_exercise}
+%%\usepackage{peeters_braket}
+%%\usepackage{peeters_figures}
+%%\usepackage{siunitx}
+%%\usepackage{verbatim}
+%%%\usepackage{macros_cal} % \LL
+%%%\usepackage{amsthm} % proof
+%%%\usepackage{mhchem} % \ce{}
+%%%\usepackage{macros_bm} % \bcM
+%%%\usepackage{macros_qed} % \qedmarker
+%%%\usepackage{txfonts} % \ointclockwise
+%%
+%%\beginArtNoToc
+%%
+%%\generatetitle{Solving the homogeneous Helmholtz equation}
+%%%\chapter{Solving the homogeneous Helmholtz equation}
+%%%\label{chap:helmholtzHomogeneous2D}
+%%
 Attempting to find the Green's functions for the 2D Helmholtz operator required Bessel and Hankle functions.  It therefore seems likely that Bessel functions will show up if we attempt to find radially symmetric solutions to the homogeneous 2D Helmholtz equation
 \begin{equation}\label{eqn:helmholtzHomogeneous2D:20}
 \lr{ \spacegrad^2 + k^2 } f(\Bx) = 0.
 \end{equation}
 Let's look for solutions to this equation, first looking for radially symmetric solutions and then the more general case.
-\section{Laplacian in polar coordinates.}
+\subsection{Laplacian in polar coordinates.}
 We could look up the 2D Laplacian, but it's more fun to derive it.  We can use a parameterization
 \begin{equation}\label{eqn:helmholtzHomogeneous2D:40}
 \Bx = r \Be_1 e^{i\theta},
@@ -82,7 +82,7 @@ so
 \spacegrad^2 = \frac{\partial^2}{\partial r^2} + \inv{r} \PD{r}{} + \inv{r^2} \frac{\partial^2}{\partial \theta^2}.
 }
 \end{equation}
-\section{Helmholtz equation with radial symmetry.}
+\subsection{Helmholtz equation with radial symmetry.}
 Given a function \( f(\Bx) = f(r) \), the Helmholtz equation is
 \begin{equation}\label{eqn:helmholtzHomogeneous2D:140}
 \begin{aligned}
@@ -127,8 +127,7 @@ H_0^{2}(z) &= J_0(z) - i Y_0(z).
 \end{aligned}
 \end{equation}
 In particular, if \( f \) is any such homogenous solution, \( \spacegrad^2 f + k^2 f = 0 \), for \( r \ne 0 \).
-
-\section{Finding the 2D Helmholtz Green's function without Mathematica.}
+\subsection{Finding the 2D Helmholtz Green's function without Mathematica.}
 We know that \( Y_0(z), H_0^{1}(z), H_0^{2}(z) \) are all singular at \( z = 0 \), so, if we were clever enough (and didn't already know the answer), we could guess that one or some combination of these is the Green's function for the Helmholtz operator.
 
 So, let's pretend that we don't already know the answer and test to see if some scalar multiple of \( H_0^{(1)}(k r) \) is the Green's function
@@ -137,6 +136,5 @@ G(r) = -\inv{2 \pi} \int_0^\infty \frac{p J_0(p \Abs{r} ) dp}{p^2 - \lr{k + j \e
 \end{equation}
 
 If we can do this (and prove uniqueness), then we implicitly solve the tricky Green's function integral, without having to cowardly succumb to the powers of Mathematica to do so.
-
 %}
-\EndNoBibArticle
+%%\EndNoBibArticle

@@ -3,32 +3,31 @@
 % Licenced as described in the file LICENSE under the root directory of this GIT repository.
 %
 %{
-\input{../latex/blogpost.tex}
-\renewcommand{\basename}{greens}
-%\renewcommand{\dirname}{notes/phy1520/}
-\renewcommand{\dirname}{notes/ece1228-electromagnetic-theory/}
-%\newcommand{\dateintitle}{}
-%\newcommand{\keywords}{}
-
-\input{../latex/peeter_prologue_print2.tex}
-
-\usepackage{peeters_layout_exercise}
-\usepackage{peeters_braket}
-\usepackage{peeters_figures}
-\usepackage{macros_cal}
-\usepackage{siunitx}
-\usepackage{verbatim}
-%\usepackage{mhchem} % \ce{}
-%\usepackage{macros_bm} % \bcM
-%\usepackage{macros_qed} % \qedmarker
-%\usepackage{txfonts} % \ointclockwise
-
-\beginArtNoToc
-
-\generatetitle{Green's function video series is now done.}
+%%\input{../latex/blogpost.tex}
+%%\renewcommand{\basename}{greens}
+%%%\renewcommand{\dirname}{notes/phy1520/}
+%%\renewcommand{\dirname}{notes/ece1228-electromagnetic-theory/}
+%%%\newcommand{\dateintitle}{}
+%%%\newcommand{\keywords}{}
+%%
+%%\input{../latex/peeter_prologue_print2.tex}
+%%
+%%\usepackage{peeters_layout_exercise}
+%%\usepackage{peeters_braket}
+%%\usepackage{peeters_figures}
+%%\usepackage{macros_cal}
+%%\usepackage{siunitx}
+%%\usepackage{verbatim}
+%%%\usepackage{mhchem} % \ce{}
+%%%\usepackage{macros_bm} % \bcM
+%%%\usepackage{macros_qed} % \qedmarker
+%%%\usepackage{txfonts} % \ointclockwise
+%%
+%%\beginArtNoToc
+%%
+%%\generatetitle{Green's function video series is now done.}
 %\chapter{XXX}
 %\label{chap:greens}
-
 I've been working on a Green's function video series, working from the great Dover book \citep{byron1992mca}.
 You can think of this book as a one stop shop containing most of the advanced mathematical tricks that any graduate student in physics or engineering would ever need.
 
@@ -45,7 +44,7 @@ In more pedestrian notation, this problem is the differential equation
    x''(t) + 2 \gamma x'(t) + \omega_0^2 x(t) = F(t).
 \end{equation}
 
-\section{Green's function solution to the forced damped harmonic oscillator}
+\subsection{Green's function solution to the forced damped harmonic oscillator}
 In the first video, of what I thought would probably be three videos, we formally solve this problem, by attacking it with Fourier transform pairs
 \begin{equation}\label{eqn:greens:80}
 \begin{aligned}
@@ -67,7 +66,7 @@ We also find that the homogeneous solutions have the form
 \end{equation}
 where \( \alpha = \sqrt{ \omega_0^2 - \gamma_2 } \).
 
-\section{Evaluating the Fourier convolution kernel for the forced damped harmonic oscillator}
+\subsection{Evaluating the Fourier convolution kernel for the forced damped harmonic oscillator}
 In the second video we proceed to dig out our coutour integration techniques and use them to evaluate the convolution kernel.  I do a very quick non-rigorous refresher and justification of contour integration and residue analysis, and then proceed to tackle our convolution contour, rewritten as
 \begin{equation}\label{eqn:greens:160}
    G(t,t') = -\inv{2 \pi} \int_{-\infty}^\infty \frac{e^{-ik(t-t')}}{\lr{k - k_1}\lr{ k - k_2}} dk.
@@ -96,7 +95,7 @@ then
 \end{equation}
 This becomes relevant later in the series when we derive and utilize Wrokskian determinant form of the Green's function.
 
-\section{Showing that the convolution kernel for the forced damped harmonic oscillator is a Greens function}
+\subsection{Showing that the convolution kernel for the forced damped harmonic oscillator is a Greens function}
 In the third video, we demonstrate that the convolution kernel that we derived using Fourier transforms, and contour integration, is in fact a Green's function for the problem.  That is
 \begin{equation}\label{eqn:greens:240}
    \LL G(t,t') = \delta(t- t').
@@ -115,7 +114,7 @@ so if \cref{eqn:greens:240} is true, we have
 \end{equation}
 as desired.
 
-\section{Green's function for a first order linear system: two different ways}
+\subsection{Green's function for a first order linear system: two different ways}
 My trilogy in four parts steps backwards slightly in preparation for examination of the Wronskian method of Green's function construction.  Here I tackle one of the simplest first order single variable systems, that of
 \begin{equation}\label{eqn:greens:320}
    \LL = \frac{d}{dt} + \alpha.
@@ -133,7 +132,7 @@ We find that
 \end{equation}
 The second term is precisely what we found by direct Fourier transformation, and the first is related to the boundary conditions for the Green's function itself, something that we address in the final video.
 
-\section{Wronskian form for the Green's Function of a general 2nd order one variable differential equation}
+\subsection{Wronskian form for the Green's Function of a general 2nd order one variable differential equation}
 In this trilogy in five parts, we derive the Wronskian form of the Green's function for a second order differential equation.  Given
 \begin{equation}\label{eqn:greens:380}
    \LL = f_0(t) \frac{d^2}{dt^2} + f_1(t) \frac{d}{dt} + f_2(t),
@@ -156,7 +155,7 @@ and two homogenous solutions \( x_1(t), x_2(t) \), we find
 \end{equation}
 We use this to re-derive the Green's function for the forced, damped, harmonic oscillator, finding the same result (provided we set \( \alpha = \beta = 0 \).)
 
-\section{Green's function boundary value conditions}
+\subsection{Green's function boundary value conditions}
 In this final video, my channelling of Douglas Adams (trilogy in four and then five parts) fails completely.  However, I do finally address boundary conditions for the Green's function itself.  I don't use the damped forced harmonic oscillator, but the very simplest second order system
 \begin{equation}\label{eqn:greens:420}
    x''(t) = F(t).
@@ -185,5 +184,5 @@ and then proceed to apply the pair of boundary conditions to the Green's functio
 This business of application of the boundary conditions to the Green's function itself is very important, and as I found back when I took QM-I (phy356).  If you don't do it, then you get the wrong answers.  Perhaps, now finally armed with a better understanding of the tools, I should go back, find that problem again and try it anew.
 
 %}
-\EndArticle
-%\EndNoBibArticle
+%%\EndArticle
+%%%\EndNoBibArticle

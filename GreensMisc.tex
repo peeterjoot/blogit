@@ -1,0 +1,43 @@
+%
+% Copyright © 2025 Peeter Joot.  All Rights Reserved.
+% Licenced as described in the file LICENSE under the root directory of this GIT repository.
+%
+%{
+\input{../latex/blogpost.tex}
+\renewcommand{\basename}{GreensMisc.tex}
+%\renewcommand{\dirname}{notes/phy1520/}
+\renewcommand{\dirname}{notes/ece1228-electromagnetic-theory/}
+%\newcommand{\dateintitle}{}
+%\newcommand{\keywords}{}
+
+\input{../latex/peeter_prologue_print2.tex}
+
+\usepackage{peeters_layout_exercise}
+\usepackage{peeters_braket}
+\usepackage{peeters_figures}
+\usepackage{siunitx}
+\usepackage{verbatim}
+\usepackage{macros_cal} % \LL
+\usepackage{amsthm} % proof
+%\usepackage{mhchem} % \ce{}
+%\usepackage{macros_bm} % \bcM
+\usepackage{macros_qed} % \qedmarker
+%\usepackage{txfonts} % \ointclockwise
+\beginArtNoToc
+\generatetitle{Collected Green's function notes}
+%\chapter{Collected Green's function notes}
+%\label{chap:GreensMisc.tex}
+\section{Green's function video series is now done.}
+\input{Greens/greens.tex}
+\section{Green's functions for the Helmholtz (wave equation) operator, and Laplacian, in low dimensions}
+\input{Greens/helmholtzGreens.tex}
+\section{Solving the homogeneous Helmholtz equation}
+\input{Greens/helmholtzHomogeneous2D.tex}
+\section{Green's function for the wave equation}
+\input{Greens/waveEquationGreens.tex}
+\section{Green's function for the spacetime gradient}
+\input{Greens/spacetimeGradientGreens.tex}
+\section{Summary of some gradient related Green's functions}
+\input{Greens/deltaFunctions.tex}
+%}
+\EndArticle

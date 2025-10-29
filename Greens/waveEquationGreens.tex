@@ -3,30 +3,30 @@
 % Licenced as described in the file LICENSE under the root directory of this GIT repository.
 %
 %{
-\input{../latex/blogpost.tex}
-\renewcommand{\basename}{waveEquationGreens}
-%\renewcommand{\dirname}{notes/phy1520/}
-\renewcommand{\dirname}{notes/ece1228-electromagnetic-theory/}
-%\newcommand{\dateintitle}{}
-%\newcommand{\keywords}{}
-
-\input{../latex/peeter_prologue_print2.tex}
-
-\usepackage{peeters_layout_exercise}
-\usepackage{peeters_braket}
-\usepackage{peeters_figures}
-\usepackage{siunitx}
-\usepackage{verbatim}
-%\usepackage{macros_cal} % \LL
-%\usepackage{amsthm} % proof
-%\usepackage{mhchem} % \ce{}
-%\usepackage{macros_bm} % \bcM
-%\usepackage{macros_qed} % \qedmarker
-%\usepackage{txfonts} % \ointclockwise
-
-\beginArtNoToc
-
-\generatetitle{Green's function for the wave equation}
+%%\input{../latex/blogpost.tex}
+%%\renewcommand{\basename}{waveEquationGreens}
+%%%\renewcommand{\dirname}{notes/phy1520/}
+%%\renewcommand{\dirname}{notes/ece1228-electromagnetic-theory/}
+%%%\newcommand{\dateintitle}{}
+%%%\newcommand{\keywords}{}
+%%
+%%\input{../latex/peeter_prologue_print2.tex}
+%%
+%%\usepackage{peeters_layout_exercise}
+%%\usepackage{peeters_braket}
+%%\usepackage{peeters_figures}
+%%\usepackage{siunitx}
+%%\usepackage{verbatim}
+%%%\usepackage{macros_cal} % \LL
+%%%\usepackage{amsthm} % proof
+%%%\usepackage{mhchem} % \ce{}
+%%%\usepackage{macros_bm} % \bcM
+%%%\usepackage{macros_qed} % \qedmarker
+%%%\usepackage{txfonts} % \ointclockwise
+%%
+%%\beginArtNoToc
+%%
+%%\generatetitle{Green's function for the wave equation}
 %\chapter{Green's function for the wave equation}
 %\label{chap:waveEquationGreens}
 The Green's function(s) \( G(\Br, \tau) \) for the 3D wave equation
@@ -56,7 +56,7 @@ G(\Br, \tau) &= -\inv{2 \pi \sqrt{ \tau^2 - r^2/c^2 } } \Theta( \pm \tau - r/c )
 \end{equation}
 At least for the time being, I thought that I'll attempt to verify these, instead of deriving them.  For the 1D case, this turns out to be fairly straightforward.  Perhaps unexpectedly, that isn't true for the 2D case, and I'll have to revisit that case in other ways.  In this post, I'll show the verification of the 1D Green's function, and my partial attempt to verify the 2D case.
 
-\section{1D Green's function verification.}
+\subsection{1D Green's function verification.}
 We will use the Heaviside theta representation of the absolute value.
 \begin{equation}\label{eqn:waveEquationGreens:100}
 \Abs{x} = x \Theta(x) - x \Theta(-x).
@@ -138,7 +138,7 @@ Dividing through by \( -2/c \) gives us
 as desired.  The \( \delta \) derivative terms can be given meaning, but they conveniently cancel out, so we don't have to think about that this time.
 
 It's easy to see that the advanced Green's function has the same behaviour, since the two time partials will bring down a factor of \( (\pm 1)^2 = 1 \) in general, which does not change anything above.
-\section{Attempted verification of the claimed 2D Green's function.}
+\subsection{Attempted verification of the claimed 2D Green's function.}
 Now let's try to verify Grok's claim for the 2D Green's function, starting with a few helpful side calculations.
 
 \begin{equation}\label{eqn:waveEquationGreens:260}
@@ -431,14 +431,14 @@ Attempting to describe this physically, I think that we'd say that we have disco
 \item It should also be possible to perform a limiting convolution verification, in the neighbourhood of the light cone, and then look at the limit of that convolution.  I'd expect that to be better behaved, as it should avoid the singularity itself.
 \end{enumerate}
 
-\section{2nd attempted verification of the claimed 2D Green's function.}
+\subsection{2nd attempted verification of the claimed 2D Green's function.}
 Let's try verifying the Green's function using a convolution
 \begin{equation}\label{eqn:waveEquationGreens:840}
 I(\Bx) = \lr{ \spacegrad^2 - \inv{c^2} \partial_{tt} } -\inv{2 \pi} \int \frac{\Theta(\pm (t - t') - \Abs{\Bx - \Bx'}/c)}{\lr{(t - t')^2 - \Abs{\Bx - \Bx'}/c^2}^{1/2}} d^2 \Bx' dt'
 \end{equation}
-\section{Deriving the Green's functions.}
+\subsection{Deriving the Green's functions.}
 Having had trouble verifying the 2D Green's function, let's try deriving them ourselves.
-\subsection{Setup.}
+\subsubsection{Setup.}
 Let's try solving the forced wave equation
 \begin{equation}\label{eqn:waveEquationGreens:860}
 \lr{ \spacegrad^2 - \inv{c^2}\frac{\partial^2}{\partial t^2} } f(x,t) = g(x,t),
@@ -474,7 +474,7 @@ G(\Bx, \Bx', t, t')
 =
 \inv{\lr{2 \pi}^{N+1}} \int d^N \Bk d\omega \frac{e^{j \Bk \cdot (\Bx-\Bx') + j \omega (t- t')}}{(\omega/c)^2 - \Bk^2}.
 \end{equation}
-\subsection{Evaluating the 1D Green's function}
+\subsubsection{Evaluating the 1D Green's function}
 For the 1D case we have
 \begin{equation}\label{eqn:waveEquationGreens:980}
 G(\Bx, \Bx', t, t')
@@ -576,7 +576,7 @@ G(u, \tau) = -\frac{c}{2} \Theta(\tau - \Abs{u}/c).
 \end{equation}
 This matches Grok's claim (which we also verified.)
 
-\subsection{The convolution integrals.}
+\subsubsection{The convolution integrals.}
 Let's write out the convolution integrals for fun.  They are
 \begin{equation}\label{eqn:waveEquationGreens:1180}
 f(x,t) = -\frac{c}{2}
@@ -615,7 +615,7 @@ f(x,t) = -\frac{c}{2}
 \int_{t + \Abs{x - x'}/c}^\infty dt'
 g(x', t').
 \end{equation}
-\subsection{2D Green's function derivation.}
+\subsubsection{2D Green's function derivation.}
 While it was difficult to attempt to verify the 2D Green's function, it actually turns out to be fairly easy to derive it, provided we pick an alternate pole displacement to make our lives easier.
 
 With \( \Br = \Bx - \Bx' \), and \( \tau = t - t' \), and \( \epsilon > 0 \), we can form
@@ -681,7 +681,7 @@ G(\Br, \tau) = -\Theta(-\tau) \frac{c}{2 \pi} \frac{\Theta(-c \tau - \Abs{\Br})}
 \end{equation}
 which we also see matches the Grok result for the advanced Green's function.  Both of these computations can be trivially performed in Mathematica following the same steps (taking all the fun from the story.)  The advanced integral evaluation is shown in \cref{fig:2dGreensAdvanced:2dGreensAdvancedFig1} as an example.
 \imageFigure{../figures/blogit/2dGreensAdvancedFig1}{Advanced 2D Green's function for wave equation operator.}{fig:2dGreensAdvanced:2dGreensAdvancedFig1}{0.5}
-\subsection{3D Green's function derivation.}
+\subsubsection{3D Green's function derivation.}
 For the sake of completeness, now let's evaluate the Green's function for the 3D wave equation operator.  Again with \( \Br = \Bx - \Bx', \tau = t - t' \) we want the \( \epsilon \rightarrow 0 \) limit of
 \begin{equation}\label{eqn:waveEquationGreens:1480}
 G_\epsilon(\Br, \tau)
@@ -788,9 +788,7 @@ G(\Br, \tau) = -\frac{1}{4 \pi \Abs{\Br}} \delta( \tau - \Abs{\Br}/c ),
 as expected.
 
 Again, sort of sadly, we can skip all the fun and evaluate most of this in Mathematica.  It needs only minor hand-holding to extract the delta function semantics.  The retarded derivation is shown in \cref{fig:waveEquation3DGreensDerivationMathematica:waveEquation3DGreensDerivationMathematicaFig1}, and the advanced derivation in \cref{fig:waveEquation3DGreensDerivationMathematica:waveEquation3DGreensDerivationMathematicaFig2}.
-
 \imageFigure{../figures/blogit/waveEquation3DGreensDerivationMathematicaFig1}{Retarded 3D Green's function for the wave equation.}{fig:waveEquation3DGreensDerivationMathematica:waveEquation3DGreensDerivationMathematicaFig1}{0.5}
 \imageFigure{../figures/blogit/waveEquation3DGreensDerivationMathematicaFig2}{Advanced 3D Green's function for the wave equation.}{fig:waveEquation3DGreensDerivationMathematica:waveEquation3DGreensDerivationMathematicaFig2}{0.5}
-
 %}
-\EndArticle
+%%\EndArticle

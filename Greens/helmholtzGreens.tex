@@ -3,37 +3,36 @@
 % Licenced as described in the file LICENSE under the root directory of this GIT repository.
 %
 %{
-\input{../latex/blogpost.tex}
-\renewcommand{\basename}{helmholtzGreens}
-%\renewcommand{\dirname}{notes/phy1520/}
-\renewcommand{\dirname}{notes/ece1228-electromagnetic-theory/}
-%\newcommand{\dateintitle}{}
-%\newcommand{\keywords}{}
-
-\input{../latex/peeter_prologue_print2.tex}
-
-\usepackage{peeters_layout_exercise}
-\usepackage{peeters_braket}
-\usepackage{peeters_figures}
-\usepackage{siunitx}
-\usepackage{verbatim}
-%\usepackage{macros_cal} % \LL
-%\usepackage{amsthm} % proof
-%\usepackage{mhchem} % \ce{}
-%\usepackage{macros_bm} % \bcM
-%\usepackage{macros_qed} % \qedmarker
-%\usepackage{txfonts} % \ointclockwise
-
-\beginArtNoToc
-
-\generatetitle{Green's functions for the Helmholtz (wave equation) operator, and Laplacian, in low dimensions}
-%\chapter{Green's functions for the Helmholtz (wave equation) operator in various dimensions}
-%\label{chap:helmholtzGreens}
+%%\input{../latex/blogpost.tex}
+%%\renewcommand{\basename}{helmholtzGreens}
+%%%\renewcommand{\dirname}{notes/phy1520/}
+%%\renewcommand{\dirname}{notes/ece1228-electromagnetic-theory/}
+%%%\newcommand{\dateintitle}{}
+%%%\newcommand{\keywords}{}
+%%
+%%\input{../latex/peeter_prologue_print2.tex}
+%%
+%%\usepackage{peeters_layout_exercise}
+%%\usepackage{peeters_braket}
+%%\usepackage{peeters_figures}
+%%\usepackage{siunitx}
+%%\usepackage{verbatim}
+%%%\usepackage{macros_cal} % \LL
+%%%\usepackage{amsthm} % proof
+%%%\usepackage{mhchem} % \ce{}
+%%%\usepackage{macros_bm} % \bcM
+%%%\usepackage{macros_qed} % \qedmarker
+%%%\usepackage{txfonts} % \ointclockwise
+%%
+%%\beginArtNoToc
+%%
+%%\generatetitle{Green's functions for the Helmholtz (wave equation) operator, and Laplacian, in low dimensions}
+%%%\chapter{Green's functions for the Helmholtz (wave equation) operator in various dimensions}
+%%%\label{chap:helmholtzGreens}
 The great mathematical physics book \citep{byron1992mca} derives the Green's function for the 3D Helmholtz (wave equation in the frequency domain) operator.  It turns out that unless you are are intimate with Bessel functions, the 2D generalization of that result is difficult.
 
 Here I'll walk through a derivation of the Green's function for the 1D Helmholtz equation, and follow that by using it to find the Green's function for the 1D Laplacian.  Then, we will confront the demonic Bessel functions required for the 2D Helmholtz operator Green's function, and it's Laplacian Green's function limit.  Finally, for completeness sake, we will finish with our own derivation of the 3D result.
-
-\section{Motivation and context.}
+\subsection{Motivation and context.}
 We seek a solution to non-homogeneous Helmholtz equation
 \begin{equation}\label{eqn:helmholtzGreens:20}
 \lr{ \spacegrad^2 + k^2 } U(\Bx) = V(\Bx).
@@ -110,8 +109,8 @@ which requires that our Green's function \( G(\Bx, \Bx') \) has the functional f
 \end{equation}
 If we can find a function, \( G(\Bx, \Bx') \), by any means, that has this delta function behaviour, then we solve the problem.
 
-\section{Helmholtz Green's function in 1D.}
-\subsection{Evaluating the integral.}
+\subsection{Helmholtz Green's function in 1D.}
+\subsubsection{Evaluating the integral.}
 For the one dimensional case, we want to evaluate
 \begin{equation}\label{eqn:helmholtzGreens:200}
 G(r) = -\inv{2 \pi} \int \inv{p^2 - k^2} e^{j p r} dp,
@@ -197,7 +196,7 @@ The general solution may also include any solutions to the homogeneous Helmholtz
 U(x) = A e^{j k x} + B e^{-j k x} + \inv{2k} \int_{-\infty}^\infty \sin( k\Abs{r} ) V(x + r) dr.
 \end{equation}
 
-\subsubsection{A strictly causal solution.}
+\paragraph{A strictly causal solution.}
 We can split the convolution kernel a ``causal'' part, where only the spatially-``past'' values of \( V \) contribute, and an ``acausal'' part
 \begin{equation}\label{eqn:helmholtzGreens:2320}
 U(x) =
@@ -254,14 +253,14 @@ with \( \alpha \in [0,1] \).
 
 It's pretty cool that we can completely solve the 1D forced wave equation, for any forcing function, from first principles.  Yes, I took liberties that would make a mathematician cringe, but we are telling a story, and leaving the footnotes to somebody else.
 
-%\subsubsection{More specific boundary constraints.}
+%\paragraph{More specific boundary constraints.}
 %Just as we have the freedom to add any homogeneous solution to our specific convolution based solution, we may do so for the Green's function itself.  Our process above, implicitly assumes that we are interested in infinite boundary value constraints.  Should we wish to impose different boundary constraints, we can form
 %\begin{equation}\label{eqn:helmholtzGreens:420}
 %G(r) = A e^{ j k r} + B e^{-j k r} - \frac{j \sgn(r)}{2k} e^{j k \Abs{r}},
 %\end{equation}
 %but must then use the boundary value constraints to determine the desired form of the Green's function, using the two degrees of freedom to do so.  That's also an interesting topic, and would be good to also visit in a followup post.
 
-\subsection{Verification of the 1D Helmholtz Green's function.}
+\subsubsection{Verification of the 1D Helmholtz Green's function.}
 
 Let's show that the outgoing Green's function has the desired delta function semantics.  That is
 \begin{equation}\label{eqn:helmholtzGreens:2060}
@@ -355,7 +354,7 @@ or
 }
 \end{equation}
 
-\subsection{Verifying the Green's function with convolution.}
+\subsubsection{Verifying the Green's function with convolution.}
 Avoiding the physics tricks, we may use a limiting argument to validate our Green's function.
 
 We first want to show that at points \( x' \ne x \) the Helmholtz operator applied to the Green's function is zero:
@@ -518,10 +517,10 @@ or
 \end{equation}
 Taking limits and dividing through by \( 2 j k \) proves the result.
 
-\section{1D Laplacian Green's function.}
+\subsection{1D Laplacian Green's function.}
 Let's further validate the Helmholtz Green's function by deriving the Green's function for the 1D Laplacian.  We should also be able to verify that it has the correct delta function semantics.
 
-\subsection{Expansion in series and taking the limit.}
+\subsubsection{Expansion in series and taking the limit.}
 The easiest way to take this limit is to expand the sine form of the Green's function around \( k = 0 \)
 \begin{equation}\label{eqn:helmholtzGreens:2540}
 \begin{aligned}
@@ -551,7 +550,7 @@ G(r) + \frac{j}{2k} = \frac{\Abs{r}}{2}.
 \end{equation}
 The trick to taking this limit is to note that we are free to add constant terms to the Green's function for the Laplacian, and then discard the \( 1/k \) term before taking the limit, treating \( k \) as a constant.
 
-\subsection{Verifying the Green's function.}
+\subsubsection{Verifying the Green's function.}
 Observe that
 \begin{equation}\label{eqn:helmholtzGreens:2520}
 \frac{d^2}{dr^2} \frac{\Abs{r}}{2} =
@@ -560,7 +559,7 @@ Observe that
 \end{equation}
 which verifies that this is a valid Green's function for the 1D Laplacian.
 
-\subsection{Verifying the Green's function with convolution.}
+\subsubsection{Verifying the Green's function with convolution.}
 We can also operate on the convolution with the Laplacian, to verify correctness.  We are interested in evaluating
 \begin{equation}\label{eqn:helmholtzGreens:1840}
 \spacegrad^2 \int \frac{\Abs{x - x'}}{2} V(x') dx' = \int V(x + r) \frac{d^2}{dr^2} \frac{\Abs{r}}{2} dr.
@@ -625,8 +624,8 @@ In the limit we have
 \end{equation}
 
 If the test (or driving) function is continuous at \( x' = x \), then this is exactly the delta-function semantics that we expect of a Green's function.  It's interesting that this check provides us with precise semantics for the Green's function for discontinuous functions too.
-\section{2D Green's function.}
-\subsection{Evaluating the integral.}
+\subsection{2D Green's function.}
+\subsubsection{Evaluating the integral.}
 Okay, now let's do the 2D Green's function evaluation.  Our starting place is
 \begin{equation}\label{eqn:helmholtzGreens:680}
 G(\Br) = -\inv{(2 \pi)^2} \int \frac{e^{j \Bp \cdot \Br}}{\Bp^2 - k^2} d^2 p.
@@ -703,10 +702,10 @@ G(\Bx, \Bx') = -\frac{j}{4} H_0^{(1)}(\pm k \Abs{\Bx - \Bx'}).
 }
 \end{equation}
 
-\section{The 2D Laplacian Green's function.}
+\subsection{The 2D Laplacian Green's function.}
 Like the exponential form of the 1D Helmholtz Green's function, the 2D Green's function has the appearance of being malformed for \( k \rightarrow 0 \).
 
-\subsection{An asymptotic expansion of The 2D Helmholtz Green's function.}
+\subsubsection{An asymptotic expansion of The 2D Helmholtz Green's function.}
 Let's try to carefully expand the Helmholtz 2D Green's function in the neighbourhood of \( k = 0 \), which will provide us with the Green's function for the 2D Laplacian.
 
 In \citep{abramowitz1964handbook}, \S 9.1.7, 9.1.8, we have for \( z \rightarrow 0 \)
@@ -734,7 +733,7 @@ G(\Bx, \Bx') = \frac{1}{2 \pi} \ln \Abs{\Bx - \Bx'}.
 }
 \end{equation}
 
-\subsection{Verifying the 2D Laplacian Green's function.}
+\subsubsection{Verifying the 2D Laplacian Green's function.}
 Let's try to verify that this Green's function is correct, since we've had lots of opportunities to screw up signs (and more!)  We want to evaluate the Laplacian of the convolution and if all goes well, it should be \( V(\Bx) \).  That is
 \begin{equation}\label{eqn:helmholtzGreens:1060}
 \begin{aligned}
@@ -830,7 +829,7 @@ In the limit we are left with just \( 2 \pi V(\Bx) \), so
 \end{equation}
 as desired.
 
-\section{3D Green's function.}
+\subsection{3D Green's function.}
 The 3D Green's function that we wish to try to evaluate is
 \begin{equation}\label{eqn:helmholtzGreens:540}
 G(\Br) = -\inv{(2 \pi)^3} \int \frac{e^{j \Bp \cdot \Br}}{\Bp^2 - k^2} d^3 p.
@@ -890,6 +889,5 @@ The Green's function has the structure of either an outgoing or incoming spheric
 G(\Bx, \Bx') = -\frac{e^{\pm j k \Abs{\Br}} }{4 \pi \Abs{\Br}}.
 }
 \end{equation}
-
 %}
-\EndArticle
+%%\EndArticle

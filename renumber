@@ -468,7 +468,11 @@
 #../latex/bin/lgrep RLCbandwidth.tex | tee o ; . ./o
 #perl -p -i ../latex/bin/latexRegex.pl RLCbandwidth.tex
 
-../latex/bin/lgrep spacetimeGradientGreens.tex | tee o ; . ./o
-perl -p -i ../latex/bin/latexRegex.pl spacetimeGradientGreens.tex
-../latex/bin/lgrep GreensMisc.tex.tex | tee o ; . ./o
-perl -p -i ../latex/bin/latexRegex.pl GreensMisc.tex.tex
+#../latex/bin/lgrep spacetimeGradientGreens.tex | tee o ; . ./o
+#perl -p -i ../latex/bin/latexRegex.pl spacetimeGradientGreens.tex
+
+#../latex/bin/lgrep GreensMisc.tex.tex | tee o ; . ./o
+#perl -p -i ../latex/bin/latexRegex.pl GreensMisc.tex.tex
+
+../latex/bin/lgrep residueGreens.tex | tee o ; . ./o
+perl -p -i ../latex/bin/latexRegex.pl residueGreens.tex

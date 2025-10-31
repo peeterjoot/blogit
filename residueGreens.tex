@@ -103,8 +103,41 @@ These are the Cauchy equations.  When the derivative exists in a given neighbour
 \Be_1 \lr{ \partial_x u - \partial_y v } + \Be_2 \lr{ \partial_y u + \partial_x v }.
 \end{aligned}
 \end{equation}
-For the gradient to equal zero, we see that \cref{eqn:residueGreens:140} must be satisfied.
+We see that the geometric algebra equivalent of the Cauchy equations \cref{eqn:residueGreens:140}, is simply
+\begin{equation}\label{eqn:residueGreens:n}
+\spacegrad f = 0.
+\end{equation}
+\subsection{Fundamental theorem of geometric calculus.}
+The next piece of the puzzle is the two parameter variant of the fundamental theorem of geometric calculus.  The statement of that theorem is
+\maketheorem{Fundamental theorem for surface integrals (2D).}{thm:surfaceintegral:100}{
+Given a continuous and connected surface \( S = \Bx(u, v) \), \( \Bx \in \mathbb{R}^2 \), parameterized by \( u \in [u_0, u_1], v \in [v_0, v_1] \), multivector functions \( F(\Bx), G(\Bx) \) that are differentable over \( S \), a (bivector-valued) area element \( d^2 \Bx = d\Bx_1 \wedge d\Bx_2 = du dv\, \Bx_u \wedge \Bx_v \), and \( \spacegrad = \Bx^u \partial_u + \Bx^v \partial_v \), then
+\begin{equation*}
+\int_S F d^2\Bx \lrspacegrad G = \ointclockwise_{\partial S} F d\Bx G,
+\end{equation*}
+where \( \partial S \) is the boundary of the surface \( S \).
+} % theorem
+This also holds for general two parameter surfaces in any dimension, but in that case, the curvilinear representation of the gradient, as stated above, is called the vector derivative, and is denoted by \( \boldpartial \) (also acting bidirectionally).
+
+To get the idea how this works, let's perform a 2D rectangular coordinate expansion of the area integral
+\begin{equation}\label{eqn:residueGreens:180}
+\begin{aligned}
+\int_S F I dx dy \lrspacegrad G
+&=
+\sum_{k=1}^2 \int_S dx dy \partial_k \lr{ F I \Be_k G } \\
+&=
+\int dy \evalrange{ \lr{F I \Be_1 G} }{x_0}{x_1}
++
+\int dx \evalrange{ \lr{F I \Be_2 G} }{y_0}{y_1} \\
+&=
+-\int dy \evalrange{ \lr{F \Be_2 G} }{x_0}{x_1}
++
+\int dx \evalrange{ \lr{F \Be_1 G} }{y_0}{y_1}.
+\end{aligned}
+\end{equation}
+This is illustrated in \cref{fig:orientedIntegral:orientedIntegralFig1}, which shows pictorially that the remaining integral is an oriented line integral.
+\imageFigure{../figures/blogit/orientedIntegralFig1}{Oriented multivector line integral.}{fig:orientedIntegral:orientedIntegralFig1}{0.3}
+If we want to approximate a more general area, we may do so with additional tiles, as illustrated in \cref{fig:orientedIntegrals:orientedIntegralsFig2}.  The final answer can be evaluated along the exterior boundary, with a result equal to the sum of all internal tiles, as any interior contributions cancel exactly.
+\imageFigure{../figures/blogit/orientedIntegralsFig2}{A crude circular tiling approximation.}{fig:orientedIntegrals:orientedIntegralsFig2}{0.3}
 
 %}
 \EndArticle
-%\EndNoBibArticle

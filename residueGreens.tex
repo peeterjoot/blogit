@@ -68,13 +68,13 @@ i^2 &=
 \end{aligned}
 \end{equation}
 \subsection{Cauchy-equations in terms of the gradient.}
-It is natural to wonder about the geometric algebra equivalents of various complex-number relationships and identities.  Of particular interest for this discussion is the geometric algebra equivalent of the Cauchy equations that specify required conditions for differentiability.
+It is natural to wonder about the geometric algebra equivalents of various complex-number relationships and identities.  Of particular interest for this discussion is the geometric algebra equivalent of the Cauchy equations that specify required conditions for a function to be differentiable.
 
 If a complex function \( f(z) = u(z) + i v(z) \) is differentiable, then we must be able to find the limit of
 \begin{equation}\label{eqn:residueGreens:80}
 \frac{\Delta f(z_0)}{\Delta z} = \frac{f(z_0 + h) - f(z_0)}{h},
 \end{equation}
-for any complex \( h \rightarrow 0 \), for any possible tradjectory of \( z_0 + h \) toward \( z_0 \).  In particular, for real \( h = \epsilon \),
+for any complex \( h \rightarrow 0 \), for any possible trajectory of \( z_0 + h \) toward \( z_0 \).  In particular, for real \( h = \epsilon \),
 \begin{equation}\label{eqn:residueGreens:100}
 \lim_{\epsilon \rightarrow 0} \frac{u(x_0 + \epsilon, y_0) + i v(x_0 + \epsilon, y_0) - u(x_0, y_0) - i v(x_0, y_0)}{\epsilon}
 =
@@ -108,38 +108,125 @@ We see that the geometric algebra equivalent of the Cauchy equations is simply
 \spacegrad f = 0.
 \end{equation}
 Roughly speaking, we may say that a function is analytic in a region, if either \cref{eqn:residueGreens:140} or \cref{eqn:residueGreens:200} (the function is differentiable) in a neighbourhood of all points in that region.
-\subsection{Fundamental theorem of geometric calculus.}
-The next piece of the puzzle is the two parameter variant of the fundamental theorem of geometric calculus.  The statement of that theorem is
-\maketheorem{Fundamental theorem for surface integrals (2D).}{thm:surfaceintegral:100}{
-Given a continuous and connected surface \( S = \Bx(u, v) \), \( \Bx \in \mathbb{R}^2 \), parameterized by \( u \in [u_0, u_1], v \in [v_0, v_1] \), multivector functions \( F(\Bx), G(\Bx) \) that are differentable over \( S \), a (bivector-valued) area element \( d^2 \Bx = d\Bx_1 \wedge d\Bx_2 = du dv\, \Bx_u \wedge \Bx_v \), and \( \spacegrad = \Bx^u \partial_u + \Bx^v \partial_v \), then
-\begin{equation*}
-\int_S F d^2\Bx \lrspacegrad G = \ointclockwise_{\partial S} F d\Bx G,
-\end{equation*}
-where \( \partial S \) is the boundary of the surface \( S \).
-} % theorem
-This also holds for general two parameter surfaces in any dimension, but in that case, the curvilinear representation of the gradient, as stated above, is called the vector derivative, and is denoted by \( \boldpartial \) (also acting bidirectionally).
-
-To get the idea how this works, let's perform a 2D rectangular coordinate expansion of the area integral
-\begin{equation}\label{eqn:residueGreens:180}
+%%%\subsection{Fundamental theorem of geometric calculus.}
+%%%The next piece of the puzzle is the two parameter variant of the fundamental theorem of geometric calculus.  The statement of that theorem is
+%%%\maketheorem{Fundamental theorem for surface integrals (2D).}{thm:surfaceintegral:100}{
+%%%Given a continuous and connected surface \( S = \Bx(u, v) \), \( \Bx \in \mathbb{R}^2 \), parameterized by \( u \in [u_0, u_1], v \in [v_0, v_1] \), multivector functions \( F(\Bx), G(\Bx) \) that are differentable over \( S \), a (bivector-valued) area element \( d^2 \Bx = d\Bx_1 \wedge d\Bx_2 = du dv\, \Bx_u \wedge \Bx_v \), and \( \spacegrad = \Bx^u \partial_u + \Bx^v \partial_v \), then
+%%%\begin{equation*}
+%%%\int_S F d^2\Bx \lrspacegrad G = \ointclockwise_{\partial S} F d\Bx G,
+%%%\end{equation*}
+%%%where \( \partial S \) is the boundary of the surface \( S \).
+%%%} % theorem
+%%%This also holds for general two parameter surfaces in any dimension, but in that case, the curvilinear representation of the gradient, as stated above, is called the vector derivative, and is denoted by \( \boldpartial \) (also acting bidirectionally).
+%%%
+%%%To get the idea how this works, let's perform a 2D rectangular coordinate expansion of the area integral
+%%%\begin{equation}\label{eqn:residueGreens:180}
+%%%\begin{aligned}
+%%%\int_S F I dx dy \lrspacegrad G
+%%%&=
+%%%\sum_{k=1}^2 \int_S dx dy \partial_k \lr{ F I \Be_k G } \\
+%%%&=
+%%%\int dy \evalrange{ \lr{F I \Be_1 G} }{x_0}{x_1}
+%%%+
+%%%\int dx \evalrange{ \lr{F I \Be_2 G} }{y_0}{y_1} \\
+%%%&=
+%%%-\int dy \evalrange{ \lr{F \Be_2 G} }{x_0}{x_1}
+%%%+
+%%%\int dx \evalrange{ \lr{F \Be_1 G} }{y_0}{y_1}.
+%%%\end{aligned}
+%%%\end{equation}
+%%%This is illustrated in \cref{fig:orientedIntegral:orientedIntegralFig1}, which shows pictorially that the remaining integral is an oriented line integral.
+%%%\imageFigure{../figures/blogit/orientedIntegralFig1}{Oriented multivector line integral.}{fig:orientedIntegral:orientedIntegralFig1}{0.3}
+\subsection{A special case of the fundamental theorem of geometric calculus.}
+Given an even grade multivector \( \psi \in \mathbb{R}^2 \) (i.e.: a complex number), we can show that
+\begin{equation}\label{eqn:residueGreens:220}
+\int_A \spacegrad \psi d^2\Bx = \ointctrclockwise_{\partial A} d\Bx \psi.
+\end{equation}
+Let's get an idea why this works by expanding the area integral for a rectangular parameterization
+\begin{equation}\label{eqn:residueGreens:240}
 \begin{aligned}
-\int_S F I dx dy \lrspacegrad G
+\int_A \spacegrad \psi d^2\Bx
 &=
-\sum_{k=1}^2 \int_S dx dy \partial_k \lr{ F I \Be_k G } \\
+\int_A \lr{ \Be_1 \partial_1 + \Be_2 \partial_2 } \psi I dx dy \\
 &=
-\int dy \evalrange{ \lr{F I \Be_1 G} }{x_0}{x_1}
+\int \Be_1 I dy \evalrange{\psi}{x_0}{x_1}
 +
-\int dx \evalrange{ \lr{F I \Be_2 G} }{y_0}{y_1} \\
+\int \Be_2 I dx \evalrange{\psi}{y_0}{y_1} \\
 &=
--\int dy \evalrange{ \lr{F \Be_2 G} }{x_0}{x_1}
-+
-\int dx \evalrange{ \lr{F \Be_1 G} }{y_0}{y_1}.
+\int \Be_2 dy \evalrange{\psi}{x_0}{x_1}
+-
+\int \Be_1 dx \evalrange{\psi}{y_0}{y_1} \\
+&=
+\int d\By \evalrange{\psi}{x_0}{x_1}
+-
+\int d\Bx \evalrange{\psi}{y_0}{y_1}.
 \end{aligned}
 \end{equation}
-This is illustrated in \cref{fig:orientedIntegral:orientedIntegralFig1}, which shows pictorially that the remaining integral is an oriented line integral.
-\imageFigure{../figures/blogit/orientedIntegralFig1}{Oriented multivector line integral.}{fig:orientedIntegral:orientedIntegralFig1}{0.3}
-If we want to approximate a more general area, we may do so with additional tiles, as illustrated in \cref{fig:orientedIntegrals:orientedIntegralsFig2}.  The final answer can be evaluated along the exterior boundary, with a result equal to the sum of all internal tiles, as any interior contributions cancel exactly.
+We took advantage of the fact that the \R{2} pseudoscalar commutes with \( \psi \).  The end result, is illustrated in \cref{fig:orientedIntegral:orientedIntegralFig3}, shows pictorially that the remaining integral is an oriented line integral.
+\imageFigure{../figures/blogit/orientedIntegralFig3}{Oriented multivector line integral.}{fig:orientedIntegral:orientedIntegralFig3}{0.3}
+
+If we want to approximate a more general area, we may do so with additional tiles, as illustrated in \cref{fig:orientedIntegrals:orientedIntegralsFig2}.  We may evaluate the area integral using the line integral over just the exterior boundary using such a tiling, as any overlapping opposing boundary contributions cancel exactly.
 \imageFigure{../figures/blogit/orientedIntegralsFig2}{A crude circular tiling approximation.}{fig:orientedIntegrals:orientedIntegralsFig2}{0.3}
-\subsection{Geometric algebra form of a complex contour integral.}
+
+The reason that this is interesting is that it allows us to re-express a complex integral as a corresponding multivector area integral.  With \( d\Bx = \Be_1 dz \), we have
+\begin{equation}\label{eqn:residueGreens:260}
+\ointctrclockwise dz\, \psi = \Be_1 \int \spacegrad \psi d^2\Bx.
+\end{equation}
+\subsection{The Cauchy kernel as a Green's function.}
+We've previously derived the Green's function for the 2D Laplacian, and found
+\begin{equation}\label{eqn:residueGreens:280}
+\tilde{G}(\Bx, \Bx') = \inv{2\pi} \ln \Abs{\lr{\Bx - \Bx'}},
+\end{equation}
+which satisfies
+\begin{equation}\label{eqn:residueGreens:300}
+\delta^2(\Bx - \Bx') = \spacegrad^2 \tilde{G}(\Bx, \Bx') = \spacegrad \lr{ \spacegrad \tilde{G}(\Bx, \Bx') }.
+\end{equation}
+This means that \( G(\Bx, \Bx') = \spacegrad \tilde{G}(\Bx, \Bx') \) is the Green's function for the gradient.  That Green's function is
+\begin{equation}\label{eqn:residueGreens:320}
+\begin{aligned}
+G(\Bx, \Ba)
+&= \inv{2 \pi} \frac{\spacegrad \Abs{\Bx - \Ba}}{\Abs{\Bx - \Ba}} \\
+&= \inv{2 \pi} \frac{\Bx - \Ba}{\Abs{\Bx - \Ba}^2}.
+\end{aligned}
+\end{equation}
+We may cast this Green's function into complex form with \( z = \Be_1 \Bx, a = \Be_1 \Ba \).  In particular
+\begin{equation}\label{eqn:residueGreens:340}
+\begin{aligned}
+\inv{z - a}
+&=
+\frac{(z - a)^\conj}{\Abs{z - a}^2} \\
+&=
+\frac{(z - a)^\conj}{\Abs{z - a}^2} \\
+&=
+\frac{(\Bx - \Ba)}{\Abs{\Bx - \Ba}^2} \Be_1 \\
+&=
+2 \pi G(\Bx, \Ba) \Be_1.
+\end{aligned}
+\end{equation}
+\subsection{Cauchy's integral.}
+With
+\begin{equation}\label{eqn:residueGreens:360}
+\psi = \frac{f(z)}{z - a},
+\end{equation}
+using \cref{eqn:residueGreens:260}, we can now evaluate
+\begin{equation}\label{eqn:residueGreens:265}
+\begin{aligned}
+\ointctrclockwise dz\, \frac{f(z)}{z - a}
+&= \Be_1 \int \spacegrad \frac{f(z)}{z - a} d^2\Bx \\
+&= \Be_1 \int \lr{ \frac{\spacegrad f(z)}{z - a} + \lr{ \spacegrad \inv{z - a}} f(z) } I dA \\
+&= \Be_1 \int f(z) \spacegrad 2 \pi G(\Bx - \Ba) \Be_1 I dA \\
+&= 2 \pi \Be_1 \int \delta^2(\Bx - \Ba) \Be_1 f(\Bx) I dA \\
+&= 2 \pi \Be_1^2 f(\Ba) I \\
+&= 2 \pi I f(a),
+\end{aligned}
+\end{equation}
+where we've made use of the analytic condition \( \spacegrad f = 0 \).
+
+The Cauchy integral equation
+\begin{equation}\label{eqn:residueGreens:380}
+f(a) = \inv{2 \pi I} \ointctrclockwise dz\, \frac{f(z)}{z - a},
+\end{equation}
+falls out naturally.  This sort of residue calculation always seemed a bit miraculous.  By introducing a geometric algebra encoding of complex numbers, we get a new and interesting interpretation.  In particular, the imaginary factor in the geometric algebra formulation of this identity is an oriented unit area coming directly from the area element.  If we are looking for how to generalize the Cauchy equation to more general multivector functions, we have a good clue how that would be done.
 
 %}
 \EndArticle

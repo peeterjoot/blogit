@@ -46,7 +46,8 @@ z
 &= u + \Be_1 \Be_2 v.
 \end{aligned}
 \end{equation}
-We may now identify the unit bivector \( \Be_1 \Be_2 \) as an imaginary, designed by \( i \), since it has the expected behavior
+
+We may identify the unit bivector \( \Be_1 \Be_2 \) as an imaginary, designed by \( i \), since it has the expected behavior
 \begin{equation}\label{eqn:residueGreens:60}
 \begin{aligned}
 i^2 &=
@@ -67,6 +68,9 @@ i^2 &=
 -1.
 \end{aligned}
 \end{equation}
+
+Complex numbers are seen to be isomorphic to even grade multivectors in a planar subspace.  The imaginary is the grade-two pseudoscalar, and geometrically is an oriented unit area (bivector.)
+
 \subsection{Cauchy-equations in terms of the gradient.}
 It is natural to wonder about the geometric algebra equivalents of various complex-number relationships and identities.  Of particular interest for this discussion is the geometric algebra equivalent of the Cauchy equations that specify required conditions for a function to be differentiable.
 
@@ -198,7 +202,7 @@ We may cast this Green's function into complex form with \( z = \Be_1 \Bx, a = \
 &=
 \frac{(z - a)^\conj}{\Abs{z - a}^2} \\
 &=
-\frac{(\Bx - \Ba)}{\Abs{\Bx - \Ba}^2} \Be_1 \\
+\frac{\Bx - \Ba}{\Abs{\Bx - \Ba}^2} \Be_1 \\
 &=
 2 \pi G(\Bx, \Ba) \Be_1.
 \end{aligned}
@@ -220,13 +224,19 @@ using \cref{eqn:residueGreens:260}, we can now evaluate
 &= 2 \pi I f(a),
 \end{aligned}
 \end{equation}
-where we've made use of the analytic condition \( \spacegrad f = 0 \).
+where we've made use of the analytic condition \( \spacegrad f = 0 \), and the fact that \( f \) and \( 1/(z-a) \), both even multivectors, commute.
 
 The Cauchy integral equation
 \begin{equation}\label{eqn:residueGreens:380}
 f(a) = \inv{2 \pi I} \ointctrclockwise dz\, \frac{f(z)}{z - a},
 \end{equation}
-falls out naturally.  This sort of residue calculation always seemed a bit miraculous.  By introducing a geometric algebra encoding of complex numbers, we get a new and interesting interpretation.  In particular, the imaginary factor in the geometric algebra formulation of this identity is an oriented unit area coming directly from the area element.  If we are looking for how to generalize the Cauchy equation to more general multivector functions, we have a good clue how that would be done.
+falls out naturally.  This sort of residue calculation always seemed a bit miraculous.  By introducing a geometric algebra encoding of complex numbers, we get a new and interesting interpretation.  In particular,
+\begin{enumerate}
+\item the imaginary factor in the geometric algebra formulation of this identity is an oriented unit area coming directly from the area element,
+\item the factor of \( 2 \pi \) comes directly from the Green's function for the gradient,
+\item the fact that this particular form of integral picks up only the contribution at the point \( z = a \) is no longer mysterious seeming.  This is directly due to delta-function filtering.
+\end{enumerate}
+Also, if we are looking for an understanding of how to generalize the Cauchy equation to more general multivector functions, we now also have a good clue how that would be done.
 
 %}
 \EndArticle

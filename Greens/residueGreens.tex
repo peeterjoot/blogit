@@ -3,34 +3,33 @@
 % Licenced as described in the file LICENSE under the root directory of this GIT repository.
 %
 %{
-\input{../latex/blogpost.tex}
-\renewcommand{\basename}{residueGreens}
-%\renewcommand{\dirname}{notes/phy1520/}
-\renewcommand{\dirname}{notes/ece1228-electromagnetic-theory/}
-%\newcommand{\dateintitle}{}
-%\newcommand{\keywords}{}
-
-\input{../latex/peeter_prologue_print2.tex}
-
-\usepackage{peeters_layout_exercise}
-\usepackage{peeters_braket}
-\usepackage{peeters_figures}
-\usepackage{siunitx}
-\usepackage{verbatim}
-%\usepackage{macros_cal} % \LL
-%\usepackage{amsthm} % proof
-%\usepackage{mhchem} % \ce{}
-%\usepackage{macros_bm} % \bcM
-%\usepackage{macros_qed} % \qedmarker
-\usepackage{txfonts} % \ointclockwise
-
-\beginArtNoToc
-
-\generatetitle{A fun application of Green's functions: Residue calculus}
+%%\input{../latex/blogpost.tex}
+%%\renewcommand{\basename}{residueGreens}
+%%%\renewcommand{\dirname}{notes/phy1520/}
+%%\renewcommand{\dirname}{notes/ece1228-electromagnetic-theory/}
+%%%\newcommand{\dateintitle}{}
+%%%\newcommand{\keywords}{}
+%%
+%%\input{../latex/peeter_prologue_print2.tex}
+%%
+%%\usepackage{peeters_layout_exercise}
+%%\usepackage{peeters_braket}
+%%\usepackage{peeters_figures}
+%%\usepackage{siunitx}
+%%\usepackage{verbatim}
+%%%\usepackage{macros_cal} % \LL
+%%%\usepackage{amsthm} % proof
+%%%\usepackage{mhchem} % \ce{}
+%%%\usepackage{macros_bm} % \bcM
+%%%\usepackage{macros_qed} % \qedmarker
+%%\usepackage{txfonts} % \ointclockwise
+%%
+%%\beginArtNoToc
+%%
+%%\generatetitle{A fun application of Green's functions: Residue calculus}
 %\chapter{A fun application of Green's functions: Residue calculus}
 %\label{chap:residueGreens}
-
-\section{Motivation.}
+\subsection{Motivation.}
 A fun application of both Green's functions and geometric algebra is to show how the Cauchy integral equation can be expressed in terms of the Green's function for the 2D gradient.  This is covered, almost as an aside, in \citep{doran2003gap}.  I found that treatment a bit hard to understand, so I am going to work through it here at my own pace.
 \subsection{Complex numbers in geometric algebra.}
 Anybody who has studied geometric algebra is likely familiar with a variety of ways to construct complex numbers from geometric objects.  For example, complex numbers can be constructed for any plane.  If \( \Be_1, \Be_2 \) is a pair of orthonormal vectors for some plane in \R{N}, then any vector in that plane has the form
@@ -112,7 +111,7 @@ We see that the geometric algebra equivalent of the Cauchy equations is simply
 \spacegrad f = 0.
 \end{equation}
 Roughly speaking, we may say that a function is analytic in a region, if either \cref{eqn:residueGreens:140} or \cref{eqn:residueGreens:200} (the function is differentiable) in a neighbourhood of all points in that region.
-%%%\subsection{Fundamental theorem of geometric calculus.}
+%%%\subsubsection{Fundamental theorem of geometric calculus.}
 %%%The next piece of the puzzle is the two parameter variant of the fundamental theorem of geometric calculus.  The statement of that theorem is
 %%%\maketheorem{Fundamental theorem for surface integrals (2D).}{thm:surfaceintegral:100}{
 %%%Given a continuous and connected surface \( S = \Bx(u, v) \), \( \Bx \in \mathbb{R}^2 \), parameterized by \( u \in [u_0, u_1], v \in [v_0, v_1] \), multivector functions \( F(\Bx), G(\Bx) \) that are differentable over \( S \), a (bivector-valued) area element \( d^2 \Bx = d\Bx_1 \wedge d\Bx_2 = du dv\, \Bx_u \wedge \Bx_v \), and \( \spacegrad = \Bx^u \partial_u + \Bx^v \partial_v \), then
@@ -237,6 +236,5 @@ falls out naturally.  This sort of residue calculation always seemed a bit mirac
 \item the fact that this particular form of integral picks up only the contribution at the point \( z = a \) is no longer mysterious seeming.  This is directly due to delta-function filtering.
 \end{enumerate}
 Also, if we are looking for an understanding of how to generalize the Cauchy equation to more general multivector functions, we now also have a good clue how that would be done.
-
 %}
-\EndArticle
+%%\EndArticle

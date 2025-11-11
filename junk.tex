@@ -135,6 +135,56 @@ If you want to use a matrix representation, you can use Pauli or Dirac matrices.
 \Be_2 &= \sigma_3 = \PauliZ
 \end{aligned}
 \end{equation*}
+\section{}
+
+Let \( x = e^u, dx = e^u du \), for
+\begin{equation}\label{eqn:junk:100}
+\begin{aligned}
+\int x^i dx
+&= \int e^{u(1 + i)} du \\
+&= \frac{e^{u(1+i)}}{1 + i} + C \\
+&= \frac{x^{1+i}}{1 + i} + C.
+\end{aligned}
+\end{equation}
+If one wishes to see the contributions to the magnitude and phase, rewrite this as
+\begin{equation}\label{eqn:junk:120}
+\frac{x^{1+i}}{1 + i}
+= \inv{\sqrt{2}} x e^{i\lr{ \ln x - \pi/4 }}.
+\end{equation}
+
+\section{}
+
+\begin{equation}\label{eqn:junk:140}
+\begin{aligned}
+\lim_{\theta \rightarrow 0} \frac{\sin\theta}{\theta}
+&=
+\lim_{\theta \rightarrow 0} \frac{\sin\cancel{\theta}}{\cancel{\theta}} \\
+&=
+\sin
+\end{aligned}
+\end{equation}
+
+\section{}
+
+\begin{equation}\label{eqn:junk:160}
+\begin{aligned}
+\lim_{\theta \rightarrow 0} \frac{\sin\theta}{\theta}
+&=
+\lim_{\theta \rightarrow 0} \inv{\theta} \lr{ \theta - \inv{3!} \theta^3 + \inv{5!} \theta^5 + \cdots } \\
+&=
+\lim_{\theta \rightarrow 0} 1 - \inv{3!} \theta^2 + \inv{5!} \theta^4 + \cdots \\
+&=
+1.
+\end{aligned}
+\end{equation}
+
+\section{}
+
+That last one is a obscurified way of writing the ``reciprocal theorem'', normally written as
+\begin{equation*}%\label{eqn:junk:180}
+\Gamma(z)\Gamma(1-z) = \frac{\pi}{\sin(\pi z)}, \quad z \ne \mathbb{Z}.
+\end{equation*}
+Since \( \Gamma(z)\Gamma(1-z) = \infty \) for integer \(z\), and \( \sin(\pi z) = 0 \) for integer \( z \), the reciprocal of this reciprocal relation holds for all \( z \), allowing a solution for the sine.
 
 %}
 %\EndArticle

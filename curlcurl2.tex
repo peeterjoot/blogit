@@ -1,0 +1,171 @@
+%
+% Copyright © 2025 Peeter Joot.  All Rights Reserved.
+% Licenced as described in the file LICENSE under the root directory of this GIT repository.
+%
+%{
+\input{../latex/blogpost.tex}
+\renewcommand{\basename}{curlcurl2}
+%\renewcommand{\dirname}{notes/phy1520/}
+\renewcommand{\dirname}{notes/ece1228-electromagnetic-theory/}
+%\newcommand{\dateintitle}{}
+%\newcommand{\keywords}{}
+
+\input{../latex/peeter_prologue_print2.tex}
+
+\usepackage{peeters_layout_exercise}
+\usepackage{peeters_braket}
+\usepackage{peeters_figures}
+\usepackage{siunitx}
+\usepackage{verbatim}
+%\usepackage{macros_cal} % \LL
+%\usepackage{amsthm} % proof
+%\usepackage{mhchem} % \ce{}
+%\usepackage{macros_bm} % \bcM
+%\usepackage{macros_qed} % \qedmarker
+%\usepackage{txfonts} % \ointclockwise
+
+\beginArtNoToc
+
+\generatetitle{Curl of Curl.  Tensor and GA expansion, and GA equivalent identity.}
+%\chapter{Curl of Curl}
+%\label{chap:curlcurl2}
+
+In this blog post, we will expand \(\spacegrad \cross \lr{ \spacegrad \cross \Bf } = -\spacegrad^2 \Bf + \spacegrad \lr{ \spacegrad \cdot \Bf } \) two different ways, using tensor index gymnastics and using geometric algebra.
+
+\section{The tensor way.}
+To expand the curl using a tensor expansion, let's first expand the cross product in coordinates
+\begin{equation}\label{eqn:curlcurl2:20}
+\begin{aligned}
+\Ba \cross \Bb
+&=
+\lr{ \Be_r \cross \Be_s } a_r b_s \\
+&=
+\Be_t \cdot \lr{ \Be_r \cross \Be_s } \Be_t a_r b_s \\
+&=
+\epsilon_{rst} a_r b_s \Be_t.
+\end{aligned}
+\end{equation}
+Here \( \epsilon_{rst} \) is the completely antisymmetric (Levi-Civita) tensor, and allows us to compactly express the geometrical nature of the triple product.
+
+We can then expand the curl of the curl by applying this twice
+\begin{equation}\label{eqn:curlcurl2:40}
+\begin{aligned}
+\spacegrad \cross \lr{ \spacegrad \cross \Bf }
+&=
+\epsilon_{rst} \partial_r \lr{ \spacegrad \cross \Bf }_s \Be_t \\
+&=
+\epsilon_{rst} \partial_r \lr{ \epsilon_{uvw} \partial_u f_v \Be_w }_s \Be_t \\
+&=
+\epsilon_{rst} \partial_r \epsilon_{uvs} \partial_u f_v \Be_t.
+\end{aligned}
+\end{equation}
+
+It turns out that there's a nice identity to reduce the single index contraction of a pair of Levi-Civita tensors.
+\begin{equation}\label{eqn:curlcurl2:60}
+\epsilon_{abt} \epsilon_{cdt} = \delta_{ac} \delta_{bd} - \delta_{ad} \delta_{bc}.
+\end{equation}
+To show this, consider the \( t = 1 \) term of this sum \( \epsilon_{ab1} \epsilon_{cd1} \).  This is non-zero only for \( a,b,c,d \in \setlr{2,3} \).  If \( a,b = c,d \), this is one, and if \( a,b = d,c \), this is minus one.  We may summarize that as
+\begin{equation}\label{eqn:curlcurl2:80}
+\epsilon_{ab1} \epsilon_{cd1} = \delta_{ac} \delta_{bd} - \delta_{ad} \delta_{bc},
+\end{equation}
+but this holds for \( t = 2,3 \) too, so \cref{eqn:curlcurl2:60} holds generally.
+
+We may now contract the tensors to find
+\begin{equation}\label{eqn:curlcurl2:100}
+\begin{aligned}
+\spacegrad \cross \lr{ \spacegrad \cross \Bf }
+&=
+\epsilon_{rst} \epsilon_{uvs} \Be_t \partial_r \partial_u f_v \\
+&=
+-\epsilon_{rts} \epsilon_{uvs} \Be_t \partial_r \partial_u f_v \\
+&=
+-\lr{ \delta_{ru} \delta_{tv} - \delta_{rv} \delta_{tu} } \Be_t \partial_r \partial_u f_v \\
+&=
+- \Be_v \partial_u \partial_u f_v
++ \Be_u \partial_v \partial_u f_v \\
+&=
+-\spacegrad^2 \Bf + \spacegrad \lr{ \spacegrad \cdot \Bf }.
+\end{aligned}
+\end{equation}
+
+\section{Using geometric algebra.}
+Now let's pull out the GA toolbox.  We start with introducing a no-op grade-1 selection, and using the identity \( \Ba \cross \Bb = -I \lr{ \Ba \wedge \Bb } \)
+\begin{equation}\label{eqn:curlcurl2:120}
+\begin{aligned}
+\spacegrad \cross \lr{ \spacegrad \cross \Bf }
+&=
+\gpgradeone{
+\spacegrad \cross \lr{ \spacegrad \cross \Bf }
+} \\
+&=
+\gpgradeone{
+-I \lr{ \spacegrad \wedge \lr{ \spacegrad \cross \Bf } }
+} \\
+\end{aligned}
+\end{equation}
+We can now expand \( \Ba \wedge \Bb = \Ba \Bb - \Ba \cdot \Bb \)
+\begin{equation}\label{eqn:curlcurl2:140}
+\spacegrad \cross \lr{ \spacegrad \cross \Bf }
+=
+\gpgradeone{
+-I \spacegrad \lr{ \spacegrad \cross \Bf }
++I \lr{ \spacegrad \cdot \lr{ \spacegrad \cross \Bf } }
+}
+\end{equation}
+but that dot product is a scalar, leaving just a pseudoscalar, which has a zero grade-1 selection.  This leaves
+\begin{equation}\label{eqn:curlcurl2:160}
+\begin{aligned}
+\spacegrad \cross \lr{ \spacegrad \cross \Bf }
+&=
+\gpgradeone{
+-I \spacegrad \lr{ -I \lr{ \spacegrad \wedge \Bf } }
+} \\
+&=
+-\gpgradeone{
+\spacegrad \lr{ \spacegrad \wedge \Bf }
+}.
+\end{aligned}
+\end{equation}
+We use \( \Ba \wedge \Bb = \Ba \Bb - \Ba \cdot \Bb \) once more
+\begin{equation}\label{eqn:curlcurl2:180}
+\begin{aligned}
+\spacegrad \cross \lr{ \spacegrad \cross \Bf }
+&=
+-\gpgradeone{
+\spacegrad \lr{ \spacegrad \Bf }
+-\spacegrad \lr{ \spacegrad \cdot \Bf }
+}
+\\
+&=
+-\spacegrad^2 \Bf
++\spacegrad \lr{ \spacegrad \cdot \Bf }.
+\end{aligned}
+\end{equation}
+
+\section{GA identity.}
+It's also worth noting that there's a natural GA formulation of the curl of a curl.  From the Laplacian and divergence relationship that we ended up with, we need only factor out the gradient
+\begin{equation}\label{eqn:curlcurl2:200}
+\begin{aligned}
+\spacegrad \cross \lr{ \spacegrad \cross \Bf }
+&=
+-\spacegrad^2 \Bf +\spacegrad \lr{ \spacegrad \cdot \Bf } \\
+&=
+-\spacegrad \lr{ \spacegrad \Bf - \spacegrad \cdot \Bf } \\
+&=
+-\spacegrad \lr{ \spacegrad \wedge \Bf }.
+\end{aligned}
+\end{equation}
+Because \( \spacegrad \wedge \lr{ \spacegrad \wedge \Bf } = 0 \), we may also write this as
+\begin{equation}\label{eqn:curlcurl2:220}
+\boxed{
+\spacegrad \cdot \lr{ \spacegrad \wedge \Bf } = -\spacegrad \cross \lr{ \spacegrad \cross \Bf }.
+}
+\end{equation}
+From the GA LHS, we see by inspection that
+\begin{equation}\label{eqn:curlcurl2:240}
+\spacegrad \cdot \lr{ \spacegrad \wedge \Bf } = \spacegrad^2 \Bf - \spacegrad \lr{ \spacegrad \cdot \Bf }.
+\end{equation}
+
+%}
+%\EndArticle
+\EndNoBibArticle

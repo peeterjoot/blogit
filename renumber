@@ -476,3 +476,7 @@ perl -p -i ../latex/bin/latexRegex.pl junk.tex
 
 ../latex/bin/lgrep residueGreens.tex | tee o ; . ./o
 perl -p -i ../latex/bin/latexRegex.pl residueGreens.tex
+../latex/bin/lgrep curlcurl.tex | tee o ; . ./o
+perl -p -i ../latex/bin/latexRegex.pl curlcurl.tex
+../latex/bin/lgrep curlcurl2.tex | tee o ; . ./o
+perl -p -i ../latex/bin/latexRegex.pl curlcurl2.tex

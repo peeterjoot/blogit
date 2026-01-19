@@ -236,6 +236,41 @@ Since \( \Gamma(z)\Gamma(1-z) = \infty \) for integer \(z\), and \( \sin(\pi z) 
 \end{aligned}
 \end{equation}
 
+\section{Frank's question: discord}
+
+Is this supposed to be a line integral in two dimensions?
+
+i.e.: Let
+\begin{equation*}
+\begin{aligned}
+I &= \Be_1 \Be_2 \\
+\spacegrad &= \Be_1 \partial_x + \Be_2 \partial_y \\
+d\Bx &= dx \Be_1 + dy \Be_2.
+\end{aligned}
+\end{equation*}
+
+and then compute
+\begin{equation*}
+\begin{aligned}
+\spacegrad (xy) I d\Bx
+&=
+\lr{\Be_1 \partial_x + \Be_2 \partial_y }(xy)
+\Be_1 \Be_2
+\lr{ dx \Be_1 + dy \Be_2 } \\
+&=
+\lr{\Be_1 y + \Be_2 x }
+\Be_1 \Be_2
+\lr{ dx \Be_1 + dy \Be_2 } \\
+&=
+\lr{\Be_2 y - \Be_1 x }
+\lr{ dx \Be_1 + dy \Be_2 } \\
+&=
+\lr{-I y - x } dx
++
+\lr{y - I x } dy.
+\end{aligned}
+\end{equation*}
+
 %}
 %\EndArticle
 \EndNoBibArticle

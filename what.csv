@@ -70,11 +70,23 @@
 11/Apr/2025;impedance.tex;
 11/Apr/2025;writing.tex;
 12/Apr/2025;karlCircuitsCheatSheet.tex;
+25/Jul/2025;pytorch.tex;
 26/Jul/2025;fibonacci_sinh.tex;
+09/Aug/2025;generalizedGaussian.tex;
+16/Aug/2025;transverseField.tex;
+16/Aug/2025;landauEasy.tex;
+21/Aug/2025;zeroOneIntegral.tex;
+06/Sep/2025;FunkyExponents.tex;
+06/Sep/2025;selfEnergyIntegral.tex;
 18/Sep/2025;Greens/deltaFunctions.tex;
 18/Sep/2025;Greens/helmholtzGreens.tex;
 23/Sep/2025;averagespeedproblem.tex;
+28/Sep/2025;h2g.tex;
 29/Sep/2025;Greens/helmholtzHomogeneous2D.tex;
 01/Oct/2025;Greens/waveEquationGreens.tex;Green's function for 1D wave equation operator: verification, not derivation.
+18/Oct/2025;RLCbandwidth.tex;
 26/Oct/2025;Greens/spacetimeGradientGreens.tex;
 30/Oct/2025;Greens/residueGreens.tex;Cauchy integral equation from the 2D Green's function for the gradient.
+04/Nov/2025;GreensMisc.tex;
+12/Nov/2025;curlcurl2.tex;
+20/Jan/2026;lineintegralExamples.tex;Some line integral examples of the Fundamental theorem of geometric calculus.

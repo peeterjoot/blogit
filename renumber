@@ -480,3 +480,5 @@ perl -p -i ../latex/bin/latexRegex.pl residueGreens.tex
 perl -p -i ../latex/bin/latexRegex.pl curlcurl.tex
 ../latex/bin/lgrep curlcurl2.tex | tee o ; . ./o
 perl -p -i ../latex/bin/latexRegex.pl curlcurl2.tex
+../latex/bin/lgrep lineintegralExamples.tex | tee o ; . ./o
+perl -p -i ../latex/bin/latexRegex.pl lineintegralExamples.tex

@@ -1,0 +1,129 @@
+%
+% Copyright © 2026 Peeter Joot.  All Rights Reserved.
+% Licenced as described in the file LICENSE under the root directory of this GIT repository.
+%
+%{
+\input{../latex/blogpost.tex}
+\renewcommand{\basename}{lineintegralExamples}
+%\renewcommand{\dirname}{notes/phy1520/}
+\renewcommand{\dirname}{notes/ece1228-electromagnetic-theory/}
+%\newcommand{\dateintitle}{}
+%\newcommand{\keywords}{}
+
+\input{../latex/peeter_prologue_print2.tex}
+
+\usepackage{peeters_layout_exercise}
+\usepackage{peeters_braket}
+\usepackage{peeters_figures}
+\usepackage{siunitx}
+\usepackage{verbatim}
+%\usepackage{macros_cal} % \LL
+%\usepackage{amsthm} % proof
+%\usepackage{mhchem} % \ce{}
+%\usepackage{macros_bm} % \bcM
+%\usepackage{macros_qed} % \qedmarker
+%\usepackage{txfonts} % \ointclockwise
+
+\beginArtNoToc
+
+\generatetitle{Some line integral examples of the Fundamental theorem of geometric calculus}
+%\chapter{Some line integral examples of the Fundamental theorem of geometric calculus}
+%\label{chap:lineintegralExamples}
+
+On my discord server, Frank \href{https://discord.com/channels/1008210276249780314/1008210276249780317/1461429106510926014}{asked about his attempt to demonstrate an example line integral computation of the fundamental theorem of geometric calculus}.
+
+Before working through his example, and some others, it is first worth restating the
+line integral specialization of the \textit{Fundamental theorem of geometric calculus}:
+\maketheorem{Fundamental theorem of geometric calculus (line integral version.)}{thm:fundamentalTheoremOfCalculus:1}{
+Given multivectors \(F, G \), a single variable parameterization \( \Bx = \Bx(u) \), with line element \( d\Bx = du \Bx_u \), \( \Bx_u = \PDi{u}{\Bx} \), \( \lrboldpartial = \Bx^u \PDi{u}{} \), and \( \Bx^u \cdot \Bx_u = 1 \), then
+the line integral is related to the boundary by
+\begin{equation*}
+\int F d\Bx \lrboldpartial G = \evalbar{F G}{\Delta u}.
+\end{equation*}
+} % theorem
+
+It is very important to point out that the derivative operator here is the vector derivative, and not the gradient.  Roughly speaking, the vector derivative is the projection of the gradient onto the tangent space.  In this case, the tangent space is just the line in the direction \( \Bx_u \), which may vary along the parameterized path.
+
+Here are some examples of some one variable parameterizations, all in two dimensions
+\begin{enumerate}
+\item \( \Bx = u \Be_1 + y_0 \Be_2 \).
+We compute
+\begin{equation}\label{eqn:lineintegralExamples:20}
+\begin{aligned}
+\Bx_u &= \PD{\Bx}{u} = \Be_1 \\
+\Bx^u &= \Be_1 \\
+d\Bx &= du \Be_1 \\
+\boldpartial &= \Be_1 \PD{u}{}.
+\end{aligned}
+\end{equation}
+and \( d\Bx \boldpartial = \PDi{u}{} \).
+The fundamental theorem is really just a statement that
+\begin{equation}\label{eqn:lineintegralExamples:40}
+\int \PD{u}{} \lr{ F G } du = \evalbar{ F G }{\Delta u}.
+\end{equation}
+\item \( \Bx = \alpha u \Be_1 + \beta u \Be_2 \), where \( \alpha, \beta \) are constants.  i.e.: a line, but not necessarily on the horizontal this time.
+This time, we compute
+\begin{equation}\label{eqn:lineintegralExamples:60}
+\begin{aligned}
+\Bx_u &= \alpha \Be_1 + \beta \Be_2 \\
+\Bx^u &= \inv{\Bx_u} = \frac{\alpha \Be_1 + \beta \Be_2}{\alpha^2 + \beta^2} \\
+d\Bx &= du \lr{ \alpha \Be_1 + \beta \Be_2 } \\
+\boldpartial &= \inv{\alpha \Be_1 + \beta \Be_2} \PD{u}{}.
+\end{aligned}
+\end{equation}
+Again, we have \( d\Bx \boldpartial = \PDi{u}{} \), and the story repeats.
+\item \( \Bx = R \Be_1 e^{i\theta}, i = \Be_1 \Be_2 \).  This time we are going along a circular arc.
+
+Let \( \rcap = \Be_1 e^{i\theta} \), and \(\thetacap = \Be_2 e^{i\theta} \).  We can compute
+\begin{equation}\label{eqn:lineintegralExamples:80}
+\begin{aligned}
+\Bx_\theta &= R \Be_2 e^{i\theta} = R \thetacap \\
+\Bx^\theta &= \inv{\Bx_\theta} = \inv{ R \Be_2 e^{i\theta} } = \inv{R} \thetacap \\
+d\Bx &= d\theta \thetacap \\
+\boldpartial &= \frac{\thetacap}{R} \PD{\theta}{}.
+\end{aligned}
+\end{equation}
+This time, probably to no suprise, we have \( d\Bx \boldpartial = \PDi{\theta}{} \), so the fundamental theorem for this parameterization is a statement that
+\begin{equation}\label{eqn:lineintegralExamples:100}
+\int \PD{\theta}{} \lr{ F G } d\theta = \evalbar{ F G }{\Delta \theta}.
+\end{equation}
+\item \( \Bx = r e^{i\theta_0} \), where \( \theta_0 \) is a constant.  We've already computed this above with a Cartesian representation of a line, but can do it again this time with an explicitly radial parameterization.  We compute
+\begin{equation}\label{eqn:lineintegralExamples:120}
+\begin{aligned}
+\Bx_r &= \Be_1 e^{i \theta_0} \\
+\Bx^r &= \inv{\Bx_r} = \Be_1 e^{i \theta_0} \\
+d\Bx &= dr \Be_1 e^{i \theta_0} \\
+\boldpartial &= e^{i \theta_0} \PD{r}{}.
+\end{aligned}
+\end{equation}
+This time, \( d\Bx \boldpartial = \PDi{r}{} \), and the fundamental theorem for this parameterization is a statement that
+\begin{equation}\label{eqn:lineintegralExamples:140}
+\int \PD{r}{} \lr{ F G } dr = \evalbar{ F G }{\Delta r}.
+\end{equation}
+\end{enumerate}
+
+Observe that we do not get the same result if we use the gradient instead of the vector derivative.  We may only make a gradient substitution for the vector derivative when the dimension of the hypervolume integral equals the dimension of the vector space itself.  For a line integral that would mean we are restricting the domain of the underlying vector space to \R{1}, which isn't a very interesting case for geometric algebra.
+
+In Frank's example, he was working with a generating vector space of \R{2}, with the horizontal parameterization \( \Bx = u \Be_1 + y_0 \Be_2 \) that we used in the first example (with \( F = 1, G = x y i \), where \( i = \Be_1 \Be_2 \), the pseudoscalar for the space).
+
+Let's see what happens if we compute a similar integral, but swapping out the vector derivative with the gradient
+\begin{equation}\label{eqn:lineintegralExamples:160}
+\begin{aligned}
+\int d\Bx \spacegrad x y i
+&=
+\int du \Be_1 \lr{ \Be_1 \partial_x + \Be_2 \partial_y } ( x y i ) \\
+&=
+\int du \Be_1 \lr{ \Be_1 y + \Be_2 x } i \\
+&=
+\int du \lr{ y + i x } i \\
+&=
+\int du \lr{ y_0 + i u } i \\
+&=
+\lr{\Delta x} y_0 i - \frac{x_1^2}{2} + \frac{x_0^2}{2}.
+\end{aligned}
+\end{equation}
+As well as the pseudoscalar term that we had when evaluating the fundamental theorem integral, this time we have an extra scalar term, a contribution that goes back to the \( y \) component of the gradient.  There is nothing wrong with performing such an integral, but it's not an instance of the fundamental theorem, and the same tidy answer should not be expected.  In Frank's original example, he also didn't put the \( \Bx \) adjacent to the differential operator, which is required to get the perfect cancelation of the tangent space vectors that we've seen in the evaluations above.
+
+%}
+%\EndArticle
+\EndNoBibArticle

@@ -1,0 +1,63 @@
+%
+% Copyright © 2026 Peeter Joot.  All Rights Reserved.
+% Licenced as described in the file LICENSE under the root directory of this GIT repository.
+%
+%{
+\input{../latex/blogpost.tex}
+\renewcommand{\basename}{newtons_reciprocal}
+%\renewcommand{\dirname}{notes/phy1520/}
+\renewcommand{\dirname}{notes/ece1228-electromagnetic-theory/}
+%\newcommand{\dateintitle}{}
+%\newcommand{\keywords}{}
+
+\input{../latex/peeter_prologue_print2.tex}
+
+\usepackage{peeters_layout_exercise}
+\usepackage{peeters_braket}
+\usepackage{peeters_figures}
+\usepackage{siunitx}
+\usepackage{verbatim}
+%\usepackage{mhchem} % \ce{}
+%\usepackage{macros_bm} % \bcM
+%\usepackage{macros_qed} % \qedmarker
+%\usepackage{txfonts} % \ointclockwise
+
+\beginArtNoToc
+
+\generatetitle{Newton's method for reciprocal}
+%\chapter{Newton's method for reciprocal}
+%\label{chap:newtons_reciprocal}
+% \citep{sakurai2014modern} pr X.Y
+% \citep{pozar2009microwave}
+% \citep{qftLectureNotes}
+% \citep{doran2003gap}
+% \citep{jackson1975cew}
+% \citep{griffiths1999introduction}
+
+Define
+
+\begin{equation*}
+f(x) = \inv{x} - b,
+\end{equation*}
+for which
+\begin{equation*}
+f'(x) = -\frac{1}{x}
+\end{equation*}
+
+The slope at some initial guess \( x_1 \) is
+\begin{equation*}
+\begin{aligned}
+f'(x_1)
+&= - 1/x_1^2 \\
+&\approx \frac{f(x_1) - 0}{x_1 - x_2}.
+\end{aligned}
+\end{equation*}
+
+Rearranging for \( x_2 \), we have
+\begin{equation*}
+x_2 = x_1 + x_1 (1 - b x_1)
+\end{equation*}
+
+%}
+%\EndArticle
+\EndNoBibArticle

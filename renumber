@@ -474,14 +474,20 @@ perl -p -i ../latex/bin/latexRegex.pl junk.tex
 #../latex/bin/lgrep GreensMisc.tex.tex | tee o ; . ./o
 #perl -p -i ../latex/bin/latexRegex.pl GreensMisc.tex.tex
 
-../latex/bin/lgrep residueGreens.tex | tee o ; . ./o
-perl -p -i ../latex/bin/latexRegex.pl residueGreens.tex
-../latex/bin/lgrep curlcurl.tex | tee o ; . ./o
-perl -p -i ../latex/bin/latexRegex.pl curlcurl.tex
-../latex/bin/lgrep curlcurl2.tex | tee o ; . ./o
-perl -p -i ../latex/bin/latexRegex.pl curlcurl2.tex
-../latex/bin/lgrep lineintegralExamples.tex | tee o ; . ./o
-perl -p -i ../latex/bin/latexRegex.pl lineintegralExamples.tex
+#../latex/bin/lgrep curlcurl.tex | tee o ; . ./o
+#perl -p -i ../latex/bin/latexRegex.pl curlcurl.tex
 
-../latex/bin/lgrep newtons_reciprocal.tex | tee o ; . ./o
-perl -p -i ../latex/bin/latexRegex.pl newtons_reciprocal.tex
+#../latex/bin/lgrep curlcurl2.tex | tee o ; . ./o
+#perl -p -i ../latex/bin/latexRegex.pl curlcurl2.tex
+
+#../latex/bin/lgrep lineintegralExamples.tex | tee o ; . ./o
+#perl -p -i ../latex/bin/latexRegex.pl lineintegralExamples.tex
+
+#../latex/bin/lgrep newtons_reciprocal.tex | tee o ; . ./o
+#perl -p -i ../latex/bin/latexRegex.pl newtons_reciprocal.tex
+
+#../latex/bin/lgrep residueGreens.tex | tee o ; . ./o
+#perl -p -i ../latex/bin/latexRegex.pl residueGreens.tex
+
+#../latex/bin/lgrep cosh_complex.tex | tee o ; . ./o
+#perl -p -i ../latex/bin/latexRegex.pl cosh_complex.tex

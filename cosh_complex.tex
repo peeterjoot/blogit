@@ -1,0 +1,68 @@
+%
+% Copyright © 2026 Peeter Joot.  All Rights Reserved.
+% Licenced as described in the file LICENSE under the root directory of this GIT repository.
+%
+%{
+\input{../latex/blogpost.tex}
+\renewcommand{\basename}{cosh_complex}
+%\renewcommand{\dirname}{notes/phy1520/}
+\renewcommand{\dirname}{notes/ece1228-electromagnetic-theory/}
+%\newcommand{\dateintitle}{}
+%\newcommand{\keywords}{}
+
+\input{../latex/peeter_prologue_print2.tex}
+
+\usepackage{peeters_layout_exercise}
+\usepackage{peeters_braket}
+\usepackage{peeters_figures}
+\usepackage{siunitx}
+\usepackage{verbatim}
+%\usepackage{macros_cal} % \LL
+%\usepackage{amsthm} % proof
+%\usepackage{mhchem} % \ce{}
+%\usepackage{macros_bm} % \bcM
+%\usepackage{macros_qed} % \qedmarker
+%\usepackage{txfonts} % \ointclockwise
+
+\beginArtNoToc
+
+\generatetitle{XXX}
+%\chapter{XXX}
+%\label{chap:cosh_complex}
+
+Show that
+\begin{equation}\label{eqn:cosh_complex:20}
+\Be_1 \cosh\lr{\mu + i \mu_2} = \cosh\lr{\mu - i \mu_2} \Be_1,
+\end{equation}
+where \( i = \Be_1 \Be_2 \).
+
+First note that
+\begin{equation}\label{eqn:cosh_complex:40}
+\begin{aligned}
+\Be_1 e^{i \theta }
+&=
+\Be_1 \lr{ \cos\theta + i \sin\theta } \\
+&=
+\lr{ \cos\theta - i \sin\theta } \Be_1,
+\end{aligned}
+\end{equation}
+since \( \Be_1 i = \Be_{112} = -i \Be_1 \).
+
+So
+\begin{equation}\label{eqn:cosh_complex:60}
+\begin{aligned}
+\Be_1 \cosh\lr{\mu + i \mu_2}
+&=
+\frac{\Be_1}{2} \lr{ e^{\mu + i\mu_2} + e^{-\mu -i \mu_2} } \\
+&=
+\inv{2} \lr{ e^{\mu} \Be_1 e^{i\mu_2} + e^{-\mu} \Be_1 e^{-i \mu_2} } \\
+&=
+\inv{2} \lr{ e^{\mu} e^{-i\mu_2} \Be_1 + e^{-\mu} e^{ i \mu_2} \Be_1 } \\
+&=
+\cosh\lr{ \mu - i \mu_2 } \Be_1
+\end{aligned}
+\end{equation}
+
+%}
+%\EndArticle
+\EndNoBibArticle

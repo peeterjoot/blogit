@@ -1,0 +1,92 @@
+%
+% Copyright © 2026 Peeter Joot.  All Rights Reserved.
+% Licenced as described in the file LICENSE under the root directory of this GIT repository.
+%
+%{
+\input{../latex/blogpost.tex}
+\renewcommand{\basename}{simplifyCubes}
+%\renewcommand{\dirname}{notes/phy1520/}
+\renewcommand{\dirname}{notes/ece1228-electromagnetic-theory/}
+%\newcommand{\dateintitle}{}
+%\newcommand{\keywords}{}
+
+\input{../latex/peeter_prologue_print2.tex}
+
+\usepackage{peeters_layout_exercise}
+\usepackage{peeters_braket}
+\usepackage{peeters_figures}
+\usepackage{siunitx}
+\usepackage{verbatim}
+%\usepackage{macros_cal} % \LL
+%\usepackage{amsthm} % proof
+%\usepackage{mhchem} % \ce{}
+%\usepackage{macros_bm} % \bcM
+%\usepackage{macros_qed} % \qedmarker
+%\usepackage{txfonts} % \ointclockwise
+
+\newcommand{\cube}[1]{\sqrt[3]{#1}}
+
+\beginArtNoToc
+
+\generatetitle{XXX}
+%\chapter{XXX}
+%\label{chap:simplifyCubes}
+% \citep{sakurai2014modern} pr X.Y
+% \citep{pozar2009microwave}
+% \citep{qftLectureNotes}
+% \citep{doran2003gap}
+% \citep{jackson1975cew}
+% \citep{griffiths1999introduction}
+
+Simplify
+\begin{equation}\label{eqn:simplifyCubes:20}
+S = \frac{\lr{\cube{4} - 1}\sqrt{\cube{9} + \cube{16} + \cube{96}}}{\cube{6} - \cube{4} - \cube{3} + 2}
+\end{equation}
+
+Let
+\begin{equation}\label{eqn:simplifyCubes:40}
+\begin{aligned}
+a &= \cube{2} \\
+b &= \cube{3},
+\end{aligned}
+\end{equation}
+and note
+\begin{equation}\label{eqn:simplifyCubes:60}
+\begin{aligned}
+4 &= 2^2,\quad 6 = 2 \cdot 3, \\
+9 &= 3^2, \quad 16 = 2^4 \\
+96 &= 2^5 \cdot 3,
+\end{aligned}
+\end{equation}
+so
+\begin{equation}\label{eqn:simplifyCubes:80}
+S = \frac{ \lr{ a^2 - 1 } \sqrt{ b^2 + a^4 + a^5 b }}{a b - a^2 - b + a^3 }.
+\end{equation}
+
+Some trial and error shows that \( a - 1 \) is a divisor of the denominator
+\begin{equation}\label{eqn:simplifyCubes:100}
+a b - a^2 - b + a^3 = \lr{ a^2 + b }\lr{ a - 1 },
+\end{equation}
+so
+\begin{equation}\label{eqn:simplifyCubes:120}
+S = \frac{ \lr{ a + 1 }\sqrt{ b^2 + a^4 + a^5 b }}{a^2 + b }.
+\end{equation}
+
+Now square everything
+\begin{equation}\label{eqn:simplifyCubes:140}
+\begin{aligned}
+S^2
+&= \frac{ \lr{a + 1 }^2 \lr{ b^2 + a^4 + a^5 b } }{ a^4 + 2 a^2 b + b^2 } \\
+&= \frac{ \lr{a + 1 }^2 \lr{ b^2 + 2 a + 2 a^2 b } }{ 2 a + 2 a^2 b + b^2 } \\
+&= \lr{a + 1 }^2.
+\end{aligned}
+\end{equation}
+
+We've found
+\begin{equation}\label{eqn:simplifyCubes:160}
+S = a + 1 = \cube{2} + 1.
+\end{equation}
+
+%}
+%\EndArticle
+\EndNoBibArticle
